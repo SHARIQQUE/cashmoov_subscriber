@@ -1,0 +1,356 @@
+<resources>
+    <string name="app_name">Cashmoov Subscriber</string>
+    <string name="home">Home</string>
+    <string name="wallet">Wallet</string>
+    <string name="setting">Setting</string>
+    <string name="profile">Profile</string>
+    <string name="visit_our_site">Visit our site</string>
+    <string name="about_cashmoov_app">About Cashmoov App</string>
+    <string name="version">Version : 1.0</string>
+    <string name="platform_cash_moov">Platform : CASH MOOV</string>
+    <string name="user_id">User ID</string>
+    <string name="acc_created">Account created!</string>
+    <string name="acc_created_message">Dear user, your account has been successfully created. Log in to start using the app</string>
+    <string name="continu">Continue</string>
+    <string name="beneficiary_management">Beneficiary Management</string>
+    <string name="add_contact">Add a contact</string>
+    <string name="hello">Hello</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="pay">Pay</string>
+    <string name="balance">Balance</string>
+    <string name="our_operations">Our Operations</string>
+    <string name="money_transfer">Money Transfer</string>
+    <string name="airtime_purchase">Airtime Purchase</string>
+    <string name="payment">Payments</string>
+    <string name="merchant_payment">Pay</string>
+    <string name="cash_withdrawal">Cash Withdrawal</string>
+    <string name="receive_remittance">Receive Remittance</string>
+    <string name="fee">Fee</string>
+    <string name="service_point">Service Point</string>
+    <string name="complete_profile">Complete the profile</string>
+    <string name="complet_70">70% complete</string>
+    <string name="out_8_10_complete">8 out of 10 complete</string>
+    <string name="recharge_payment">Recharge &amp; Payment</string>
+    <string name="next">Next</string>
+    <string name="ignore">Ignore</string>
+    <string name="to_start">Start</string>
+    <string name="to_end">End</string>
+    <string name="watch_video">Watch the video</string>
+    <string name="video_tutorial_message">If you\'re new and need help, watch this short tutorial to get started.</string>
+    <string name="already_acc_login">Already have an account? - Log in</string>
+    <string name="register">Register</string>
+    <string name="register_message">Please enter your valid phone number. We will send you a 4-digit code to verify the account.</string>
+    <string name="enter_location">Enter your location</string>
+    <string name="enter_phone_no">Enter your phone number</string>
+    <string name="see_terms_policy">Please see our Terms of Service Policy</string>
+    <string name="skip">Skip</string>
+    <string name="complete_your_info">Complete your information</string>
+    <string name="register_info_message">To complete your registration we need certain information.</string>
+    <string name="name">Name</string>
+    <string name="fname">First name</string>
+    <string name="email">Email</string>
+    <string name="city">City</string>
+    <string name="address">Address</string>
+
+
+
+    <string name="username">
+        <font fgcolor="#000000">Samuel</font><font fgcolor="#4f62c0"> </font><font fgcolor="#4f62c0">Flatcher</font>
+    </string>
+    <string name="occupation">Occupation</string>
+    <string name="dob">Date of Birth</string>
+    <string name="choose_pin">Choose PIN Ex: 1234</string>
+    <string name="repeat_pin">Repeat PIN Ex: 1234</string>
+    <string name="attach_your_id">Attach your ID</string>
+    <string name="attach_id_message">Take a photo of your ID with your camera.</string>
+    <string name="front">Ex: Front</string>
+    <string name="ex_verso">Ex: Back</string>
+    <string name="id_proof_no">Id Proof Number</string>
+    <string name="verification">Verification</string>
+
+    <string name="verification_message">Enter the 4-digit OTP code we sent to +224 621 123 123.</string>
+    <string name="verification_register_otp">Please enter the OTP (one time password) to verify your account. Code has been sent to registered email id &amp; mobile number</string>
+    <string name="session_expired_send_back">The session expires in 60 seconds. Haven\'t received a code? Send it back</string>
+    <string name="my_account">My Account</string>
+    <string name="your_currency">Your Currency</string>
+    <string name="acc_statement">Account Statements</string>
+    <string name="last_transactions">Your Last Transactions</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="bill_payment">Bill Payment</string>
+    <string name="recharge">Recharge</string>
+    <string name="your_beneficiaries">Beneficiaries</string>
+    <string name="language">Language</string>
+    <string name="confidentiality">Confidentiality</string>
+    <string name="share_app">Share App</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="about">About</string>
+    <string name="change_pin">Change Pin</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="reset">Reset</string>
+    <string name="hello_this_is_your">Hello this is your</string>
+    <string name="cash">Cash</string>
+    <string name="moov_qr">Moov QR</string>
+    <string name="scan_me">Scan Me</string>
+    <string name="change_language">Change Language</string>
+    <string name="choose_language">Please choose the language :</string>
+    <string name="french">French</string>
+    <string name="english">English</string>
+    <string name="action_requires_biometric_auth">This action requires biometric authentication</string>
+    <string name="protection_of_sensitive">The protection of sensitive data is not active.</string>
+    <string name="activate_ptotection">Activate Protection</string>
+    <string name="press_cancel_return_to_dashboard">Press the cancel button to return to the dashboard</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_configuration">Are you sure you want to delete the configuration?</string>
+    <string name="this_action_reset_all_settings">This action will reset all of the application\'s settings.</string>
+    <string name="need_to_link_account">You will need to link this app to your account again</string>
+    <string name="confirm">Confirm</string>
+    <string name="current_profile_photo">Your current profile photo</string>
+    <string name="select_new_profile_photo">Select your new profile photo</string>
+    <string name="you_are_reloading">You make a recharge</string>
+    <string name="my_number">My number</string>
+    <string name="another_number">Another Number</string>
+    <string name="bank_transfer_to_wallet">Bank transfer to your wallet</string>
+    <string name="transaction_details">Transaction details</string>
+    <string name="select_bank">Select Bank*</string>
+    <string name="acc_number">Account number:</string>
+    <string name="montant_a_envoyer">Amount to send</string>
+    <string name="fees">Fees:</string>
+    <string name="amount_to_paid">Amount to be paid:</string>
+    <string name="send">Send</string>
+    <string name="choose_operation">Choose the operation</string>
+    <string name="subscriber">Subscriber</string>
+    <string name="non_subscriber">Non Subscriber</string>
+    <string name="international">International</string>
+    <string name="bank_to_wallet">Bank to wallet</string>
+    <string name="wallet_to_bank">wallet to Bank</string>
+    <string name="money_transfer_to_subscriber">Money transfer to subscriber</string>
+    <string name="subscriber_details">Subscriber details</string>
+    <string name="scanner">Scanner</string>
+    <string name="details_du_receveur">Receiver details</string>
+    <string name="valid_recipient_number">Recipient number*</string>
+    <string name="amount">Amount*</string>
+    <string name="non_subscribed_money_transfer">Non-subscribed money transfer</string>
+    <string name="recipient_details">Recipient details</string>
+    <string name="valid_fname">First name*</string>
+    <string name="valid_lname">Last Name*</string>
+    <string name="valid_phone_number">Phone number*</string>
+    <string name="valid_email">Email*</string>
+    <string name="valid_city">City*</string>
+    <string name="valid_address">Address*</string>
+    <string name="valid_select_gender">Select Gender*</string>
+    <string name="valid_select_occupation">Select Occupation*</string>
+    <string name="valid_dob">Date of Birth*</string>
+    <string name="valid_select_id_proof">Select Id Proof*</string>
+    <string name="vaild_id_proof_no">Id Proof Number*</string>
+    <string name="valid_amount_send">Amount to send*</string>
+    <string name="gender">Gender</string>
+    <string name="reason_for_sending">Reason for sending</string>
+    <string name="international_money_transfer">International money transfer</string>
+    <string name="Rate">Rate:</string>
+    <string name="transfer_to_your_bank">Transfer to your Bank</string>
+    <string name="valid_select_provider">Select provider*</string>
+    <string name="amount_to_send">Amount to send</string>
+    <string name="destination_bank">Destination bank</string>
+    <string name="valid_choose_your_bank">Choose your Bank*</string>
+    <string name="recharge_your_number">Recharge your number</string>
+    <string name="recharge_details">Recharge details</string>
+    <string name="valid_amount_charged">Amount to be charged *</string>
+    <string name="recharge_another_number">Recharge another number</string>
+    <string name="you_make_an_invoice_payment">You make an invoice payment</string>
+    <string name="recharge_tv_star_time">Recharge Tv Star Time</string>
+    <string name="valid_acc_number">Account Number*</string>
+    <string name="valid_amount">Amount*</string>
+    <string name="you_make_significant_payment">You make a significant payment</string>
+    <string name="receiver_details">Receiver details</string>
+    <string name="you_make_withdrawal">You make a withdrawal</string>
+    <string name="pos_number">POS number</string>
+    <string name="beneficiary_details">Beneficiary details</string>
+    <string name="valid_beneficiairy_name">Beneficiairy name*</string>
+    <string name="valid_confirmation_code">Confirmation code*</string>
+    <string name="valid_beneficiary_currency">Beneficiary currency*</string>
+    <string name="locate_agency">Locate an agency</string>
+    <string name="search_results">Search results</string>
+    <string name="agency_found">Agency found</string>
+    <string name="service_fees">Service Fee</string>
+    <string name="fees_1000_gnf_transaction">Fees: 1000 GNF / transaction</string>
+    <string name="free_service">Free service</string>
+    <string name="transaction_1percent">1% on the transaction</string>
+    <string name="confirmation_receipt">Confirmation receipt</string>
+    <string name="service_provider_colon">Service provider :</string>
+    <string name="mobile_number_colom">Mobile number :</string>
+    <string name="user_colon">User :</string>
+    <string name="confirmation_code_colon">Confirmation code :</string>
+    <string name="currency_colon">Currency :</string>
+    <string name="amount_colon">Amount :</string>
+    <string name="fee_colon">Fee :</string>
+    <string name="i_bear_fees">I bear the fees</string>
+    <string name="pin_colon">PIN :</string>
+    <string name="ex_1234">Ex: 1234</string>
+    <string name="transaction_success">Transaction\nsuccess!</string>
+    <string name="details_of_transaction">Details of your transaction</string>
+    <string name="transaction_type_colon">Transaction type:</string>
+    <string name="transaction_id_colon">Transaction ID :</string>
+    <string name="export_receipt">Export receipt</string>
+    <string name="change_pin_caps">Change PIN</string>
+    <string name="change_pin_message">Please enter old pin and new pin to change your pin.</string>
+    <string name="change_lang_conf_msg">Are you sure you want to change language?</string>
+    <string name="fee_consulting_service">Cash Moov Fee Consulting Service</string>
+    <string name="service_chosen_colon">Service chosen:</string>
+    <string name="subscriber_transfer_colon">Subscriber transfer:</string>
+    <string name="non_subscriber_transfer_colon">Non-subscribed transfer:</string>
+    <string name="close">Close</string>
+    <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
+    <string name="save_next"><![CDATA[Save & Next]]></string>
+    <string name="clear">Clear</string>
+    <string name="self_sign">Self Signature</string>
+    <string name="upload">Upload</string>
+    <string name="lname">Last Name</string>
+    <string name="country">Country</string>
+    <string name="id_proof_type">Id Proof Type</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="select_occupation">Select Occupation</string>
+    <string name="select_id_proof">Select Id Proof</string>
+    <string name="enter_pin">Enter your pin</string>
+    <string name="login_message">Please enter your phone number &amp; password to login the account.</string>
+    <string name="login">Login</string>
+    <string name="login_fingerprint">Login with Fingerprint?</string>
+    <string name="use_finger_to_login">Use your fingerprint to login</string>
+    <string name="no_fingerprint_senser">This device doesn\'t have a fingerprint sensor</string>
+    <string name="no_biometric_senser">The biometric sensor is currently unavailable</string>
+    <string name="device_not_contain_fingerprint">Your device doesn\'t have fingerprint saved,please check your security settings</string>
+    <string name="val_pin">Please enter pin</string>
+
+    <string name="val_valid_pin">Pin must be at least 4 digit</string>
+    <string name="enter_pass">Enter your password</string>
+    <string name="new_pass">New password</string>
+    <string name="confirm_pass">Confirm password</string>
+    <string name="or">OR</string>
+    <string name="login_pin">Login with Pin?</string>
+    <string name="val_phone">Please enter phone number</string>
+    <string name="val_pass">Please enter password</string>
+    <string name="login_pin_message">Please enter your 4 digit pin to login the account.</string>
+    <string name="set_pin">Set Pin</string>
+    <string name="generate_password">Generate New Password</string>
+    <string name="set_pin_message">Please set 4 digit pin for your account.</string>
+    <string name="re_enter_pin">Re-Enter your pin</string>
+    <string name="val_re_pin">Please enter re-pin</string>
+    <string name="val_valid_re_pin">Re-Pin must be at least 4 digit</string>
+    <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin should be same]]></string>
+    <string name="val_select_gender">Please select gender</string>
+    <string name="val_select_occupation">Please select occupation</string>
+    <string name="val_dob">Please select date of birth</string>
+    <string name="val_fname">Please enter first name</string>
+    <string name="val_lname">Please enter last name</string>
+
+    <string name="val_email">Please enter email id</string>
+    <string name="val_city">Please enter city</string>
+    <string name="val_address">Please enter address</string>
+    <string name="val_proof_no">Please enter id proof number</string>
+    <string name="val_select_id_proof">Please select id proof type</string>
+    <string name="val_select_country">Please select country</string>
+    <string name="valid_select_country">Select Country*</string>
+    <string name="val_email_valid">Please enter valid email id</string>
+    <string name="technical_failure">Please try after some time</string>
+    <string name="register_first_time_message">User doesn\'t have an account, please register once to create an account.</string>
+    <string name="getting_user_info">Getting User Info Please wait!</string>
+    <string name="login_successful">Login Successful</string>
+    <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u></string>
+    <string name="logout">Logout</string>
+    <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application ?</string>
+    <string name="this_action_logout">This action will logout from the application</string>
+    <string name="view_balance">View balance</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="status">Status</string>
+    <string name="transaction_successful">Transaction Successfull</string>
+    <string name="from">From</string>
+    <string name="date">Date</string>
+    <string name="upload_success">Profile image uploaded successfully</string>
+    <string name="really_exit">Really Exit?</string>
+    <string name="are_you_sure_exit">Are you sure you want to exit?</string>
+    <string name="val_recipient_no">Please enter recipient number</string>
+    <string name="val_amount">Please enter amount</string>
+    <string name="scan_error">Scan Error</string>
+    <string name="val_scan_error_content">QR Code could not be scanned</string>
+    <string name="fee_tax_greater_than_trans_amt"><![CDATA[Fee & tax amount is greater than transaction amount]]></string>
+    <string name="val_valid_amount">Please enter valid amount</string>
+    <string name="share_screenshot">Share Screenshot</string>
+    <string name="no_app_available">No App Available</string>
+    <string name="valid_select_service_provider">Select Service Provider*</string>
+    <string name="valid_select_rec_country">Select Receiving Country*</string>
+    <string name="valid_select_benifi_curr">Select Benificiary Currency*</string>
+    <string name="val_select_service_provider">Please select service provider</string>
+    <string name="val_select_curr">Please select currency</string>
+    <string name="kyc_detail_response_msg">Kyc details submitted successfully</string>
+    <string name="trans_amount_colon">Transaction Amount :</string>
+    <string name="amount_paid_colon">Amount to be Paid :</string>
+    <string name="amount_charged_colon">Amount to be Charged :</string>
+    <string name="enter_old_pin">Enter your old pin</string>
+    <string name="enter_new_pin">Enter your new pin</string>
+    <string name="re_enter_new_pin">Re-Enter your new pin</string>
+    <string name="val_old_pin">Please enter old pin</string>
+    <string name="val_valid_old_pin">Old Pin must be at least 4 digit</string>
+    <string name="val_new_pin">Please enter new pin</string>
+    <string name="val_valid_new_pin">New Pin must be at least 4 digit</string>
+    <string name="val_new_pin_re_pin"><![CDATA[New Pin & Re-Pin should be same]]></string>
+    <string name="pin_changed_msg">Your Pin Changed Successfully!</string>
+    <string name="logout_conf_message">Are you sure you want to logout?</string>
+    <string name="val_acc_no">Please enter account number</string>
+    <string name="val_valid_acc_no">Account number must be at least 4 characters long</string>
+    <string name="acc_number_colon">Account number :</string>
+    <string name="operator_colon">Operator :</string>
+    <string name="valid_select_operator">Select Operator*</string>
+    <string name="val_select_operator">Please select operator</string>
+
+
+    <string-array name="Spinner_provider">
+        <item>Select provider*</item>
+        <item>Cashmoov</item>
+    </string-array>
+
+    <string-array name="Spinner_genre">
+        <item>Gender*</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="Spinner_pays">
+        <item>Country*</item>
+        <item>Guinea</item>
+        <item>Senegal</item>
+        <item>France</item>
+
+
+    </string-array>
+
+
+    <string-array name="Spinner_pays_reception">
+        <item>Receiving Country*</item>
+        <item>Guinea</item>
+        <item>Senegal</item>
+        <item>France</item>
+
+    </string-array>
+
+
+    <string-array name="Spinner_devise">
+        <item>Currency to send*</item>
+        <item>GNF</item>
+        <item>XOF</item>
+        <item>USD</item>
+        <item>EURO</item>
+
+    </string-array>
+
+    <string-array name="Spinner_typeID">
+        <item>Id Proof*</item>
+        <item>National ID card</item>
+        <item>Passport</item>
+        <item>Voter card</item>
+        <item>Residence card</item>
+
+    </string-array>
+
+
+</resources>
+
