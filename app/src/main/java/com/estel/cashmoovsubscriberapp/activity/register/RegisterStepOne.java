@@ -74,7 +74,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 etDob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                             }
-                        }, year, month, day);
+                        }, 1960, 01, 00);
                 picker.show();
             }
         });
@@ -123,15 +123,34 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
+                if(etFname.getText().toString().trim().length()<3) {
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_fname));
+                    MyApplication.showTipError(this,getString(R.string.val_fname_len),etFname);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
+
                 if(etLname.getText().toString().trim().isEmpty()) {
                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_lname));
                     MyApplication.showTipError(this,getString(R.string.val_lname),etLname);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
+                if(etLname.getText().toString().trim().length()<3) {
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_lname));
+                    MyApplication.showTipError(this,getString(R.string.val_lname_len),etLname);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
                 if(etPhone.getText().toString().trim().isEmpty()) {
                     //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this,getString(R.string.val_lname),etPhone);
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_no),etPhone);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
+                if(etPhone.getText().toString().trim().length()<9) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_no_val),etPhone);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }

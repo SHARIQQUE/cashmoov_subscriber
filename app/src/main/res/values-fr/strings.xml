@@ -41,7 +41,8 @@
     <string name="register">S\'enregistrer</string>
     <string name="register_message">Veuillez entrer votre numéro de téléphone valide. Nous vous enverrons un code à 4 chiffres pour vérifier le compte.</string>
     <string name="enter_location">Entrez votre emplacement</string>
-    <string name="enter_phone_no">Entrez votre numéro de téléphone</string>
+    <string name="enter_phone_no">Entrez votre numéro de mobile</string>
+    <string name="enter_phone_no_val">Le numéro de portable doit comporter au moins 9 chiffres </string>
     <string name="see_terms_policy">Veuillez consulter notre Politique relative aux conditions d\'utilisation</string>
     <string name="skip">Sauter</string>
     <string name="complete_your_info">Completez vos informations</string>
@@ -240,6 +241,11 @@
     <string name="val_dob">Veuillez sélectionner la date de naissance</string>
     <string name="val_fname">Veuillez saisir le prénom</string>
     <string name="val_lname">Veuillez saisir le nom de famille</string>
+    <string name="val_fname_len">Le prénom doit comporter au moins 3 caractères</string>
+    <string name="val_fname_check_digits">Prénom accepter uniquement [par ex. alphabets]</string>
+    <string name="val_lname_len">Le nom de famille doit comporter au moins 3 caractères</string>
+    <string name="val_lname_check_digits">Nom de famille accepter uniquement [par ex. alphabets]</string>
+
 
     <string name="val_email">Veuillez saisir l\'identifiant e-mail</string>
     <string name="val_city">Veuillez entrer la ville</string>

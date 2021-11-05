@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.security.SecureRandom;
 import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -220,7 +221,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title"+ Calendar.getInstance().getTime(), null);
+        SecureRandom random = new SecureRandom();
+        int num = random.nextInt(100000);
+        String formatted = String.format("%05d", num);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "profile"+formatted, null);
         return Uri.parse(path);
     }
 

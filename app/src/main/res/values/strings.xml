@@ -41,7 +41,8 @@
     <string name="register">Register</string>
     <string name="register_message">Please enter your valid phone number. We will send you a 4-digit code to verify the account.</string>
     <string name="enter_location">Enter your location</string>
-    <string name="enter_phone_no">Enter your phone number</string>
+    <string name="enter_phone_no">Enter your mobile number</string>
+    <string name="enter_phone_no_val">Mobile number must be at least 9 digits long </string>
     <string name="see_terms_policy">Please see our Terms of Service Policy</string>
     <string name="skip">Skip</string>
     <string name="complete_your_info">Complete your information</string>
@@ -241,7 +242,12 @@
     <string name="val_select_occupation">Please select occupation</string>
     <string name="val_dob">Please select date of birth</string>
     <string name="val_fname">Please enter first name</string>
+
     <string name="val_lname">Please enter last name</string>
+    <string name="val_fname_len">First Name must be at least 3 characters long</string>
+    <string name="val_fname_check_digits">First Name accept only [e.g. alphabets]</string>
+    <string name="val_lname_len">Last Name must be at least 3 characters long</string>
+    <string name="val_lname_check_digits">Last Name accept only [e.g. alphabets]</string>
 
     <string name="val_email">Please enter email id</string>
     <string name="val_city">Please enter city</string>
