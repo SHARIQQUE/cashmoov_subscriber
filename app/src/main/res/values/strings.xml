@@ -42,7 +42,7 @@
     <string name="register_message">Please enter your valid phone number. We will send you a 4-digit code to verify the account.</string>
     <string name="enter_location">Enter your location</string>
     <string name="enter_phone_no">Enter your mobile number</string>
-    <string name="enter_phone_no_val">Mobile number must be at least 9 digits long </string>
+    <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
     <string name="see_terms_policy">Please see our Terms of Service Policy</string>
     <string name="skip">Skip</string>
     <string name="complete_your_info">Complete your information</string>
@@ -307,6 +307,7 @@
     <string name="operator_colon">Operator :</string>
     <string name="valid_select_operator">Select Operator*</string>
     <string name="val_select_operator">Please select operator</string>
+    <string name="val_recipient_no_len">Recipient number must be at least 9 digits long</string>
 
 
     <string-array name="Spinner_provider">

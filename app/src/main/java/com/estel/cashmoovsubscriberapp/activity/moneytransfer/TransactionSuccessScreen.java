@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeReceipt;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeReceipt;
+import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen;
+import com.estel.cashmoovsubscriberapp.activity.pay.PayReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayReceipt;
 
 public class TransactionSuccessScreen extends AppCompatActivity implements View.OnClickListener {
@@ -90,6 +92,16 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 }
                 if(checkIntent.equalsIgnoreCase("BENEFICIARYAIRTIME")) {
                     intent = new Intent(transSuccessscreenC, BeneficiaryAirtimeReceipt.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(checkIntent.equalsIgnoreCase("PAY")) {
+                    intent = new Intent(transSuccessscreenC, PayReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(checkIntent.equalsIgnoreCase("CASHWITHDRAWAL")) {
+                    intent = new Intent(transSuccessscreenC, CashWithdrawalReceiptScreen.class);
                     startActivity(intent);
                     return;
                 }

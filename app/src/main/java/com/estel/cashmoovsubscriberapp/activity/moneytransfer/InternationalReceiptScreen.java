@@ -21,9 +21,9 @@ import java.io.FileOutputStream;
 public class InternationalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalReceiptScreen internationalreceiptscreenC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
-    LinearLayout tax1_layout,tax2_layout;
+    LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
 
     @Override
@@ -80,6 +80,8 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
     private void getIds() {
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
+        linConfCode = findViewById(R.id.linConfCode);
+        tvConfCode = findViewById(R.id.tvConfCode);
         tvProvider = findViewById(R.id.tvProvider);
         tvTransType = findViewById(R.id.tvTransType);
         tvMobile = findViewById(R.id.tvMobile);
@@ -98,7 +100,10 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
+        linConfCode.setVisibility(View.VISIBLE);
+
         tvSubscriberMobile.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
+        tvConfCode.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(International.serviceProvider);
         tvTransType.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
         tvMobile.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));

@@ -134,6 +134,7 @@
                     android:background="@drawable/btn_blue"
                     android:text="@string/cancel"
                     android:textSize="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:textColor="@color/white" />
 
                 <Button
@@ -144,6 +145,7 @@
                     android:background="@drawable/btn_green700"
                     android:text="@string/confirm"
                     android:textSize="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:textColor="@color/white" />
 
 

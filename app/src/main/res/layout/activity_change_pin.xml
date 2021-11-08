@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="@dimen/_20sdp">
+        android:padding="@dimen/_20sdp">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll_view"
@@ -219,12 +219,11 @@
 
                     <LinearLayout
                         android:gravity="center_horizontal"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_30sdp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
                         android:layout_marginBottom="@dimen/_10sdp">
 
                         <Button
@@ -235,6 +234,7 @@
                             android:background="@drawable/btn_blue"
                             android:text="@string/cancel"
                             android:textSize="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:textColor="@color/white" />
 
                         <Button
@@ -245,6 +245,7 @@
                             android:background="@drawable/btn_blue"
                             android:text="@string/confirm"
                             android:textSize="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
                             android:textColor="@color/white" />
 
 

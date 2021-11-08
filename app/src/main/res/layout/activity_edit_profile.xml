@@ -16,7 +16,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,6 +123,7 @@
                                 android:background="@drawable/btn_blue"
                                 android:text="@string/cancel"
                                 android:textSize="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:textColor="@color/white" />
 
                             <Button
@@ -134,6 +134,7 @@
                                 android:background="@drawable/btn_blue"
                                 android:text="@string/confirm"
                                 android:textSize="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
                                 android:textColor="@color/white" />
 
 

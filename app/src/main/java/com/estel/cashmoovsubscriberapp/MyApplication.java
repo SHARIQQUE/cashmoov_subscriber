@@ -40,6 +40,7 @@ import okhttp3.Route;
 
 public class MyApplication extends Application {
     private static final String TAG = MyApplication.class.getSimpleName();
+    public static boolean isScan;
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;

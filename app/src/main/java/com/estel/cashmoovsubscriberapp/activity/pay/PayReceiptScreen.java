@@ -1,4 +1,4 @@
-package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
+package com.estel.cashmoovsubscriberapp.activity.pay;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -18,19 +18,19 @@ import com.estel.cashmoovsubscriberapp.R;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
-    public static ToNonSubscriberReceiptScreen tononsubscriberreceiptscreenC;
+public class PayReceiptScreen extends AppCompatActivity implements View.OnClickListener {
+    public static PayReceiptScreen payreceiptscreenC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
-    tax1_lable,tax1_value,tax2_lable,tax2_value;
-    LinearLayout linConfCode,tax1_layout,tax2_layout;
+    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+            tax1_lable,tax1_value,tax2_lable,tax2_value;
+    LinearLayout tax1_layout,tax2_layout;
     View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt_screen);
-        tononsubscriberreceiptscreenC=this;
+        payreceiptscreenC=this;
         rootView = getWindow().getDecorView().findViewById(R.id.lin);
 
         getIds();
@@ -66,8 +66,8 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("image/*");
 
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(Intent.EXTRA_TEXT, "");
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
             startActivity(Intent.createChooser(intent, getString(R.string.share_screenshot)));
@@ -80,8 +80,6 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
     private void getIds() {
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
-        linConfCode = findViewById(R.id.linConfCode);
-        tvConfCode = findViewById(R.id.tvConfCode);
         tvProvider = findViewById(R.id.tvProvider);
         tvTransType = findViewById(R.id.tvTransType);
         tvMobile = findViewById(R.id.tvMobile);
@@ -100,40 +98,37 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        linConfCode.setVisibility(View.VISIBLE);
+        tvSubscriberMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("sender").optString("mobileNumber"));
+        tvProvider.setText(Pay.serviceProvider);
+        tvTransType.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));
+        tvMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("receiver").optString("mobileNumber"));
+        tvName.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("receiver").optString("firstName")+" "+
+                PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("receiver").optString("lastName"));
+        tvTransId.setText(PayConfirmScreen.receiptJson.optString("transactionId"));
+        tvCurrency.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("toCurrencyName"));
+        tvFee.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "
+                + MyApplication.addDecimal(String.valueOf(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optInt("fee"))));
 
-        tvSubscriberMobile.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
-        tvConfCode.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
-        tvProvider.setText(ToNonSubscriber.serviceProvider);
-        tvTransType.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
-        tvMobile.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
-        tvName.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("firstName")+" "+
-                ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("lastName"));
-        tvTransId.setText(ToNonSubscriberConfirmScreen.receiptJson.optString("transactionId"));
-        tvCurrency.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
-        tvFee.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
-                + MyApplication.addDecimal(String.valueOf(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
-
-        tvTransAmount.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(ToNonSubscriberConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
-        tvAmountCharged.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
+        tvTransAmount.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(PayConfirmScreen.tvTransAmount.getText().toString()));
+        tvAmountPaid.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("amountToPaid")));
+        tvAmountCharged.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("amount")));
 
 
-        if(ToNonSubscriberConfirmScreen.taxConfigList!=null){
-            if(ToNonSubscriberConfirmScreen.taxConfigList.length()==1){
+        if(PayConfirmScreen.taxConfigList!=null){
+            if(PayConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(ToNonSubscriberConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"));
-                tax1_value.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_lable.setText(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"));
+                tax1_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
-            if(ToNonSubscriberConfirmScreen.taxConfigList.length()==2){
+            if(PayConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(ToNonSubscriberConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"));
-                tax1_value.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_lable.setText(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"));
+                tax1_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(ToNonSubscriberConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"));
-                tax2_value.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.taxConfigList.optJSONObject(1).optString("value")));
+                tax2_lable.setText(PayConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"));
+                tax2_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(1).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
@@ -144,7 +139,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
     }
 
     private void setOnCLickListener() {
-        btnShareReceipt.setOnClickListener(tononsubscriberreceiptscreenC);
+        btnShareReceipt.setOnClickListener(payreceiptscreenC);
 
     }
 
