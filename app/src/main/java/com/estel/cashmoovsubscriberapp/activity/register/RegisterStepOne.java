@@ -200,16 +200,17 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     jsonObject.put("ownerName",etFname.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
                     jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-                  //  jsonObject.put("idExpiryDate","");
+                    jsonObject.put("idExpiryDate","2021-11-09");
                     jsonObject.put("email",etEmail.getText().toString().trim());
                     jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
                    // jsonObject.put("idProofNumber","");
                    // jsonObject.put("idProofTypeCode","");
-                   // jsonObject.put("issuingCountryCode","100092");
+
+                    jsonObject.put("issuingCountryCode","100092");
                     jsonObject.put("registerCountryCode","100092");
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
-                    jsonObject.put("notificationTypeCode","");
+                    jsonObject.put("notificationTypeCode","100000");
                     jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
 
                 } catch (JSONException e) {
@@ -342,7 +343,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     public void callRegisterApi(JSONObject jsonObject){
 
         MyApplication.showloader(registersteponeC,"Please wait...");
-        API.POST_REQEST_REGISTER("ewallet/public/subscriber", jsonObject, new Api_Responce_Handler() {
+        API.POST_REQEST_REGISTER("ewallet/public/subscribersignup", jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();
