@@ -91,6 +91,7 @@
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalConfirmScreen"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemittance"/>
+        <activity android:name="com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemittancelReceiptScreen"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.fee.Fee"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.servicepoint.ServicePoint"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.servicepoint.SearchResult"/>

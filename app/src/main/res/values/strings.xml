@@ -167,7 +167,7 @@
     <string name="you_make_withdrawal">You make a withdrawal</string>
     <string name="pos_number">POS number</string>
     <string name="beneficiary_details">Beneficiary details</string>
-    <string name="valid_beneficiairy_name">Beneficiairy name*</string>
+    <string name="valid_beneficiairy_name">Beneficiary name*</string>
     <string name="valid_confirmation_code">Confirmation code*</string>
     <string name="valid_beneficiary_currency">Beneficiary currency*</string>
     <string name="locate_agency">Locate an agency</string>
@@ -308,6 +308,9 @@
     <string name="valid_select_operator">Select Operator*</string>
     <string name="val_select_operator">Please select operator</string>
     <string name="val_recipient_no_len">Recipient number must be at least 9 digits long</string>
+    <string name="val_beneficiairy_name">Please enter beneficiary name</string>
+    <string name="val_confirmation_code">Please enter confirmation code</string>
+    <string name="val_select_benifi_curr">Please select beneficiary currency</string>
 
 
     <string-array name="Spinner_provider">

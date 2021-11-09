@@ -215,7 +215,6 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_lname));
             return;
         }
-
         if(spGender.getText().toString().equals(getString(R.string.valid_select_gender))) {
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_select_gender));
             return;

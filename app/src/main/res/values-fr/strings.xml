@@ -166,9 +166,9 @@
     <string name="you_make_withdrawal">Vous effectuez un retrait</string>
     <string name="pos_number">Numero PDV</string>
     <string name="beneficiary_details">Details du beneficiaire</string>
-    <string name="valid_beneficiairy_name">Beneficiairy name*</string>
-    <string name="valid_confirmation_code">Confirmation code*</string>
-    <string name="valid_beneficiary_currency">Beneficiary currency*</string>
+    <string name="valid_beneficiairy_name">Nom du bénéficiaire*</string>
+    <string name="valid_confirmation_code">Code de confirmation*</string>
+    <string name="valid_beneficiary_currency">Monnaie du bénéficiaire*</string>
     <string name="locate_agency">Localiser une agence</string>
     <string name="search_results">Resultat de la recherche</string>
     <string name="agency_found">Agence trouvées</string>
@@ -308,6 +308,9 @@
     <string name="valid_select_operator">Sélectionnez l\'opérateur*</string>
     <string name="val_select_operator">Veuillez sélectionner l\'opérateur</string>
     <string name="val_recipient_no_len">Le numéro du destinataire doit comporter au moins 9 chiffres</string>
+    <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>
+    <string name="val_confirmation_code">Veuillez saisir le code de confirmation</string>
+    <string name="val_select_benifi_curr">Veuillez sélectionner la devise du bénéficiaire</string>
 
 
     <string-array name="Spinner_provider">
