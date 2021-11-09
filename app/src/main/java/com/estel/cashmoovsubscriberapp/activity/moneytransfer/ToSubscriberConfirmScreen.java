@@ -56,7 +56,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
-        tvConfCode = findViewById(R.id.tvConfCode);
+       // tvConfCode = findViewById(R.id.tvConfCode);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);

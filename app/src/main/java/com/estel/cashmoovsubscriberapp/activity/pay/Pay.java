@@ -418,6 +418,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                 MyApplication.hideLoader();
                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                     serviceCategory=jsonObject;
+                    serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
 
                 }else{
                     MyApplication.showToast(payC,jsonObject.optString("resultDescription"));

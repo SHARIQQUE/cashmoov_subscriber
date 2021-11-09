@@ -23,6 +23,7 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
+import com.estel.cashmoovsubscriberapp.model.CountryCurrencyInfoModel;
 import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,7 +37,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
     ImageView imgBack,imgHome;
     TextView tvName,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
-    public static EditText etAmount;
+    EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
 
@@ -267,19 +268,24 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                     return;
                 }
                 try{
-                    dataToSend.put("transactionType","105068");
-                    dataToSend.put("desWalletOwnerCode",payAgentCode);
-                    dataToSend.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
-                    dataToSend.put("srcCurrencyCode",fromCurrencyCode);
-                    dataToSend.put("desCurrencyCode",toCurrencyCode);
-                    dataToSend.put("value",etAmount.getText().toString());
-                    //dataToSend.put("conversionRate",conversionRate);
+                    dataToSend.put("transactionType","101441");
+                    dataToSend.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
+                    dataToSend.put("walletOwnerCategoryCode",MyApplication.getSaveString("walletOwnerCategoryCode",getApplicationContext()));
+                    dataToSend.put("receiverCode",payAgentCode);
+                    dataToSend.put("senderCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
+                    dataToSend.put("fromCurrencyCode",fromCurrencyCode);
+                    dataToSend.put("toCurrencyCode",toCurrencyCode);
+                    dataToSend.put("amount",etAmount.getText().toString());
+                    dataToSend.put("conversionRate","0.00");
+                    dataToSend.put("comments","");
+                    dataToSend.put("receiveCountryCode","100092");
+                    dataToSend.put("sendCountryCode","100092");
                     dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
                     dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
                     dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
                     dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
                     //dataToSend.put("exchangeRateCode",exchangeRateCode);
-
+                    MyApplication.saveString("AMOUNTCASHWITHDRAWAL",etAmount.getText().toString(),cashwithdrawalC);
                     System.out.println("Data Send "+dataToSend.toString());
                     Intent i=new Intent(cashwithdrawalC, CashWithdrawalConfirmScreen.class);
                     startActivity(i);
@@ -387,10 +393,20 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
 
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
-                                    toCurrencyCode = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyCode");
-                                    currency = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyName");
-                                    currencySymbol = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencySymbol");
-                                    spBenifiCurr.setText(currency);
+                                    //JSONObject countryCurrObj = jsonObject.optJSONObject("country");
+                                    JSONArray countryCurrencyListArr = jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+                                    for (int i = 0; i < countryCurrencyListArr.length(); i++) {
+                                        JSONObject data = countryCurrencyListArr.optJSONObject(i);
+                                        if(data.optString("currencyCode").equalsIgnoreCase("100062")){
+                                            toCurrencyCode = data.optString("currencyCode");
+                                            currency = data.optString("currencyName");
+                                            currencySymbol = data.optString("currencySymbol");
+                                            spBenifiCurr.setText(currency);
+
+                                        }
+
+
+                                    }
 
                                 } else {
                                     MyApplication.showToast(cashwithdrawalC,jsonObject.optString("resultDescription", "  "));
@@ -421,7 +437,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                 MyApplication.hideLoader();
                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                     serviceCategory=jsonObject;
-
+                    serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
                 }else{
                     MyApplication.showToast(cashwithdrawalC,jsonObject.optString("resultDescription"));
                 }

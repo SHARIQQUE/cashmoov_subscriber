@@ -59,7 +59,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
-        tvConfCode = findViewById(R.id.tvConfCode);
+        //tvConfCode = findViewById(R.id.tvConfCode);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
@@ -83,18 +83,18 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         tvName.setText(CashWithdrawal.ownerName+" "+CashWithdrawal.lastName);
         //  tvConfCode.setText(CashWithdrawal.mobileNo);
         tvCurrency.setText(CashWithdrawal.fromCurrency);
-        tvTransAmount.setText(CashWithdrawal.currencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.etAmount.getText().toString()));
+        tvTransAmount.setText(CashWithdrawal.currencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC)));
         tvAmountPaid.setText(CashWithdrawal.currencySymbol+" "+ MyApplication.addDecimal(String.valueOf(CashWithdrawal.currencyValue)));
         tvFee.setText(CashWithdrawal.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(CashWithdrawal.fee)));
 
-       finalamount=Double.parseDouble(String.valueOf(CashWithdrawal.fee))+Double.parseDouble(CashWithdrawal.etAmount.getText().toString());
+       finalamount=Double.parseDouble(String.valueOf(CashWithdrawal.fee))+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC));
 
         if(CashWithdrawal.taxConfigurationList!=null){
             if(CashWithdrawal.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(CashWithdrawal.fromCurrencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(CashWithdrawal.fee))+Double.parseDouble(CashWithdrawal.etAmount.getText().toString())+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(String.valueOf(CashWithdrawal.fee))+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashWithdrawal.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -104,7 +104,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(CashWithdrawal.currencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(CashWithdrawal.fee))+Double.parseDouble(CashWithdrawal.etAmount.getText().toString())+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(String.valueOf(CashWithdrawal.fee))+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

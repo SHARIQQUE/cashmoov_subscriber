@@ -154,6 +154,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                         return;
                 }
+                if(etPhone.getText().toString().trim().length()<9) {
+                    MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
+                    return;
+                }
                 if (etAmount.getText().toString().trim().isEmpty()) {
                         MyApplication.showErrorToast(beneficiaryairtimeC, getString(R.string.val_amount));
                         return;
@@ -187,11 +191,19 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
                         }
+                        if(etPhone.getText().toString().trim().length()<9) {
+                            MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
+                            return;
+                        }
                         callApiAmountDetails("1000");
                         break;
                     case R.id.cardTwoThousand:
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
+                            return;
+                        }
+                        if(etPhone.getText().toString().trim().length()<9) {
+                            MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
                             return;
                         }
                         callApiAmountDetails("2000");
@@ -201,11 +213,19 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
                         }
+                        if(etPhone.getText().toString().trim().length()<9) {
+                            MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
+                            return;
+                        }
                         callApiAmountDetails("5000");
                         break;
                     case R.id.cardTenThousand:
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
+                            return;
+                        }
+                        if(etPhone.getText().toString().trim().length()<9) {
+                            MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
                             return;
                         }
                         callApiAmountDetails("10000");
@@ -215,11 +235,19 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
                         }
+                        if(etPhone.getText().toString().trim().length()<9) {
+                            MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
+                            return;
+                        }
                         callApiAmountDetails("15000");
                         break;
                     case R.id.cardTwentyThousand:
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
+                            return;
+                        }
+                        if(etPhone.getText().toString().trim().length()<9) {
+                            MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.enter_phone_no_val));
                             return;
                         }
                         callApiAmountDetails("20000");

@@ -220,7 +220,6 @@
                     />
 
                 <TextView
-                    android:id="@+id/tvConfCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IBN00123456789"

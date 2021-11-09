@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
 public class CashWithdrawalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashWithdrawalReceiptScreen cashdrawalreceiptscreenC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -90,7 +90,7 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         tvTransId = findViewById(R.id.tvTransId);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvFee = findViewById(R.id.tvFee);
-        tvTransAmount = findViewById(R.id.tvTransAmount);
+        tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
 
@@ -104,7 +104,7 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         linConfCode.setVisibility(View.VISIBLE);
 
         tvSubscriberMobile.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
-        tvConfCode.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
+        tvConfCode.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(CashWithdrawal.serviceProvider);
         tvTransType.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
         tvMobile.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
@@ -115,8 +115,8 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         tvFee.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
 
-        tvTransAmount.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(CashWithdrawalConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+        tvTransAmt.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(CashWithdrawalConfirmScreen.tvTransAmount.getText().toString()));
+        tvAmountPaid.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
         tvAmountCharged.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
 

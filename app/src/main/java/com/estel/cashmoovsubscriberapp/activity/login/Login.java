@@ -128,6 +128,10 @@ public class Login extends AppCompatActivity {
                     MyApplication.showErrorToast(loginC,getString(R.string.val_phone));
                     return;
                 }
+                if(etPhone.getText().toString().trim().length()<9) {
+                    MyApplication.showErrorToast(loginC,getString(R.string.enter_phone_no_val));
+                    return;
+                }
                 if(etPass.isShown()&&etPass.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(loginC, getString(R.string.val_pass));
                     return;

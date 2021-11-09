@@ -162,6 +162,11 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     MyApplication.hideKeyboard(phnoregistrationccreenC);
                     return;
                 }
+                if(etPhoneNo.getText().toString().trim().length()<9) {
+                    MyApplication.showTipError(phnoregistrationccreenC,getString(R.string.enter_phone_no_val),etPhoneNo);
+                    MyApplication.hideKeyboard(phnoregistrationccreenC);
+                    return;
+                }
                 if(etPass.isShown()&&etPass.getText().toString().trim().isEmpty()) {
                     MyApplication.showTipError(phnoregistrationccreenC, getString(R.string.val_pin),etPass);
                     MyApplication.hideKeyboard(phnoregistrationccreenC);

@@ -33,7 +33,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     public static ToNonSubscriber tononsubscriberC;
     ImageView imgBack,imgHome;
     TextView tvSend,tvFee,tvAmtPaid,spGender;
-    AutoCompleteTextView etPhone;
+    public static AutoCompleteTextView etPhone;
     public static EditText etAmount,etFname,etLname,etComment;
     private ArrayList<String> benefiGenderList = new ArrayList<>();
     private ArrayList<GenderInfoModel.Gender> benefiGenderModelList=new ArrayList<>();
@@ -201,6 +201,10 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         }
         if(etPhone.getText().toString().trim().isEmpty()) {
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_phone));
+            return;
+        }
+        if(etPhone.getText().toString().trim().length()<9) {
+            MyApplication.showErrorToast(tononsubscriberC,getString(R.string.enter_phone_no_val));
             return;
         }
         if(etFname.getText().toString().trim().isEmpty()) {
@@ -527,17 +531,17 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         try{
 
             JSONObject benefiJson=new JSONObject();
-            benefiJson.put("code",walletOwner.optJSONArray("customerList").optJSONObject(0).optString("code"));
+            benefiJson.put("countryCode","100092");
+            benefiJson.put("email","");
             benefiJson.put("firstName",etFname.getText().toString().trim());
             benefiJson.put("lastName",etLname.getText().toString().trim());
             benefiJson.put("gender",benefiGenderModelList.get((Integer) spGender.getTag()).getCode());
-            benefiJson.put("countryCode",walletOwner.optJSONArray("customerList").optJSONObject(0).optString("countryCode"));
             benefiJson.put("mobileNumber",etPhone.getText().toString().trim());
 
             System.out.println("BenefiLocal request"+benefiJson.toString());
 
             MyApplication.showloader(tononsubscriberC,"Please wait!");
-            API.PUT("ewallet/api/v1/customer/receiver", benefiJson, new Api_Responce_Handler() {
+            API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/receiver", benefiJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
                     MyApplication.hideLoader();

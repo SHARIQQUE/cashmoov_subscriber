@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 public class PayReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static PayReceiptScreen payreceiptscreenC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -87,7 +87,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
         tvTransId = findViewById(R.id.tvTransId);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvFee = findViewById(R.id.tvFee);
-        tvTransAmount = findViewById(R.id.tvTransAmount);
+        tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
 
@@ -98,37 +98,37 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        tvSubscriberMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("sender").optString("mobileNumber"));
+        tvSubscriberMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("srcWalletOwner").optString("mobileNumber"));
         tvProvider.setText(Pay.serviceProvider);
         tvTransType.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));
-        tvMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("receiver").optString("mobileNumber"));
-        tvName.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("receiver").optString("firstName")+" "+
-                PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("receiver").optString("lastName"));
+        tvMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("desWalletOwner").optString("mobileNumber"));
+        tvName.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("desWalletOwner").optString("ownerName")+" "+
+                PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("desWalletOwner").optString("lastName"));
         tvTransId.setText(PayConfirmScreen.receiptJson.optString("transactionId"));
-        tvCurrency.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("toCurrencyName"));
-        tvFee.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "
+        tvCurrency.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencyName"));
+        tvFee.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optInt("fee"))));
 
-        tvTransAmount.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(PayConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("amountToPaid")));
-        tvAmountCharged.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("amount")));
+        tvTransAmt.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(PayConfirmScreen.tvTransAmount.getText().toString()));
+        tvAmountPaid.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("finalAmount")));
+        tvAmountCharged.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("value")));
 
 
         if(PayConfirmScreen.taxConfigList!=null){
             if(PayConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"));
-                tax1_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(PayConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"));
-                tax1_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(0).optString("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(PayConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"));
-                tax2_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(1).optString("value")));
+                tax2_value.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.taxConfigList.optJSONObject(1).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

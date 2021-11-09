@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ToNonSubscriberReceiptScreen tononsubscriberreceiptscreenC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
     tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -89,7 +89,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tvTransId = findViewById(R.id.tvTransId);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvFee = findViewById(R.id.tvFee);
-        tvTransAmount = findViewById(R.id.tvTransAmount);
+        tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
 
@@ -114,8 +114,8 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tvFee.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
 
-        tvTransAmount.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(ToNonSubscriberConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+        tvTransAmt.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(ToNonSubscriberConfirmScreen.tvTransAmount.getText().toString()));
+        tvAmountPaid.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
         tvAmountCharged.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
 

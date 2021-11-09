@@ -60,7 +60,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
-        tvConfCode = findViewById(R.id.tvConfCode);
+       // tvConfCode = findViewById(R.id.tvConfCode);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
@@ -80,8 +80,8 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         vat_label_layout=findViewById(R.id.vat_label_layout);
 
         tvProvider.setText(ToNonSubscriber.serviceProvider);
-        tvMobile.setText(ToNonSubscriber.mobileNo);
-        tvName.setText(ToNonSubscriber.ownerName+" "+ToNonSubscriber.lastName);
+        tvMobile.setText(ToNonSubscriber.etPhone.getText().toString());
+        tvName.setText(ToNonSubscriber.etFname.getText().toString()+" "+ToNonSubscriber.etLname.getText().toString());
         //  tvConfCode.setText(ToNonSubscriber.mobileNo);
         tvCurrency.setText(ToNonSubscriber.fromCurrency);
         tvTransAmount.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.etAmount.getText().toString()));

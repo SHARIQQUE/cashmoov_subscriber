@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 public class InternationalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalReceiptScreen internationalreceiptscreenC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -89,7 +89,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tvTransId = findViewById(R.id.tvTransId);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvFee = findViewById(R.id.tvFee);
-        tvTransAmount = findViewById(R.id.tvTransAmount);
+        tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
 
@@ -103,7 +103,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         linConfCode.setVisibility(View.VISIBLE);
 
         tvSubscriberMobile.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
-        tvConfCode.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
+        tvConfCode.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(International.serviceProvider);
         tvTransType.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
         tvMobile.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
@@ -114,8 +114,8 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tvFee.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
 
-        tvTransAmount.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(InternationalConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+        tvTransAmt.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(InternationalConfirmScreen.tvTransAmounts.getText().toString()));
+        tvAmountPaid.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
         tvAmountCharged.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
 

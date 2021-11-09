@@ -89,7 +89,7 @@ public class International extends AppCompatActivity implements View.OnClickList
 
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
-    public static String serviceProvider,mobileNo,ownerName,lastName,currencyValue,rate,exRateCode,confCode,currency,fromCurrency,fromCurrencySymbol,currencySymbol;
+    public static String serviceProvider,mobileNo,ownerName,lastName,currencyValue,rate,exRateCode,confCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
     public static int fee,receiverFee,receiverTax;
     public static JSONObject walletOwner = new JSONObject();
     public static JSONObject serviceCategory = new JSONObject();
@@ -264,6 +264,10 @@ public class International extends AppCompatActivity implements View.OnClickList
             MyApplication.showErrorToast(internationalC,getString(R.string.val_phone));
             return;
         }
+        if(etPhone.getText().toString().trim().length()<9) {
+            MyApplication.showErrorToast(internationalC,getString(R.string.enter_phone_no_val));
+            return;
+        }
         if(etFname.getText().toString().trim().isEmpty()) {
             MyApplication.showErrorToast(internationalC,getString(R.string.val_fname));
             return;
@@ -276,7 +280,7 @@ public class International extends AppCompatActivity implements View.OnClickList
             MyApplication.showErrorToast(internationalC,getString(R.string.val_select_gender));
             return;
         }
-
+        MyApplication.saveString("AMOUNTINTERNATIONAL",etAmount.getText().toString(),internationalC);
         callApiBeneficiary();
 
     }
@@ -643,7 +647,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             spBenifiCurr.setTag(position);
                                             etAmount.setText("");
                                             currency = benefiCurrencyModelList.get(position).getCurrCode();
-                                            currencySymbol = benefiCurrencyModelList.get(position).getCurrencySymbol();
+                                            toCurrencySymbol = benefiCurrencyModelList.get(position).getCurrencySymbol();
                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
                                         }
                                     });

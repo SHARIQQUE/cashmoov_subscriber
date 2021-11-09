@@ -225,6 +225,10 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_recipient_no));
             return;
         }
+        if(etSubscriberNo.getText().toString().trim().length()<9) {
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_phone_no_val));
+            return;
+        }
         if(etAmount.getText().toString().trim().isEmpty()) {
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_amount));
             return;
