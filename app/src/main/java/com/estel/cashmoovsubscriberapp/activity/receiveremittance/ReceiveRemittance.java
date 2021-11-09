@@ -12,7 +12,6 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
-import com.estel.cashmoovsubscriberapp.activity.pay.Pay;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
@@ -70,6 +69,9 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         etAmount = findViewById(R.id.etAmount);
         etPin = findViewById(R.id.etPin);
         tvSend = findViewById(R.id.tvSend);
+
+        etPhone.setEnabled(false);
+        etName.setEnabled(false);
 
         callwalletOwnerDetails();
 
