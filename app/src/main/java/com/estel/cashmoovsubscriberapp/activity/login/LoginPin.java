@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,10 +23,16 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONObject;
 import java.util.concurrent.Executor;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
 public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
     EditText etPin;
     TextView tvContinue,tvFinger,msgText,tvregister;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +42,25 @@ public class LoginPin extends AppCompatActivity {
         getIds();
     }
 
+
     String pin;
 
+    String FCM_TOKEN;
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (!task.isSuccessful()) {
+                    FCM_TOKEN = task.getException().getMessage();
+                    Log.w("FCM TOKEN Failed", task.getException());
+                } else {
+                    FCM_TOKEN = task.getResult().getToken();
+                    Log.i("FCM TOKEN", FCM_TOKEN);
+                }
+            }
+        });
 
     }
 
@@ -83,18 +104,19 @@ public class LoginPin extends AppCompatActivity {
         if(pin!=null && pin.length()==4) {
             if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()){
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                tvFinger.setVisibility(View.VISIBLE);
-                msgText.setVisibility(View.VISIBLE);
+                setOnClickListener();
 
             }else{
                 tvFinger.setVisibility(View.GONE);
                 msgText.setVisibility(View.GONE);
             }
         }else{
-                tvFinger.setVisibility(View.VISIBLE);
-                msgText.setVisibility(View.VISIBLE);
+                setOnClickListener();
 
             }
+        }else{
+            tvFinger.setVisibility(View.GONE);
+            msgText.setVisibility(View.GONE);
         }
 
         tvFinger.setOnClickListener(new View.OnClickListener() {
@@ -170,10 +192,12 @@ public class LoginPin extends AppCompatActivity {
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                biometricPrompt.authenticate(promptInfo);
 
+                biometricPrompt.authenticate(promptInfo);
             }
         });
+
+        biometricPrompt.authenticate(promptInfo);
 
     }
 
@@ -187,6 +211,7 @@ public class LoginPin extends AppCompatActivity {
             loginJson.put("username",MyApplication.getSaveString("mobile",loginpinC));
             loginJson.put("password",etPin.getText().toString().trim());
             loginJson.put("grant_type","password");
+            loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());
@@ -312,6 +337,7 @@ public class LoginPin extends AppCompatActivity {
             loginJson.put("username",MyApplication.getSaveString("mobile",loginpinC));
             loginJson.put("password",pin);
             loginJson.put("grant_type","password");
+            loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());

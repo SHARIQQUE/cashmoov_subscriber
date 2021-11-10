@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +22,11 @@ import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.CountryInfoModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +42,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     EditText etPhoneNo,etPass;
     private ArrayList<String> countryList = new ArrayList<>();
     private ArrayList<CountryInfoModel.Country> countryModelList=new ArrayList<>();
-
+    String FCM_TOKEN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,19 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_phone_number_registration_screen);
 
         phnoregistrationccreenC = this;
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (!task.isSuccessful()) {
+                    FCM_TOKEN = task.getException().getMessage();
+                    Log.w("FCM TOKEN Failed", task.getException());
+                } else {
+                    FCM_TOKEN = task.getResult().getToken();
+                    Log.i("FCM TOKEN", FCM_TOKEN);
+                }
+            }
+        });
 
         getIds();
     }
@@ -364,6 +383,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             loginJson.put("username",etPhoneNo.getText().toString().trim());
             loginJson.put("password",etPass.getText().toString().trim());
             loginJson.put("grant_type","password");
+            loginJson.put("fcmToken",FCM_TOKEN);
            // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553252688309",
+    "project_id": "cashmoov-subscriber",
+    "storage_bucket": "cashmoov-subscriber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553252688309:android:44d14b5a4c7022cbd849fc",
+        "android_client_info": {
+          "package_name": "com.estel.cashmoovsubscriberapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553252688309-jb2lk0m1unapsk9kbiv1umilmcdibbf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-_L8RZXCO8LsnjHtl7Q0RrH815KQR9n8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553252688309-jb2lk0m1unapsk9kbiv1umilmcdibbf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
