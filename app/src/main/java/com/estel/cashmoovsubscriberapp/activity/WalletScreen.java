@@ -180,6 +180,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
                                                     data.optString("fromWalletOwnerCode").trim(),
+                                                    data.optString("toWalletOwnerCode").trim(),
                                                     data.optString("fromWalletOwnerName").trim(),
                                                     data.optString("fromWalletOwnerMsisdn").trim(),
                                                     data.optString("fromWalletCode").trim(),

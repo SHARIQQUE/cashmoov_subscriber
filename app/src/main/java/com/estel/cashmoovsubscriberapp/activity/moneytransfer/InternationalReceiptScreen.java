@@ -114,7 +114,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tvFee.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
 
-        tvTransAmt.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(InternationalConfirmScreen.tvTransAmounts.getText().toString()));
+        tvTransAmt.setText(MyApplication.addDecimal(InternationalConfirmScreen.tvTransAmounts.getText().toString()));
         tvAmountPaid.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
         tvAmountCharged.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 

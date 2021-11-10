@@ -251,11 +251,11 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
             case R.id.tvSend:
                 if(etRecipientNo.getText().toString().isEmpty()){
-                    MyApplication.showErrorToast(cashwithdrawalC,getString(R.string.val_recipient_no));
+                    MyApplication.showErrorToast(cashwithdrawalC,getString(R.string.val_inst_agent_branch_no));
                     return;
                 }
                 if(etRecipientNo.getText().toString().trim().length()<9){
-                    MyApplication.showErrorToast(cashwithdrawalC,getString(R.string.val_recipient_no_len));
+                    MyApplication.showErrorToast(cashwithdrawalC,getString(R.string.val_inst_agemt_branch_no_len));
                     return;
                 }
                 if(etAmount.getText().toString().isEmpty()){

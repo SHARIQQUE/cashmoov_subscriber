@@ -164,7 +164,7 @@
                 android:paddingTop="@dimen/_12sdp"
                 android:paddingBottom="@dimen/_12sdp"
                 android:paddingEnd="@dimen/_15sdp"
-                android:hint="@string/valid_recipient_number"
+                android:hint="@string/valid_inst_agent_branch_number"
                 android:textColor="@color/textColorLBlack"
                 android:textSize="@dimen/_13sdp" />
             <LinearLayout

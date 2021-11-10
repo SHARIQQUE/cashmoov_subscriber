@@ -114,7 +114,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tvFee.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
 
-        tvTransAmt.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(ToNonSubscriberConfirmScreen.tvTransAmount.getText().toString()));
+        tvTransAmt.setText(MyApplication.addDecimal(ToNonSubscriberConfirmScreen.tvTransAmount.getText().toString()));
         tvAmountPaid.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
         tvAmountCharged.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 

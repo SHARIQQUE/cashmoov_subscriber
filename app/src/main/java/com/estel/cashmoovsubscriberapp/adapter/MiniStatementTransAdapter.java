@@ -1,6 +1,7 @@
 package com.estel.cashmoovsubscriberapp.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.listners.MiniStatemetListners;
 import com.estel.cashmoovsubscriberapp.model.MiniStatementTrans;
@@ -47,6 +49,12 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         final MiniStatementTrans miniStatementTrans = miniStatementTransList.get(position);
         holder.tvTransType.setText(miniStatementTrans.getTransactionTypeName());
         holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+        if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+            holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+        }
+        if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+            holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+        }
         holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

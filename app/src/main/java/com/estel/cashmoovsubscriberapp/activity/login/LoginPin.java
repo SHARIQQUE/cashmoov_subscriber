@@ -35,8 +35,6 @@ public class LoginPin extends AppCompatActivity {
         getIds();
     }
 
-
-
     String pin;
 
     @Override

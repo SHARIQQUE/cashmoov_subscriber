@@ -110,7 +110,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         tvFee.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optInt("fee"))));
 
-        tvTransAmt.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(ToSubscriberConfirmScreen.tvTransAmount.getText().toString()));
+        tvTransAmt.setText(MyApplication.addDecimal(ToSubscriberConfirmScreen.tvTransAmount.getText().toString()));
         tvAmountPaid.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("finalAmount")));
         tvAmountCharged.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("value")));
 

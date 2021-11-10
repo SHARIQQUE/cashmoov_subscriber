@@ -248,11 +248,11 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.tvSend:
                 if(etRecipientNo.getText().toString().isEmpty()){
-                    MyApplication.showErrorToast(payC,getString(R.string.val_recipient_no));
+                    MyApplication.showErrorToast(payC,getString(R.string.val_mer_outlet_no));
                     return;
                 }
                 if(etRecipientNo.getText().toString().trim().length()<9){
-                    MyApplication.showErrorToast(payC,getString(R.string.val_recipient_no_len));
+                    MyApplication.showErrorToast(payC,getString(R.string.val_mer_outlet_no_len));
                     return;
                 }
                 if(etAmount.getText().toString().isEmpty()){

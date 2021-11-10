@@ -222,11 +222,11 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(etSubscriberNo.getText().toString().trim().isEmpty()) {
-            MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_recipient_no));
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_subscriber_no));
             return;
         }
         if(etSubscriberNo.getText().toString().trim().length()<9) {
-            MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_phone_no_val));
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_subscriber_no_val));
             return;
         }
         if(etAmount.getText().toString().trim().isEmpty()) {

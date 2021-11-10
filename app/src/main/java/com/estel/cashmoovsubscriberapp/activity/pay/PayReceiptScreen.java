@@ -109,7 +109,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
         tvFee.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optInt("fee"))));
 
-        tvTransAmt.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+ MyApplication.addDecimal(PayConfirmScreen.tvTransAmount.getText().toString()));
+        tvTransAmt.setText(MyApplication.addDecimal(PayConfirmScreen.tvTransAmount.getText().toString()));
         tvAmountPaid.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("finalAmount")));
         tvAmountCharged.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("value")));
 

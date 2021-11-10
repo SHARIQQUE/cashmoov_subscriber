@@ -311,6 +311,16 @@
     <string name="val_beneficiairy_name">Please enter beneficiary name</string>
     <string name="val_confirmation_code">Please enter confirmation code</string>
     <string name="val_select_benifi_curr">Please select beneficiary currency</string>
+    <string name="benefi_msisdn_colom">Beneficiary MSISDN :</string>
+    <string name="valid_mer_outlet_number">Merchant/Outlet Mobile Number*</string>
+    <string name="valid_inst_agent_branch_number">Institute/Agent/Branch Mobile Number*</string>
+    <string name="val_mer_outlet_no">Please enter merchant/outlet number</string>
+    <string name="val_mer_outlet_no_len">Merchant/Outlet number must be at least 9 digits long</string>
+    <string name="val_inst_agent_branch_no">Please enter institute/agent/branch number</string>
+    <string name="val_inst_agemt_branch_no_len">Institute/Agent/Branch number must be at least 9 digits long</string>
+    <string name="valid_subscriber_number">Subscriber number*</string>
+    <string name="val_subscriber_no">Please enter subscriber number</string>
+    <string name="enter_subscriber_no_val">Subscriber number must be at least 9 digits long</string>
 
 
     <string-array name="Spinner_provider">
