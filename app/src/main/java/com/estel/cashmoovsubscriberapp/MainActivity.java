@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+        callApiWalletList();
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.souarecashmoov)
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setOnCLickListener();
 
-        callApiWalletList();
+
     }
 
     private void setOnCLickListener() {
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void callApiWalletList() {
         try {
-            MyApplication.showloader(mainC,"Please wait!");
+           // MyApplication.showloader(mainC,"Please wait!");
             API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", mainC),
                     new Api_Responce_Handler() {
                         @Override

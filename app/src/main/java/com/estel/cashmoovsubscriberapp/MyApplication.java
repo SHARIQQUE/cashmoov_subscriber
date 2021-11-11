@@ -25,6 +25,7 @@ import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
+import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.github.florent37.viewtooltip.ViewTooltip;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class MyApplication extends Application {
         super.onCreate();
         appInstance = this;
 
-        ImageURL="http://202.131.144.129:8081/ewallet/api/v1/fileUpload/download/" +
+        ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                 getSaveString("walletOwnerCode",appInstance)+"/";
 
         AndroidNetworking.initialize(getApplicationContext());
