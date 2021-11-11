@@ -2,8 +2,11 @@ package com.estel.cashmoovsubscriberapp.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +22,7 @@ public class SetPin extends AppCompatActivity {
     public static SetPin setpinC;
     EditText etPin,etRePin;
     TextView tvContinue;
+    ImageView icPin,icRepin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,44 @@ public class SetPin extends AppCompatActivity {
     private void getIds() {
         etPin = findViewById(R.id.etPin);
         etRePin = findViewById(R.id.etRePin);
+        icPin = findViewById(R.id.icPin);
+        icRepin = findViewById(R.id.icRePin);
         tvContinue = findViewById(R.id.tvContinue);
+
+        icPin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+            }
+        });
+
+        icRepin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(etRePin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icRepin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etRePin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icRepin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etRePin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+            }
+        });
+
 
         tvContinue.setOnClickListener(new View.OnClickListener() {
             @Override

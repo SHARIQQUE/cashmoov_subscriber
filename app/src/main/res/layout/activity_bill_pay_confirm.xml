@@ -570,24 +570,38 @@
                     android:textSize="@dimen/_13sdp"
                     />
 
-                <EditText
-                    android:id="@+id/etPin"
-                    android:hint="@string/ex_1234"
-                    android:layout_weight="1"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
-                    android:inputType="numberPassword"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingRight="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_5sdp"
-                    android:paddingBottom="@dimen/_5sdp"
-                    android:textColor="#323232"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLength="4"/>
-
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/_15sdp">
+                    <EditText
+                        android:id="@+id/etPin"
+                        android:hint="@string/ex_1234"
+                        android:layout_weight="1"
+                        android:inputType="numberPassword"
+                        android:background="@null"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingRight="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:textColor="#323232"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLength="4"/>
+                    <ImageView
+                        android:id="@+id/icPin"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        app:srcCompat="@drawable/ic_show" />
+                </LinearLayout>
             </LinearLayout>
 
 

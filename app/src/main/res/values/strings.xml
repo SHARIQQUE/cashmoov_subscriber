@@ -321,6 +321,14 @@
     <string name="valid_subscriber_number">Subscriber number*</string>
     <string name="val_subscriber_no">Please enter subscriber number</string>
     <string name="enter_subscriber_no_val">Subscriber number must be at least 9 digits long</string>
+    <string name="promotions">Promotions</string>
+    <string name="notification">Notification</string>
+    <string name="val_valid_mer_outlet_no">Please enter valid merchant/outlet number</string>
+    <string name="val_valid_inst_agent_branch_no">Please enter valid institute/agent/branch number</string>
+    <string name="valid_select_region">Select Region*</string>
+    <string name="valid_select_city">Select City*</string>
+    <string name="val_select_region">Please select region</string>
+    <string name="val_select_city">Please select city</string>
 
 
     <string-array name="Spinner_provider">

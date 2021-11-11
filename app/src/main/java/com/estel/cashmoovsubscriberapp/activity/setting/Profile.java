@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.BuildConfig;
@@ -16,8 +15,8 @@ import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
+import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.WalletScreen;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -25,7 +24,7 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class Profile extends AppCompatActivity implements View.OnClickListener {
     public static Profile profileC;
     ImageView imgBack,imgHome;
-    ImageView imgQR;
+    ImageView imgNotification,imgQR;
     SmoothBottomBar bottomBar;
     LinearLayout linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
@@ -93,6 +92,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
     private void getIds() {
+        imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
         linBeneficiary = findViewById(R.id.linBeneficiary);
@@ -156,6 +156,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void setOnCLickListener() {
+        imgNotification.setOnClickListener(profileC);
         imgQR.setOnClickListener(profileC);
         linBeneficiary.setOnClickListener(profileC);
         linChangeLang.setOnClickListener(profileC);
@@ -173,6 +174,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.imgNotification:
+                intent = new Intent(profileC, NotificationList.class);
+                startActivity(intent);
+                break;
             case R.id.imgQR:
                 intent = new Intent(profileC, MyQrCode.class);
                 startActivity(intent);

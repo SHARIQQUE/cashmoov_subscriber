@@ -2,9 +2,12 @@ package com.estel.cashmoovsubscriberapp.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +24,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
     public static ChangePin changepinC;
     Button btnCancel, btnConfirm;
     EditText etOldPin,etNewPin,etReNewPin;
+    ImageView icOldPin,icNewPin,icReNewPin;
     // ImageView imgBack;
 
     @Override
@@ -54,12 +58,18 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         etOldPin = findViewById(R.id.etOldPin);
         etNewPin = findViewById(R.id.etNewPin);
         etReNewPin = findViewById(R.id.etReNewPin);
+        icOldPin = findViewById(R.id.icOldPin);
+        icNewPin = findViewById(R.id.icNewPin);
+        icReNewPin = findViewById(R.id.icReNewPin);
 
         setOnCLickListener();
 
     }
 
     private void setOnCLickListener() {
+        icOldPin.setOnClickListener(changepinC);
+        icNewPin.setOnClickListener(changepinC);
+        icReNewPin.setOnClickListener(changepinC);
         btnCancel.setOnClickListener(changepinC);
         btnConfirm.setOnClickListener(changepinC);
     }
@@ -68,6 +78,45 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.icOldPin:
+                if(etOldPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icOldPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etOldPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icOldPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etOldPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+                break;
+            case R.id.icNewPin:
+                if(etNewPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icNewPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icNewPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etNewPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+                break;
+            case R.id.icReNewPin:
+                if(etReNewPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icReNewPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etReNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icReNewPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etReNewPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+                break;
             case R.id.btnCancel:
                 intent = new Intent(getApplicationContext(), Profile.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

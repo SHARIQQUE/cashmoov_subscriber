@@ -2,9 +2,14 @@ package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +31,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
     public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
+    ImageView icPin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
         tvFee = findViewById(R.id.tvFee);
         etPin = findViewById(R.id.etPin);
+        icPin = findViewById(R.id.icPin);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
 
@@ -108,11 +115,14 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvAmountCharged.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(Double.toString(finalamount)));
 
 
+
+
         setOnCLickListener();
 
     }
 
     private void setOnCLickListener() {
+        icPin.setOnClickListener(tosubscriberconfirmscreenC);
         btnConfirm.setOnClickListener(tosubscriberconfirmscreenC);
         btnCancel.setOnClickListener(tosubscriberconfirmscreenC);
 
@@ -121,6 +131,19 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.icPin:
+            if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                icPin.setImageResource(R.drawable.ic_hide);
+                //Show Password
+                etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }
+            else{
+                icPin.setImageResource(R.drawable.ic_show);
+                //Hide Password
+                etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+            }
+            break;
             case R.id.btnConfirm:
                 if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(tosubscriberconfirmscreenC,getString(R.string.val_pin));
@@ -187,6 +210,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                     }
                 });
     }
+
 
 
 }

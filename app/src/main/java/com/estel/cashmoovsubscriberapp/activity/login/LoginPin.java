@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -32,6 +35,7 @@ public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
     EditText etPin;
     TextView tvContinue,tvFinger,msgText,tvregister;
+    ImageView icPin;
 
 
     @Override
@@ -66,10 +70,29 @@ public class LoginPin extends AppCompatActivity {
 
     private void getIds() {
         etPin = findViewById(R.id.etPin);
+        icPin = findViewById(R.id.icPin);
         tvContinue = findViewById(R.id.tvContinue);
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
+
+
+        icPin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+            }
+        });
 
 
         tvregister.setOnClickListener(new View.OnClickListener() {

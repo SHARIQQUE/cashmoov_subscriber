@@ -40,6 +40,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
     EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
+    private boolean isSuccess;
 
 
     @Override
@@ -267,6 +268,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                     MyApplication.showErrorToast(cashwithdrawalC,getString(R.string.val_valid_amount));
                     return;
                 }
+                if(isSuccess){
                 try{
                     dataToSend.put("transactionType","101441");
                     dataToSend.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
@@ -291,6 +293,10 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                     startActivity(i);
                 }catch (Exception e){
 
+                }
+                }else{
+                    etAmount.setText("");
+                    MyApplication.showErrorToast(cashwithdrawalC,getString(R.string.val_valid_inst_agent_branch_no));
                 }
 
                 break;
@@ -545,6 +551,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
     private ArrayAdapter<String> adapter;
 
     private void setSubscriberdataf(String subscriberInfoModel) {
+        isSuccess = false;
         subscriberList.clear();
         subscriberList.add(""+""+subscriberInfoModel+""+"");
         adapter = new ArrayAdapter<String>(cashwithdrawalC,R.layout.item_select, subscriberList);
@@ -557,6 +564,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
     String receiverCode;
     private void setSubscriberdata(SubscriberInfoModel subscriberInfoModel) {
         SubscriberInfoModel.Subscriber data = subscriberInfoModel.getSubscriber();
+        isSuccess = true;
         mobileNo = data.getMobileNumber();
         ownerName = data.getOwnerName();
         lastName = data.getLastName();

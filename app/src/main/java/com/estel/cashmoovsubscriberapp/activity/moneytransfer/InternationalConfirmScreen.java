@@ -2,21 +2,21 @@ package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -29,6 +29,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout;
     CardView cardBearFee;
+    ImageView icPin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
         tvFee = findViewById(R.id.tvFee);
         etPin = findViewById(R.id.etPin);
+        icPin = findViewById(R.id.icPin);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
         cardBearFee = findViewById(R.id.cardBearFee);
@@ -117,6 +119,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
     }
 
     private void setOnCLickListener() {
+        icPin.setOnClickListener(internationalconfirmscreenC);
         btnConfirm.setOnClickListener(internationalconfirmscreenC);
         btnCancel.setOnClickListener(internationalconfirmscreenC);
 
@@ -126,6 +129,19 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.icPin:
+                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+                break;
             case R.id.btnConfirm:
                 if (etPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalconfirmscreenC, getString(R.string.val_pin));

@@ -321,6 +321,14 @@
     <string name="valid_subscriber_number">Numéro d\'adhérant*</string>
     <string name="val_subscriber_no">Veuillez saisir le numéro d\'abonné</string>
     <string name="enter_subscriber_no_val">Le numéro d\'abonné doit comporter au moins 9 chiffres</string>
+    <string name="promotions">Promotions</string>
+    <string name="notification">Notification</string>
+    <string name="val_valid_mer_outlet_no">Veuillez saisir un numéro de marchand/point de vente valide</string>
+    <string name="val_valid_inst_agent_branch_no">Veuillez entrer un numéro d\'institut/agent/succursale valide</string>
+    <string name="valid_select_region">Choisissez une région*</string>
+    <string name="valid_select_city">Sélectionnez une ville*</string>
+    <string name="val_select_region">Veuillez sélectionner la région</string>
+    <string name="val_select_city">Veuillez sélectionner la ville</string>
 
 
     <string-array name="Spinner_provider">

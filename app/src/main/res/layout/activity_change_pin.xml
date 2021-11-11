@@ -93,7 +93,8 @@
 
                             <EditText
                                 android:id="@+id/etOldPin"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:lineSpacingExtra="10sp"
@@ -105,6 +106,13 @@
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
+                            <ImageView
+                                android:id="@+id/icOldPin"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                app:srcCompat="@drawable/ic_show" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                     <TextView
@@ -147,7 +155,8 @@
 
                             <EditText
                                 android:id="@+id/etNewPin"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:lineSpacingExtra="10sp"
@@ -159,6 +168,13 @@
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
+                            <ImageView
+                                android:id="@+id/icNewPin"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                app:srcCompat="@drawable/ic_show" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -202,7 +218,8 @@
 
                             <EditText
                                 android:id="@+id/etReNewPin"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:lineSpacingExtra="10sp"
@@ -214,6 +231,13 @@
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
+                            <ImageView
+                                android:id="@+id/icReNewPin"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                app:srcCompat="@drawable/ic_show" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 

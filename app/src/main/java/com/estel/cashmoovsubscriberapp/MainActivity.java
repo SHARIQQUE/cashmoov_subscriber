@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
+import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.setting.Profile;
 import com.estel.cashmoovsubscriberapp.activity.WalletScreen;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AirtimePurchase;
@@ -34,7 +35,7 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static MainActivity mainC;
     SmoothBottomBar bottomBar;
-    ImageView imgQR;
+    ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance;
     CardView cardMoneyTransfer,cardAirtimePurchase,cardRechargePayment,cardPay,
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getIds() {
+        imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
         imgProfile = findViewById(R.id.imgProfile);
         tvClick = findViewById(R.id.tvClick);
@@ -124,9 +126,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setOnCLickListener() {
+        imgNotification.setOnClickListener(mainC);
         imgQR.setOnClickListener(mainC);
         imgProfile.setOnClickListener(mainC);
         tvClick.setOnClickListener(mainC);
+        tvBalance.setOnClickListener(mainC);
         cardMoneyTransfer.setOnClickListener(mainC);
         cardAirtimePurchase.setOnClickListener(mainC);
         cardRechargePayment.setOnClickListener(mainC);
@@ -141,6 +145,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent;
         switch(view.getId()){
+            case R.id.imgNotification:
+                intent = new Intent(mainC, NotificationList.class);
+                startActivity(intent);
+                break;
             case R.id.imgQR:
                 intent = new Intent(mainC, MyQrCode.class);
                 startActivity(intent);
@@ -152,6 +160,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tvClick:
                 tvClick.setVisibility(View.GONE);
                 tvBalance.setVisibility(View.VISIBLE);
+                break;
+            case R.id.tvBalance:
+                tvClick.setVisibility(View.VISIBLE);
+                tvBalance.setVisibility(View.GONE);
                 break;
             case R.id.cardMoneyTransfer:
                 intent = new Intent(mainC, MoneyTransfer.class);

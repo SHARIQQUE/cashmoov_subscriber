@@ -131,28 +131,49 @@
                     android:inputType="phone"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_1sdp"/>
-                <EditText
+
+                <LinearLayout
+                    android:id="@+id/linPass"
                     android:visibility="gone"
-                    android:id="@+id/etPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:background="@drawable/rect_lightcolor_outline"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingStart="@dimen/_15sdp"
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:hint="0000"
-                    android:textColor="#323232"
                     android:backgroundTint="#999999"
-                    android:drawableStart="@drawable/ic_baseline_fiber_pin_24"
-                    android:drawableTint="@color/colorPrimary"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"
-                    android:maxLength="4"
-                    android:inputType="number"
-                    android:layout_marginTop="@dimen/_10sdp"/>
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp">
+                    <EditText
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/etPass"
+                        android:hint="0000"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:inputType="numberPassword"
+                        android:background="@null"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingRight="@dimen/_15sdp"
+                        android:textColor="#323232"
+                        android:drawableStart="@drawable/ic_baseline_fiber_pin_24"
+                        android:drawableTint="@color/colorPrimary"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"
+                        android:maxLength="4"/>
+                    <ImageView
+                        android:id="@+id/icPin"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        app:srcCompat="@drawable/ic_show" />
+                </LinearLayout>
 
                     <TextView
                         android:id="@+id/tvContinue"

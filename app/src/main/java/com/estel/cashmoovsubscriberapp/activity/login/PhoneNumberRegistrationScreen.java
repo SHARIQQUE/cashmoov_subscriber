@@ -4,9 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,9 +44,12 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     TextView spCountry,tvContinue,tvPin,tvOr,tvFinger,msgText;
     SpinnerDialog spinnerDialogCountry;
     EditText etPhoneNo,etPass;
+    LinearLayout linPass;
+    ImageView icPin;
     private ArrayList<String> countryList = new ArrayList<>();
     private ArrayList<CountryInfoModel.Country> countryModelList=new ArrayList<>();
     String FCM_TOKEN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +77,9 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     private void getIds() {
         spCountry = findViewById(R.id.spCountry);
         etPhoneNo = findViewById(R.id.etPhoneNo);
+        linPass = findViewById(R.id.linPass);
         etPass = findViewById(R.id.etPass);
+        icPin = findViewById(R.id.icPin);
         tvPin = findViewById(R.id.tvPin);
         tvOr = findViewById(R.id.tvOr);
         tvFinger = findViewById(R.id.tvFinger);
@@ -85,6 +94,24 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 //                    spinnerDialogCountry.showSpinerDialog();
 //            }
 //        });
+
+        icPin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(etPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    icPin.setImageResource(R.drawable.ic_hide);
+                    //Show Password
+                    etPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    icPin.setImageResource(R.drawable.ic_show);
+                    //Hide Password
+                    etPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+            }
+        });
+
 
         setOnCLickListener();
 
@@ -294,6 +321,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+                                    linPass.setVisibility(View.VISIBLE);
                                     etPass.setVisibility(View.VISIBLE);
                                     tvPin.setVisibility(View.VISIBLE);
                                     tvOr.setVisibility(View.VISIBLE);
@@ -341,6 +369,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+                            linPass.setVisibility(View.VISIBLE);
                             etPass.setVisibility(View.VISIBLE);
                             tvPin.setVisibility(View.GONE);
                             tvOr.setVisibility(View.GONE);

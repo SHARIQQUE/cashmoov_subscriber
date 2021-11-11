@@ -50,6 +50,7 @@
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.LoginPin"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.SetPin"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.MainActivity"/>
+        <activity android:name="com.estel.cashmoovsubscriberapp.activity.NotificationList"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.MyQrCode"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.WalletScreen"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.WalletTransactionDetails"/>

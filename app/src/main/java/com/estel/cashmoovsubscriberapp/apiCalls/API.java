@@ -795,7 +795,7 @@ public class API {
     public static void GET(String URL, final Api_Responce_Handler responce_handler){
 
         AndroidNetworking.get(BASEURL+URL)
-                .setOkHttpClient(okClient)
+                .setOkHttpClient(client)
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")

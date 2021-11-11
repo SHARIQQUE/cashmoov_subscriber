@@ -38,6 +38,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     public static EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
+    private boolean isSuccess;
 
 
     @Override
@@ -264,25 +265,30 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                     MyApplication.showErrorToast(payC,getString(R.string.val_valid_amount));
                     return;
                 }
-                try{
-                    dataToSend.put("transactionType","105068");
-                    dataToSend.put("desWalletOwnerCode",payAgentCode);
-                    dataToSend.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
-                    dataToSend.put("srcCurrencyCode",fromCurrencyCode);
-                    dataToSend.put("desCurrencyCode",toCurrencyCode);
-                    dataToSend.put("value",etAmount.getText().toString());
-                    //dataToSend.put("conversionRate",conversionRate);
-                    dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
-                    dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
-                    dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
-                    dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
-                    //dataToSend.put("exchangeRateCode",exchangeRateCode);
+                if(isSuccess){
+                    try{
+                        dataToSend.put("transactionType","105068");
+                        dataToSend.put("desWalletOwnerCode",payAgentCode);
+                        dataToSend.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
+                        dataToSend.put("srcCurrencyCode",fromCurrencyCode);
+                        dataToSend.put("desCurrencyCode",toCurrencyCode);
+                        dataToSend.put("value",etAmount.getText().toString());
+                        //dataToSend.put("conversionRate",conversionRate);
+                        dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
+                        dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                        dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                        dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                        //dataToSend.put("exchangeRateCode",exchangeRateCode);
 
-                    System.out.println("Data Send "+dataToSend.toString());
-                    Intent i=new Intent(payC,PayConfirmScreen.class);
-                    startActivity(i);
-                }catch (Exception e){
+                        System.out.println("Data Send "+dataToSend.toString());
+                        Intent i=new Intent(payC,PayConfirmScreen.class);
+                        startActivity(i);
+                    }catch (Exception e){
 
+                    }
+                }else{
+                    etAmount.setText("");
+                    MyApplication.showErrorToast(payC,getString(R.string.val_valid_mer_outlet_no));
                 }
 
                 break;
@@ -527,6 +533,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     private ArrayAdapter<String> adapter;
 
     private void setSubscriberdataf(String subscriberInfoModel) {
+        isSuccess = false;
         subscriberList.clear();
         subscriberList.add(""+""+subscriberInfoModel+""+"");
         adapter = new ArrayAdapter<String>(payC,R.layout.item_select, subscriberList);
@@ -539,7 +546,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     String receiverCode;
     private void setSubscriberdata(SubscriberInfoModel subscriberInfoModel) {
         SubscriberInfoModel.Subscriber data = subscriberInfoModel.getSubscriber();
-
+        isSuccess =true;
         mobileNo = data.getMobileNumber();
         ownerName = data.getOwnerName();
         lastName = data.getLastName();

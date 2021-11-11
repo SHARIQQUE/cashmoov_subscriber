@@ -14,8 +14,11 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.VerifyRegisterOTP;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.estel.cashmoovsubscriberapp.model.CityInfoModel;
 import com.estel.cashmoovsubscriberapp.model.GenderModel;
 import com.estel.cashmoovsubscriberapp.model.OccupationTypeModel;
+import com.estel.cashmoovsubscriberapp.model.RegionInfoModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,9 +31,15 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
     public static RegisterStepOne registersteponeC;
     DatePickerDialog picker;
-    EditText etFname,etLname,etPhone,etEmail,etCity,etAddress,etDob;
-    TextView tvNext,spGender,spOccupation;
-    SpinnerDialog spinnerDialogGender,spinnerDialogOccupation;
+    EditText etFname,etLname,etPhone,etEmail,etAddress,etDob;
+    TextView tvNext,spRegion,spCity,spGender,spOccupation;
+    SpinnerDialog spinnerDialogGender,spinnerDialogOccupation,spinnerDialogRegion,spinnerDialogCity;
+
+    private ArrayList<String> regionList = new ArrayList<>();
+    private ArrayList<RegionInfoModel.Region> regionModelList = new ArrayList<>();
+    private ArrayList<String> cityList = new ArrayList<>();
+    private ArrayList<CityInfoModel.City> cityModelList = new ArrayList<>();
+
     private ArrayList<String> genderList = new ArrayList<>();
     private ArrayList<GenderModel.Gender> genderModelList=new ArrayList<>();
 
@@ -52,7 +61,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         etLname = findViewById(R.id.etLname);
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
-        etCity = findViewById(R.id.etCity);
+        spRegion = findViewById(R.id.spRegion);
+        spCity = findViewById(R.id.spCity);
         etAddress = findViewById(R.id.etAddress);
         etDob = findViewById(R.id.etDob);
         spGender = findViewById(R.id.spGender);
@@ -79,6 +89,24 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        spRegion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogRegion!=null){
+                    spinnerDialogRegion.showSpinerDialog();
+                }
+
+            }
+        });
+        spCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCity!=null){
+                    spinnerDialogCity.showSpinerDialog();
+                }
+
+            }
+        });
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +133,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     protected void onStart() {
         super.onStart();
 
-        callApiOccupationType();
+        callApiRegions();
+
     }
 
     private void setOnCLickListener() {
@@ -165,9 +194,15 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
-                if(etCity.getText().toString().trim().isEmpty()) {
-                   // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_city));
-                    MyApplication.showTipError(this,getString(R.string.val_city),etCity);
+                if(spRegion.getText().toString().equals(getString(R.string.valid_select_region))) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                    MyApplication.showTipError(this,getString(R.string.val_select_region),spRegion);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
+                if(spCity.getText().toString().equals(getString(R.string.valid_select_city))) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                    MyApplication.showTipError(this,getString(R.string.val_select_city),spCity);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
@@ -210,7 +245,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     jsonObject.put("issuingCountryCode","100092");
                     jsonObject.put("registerCountryCode","100092");
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
-                    jsonObject.put("notificationTypeCode","100000");
+                    jsonObject.put("notificationTypeCode","100002");
                     jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
 
                 } catch (JSONException e) {
@@ -218,6 +253,141 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                 }
 
                 callRegisterApi(jsonObject);
+
+        }
+
+    }
+    //http://202.131.144.130:8081/ewallet/api/v1/region/country/100092
+    private void callApiRegions() {
+        try {
+
+            API.GET("ewallet/api/v1/region/country/100092",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                regionList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("regionList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        regionModelList.add(new RegionInfoModel.Region(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("countryCode"),
+                                                data.optString("countryName"),
+                                                data.optString("creationDate"),
+                                                data.optString("name"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        regionList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogRegion = new SpinnerDialog(registersteponeC, regionList, "Select Region", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRegion.setCancellable(true); // for cancellable
+                                    spinnerDialogRegion.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogRegion.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spRegion.setText(item);
+                                            spRegion.setTag(position);
+                                            spCity.setText("Select");
+
+                                            callApiCity(regionModelList.get(position).getCode());
+                                        }
+                                    });
+
+
+                                } else {
+                                    MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void callApiCity(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/city/region/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                cityList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        cityModelList.add(new CityInfoModel.City(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optString("name"),
+                                                data.optString("regionCode"),
+                                                data.optString("regionName"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        cityList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(registersteponeC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity.setCancellable(true); // for cancellable
+                                    spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCity.setText(item);
+                                            spCity.setTag(position);
+                                        }
+                                    });
+
+                                    callApiOccupationType();
+
+                                } else {
+                                    MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
 
         }
 

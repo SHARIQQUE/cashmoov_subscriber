@@ -33,7 +33,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private List<MiniStatement> miniStatementList = new ArrayList<>();
     private TextView tvCurrency,tvClick,tvBalance;
     SmoothBottomBar bottomBar;
-    ImageView imgQR;
+    ImageView imgNotification,imgQR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getIds() {
+        imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
         tvCurrency = findViewById(R.id.tvCurrency);
@@ -91,14 +92,20 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setOnCLickListener() {
+        imgNotification.setOnClickListener(walletscreenC);
         imgQR.setOnClickListener(walletscreenC);
         tvClick.setOnClickListener(walletscreenC);
+        tvBalance.setOnClickListener(walletscreenC);
     }
 
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.imgNotification:
+                intent = new Intent(walletscreenC, NotificationList.class);
+                startActivity(intent);
+                break;
             case R.id.imgQR:
                 intent = new Intent(walletscreenC, MyQrCode.class);
                 startActivity(intent);
@@ -106,6 +113,11 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
             case R.id.tvClick:
                 tvClick.setVisibility(View.GONE);
                 tvBalance.setVisibility(View.VISIBLE);
+                break;
+            case R.id.tvBalance:
+                tvClick.setVisibility(View.VISIBLE);
+                tvBalance.setVisibility(View.GONE);
+                break;
         }
     }
 
