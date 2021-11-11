@@ -260,8 +260,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     //http://202.131.144.130:8081/ewallet/api/v1/region/country/100092
     private void callApiRegions() {
         try {
-
-            API.GET("ewallet/api/v1/region/country/100092",
+//http://202.131.144.130:8081/ewallet/public/region/country/100092
+            API.GET_PUBLIC("ewallet/public/region/country/100092",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -328,8 +328,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
     private void callApiCity(String code) {
         try {
-
-            API.GET("ewallet/api/v1/city/region/"+code,
+//http://202.131.144.130:8081/ewallet/public/city/region/100068
+            API.GET_PUBLIC("ewallet/public/city/region/"+code,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
