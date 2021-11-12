@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_7sdp"
+    android:clipToPadding="false"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="0dp">
+                    <RelativeLayout
+                        android:id="@+id/linItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/img_offer_logo"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_150sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_offer_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/aileron_bold"
+                            android:padding="@dimen/_15sdp"
+                            android:text="Promo 1"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:layout_alignBottom="@id/img_offer_logo"/>
+
+                    </RelativeLayout>
+          </androidx.cardview.widget.CardView>
+

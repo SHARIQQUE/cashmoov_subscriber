@@ -17,6 +17,11 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.WalletScreen;
+import com.estel.cashmoovsubscriberapp.apiCalls.API;
+import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+
+import org.json.JSONObject;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -121,9 +126,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         String img= MyApplication.getSaveString("firstName",profileC);
 
 
-        number.setText(num);
-        name.setText(naam);
-        etAddress.setText(add);
+        //number.setText(num);
+        //name.setText(naam);
+       // etAddress.setText(add);
 
 
         bottomBar.setItemActiveIndex(2);
@@ -150,6 +155,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 return true;
             }
         });
+
+        callAPIWalletOwnerDetails();
 
         setOnCLickListener();
 
@@ -226,6 +233,67 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+    }
+
+    public void callAPIWalletOwnerDetails(){
+        API.GET("ewallet/api/v1/walletOwner/"+MyApplication.getSaveString("walletOwnerCode", profileC), new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                    name.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName")+" "+
+                            jsonObject.optJSONObject("walletOwner").optString("lastName"));
+                    etAddress.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryName","N/A"));
+                    number.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
+
+                    callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
+                }else{
+                    MyApplication.showToast(profileC,jsonObject.optString("resultDescription"));
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(profileC,aFalse);
+            }
+        });
+    }
+
+    private void callApiFromCurrency(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+                                    currency.setText(jsonObject.optJSONObject("country").optString("currencyCode"));
+                                    //fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
+
+
+                                } else {
+                                    MyApplication.showToast(profileC,jsonObject.optString("resultDescription", "  "));
+                                }
+                            }
+
+                            // callApiBenefiCurrency();
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 }

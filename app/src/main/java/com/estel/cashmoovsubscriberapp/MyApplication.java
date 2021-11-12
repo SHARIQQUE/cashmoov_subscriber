@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.StrictMode;
 import android.provider.Settings;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -26,11 +27,18 @@ import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
+import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 import com.github.florent37.viewtooltip.ViewTooltip;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.regex.Pattern;
 import okhttp3.Authenticator;
 import okhttp3.OkHttpClient;
@@ -42,6 +50,8 @@ import okhttp3.Route;
 public class MyApplication extends Application {
     private static final String TAG = MyApplication.class.getSimpleName();
     public static boolean isScan;
+    public static ArrayList<OfferPromotionModel> offerPromotionModelArrayList=new ArrayList<>();
+    public static int offerPromtionPos=0;
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;
@@ -53,6 +63,7 @@ public class MyApplication extends Application {
     public static MyApplication getInstance() {
         return appInstance;
     }
+
 
     public  void callLogin() {
         saveBool("isLogin",false,getInstance());
@@ -329,6 +340,77 @@ public class MyApplication extends Application {
         Configuration config = new Configuration();//get Configuration
         config.locale = myLocale;//set config locale as selected locale
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());//Update the config
+    }
+    public static String convertUTCToLocalTime(String Date){
+        String dateStr = Date;
+        // SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+        //
+        //df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        java.util.Date date = null;
+        try {
+            date = df.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+        df.setTimeZone(TimeZone.getDefault());
+        String formattedDate = df.format(date);
+
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+
+        java.util.Date date1 = null;
+        try {
+            date1 = df1.parse(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        android.text.format.DateFormat df2 = new android.text.format.DateFormat();
+
+        if(isToday(date1)){
+            String df_medium_us_str= (String) df2.format("HH:mm", date1);
+            return "Today, "+df_medium_us_str;
+        }
+
+        if(isYesterday(date1)){
+            String df_medium_us_str= (String) df2.format("HH:mm", date1);
+            return "Yesterday, "+df_medium_us_str;
+        }
+        String df_medium_us_str= (String) df2.format("dd-MMM-yyyy", date1);
+       /* if(isToday(date1)){
+            String df_medium_us_str= (String) df2.format("hh:mm:ss a", date1);
+            return "Today, "+df_medium_us_str;
+        }
+
+        if(isYesterday(date1)){
+            String df_medium_us_str= (String) df2.format("hh:mm:ss a", date1);
+            return "Yesterday, "+df_medium_us_str;
+        }
+        String df_medium_us_str= (String) df2.format("dd-MMM-yyyy hh:mm:ss a", date1);*/
+        return  df_medium_us_str;
+    }
+    public static boolean isYesterday(Date d) {
+        return DateUtils.isToday(d.getTime() + DateUtils.DAY_IN_MILLIS);
+    }
+
+
+
+    public static boolean isToday(Date d) {
+        return DateUtils.isToday(d.getTime());
+    }
+
+    public static boolean isDateInCurrentWeek(Date date) {
+        Calendar currentCalendar = Calendar.getInstance();
+        int week = currentCalendar.get(Calendar.WEEK_OF_YEAR);
+        int year = currentCalendar.get(Calendar.YEAR);
+        Calendar targetCalendar = Calendar.getInstance();
+        targetCalendar.setTime(date);
+        int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
+        int targetYear = targetCalendar.get(Calendar.YEAR);
+        return week == targetWeek && year == targetYear;
     }
 
 

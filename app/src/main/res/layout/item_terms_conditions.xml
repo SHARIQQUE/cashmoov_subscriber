@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_6sdp">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your offer expired as you did not complete 5 out of 6 transactions."
+        android:textColor="@color/textcolor"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="08 Nov 20, 11:59 PM"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textcolorLight"
+        android:textSize="@dimen/_11sdp" />
+
+</LinearLayout>

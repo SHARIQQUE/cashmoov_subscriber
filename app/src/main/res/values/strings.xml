@@ -329,6 +329,8 @@
     <string name="valid_select_city">Select City*</string>
     <string name="val_select_region">Please select region</string>
     <string name="val_select_city">Please select city</string>
+    <string name="view_more">View More</string>
+    <string name="promotion_details">Promotion Details</string>
 
 
     <string-array name="Spinner_provider">
