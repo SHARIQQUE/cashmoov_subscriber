@@ -331,6 +331,23 @@
     <string name="val_select_city">Veuillez sélectionner la ville</string>
     <string name="view_more">Voir plus</string>
     <string name="promotion_details">Détails de la promotion</string>
+    <string name="trans_id">Identifiant de transaction</string>
+    <string name="source">La source</string>
+    <string name="destination">Destination</string>
+    <string name="source_msisdn">Source MSISDN</string>
+    <string name="dest_msisdn">MSISDN de destination</string>
+    <string name="recharge_no">Numéro de recharge</string>
+    <string name="amounts">Montant</string>
+    <string name="tax_type">Type de taxe</string>
+    <string name="tax">Impôt</string>
+    <string name="trans_reversed">Transaction annulée</string>
+    <string name="trans_date">Date de la transaction</string>
+    <string name="view_deatils">Voir les détails</string>
+    <string name="post_balance">Publier le solde</string>
+    <string name="search_here">Cherche ici...</string>
+    <string name="pdf">Pdf</string>
+    <string name="csv">Csv</string>
+    <string name="excel">Exceller</string>
 
 
     <string-array name="Spinner_provider">

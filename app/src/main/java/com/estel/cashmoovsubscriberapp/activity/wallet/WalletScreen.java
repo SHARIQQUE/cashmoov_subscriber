@@ -1,4 +1,4 @@
-package com.estel.cashmoovsubscriberapp.activity;
+package com.estel.cashmoovsubscriberapp.activity.wallet;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
+import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.setting.Profile;
 import com.estel.cashmoovsubscriberapp.adapter.MiniStatementTransAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -31,7 +33,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rv_mini_statement_trans;
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     private List<MiniStatement> miniStatementList = new ArrayList<>();
-    private TextView tvCurrency,tvClick,tvBalance;
+    private TextView tvCurrency,tvAccStatement,tvClick,tvBalance;
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
 
@@ -57,6 +59,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
         tvCurrency = findViewById(R.id.tvCurrency);
+        tvAccStatement = findViewById(R.id.tvAccStatement);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         rv_mini_statement_trans = findViewById(R.id.rv_mini_statement_trans);
@@ -94,6 +97,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private void setOnCLickListener() {
         imgNotification.setOnClickListener(walletscreenC);
         imgQR.setOnClickListener(walletscreenC);
+        tvAccStatement.setOnClickListener(walletscreenC);
         tvClick.setOnClickListener(walletscreenC);
         tvBalance.setOnClickListener(walletscreenC);
     }
@@ -102,6 +106,10 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.tvAccStatement:
+                intent = new Intent(walletscreenC, TransactionDetailsActivity.class);
+                startActivity(intent);
+                break;
             case R.id.imgNotification:
                 intent = new Intent(walletscreenC, NotificationList.class);
                 startActivity(intent);

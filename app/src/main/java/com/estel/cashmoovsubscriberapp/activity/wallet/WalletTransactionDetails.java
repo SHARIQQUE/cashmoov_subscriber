@@ -1,4 +1,4 @@
-package com.estel.cashmoovsubscriberapp.activity;
+package com.estel.cashmoovsubscriberapp.activity.wallet;
 
 import android.content.Intent;
 import android.os.Bundle;

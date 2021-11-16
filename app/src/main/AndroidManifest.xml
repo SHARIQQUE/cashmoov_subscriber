@@ -55,8 +55,9 @@
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.NotificationList"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.MyQrCode"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.OfferPromotionDetailActivity"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.WalletScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.WalletTransactionDetails"/>
+        <activity android:name="com.estel.cashmoovsubscriberapp.activity.wallet.WalletScreen"/>
+        <activity android:name="com.estel.cashmoovsubscriberapp.activity.wallet.WalletTransactionDetails"/>
+        <activity android:name="com.estel.cashmoovsubscriberapp.activity.wallet.TransactionDetailsActivity"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.Profile"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.ChangeLanguage"/>
         <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.Confidentiality"/>

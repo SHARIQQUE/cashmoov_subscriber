@@ -43,12 +43,12 @@ public class SetPin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icPin.setImageResource(R.drawable.ic_hide);
+                    icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icPin.setImageResource(R.drawable.ic_show);
+                    icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -60,12 +60,12 @@ public class SetPin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(etRePin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icRepin.setImageResource(R.drawable.ic_hide);
+                    icRepin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etRePin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icRepin.setImageResource(R.drawable.ic_show);
+                    icRepin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etRePin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 

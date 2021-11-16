@@ -19,7 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.setting.Profile;
-import com.estel.cashmoovsubscriberapp.activity.WalletScreen;
+import com.estel.cashmoovsubscriberapp.activity.wallet.WalletScreen;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AirtimePurchase;
 import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawal;
 import com.estel.cashmoovsubscriberapp.activity.fee.Fee;

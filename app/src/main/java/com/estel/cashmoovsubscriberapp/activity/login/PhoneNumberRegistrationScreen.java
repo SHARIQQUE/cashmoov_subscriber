@@ -99,12 +99,12 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(etPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icPin.setImageResource(R.drawable.ic_hide);
+                    icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icPin.setImageResource(R.drawable.ic_show);
+                    icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 

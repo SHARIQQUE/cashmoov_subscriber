@@ -1,7 +1,6 @@
 package com.estel.cashmoovsubscriberapp.apiCalls;
 
 import static com.estel.cashmoovsubscriberapp.MyApplication.okClient;
-
 import android.util.Log;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -26,7 +25,7 @@ public class API {
     //"http://202.131.144.130:8081/";//QA
     //http://202.131.144.147:8081/ DEV
     //http://202.131.144.129:8081/ UAT
-    public static String BASEURL="http://202.131.144.129:8081/";
+    public static String BASEURL="http://202.131.144.130:8081/";
    //http://202.140.50.120:8081/
 
 

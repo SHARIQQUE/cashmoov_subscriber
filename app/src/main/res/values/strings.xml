@@ -331,6 +331,23 @@
     <string name="val_select_city">Please select city</string>
     <string name="view_more">View More</string>
     <string name="promotion_details">Promotion Details</string>
+    <string name="trans_id">Transaction Id</string>
+    <string name="source">Source</string>
+    <string name="destination">Destination</string>
+    <string name="source_msisdn">Source MSISDN</string>
+    <string name="dest_msisdn">Destination MSISDN</string>
+    <string name="recharge_no">Recharge Number</string>
+    <string name="amounts">Amount</string>
+    <string name="tax_type">Tax Type</string>
+    <string name="tax">Tax</string>
+    <string name="trans_reversed">Transaction Reversed</string>
+    <string name="trans_date">Transaction Date</string>
+    <string name="view_deatils">View Details</string>
+    <string name="post_balance">Post Balance</string>
+    <string name="search_here">Search here...</string>
+    <string name="pdf">Pdf</string>
+    <string name="csv">Csv</string>
+    <string name="excel">Excel</string>
 
 
     <string-array name="Spinner_provider">

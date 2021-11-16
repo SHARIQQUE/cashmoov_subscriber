@@ -80,12 +80,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.icOldPin:
                 if(etOldPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icOldPin.setImageResource(R.drawable.ic_hide);
+                    icOldPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etOldPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icOldPin.setImageResource(R.drawable.ic_show);
+                    icOldPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etOldPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -93,12 +93,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.icNewPin:
                 if(etNewPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icNewPin.setImageResource(R.drawable.ic_hide);
+                    icNewPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icNewPin.setImageResource(R.drawable.ic_show);
+                    icNewPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etNewPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -106,12 +106,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.icReNewPin:
                 if(etReNewPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icReNewPin.setImageResource(R.drawable.ic_hide);
+                    icReNewPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etReNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icReNewPin.setImageResource(R.drawable.ic_show);
+                    icReNewPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etReNewPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 

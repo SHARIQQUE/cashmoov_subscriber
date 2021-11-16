@@ -112,7 +112,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_5sdp"
-                                app:srcCompat="@drawable/ic_show" />
+                                app:srcCompat="@drawable/ic_hide" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 

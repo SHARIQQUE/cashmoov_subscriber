@@ -133,12 +133,12 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         switch (view.getId()) {
             case R.id.icPin:
                 if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    icPin.setImageResource(R.drawable.ic_hide);
+                    icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
-                    icPin.setImageResource(R.drawable.ic_show);
+                    icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
