@@ -60,6 +60,7 @@
             android:fontFamily="@font/aileron_regular"
             android:lineSpacingExtra="10sp"
             android:text="@string/ignore"
+            android:visibility="invisible"
             android:textColor="#323232"
             android:textSize="@dimen/_13sdp" />
 

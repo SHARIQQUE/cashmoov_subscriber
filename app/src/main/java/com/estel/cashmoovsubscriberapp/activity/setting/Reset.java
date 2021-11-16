@@ -85,7 +85,7 @@ public class Reset extends AppCompatActivity implements View.OnClickListener {
                             if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                 // MyApplication.saveString("Locale","",myprofileC);
                                 MyApplication.saveBool("FirstLogin",false,resetC);
-                                MyApplication.saveString("ImageName", "1", resetC);
+                                //MyApplication.saveString("ImageName", "1", resetC);
                                 Intent i = new Intent(resetC, PhoneNumberRegistrationScreen.class);
                                 startActivity(i);
                                 finish();

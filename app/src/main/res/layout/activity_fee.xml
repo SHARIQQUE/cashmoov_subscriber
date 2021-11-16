@@ -129,6 +129,7 @@
 
 
                         <TextView
+                            android:id="@+id/m_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -206,6 +207,7 @@
 
 
                         <TextView
+                            android:id="@+id/map_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -279,6 +281,7 @@
 
 
                         <TextView
+                            android:id="@+id/bp_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -353,6 +356,7 @@
 
 
                         <TextView
+                            android:id="@+id/pay_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -428,6 +432,7 @@
 
 
                         <TextView
+                            android:id="@+id/cash_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -502,6 +507,7 @@
 
 
                         <TextView
+                            android:id="@+id/rm_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"

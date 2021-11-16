@@ -65,8 +65,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setColor(getColor(R.color.colorAccent))
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
-                .setNumber(++numMessages);
-               // .setSmallIcon(R.drawable.ic_baseline_notifications);
+                .setNumber(++numMessages)
+                .setSmallIcon(R.drawable.ic_baseline_notifications);
 
         try {
             String picture = data.get(FCM_PARAM);

@@ -61,6 +61,7 @@
             android:lineSpacingExtra="10sp"
             android:text="@string/ignore"
             android:textColor="#323232"
+            android:visibility="invisible"
             android:textSize="@dimen/_13sdp" />
 
 
