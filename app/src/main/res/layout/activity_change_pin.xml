@@ -108,7 +108,7 @@
                                 android:maxLength="4"/>
                             <ImageView
                                 android:id="@+id/icOldPin"
-                                android:layout_width="@dimen/_15sdp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_5sdp"
@@ -170,7 +170,7 @@
                                 android:maxLength="4"/>
                             <ImageView
                                 android:id="@+id/icNewPin"
-                                android:layout_width="@dimen/_15sdp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_5sdp"
@@ -233,7 +233,7 @@
                                 android:maxLength="4"/>
                             <ImageView
                                 android:id="@+id/icReNewPin"
-                                android:layout_width="@dimen/_15sdp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_5sdp"

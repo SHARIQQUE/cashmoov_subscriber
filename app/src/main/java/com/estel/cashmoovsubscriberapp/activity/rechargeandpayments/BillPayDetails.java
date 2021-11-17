@@ -156,7 +156,7 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                             +"&serviceCategoryCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
                             "&serviceProviderCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", billpaydetailsC)+
-                            "&productCode=+"+BillPay.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
+                            "&productCode="+BillPay.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

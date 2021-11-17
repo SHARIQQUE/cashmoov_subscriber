@@ -463,7 +463,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                             +"&serviceCategoryCode="+serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
                             "&serviceProviderCode="+serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", beneficiaryairtimeC)+
-                            "&productCode=+"+productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
+                            "&productCode="+productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

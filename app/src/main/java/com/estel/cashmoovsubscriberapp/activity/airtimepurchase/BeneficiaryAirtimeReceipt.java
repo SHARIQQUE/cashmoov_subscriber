@@ -15,13 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
 public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeReceipt benefiairtimereceiptC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView accNo,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -78,6 +81,8 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
 
 
     private void getIds() {
+        accNo = findViewById(R.id.accNo);
+        transId = findViewById(R.id.transId);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
@@ -97,17 +102,21 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tax2_value = findViewById(R.id.tax2_value);
 
         tvSubscriberMobile.setText(BeneficiaryAirtime.mobile);
-        tvTransType.setText(getString(R.string.recharge));
-        tvMobile.setText(BeneficiaryAirtimeConfirm.tvAccNo.getText().toString());
+        tvTransType.setText(getString(R.string.airtime_purchase));
+        accNo.setText(getString(R.string.mobile_number_colom));
+        transId.setText(getString(R.string.vendor_trans_id_colom));
+        tvMobile.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
         tvOperatorName.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(BeneficiaryAirtime.currencySymbol+" "
                 + MyApplication.addDecimal(String.valueOf(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optInt("fee"))));
 
-        tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(BeneficiaryAirtimeConfirm.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
-        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amount")));
+//        tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(BeneficiaryAirtimeConfirm.tvTransAmount.getText().toString()));
+//        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+//        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amount")));
 
+        tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("amount")));
+        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("totalAmount")));
 
         if(BeneficiaryAirtimeConfirm.taxConfigList!=null){
             if(BeneficiaryAirtimeConfirm.taxConfigList.length()==1){

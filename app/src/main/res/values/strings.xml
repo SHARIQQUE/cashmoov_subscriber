@@ -348,6 +348,8 @@
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Excel</string>
+    <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
+    <string name="total_amount_colon">Total Amount :</string>
 
 
     <string-array name="Spinner_provider">

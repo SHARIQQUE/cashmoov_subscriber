@@ -106,13 +106,7 @@
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
-                            <ImageView
-                                android:id="@+id/icPin"
-                                android:layout_width="@dimen/_15sdp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                app:srcCompat="@drawable/ic_hide" />
+                       z
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                     <TextView
@@ -170,7 +164,7 @@
                                 android:maxLength="4"/>
                             <ImageView
                                 android:id="@+id/icRePin"
-                                android:layout_width="@dimen/_15sdp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_5sdp"

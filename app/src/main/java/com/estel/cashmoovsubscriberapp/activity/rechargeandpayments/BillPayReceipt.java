@@ -15,13 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeConfirm;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
 public class BillPayReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BillPayReceipt billpayreceiptC;
     Button btnShareReceipt;
-    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -78,6 +80,7 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
 
 
     private void getIds() {
+        transId = findViewById(R.id.transId);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
@@ -97,16 +100,21 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         tax2_value = findViewById(R.id.tax2_value);
 
         tvSubscriberMobile.setText(BillPay.mobile);
-        tvTransType.setText(getString(R.string.recharge));
-        tvMobile.setText(BillPayConfirmScreen.tvAccNo.getText().toString());
+        tvTransType.setText(getString(R.string.airtime_purchase));
+        transId.setText(getString(R.string.vendor_trans_id_colom));
+        tvMobile.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("accountNumber"));
+
         tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(BillPay.currencySymbol+" "
                 + MyApplication.addDecimal(String.valueOf(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optInt("fee"))));
 
-        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
-        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
+//        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
+//        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+//        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
+
+        tvTransAmount.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("amount")));
+        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("totalAmount")));
 
 
         if(BillPayConfirmScreen.taxConfigList!=null){
