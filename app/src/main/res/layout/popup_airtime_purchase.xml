@@ -89,7 +89,7 @@
                 android:id="@+id/txt1_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A "
+                android:text="@string/free_service"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:textColor="#000"

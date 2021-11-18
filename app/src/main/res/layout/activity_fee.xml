@@ -97,8 +97,7 @@
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_moneytransfert"
-                    />
+                    app:srcCompat="@drawable/ic_moneytransfert" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -108,10 +107,9 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-
+                        android:id="@+id/tvMoneyTransfer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
@@ -119,47 +117,20 @@
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-
-
                         <TextView
-                            android:id="@+id/m_value"
+                            android:id="@+id/tvFeeMoneyTransfer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="right"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:text="@string/fees_1000_gnf_transaction"
+                            android:text="@string/free_service"
                             android:textColor="@color/bleu_cashmoov"
                             android:textSize="@dimen/_11sdp"
                             android:layout_gravity="center_vertical"/>
 
-                    </LinearLayout>
-
-
-
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:gravity="center"/>
-
-
             </LinearLayout>
 
 
@@ -186,28 +157,18 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-
+                        android:id="@+id/tvAirtimePurchase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:fontFamily="@font/aileron_semibold"
-                         android:layout_gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
                         android:text="@string/airtime_purchase"
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-
-
                         <TextView
-                            android:id="@+id/map_value"
+                            android:id="@+id/tvFeeAirtimePurchase"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -220,22 +181,6 @@
                             android:layout_gravity="center_vertical"/>
 
                     </LinearLayout>
-
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:gravity="center"/>
-
             </LinearLayout>
 
 
@@ -262,10 +207,9 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-
+                        android:id="@+id/tvBillPayment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:fontFamily="@font/aileron_semibold"
                          android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
@@ -273,44 +217,20 @@
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
                         <TextView
-                            android:id="@+id/bp_value"
+                            android:id="@+id/tvFeeBillPayment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="right"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:text="@string/transaction_1percent"
+                            android:text="@string/free_service"
                             android:textColor="@color/bleu_cashmoov"
                             android:textSize="@dimen/_11sdp"
                             android:layout_gravity="center_vertical"/>
 
                     </LinearLayout>
-
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:gravity="center"/>
-
             </LinearLayout>
 
 
@@ -335,10 +255,9 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-
+                        android:id="@+id/tvPay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
@@ -346,17 +265,8 @@
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-
-
                         <TextView
-                            android:id="@+id/pay_value"
+                            android:id="@+id/tvFeePay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
@@ -368,25 +278,9 @@
                             android:textSize="@dimen/_11sdp"
                             android:layout_gravity="center_vertical"/>
 
-                    </LinearLayout>
-
-
-
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:gravity="center"/>
-
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/linCashWithdrawal"
@@ -402,7 +296,6 @@
                     app:srcCompat="@drawable/ic_paymane24"
                     android:layout_gravity="center_vertical"/>
 
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -411,10 +304,9 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-
+                        android:id="@+id/tvCashWithdrawal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:fontFamily="@font/aileron_semibold"
                          android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
@@ -422,47 +314,23 @@
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-
-
                         <TextView
-                            android:id="@+id/cash_value"
+                            android:id="@+id/tvFeeCashWithdrawal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="right"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:text="@string/transaction_1percent"
+                            android:text="@string/free_service"
                             android:textColor="@color/bleu_cashmoov"
                             android:textSize="@dimen/_11sdp"
                             android:layout_gravity="center_vertical"/>
 
                     </LinearLayout>
-
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:gravity="center"/>
-
             </LinearLayout>
+
+
             <LinearLayout
                 android:id="@+id/linRecRemittance"
                 android:layout_width="match_parent"
@@ -486,10 +354,9 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-
+                        android:id="@+id/tvReceiveRemit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                 
                         android:fontFamily="@font/aileron_semibold"
                          android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
@@ -497,47 +364,21 @@
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-
-
                         <TextView
-                            android:id="@+id/rm_value"
+                            android:id="@+id/tvFeeReceiveRemit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="right"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:text="@string/transaction_1percent"
+                            android:text="@string/free_service"
                             android:textColor="@color/bleu_cashmoov"
                             android:textSize="@dimen/_11sdp"
                             android:layout_gravity="center_vertical"/>
 
                     </LinearLayout>
-
-
-
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:gravity="center"/>
-
-            </LinearLayout>
 
 
         </LinearLayout>

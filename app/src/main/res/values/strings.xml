@@ -174,9 +174,9 @@
     <string name="search_results">Search results</string>
     <string name="agency_found">Agency found</string>
     <string name="service_fees">Service Fee</string>
-    <string name="fees_1000_gnf_transaction">Fees: 1000 GNF / transaction</string>
+    <string name="gnf_transaction">GNF / transaction</string>
     <string name="free_service">Free service</string>
-    <string name="transaction_1percent">1% on the transaction</string>
+    <string name="on_the_transaction">on the transaction</string>
     <string name="confirmation_receipt">Confirmation receipt</string>
     <string name="service_provider_colon">Service provider :</string>
     <string name="mobile_number_colom">Mobile number :</string>
@@ -350,6 +350,10 @@
     <string name="excel">Excel</string>
     <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
     <string name="total_amount_colon">Total Amount :</string>
+    <string name="international_colon">International:</string>
+    <string name="gnf_fixed">GNF Fixed</string>
+    <string name="recharge_tv">Recharge TV</string>
+    <string name="recharge_mobile">Recharge Mobile</string>
 
 
     <string-array name="Spinner_provider">
