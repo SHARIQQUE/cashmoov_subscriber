@@ -231,244 +231,88 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                                     JSONArray walletOwnerTemplateList=jsonObject.optJSONArray("walletOwnerTemplateList");
                                     JSONObject data=walletOwnerTemplateList.optJSONObject(0);
+
+                                    JSONObject jsonObjectTestMain=new JSONObject();
+                                    JSONArray jsonArrayMain=new JSONArray();
+                                    int pos=0;
                                     if(data.has("feeTemplateList")){
                                         JSONArray feeTemplateList=data.optJSONArray("feeTemplateList");
                                         for (int i=0;i<feeTemplateList.length();i++){
                                             JSONObject fee=feeTemplateList.optJSONObject(i);
-                                          /*  //PAY
-                                            if(fee.optString("serviceCategoryCode").equalsIgnoreCase("100057")){
-                                                if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
-                                                    try {
-                                                        payFee.optString("mode","percent");
-                                                        payFee.optString("value",fee.optString("percentFeeValue"));
-                                                        pay_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                    }catch (Exception e){
 
+                                            try {
+                                                JSONObject t = new JSONObject();
+                                                if(jsonArrayMain.toString().contains(fee.optString("serviceName"))){
+
+                                                    for(int j=0;j<jsonArrayMain.length();j++){
+                                                        if(jsonArrayMain.optJSONObject(j).optString("ServiceName").equalsIgnoreCase(fee.optString("serviceName"))){
+                                                            pos=j;
+                                                        }
                                                     }
+                                                    JSONArray dataArray=new JSONArray();
+                                                    JSONObject dataObject=new JSONObject();
+                                                    dataObject.put("serviceCategoryCode", fee.optString("serviceCategoryCode"));
+                                                    dataObject.put("serviceCategoryName", fee.optString("serviceCategoryName"));
+                                                    if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                                        dataObject.put("percentFeeValue", fee.optString("percentFeeValue")+"%");
+                                                    }else{
+                                                        dataObject.put("fixedFeeValue", fee.optString("fixedFeeValue"));
+                                                    }
+                                                    dataObject.put("calculationTypeName", fee.optString("calculationTypeName"));
+                                                    dataObject.put("minValue", fee.optString("minValue"));
+                                                    dataObject.put("maxValue", fee.optString("maxValue"));
+                                                    dataArray.put(dataObject);
+                                                    t.put("child",dataArray);
+                                                    //jsonArrayMain.put(t);
+                                                    jsonArrayMain.optJSONObject(pos).optJSONArray("child").put(dataObject);
+
                                                 }else{
-                                                    try {
-                                                       // pay_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                        pay_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                        payFee.optString("mode","fixed");
-                                                        payFee.optString("value",fee.optString("fixedFeeValue"));
-                                                    }catch (Exception e){
-
+                                                    t.put("ServiceName", fee.optString("serviceName"));
+                                                    JSONArray dataArray=new JSONArray();
+                                                    JSONObject dataObject=new JSONObject();
+                                                    dataObject.put("serviceCategoryCode", fee.optString("serviceCategoryCode"));
+                                                    dataObject.put("serviceCategoryName", fee.optString("serviceCategoryName"));
+                                                    if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                                        dataObject.put("percentFeeValue", fee.optString("percentFeeValue")+"%");
+                                                    }else{
+                                                        dataObject.put("fixedFeeValue", fee.optString("fixedFeeValue"));
                                                     }
-                                                }
-                                            }else{
-                                                try {
-
-                                                    pay_value.setText("N/A");
-                                                    payFee.optString("mode","fixed");
-                                                    payFee.optString("value","N/A");
-                                                }catch (Exception e){
+                                                    dataObject.put("calculationTypeName", fee.optString("calculationTypeName"));
+                                                    dataObject.put("minValue", fee.optString("minValue"));
+                                                    dataObject.put("maxValue", fee.optString("maxValue"));
+                                                    dataArray.put(dataObject);
+                                                    t.put("child",dataArray);
+                                                    jsonArrayMain.put(t);
 
                                                 }
+
+
+
+
+                                            }catch (Exception e){
+
                                             }
 
-                                            //Cash PickUp
-                                            if(fee.optString("serviceCategoryCode").equalsIgnoreCase("CSHPIC")){
-                                                if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
-                                                    try {
-                                                        rm_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-
-                                                        receiveRemmitanceFee.optString("mode","percent");
-                                                        receiveRemmitanceFee.optString("value",fee.optString("percentFeeValue"));
-                                                    }catch (Exception e){
-
-                                                    }
-                                                }else{
-                                                    try {
-                                                       // rm_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                        rm_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                        //rm_value.setText("N/A");
-                                                        receiveRemmitanceFee.optString("mode","fixed");
-                                                        receiveRemmitanceFee.optString("value",fee.optString("fixedFeeValue"));
-                                                    }catch (Exception e){
-
-                                                    }
-                                                }
-                                            }else{
-                                                try {
-                                                    //rm_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                    //rm_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                    rm_value.setText("N/A");
-                                                    receiveRemmitanceFee.optString("mode","fixed");
-                                                    receiveRemmitanceFee.optString("value","N/A");
-                                                }catch (Exception e){
-
-                                                }
-                                            }
-
-                                            //Cash Out
-                                            if(fee.optString("serviceCategoryCode").equalsIgnoreCase("100012")){
-                                                if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
-                                                    try {
-                                                        cash_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                       // cash_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                        //cash_value.setText("N/A");
-                                                        cashOutFee.optString("mode","percent");
-                                                        cashOutFee.optString("value",fee.optString("percentFeeValue"));
-                                                    }catch (Exception e){
-
-                                                    }
-                                                }else{
-                                                    try {
-                                                       // cash_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                        cash_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                        //cash_value.setText("N/A");
-                                                        cashOutFee.optString("mode","fixed");
-                                                        cashOutFee.optString("value",fee.optString("fixedFeeValue"));
-                                                    }catch (Exception e){
-
-                                                    }
-                                                }
-                                            }else{
-                                                try {
-                                                    //cash_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                    //cash_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                    cash_value.setText("N/A");
-                                                    cashOutFee.optString("mode","fixed");
-                                                    cashOutFee.optString("value","N/A");
-                                                }catch (Exception e){
-
-                                                }
-                                            }
-
-
-                                            //INTREM
-                                            if(fee.optString("serviceCategoryCode").equalsIgnoreCase("INTREM")){
-                                                if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
-                                                    try {
-                                                        m_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                        //m_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                        //m_value.setText("N/A");
-                                                        INTREMFee.optString("mode","percent");
-                                                        INTREMFee.optString("value",fee.optString("percentFeeValue"));
-                                                    }catch (Exception e){
-
-                                                    }
-                                                }else{
-                                                    try {
-                                                        //m_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                        m_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                        //m_value.setText("N/A");
-                                                        INTREMFee.optString("mode","fixed");
-                                                        INTREMFee.optString("value",fee.optString("fixedFeeValue"));
-                                                    }catch (Exception e){
-
-                                                    }
-                                                }
-                                            }else{
-                                                try {
-                                                    //m_value.setText(fee.optString("percentFeeValue")+"% on the transaction");
-                                                    //m_value.setText(fee.optString("fixedFeeValue")+" fixed on the transaction");
-                                                    m_value.setText("N/A");
-                                                    INTREMFee.optString("mode","fixed");
-                                                    INTREMFee.optString("value","N/A");
-                                                }catch (Exception e){
-
-                                                }
-                                            }
-*/
-
-                                            if(fee.optString("serviceCode").equalsIgnoreCase("100020")){
-                                                //assign all
-                                                if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
-                                                    //percentage code
-                                                    try {
-                                                        //rm_value,cash_value,pay_value,bp_value,map_value,m_value;
-                                                        feeData.put("mode","percent");
-                                                        feeData.put("value",fee.optString("percentFeeValue"));
-                                                        rm_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        cash_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        pay_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        bp_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        map_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        m_value.setText(feeData.optString("value")+"% on the transaction");
-
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }else{
-                                                    //fixed
-                                                    try {
-                                                        feeData.put("mode","fixed");
-                                                        feeData.put("value",fee.optString("fixedFeeValue"));
-                                                        rm_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        cash_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        pay_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        bp_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        map_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        m_value.setText(feeData.optString("value")+" fixed on the transaction");
-
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-
-                                                return;
-
-                                            }
-                                            else{
-                                                try {
-                                                    feeData.put("mode","fixed");
-                                                    feeData.put("value","N/A");
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-
-                                                rm_value.setText("N/A");
-                                                cash_value.setText("N/A");
-                                                pay_value.setText("N/A");
-                                                bp_value.setText("N/A");
-                                                map_value.setText("N/A");
-                                                m_value.setText("N/A");
-                                               if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
-                                                    //percentage code
-                                                    try {
-                                                        //rm_value,cash_value,pay_value,bp_value,map_value,m_value;
-                                                        feeData.put("mode","percent");
-                                                        feeData.put("value",fee.optString("percentFeeValue"));
-                                                        rm_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        cash_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        pay_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        bp_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        map_value.setText(feeData.optString("value")+"% on the transaction");
-                                                        m_value.setText(feeData.optString("value")+"% on the transaction");
-
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }else{
-                                                    //fixed
-                                                    try {
-                                                        feeData.put("mode","fixed");
-                                                        feeData.put("value",fee.optString("fixedFeeValue"));
-                                                        rm_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        cash_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        pay_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        bp_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        map_value.setText(feeData.optString("value")+" fixed on the transaction");
-                                                        m_value.setText(feeData.optString("value")+" fixed on the transaction");
-
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-
-                                            }
                                         }
 
+                                        try {
+                                            jsonObjectTestMain.put("data",jsonArrayMain);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        System.out.println("data  = = = "+jsonObjectTestMain.toString());
+
+
                                     }else{
-                                        MyApplication.showToast(feeC,"Fee not assign");
+                                         MyApplication.showToast(feeC,"Fee not assign");
                                     }
 
 
 
                                 }
                                 else {
-                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription"));
+                                     MyApplication.showToast(feeC,jsonObject.optString("resultDescription"));
                                 }
                             }
                         }
@@ -486,8 +330,6 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    public void assignall(){
 
-    }
 
 }

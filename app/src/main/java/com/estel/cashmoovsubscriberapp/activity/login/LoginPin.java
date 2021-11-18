@@ -23,6 +23,9 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.concurrent.Executor;
 
@@ -53,6 +56,7 @@ public class LoginPin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -67,6 +71,8 @@ public class LoginPin extends AppCompatActivity {
         });
 
     }
+
+
 
     private void getIds() {
         etPin = findViewById(R.id.etPin);
@@ -496,5 +502,8 @@ public class LoginPin extends AppCompatActivity {
                     }
                 }).create().show();
     }
+
+
+
 
 }
