@@ -220,7 +220,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
         txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.recharge_mobile));
+        txt1.setText(getString(R.string.recharge_mobile)+":");
         txt1_value = feeDialog.findViewById(R.id.txt1_value);
 
         if (jsonObjectTestMain != null) {
@@ -275,7 +275,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
         txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.recharge_tv));
+        txt1.setText(getString(R.string.recharge_tv)+":");
         txt1_value = feeDialog.findViewById(R.id.txt1_value);
 
         if (jsonObjectTestMain != null) {
@@ -330,7 +330,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
         txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.pay));
+        txt1.setText(getString(R.string.pay)+":");
         txt1_value = feeDialog.findViewById(R.id.txt1_value);
 
         if (jsonObjectTestMain != null) {
@@ -385,7 +385,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
         txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.cash_withdrawal));
+        txt1.setText(getString(R.string.cash_withdrawal)+":");
         txt1_value = feeDialog.findViewById(R.id.txt1_value);
 
         if (jsonObjectTestMain != null) {
@@ -440,7 +440,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
         txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.receive_remittance));
+        txt1.setText(getString(R.string.receive_remittance)+":");
         txt1_value = feeDialog.findViewById(R.id.txt1_value);
 
         if (jsonObjectTestMain != null) {
