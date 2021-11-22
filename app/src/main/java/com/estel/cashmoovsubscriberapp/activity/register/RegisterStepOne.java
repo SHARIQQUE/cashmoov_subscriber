@@ -336,6 +336,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                             //   MyApplication.hideLoader();
 
                             if (jsonObject != null) {
+
                                 cityList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");

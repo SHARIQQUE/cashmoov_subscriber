@@ -16,6 +16,10 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class Splash extends AppCompatActivity {
@@ -29,6 +33,7 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         MyApplication.setLang(Splash.this);
+//        createJson();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -76,6 +81,73 @@ public class Splash extends AppCompatActivity {
 
 
     }
+
+
+   /* public void createJson(){
+        JSONObject mainObj=new JSONObject();
+        JSONArray mainArray=new JSONArray();
+        JSONObject dataObj=new JSONObject();
+        try{
+            dataObj.put("actionType","");
+            dataObj.put("assignTo","");
+            dataObj.put("comments","");
+            dataObj.put("entityCode","");
+            dataObj.put("entityName","");
+            dataObj.put("entityCode","");
+            dataObj.put("featureCode","");
+            dataObj.put("status","");
+
+            JSONObject oneObj=new JSONObject();
+            JSONObject twoObj=new JSONObject();
+            twoObj.put("code","");
+            twoObj.put("featureCode","");
+            twoObj.put("desWalletCode","");
+            twoObj.put("srcWalletCode","");
+            twoObj.put("srcWalletOwnerCode","");
+            twoObj.put("srcWalletOwnerName","");
+            twoObj.put("srcCurrencyCode","");
+            twoObj.put("srcCurrencyName","");
+            twoObj.put("srcWalletTypeCode","");
+            twoObj.put("srcWalletTypeName","");
+            twoObj.put("desWalletTypeCode","");
+            twoObj.put("desWalletTypeName","");
+            twoObj.put("desWalletOwnerCode","");
+            twoObj.put("desWalletOwnerName","");
+            twoObj.put("desWalletOwnerNumber","");
+            twoObj.put("amount","");
+            twoObj.put("channelTypeCode","");
+            twoObj.put("desCurrencyCode","");
+            twoObj.put("desCurrencyName","");
+            twoObj.put("status","");
+            twoObj.put("createdBy","");
+            twoObj.put("creationDate","");
+
+            twoObj.put("tax","");
+            twoObj.put("fee","");
+            twoObj.put("finalAmount","");
+            twoObj.put("srcCurrencySymbol","");
+            twoObj.put("desCurrencySymbol","");
+            twoObj.put("transactionType","");
+            twoObj.put("serviceCode","");
+            twoObj.put("serviceCategoryCode","");
+            twoObj.put("serviceProviderCode","");
+
+            dataObj.put("entity",twoObj);
+            dataObj.put("updatedInformation",oneObj);
+            mainArray.put(dataObj);
+
+            mainObj.put("dataApprovalList",mainArray);
+
+            System.out.println("jsososm============"+mainObj.toString());
+
+
+
+        }catch (Exception e){
+
+        }
+
+
+    }*/
 
 
 

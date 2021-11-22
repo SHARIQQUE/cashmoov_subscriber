@@ -39,7 +39,7 @@ public class SetPin extends AppCompatActivity {
         icRepin = findViewById(R.id.icRePin);
         tvContinue = findViewById(R.id.tvContinue);
 
-        icPin.setOnClickListener(new View.OnClickListener() {
+       icPin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){

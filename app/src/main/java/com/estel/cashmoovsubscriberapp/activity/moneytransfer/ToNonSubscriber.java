@@ -563,7 +563,12 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                 dataToSend.put("comments",etComment.getText().toString());
                                 dataToSend.put("conversionRate","0.00");
                                 dataToSend.put("fromCurrencyCode","100062");
-                                dataToSend.put("receiveCountryCode",jsonObjectSender.optString("issuingCountryCode"));
+                                if(jsonObjectSender.optString("issuingCountryCode").isEmpty()){
+                                    dataToSend.put("receiveCountryCode",jsonObjectSender.optString("countryCode"));
+                                }else{
+                                    dataToSend.put("receiveCountryCode",jsonObjectSender.optString("issuingCountryCode"));
+                                }
+
                                 dataToSend.put("receiverCode",jsonObjectSender.optString("code"));
                                 dataToSend.put("sendCountryCode",jsonObjectSender.optString("countryCode"));
                                 dataToSend.put("senderCode",MyApplication.getSaveString("walletOwnerCode",tononsubscriberC));

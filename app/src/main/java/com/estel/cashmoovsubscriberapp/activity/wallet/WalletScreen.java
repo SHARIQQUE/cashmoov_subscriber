@@ -107,8 +107,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         switch (view.getId()) {
             case R.id.tvAccStatement:
-                intent = new Intent(walletscreenC, TransactionDetailsActivity.class);
-                startActivity(intent);
+                /*intent = new Intent(walletscreenC, TransactionDetailsActivity.class);
+                startActivity(intent);*/
                 break;
             case R.id.imgNotification:
                 intent = new Intent(walletscreenC, NotificationList.class);
