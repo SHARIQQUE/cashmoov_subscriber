@@ -5,13 +5,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
@@ -32,12 +32,9 @@ import com.estel.cashmoovsubscriberapp.adapter.OfferPromotionAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -47,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
+    LinearLayout linClick;
     TextView tvClick,tvBalance;
     CardView cardMoneyTransfer,cardAirtimePurchase,cardRechargePayment,cardPay,
     cardCashWithdrawal,cardRecRemittance,cardFee,cardServicePoints;
@@ -94,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
         imgProfile = findViewById(R.id.imgProfile);
+        linClick = findViewById(R.id.linClick);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         bottomBar = findViewById(R.id.bottomBar);
@@ -144,8 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgNotification.setOnClickListener(mainC);
         imgQR.setOnClickListener(mainC);
         imgProfile.setOnClickListener(mainC);
-        tvClick.setOnClickListener(mainC);
-        tvBalance.setOnClickListener(mainC);
+        linClick.setOnClickListener(mainC);
         cardMoneyTransfer.setOnClickListener(mainC);
         cardAirtimePurchase.setOnClickListener(mainC);
         cardRechargePayment.setOnClickListener(mainC);
@@ -172,13 +170,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(mainC, Profile.class);
                 startActivity(intent);
                 break;
-            case R.id.tvClick:
-                tvClick.setVisibility(View.GONE);
-                tvBalance.setVisibility(View.VISIBLE);
-                break;
-            case R.id.tvBalance:
-                tvClick.setVisibility(View.VISIBLE);
-                tvBalance.setVisibility(View.GONE);
+            case R.id.linClick:
+                if(tvClick.isShown()) {
+                    tvClick.setVisibility(View.GONE);
+                    tvBalance.setVisibility(View.VISIBLE);
+                }
+                else{
+                    tvClick.setVisibility(View.VISIBLE);
+                    tvBalance.setVisibility(View.GONE);
+                }
                 break;
             case R.id.cardMoneyTransfer:
                 intent = new Intent(mainC, MoneyTransfer.class);

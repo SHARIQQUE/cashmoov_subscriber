@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rv_mini_statement_trans;
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     private List<MiniStatement> miniStatementList = new ArrayList<>();
+    LinearLayout linClick;
     private TextView tvCurrency,tvAccStatement,tvClick,tvBalance;
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
@@ -60,6 +62,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         bottomBar = findViewById(R.id.bottomBar);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvAccStatement = findViewById(R.id.tvAccStatement);
+        linClick = findViewById(R.id.linClick);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         rv_mini_statement_trans = findViewById(R.id.rv_mini_statement_trans);
@@ -98,8 +101,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         imgNotification.setOnClickListener(walletscreenC);
         imgQR.setOnClickListener(walletscreenC);
         tvAccStatement.setOnClickListener(walletscreenC);
-        tvClick.setOnClickListener(walletscreenC);
-        tvBalance.setOnClickListener(walletscreenC);
+        linClick.setOnClickListener(walletscreenC);
     }
 
     @Override
@@ -118,14 +120,17 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(walletscreenC, MyQrCode.class);
                 startActivity(intent);
                 break;
-            case R.id.tvClick:
-                tvClick.setVisibility(View.GONE);
-                tvBalance.setVisibility(View.VISIBLE);
+            case R.id.linClick:
+                if(tvClick.isShown()) {
+                    tvClick.setVisibility(View.GONE);
+                    tvBalance.setVisibility(View.VISIBLE);
+                }
+                else{
+                    tvClick.setVisibility(View.VISIBLE);
+                    tvBalance.setVisibility(View.GONE);
+                }
                 break;
-            case R.id.tvBalance:
-                tvClick.setVisibility(View.VISIBLE);
-                tvBalance.setVisibility(View.GONE);
-                break;
+
         }
     }
 

@@ -47,6 +47,37 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         df.setMaximumFractionDigits(2);
         df.setRoundingMode(RoundingMode.DOWN);
         final MiniStatementTrans miniStatementTrans = miniStatementTransList.get(position);
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash-in")){
+            holder.imgLogo.setImageResource(R.drawable.ic_cashin);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash-out")){
+            holder.imgLogo.setImageResource(R.drawable.ic_cashout);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Remit Send")){
+            holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Wallet Transfer")){
+            holder.imgLogo.setImageResource(R.drawable.ic_lewallet);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Airtime Purchase")){
+            holder.imgLogo.setImageResource(R.drawable.ic_rechargement);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Remit Send Reversal")){
+            holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Recharge & Payment")){
+            holder.imgLogo.setImageResource(R.drawable.ic_baseline_payment_24);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash PickUp")){
+            holder.imgLogo.setImageResource(R.drawable.ic_cashpickup24);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Pay")){
+            holder.imgLogo.setImageResource(R.drawable.ic_paimentfacture);
+        }
+        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Withdrawal")){
+            holder.imgLogo.setImageResource(R.drawable.ic_paymane24);
+        }
+
         holder.tvTransType.setText(miniStatementTrans.getTransactionTypeName());
         holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
         if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){

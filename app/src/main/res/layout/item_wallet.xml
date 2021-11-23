@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/ic_paymane24" />
 
@@ -37,7 +37,7 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
