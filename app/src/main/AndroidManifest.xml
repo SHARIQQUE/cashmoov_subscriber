@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.estel.cashmoovsubscriberapp">
 
-
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,24 +18,41 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 
     <application
-        tools:replace="android:allowBackup"
+        android:name=".MyApplication"
         android:allowBackup="true"
-        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.estel.cashmoovsubscriberapp.MyApplication"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.estel.cashmoovsubscriberapp.activity.Splash"
+            android:name=".activity.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,85 +60,82 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.OnboardingOne"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.OnboardingTwo"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.OnboardingThree"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.TutorialScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.register.VerifyAccountScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.register.RegisterStepTwo"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.register.SelfSignature"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.register.AccountCreatedScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.VerifyLoginAccountScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.Login"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.LoginPin"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.SetPin"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.MainActivity"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.NotificationList"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.MyQrCode"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.OfferPromotionDetailActivity"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.wallet.WalletScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.wallet.WalletTransactionDetails"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.wallet.TransactionDetailsActivity"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.Profile"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.ChangeLanguage"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.Confidentiality"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.About"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.ChangePin"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.EditProfile"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.Reset"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.MoneyTransfer"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfirmScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberReceiptScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriber"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriberConfirmScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriberReceiptScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.International"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.InternationalConfirmScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.InternationalReceiptScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.BankToWallet"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.WalletToBank"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AirtimePurchase"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtime"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeConfirm"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeReceipt"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AddBeneficiary"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtime"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeConfirm"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeReceipt"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayDetails"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayReceipt"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.pay.Pay"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.pay.PayConfirmScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.pay.PayReceiptScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawal"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalConfirmScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemittance"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemittancelReceiptScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.fee.Fee"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.servicepoint.ServicePoint"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.servicepoint.SearchResult"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.CreatePassword"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.VerifyRegisterOTP"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.login.ChangeIpLoginActivity"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.ResetPinOTP"/>
-        <activity android:name="com.estel.cashmoovsubscriberapp.activity.setting.ReSetPin"/>
-
+        <activity android:name=".activity.OnboardingOne" />
+        <activity android:name=".activity.OnboardingTwo" />
+        <activity android:name=".activity.OnboardingThree" />
+        <activity android:name=".activity.TutorialScreen" />
+        <activity android:name=".activity.register.VerifyAccountScreen" />
+        <activity android:name=".activity.register.RegisterStepOne" />
+        <activity android:name=".activity.register.RegisterStepTwo" />
+        <activity android:name=".activity.register.SelfSignature" />
+        <activity android:name=".activity.register.AccountCreatedScreen" />
+        <activity android:name=".activity.login.PhoneNumberRegistrationScreen" />
+        <activity android:name=".activity.login.VerifyLoginAccountScreen" />
+        <activity android:name=".activity.login.Login" />
+        <activity android:name=".activity.login.LoginPin" />
+        <activity android:name=".activity.login.SetPin" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.NotificationList" />
+        <activity android:name=".activity.MyQrCode" />
+        <activity android:name=".activity.OfferPromotionDetailActivity" />
+        <activity android:name=".activity.wallet.WalletScreen" />
+        <activity android:name=".activity.wallet.WalletTransactionDetails" />
+        <activity android:name=".activity.wallet.TransactionDetailsActivity" />
+        <activity android:name=".activity.setting.Profile" />
+        <activity android:name=".activity.setting.ChangeLanguage" />
+        <activity android:name=".activity.setting.Confidentiality" />
+        <activity android:name=".activity.setting.About" />
+        <activity android:name=".activity.setting.ChangePin" />
+        <activity android:name=".activity.setting.EditProfile" />
+        <activity android:name=".activity.setting.Reset" />
+        <activity android:name=".activity.moneytransfer.MoneyTransfer" />
+        <activity android:name=".activity.moneytransfer.ToSubscriber" />
+        <activity android:name=".activity.moneytransfer.ToSubscriberConfirmScreen" />
+        <activity android:name=".activity.moneytransfer.ToSubscriberReceiptScreen" />
+        <activity android:name=".activity.moneytransfer.ToNonSubscriber" />
+        <activity android:name=".activity.moneytransfer.ToNonSubscriberConfirmScreen" />
+        <activity android:name=".activity.moneytransfer.ToNonSubscriberReceiptScreen" />
+        <activity android:name=".activity.moneytransfer.International" />
+        <activity android:name=".activity.moneytransfer.InternationalConfirmScreen" />
+        <activity android:name=".activity.moneytransfer.InternationalReceiptScreen" />
+        <activity android:name=".activity.moneytransfer.BankToWallet" />
+        <activity android:name=".activity.moneytransfer.WalletToBank" />
+        <activity android:name=".activity.airtimepurchase.AirtimePurchase" />
+        <activity android:name=".activity.airtimepurchase.SelfAirtime" />
+        <activity android:name=".activity.airtimepurchase.SelfAirtimeConfirm" />
+        <activity android:name=".activity.airtimepurchase.SelfAirtimeReceipt" />
+        <activity android:name=".activity.airtimepurchase.AddBeneficiary" />
+        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtime" />
+        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeConfirm" />
+        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeReceipt" />
+        <activity android:name=".activity.rechargeandpayments.BillPay" />
+        <activity android:name=".activity.rechargeandpayments.BillPayDetails" />
+        <activity android:name=".activity.rechargeandpayments.BillPayConfirmScreen" />
+        <activity android:name=".activity.rechargeandpayments.BillPayReceipt" />
+        <activity android:name=".activity.pay.Pay" />
+        <activity android:name=".activity.pay.PayConfirmScreen" />
+        <activity android:name=".activity.pay.PayReceiptScreen" />
+        <activity android:name=".activity.cashwithdrawal.CashWithdrawal" />
+        <activity android:name=".activity.cashwithdrawal.CashWithdrawalConfirmScreen" />
+        <activity android:name=".activity.cashwithdrawal.CashWithdrawalReceiptScreen" />
+        <activity android:name=".activity.receiveremittance.ReceiveRemittance" />
+        <activity android:name=".activity.receiveremittance.ReceiveRemittancelReceiptScreen" />
+        <activity android:name=".activity.fee.Fee" />
+        <activity android:name=".activity.servicepoint.ServicePoint" />
+        <activity android:name=".activity.servicepoint.SearchResult" />
+        <activity android:name=".activity.moneytransfer.TransactionSuccessScreen" />
+        <activity android:name=".activity.login.CreatePassword" />
+        <activity android:name=".activity.login.VerifyRegisterOTP" />
+        <activity android:name=".activity.login.ChangeIpLoginActivity" />
+        <activity android:name=".activity.setting.ResetPinOTP" />
+        <activity android:name=".activity.setting.ReSetPin" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="default" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
@@ -124,15 +144,9 @@
             android:name=".activity.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
-    <queries>
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-    </queries>
 
 </manifest>

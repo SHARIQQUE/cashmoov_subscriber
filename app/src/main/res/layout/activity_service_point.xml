@@ -11,91 +11,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/map" />
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar_active"
+                android:visibility="gone"/>
 
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="59dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="53dp"
-                    android:layout_marginRight="16dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_5sdp">
 
-                    <LinearLayout
-                        android:id="@+id/linNext"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:fontFamily="@font/aileron_regular"
-                            android:letterSpacing="0.01"
-                            android:lineSpacingExtra="7sp"
-                            android:text="@string/locate_agency"
-                            android:textColor="#33373b"
-                            android:textSize="15sp" />
-
-                        <TextView
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="@dimen/_6sdp"
+                        app:cardBackgroundColor="@color/white">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/serchicon_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="25dp"
-                            app:srcCompat="@drawable/ic_search_black_24dp" />
+                            <androidx.appcompat.widget.SearchView
+                                android:id="@+id/searchView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:theme="@style/SearchViewStyle"
+                                app:defaultQueryHint="@string/search_here" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    </LinearLayout>
+                </LinearLayout>
 
+                <fragment android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-                </androidx.cardview.widget.CardView>
-
-                <ImageView
-                    android:layout_width="292dp"
-                    android:layout_height="248dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="37dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/locationspots" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="37dp"
-                    android:layout_marginRight="32dp"
-                    android:src="@drawable/location_img" />
-
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
+        </LinearLayout>
     </FrameLayout>
 
     <!--<me.ibrahimsn.lib.SmoothBottomBar
