@@ -235,8 +235,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
     private void callApiMsisdnPrefix() {
         try {
-            //String number = etPhone.getText().toString();
-            String number = "655595950";
+            String number = etPhone.getText().toString();
+            //String number = "655595950";
             String firstTwodigits = number.substring(0,2);
             // MyApplication.showloader(TransferToAccountActivity.this, "Please wait!");
             API.GET("ewallet/api/v1/operator/allByCriteria?msisdnPrefix=224"+firstTwodigits+"&status=Y",

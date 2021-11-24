@@ -7,7 +7,9 @@ public class MiniStatementTrans {
     private String fromWalletOwnerCode;
     private String toWalletOwnerCode;
     private String fromWalletOwnerName;
+    private String toWalletOwnerName;
     private String fromWalletOwnerMsisdn;
+    private String toWalletOwnerMsisdn;
     private String fromWalletCode;
     private String fromWalletName;
     private String fromCurrencyCode;
@@ -42,14 +44,16 @@ public class MiniStatementTrans {
     private boolean isReverse;
 
 
-    public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String fromWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode, boolean isReverse) {
+    public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode, boolean isReverse) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
         this.fromWalletOwnerCode = fromWalletOwnerCode;
         this.toWalletOwnerCode = toWalletOwnerCode;
         this.fromWalletOwnerName = fromWalletOwnerName;
+        this.toWalletOwnerName = toWalletOwnerName;
         this.fromWalletOwnerMsisdn = fromWalletOwnerMsisdn;
+        this.toWalletOwnerMsisdn = toWalletOwnerMsisdn;
         this.fromWalletCode = fromWalletCode;
         this.fromWalletName = fromWalletName;
         this.fromCurrencyCode = fromCurrencyCode;
@@ -132,12 +136,28 @@ public class MiniStatementTrans {
         this.fromWalletOwnerName = fromWalletOwnerName;
     }
 
+    public String getToWalletOwnerName() {
+        return toWalletOwnerName;
+    }
+
+    public void setToWalletOwnerName(String toWalletOwnerName) {
+        this.toWalletOwnerName = toWalletOwnerName;
+    }
+
     public String getFromWalletOwnerMsisdn() {
         return fromWalletOwnerMsisdn;
     }
 
     public void setFromWalletOwnerMsisdn(String fromWalletOwnerMsisdn) {
         this.fromWalletOwnerMsisdn = fromWalletOwnerMsisdn;
+    }
+
+    public String getToWalletOwnerMsisdn() {
+        return toWalletOwnerMsisdn;
+    }
+
+    public void setToWalletOwnerMsisdn(String toWalletOwnerMsisdn) {
+        this.toWalletOwnerMsisdn = toWalletOwnerMsisdn;
     }
 
     public String getFromWalletCode() {

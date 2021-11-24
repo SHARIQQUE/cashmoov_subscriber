@@ -207,7 +207,9 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optString("fromWalletOwnerCode").trim(),
                                                     data.optString("toWalletOwnerCode").trim(),
                                                     data.optString("fromWalletOwnerName").trim(),
+                                                    data.optString("toWalletOwnerName").trim(),
                                                     data.optString("fromWalletOwnerMsisdn").trim(),
+                                                    data.optString("toWalletOwnerMsisdn").trim(),
                                                     data.optString("fromWalletCode").trim(),
                                                     data.optString("fromWalletName").trim(),
                                                     data.optString("fromCurrencyCode").trim(),
@@ -275,10 +277,16 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
+        String name="";
+        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
+            name = walletOwnerMsisdn;
+        }else{
+            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
+        }
         Intent intent = new Intent(walletscreenC, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
-        intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
+        intent.putExtra("FROMWALLETOWNERNAME",name);
         intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);

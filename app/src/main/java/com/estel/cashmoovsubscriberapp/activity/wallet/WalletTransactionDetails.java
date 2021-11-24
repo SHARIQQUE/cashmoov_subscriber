@@ -73,7 +73,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
-            txt_from_owner_name.setText(getString(R.string.from)+" : "+fromOwnerName);
+            txt_from_owner_name.setText(fromOwnerName);
             txt_from_amount.setText(fromAmount);
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);

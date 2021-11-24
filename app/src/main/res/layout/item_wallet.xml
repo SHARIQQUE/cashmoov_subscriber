@@ -48,7 +48,6 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:gravity="right"
                     android:lineSpacingExtra="10sp"
-                    android:text="621 78 87 89"
                     android:textColor="@color/bleu_cashmoov"
                     android:textSize="@dimen/_11sdp" />
 
