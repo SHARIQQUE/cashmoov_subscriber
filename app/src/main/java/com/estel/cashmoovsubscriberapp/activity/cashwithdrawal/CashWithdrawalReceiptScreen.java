@@ -113,7 +113,7 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         tvTransId.setText(CashWithdrawalConfirmScreen.receiptJson.optString("transactionId"));
         tvCurrency.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
         tvFee.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
-                + MyApplication.addDecimal(String.valueOf(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optInt("fee"))));
+                + MyApplication.addDecimal(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fee")));
 
         tvTransAmt.setText(MyApplication.addDecimal(CashWithdrawalConfirmScreen.tvTransAmount.getText().toString()));
         tvAmountPaid.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));

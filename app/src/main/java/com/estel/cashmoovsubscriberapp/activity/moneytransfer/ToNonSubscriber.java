@@ -77,8 +77,8 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
-    public static String serviceProvider,mobileNo,ownerName,lastName,confCode,fromCurrency,fromCurrencySymbol;
-    public static int currencyValue,fee,receiverFee,receiverTax;
+    public static String currencyValue,fee,serviceProvider,mobileNo,ownerName,lastName,confCode,fromCurrency,fromCurrencySymbol;
+    public static int receiverFee,receiverTax;
     public static JSONObject walletOwner = new JSONObject();
     public static JSONObject serviceCategory = new JSONObject();
 
@@ -332,11 +332,11 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= (jsonObjectAmountDetails.optInt("currencyValue"));
-                                    fee= (jsonObjectAmountDetails.optInt("fee"));
+                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
+                                    fee=  jsonObjectAmountDetails.optString("fee");
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    tvFee.setText(MyApplication.addDecimal(String.valueOf(fee)));
+                                    tvFee.setText(MyApplication.addDecimal(fee));
                                     tvAmtPaid.setText(MyApplication.addDecimal(String.valueOf(currencyValue)));
 
 //                                    int tax = receiverFee+receiverTax;

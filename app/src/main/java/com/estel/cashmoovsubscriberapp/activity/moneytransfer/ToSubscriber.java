@@ -124,8 +124,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
-    public static String serviceProvider,mobileNo,ownerName,lastName,confCode,currency,currencySymbol;
-    public static int currencyValue,fee,receiverFee,receiverTax;
+    public static String currencyValue,fee,serviceProvider,mobileNo,ownerName,lastName,confCode,currency,currencySymbol;
+    public static int receiverFee,receiverTax;
 
     private void getIds() {
         etName = findViewById(R.id.etName);
@@ -552,8 +552,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                                             amountDetails
                                     );
 
-                                    currencyValue= (jsonObjectAmountDetails.optInt("currencyValue"));
-                                    fee= (jsonObjectAmountDetails.optInt("fee"));
+                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
+                                    fee= jsonObjectAmountDetails.optString("fee");
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 //                                    int tax = receiverFee+receiverTax;

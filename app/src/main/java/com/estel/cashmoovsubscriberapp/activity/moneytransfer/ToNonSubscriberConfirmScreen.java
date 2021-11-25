@@ -90,17 +90,17 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         //  tvConfCode.setText(ToNonSubscriber.mobileNo);
         tvCurrency.setText(ToNonSubscriber.fromCurrency);
         tvTransAmount.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.etAmount.getText().toString()));
-        tvAmountPaid.setText(ToNonSubscriber.fromCurrencySymbol+" "+ MyApplication.addDecimal(String.valueOf(ToNonSubscriber.currencyValue)));
-        tvFee.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToNonSubscriber.fee)));
+        tvAmountPaid.setText(ToNonSubscriber.fromCurrencySymbol+" "+ MyApplication.addDecimal(ToNonSubscriber.currencyValue));
+        tvFee.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.fee));
 
-        finalamount=Double.parseDouble(String.valueOf(ToNonSubscriber.fee))+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString());
+        finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString());
 
         if(ToNonSubscriber.taxConfigurationList!=null){
             if(ToNonSubscriber.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(ToNonSubscriber.fee))+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString())+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString())+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(ToNonSubscriber.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -110,7 +110,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(ToNonSubscriber.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(ToNonSubscriber.fee))+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString())+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString())+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

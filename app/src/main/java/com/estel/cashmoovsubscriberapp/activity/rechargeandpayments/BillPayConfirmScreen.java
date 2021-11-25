@@ -85,17 +85,17 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
        // tvCurrency.setText(BillPay.currency);
 
         tvTransAmount.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.etAmount.getText().toString()));
-        tvAmountPaid.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(String.valueOf(BillPayDetails.currencyValue)));
-        tvFee.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BillPayDetails.fee)));
+        tvAmountPaid.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayDetails.currencyValue));
+        tvFee.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.fee));
 
-        finalamount=Double.parseDouble(String.valueOf(BillPayDetails.fee))+Double.parseDouble(BillPayDetails.etAmount.getText().toString());
+        finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString());
 
         if(BillPayDetails.taxConfigurationList!=null){
             if(BillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(BillPayDetails.fee))+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BillPayDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -105,7 +105,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(BillPayDetails.fee))+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

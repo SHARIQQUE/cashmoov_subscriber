@@ -107,7 +107,7 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(BillPay.currencySymbol+" "
-                + MyApplication.addDecimal(String.valueOf(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optInt("fee"))));
+                + MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("fee")));
 
 //        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));

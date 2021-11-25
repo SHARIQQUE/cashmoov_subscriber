@@ -313,7 +313,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     }
 
     public static  JSONObject dataToSend=new JSONObject();
-    public static int currencyValue,fee,receiverFee,receiverTax;
+    public static String currencyValue,fee;
+    public static int receiverFee,receiverTax;
     public static JSONArray taxConfigurationList;
 
     private void callApiAmountDetails() {
@@ -339,8 +340,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= (jsonObjectAmountDetails.optInt("currencyValue"));
-                                    fee= (jsonObjectAmountDetails.optInt("fee"));
+                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
+                                    fee= jsonObjectAmountDetails.optString("fee");
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 
@@ -402,8 +403,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= (jsonObjectAmountDetails.optInt("currencyValue"));
-                                    fee= (jsonObjectAmountDetails.optInt("fee"));
+                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
+                                    fee= jsonObjectAmountDetails.optString("fee");
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 

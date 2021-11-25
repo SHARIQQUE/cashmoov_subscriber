@@ -86,19 +86,19 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
       //  tvConfCode.setText(ToSubscriber.mobileNo);
         tvCurrency.setText(ToSubscriber.currency);
         tvTransAmount.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.etAmount.getText().toString()));
-        tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToSubscriber.currencyValue)));
+        tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.currencyValue));
 
-        tvFee.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToSubscriber.fee)));
+        tvFee.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.fee));
 
 
-        finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString());
+        finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString());
 
         if(ToSubscriber.taxConfigurationList!=null){
             if(ToSubscriber.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(ToSubscriber.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -108,7 +108,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

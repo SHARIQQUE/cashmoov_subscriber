@@ -110,7 +110,7 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tvOperatorName.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(SelfAirtime.currencySymbol+" "
-                + MyApplication.addDecimal(String.valueOf(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optInt("fee"))));
+                + MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("fee")));
 
 //        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+ MyApplication.addDecimal(SelfAirtimeConfirm.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));

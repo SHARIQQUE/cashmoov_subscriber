@@ -89,17 +89,17 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         //  tvConfCode.setText(Pay.mobileNo);
         tvCurrency.setText(Pay.fromCurrency);
         tvTransAmount.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.etAmount.getText().toString()));
-        tvAmountPaid.setText(Pay.currencySymbol+" "+ MyApplication.addDecimal(String.valueOf(Pay.currencyValue)));
-        tvFee.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(Pay.fee)));
+        tvAmountPaid.setText(Pay.currencySymbol+" "+ MyApplication.addDecimal(Pay.currencyValue));
+        tvFee.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.fee));
 
-       finalamount=Double.parseDouble(String.valueOf(Pay.fee))+Double.parseDouble(Pay.etAmount.getText().toString());
+       finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString());
 
         if(Pay.taxConfigurationList!=null){
             if(Pay.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(Pay.fee))+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(Pay.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -109,7 +109,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(Pay.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(Pay.fee))+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

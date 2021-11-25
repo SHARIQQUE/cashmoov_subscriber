@@ -87,17 +87,17 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         // tvCurrency.setText(BeneficiaryAirtime.currency);
 
         tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.etAmount.getText().toString()));
-        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(String.valueOf(BeneficiaryAirtime.currencyValue)));
-        tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BeneficiaryAirtime.fee)));
+        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(BeneficiaryAirtime.currencyValue));
+        tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.fee));
 
-        finalamount=Double.parseDouble(String.valueOf(BeneficiaryAirtime.fee))+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString());
+        finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString());
 
         if(BeneficiaryAirtime.taxConfigurationList!=null){
             if(BeneficiaryAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(BeneficiaryAirtime.fee))+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BeneficiaryAirtime.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -107,7 +107,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(BeneficiaryAirtime.fee))+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

@@ -88,16 +88,16 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         tvCurrency.setText(International.fromCurrency);
         tvTransAmounts.setText(International.toCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
         tvAmountPaid.setText(International.toCurrencySymbol+" "+ MyApplication.addDecimal(String.valueOf(International.currencyValue)));
-        tvFee.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(International.fee)));
+        tvFee.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(International.fee));
 
-       finalamount=Double.parseDouble(String.valueOf(International.fee))+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
+       finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
 
         if(International.taxConfigurationList!=null){
             if(International.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
                 tax_r.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(International.taxConfigurationList.optJSONObject(0).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(International.fee))+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(International.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -107,7 +107,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(International.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
                 vat_r.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(International.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(String.valueOf(International.fee))+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
 

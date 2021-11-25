@@ -109,7 +109,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tvOperatorName.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(BeneficiaryAirtime.currencySymbol+" "
-                + MyApplication.addDecimal(String.valueOf(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optInt("fee"))));
+                + MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("fee")));
 
 //        tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(BeneficiaryAirtimeConfirm.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));

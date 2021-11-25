@@ -141,7 +141,8 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
     }
 
     public static  JSONObject dataToSend=new JSONObject();
-    public static int currencyValue,fee,receiverFee,receiverTax;
+    public static String currencyValue,fee;
+    public static int receiverFee,receiverTax;
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {
@@ -166,8 +167,8 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= (jsonObjectAmountDetails.optInt("currencyValue"));
-                                    fee= (jsonObjectAmountDetails.optInt("fee"));
+                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
+                                    fee= jsonObjectAmountDetails.optString("fee");
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                   //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 

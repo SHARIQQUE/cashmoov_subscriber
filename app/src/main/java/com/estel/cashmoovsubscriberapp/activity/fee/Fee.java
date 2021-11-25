@@ -161,9 +161,9 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                     if (feeData.optString("ServiceName").equalsIgnoreCase("Money Transfer")) {
                         if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
 
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Pay")) {
-                                txt1_value.setText(childData.optString("percentFeeValue"));
-                            }
+//                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Pay")) {
+//                                txt1_value.setText(childData.optString("percentFeeValue"));
+//                            }
                             if (childData.optString("serviceCategoryName").equalsIgnoreCase("To Subscriber")) {
                                 txt1_value.setText(childData.optString("percentFeeValue"));
                             }
@@ -176,9 +176,9 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                         }
                         if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Pay")) {
-                                txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
-                            }
+//                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Pay")) {
+//                                txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
+//                            }
                             if (childData.optString("serviceCategoryName").equalsIgnoreCase("To Subscriber")) {
                                 txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
                             }

@@ -89,8 +89,8 @@ public class International extends AppCompatActivity implements View.OnClickList
 
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
-    public static String serviceProvider,mobileNo,ownerName,lastName,currencyValue,rate,exRateCode,confCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
-    public static int fee,receiverFee,receiverTax;
+    public static String serviceProvider,mobileNo,ownerName,lastName,currencyValue,fee,rate,exRateCode,confCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
+    public static int receiverFee,receiverTax;
     public static JSONObject walletOwner = new JSONObject();
     public static JSONObject serviceCategory = new JSONObject();
 
@@ -514,7 +514,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
                                     currencyValue= jsonObjectAmountDetails.optString("currencyValue");
-                                    fee= jsonObjectAmountDetails.optInt("fee");
+                                    fee= jsonObjectAmountDetails.optString("fee");
                                     rate = jsonObjectAmountDetails.optString("value");
                                     exRateCode = jsonObjectAmountDetails.optString("code");
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
