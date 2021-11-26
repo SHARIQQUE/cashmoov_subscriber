@@ -26,6 +26,7 @@ import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -228,10 +229,8 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
 
                                 MyApplication.showToast(selfsignatureC,"upload success");
-                                // callApiUpdateDataApproval();
-                                Intent intent = new Intent(selfsignatureC, AccountCreatedScreen.class);
-                                startActivity(intent);
-                                finish();
+                                callApiAddSubscriberDataApproval();
+
 
                             } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                                 MyApplication.showToast(selfsignatureC,getString(R.string.technical_failure));
@@ -248,6 +247,59 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
 
                     }
                 });
+    }
+
+    private void callApiAddSubscriberDataApproval() {
+        try {
+            JSONObject jsonObjectn = new JSONObject();
+            JSONArray jsonArray = new JSONArray();
+            jsonObjectn.put("actionType", "Created");
+            jsonObjectn.put("assignTo", "");
+            jsonObjectn.put("comments", "");
+            jsonObjectn.put("entityCode", RegisterStepOne.subscriberWalletOwnerCode);
+            jsonObjectn.put("entityName", RegisterStepOne.etFname.getText().toString());
+            jsonObjectn.put("featureCode", "100006");
+            jsonObjectn.put("status", "U");
+            JSONObject ja=new JSONObject();
+            jsonObjectn.put("updatedInformation", ja);
+
+            jsonArray.put(jsonObjectn);
+            JSONObject data = new JSONObject();
+            data.put("dataApprovalList", jsonArray);
+
+            System.out.println("test "+data.toString());
+
+            // MyApplication.showloader(walletowneradduserC,"Please wait!");
+            API.POST_REQEST_WH_NEW("ewallet/api/v1/dataApproval", data, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    System.out.println("BranchDataApproval Bresponse======="+jsonObject.toString());
+
+                    if (jsonObject != null) {
+                        if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            //MyApplication.showToast(agentkycattachedC,jsonObject.optString("resultDescription", "N/A"));
+
+                            Intent intent = new Intent(selfsignatureC, AccountCreatedScreen.class);
+                            startActivity(intent);
+                            finish();
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                            MyApplication.showToast(selfsignatureC,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(selfsignatureC,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+
     }
 
 

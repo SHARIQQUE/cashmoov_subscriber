@@ -28,6 +28,7 @@ import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -595,6 +596,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    DecimalFormat df = new DecimalFormat("0.000");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {
@@ -637,8 +639,8 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                                             amountDetails
                                     );
 
-                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
-                                    fee= jsonObjectAmountDetails.optString("fee");
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     rate = jsonObjectAmountDetails.optString("value");
                                     exRateCode = jsonObjectAmountDetails.optString("code");
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");

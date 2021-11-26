@@ -38,13 +38,42 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private TextView tvCurrency,tvAccStatement,tvClick,tvBalance;
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
+    ImageView imgBack,imgHome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet_screen);
+        setBackMenu();
         walletscreenC = this;
         getIds();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -57,8 +86,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getIds() {
-        imgNotification = findViewById(R.id.imgNotification);
-        imgQR = findViewById(R.id.imgQR);
+//        imgNotification = findViewById(R.id.imgNotification);
+//        imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvAccStatement = findViewById(R.id.tvAccStatement);
@@ -98,8 +127,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setOnCLickListener() {
-        imgNotification.setOnClickListener(walletscreenC);
-        imgQR.setOnClickListener(walletscreenC);
+//        imgNotification.setOnClickListener(walletscreenC);
+//        imgQR.setOnClickListener(walletscreenC);
         tvAccStatement.setOnClickListener(walletscreenC);
         linClick.setOnClickListener(walletscreenC);
     }
@@ -112,14 +141,14 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 /*intent = new Intent(walletscreenC, TransactionDetailsActivity.class);
                 startActivity(intent);*/
                 break;
-            case R.id.imgNotification:
-                intent = new Intent(walletscreenC, NotificationList.class);
-                startActivity(intent);
-                break;
-            case R.id.imgQR:
-                intent = new Intent(walletscreenC, MyQrCode.class);
-                startActivity(intent);
-                break;
+//            case R.id.imgNotification:
+//                intent = new Intent(walletscreenC, NotificationList.class);
+//                startActivity(intent);
+//                break;
+//            case R.id.imgQR:
+//                intent = new Intent(walletscreenC, MyQrCode.class);
+//                startActivity(intent);
+//                break;
             case R.id.linClick:
                 if(tvClick.isShown()) {
                     tvClick.setVisibility(View.GONE);

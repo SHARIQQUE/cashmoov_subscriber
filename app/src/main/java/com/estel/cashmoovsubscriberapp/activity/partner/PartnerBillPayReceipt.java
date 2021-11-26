@@ -1,4 +1,4 @@
-package com.estel.cashmoovsubscriberapp.activity.rechargeandpayments;
+package com.estel.cashmoovsubscriberapp.activity.partner;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -11,18 +11,20 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.estel.cashmoovsubscriberapp.MainActivity;
-import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeConfirm;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 
-public class BillPayReceipt extends AppCompatActivity implements View.OnClickListener {
-    public static BillPayReceipt billpayreceiptC;
+public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnClickListener {
+    public static PartnerBillPayReceipt billpayreceiptC;
     Button btnShareReceipt;
     TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
@@ -69,8 +71,8 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("image/*");
 
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(Intent.EXTRA_TEXT, "");
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
             startActivity(Intent.createChooser(intent, getString(R.string.share_screenshot)));
@@ -101,39 +103,39 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         tax2_value = findViewById(R.id.tax2_value);
 
         DecimalFormat df = new DecimalFormat("0.000");
-        tvSubscriberMobile.setText(BillPay.mobile);
+        tvSubscriberMobile.setText(Partner.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         transId.setText(getString(R.string.vendor_trans_id_colom));
-        tvMobile.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("accountNumber"));
+        tvMobile.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
-        tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
-        tvTransId.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
-        tvFee.setText(BillPay.currencySymbol+" "
-                + df.format(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("fee")));
+        tvOperatorName.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
+        tvTransId.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
+        tvFee.setText(Partner.currencySymbol+" "
+                + df.format(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("fee")));
 
-//        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
-//        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
-//        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
+//        tvTransAmount.setText(Partner.currencySymbol+" "+ MyApplication.addDecimal(PartnerBillPayConfirmScreen.tvTransAmount.getText().toString()));
+//        tvAmountPaid.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+//        tvAmountCharged.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("amount")));
-        tvAmountCharged.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
+        tvTransAmount.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("amount")));
+        tvAmountCharged.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
 
 
-        if(BillPayConfirmScreen.taxConfigList!=null){
-            if(BillPayConfirmScreen.taxConfigList.length()==1){
+        if(PartnerBillPayConfirmScreen.taxConfigList!=null){
+            if(PartnerBillPayConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(BillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax1_value.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_lable.setText(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
-            if(BillPayConfirmScreen.taxConfigList.length()==2){
+            if(PartnerBillPayConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(BillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax1_value.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_lable.setText(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(BillPayConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
-                tax2_value.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_lable.setText(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
+                tax2_value.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

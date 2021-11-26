@@ -22,6 +22,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class PayConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static PayConfirmScreen payconfirmscreenC;
     // ImageView imgBack;
@@ -89,31 +91,31 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         //  tvConfCode.setText(Pay.mobileNo);
         tvCurrency.setText(Pay.fromCurrency);
         tvTransAmount.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.etAmount.getText().toString()));
-        tvAmountPaid.setText(Pay.currencySymbol+" "+ MyApplication.addDecimal(Pay.currencyValue));
-        tvFee.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.fee));
+        tvAmountPaid.setText(Pay.currencySymbol+" "+Pay.currencyValue);
+        tvFee.setText(Pay.fromCurrencySymbol+" "+Pay.fee);
 
        finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString());
-
+        DecimalFormat df = new DecimalFormat("0.000");
         if(Pay.taxConfigurationList!=null){
             if(Pay.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(Pay.fromCurrencySymbol+" "+df.format(Pay.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(Pay.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(Pay.fromCurrencySymbol+" "+df.format(Pay.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(Pay.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
-                vat_r.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
+                vat_label.setText(Pay.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_r.setText(Pay.currencySymbol+" "+df.format(Pay.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString())+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Double.toString(finalamount)));
+        tvAmountCharged.setText(Pay.fromCurrencySymbol+" "+df.format(finalamount));
 
 
         setOnCLickListener();

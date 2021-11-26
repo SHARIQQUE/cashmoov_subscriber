@@ -8,20 +8,35 @@
     tools:context=".activity.wallet.WalletScreen">
 
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:fillViewport="true"
+            android:scrollingCache="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-                    <include layout="@layout/include_wallet_screen" />
+                <include layout="@layout/include_partner_screen" />
 
 
-        </LinearLayout>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 
     <me.ibrahimsn.lib.SmoothBottomBar
-        android:visibility="gone"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_55sdp"
@@ -43,5 +58,5 @@
         app:textColor="@color/bleu_cashmoov"
         app:textSize="14sp" />
 
-    </RelativeLayout>
+</RelativeLayout>
 

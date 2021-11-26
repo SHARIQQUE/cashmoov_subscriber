@@ -32,6 +32,8 @@ import com.github.florent37.viewtooltip.ViewTooltip;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -276,7 +278,9 @@ public class MyApplication extends Application {
         return false;
     }
 
-    public static String addDecimal(String number){
+
+
+        public static String addDecimal(String number){
 
         if(number.contains(".00")){
             return number;
@@ -412,6 +416,7 @@ public class MyApplication extends Application {
         int targetYear = targetCalendar.get(Calendar.YEAR);
         return week == targetWeek && year == targetYear;
     }
+
 
 
 }

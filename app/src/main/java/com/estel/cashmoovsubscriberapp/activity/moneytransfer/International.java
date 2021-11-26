@@ -25,6 +25,8 @@ import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -488,6 +490,7 @@ public class International extends AppCompatActivity implements View.OnClickList
 
     }
 
+    DecimalFormat df = new DecimalFormat("0.000");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {
@@ -513,14 +516,14 @@ public class International extends AppCompatActivity implements View.OnClickList
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
-                                    fee= jsonObjectAmountDetails.optString("fee");
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     rate = jsonObjectAmountDetails.optString("value");
                                     exRateCode = jsonObjectAmountDetails.optString("code");
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                     tvRate.setText(MyApplication.addDecimal(rate));
-                                    tvFee.setText(MyApplication.addDecimal(String.valueOf(fee)));
+                                    tvFee.setText(fee);
                                     tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
 
 //                                    int tax = receiverFee+receiverTax;
@@ -605,6 +608,7 @@ public class International extends AppCompatActivity implements View.OnClickList
 
                             if (jsonObject != null) {
                                 benefiCurrencyList.clear();
+                                benefiCurrencyModelList.clear();
                                 if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
                                     JSONObject countryCurrObj = jsonObject.optJSONObject("country");
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");

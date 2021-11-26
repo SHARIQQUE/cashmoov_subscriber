@@ -81,6 +81,10 @@
         <activity android:name=".activity.wallet.WalletScreen" />
         <activity android:name=".activity.wallet.WalletTransactionDetails" />
         <activity android:name=".activity.wallet.TransactionDetailsActivity" />
+        <activity android:name=".activity.partner.Partner" />
+        <activity android:name=".activity.partner.PartnerBillPayDetails" />
+        <activity android:name=".activity.partner.PartnerBillPayConfirmScreen" />
+        <activity android:name=".activity.partner.PartnerBillPayReceipt" />
         <activity android:name=".activity.setting.Profile" />
         <activity android:name=".activity.setting.ChangeLanguage" />
         <activity android:name=".activity.setting.Confidentiality" />
@@ -121,6 +125,7 @@
         <activity android:name=".activity.receiveremittance.ReceiveRemittance" />
         <activity android:name=".activity.receiveremittance.ReceiveRemittancelReceiptScreen" />
         <activity android:name=".activity.fee.Fee" />
+        <activity android:name=".activity.fee.FeeDetails" />
         <activity android:name=".activity.servicepoint.ServicePoint" />
         <activity android:name=".activity.servicepoint.SearchResult" />
         <activity android:name=".activity.moneytransfer.TransactionSuccessScreen" />

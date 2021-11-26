@@ -1,4 +1,4 @@
-package com.estel.cashmoovsubscriberapp.activity.rechargeandpayments;
+package com.estel.cashmoovsubscriberapp.activity.partner;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,20 +8,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfirmScreen;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 
-public class BillPayDetails extends AppCompatActivity implements View.OnClickListener {
-    public static BillPayDetails billpaydetailsC;
+public class PartnerBillPayDetails extends AppCompatActivity implements View.OnClickListener {
+    public static PartnerBillPayDetails billpaydetailsC;
     ImageView imgBack,imgHome;
     TextView tvOperatorName,tvSend;
     public static EditText etAccountNo,etAmount;
@@ -69,7 +73,7 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
 
-        tvOperatorName.setText(BillPay.name);
+        tvOperatorName.setText(Partner.name);
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -127,15 +131,15 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                     dataToSend.put("amount",etAmount.getText().toString());
                     dataToSend.put("channel","SELFCARE");
                     dataToSend.put("fromCurrencyCode","100062");
-                    dataToSend.put("operator",BillPay.code);
-                    dataToSend.put("productCode",BillPay.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"));
+                    dataToSend.put("operator",Partner.code);
+                    dataToSend.put("productCode",Partner.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"));
                     dataToSend.put("requestType","recharge");
-                    dataToSend.put("serviceCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
-                    dataToSend.put("serviceCategoryCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
-                    dataToSend.put("serviceProviderCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode"));
+                    dataToSend.put("serviceCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
+                    dataToSend.put("serviceCategoryCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
+                    dataToSend.put("serviceProviderCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode"));
 
                     System.out.println("Data Send "+dataToSend.toString());
-                    Intent i=new Intent(billpaydetailsC, BillPayConfirmScreen.class);
+                    Intent i=new Intent(billpaydetailsC, PartnerBillPayConfirmScreen.class);
                     startActivity(i);
                 }catch (Exception e){
 
@@ -155,11 +159,11 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                             +"&receiveCountryCode="+"100092"+
                             "&currencyValue="+etAmount.getText().toString()+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode")
-                            +"&serviceCategoryCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
-                            "&serviceProviderCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
+                            "&serviceCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode")
+                            +"&serviceCategoryCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
+                            "&serviceProviderCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", billpaydetailsC)+
-                            "&productCode="+BillPay.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
+                            "&productCode="+Partner.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

@@ -21,6 +21,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class BillPayConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static BillPayConfirmScreen billpayconfirmscreenC;
     // ImageView imgBack;
@@ -85,31 +87,31 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
        // tvCurrency.setText(BillPay.currency);
 
         tvTransAmount.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.etAmount.getText().toString()));
-        tvAmountPaid.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayDetails.currencyValue));
-        tvFee.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.fee));
+        tvAmountPaid.setText(BillPay.currencySymbol+" "+ BillPayDetails.currencyValue);
+        tvFee.setText(BillPay.currencySymbol+" "+BillPayDetails.fee);
 
         finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString());
-
+        DecimalFormat df = new DecimalFormat("0.000");
         if(BillPayDetails.taxConfigurationList!=null){
             if(BillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BillPayDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
-                vat_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
+                vat_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString())+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(Double.toString(finalamount)));
+        tvAmountCharged.setText(BillPay.currencySymbol+" "+df.format(finalamount));
 
         setOnCLickListener();
 

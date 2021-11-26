@@ -22,6 +22,8 @@ import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -308,7 +310,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         callApiFromCurrency();
 
     }
-
+    DecimalFormat df = new DecimalFormat("0.000");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {
@@ -332,11 +334,11 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
-                                    fee=  jsonObjectAmountDetails.optString("fee");
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee=  df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    tvFee.setText(MyApplication.addDecimal(fee));
+                                    tvFee.setText(fee);
                                     tvAmtPaid.setText(MyApplication.addDecimal(String.valueOf(currencyValue)));
 
 //                                    int tax = receiverFee+receiverTax;

@@ -20,6 +20,7 @@ import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfi
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 
 public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static SelfAirtimeReceipt selfairtimereceiptC;
@@ -101,6 +102,7 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
+        DecimalFormat df = new DecimalFormat("0.000");
         tvSubscriberMobile.setText(SelfAirtime.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
@@ -110,30 +112,30 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tvOperatorName.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(SelfAirtime.currencySymbol+" "
-                + MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("fee")));
+                + df.format(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("fee")));
 
 //        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+ MyApplication.addDecimal(SelfAirtimeConfirm.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("amount")));
-        tvAmountCharged.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("totalAmount")));
+        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("amount")));
+        tvAmountCharged.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
 
         if(SelfAirtimeConfirm.taxConfigList!=null){
             if(SelfAirtimeConfirm.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"));
-                tax1_value.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_lable.setText(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(SelfAirtimeConfirm.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"));
-                tax1_value.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_lable.setText(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optString("taxTypeName"));
-                tax2_value.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optString("value")));
+                tax2_lable.setText(SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
+                tax2_value.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

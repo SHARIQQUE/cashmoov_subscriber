@@ -12,6 +12,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxxhdpi/ic_view.xml" value="0.15833333333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/btn_edittextname.xml" value="0.2046875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_account_balance_wallet_24.xml" value="0.18489583333333334" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_check_circle_outline_24.xml" value="0.20104166666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_cashpickup24.xml" value="0.18489583333333334" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_hide.xml" value="0.19114583333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_lewallet.xml" value="0.18489583333333334" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_confirm_screen.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_fee.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_fee_details.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international.xml" value="0.1" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_login_pin.xml" value="0.16" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
@@ -43,6 +45,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_notification_list.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_offer_promotion_detail.xml" value="0.2" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_onboarding_two.xml" value="0.20416666666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_partner.xml" value="0.18" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_pay.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_profile.xml" value="0.1421875" />
@@ -63,17 +66,20 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/dialog_view_trans_details.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/fragment_maps.xml" value="0.13854166666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_home_screen.xml" value="0.18854166666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_partner_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_wallet_screen.xml" value="0.17083333333333334" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.20416666666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_fee_details.xml" value="0.15677083333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_offer_promotion.xml" value="0.2" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_service_fee.xml" value="0.15520833333333334" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_terms_conditions.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_transaction_list.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_wallet.xml" value="0.2" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_airtime_purchase.xml" value="0.18854166666666666" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_money_transfer.xml" value="0.33" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_money_transfer.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar_active.xml" value="0.20416666666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/menu/bottom_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable-xxhdpi/ic_logout.xml" value="0.175" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable/btn_blue.xml" value="0.2203125" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable/btn_green700.xml" value="0.2203125" />

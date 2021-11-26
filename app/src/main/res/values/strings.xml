@@ -354,6 +354,10 @@
     <string name="gnf_fixed">GNF Fixed</string>
     <string name="recharge_tv">Recharge TV</string>
     <string name="recharge_mobile">Recharge Mobile</string>
+    <string name="range">Range</string>
+    <string name="value">Value</string>
+    <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
+    <string name="partner">Partner</string>
 
 
     <string-array name="Spinner_provider">

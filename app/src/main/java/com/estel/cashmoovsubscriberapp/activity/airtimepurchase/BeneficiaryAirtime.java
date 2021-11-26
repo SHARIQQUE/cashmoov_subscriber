@@ -18,6 +18,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtime beneficiaryairtimeC;
     ImageView imgBack,imgHome;
@@ -383,6 +385,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
 
     }
 
+    DecimalFormat df = new DecimalFormat("0.000");
     public static  JSONObject dataToSend=new JSONObject();
     public static String currencyValue,fee;
     public static int receiverFee,receiverTax;
@@ -411,8 +414,9 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
-                                    fee= jsonObjectAmountDetails.optString("fee");
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
+
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 
@@ -474,8 +478,9 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= jsonObjectAmountDetails.optString("currencyValue");
-                                    fee= jsonObjectAmountDetails.optString("fee");
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
+
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 

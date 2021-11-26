@@ -21,6 +21,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeConfirm benefiairtimeconfirmC;
     // ImageView imgBack;
@@ -87,31 +89,31 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         // tvCurrency.setText(BeneficiaryAirtime.currency);
 
         tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.etAmount.getText().toString()));
-        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(BeneficiaryAirtime.currencyValue));
-        tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.fee));
+        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+ BeneficiaryAirtime.currencyValue);
+        tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+BeneficiaryAirtime.fee);
 
         finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString());
-
+        DecimalFormat df = new DecimalFormat("0.000");
         if(BeneficiaryAirtime.taxConfigurationList!=null){
             if(BeneficiaryAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BeneficiaryAirtime.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
-                vat_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
+                vat_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString())+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(Double.toString(finalamount)));
+        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(finalamount));
 
         setOnCLickListener();
 

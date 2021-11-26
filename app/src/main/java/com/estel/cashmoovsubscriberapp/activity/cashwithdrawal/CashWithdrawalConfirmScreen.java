@@ -22,6 +22,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class CashWithdrawalConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashWithdrawalConfirmScreen cashwithdrawalconfirmscreenC;
     // ImageView imgBack;
@@ -89,31 +91,31 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         //  tvConfCode.setText(CashWithdrawal.mobileNo);
         tvCurrency.setText(CashWithdrawal.fromCurrency);
         tvTransAmount.setText(CashWithdrawal.currencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC)));
-        tvAmountPaid.setText(CashWithdrawal.currencySymbol+" "+ MyApplication.addDecimal(CashWithdrawal.currencyValue));
-        tvFee.setText(CashWithdrawal.fromCurrencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.fee));
+        tvAmountPaid.setText(CashWithdrawal.currencySymbol+" "+ CashWithdrawal.currencyValue);
+        tvFee.setText(CashWithdrawal.fromCurrencySymbol+" "+CashWithdrawal.fee);
 
        finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC));
-
+        DecimalFormat df = new DecimalFormat("0.000");
         if(CashWithdrawal.taxConfigurationList!=null){
             if(CashWithdrawal.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(CashWithdrawal.fromCurrencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(CashWithdrawal.fromCurrencySymbol+" "+df.format(CashWithdrawal.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashWithdrawal.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
-                tax_r.setText(CashWithdrawal.fromCurrencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value")));
+                tax_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_r.setText(CashWithdrawal.fromCurrencySymbol+" "+df.format(CashWithdrawal.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
-                vat_r.setText(CashWithdrawal.currencySymbol+" "+MyApplication.addDecimal(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("value")));
-                finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"));
+                vat_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_r.setText(CashWithdrawal.currencySymbol+" "+df.format(CashWithdrawal.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(CashWithdrawal.fromCurrencySymbol+" "+MyApplication.addDecimal(Double.toString(finalamount)));
+        tvAmountCharged.setText(CashWithdrawal.fromCurrencySymbol+" "+df.format(finalamount));
 
 
         setOnCLickListener();

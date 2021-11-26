@@ -30,8 +30,9 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class RegisterStepOne extends AppCompatActivity implements View.OnClickListener {
 
     public static RegisterStepOne registersteponeC;
+    public static String subscriberWalletOwnerCode;
     DatePickerDialog picker;
-    EditText etFname,etLname,etPhone,etEmail,etAddress,etDob;
+    public static EditText etFname,etLname,etPhone,etEmail,etAddress,etDob;
     TextView tvNext,spRegion,spCity,spGender,spOccupation;
     SpinnerDialog spinnerDialogGender,spinnerDialogOccupation,spinnerDialogRegion,spinnerDialogCity;
 
@@ -523,6 +524,17 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                         MyApplication.saveBool("FirstLogin",false,registersteponeC);
                         MyApplication.UserMobile=etPhone.getText().toString().trim();
+                        subscriberWalletOwnerCode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCode");
+                        etFname.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName"));
+                        etLname.setText(jsonObject.optJSONObject("walletOwner").optString("lastName"));
+                        etPhone.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber"));
+                        etEmail.setText(jsonObject.optJSONObject("walletOwner").optString("email"));
+                        etDob.setText(jsonObject.optJSONObject("walletOwner").optString("dateOfBirth"));
+                        if(jsonObject.optJSONObject("walletOwner").optString("gender").equalsIgnoreCase("M")){
+                            spGender.setText("Male");
+                        } if(jsonObject.optJSONObject("walletOwner").optString("gender").equalsIgnoreCase("F")){
+                            spGender.setText("Female");
+                        }
                         Intent i = new Intent(registersteponeC, VerifyRegisterOTP.class);
                         startActivity(i);
                     }else{

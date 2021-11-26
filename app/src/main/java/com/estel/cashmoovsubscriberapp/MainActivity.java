@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
+import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
 import com.estel.cashmoovsubscriberapp.activity.setting.Profile;
 import com.estel.cashmoovsubscriberapp.activity.wallet.WalletScreen;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AirtimePurchase;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
-                    Intent i = new Intent(mainC, WalletScreen.class);
+                    Intent i = new Intent(mainC, Partner.class);
                     startActivity(i);
                    // finish();
                 }
@@ -171,14 +172,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.linClick:
-                if(tvClick.isShown()) {
-                    tvClick.setVisibility(View.GONE);
-                    tvBalance.setVisibility(View.VISIBLE);
-                }
-                else{
-                    tvClick.setVisibility(View.VISIBLE);
-                    tvBalance.setVisibility(View.GONE);
-                }
+                intent = new Intent(mainC, WalletScreen.class);
+                startActivity(intent);
+//                if(tvClick.isShown()) {
+//                    tvClick.setVisibility(View.GONE);
+//                    tvBalance.setVisibility(View.VISIBLE);
+//                }
+//                else{
+//                    tvClick.setVisibility(View.VISIBLE);
+//                    tvBalance.setVisibility(View.GONE);
+//                }
                 break;
             case R.id.cardMoneyTransfer:
                 intent = new Intent(mainC, MoneyTransfer.class);

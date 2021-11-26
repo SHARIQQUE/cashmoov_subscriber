@@ -16,7 +16,7 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
-import com.estel.cashmoovsubscriberapp.activity.wallet.WalletScreen;
+import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
@@ -143,7 +143,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     //  finish();
                 }
                 if (bottomId == 1) {
-                    Intent i = new Intent(profileC, WalletScreen.class);
+                    Intent i = new Intent(profileC, Partner.class);
                     startActivity(i);
                     //finish();
                 }
