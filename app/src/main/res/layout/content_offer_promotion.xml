@@ -38,6 +38,16 @@
                     android:layout_marginTop="@dimen/_5sdp"/>
 
                 <TextView
+                    android:id="@+id/sub_txt_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAlignment="viewStart"
+
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/textcolorheading"/>
+                <TextView
                     android:id="@+id/txt_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

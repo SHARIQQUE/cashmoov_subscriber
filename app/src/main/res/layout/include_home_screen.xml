@@ -8,6 +8,7 @@
     android:scrollingCache="true">
 
     <LinearLayout
+        android:id="@+id/shareView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -105,7 +106,7 @@
 
 
             <LinearLayout
-                android:id="@+id/linClick"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -119,6 +120,8 @@
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardElevation="0dp">
                     <LinearLayout
+                        android:clickable="true"
+                        android:id="@+id/linClickn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -651,6 +654,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/pro_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_13sdp"

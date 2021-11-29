@@ -113,8 +113,9 @@ public class ReSetPin extends AppCompatActivity {
             JSONObject setPinJson=new JSONObject();
             setPinJson.put("pin",encryptionDatanew);
 
+
             MyApplication.showloader(setpinC,"Please wait!");
-            API.PUT("ewallet/api/v1/walletOwnerUser/setPin", setPinJson, new Api_Responce_Handler() {
+            API.PUT("ewallet/api/v1/walletOwnerUser/changePin", setPinJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

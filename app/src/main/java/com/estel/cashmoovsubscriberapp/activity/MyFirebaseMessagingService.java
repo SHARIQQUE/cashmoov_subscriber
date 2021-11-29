@@ -1,5 +1,7 @@
 package com.estel.cashmoovsubscriberapp.activity;
 
+import static kotlin.random.RandomKt.Random;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -66,6 +68,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setNumber(++numMessages)
+                .setStyle(new NotificationCompat.BigTextStyle())
                 .setSmallIcon(R.drawable.ic_baseline_notifications);
 
         try {
@@ -95,11 +98,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             channel.enableVibration(true);
             channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500});
 
+
+
             assert notificationManager != null;
             notificationManager.createNotificationChannel(channel);
         }
 
         assert notificationManager != null;
-        notificationManager.notify(0, notificationBuilder.build());
+        int id= Random(System.currentTimeMillis()).nextInt(1000);
+        notificationManager.notify(id, notificationBuilder.build());
     }
 }

@@ -138,7 +138,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         switch (view.getId()) {
             case R.id.tvAccStatement:
-                /*intent = new Intent(walletscreenC, TransactionDetailsActivity.class);
+              /*  intent = new Intent(walletscreenC, TransactionDetailsActivity.class);
                 startActivity(intent);*/
                 break;
 //            case R.id.imgNotification:
@@ -214,7 +214,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private void callApiMiniStatementTrans(String walletCode) {
         try {
             MyApplication.showloader(walletscreenC,"Please wait!");
-            API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&offset=0"+"&limit=20",
+            API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&offset=0"+"&limit=20000",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

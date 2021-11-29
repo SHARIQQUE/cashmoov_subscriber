@@ -39,7 +39,7 @@ public class International extends AppCompatActivity implements View.OnClickList
     ImageView imgBack,imgHome;
     TextView spServiceProvider,spRecCountry,spBenifiCurr,spGender,tvFee,tvAmtPaid,tvRate;
     AutoCompleteTextView etPhone;
-    public static EditText etAmount,etFname,etLname,etComment;
+    public static EditText etAmount,etFname,etLname,etComment,etAmountNew;
     private ArrayList<String> serviceProviderList = new ArrayList<>();
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
 
@@ -110,7 +110,7 @@ public class International extends AppCompatActivity implements View.OnClickList
         spGender = findViewById(R.id.spGender);
         etComment = findViewById(R.id.etComment);
         tvSend = findViewById(R.id.tvSend);
-
+        etAmountNew=findViewById(R.id.etAmountNew);
         spServiceProvider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,6 +165,40 @@ public class International extends AppCompatActivity implements View.OnClickList
                 else {
                     if(s.length()>=1) {
                         callApiAmountDetails();
+                    }else{
+                        tvFee.setText("");
+                        tvAmtPaid.setText("");
+                        tvRate.setText("");
+                    }
+                }
+
+
+
+            }
+
+        });
+
+        etAmountNew.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (spBenifiCurr.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
+                    MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
+                    return;
+                }
+                else {
+                    if(s.length()>=1) {
+                        callApiAmountDetailsNew();
                     }else{
                         tvFee.setText("");
                         tvAmtPaid.setText("");
@@ -526,6 +560,76 @@ public class International extends AppCompatActivity implements View.OnClickList
                                     tvFee.setText(fee);
                                     tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
 
+//                                    int tax = receiverFee+receiverTax;
+//                                    if(currencyValue<tax){
+//                                        tvSend.setVisibility(View.GONE);
+//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
+//                                    }else{
+//                                        tvSend.setVisibility(View.VISIBLE);
+//                                    }
+
+                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                    }else{
+                                        taxConfigurationList=null;
+                                    }
+
+
+                                } else {
+                                    MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
+
+
+    private void callApiAmountDetailsNew() {
+        try {
+            //MyApplication.showloader(cashinC, "Please wait!");receiveCountryCode
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCountryCode="
+                            +benefiCountryModelList.get((Integer) spRecCountry.getTag()).getCode()+
+                            "&receiveCountryCode="+"100092"
+                            +"&receiveCurrencyCode="+"100062"+
+                            "&sendCurrencyCode="+benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode()+
+                            "&currencyValue="+etAmountNew.getText().toString()+
+                            "&channelTypeCode="+MyApplication.channelTypeCode+
+                            "&serviceCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
+                            "&serviceCategoryCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")+
+                            "&serviceProviderCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")+
+                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", internationalC),
+
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            // MyApplication.hideLoader();
+                            System.out.println("International response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    /*fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                    rate = jsonObjectAmountDetails.optString("value");
+                                    exRateCode = jsonObjectAmountDetails.optString("code");
+                                    *///receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                    //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                   /* tvRate.setText(MyApplication.addDecimal(rate));
+                                    tvFee.setText(fee);
+                                    tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));*/
+                                    etAmount.setText(MyApplication.addDecimal(currencyValue));
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
 //                                        tvSend.setVisibility(View.GONE);

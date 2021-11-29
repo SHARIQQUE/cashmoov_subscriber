@@ -32,7 +32,7 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
     ImageView imgBack,imgHome;
     private ImageView ic_close;
     private CircleImageView img_offer_logo;
-    private TextView txt_header,txt_content,txt_name,txt_title,txt_time,txt_view_more,txt_terms_one,txt_terms_two;
+    private TextView sub_txt_content,txt_header,txt_content,txt_name,txt_title,txt_time,txt_view_more,txt_terms_one,txt_terms_two;
     private BottomSheetBehavior behavior;
     private RecyclerView rvbottom;
     private CoordinatorLayout coordinatorLayout;
@@ -79,11 +79,11 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
         txt_header = findViewById(R.id.txt_header);
         txt_content = findViewById(R.id.txt_content);
         txt_time = findViewById(R.id.txt_date_time);
-
+        sub_txt_content= findViewById(R.id.sub_txt_content);
         OfferPromotionModel data= MyApplication.offerPromotionModelArrayList.get(MyApplication.offerPromtionPos);
         txt_header.setText(data.getHeading());
         txt_content.setText(data.getDescription());
-        //txt_name.setText(data.getServiceCategoryName()+"!");
+        sub_txt_content.setText(data.getStatus());
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
         SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
         Date date = null;

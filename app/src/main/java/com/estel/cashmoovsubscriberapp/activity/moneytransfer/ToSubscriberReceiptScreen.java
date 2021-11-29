@@ -1,5 +1,7 @@
 package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
+import static kotlin.random.RandomKt.Random;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -46,7 +48,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
     }
 
     public  void store(Bitmap bm, String fileName){
-        final  String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+          String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
         File dir = new File(dirPath);
         if(!dir.exists())
             dir.mkdirs();
@@ -151,7 +153,8 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         switch (view.getId()) {
             case R.id.btnShareReceipt:
                 Bitmap bitmap=getScreenShot(rootView);
-                store(bitmap,"test.jpg");
+                int id= Random(System.currentTimeMillis()).nextInt(1000);
+                store(bitmap,id+"test.jpg");
                 break;
 
         }

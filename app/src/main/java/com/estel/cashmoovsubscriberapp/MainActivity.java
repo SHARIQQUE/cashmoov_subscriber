@@ -36,6 +36,8 @@ import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
     LinearLayout linClick;
-    TextView tvClick,tvBalance;
+    TextView tvClick,tvBalance,pro_text;
     CardView cardMoneyTransfer,cardAirtimePurchase,cardRechargePayment,cardPay,
     cardCashWithdrawal,cardRecRemittance,cardFee,cardServicePoints;
     RecyclerView rv_offer_promotion;
@@ -90,10 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getIds() {
+        pro_text = findViewById(R.id.pro_text);
         imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
         imgProfile = findViewById(R.id.imgProfile);
-        linClick = findViewById(R.id.linClick);
+        linClick = findViewById(R.id.linClickn);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         bottomBar = findViewById(R.id.bottomBar);
@@ -171,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(mainC, Profile.class);
                 startActivity(intent);
                 break;
-            case R.id.linClick:
+            case R.id.linClickn:
                 intent = new Intent(mainC, WalletScreen.class);
                 startActivity(intent);
 //                if(tvClick.isShown()) {
@@ -247,8 +250,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                     }
+                                    pro_text.setVisibility(View.GONE);
+                                    gettempalteList();
 
-                                    getPromotionList();
 
                                 } else {
                                     MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
@@ -270,11 +274,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //http://202.131.144.130:8081/ewallet/api/v1/promOfferTemplate/all
+    //http://202.131.144.130:8081/ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/1000002843
 
-    private void getPromotionList() {
+    private void gettempalteList() {
 
         MyApplication.showloader(mainC,"Please Wait...");
-        API.GET_WF("ewallet/api/v1/promOfferTemplate/all", new Api_Responce_Handler() {
+        API.GET_WF("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/"+MyApplication.getSaveString("walletOwnerCode", mainC), new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                MyApplication.hideLoader();
+
+                offerPromotionModelArrayList=new ArrayList<>();
+
+
+                if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                    JSONArray dataArray = jsonObject.optJSONArray("walletOwnerTemplateList");
+
+                    //walletOwnerTemplateList
+                    if(dataArray!=null&&dataArray.length()>0) {
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject data = dataArray.optJSONObject(i);
+                            if(data.optString("templateCategoryCode").equalsIgnoreCase("100013")){
+                                        getPromotionList(data.optString("templateCode"));
+                            }else{
+                               // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                            }
+                        }
+
+                    }
+                }else{
+                    MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                }
+
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(mainC,aFalse);
+            }
+        });
+    }
+
+    private void getPromotionList(String code) {
+//http://202.131.144.130:8081/ewallet/api/v1/promOfferTemplate/101235
+        MyApplication.showloader(mainC,"Please Wait...");
+        API.GET_WF("ewallet/api/v1/promOfferTemplate/"+code, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();
@@ -307,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     data.optString("description"),
                                     data.optString("heading"),
                                     data.optString("fileName"),
-                                    data.optString("status"),
+                                    data.optString("subHeading"),
                                     data.optString("state"),
                                     data.optString("createdBy"),
                                     data.optString("creationDate"),
@@ -315,11 +360,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-
+                        pro_text.setVisibility(View.VISIBLE);
                         rv_offer_promotion.setHasFixedSize(true);
                         // rv_offer_promotion.setLayoutManager(new GridLayoutManager(this,2));
                         rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC,LinearLayoutManager.HORIZONTAL,false));
                         rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
+                       // Collections.sort(offerPromotionModelArrayList, Collections.reverseOrder());
                         OfferPromotionAdapter offerPromotionAdapter = new OfferPromotionAdapter(mainC,offerPromotionModelArrayList);
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
                         offerPromotionAdapter.notifyDataSetChanged();
@@ -327,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 }else{
-                    MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                   // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
                 }
 
 

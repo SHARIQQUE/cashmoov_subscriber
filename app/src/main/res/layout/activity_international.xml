@@ -132,6 +132,24 @@
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp"/>
 
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/etAmountNew"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint"
+                    android:inputType="number"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/amount_to_paid"
+                    android:textColor="@color/textColorLBlack"
+                    android:textSize="@dimen/_13sdp"/>
+
 
                 <LinearLayout
                     android:gravity="left"
@@ -170,6 +188,7 @@
                         android:textColor="#000"
                         />
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/amount_to_paid"
