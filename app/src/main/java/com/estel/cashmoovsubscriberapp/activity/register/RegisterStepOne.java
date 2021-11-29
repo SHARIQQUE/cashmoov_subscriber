@@ -123,6 +123,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+
         setOnCLickListener();
 
 
@@ -248,6 +249,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
                     jsonObject.put("notificationTypeCode","100002");
                     jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
+                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
+                    jsonObject.put("city",cityModelList.get((Integer) spCity.getTag()).getCode());
+                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -301,7 +306,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spRegion.setText(item);
                                             spRegion.setTag(position);
-                                            spCity.setText("Select");
+                                            spCity.setText(getString(R.string.valid_select_city));
 
                                             callApiCity(regionModelList.get(position).getCode());
                                         }
@@ -374,7 +379,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                         }
                                     });
 
-                                    callApiOccupationType();
+                                    callApiGenderType();
 
                                 } else {
                                     MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
@@ -434,6 +439,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                         }
                                     });
 
+                                    callApiOccupationType();
+
                                 } else {
                                     MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -492,7 +499,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                             spOccupation.setTag(position);
                                         }
                                     });
-                                    callApiGenderType();
+
                                 } else {
                                     MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -537,6 +544,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                         }
                         Intent i = new Intent(registersteponeC, VerifyRegisterOTP.class);
                         startActivity(i);
+                       // callApiAddSubscriberAddress(subscriberWalletOwnerCode);
                     }else{
                         MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription"));
                     }
@@ -552,9 +560,81 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
         });
 
+    }
 
+    private void callApiAddSubscriberAddress(String subscriberWalletOwnerCode) {
+        try{
+            JSONObject jsonObjectadd=new JSONObject();
+            JSONObject addSubscriberJson=new JSONObject();
+            try {
+                addSubscriberJson.put("walletOwnerCode",subscriberWalletOwnerCode);
 
+                jsonObjectadd.put("addTypeCode","");
+                jsonObjectadd.put("addressLine1",etAddress.getText().toString().trim());
+                jsonObjectadd.put("addressLine2","");
+                jsonObjectadd.put("countryCode","100092");
+                jsonObjectadd.put("city",cityModelList.get((Integer) spCity.getTag()).getCode());
+                jsonObjectadd.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
+                jsonObjectadd.put("location","");
+
+                JSONArray jsonArray=new JSONArray();
+
+                jsonArray.put(jsonObjectadd);
+                addSubscriberJson.put("addressList",jsonArray);
+
+            }catch (Exception e){
+
+            }
+
+            MyApplication.showloader(registersteponeC,"Please wait!");
+            API.POST_REQEST_REGISTER("ewallet/api/v1/address", addSubscriberJson, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
+                    if (jsonObject != null) {
+                        if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            //MyApplication.showToast(getString(R.string.address_add_msg));
+                            Intent i = new Intent(registersteponeC, VerifyRegisterOTP.class);
+                            startActivity(i);
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                            MyApplication.showToast(registersteponeC,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
 
     }
+
+    ////////// For address Post Api
+
+//{
+//        "walletOwnerCode": "1000002708",
+//        "addressList": [
+//        {
+//        "addTypeCode": "",
+//        "addressLine1": "105",
+//        "addressLine2": "",
+//        "countryCode": "100102",
+//        "city": "100025",
+//        "regionCode": "100010",
+//        "location": ""
+//        }
+//        ]
+//        }
+//
+//
+//
+//        http://202.131.144.130:8081/ewallet/api/v1/address
 
 }
