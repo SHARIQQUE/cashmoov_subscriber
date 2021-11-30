@@ -221,7 +221,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                             MyApplication.hideLoader();
 
                             if (jsonObject != null) {
-                                MyApplication.hideLoader();
+
 
                                 miniStatementTransList.clear();
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
@@ -322,4 +322,6 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("STATUS",status);
         startActivity(intent);
     }
+
+
 }
