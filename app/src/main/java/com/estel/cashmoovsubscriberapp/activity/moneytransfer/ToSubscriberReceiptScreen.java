@@ -106,7 +106,6 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
-            btnShareReceipt.setVisibility(View.GONE);
             startActivity(Intent.createChooser(intent, getString(R.string.share_screenshot)));
         } catch (ActivityNotFoundException e) {
             Toast.makeText(getApplicationContext(), getString(R.string.no_app_available), Toast.LENGTH_SHORT).show();
@@ -185,6 +184,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
+                btnShareReceipt.setVisibility(View.GONE);
                 Bitmap bitmap=getScreenShot(rootView);
                 //int id= Random(System.currentTimeMillis()).nextInt(1000);
                 createImageFile(bitmap);
