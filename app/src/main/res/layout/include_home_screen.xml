@@ -171,7 +171,7 @@
                                         android:textSize="@dimen/_13sdp"
                                         android:textColor="@color/white"
                                         android:lineSpacingExtra="3sp"
-                                        android:text="@string/view_balance" />
+                                        android:text="@string/view_balance_trans_history" />
                                     <TextView
                                         android:id="@+id/tvBalance"
                                         android:layout_width="wrap_content"

@@ -166,13 +166,12 @@ public class International extends AppCompatActivity implements View.OnClickList
                     if(s.length()>=1) {
                         callApiAmountDetails();
                     }else{
+                        //etAmountNew.setText("");
                         tvFee.setText("");
                         tvAmtPaid.setText("");
                         tvRate.setText("");
                     }
                 }
-
-
 
             }
 
@@ -200,6 +199,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                     if(s.length()>=1) {
                         callApiAmountDetailsNew();
                     }else{
+                        etAmount.setText("");
                         tvFee.setText("");
                         tvAmtPaid.setText("");
                         tvRate.setText("");
@@ -556,9 +556,10 @@ public class International extends AppCompatActivity implements View.OnClickList
                                     exRateCode = jsonObjectAmountDetails.optString("code");
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    tvRate.setText(MyApplication.addDecimal(rate));
+                                    //etAmountNew.setText(currencyValue);
+                                    tvRate.setText(rate);
                                     tvFee.setText(fee);
-                                    tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
+                                    tvAmtPaid.setText(currencyValue);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -620,7 +621,17 @@ public class International extends AppCompatActivity implements View.OnClickList
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    try {
+                                        double currValue = Double.parseDouble(etAmountNew.getText().toString());
+                                        double value = jsonObjectAmountDetails.optDouble("value");
+                                        if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
+                                            etAmount.setText(String.valueOf(currValue));
+                                        }else{
+                                            String finalValue = df.format(currValue / value);
+                                            etAmount.setText(finalValue);
+                                        }
+
+                                    }catch (Exception e){}
                                     /*fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     rate = jsonObjectAmountDetails.optString("value");
                                     exRateCode = jsonObjectAmountDetails.optString("code");
@@ -629,7 +640,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                    /* tvRate.setText(MyApplication.addDecimal(rate));
                                     tvFee.setText(fee);
                                     tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));*/
-                                    etAmount.setText(MyApplication.addDecimal(currencyValue));
+
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
 //                                        tvSend.setVisibility(View.GONE);
@@ -638,11 +649,11 @@ public class International extends AppCompatActivity implements View.OnClickList
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
-                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                    }else{
-                                        taxConfigurationList=null;
-                                    }
+//                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
+//                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+//                                    }else{
+//                                        taxConfigurationList=null;
+//                                    }
 
 
                                 } else {

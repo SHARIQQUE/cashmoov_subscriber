@@ -119,7 +119,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/amount_to_paid"
+                        android:text="@string/amount_to_paid_colon"
                         android:layout_gravity="clip_horizontal"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"

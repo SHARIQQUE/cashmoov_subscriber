@@ -133,7 +133,7 @@
                     android:textSize="@dimen/_13sdp"/>
 
                 <EditText
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/etAmountNew"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,7 +149,6 @@
                     android:hint="@string/amount_to_paid"
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp"/>
-
 
                 <LinearLayout
                     android:gravity="left"
@@ -191,7 +190,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/amount_to_paid"
+                        android:text="@string/amount_to_paid_colon"
                         android:layout_gravity="clip_horizontal"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"

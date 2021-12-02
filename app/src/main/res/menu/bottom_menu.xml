@@ -9,7 +9,7 @@
     <item
         android:id="@+id/item1"
         android:title="@string/partner"
-        android:icon="@drawable/icon_wallet"/>
+        android:icon="@drawable/icon_partner"/>
 
     <item
         android:id="@+id/item2"

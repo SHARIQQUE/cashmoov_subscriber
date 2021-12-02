@@ -117,7 +117,8 @@
     <string name="acc_number">Account number:</string>
     <string name="montant_a_envoyer">Amount to send</string>
     <string name="fees">Fees:</string>
-    <string name="amount_to_paid">Amount to be paid:</string>
+    <string name="amount_to_paid">Amount to be paid</string>
+    <string name="amount_to_paid_colon">Amount to be paid:</string>
     <string name="send">Send</string>
     <string name="choose_operation">Choose the operation</string>
     <string name="subscriber">Subscriber</string>
@@ -358,6 +359,7 @@
     <string name="value">Value</string>
     <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
     <string name="partner">Partner</string>
+    <string name="view_balance_trans_history"><![CDATA[View balance & Transaction history]]></string>
 
 
     <string-array name="Spinner_provider">

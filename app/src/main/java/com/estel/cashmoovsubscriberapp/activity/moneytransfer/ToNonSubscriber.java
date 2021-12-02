@@ -36,7 +36,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     ImageView imgBack,imgHome;
     TextView tvSend,tvFee,tvAmtPaid,spGender;
     public static AutoCompleteTextView etPhone;
-    public static EditText etAmount,etFname,etLname,etComment;
+    public static EditText etAmount,etFname,etLname,etComment,etAmountNew;
     private ArrayList<String> benefiGenderList = new ArrayList<>();
     private ArrayList<GenderInfoModel.Gender> benefiGenderModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogBenefiGender;
@@ -95,6 +95,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         etPhone = findViewById(R.id.etPhone);
         etComment = findViewById(R.id.etComment);
         tvSend = findViewById(R.id.tvSend);
+        etAmountNew = findViewById(R.id.etAmountNew);
 
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,8 +154,6 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        callserviceCategory();
-
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -172,6 +171,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                 if(s.length()>=1) {
                     callApiAmountDetails();
                 }else{
+                    //etAmountNew.setText("");
                     tvFee.setText("");
                     tvAmtPaid.setText("");
                 }
@@ -180,6 +180,35 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             }
 
         });
+
+        etAmountNew.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(s.length()>=1) {
+                    callApiAmountDetailsNew();
+                }else{
+                    etAmount.setText("");
+                    tvFee.setText("");
+                    tvAmtPaid.setText("");
+                }
+
+
+            }
+
+        });
+
+        callserviceCategory();
 
         setOnCLickListener();
 
@@ -338,8 +367,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                     fee=  df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                    //etAmountNew.setText(currencyValue);
                                     tvFee.setText(fee);
-                                    tvAmtPaid.setText(MyApplication.addDecimal(String.valueOf(currencyValue)));
+                                    tvAmtPaid.setText(currencyValue);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -354,6 +384,78 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                     }else{
                                         taxConfigurationList=null;
                                     }
+
+
+                                } else {
+                                    MyApplication.showToast(tononsubscriberC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void callApiAmountDetailsNew() {
+        try {
+            //MyApplication.showloader(cashinC, "Please wait!");
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
+                            "&receiveCurrencyCode="+"100062"+
+                            "&sendCountryCode="+"100092"
+                            +"&receiveCountryCode="+"100092"+
+                            "&currencyValue="+etAmountNew.getText().toString()+
+                            "&channelTypeCode="+MyApplication.channelTypeCode+
+                            "&serviceCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")
+                            +"&serviceCategoryCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")+
+                            "&serviceProviderCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")+
+                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tononsubscriberC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            // MyApplication.hideLoader();
+                            System.out.println("NonSubscriber response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+
+                                    try {
+                                        double currValue = Double.parseDouble(etAmountNew.getText().toString());
+                                        double value = jsonObjectAmountDetails.optDouble("value");
+                                        if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
+                                            etAmount.setText(String.valueOf(currValue));
+                                        }else{
+                                            String finalValue = df.format(currValue / value);
+                                            etAmount.setText(finalValue);
+                                        }
+
+                                    }catch (Exception e){}
+//                                    fee=  df.format(jsonObjectAmountDetails.optDouble("fee"));
+//                                    receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+//                                    receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+//                                    tvFee.setText(fee);
+
+//                                    int tax = receiverFee+receiverTax;
+//                                    if(currencyValue<tax){
+//                                        tvSend.setVisibility(View.GONE);
+//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
+//                                    }else{
+//                                        tvSend.setVisibility(View.VISIBLE);
+//                                    }
+
+//                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
+//                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+//                                    }else{
+//                                        taxConfigurationList=null;
+//                                    }
 
 
                                 } else {

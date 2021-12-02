@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable-anydpi/ic_cashin.xml" value="0.1765625" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxhdpi/arrow_right_menu.xml" value="0.1671875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxhdpi/ic_close.xml" value="0.203125" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxhdpi/shape_fill.xml" value="0.1671875" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_hide.xml" value="0.19114583333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_show.xml" value="0.19114583333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_up.xml" value="0.13802083333333334" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/icon_partner.xml" value="0.17552083333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/rect_btn_white.xml" value="0.15677083333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/show_hide_selector.xml" value="0.19114583333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.1359375" />
@@ -29,7 +31,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_confirm_screen.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_fee.xml" value="0.25" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international.xml" value="0.1" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_login_pin.xml" value="0.16" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_money_transfer.xml" value="0.20416666666666666" />
@@ -55,7 +57,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/content_offer_promotion.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/dialog_view_trans_details.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/fragment_maps.xml" value="0.13854166666666667" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_home_screen.xml" value="0.18854166666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_home_screen.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_wallet_screen.xml" value="0.17083333333333334" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_fee_details.xml" value="0.129981884057971" />
@@ -69,6 +71,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_money_transfer.xml" value="0.33" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar_active.xml" value="0.20416666666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/menu/bottom_menu.xml" value="0.16041666666666668" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable-xxhdpi/ic_logout.xml" value="0.175" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable/btn_blue.xml" value="0.2203125" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable/btn_green700.xml" value="0.2203125" />
