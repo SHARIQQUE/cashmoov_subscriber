@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -79,6 +80,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         etPhoneNo = findViewById(R.id.etPhoneNo);
         linPass = findViewById(R.id.linPass);
         etPass = findViewById(R.id.etPass);
+        etPass.setTransformationMethod(new HiddenPassTransformationMethod());
         icPin = findViewById(R.id.icPin);
         tvPin = findViewById(R.id.tvPin);
         tvOr = findViewById(R.id.tvOr);
@@ -369,11 +371,26 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
-                            linPass.setVisibility(View.VISIBLE);
-                            etPass.setVisibility(View.VISIBLE);
-                            tvPin.setVisibility(View.GONE);
-                            tvOr.setVisibility(View.GONE);
-                            tvFinger.setVisibility(View.GONE);
+
+                            if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")) {
+                                // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
+                                MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+                               // MyApplication.saveBool("FirstLogin", true, phnoregistrationccreenC);
+                                MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
+                                MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
+                                //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
+
+                                Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
+                                startActivity(i);
+                                finish();
+                            }else {
+
+                                linPass.setVisibility(View.VISIBLE);
+                                etPass.setVisibility(View.VISIBLE);
+                                tvPin.setVisibility(View.GONE);
+                                tvOr.setVisibility(View.GONE);
+                                tvFinger.setVisibility(View.GONE);
+                            }
                             MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
                         } else {
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("1074")){
@@ -486,7 +503,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 //                    }catch (Exception e){
 //
 //                    }
-                    if(jsonObject.optString("firstLoginStatus").equalsIgnoreCase("Y")){
+                    if(jsonObject.optString("pinLoginStatus").equalsIgnoreCase("Y")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                         MyApplication.saveBool("FirstLogin",true,phnoregistrationccreenC);
                         MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
@@ -496,7 +513,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                         startActivity(i);
                         finish();
-                        Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                       // callPostGetLoginOTP();
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                     }else{

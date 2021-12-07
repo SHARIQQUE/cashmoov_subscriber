@@ -318,8 +318,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getPromotionList(String code) {
 //http://202.131.144.130:8081/ewallet/api/v1/promOfferTemplate/101235
+        //Bhawesh, 15:02
+        //http://192.168.1.171:8081/ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode=101235&status=Y&state=A
         MyApplication.showloader(mainC,"Please Wait...");
-        API.GET_WF("ewallet/api/v1/promOfferTemplate/"+code, new Api_Responce_Handler() {
+        API.GET_WF("ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode="+code+"&status=Y&state=A", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();

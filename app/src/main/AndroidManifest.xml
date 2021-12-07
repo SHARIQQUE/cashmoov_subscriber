@@ -132,6 +132,8 @@
         <activity android:name=".activity.login.CreatePassword" />
         <activity android:name=".activity.login.VerifyRegisterOTP" />
         <activity android:name=".activity.login.ChangeIpLoginActivity" />
+        <activity android:name=".activity.login.SetPinFisrtLogin" />
+        <activity android:name=".activity.login.VerifyFirstLoginOTP" />
         <activity android:name=".activity.setting.ResetPinOTP" />
         <activity android:name=".activity.setting.ReSetPin" />
 

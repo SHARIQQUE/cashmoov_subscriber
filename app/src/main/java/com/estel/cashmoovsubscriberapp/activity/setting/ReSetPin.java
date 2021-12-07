@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -36,7 +37,9 @@ public class ReSetPin extends AppCompatActivity {
 
     private void getIds() {
         etPin = findViewById(R.id.etPin);
+        etPin.setTransformationMethod(new HiddenPassTransformationMethod());
         etRePin = findViewById(R.id.etRePin);
+        etRePin.setTransformationMethod(new HiddenPassTransformationMethod());
         icPin = findViewById(R.id.icPin);
         icRepin = findViewById(R.id.icRePin);
         tvContinue = findViewById(R.id.tvContinue);

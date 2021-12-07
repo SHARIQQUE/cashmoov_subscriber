@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
@@ -19,8 +20,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
 import org.json.JSONObject;
 
-public class SetPin extends AppCompatActivity {
-    public static SetPin setpinC;
+public class SetPinFisrtLogin extends AppCompatActivity {
+    public static SetPinFisrtLogin setpinC;
     EditText etPin,etRePin;
     TextView tvContinue;
     ImageView icPin,icRepin;
@@ -124,7 +125,7 @@ public class SetPin extends AppCompatActivity {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             MyApplication.showToast(setpinC,"Your Pin generate Successfully!");
 
-                                Intent intent = new Intent(setpinC, RegisterStepTwo.class);
+                                Intent intent = new Intent(setpinC, PhoneNumberRegistrationScreen.class);
                                 startActivity(intent);
 
 
