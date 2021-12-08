@@ -1,5 +1,6 @@
 package com.estel.cashmoovsubscriberapp.activity;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -70,7 +71,7 @@ public class Splash extends AppCompatActivity {
                         .setPermissionListener(permissionlistener)
                         .setDeniedMessage("If you reject permission, you can not use this service.\n\nPlease turn on permissions at [Setting] > [Permission]")
                         .setGotoSettingButtonText("Go to settings")
-                        .setPermissions(CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE,READ_CONTACTS)
+                        .setPermissions(CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE,READ_CONTACTS,ACCESS_FINE_LOCATION)
                         .check();
 
                 // This method will be executed once the timer is over

@@ -608,7 +608,7 @@ public class API {
 
         AndroidNetworking.post(BASEURL+URL)
                 .addJSONObjectBody(jsonObject) // posting json
-                .setOkHttpClient(okClient)
+                .setOkHttpClient(client)
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")

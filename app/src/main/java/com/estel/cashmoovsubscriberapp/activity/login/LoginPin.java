@@ -326,18 +326,14 @@ public class LoginPin extends AppCompatActivity {
                     if(jsonObject.optString("firstLoginStatus").equalsIgnoreCase("Y")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
 
-                        Intent i = new Intent(loginpinC, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                       callAPIWalletOwnerDetails();
+                        //callLogin();
                         // callPostGetLoginOTP();
                         //Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                     }else{
 
-                        Intent i = new Intent(loginpinC, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                       callAPIWalletOwnerDetails();
+                      //  callLogin();
                     }
 
                 }
@@ -452,18 +448,13 @@ public class LoginPin extends AppCompatActivity {
                     if(jsonObject.optString("firstLoginStatus").equalsIgnoreCase("Y")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
 
-                        Intent i = new Intent(loginpinC, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                       callAPIWalletOwnerDetails();
+                        //callLogin();
                         // callPostGetLoginOTP();
                         //Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                     }else{
-
-                        Intent i = new Intent(loginpinC, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                       // callLogin();
+                       callAPIWalletOwnerDetails();
                     }
 
                 }
@@ -490,6 +481,48 @@ public class LoginPin extends AppCompatActivity {
 
     }
 
+
+    public void callAPIWalletOwnerDetails(){
+        API.GET("ewallet/api/v1/walletOwner/"+MyApplication.getSaveString("walletOwnerCode", loginpinC), new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+
+                    ///profileImageName
+
+
+                    try {
+                        JSONObject jsonObject1 = jsonObject.optJSONObject("walletOwner");
+                        if (jsonObject1.has("profileImageName")){
+                            MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
+                                    MyApplication.getSaveString("walletOwnerCode", loginpinC)+"/"+
+                                    jsonObject1.optString("profileImageName"),loginpinC);
+                        }
+                        callLogin();
+                    }catch (Exception e){
+
+                    }
+
+                }else{
+                    MyApplication.showToast(loginpinC,jsonObject.optString("resultDescription"));
+
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(loginpinC,aFalse);
+            }
+        });
+    }
+
+    public void callLogin(){
+        Intent i = new Intent(loginpinC, MainActivity.class);
+        startActivity(i);
+        finish();
+        Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+    }
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)

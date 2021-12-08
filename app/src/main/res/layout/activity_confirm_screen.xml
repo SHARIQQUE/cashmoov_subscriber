@@ -493,7 +493,7 @@
                         <com.suke.widget.SwitchButton
                             android:id="@+id/switch_button"
                             android:layout_width="wrap_content"
-                            app:sb_checked="true"
+                            app:sb_checked="false"
                             android:layout_height="wrap_content"
 
                             />

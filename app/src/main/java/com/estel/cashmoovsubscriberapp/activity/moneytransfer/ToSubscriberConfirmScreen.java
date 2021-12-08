@@ -19,6 +19,8 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
+import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,6 +36,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
     EditText etPin;
     double finalamount;
     ImageView icPin;
+    SwitchButton switch_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,18 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
 
         tvFee.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.fee);
 
+        switch_button=findViewById(R.id.switch_button);
+        switch_button.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                //TODO do your job
+                if(isChecked){
+                    callApiAmountDetailsIbear();
+                }else{
+                    getIds();
+                }
+            }
+        });
 
         finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString());
         DecimalFormat df = new DecimalFormat("0.000");
@@ -115,6 +130,8 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                 finalamount=(Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("value")));
             }
         }
+
+
 
         tvAmountCharged.setText(ToSubscriber.currencySymbol+" "+df.format(finalamount));
 
@@ -162,6 +179,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
                     ToSubscriber.dataToSend.put( "pin",encryptionDatanew);
+                    dataToSendBear.put( "pin",encryptionDatanew);
                     callPostAPI();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -180,7 +198,18 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(tosubscriberconfirmscreenC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/walletTransfer/subscriber/cashOut", ToSubscriber.dataToSend,
+        JSONObject clone=null;
+        try {
+            if (switch_button.isChecked()) {
+                clone = new JSONObject(dataToSendBear.toString());
+            }else{
+                clone = new JSONObject(ToSubscriber.dataToSend.toString());
+            }
+        }catch (Exception e){
+
+        }
+        System.out.println("Data Send "+clone);
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/walletTransfer/subscriber/cashOut", clone,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {
@@ -213,6 +242,121 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                         btnConfirm.setVisibility(View.VISIBLE);
                     }
                 });
+    }
+
+    DecimalFormat df = new DecimalFormat("0.000");
+    JSONObject dataToSendBear;
+    private void callApiAmountDetailsIbear() {
+        try {
+            //MyApplication.showloader(cashinC, "Please wait!");
+
+            // dataToSend.put("transactionType","104591");
+            //            dataToSend.put("desWalletOwnerCode",walletOwner.optJSONArray("walletOwnerList").optJSONObject(0).optString("walletOwnerCode"));
+            //            dataToSend.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode",tosubscriberC));
+            //            dataToSend.put("srcCurrencyCode","100062");
+            //            dataToSend.put("desCurrencyCode","100062");
+            //            dataToSend.put("value",etAmount.getText().toString());
+            //            dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
+            //            dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+            //            dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+            //            dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+            //http://192.168.1.171:8081/ewallet/api/v1/exchangeRate/getBearerFee?
+            // value=100&channelTypeCode=100000&serviceCode=100000&
+            // serviceCategoryCode=100024&serviceProviderCode=100112&walletOwnerCode=1000002724
+            API.GET("ewallet/api/v1/exchangeRate/getBearerFee?"+
+                            "&value="+ToSubscriber.dataToSend.optString("value")+
+                            "&channelTypeCode="+MyApplication.channelTypeCode+
+                            "&serviceCode="+ToSubscriber.dataToSend.optString("serviceCode")
+                            +"&serviceCategoryCode="+ToSubscriber.dataToSend.optString("serviceCategoryCode")+
+                            "&serviceProviderCode="+ToSubscriber.dataToSend.optString("serviceProviderCode")+
+                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberconfirmscreenC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            // MyApplication.hideLoader();
+                            System.out.println("ToSubscriber response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                    String fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                    tvFee.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.fee+"+ Bear Fee "+fee);
+                                    Double transAmount=jsonObjectAmountDetails.optDouble("fee")+Double.parseDouble(ToSubscriber.etAmount.getText().toString());
+                                    Double paidAmount=jsonObjectAmountDetails.optDouble("fee")+Double.parseDouble(ToSubscriber.currencyValue);
+                                    Double chargeAmount=jsonObjectAmountDetails.optDouble("fee")+finalamount;
+                                    tvTransAmount.setText(ToSubscriber.currencySymbol+" "+df.format(transAmount));
+                                    tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+df.format(paidAmount));
+
+                                    tvAmountCharged.setText(ToSubscriber.currencySymbol+" "+df.format(chargeAmount));
+
+
+                            try {
+                                dataToSendBear=new JSONObject();
+                                dataToSendBear.put("transactionType", "104591");
+                                dataToSendBear.put("desWalletOwnerCode", ToSubscriber.dataToSend.optString("desWalletOwnerCode"));
+                                dataToSendBear.put("srcWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", tosubscriberconfirmscreenC));
+                                dataToSendBear.put("srcCurrencyCode", "100062");
+                                dataToSendBear.put("desCurrencyCode", "100062");
+                                dataToSendBear.put("value", transAmount);
+                                dataToSendBear.put("channelTypeCode", MyApplication.channelTypeCode);
+                                dataToSendBear.put("serviceCode", ToSubscriber.dataToSend.optString("serviceCode"));
+                                dataToSendBear.put("serviceCategoryCode", ToSubscriber.dataToSend.optString("serviceCategoryCode"));
+                                dataToSendBear.put("serviceProviderCode", ToSubscriber.dataToSend.optString("serviceProviderCode"));
+                                dataToSendBear.put("bearerAllow", true);
+                                dataToSendBear.put("bearerFee", fee);
+
+                            }catch (Exception e){
+
+                            }
+                                   /* AmountDetailsInfoModel.AmountDetails amountDetails = new AmountDetailsInfoModel.AmountDetails(
+                                            jsonObjectAmountDetails.optInt("fee"),
+                                            jsonObjectAmountDetails.optInt("receiverFee"),
+                                            jsonObjectAmountDetails.optInt("receiverTax"),
+                                            jsonObjectAmountDetails.optString("value", "N/A"),
+                                            jsonObjectAmountDetails.optString("currencyValue", "N/A")
+
+                                    );
+
+                                    AmountDetailsInfoModel amountDetailsInfoModel = new AmountDetailsInfoModel(
+                                            jsonObject.optString("transactionId", "N/A"),
+                                            jsonObject.optString("requestTime", "N/A"),
+                                            jsonObject.optString("responseTime", "N/A"),
+                                            jsonObject.optString("resultCode", "N/A"),
+                                            jsonObject.optString("resultDescription", "N/A"),
+                                            amountDetails
+                                    );
+
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                    receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                    receiverTax = jsonObjectAmountDetails.optInt("receiverTax");*/
+//                                    int tax = receiverFee+receiverTax;
+//                                    if(currencyValue<tax){
+//                                        tvSend.setVisibility(View.GONE);
+//                                        MyApplication.showErrorToast(tosubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
+//                                    }else{
+//                                        tvSend.setVisibility(View.VISIBLE);
+//                                    }
+
+
+
+
+                                } else {
+                                    MyApplication.showToast(tosubscriberconfirmscreenC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 

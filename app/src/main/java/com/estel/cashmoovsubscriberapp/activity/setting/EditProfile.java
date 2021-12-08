@@ -88,8 +88,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         String ImageName=MyApplication.getSaveString("ImageName", editprofileC);
         if(ImageName!=null&&ImageName.length()>1) {
-            String image_url = MyApplication.ImageURL + ImageName;
-            Glide.with(this).load(image_url).apply(options).into(profile_img);
+            //String image_url = MyApplication.ImageURL + ImageName;
+            Glide.with(this).load(ImageName).apply(options).into(profile_img);
         }
 
         setOnCLickListener();
@@ -189,9 +189,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         if (requestCode == REQUEST_IMAGE_CAPTURE_GALARY) {
             if (resultCode == RESULT_OK) {
 
+
+
                 Uri selectedImage = data.getData();
                 Glide.with(this).load(selectedImage).into(profile_img);
-                file = new File(getRealPathFromURI(selectedImage).toString());
+                file = new File(getPathFromURI(selectedImage));
                 isSelect=true;
 
                /* Bundle extras = data.getExtras();
@@ -218,6 +220,17 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -252,6 +265,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
+                        System.out.println("Json Object Req"+file);
+                        System.out.println("Json Object"+jsonObject);
                         if (jsonObject != null) {
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
@@ -260,18 +275,21 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                                     JSONObject jsonObject1 = jsonObject.optJSONObject("documentUpload");
 
                                     MyApplication.saveString("ImageCode", jsonObject1.optString("code"), editprofileC);
-                                    MyApplication.saveString("ImageName", jsonObject1.optString("fileName"), editprofileC);
+
+
+                                    MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
+                                            MyApplication.getSaveString("walletOwnerCode", editprofileC)+"/"+
+                                            jsonObject1.optString("fileName"),editprofileC);
                                     String ImageName = MyApplication.getSaveString("ImageName", editprofileC);
                                     RequestOptions options = new RequestOptions()
                                             .centerCrop()
                                             .placeholder(R.drawable.profil)
                                             .error(R.drawable.profil);
 
-                                    MyApplication.ImageURL=API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
-                                            MyApplication.getSaveString("walletOwnerCode",editprofileC)+"/";
+
                                     if (ImageName != null && ImageName.length() > 1) {
-                                        String image_url = MyApplication.ImageURL + ImageName;
-                                        Glide.with(editprofileC).load(image_url).apply(options).into(profile_img);
+                                        //String image_url = MyApplication.ImageURL + ImageName;
+                                        Glide.with(editprofileC).load(ImageName).apply(options).into(profile_img);
                                     }
 
                                     MyApplication.showToast(editprofileC,getString(R.string.upload_success));

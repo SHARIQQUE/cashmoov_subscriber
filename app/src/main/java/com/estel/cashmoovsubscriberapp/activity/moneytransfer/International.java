@@ -600,11 +600,11 @@ public class International extends AppCompatActivity implements View.OnClickList
     private void callApiAmountDetailsNew() {
         try {
             //MyApplication.showloader(cashinC, "Please wait!");receiveCountryCode
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCountryCode="
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"receiveCountryCode="
                             +benefiCountryModelList.get((Integer) spRecCountry.getTag()).getCode()+
-                            "&receiveCountryCode="+"100092"
-                            +"&receiveCurrencyCode="+"100062"+
-                            "&sendCurrencyCode="+benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode()+
+                            "&sendCountryCode="+"100092"
+                            +"&sendCurrencyCode="+"100062"+
+                            "&receiveCurrencyCode="+benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode()+
                             "&currencyValue="+etAmountNew.getText().toString()+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
                             "&serviceCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
@@ -625,9 +625,10 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         double currValue = Double.parseDouble(etAmountNew.getText().toString());
                                         double value = jsonObjectAmountDetails.optDouble("value");
                                         if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
-                                            etAmount.setText(String.valueOf(currValue));
+                                            tvAmtPaid.setText(String.valueOf(currValue));
                                         }else{
                                             String finalValue = df.format(currValue / value);
+                                            tvAmtPaid.setText(finalValue);
                                             etAmount.setText(finalValue);
                                         }
 
@@ -953,6 +954,11 @@ public class International extends AppCompatActivity implements View.OnClickList
                                 dataToSend.put("toCurrencyCode",benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode());
                                 dataToSend.put("transactionType","SENDREMITTANCE");
                                 dataToSend.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",internationalC));
+
+
+                                dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                                dataToSend.put("transactionArea",MainActivity.transactionArea);
+                                dataToSend.put("isGpsOn",true);
 
                                 System.out.println("Data Send "+dataToSend.toString());
                                 Intent i=new Intent(internationalC, InternationalConfirmScreen.class);

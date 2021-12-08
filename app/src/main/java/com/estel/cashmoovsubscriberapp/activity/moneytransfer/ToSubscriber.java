@@ -252,8 +252,9 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
             dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
             dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+            dataToSend.put("bearerAllow", false);
+            dataToSend.put("bearerFee", 0.0);
 
-            System.out.println("Data Send "+dataToSend.toString());
             Intent i=new Intent(tosubscriberC, ToSubscriberConfirmScreen.class);
             startActivity(i);
         }catch (Exception e){

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -28,6 +29,7 @@ import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
+
 import com.github.florent37.viewtooltip.ViewTooltip;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import java.io.IOException;
@@ -62,6 +64,7 @@ public class MyApplication extends Application {
     public static String setProtection;
     public static String channelTypeCode = "100000";
 
+
     public static MyApplication getInstance() {
         return appInstance;
     }
@@ -74,13 +77,14 @@ public class MyApplication extends Application {
         startActivity(intent);
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         appInstance = this;
 
         ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
-                getSaveString("walletOwnerCode",appInstance)+"/";
+                MyApplication.getSaveString("walletOwnerCode", this)+"/";
 
         AndroidNetworking.initialize(getApplicationContext());
        /* BitmapFactory.Options options = new BitmapFactory.Options();
@@ -88,6 +92,7 @@ public class MyApplication extends Application {
         AndroidNetworking.setBitmapDecodeOptions(options);*/
         AndroidNetworking.enableLogging();
         AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BASIC);
+
         if(Build.VERSION.SDK_INT>=24){
             try{
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
@@ -104,6 +109,7 @@ public class MyApplication extends Application {
             }
         });
     }
+
 
     public static OkHttpClient okClient = new OkHttpClient.Builder()
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))

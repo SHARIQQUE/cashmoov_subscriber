@@ -323,13 +323,11 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
-                                    linPass.setVisibility(View.VISIBLE);
-                                    etPass.setVisibility(View.VISIBLE);
-                                    tvPin.setVisibility(View.VISIBLE);
-                                    tvOr.setVisibility(View.VISIBLE);
-                                    tvFinger.setVisibility(View.VISIBLE);
-                            MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
-                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("1000")){
+                            Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
+                            startActivity(i);
+                            finish();
+
+                                              }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("1000")){
                             MyApplication.showToast(phnoregistrationccreenC,getString(R.string.technical_failure));
                         } else {
                             //MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
@@ -379,10 +377,10 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                                 MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
                                 //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
+                                MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
+                                MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
-                                Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
-                                startActivity(i);
-                                finish();
+                                callPostGetLoginOTP();
                             }else {
 
                                 linPass.setVisibility(View.VISIBLE);
@@ -510,9 +508,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.saveString("loginPassword",etPass.getText().toString().trim(), phnoregistrationccreenC);
                         //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
 
-                        Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
-                        startActivity(i);
-                        finish();
+
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                       // callPostGetLoginOTP();
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
@@ -521,10 +517,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                         MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
 
-                        Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                       callAPIWalletOwnerDetails();
                     }
 
                 }
@@ -564,20 +557,21 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 */
 
             jsonObject1.put("walletownerusercode",MyApplication.getSaveString("userCode",phnoregistrationccreenC));
-            jsonObject1.put("notificationtypecode","100000");
+            jsonObject1.put("notificationtypecode","100002");
             jsonObject1.put("transtypecode","101813");
             jsonObject1.put("email",MyApplication.getSaveString("email",phnoregistrationccreenC));
+            jsonObject1.put("mobileNumber",etPhoneNo.getText().toString().trim());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         MyApplication.showloader(phnoregistrationccreenC,"Please Wait...");
-        API.POST_GET_OTP("ewallet/api/v1/otp",jsonObject1,
+        API.POST_LOGIN_OTP("ewallet/public/login-otp",jsonObject1,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                            Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
+                            Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
                             startActivity(i);
 
                             MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
@@ -615,4 +609,40 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 }).create().show();
     }
 
+
+    public void callAPIWalletOwnerDetails(){
+        API.GET("ewallet/api/v1/walletOwner/"+MyApplication.getSaveString("walletOwnerCode", phnoregistrationccreenC), new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+
+                    ///profileImageName
+
+
+                    try {
+                        JSONObject jsonObject1 = jsonObject.optJSONObject("walletOwner");
+                        if (jsonObject1.has("profileImageName")){
+                            MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
+                                            MyApplication.getSaveString("walletOwnerCode", phnoregistrationccreenC)+"/"+
+                                    jsonObject1.optString("profileImageName"),phnoregistrationccreenC);
+                        }
+                    }catch (Exception e){
+
+                    }
+                    Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                    Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                }else{
+                    MyApplication.showToast(phnoregistrationccreenC,jsonObject.optString("resultDescription"));
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(phnoregistrationccreenC,aFalse);
+            }
+        });
+    }
 }
