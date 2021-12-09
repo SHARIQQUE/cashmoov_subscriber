@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aileron_semibold"
-            android:text="11/07/2015"
+            android:text=""
             android:textColor="@color/green_700"
             android:layout_marginTop="@dimen/_5sdp"
             android:textSize="@dimen/_9sdp"

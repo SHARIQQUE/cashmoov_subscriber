@@ -88,7 +88,7 @@
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="center_horizontal"
-                            android:text="1000 GNF"
+                            android:text="N/A"
                             />
 
 
@@ -129,7 +129,7 @@
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="center_horizontal"
-                            android:text="2000 GNF"
+                            android:text="N/A"
                             />
 
 
