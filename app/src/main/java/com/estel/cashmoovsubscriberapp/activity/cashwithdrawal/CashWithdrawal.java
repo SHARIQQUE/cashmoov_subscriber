@@ -287,6 +287,10 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                     dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
                     dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
                     dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+
+                    dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                    dataToSend.put("transactionArea",MainActivity.transactionArea);
+                    dataToSend.put("isGpsOn",true);
                     //dataToSend.put("exchangeRateCode",exchangeRateCode);
                     MyApplication.saveString("AMOUNTCASHWITHDRAWAL",etAmount.getText().toString(),cashwithdrawalC);
                     System.out.println("Data Send "+dataToSend.toString());

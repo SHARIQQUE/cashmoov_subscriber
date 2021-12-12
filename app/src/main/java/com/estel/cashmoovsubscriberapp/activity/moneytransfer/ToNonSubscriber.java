@@ -142,9 +142,14 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                 if(value.contains(",")) {
                     String[] list = value.split(",");
                     isSet = true;
-                    etPhone.setText(list[0]);
-                    etFname.setText(list[1]);
-                    etLname.setText(list[2]);
+                    if(list.length==3) {
+                        etPhone.setText(list[0]);
+                        etFname.setText(list[1]);
+                        etLname.setText(list[2]);
+                    }else{
+                        etPhone.setText(list[0]);
+                        etFname.setText(list[1]);
+                    }
 
                 }else{
                     etFname.setText("");
@@ -679,7 +684,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                 dataToSend.put("toCurrencyCode","100062");
                                 dataToSend.put("transactionType","SENDREMITTANCE");
                                 dataToSend.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",tononsubscriberC));
-
+                                dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                                dataToSend.put("transactionArea",MainActivity.transactionArea);
+                                dataToSend.put("isGpsOn",true);
 
                                 System.out.println("Data Send "+dataToSend.toString());
                                 Intent i=new Intent(tononsubscriberC, ToNonSubscriberConfirmScreen.class);

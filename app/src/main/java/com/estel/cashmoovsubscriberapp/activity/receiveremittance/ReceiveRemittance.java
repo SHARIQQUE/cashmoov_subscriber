@@ -138,6 +138,9 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
                     dataToSend.put("pin", encryptionDatanew);
+                    dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                    dataToSend.put("transactionArea",MainActivity.transactionArea);
+                    dataToSend.put("isGpsOn",true);
 
                     System.out.println("Data Send "+dataToSend.toString());
 

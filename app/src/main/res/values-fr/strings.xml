@@ -262,6 +262,7 @@
     <string name="login_successful">Connexion réussie</string>
 
     <string name="verification_register_otp">Veuillez entrer l\'OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l\'identifiant de messagerie enregistré et au numéro de téléphone portable</string>
+    <string name="verification_register_otp_ip">Veuillez contacter votre service client pour générer l\'OTP ou entrez l\'OTP pour vérifier votre compte.</string>
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
     <string name="logout">Se déconnecter</string>
     <string name="logout_app">Are you sure you want to logout the app?</string>

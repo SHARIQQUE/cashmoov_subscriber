@@ -508,7 +508,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.saveString("loginPassword",etPass.getText().toString().trim(), phnoregistrationccreenC);
                         //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
 
-
+                        callAPIWalletOwnerDetails();
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                       // callPostGetLoginOTP();
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
@@ -625,6 +625,8 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                             MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                                             MyApplication.getSaveString("walletOwnerCode", phnoregistrationccreenC)+"/"+
                                     jsonObject1.optString("profileImageName"),phnoregistrationccreenC);
+                        }else{
+                            MyApplication.saveString("ImageName", "",phnoregistrationccreenC);
                         }
                     }catch (Exception e){
 

@@ -535,7 +535,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 System.out.println("loc=========district"+district);
                 System.out.println("loc=========country"+country);
                 System.out.println("loc=========postcode"+postcode);
-                transactionArea=district+","+state+","+country+","+postcode;
+
+                transactionArea=locaity+","+district+","+state+","+country+","+postcode;
 
             } else {
                 Toast.makeText(MainActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();

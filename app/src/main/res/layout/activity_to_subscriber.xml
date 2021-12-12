@@ -81,7 +81,7 @@
                                     android:fontFamily="@font/aileron_bold"
                                     android:letterSpacing="-0.02"
                                     android:lineSpacingExtra="7sp"
-                                    android:text="Abhay Kumar Singh"
+                                    android:text="N/A"
                                     android:textColor="#000"
                                     android:textSize="16dp" />
 

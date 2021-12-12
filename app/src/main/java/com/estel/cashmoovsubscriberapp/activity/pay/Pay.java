@@ -281,7 +281,11 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                         dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
                         dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
                         //dataToSend.put("exchangeRateCode",exchangeRateCode);
-
+                        dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                        dataToSend.put("transactionArea",MainActivity.transactionArea);
+                        dataToSend.put("isGpsOn",true);
+                        dataToSend.put("bearerAllow", false);
+                        dataToSend.put("bearerFee", 0);
                         System.out.println("Data Send "+dataToSend.toString());
                         Intent i=new Intent(payC,PayConfirmScreen.class);
                         startActivity(i);

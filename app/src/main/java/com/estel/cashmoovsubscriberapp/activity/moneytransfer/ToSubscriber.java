@@ -254,6 +254,9 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
             dataToSend.put("bearerAllow", false);
             dataToSend.put("bearerFee", 0.0);
+            dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            dataToSend.put("transactionArea",MainActivity.transactionArea);
+            dataToSend.put("isGpsOn",true);
 
             Intent i=new Intent(tosubscriberC, ToSubscriberConfirmScreen.class);
             startActivity(i);

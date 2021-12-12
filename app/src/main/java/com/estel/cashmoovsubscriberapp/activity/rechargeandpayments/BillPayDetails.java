@@ -133,7 +133,9 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                     dataToSend.put("serviceCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
                     dataToSend.put("serviceCategoryCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
                     dataToSend.put("serviceProviderCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode"));
-
+                    dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                    dataToSend.put("transactionArea",MainActivity.transactionArea);
+                    dataToSend.put("isGpsOn",true);
                     System.out.println("Data Send "+dataToSend.toString());
                     Intent i=new Intent(billpaydetailsC, BillPayConfirmScreen.class);
                     startActivity(i);

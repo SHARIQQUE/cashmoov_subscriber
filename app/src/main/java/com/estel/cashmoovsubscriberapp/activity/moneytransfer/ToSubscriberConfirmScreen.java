@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
@@ -179,7 +180,9 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
                     ToSubscriber.dataToSend.put( "pin",encryptionDatanew);
-                    dataToSendBear.put( "pin",encryptionDatanew);
+                    if(switch_button.isChecked()) {
+                        dataToSendBear.put("pin", encryptionDatanew);
+                    }
                     callPostAPI();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -277,36 +280,45 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                             System.out.println("ToSubscriber response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
-                                    String fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                    tvFee.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.fee+"+ Bear Fee "+fee);
-                                    Double transAmount=jsonObjectAmountDetails.optDouble("fee")+Double.parseDouble(ToSubscriber.etAmount.getText().toString());
-                                    Double paidAmount=jsonObjectAmountDetails.optDouble("fee")+Double.parseDouble(ToSubscriber.currencyValue);
-                                    Double chargeAmount=jsonObjectAmountDetails.optDouble("fee")+finalamount;
-                                    tvTransAmount.setText(ToSubscriber.currencySymbol+" "+df.format(transAmount));
-                                    tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+df.format(paidAmount));
+                                    if(jsonObject.has("exchangeRate")) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                        String fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        tvFee.setText(ToSubscriber.currencySymbol + " " + ToSubscriber.fee + "+ Bear Fee " + fee);
+                                        Double transAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.etAmount.getText().toString());
+                                        Double paidAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.currencyValue);
+                                        Double chargeAmount = jsonObjectAmountDetails.optDouble("fee") + finalamount;
+                                        tvTransAmount.setText(ToSubscriber.currencySymbol + " " + df.format(transAmount));
+                                        tvAmountPaid.setText(ToSubscriber.currencySymbol + " " + df.format(paidAmount));
 
-                                    tvAmountCharged.setText(ToSubscriber.currencySymbol+" "+df.format(chargeAmount));
+                                        tvAmountCharged.setText(ToSubscriber.currencySymbol + " " + df.format(chargeAmount));
 
 
-                            try {
-                                dataToSendBear=new JSONObject();
-                                dataToSendBear.put("transactionType", "104591");
-                                dataToSendBear.put("desWalletOwnerCode", ToSubscriber.dataToSend.optString("desWalletOwnerCode"));
-                                dataToSendBear.put("srcWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", tosubscriberconfirmscreenC));
-                                dataToSendBear.put("srcCurrencyCode", "100062");
-                                dataToSendBear.put("desCurrencyCode", "100062");
-                                dataToSendBear.put("value", transAmount);
-                                dataToSendBear.put("channelTypeCode", MyApplication.channelTypeCode);
-                                dataToSendBear.put("serviceCode", ToSubscriber.dataToSend.optString("serviceCode"));
-                                dataToSendBear.put("serviceCategoryCode", ToSubscriber.dataToSend.optString("serviceCategoryCode"));
-                                dataToSendBear.put("serviceProviderCode", ToSubscriber.dataToSend.optString("serviceProviderCode"));
-                                dataToSendBear.put("bearerAllow", true);
-                                dataToSendBear.put("bearerFee", fee);
+                                        try {
+                                            dataToSendBear = new JSONObject();
+                                            dataToSendBear.put("transactionType", "104591");
+                                            dataToSendBear.put("desWalletOwnerCode", ToSubscriber.dataToSend.optString("desWalletOwnerCode"));
+                                            dataToSendBear.put("srcWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", tosubscriberconfirmscreenC));
+                                            dataToSendBear.put("srcCurrencyCode", "100062");
+                                            dataToSendBear.put("desCurrencyCode", "100062");
+                                            dataToSendBear.put("value", transAmount);
+                                            dataToSendBear.put("channelTypeCode", MyApplication.channelTypeCode);
+                                            dataToSendBear.put("serviceCode", ToSubscriber.dataToSend.optString("serviceCode"));
+                                            dataToSendBear.put("serviceCategoryCode", ToSubscriber.dataToSend.optString("serviceCategoryCode"));
+                                            dataToSendBear.put("serviceProviderCode", ToSubscriber.dataToSend.optString("serviceProviderCode"));
+                                            dataToSendBear.put("bearerAllow", true);
+                                            dataToSendBear.put("bearerFee", fee);
 
-                            }catch (Exception e){
+                                            dataToSendBear.put("transactionCoordinate", MainActivity.transactionCoordinate);
+                                            dataToSendBear.put("transactionArea", MainActivity.transactionArea);
+                                            dataToSendBear.put("isGpsOn", true);
 
-                            }
+                                        } catch (Exception e) {
+
+                                        }
+                                    }else{
+                                        MyApplication.showToast(tosubscriberconfirmscreenC,"Template not found");
+                                        switch_button.setChecked(false);
+                                    }
                                    /* AmountDetailsInfoModel.AmountDetails amountDetails = new AmountDetailsInfoModel.AmountDetails(
                                             jsonObjectAmountDetails.optInt("fee"),
                                             jsonObjectAmountDetails.optInt("receiverFee"),

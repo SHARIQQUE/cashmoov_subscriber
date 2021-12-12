@@ -181,6 +181,9 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         dataToSend.put("serviceCategoryCode", serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
                         dataToSend.put("serviceProviderCode", serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode"));
 
+                        dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                        dataToSend.put("transactionArea",MainActivity.transactionArea);
+                        dataToSend.put("isGpsOn",true);
                         System.out.println("Data Send " + dataToSend.toString());
                         Intent i = new Intent(beneficiaryairtimeC, BeneficiaryAirtimeConfirm.class);
                         startActivity(i);
