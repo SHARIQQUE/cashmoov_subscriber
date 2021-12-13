@@ -114,10 +114,10 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.linNext:
-                intent = new Intent(servicepointC, SearchResult.class);
-                startActivity(intent);
-                break;
+//            case R.id.linNext:
+//                intent = new Intent(servicepointC, SearchResult.class);
+//                startActivity(intent);
+//                break;
 
         }
     }

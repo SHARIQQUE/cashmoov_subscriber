@@ -7,42 +7,81 @@
     android:orientation="vertical"
     tools:context=".activity.airtimepurchase.AddBeneficiary">
 
-    <include layout="@layout/toolbar_add_contact" />
+    <include layout="@layout/toolbar_active" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aileron_semibold"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/Contacts"
+        android:textColor="#29304d"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
 
     <LinearLayout
-        android:id="@+id/linNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
         android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_gravity="center"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_personne" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aileron_semibold"
-            android:lineSpacingExtra="3sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="@string/beneficiary_management"
-            android:textColor="#29304d"
-            android:textSize="17sp" />
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="@dimen/_6sdp"
+            android:layout_margin="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:inputType="phone"
+                    android:theme="@style/SearchViewStyle"
+                    app:defaultQueryHint="@string/search_here" />
+
+        </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvGo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:background="@drawable/btn_blue"
+                android:fontFamily="@font/aileron_bold"
+                android:gravity="center"
+                android:lineSpacingExtra="3sp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                android:text="@string/go"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
     </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-    </ScrollView>
-
-
 
 </LinearLayout>

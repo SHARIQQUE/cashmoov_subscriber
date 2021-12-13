@@ -360,7 +360,9 @@
     <string name="value">Valeur</string>
     <string name="range_value_not_available"><![CDATA[Aucune plage et valeur disponibles]]></string>
     <string name="partner">Partenaire</string>
-    <string name="view_balance_trans_history"><![CDATA[Afficher le solde et l\'historique des transactions]]></string>
+    <string name="view_balance_trans_history"><![CDATA[Solde et historique des transactions]]></string>
+    <string name="go">Aller</string>
+    <string name="Contacts">Contacts</string>
 
 
     <string-array name="Spinner_provider">

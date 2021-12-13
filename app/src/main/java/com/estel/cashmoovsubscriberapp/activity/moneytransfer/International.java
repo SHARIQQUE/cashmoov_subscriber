@@ -407,23 +407,25 @@ public class International extends AppCompatActivity implements View.OnClickList
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                        benefiCountryModelList.add(new CountryInfoModel.Country(
-                                                data.optInt("id"),
-                                                data.optInt("mobileLength"),
-                                                data.optString("code"),
-                                                data.optString("isoCode"),
-                                                data.optString("name"),
-                                                data.optString("countryCode"),
-                                                data.optString("status"),
-                                                data.optString("dialCode"),
-                                                data.optString("currencyCode"),
-                                                data.optString("currencySymbol"),
-                                                data.optString("creationDate"),
-                                                data.optBoolean("subscriberAllowed")
-                                        ));
+                                        if (!MyApplication.getSaveString("userCountryCode", internationalC).equalsIgnoreCase(data.optString("code"))) {
+                                            benefiCountryModelList.add(new CountryInfoModel.Country(
+                                                    data.optInt("id"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("code"),
+                                                    data.optString("isoCode"),
+                                                    data.optString("name"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("status"),
+                                                    data.optString("dialCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("creationDate"),
+                                                    data.optBoolean("subscriberAllowed")
+                                            ));
 
-                                        benefiCountryList.add(data.optString("name").trim());
+                                            benefiCountryList.add(data.optString("name").trim());
 
+                                        }
                                     }
 
                                     spinnerDialogBenefiCountry= new SpinnerDialog(internationalC, benefiCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation

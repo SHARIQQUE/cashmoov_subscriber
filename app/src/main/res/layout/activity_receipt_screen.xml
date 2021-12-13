@@ -90,7 +90,7 @@
                             android:layout_marginLeft="@dimen/_15sdp"
                             android:layout_weight="1"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/souarecashmoov" />
+                            android:src="@drawable/profil" />
 
                     </LinearLayout>
                 </LinearLayout>

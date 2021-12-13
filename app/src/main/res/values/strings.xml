@@ -360,7 +360,9 @@
     <string name="value">Value</string>
     <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
     <string name="partner">Partner</string>
-    <string name="view_balance_trans_history"><![CDATA[View balance & Transaction history]]></string>
+    <string name="view_balance_trans_history"><![CDATA[Balance & Transaction history]]></string>
+    <string name="go">Go</string>
+    <string name="Contacts">Contacts</string>
 
 
     <string-array name="Spinner_provider">

@@ -12,7 +12,10 @@ import com.estel.cashmoovsubscriberapp.model.NotificationModel;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NotificationListAdapter extends RecyclerView.Adapter<NotificationListAdapter.ViewHolder>{
@@ -43,18 +46,19 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         holder.tvSubject.setText(notificationModel.getSubject());
 
         holder.tvMessage.setText(Html.fromHtml(notificationModel.getMessage()));
-        holder.tvCreationDate.setText(notificationModel.getCreationDate());
-
-//        try {
-//            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
-//            Date date = null;
-//            date = inputFormat.parse(notificationModel.getCreationDate());
-//            String formattedDate = outputFormat.format(date);
-//            holder.tvCreationDate.setText(formattedDate);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        //holder.tvCreationDate.setText(notificationModel.getCreationDate());
+        //String date="2017-04-04T20:22:33";
+        //2021-12-03T15:20:55.624+0530
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
+            date = inputFormat.parse(notificationModel.getCreationDate());
+            String formattedDate = outputFormat.format(date);
+            holder.tvCreationDate.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
     }

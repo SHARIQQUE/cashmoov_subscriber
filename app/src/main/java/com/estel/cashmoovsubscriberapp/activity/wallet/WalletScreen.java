@@ -211,6 +211,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
     }
 
+   // http://202.131.144.129:8081/ewallet/api/v1/miniStatement/allByCriteria?walletCode=1000030010&offset=0&limit=200
+
     private void callApiMiniStatementTrans(String walletCode) {
         try {
             MyApplication.showloader(walletscreenC,"Please wait!");

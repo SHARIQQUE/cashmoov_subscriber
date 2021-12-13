@@ -85,53 +85,20 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
 
             case R.id.tvOtherNo:
 
-                getContactList();
-                Uri uri = Uri.parse("content://contacts");
-                intent = new Intent(Intent.ACTION_PICK, uri);
-                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                startActivityForResult(intent, REQUEST_CODE);
+                //getContactList();
+//                Uri uri = Uri.parse("content://contacts");
+//                intent = new Intent(Intent.ACTION_PICK, uri);
+//                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+//                startActivityForResult(intent, REQUEST_CODE);
 
+                intent = new Intent(airtimepurchaseC, AddBeneficiary.class);
+                startActivity(intent);
                 break;
         }
     }
 
 
 
-    private static final String[] PROJECTION = new String[]{
-            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
-            ContactsContract.Contacts.DISPLAY_NAME,
-            ContactsContract.CommonDataKinds.Phone.NUMBER
-    };
-
-    public static ArrayList<Contact>  contactList=new ArrayList<>();
-    private void getContactList() {
-        ContentResolver cr = getContentResolver();
-
-        Cursor cursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        if (cursor != null) {
-            HashSet<String> mobileNoSet = new HashSet<String>();
-            try {
-                final int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-                final int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-                String name, number;
-                contactList.clear();
-                while (cursor.moveToNext()) {
-                    name = cursor.getString(nameIndex);
-                    number = cursor.getString(numberIndex);
-                    number = number.replace(" ", "");
-                    if (!mobileNoSet.contains(number)) {
-                        contactList.add(new Contact(name, number));
-                        mobileNoSet.add(number);
-                        Log.d("hvy", "onCreaterrView  Phone Number: name = " + name
-                                + " No = " + number);
-                    }
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,

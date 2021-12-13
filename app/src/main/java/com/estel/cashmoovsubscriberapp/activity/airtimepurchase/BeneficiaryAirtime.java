@@ -412,14 +412,14 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         @Override
                         public void success(JSONObject jsonObject) {
                             // MyApplication.hideLoader();
-                            System.out.println("SelfAirtime response======="+jsonObject.toString());
+                            System.out.println("BenefiAirtime response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
                                     currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
                                     fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
-
+                                    tvSend.setVisibility(View.VISIBLE);
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 
@@ -439,6 +439,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
 
 
                                 } else {
+                                    tvSend.setVisibility(View.GONE);
                                     MyApplication.showToast(beneficiaryairtimeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }

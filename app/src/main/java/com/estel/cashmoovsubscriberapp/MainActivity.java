@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.souarecashmoov)
-                .error(R.drawable.souarecashmoov);
+                .placeholder(R.drawable.profil)
+                .error(R.drawable.profil);
 
 
         String ImageName=MyApplication.getSaveString("ImageName", mainC);
