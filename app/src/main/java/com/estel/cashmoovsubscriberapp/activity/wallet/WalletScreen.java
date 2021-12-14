@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
@@ -39,6 +41,11 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
     ImageView imgBack,imgHome;
+    TextView tvRefresh;
+    private NestedScrollView nestedSV;
+    private ProgressBar loadingPB;
+    int page = 0, limit = 20;
+    String walletCode;
 
 
     @Override
@@ -94,6 +101,9 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         linClick = findViewById(R.id.linClick);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
+        tvRefresh = findViewById(R.id.tvRefresh);
+        loadingPB = findViewById(R.id.loadingPB);
+        nestedSV = findViewById(R.id.nestedSV);
         rv_mini_statement_trans = findViewById(R.id.rv_mini_statement_trans);
 
         bottomBar.setItemActiveIndex(1);
@@ -121,7 +131,23 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        nestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                // on scroll change we are checking when users scroll as bottom.
+                if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                    // in this method we are incrementing page number,
+                    // making progress bar visible and calling get data method.
+                   // page+=20;
+                    limit+=20;
+                    loadingPB.setVisibility(View.VISIBLE);
+                    callApiMiniStatementTrans(walletCode,page,limit);
+                }
+            }
+        });
+
         setOnCLickListener();
+
         callApiWalletList();
 
     }
@@ -131,6 +157,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 //        imgQR.setOnClickListener(walletscreenC);
         tvAccStatement.setOnClickListener(walletscreenC);
         linClick.setOnClickListener(walletscreenC);
+        tvRefresh.setOnClickListener(walletscreenC);
     }
 
     @Override
@@ -159,6 +186,9 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                     tvBalance.setVisibility(View.GONE);
                 }
                 break;
+            case R.id.tvRefresh:
+                callApiWalletList();
+                break;
 
         }
     }
@@ -183,7 +213,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 tvCurrency.setText(getString(R.string.your_currency)+" : "+data.optString("currencyName"));
                                                 tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
-                                                callApiMiniStatementTrans(data.optString("code"));
+                                                walletCode = data.optString("code");
+                                                callApiMiniStatementTrans(data.optString("code"),page,limit);
                                             }
 
                                         }
@@ -213,34 +244,43 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
    // http://202.131.144.129:8081/ewallet/api/v1/miniStatement/allByCriteria?walletCode=1000030010&offset=0&limit=200
 
-    private void callApiMiniStatementTrans(String walletCode) {
+    private void callApiMiniStatementTrans(String walletCode, int page, int limit) {
         try {
-            MyApplication.showloader(walletscreenC,"Please wait!");
-            API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&offset=0"+"&limit=20000",
+           // MyApplication.showloader(walletscreenC,"Please wait!");
+            API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&offset="+page+"&limit="+limit,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
-
+                           // MyApplication.hideLoader();
                             if (jsonObject != null) {
 
-
                                 miniStatementTransList.clear();
+                                String msisdn,name;
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
+                                            //if(data.optString("transactionTypeCode").equalsIgnoreCase("101441")){
+                                            if(data.has("receiverCustomer")){
+                                                msisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
+                                                name = data.optJSONObject("receiverCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
+                                            }else{
+                                                msisdn = data.optString("toWalletOwnerMsisdn").trim();
+                                                name =  data.optString("toWalletOwnerName").trim();
+
+                                            }
+
                                             miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
                                                     data.optString("fromWalletOwnerCode").trim(),
                                                     data.optString("toWalletOwnerCode").trim(),
-                                                    data.optString("fromWalletOwnerName").trim(),
+                                                    name,
                                                     data.optString("toWalletOwnerName").trim(),
                                                     data.optString("fromWalletOwnerMsisdn").trim(),
-                                                    data.optString("toWalletOwnerMsisdn").trim(),
+                                                    msisdn,
                                                     data.optString("fromWalletCode").trim(),
                                                     data.optString("fromWalletName").trim(),
                                                     data.optString("fromCurrencyCode").trim(),
@@ -276,10 +316,11 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                         }
 
                                         setData(miniStatementTransList);
-
+                                        loadingPB.setVisibility(View.GONE);
                                     }
 
                                 } else {
+                                    loadingPB.setVisibility(View.GONE);
                                     MyApplication.showToast(walletscreenC,jsonObject.optString("resultDescription"));
                                 }
 
@@ -288,7 +329,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
                         @Override
                         public void failure(String aFalse) {
-                            MyApplication.hideLoader();
+                          //  MyApplication.hideLoader();
+                            loadingPB.setVisibility(View.GONE);
 
                         }
                     });
