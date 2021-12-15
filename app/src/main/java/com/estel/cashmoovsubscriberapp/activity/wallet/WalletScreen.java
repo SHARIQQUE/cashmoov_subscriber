@@ -189,7 +189,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.tvRefresh:
-                callApiWalletList();
+                callApiMiniStatementTrans(walletCode,0,20);
                 break;
 
         }
@@ -216,7 +216,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                 tvCurrency.setText(getString(R.string.your_currency)+" : "+data.optString("currencyName"));
                                                 tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
-                                                callApiMiniStatementTrans(data.optString("code"),page,limit);
+                                                callApiMiniStatementTrans(walletCode,page,limit);
                                             }
 
                                         }

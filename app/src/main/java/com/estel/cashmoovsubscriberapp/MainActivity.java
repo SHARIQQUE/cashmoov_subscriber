@@ -214,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.linClickn:
+                MyApplication.saveBool("TRANSHISTORYCLICK",true,mainC);
                 intent = new Intent(mainC, WalletScreen.class);
                 startActivity(intent);
 
