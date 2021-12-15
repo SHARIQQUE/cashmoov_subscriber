@@ -9,25 +9,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginRight="@dimen/_15sdp">
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_notifications" />
+            app:srcCompat="@drawable/ic_baseline_notifications"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/_5sdp"/>
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:src="@drawable/logo200x70b"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
 
         <ImageView
             android:id="@+id/imgQR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_qr" />
+            app:srcCompat="@drawable/ic_baseline_qr"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/_5sdp"/>
 
     </LinearLayout>
 

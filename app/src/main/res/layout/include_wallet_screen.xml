@@ -181,6 +181,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linTransactionHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
@@ -202,6 +203,7 @@
                     android:textSize="@dimen/_13sdp" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tvRefresh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -212,7 +214,26 @@
                     android:padding="@dimen/_2sdp"/>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tvView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/btn_shape"
+                android:fontFamily="@font/aileron_regular"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="3sp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                android:text="@string/view_transaction_history"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13sdp" />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/rv_mini_statement_trans"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -223,7 +244,7 @@
                 android:id="@+id/loadingPB"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_marginBottom="@dimen/_10sdp"/>
 
 

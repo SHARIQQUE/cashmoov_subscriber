@@ -40,8 +40,8 @@ public class OfferPromotionAdapter extends RecyclerView.Adapter<OfferPromotionAd
         final OfferPromotionModel offerPromotionModel = offerPromotionList.get(position);
             Glide.with(context)
                     .applyDefaultRequestOptions(new RequestOptions()
-                            .placeholder(R.drawable.banner_three)
-                            .error(R.drawable.banner_three))
+                            .placeholder(R.drawable.logo200x70b)
+                            .error(R.drawable.logo200x70b))
                     .load(API.BASEURL+"ewallet/api/v1/promOfferTemplate/download/"+offerPromotionModel.getCode()+"/"+offerPromotionModel.getFileName())
                     .into(holder.img_offer_logo);
 

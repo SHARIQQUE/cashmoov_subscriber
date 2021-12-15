@@ -1,9 +1,6 @@
 package com.estel.cashmoovsubscriberapp;
 
-
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -11,7 +8,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -51,13 +47,9 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.Collections;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -65,9 +57,9 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static MainActivity mainC;
     SmoothBottomBar bottomBar;
-    ImageView imgNotification,imgQR;
+    ImageView imgNotification,imgQR,imgLogo;
     CircleImageView imgProfile;
-    LinearLayout linClick;
+    LinearLayout linMain,linClick,linPromotion;
     TextView tvClick,tvBalance,pro_text;
     CardView cardMoneyTransfer,cardAirtimePurchase,cardRechargePayment,cardPay,
     cardCashWithdrawal,cardRecRemittance,cardFee,cardServicePoints;
@@ -134,8 +126,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pro_text = findViewById(R.id.pro_text);
         imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
+        imgLogo = findViewById(R.id.imgLogo);
         imgProfile = findViewById(R.id.imgProfile);
+        linMain = findViewById(R.id.linMain);
         linClick = findViewById(R.id.linClickn);
+        linPromotion =findViewById(R.id.linPromotion);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         bottomBar = findViewById(R.id.bottomBar);
@@ -148,6 +143,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardFee = findViewById(R.id.cardFee);
         cardServicePoints = findViewById(R.id.cardServicePoints);
         rv_offer_promotion = findViewById(R.id.rv_offer_promotion);
+        linPromotion.setVisibility(View.GONE);
+        linMain.setVisibility(View.VISIBLE);
+        imgLogo.setVisibility(View.INVISIBLE);
 
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -298,7 +296,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                     }
-                                    pro_text.setVisibility(View.GONE);
+                                    //pro_text.setVisibility(View.GONE);
+                                    linPromotion.setVisibility(View.GONE);
                                     gettempalteList();
 
 
@@ -410,7 +409,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-                        pro_text.setVisibility(View.VISIBLE);
+                        linPromotion.setVisibility(View.VISIBLE);
+                        linMain.setVisibility(View.GONE);
+                        imgLogo.setVisibility(View.VISIBLE);
                         rv_offer_promotion.setHasFixedSize(true);
                         // rv_offer_promotion.setLayoutManager(new GridLayoutManager(this,2));
                         rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC,LinearLayoutManager.HORIZONTAL,false));
@@ -420,7 +421,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
                         offerPromotionAdapter.notifyDataSetChanged();
 
-
+                        rv_offer_promotion.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Call smooth scroll
+                                rv_offer_promotion.smoothScrollToPosition(offerPromotionAdapter.getItemCount() - 1);
+                            }
+                        });
                     }
                 }else{
                    // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));

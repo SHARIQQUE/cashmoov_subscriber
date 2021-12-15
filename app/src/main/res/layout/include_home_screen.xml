@@ -24,10 +24,10 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/linMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -76,6 +76,31 @@
                 android:src="@drawable/profil" />
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linPromotion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pro_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/textColorDBlack"
+                android:fontFamily="@font/aileron_bold"
+                android:lineSpacingExtra="3sp"
+                android:text="@string/promotions" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_offer_promotion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -170,7 +195,7 @@
                                         android:textSize="@dimen/_13sdp"
                                         android:textColor="@color/white"
                                         android:lineSpacingExtra="3sp"
-                                        android:text="@string/view_balance_trans_history" />
+                                        android:text="@string/view_balance" />
                                     <TextView
                                         android:id="@+id/tvBalance"
                                         android:layout_width="wrap_content"
@@ -201,8 +226,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_100sdp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -644,30 +670,6 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_100sdp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/pro_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
-                android:textColor="@color/textColorDBlack"
-                android:fontFamily="@font/aileron_bold"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/promotions" />
-
-             <androidx.recyclerview.widget.RecyclerView
-                 android:id="@+id/rv_offer_promotion"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:layout_marginTop="@dimen/_15sdp"/>
-         </LinearLayout>
 
 
     </LinearLayout>

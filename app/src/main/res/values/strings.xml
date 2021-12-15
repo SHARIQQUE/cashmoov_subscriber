@@ -363,6 +363,7 @@
     <string name="view_balance_trans_history"><![CDATA[Balance & Transaction history]]></string>
     <string name="go">Go</string>
     <string name="Contacts">Contacts</string>
+    <string name="view_transaction_history">View transaction history</string>
 
 
     <string-array name="Spinner_provider">

@@ -24,14 +24,8 @@ import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.security.spec.ECField;
 import java.util.concurrent.Executor;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -61,8 +55,6 @@ public class LoginPin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
 
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {

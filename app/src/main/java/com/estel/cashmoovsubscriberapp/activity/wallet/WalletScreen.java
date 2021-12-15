@@ -37,7 +37,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     private List<MiniStatement> miniStatementList = new ArrayList<>();
     LinearLayout linClick;
-    private TextView tvCurrency,tvAccStatement,tvClick,tvBalance;
+    private TextView tvCurrency,tvAccStatement,tvClick,tvBalance,tvView;
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
     ImageView imgBack,imgHome;
@@ -88,8 +88,12 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         super.onRestart();
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-        tvClick.setVisibility(View.GONE);
-        tvBalance.setVisibility(View.VISIBLE);
+        tvClick.setVisibility(View.VISIBLE);
+        tvBalance.setVisibility(View.GONE);
+        tvView.setVisibility(View.VISIBLE);
+        rv_mini_statement_trans.setVisibility(View.GONE);
+        loadingPB.setVisibility(View.GONE);
+        tvRefresh.setVisibility(View.GONE);
     }
 
     private void getIds() {
@@ -102,12 +106,13 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         tvRefresh = findViewById(R.id.tvRefresh);
+        tvView = findViewById(R.id.tvView);
         loadingPB = findViewById(R.id.loadingPB);
         nestedSV = findViewById(R.id.nestedSV);
         rv_mini_statement_trans = findViewById(R.id.rv_mini_statement_trans);
-
-        tvClick.setVisibility(View.GONE);
         tvBalance.setVisibility(View.VISIBLE);
+        tvClick.setVisibility(View.GONE);
+
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
@@ -160,6 +165,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         tvAccStatement.setOnClickListener(walletscreenC);
         linClick.setOnClickListener(walletscreenC);
         tvRefresh.setOnClickListener(walletscreenC);
+        tvView.setOnClickListener(walletscreenC);
     }
 
     @Override
@@ -189,7 +195,17 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.tvRefresh:
-                callApiMiniStatementTrans(walletCode,0,20);
+                page = 0;
+                limit = 20;
+                loadingPB.setVisibility(View.VISIBLE);
+                callApiMiniStatementTrans(walletCode,page,limit);
+                break;
+            case R.id.tvView:
+                tvView.setVisibility(View.GONE);
+                rv_mini_statement_trans.setVisibility(View.VISIBLE);
+                tvRefresh.setVisibility(View.VISIBLE);
+                loadingPB.setVisibility(View.VISIBLE);
+                callApiMiniStatementTrans(walletCode,page,limit);
                 break;
 
         }
@@ -216,7 +232,6 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                 tvCurrency.setText(getString(R.string.your_currency)+" : "+data.optString("currencyName"));
                                                 tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
-                                                callApiMiniStatementTrans(walletCode,page,limit);
                                             }
 
                                         }
