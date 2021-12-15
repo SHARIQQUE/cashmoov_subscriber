@@ -216,6 +216,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.linClickn:
                 intent = new Intent(mainC, WalletScreen.class);
                 startActivity(intent);
+
+               /* if(isTaskRoot()){
+
+                }else{
+                   // super.onBackPressed();
+                }*/
+
+
 //                if(tvClick.isShown()) {
 //                    tvClick.setVisibility(View.GONE);
 //                    tvBalance.setVisibility(View.VISIBLE);

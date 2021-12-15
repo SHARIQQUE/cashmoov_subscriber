@@ -52,6 +52,9 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:inputType="phone"
+                    android:focusable="true"
+                    app:iconifiedByDefault="false"
+                    android:focusableInTouchMode="true"
                     android:theme="@style/SearchViewStyle"
                     app:defaultQueryHint="@string/search_here" />
 

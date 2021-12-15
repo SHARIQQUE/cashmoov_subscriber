@@ -88,8 +88,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         super.onRestart();
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-        tvClick.setVisibility(View.VISIBLE);
-        tvBalance.setVisibility(View.GONE);
+        tvClick.setVisibility(View.GONE);
+        tvBalance.setVisibility(View.VISIBLE);
     }
 
     private void getIds() {
@@ -106,6 +106,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         nestedSV = findViewById(R.id.nestedSV);
         rv_mini_statement_trans = findViewById(R.id.rv_mini_statement_trans);
 
+        tvClick.setVisibility(View.GONE);
+        tvBalance.setVisibility(View.VISIBLE);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 

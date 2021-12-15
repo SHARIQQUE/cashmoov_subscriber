@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -101,6 +102,7 @@ public class LoginPin extends AppCompatActivity {
                 else{
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
+                    //etPass.setTransformationMethod(new HiddenPassTransformationMethod());
                     etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
                 }

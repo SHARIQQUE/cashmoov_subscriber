@@ -78,7 +78,8 @@
         <activity android:name=".activity.NotificationList" />
         <activity android:name=".activity.MyQrCode" />
         <activity android:name=".activity.OfferPromotionDetailActivity" />
-        <activity android:name=".activity.wallet.WalletScreen" />
+        <activity android:name=".activity.wallet.WalletScreen"
+            />
         <activity android:name=".activity.wallet.WalletTransactionDetails" />
         <activity android:name=".activity.wallet.TransactionDetailsActivity" />
         <activity android:name=".activity.partner.Partner" />
