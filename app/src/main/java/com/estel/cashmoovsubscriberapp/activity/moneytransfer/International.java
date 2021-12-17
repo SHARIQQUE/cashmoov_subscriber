@@ -53,6 +53,8 @@ public class International extends AppCompatActivity implements View.OnClickList
     private ArrayList<GenderInfoModel.Gender> benefiGenderModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogSerProvider,spinnerDialogBenefiCountry,spinnerDialogBenefiCurrency,spinnerDialogBenefiGender;
     TextView tvSend;
+    private boolean isAmt=true;
+    private boolean isAmtPaid=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,7 @@ public class International extends AppCompatActivity implements View.OnClickList
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.isFirstTime=false;
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -144,6 +147,7 @@ public class International extends AppCompatActivity implements View.OnClickList
             }
         });
 
+
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -162,15 +166,22 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                else {
                     if(s.length()>=1) {
-                        callApiAmountDetails();
+                        if(isAmt){
+                            etAmountNew.setEnabled(false);
+                            isAmtPaid=false;
+                            callApiAmountDetails();
+                        }else{
+                            etAmountNew.setEnabled(true);
+                            isAmtPaid=true;
+                        }
                     }else{
-                        //etAmountNew.setText("");
+                        isAmtPaid=true;
+                        etAmountNew.setEnabled(true);
+                        etAmountNew.getText().clear();
                         tvFee.setText("");
                         tvAmtPaid.setText("");
                         tvRate.setText("");
-                    }
                 }
 
             }
@@ -190,16 +201,24 @@ public class International extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if (spBenifiCurr.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                else {
                     if(s.length()>=1) {
-                        callApiAmountDetailsNew();
+                        if(isAmtPaid){
+                            etAmount.setEnabled(false);
+                            isAmt=false;
+                            callApiAmountDetailsNew();
+                        }else{
+                           isAmt=true;
+                           etAmount.setEnabled(true);
+                        }
+
                     }else{
-                        etAmount.setText("");
+                        isAmt=true;
+                        etAmount.setEnabled(true);
+                        etAmount.getText().clear();
                         tvFee.setText("");
                         tvAmtPaid.setText("");
                         tvRate.setText("");
@@ -207,10 +226,8 @@ public class International extends AppCompatActivity implements View.OnClickList
                 }
 
 
-
-            }
-
         });
+
 
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
@@ -561,7 +578,9 @@ public class International extends AppCompatActivity implements View.OnClickList
                                     //etAmountNew.setText(currencyValue);
                                     tvRate.setText(rate);
                                     tvFee.setText(fee);
+                                    etAmountNew.setText(currencyValue);
                                     tvAmtPaid.setText(currencyValue);
+
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -630,19 +649,23 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             tvAmtPaid.setText(String.valueOf(currValue));
                                         }else{
                                             String finalValue = df.format(currValue / value);
-                                            tvAmtPaid.setText(finalValue);
+                                           // tvAmtPaid.setText(finalValue);
                                             etAmount.setText(finalValue);
                                         }
 
                                     }catch (Exception e){}
-                                    /*fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
+
+                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     rate = jsonObjectAmountDetails.optString("value");
                                     exRateCode = jsonObjectAmountDetails.optString("code");
-                                    *///receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                    //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                   /* tvRate.setText(MyApplication.addDecimal(rate));
+                                    //etAmountNew.setText(currencyValue);
+                                    tvRate.setText(rate);
                                     tvFee.setText(fee);
-                                    tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));*/
+                                   // etAmountNew.setText(currencyValue);
+                                    tvAmtPaid.setText(currencyValue);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -652,13 +675,11 @@ public class International extends AppCompatActivity implements View.OnClickList
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
-//                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-//                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-//                                    }else{
-//                                        taxConfigurationList=null;
-//                                    }
-
-
+                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                    }else{
+                                        taxConfigurationList=null;
+                                    }
                                 } else {
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -767,10 +788,11 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spBenifiCurr.setText(item);
                                             spBenifiCurr.setTag(position);
-                                            etAmount.setText("");
                                             currency = benefiCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = benefiCurrencyModelList.get(position).getCurrencySymbol();
                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                            etAmount.getText().clear();
+                                            etAmountNew.getText().clear();
                                         }
                                     });
 
@@ -881,7 +903,6 @@ public class International extends AppCompatActivity implements View.OnClickList
 
     private ArrayAdapter<String> adapter;
     private void setSubscriberdataf(String subscriberInfoModel) {
-
         subscriberList.clear();
 
         subscriberList.add(""+""+subscriberInfoModel+""+"");

@@ -138,6 +138,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             @Override
             public boolean onItemSelect(int bottomId) {
                 if (bottomId == 0) {
+                    MyApplication.isFirstTime=false;
                     Intent i = new Intent(profileC, MainActivity.class);
                     startActivity(i);
                     //  finish();

@@ -63,6 +63,7 @@ public class MyApplication extends Application {
     public static String ImageURL;
     public static String setProtection;
     public static String channelTypeCode = "100000";
+    public static boolean isFirstTime=false;
 
 
     public static MyApplication getInstance() {

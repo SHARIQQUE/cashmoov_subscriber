@@ -56,7 +56,13 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
     
     }
 
-//    @Override
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.isFirstTime=false;
+    }
+
+    //    @Override
 //    public boolean onSupportNavigateUp() {
 //        onBackPressed();
 //        return true;
@@ -94,6 +100,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
             @Override
             public boolean onItemSelect(int bottomId) {
                 if (bottomId == 0) {
+                    MyApplication.isFirstTime=false;
                     Intent i = new Intent(partnerC, MainActivity.class);
                     startActivity(i);
                     //  finish();

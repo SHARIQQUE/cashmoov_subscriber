@@ -199,6 +199,7 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onBackPressed() {
+        MyApplication.isFirstTime=false;
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

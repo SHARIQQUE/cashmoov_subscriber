@@ -193,6 +193,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
+        MyApplication.isFirstTime=false;
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

@@ -180,7 +180,7 @@ public class ChangeIpLoginActivity extends AppCompatActivity implements View.OnC
 //                    }catch (Exception e){
 //
 //                    }
-
+                    MyApplication.isFirstTime=true;
                     Intent i = new Intent(verifyaccountscreenC, MainActivity.class);
                     startActivity(i);
                     finish();

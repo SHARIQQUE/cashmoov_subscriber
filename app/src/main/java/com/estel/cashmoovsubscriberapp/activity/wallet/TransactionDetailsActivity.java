@@ -66,6 +66,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Tra
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.isFirstTime=false;
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

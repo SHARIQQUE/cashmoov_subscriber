@@ -631,6 +631,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     }catch (Exception e){
 
                     }
+                    MyApplication.isFirstTime=true;
                     Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                     startActivity(i);
                     finish();

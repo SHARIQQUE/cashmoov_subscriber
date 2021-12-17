@@ -37,7 +37,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     private List<MiniStatement> miniStatementList = new ArrayList<>();
     LinearLayout linClick;
-    private TextView tvCurrency,tvAccStatement,tvClick,tvBalance,tvView;
+    private TextView tvCurrency,tvAccStatement,tvClick,tvBalance,tvView,tvViewHide;
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
     ImageView imgBack,imgHome;
@@ -76,6 +76,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.isFirstTime=false;
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -91,6 +92,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
         tvView.setVisibility(View.VISIBLE);
+        tvViewHide.setVisibility(View.GONE);
         rv_mini_statement_trans.setVisibility(View.GONE);
         loadingPB.setVisibility(View.GONE);
         tvRefresh.setVisibility(View.GONE);
@@ -107,6 +109,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         tvBalance = findViewById(R.id.tvBalance);
         tvRefresh = findViewById(R.id.tvRefresh);
         tvView = findViewById(R.id.tvView);
+        tvViewHide = findViewById(R.id.tvViewHide);
         loadingPB = findViewById(R.id.loadingPB);
         nestedSV = findViewById(R.id.nestedSV);
         rv_mini_statement_trans = findViewById(R.id.rv_mini_statement_trans);
@@ -120,6 +123,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onItemSelect(int bottomId) {
                 if (bottomId == 0) {
+                    MyApplication.isFirstTime=false;
                     Intent i = new Intent(walletscreenC, MainActivity.class);
                     startActivity(i);
                   //  finish();
@@ -166,6 +170,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         linClick.setOnClickListener(walletscreenC);
         tvRefresh.setOnClickListener(walletscreenC);
         tvView.setOnClickListener(walletscreenC);
+        tvViewHide.setOnClickListener(walletscreenC);
     }
 
     @Override
@@ -201,11 +206,21 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 callApiMiniStatementTrans(walletCode,page,limit);
                 break;
             case R.id.tvView:
-                tvView.setVisibility(View.GONE);
-                rv_mini_statement_trans.setVisibility(View.VISIBLE);
-                tvRefresh.setVisibility(View.VISIBLE);
-                loadingPB.setVisibility(View.VISIBLE);
-                callApiMiniStatementTrans(walletCode,page,limit);
+                 tvViewHide.setVisibility(View.VISIBLE);
+                 tvView.setVisibility(View.GONE);
+                 rv_mini_statement_trans.setVisibility(View.VISIBLE);
+                 tvRefresh.setVisibility(View.VISIBLE);
+                 loadingPB.setVisibility(View.VISIBLE);
+                 callApiMiniStatementTrans(walletCode,page,limit);
+                break;
+            case R.id.tvViewHide:
+                page=0;
+                limit=20;
+                tvView.setVisibility(View.VISIBLE);
+                tvViewHide.setVisibility(View.GONE);
+                rv_mini_statement_trans.setVisibility(View.GONE);
+                tvRefresh.setVisibility(View.GONE);
+                loadingPB.setVisibility(View.GONE);
                 break;
 
         }

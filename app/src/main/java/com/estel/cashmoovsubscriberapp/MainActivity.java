@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
@@ -50,6 +49,10 @@ import com.google.android.gms.location.LocationServices;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println("Image Name:  "+ImageName);
             Glide.with(this).load(ImageName).apply(options).into(imgProfile);
         }
-        callApiWalletList();
+
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -112,6 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //MyApplication.isFirstTime=false;
+    }
 
     @Override
     protected void onRestart() {
@@ -120,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
+        MyApplication.isFirstTime=false;
     }
 
     private void getIds() {
@@ -143,9 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardFee = findViewById(R.id.cardFee);
         cardServicePoints = findViewById(R.id.cardServicePoints);
         rv_offer_promotion = findViewById(R.id.rv_offer_promotion);
-        linPromotion.setVisibility(View.GONE);
-        linMain.setVisibility(View.VISIBLE);
-        imgLogo.setVisibility(View.INVISIBLE);
+
 
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -176,6 +183,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         setOnCLickListener();
+
+        callApiWalletList();
 
 
     }
@@ -296,12 +305,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                     }
-                                    //pro_text.setVisibility(View.GONE);
-                                    linPromotion.setVisibility(View.GONE);
+
+
                                     gettempalteList();
+//                                    if(MyApplication.isFirstTime){
+//                                        linPromotion.setVisibility(View.VISIBLE);
+//                                        linMain.setVisibility(View.GONE);
+//                                        imgLogo.setVisibility(View.VISIBLE);
+//                                        gettempalteList();
+//                                    }else{
+//                                        linPromotion.setVisibility(View.VISIBLE);
+//                                        linMain.setVisibility(View.GONE);
+//                                        imgLogo.setVisibility(View.VISIBLE);
+//                                        gettempalteList();
+//                                    }
+
 
 
                                 } else {
+                                    linPromotion.setVisibility(View.GONE);
+                                    linMain.setVisibility(View.VISIBLE);
+                                    imgLogo.setVisibility(View.INVISIBLE);
                                     MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
                                 }
                             }
@@ -339,17 +363,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     //walletOwnerTemplateList
                     if(dataArray!=null&&dataArray.length()>0) {
+
+                        Set<Integer> set = new HashSet<>();
+
                         for (int i = 0; i < dataArray.length(); i++) {
                             JSONObject data = dataArray.optJSONObject(i);
                             if(data.optString("templateCategoryCode").equalsIgnoreCase("100013")){
-                                        getPromotionList(data.optString("templateCode"));
-                            }else{
-                               // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                                    set.add(0);
+                                linPromotion.setVisibility(View.VISIBLE);
+                                linMain.setVisibility(View.GONE);
+                                imgLogo.setVisibility(View.VISIBLE);
+                                getPromotionList(data.optString("templateCode"));
                             }
+//                            else{
+//                                    set.add(1);
+//
+//                               // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+//                            }
                         }
+                            Log.e("Set--",set.toString());
+                        if(!set.contains(0)){
+                            linPromotion.setVisibility(View.GONE);
+                            linMain.setVisibility(View.VISIBLE);
+                            imgLogo.setVisibility(View.INVISIBLE);
+
+                        }
+
+
 
                     }
                 }else{
+                    linPromotion.setVisibility(View.GONE);
+                    linMain.setVisibility(View.VISIBLE);
+                    imgLogo.setVisibility(View.INVISIBLE);
                     MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
                 }
 
@@ -362,6 +408,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+
+    OfferPromotionAdapter offerPromotionAdapter;
 
     private void getPromotionList(String code) {
 //http://202.131.144.130:8081/ewallet/api/v1/promOfferTemplate/101235
@@ -409,27 +458,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-                        linPromotion.setVisibility(View.VISIBLE);
-                        linMain.setVisibility(View.GONE);
-                        imgLogo.setVisibility(View.VISIBLE);
+
                         rv_offer_promotion.setHasFixedSize(true);
                         // rv_offer_promotion.setLayoutManager(new GridLayoutManager(this,2));
                         rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC,LinearLayoutManager.HORIZONTAL,false));
-                        rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
+                        //rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
                        // Collections.sort(offerPromotionModelArrayList, Collections.reverseOrder());
-                        OfferPromotionAdapter offerPromotionAdapter = new OfferPromotionAdapter(mainC,offerPromotionModelArrayList);
+                        offerPromotionAdapter = new OfferPromotionAdapter(mainC,offerPromotionModelArrayList);
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
-                        offerPromotionAdapter.notifyDataSetChanged();
 
-                        rv_offer_promotion.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                // Call smooth scroll
-                                rv_offer_promotion.smoothScrollToPosition(offerPromotionAdapter.getItemCount() - 1);
-                            }
-                        });
+                        offerPromotionAdapter.notifyDataSetChanged();
+                        Timer timer = new Timer();
+                        timer.scheduleAtFixedRate(new AutoScrollTask(), 3000, 5000);
+
+
+
                     }
                 }else{
+                    linPromotion.setVisibility(View.GONE);
+                    linMain.setVisibility(View.VISIBLE);
+                    imgLogo.setVisibility(View.INVISIBLE);
                    // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
                 }
 
@@ -442,6 +490,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+
+    int position ;
+    boolean end;
+    private class AutoScrollTask extends TimerTask{
+        @Override
+        public void run() {
+            if(position == offerPromotionModelArrayList.size() -1){
+                end = true;
+            } else if (position == 0) {
+                end = false;
+            }
+            if(!end){
+                position++;
+            } else {
+                position--;
+            }
+            rv_offer_promotion.smoothScrollToPosition(position);
+        }
+    }
+
 
     int doubleBackToExitPressed = 1;
 
@@ -571,5 +640,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
 
 }

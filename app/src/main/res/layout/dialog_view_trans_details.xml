@@ -236,7 +236,7 @@
             android:paddingEnd="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:enabled="false"/>
         <TextView
             android:layout_width="wrap_content"

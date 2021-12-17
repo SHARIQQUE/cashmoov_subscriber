@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.estel.cashmoovsubscriberapp.MainActivity;
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
@@ -199,6 +200,7 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
 
     @Override
     public void onBackPressed() {
+        MyApplication.isFirstTime=false;
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

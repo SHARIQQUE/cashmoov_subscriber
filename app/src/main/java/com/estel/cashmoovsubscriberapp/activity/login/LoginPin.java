@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -82,6 +83,7 @@ public class LoginPin extends AppCompatActivity {
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
 
+        etPin.setTransformationMethod(new HiddenPassTransformationMethod());
 
         icPin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +96,9 @@ public class LoginPin extends AppCompatActivity {
                 else{
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    //etPass.setTransformationMethod(new HiddenPassTransformationMethod());
+                    //etPin.setTransformationMethod(new HiddenPassTransformationMethod());
                     etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
 
                 }
             }
@@ -515,6 +518,7 @@ public class LoginPin extends AppCompatActivity {
     }
 
     public void callLogin(){
+        MyApplication.isFirstTime=true;
         Intent i = new Intent(loginpinC, MainActivity.class);
         startActivity(i);
         finish();

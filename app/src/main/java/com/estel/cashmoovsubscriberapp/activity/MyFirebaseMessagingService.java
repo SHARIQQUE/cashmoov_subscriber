@@ -21,6 +21,7 @@ import android.util.Log;
 
 
 import com.estel.cashmoovsubscriberapp.MainActivity;
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -49,7 +50,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
         Bundle bundle = new Bundle();
         bundle.putString(FCM_PARAM, data.get(FCM_PARAM));
-
+        MyApplication.isFirstTime=false;
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtras(bundle);
 

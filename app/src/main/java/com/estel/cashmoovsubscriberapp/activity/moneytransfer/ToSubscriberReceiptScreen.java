@@ -196,6 +196,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
 
     @Override
     public void onBackPressed() {
+        MyApplication.isFirstTime=false;
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

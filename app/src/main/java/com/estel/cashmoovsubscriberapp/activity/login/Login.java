@@ -91,6 +91,7 @@ public class Login extends AppCompatActivity {
                 //  Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                 // tvFinger.setText("Login Successful");
                 System.out.println("Fingerprint Result"+result.toString());
+                MyApplication.isFirstTime=true;
                 Intent intent = new Intent(loginC, MainActivity.class);
                 startActivity(intent);
             }
@@ -136,6 +137,7 @@ public class Login extends AppCompatActivity {
                     MyApplication.showErrorToast(loginC, getString(R.string.val_pass));
                     return;
                 } else {
+                    MyApplication.isFirstTime=true;
                     Intent intent = new Intent(loginC, MainActivity.class);
                     startActivity(intent);
                 }

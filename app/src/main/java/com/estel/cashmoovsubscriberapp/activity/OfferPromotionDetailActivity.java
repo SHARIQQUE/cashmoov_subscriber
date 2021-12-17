@@ -65,6 +65,7 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.isFirstTime=false;
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -84,24 +85,34 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
         txt_header.setText(data.getHeading());
         txt_content.setText(data.getDescription());
         sub_txt_content.setText(data.getStatus());
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-        Date date = null;
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+//        Date date = null;
+//        try {
+//            date = inputFormat.parse(data.getToDate());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        String formattedDate = outputFormat.format(date);
         try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
             date = inputFormat.parse(data.getToDate());
+            String formattedDate = outputFormat.format(date);
+            txt_time.setText(formattedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String formattedDate = outputFormat.format(date);
-        txt_time.setText(formattedDate);
+
 
         if(data.getPromOfferTypeName().equalsIgnoreCase("Both")||
                 data.getPromOfferTypeName().equalsIgnoreCase("Image")){
             img_offer_logo.setVisibility(View.VISIBLE);
             Glide.with(this)
                     .applyDefaultRequestOptions(new RequestOptions()
-                            .placeholder(R.drawable.banner_three)
-                            .error(R.drawable.banner_three))
+                            .placeholder(R.drawable.logo200x70b)
+                            .error(R.drawable.logo200x70b))
                     .load(API.BASEURL+"ewallet/api/v1/promOfferTemplate/download/"+data.getCode()+"/"+data.getFileName())
                     .into(img_offer_logo);
         }else{
