@@ -21,6 +21,7 @@ import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
 import com.suke.widget.SwitchButton;
 
@@ -66,6 +67,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
 //    }
 
     private void getIds() {
+
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
@@ -97,6 +99,45 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.currencyValue);
 
         tvFee.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.fee);
+
+        TextView tvFinger =findViewById(R.id.tvFinger);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                tvFinger.setVisibility(View.VISIBLE);
+            } else {
+                tvFinger.setVisibility(View.GONE);
+            }
+        }else{
+            tvFinger.setVisibility(View.VISIBLE);
+        }
+        tvFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.biometricAuth(tosubscriberconfirmscreenC, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            ToSubscriber.dataToSend.put( "pin",encryptionDatanew);
+                            if(switch_button.isChecked()) {
+                                dataToSendBear.put("pin", encryptionDatanew);
+                            }
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(tosubscriberconfirmscreenC,failure);
+                    }
+                });
+            }
+        });
+
 
         switch_button=findViewById(R.id.switch_button);
         switch_button.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {

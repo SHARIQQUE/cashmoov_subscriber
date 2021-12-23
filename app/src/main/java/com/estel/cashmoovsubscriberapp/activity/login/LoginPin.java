@@ -131,6 +131,7 @@ public class LoginPin extends AppCompatActivity {
             }
         });
 
+
         pin =MyApplication.getSaveString("pin",loginpinC);
         MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", loginpinC);
 

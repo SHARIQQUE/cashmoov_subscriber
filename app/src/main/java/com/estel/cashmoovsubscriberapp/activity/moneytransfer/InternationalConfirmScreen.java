@@ -18,6 +18,8 @@ import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -116,6 +118,44 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         }
 
         tvAmountCharged.setText(International.fromCurrencySymbol+" "+df.format(finalamount));
+
+
+        TextView tvFinger =findViewById(R.id.tvFinger);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                tvFinger.setVisibility(View.VISIBLE);
+            } else {
+                tvFinger.setVisibility(View.GONE);
+            }
+        }else{
+            tvFinger.setVisibility(View.VISIBLE);
+        }
+        tvFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.biometricAuth(internationalconfirmscreenC, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            International.dataToSend.put( "pin",encryptionDatanew);
+
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(internationalconfirmscreenC,failure);
+                    }
+                });
+            }
+        });
+
 
 
         setOnCLickListener();

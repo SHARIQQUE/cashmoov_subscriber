@@ -101,8 +101,14 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
             public boolean onItemSelect(int bottomId) {
                 if (bottomId == 0) {
                     MyApplication.isFirstTime=false;
-                    Intent i = new Intent(partnerC, MainActivity.class);
-                    startActivity(i);
+
+                    if(isTaskRoot()){
+                        Intent i = new Intent(partnerC, MainActivity.class);
+                        startActivity(i);
+                    }else{
+                       onBackPressed();
+                    }
+
                     //  finish();
                 }
                 if (bottomId == 1) {
@@ -111,8 +117,12 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 //                    finish();
                 }
                 if (bottomId == 2) {
-                    Intent i = new Intent(partnerC, Profile.class);
-                    startActivity(i);
+
+
+
+                        Intent i = new Intent(partnerC, Profile.class);
+                        startActivity(i);
+
                     //  finish();
                 }
                 return true;

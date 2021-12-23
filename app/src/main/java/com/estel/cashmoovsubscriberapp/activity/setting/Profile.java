@@ -1,7 +1,11 @@
 package com.estel.cashmoovsubscriberapp.activity.setting;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -137,15 +141,30 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public boolean onItemSelect(int bottomId) {
+                /*ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+
+                int sizeStack =  am.getRunningTasks(2).size();
+
+                for(int i = 0;i < sizeStack;i++){
+
+                    ComponentName cn = am.getRunningTasks(2).get(i).topActivity;
+                    MyApplication.showToast(profileC,cn.getClassName());
+                    Log.d("Class Name======", cn.getClassName());
+                }*/
+
                 if (bottomId == 0) {
                     MyApplication.isFirstTime=false;
+
                     Intent i = new Intent(profileC, MainActivity.class);
                     startActivity(i);
+
                     //  finish();
                 }
                 if (bottomId == 1) {
                     Intent i = new Intent(profileC, Partner.class);
                     startActivity(i);
+
+
                     //finish();
                 }
                 if (bottomId == 2) {

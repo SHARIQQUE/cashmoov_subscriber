@@ -12,8 +12,12 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
+import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayConfirmScreen;
+import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayDetails;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -75,6 +79,98 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         etName.setEnabled(false);
 
         callwalletOwnerDetails();
+
+
+
+        TextView tvFinger =findViewById(R.id.tvFinger);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                tvFinger.setVisibility(View.VISIBLE);
+            } else {
+                tvFinger.setVisibility(View.GONE);
+            }
+        }else{
+            tvFinger.setVisibility(View.VISIBLE);
+        }
+        tvFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.biometricAuth(receiveremittanceC, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+                            etPin.setClickable(false);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            if(etPhone.getText().toString().isEmpty()){
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_phone));
+                                return;
+                            }
+                            if(etPhone.getText().toString().trim().length()<9){
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.enter_phone_no_val));
+                                return;
+                            }
+                            if(etName.getText().toString().isEmpty()){
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_beneficiairy_name));
+                                return;
+                            }
+                            if(etConfCode.getText().toString().isEmpty()){
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_confirmation_code));
+                                return;
+                            }
+                            if(spBenefiCurrency.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_select_benifi_curr));
+                                return;
+                            }
+                            if(etAmount.getText().toString().isEmpty()){
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_amount));
+                                return;
+                            }
+                            if(etAmount.getText().toString().trim().equals("0")||etAmount.getText().toString().trim().equals(".")||etAmount.getText().toString().trim().equals(".0")||
+                                    etAmount.getText().toString().trim().equals("0.")||etAmount.getText().toString().trim().equals("0.0")||etAmount.getText().toString().trim().equals("0.00")){
+                                MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_valid_amount));
+                                return;
+                            }
+
+                            try{
+                                dataToSend.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
+                                dataToSend.put("toCurrencyCode",fromCurrencyCode);
+                                dataToSend.put("amount",etAmount.getText().toString());
+                                dataToSend.put("confirmationCode",etConfCode.getText().toString());
+                                dataToSend.put("firstName",etName.getText().toString());
+                                dataToSend.put("lastName",etLname.getText().toString());
+                                dataToSend.put("phoneNumber",etPhone.getText().toString());
+                                dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                                dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                                dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                               // String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                                dataToSend.put("pin", encryptionDatanew);
+                                dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
+                                dataToSend.put("transactionArea",MainActivity.transactionArea);
+                                dataToSend.put("isGpsOn",true);
+
+                                System.out.println("Data Send "+dataToSend.toString());
+
+                                etPin.setClickable(false);
+                                tvSend.setVisibility(View.GONE);
+
+                                callPostAPI();
+
+                            }catch (Exception e){
+
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(receiveremittanceC,failure);
+                    }
+                });
+            }
+        });
 
         setOnCLickListener();
 

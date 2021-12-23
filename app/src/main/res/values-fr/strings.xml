@@ -217,6 +217,7 @@
     <string name="login">Connexion</string>
     <string name="login_fingerprint">Connexion avec empreinte digitale ?</string>
     <string name="use_finger_to_login">Utilisez votre empreinte digitale pour vous connecter</string>
+    <string name="use_finger_to_transaction">Utilisez votre empreinte digitale pour effectuer une transaction</string>
     <string name="no_fingerprint_senser">Cet appareil n\'a pas de capteur d\'empreintes digitales</string>
     <string name="no_biometric_senser">Le capteur biométrique est actuellement indisponible</string>
     <string name="device_not_contain_fingerprint">Votre appareil n\'a pas d\'empreinte digitale enregistrée, veuillez vérifier vos paramètres de sécurité</string>

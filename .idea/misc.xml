@@ -122,6 +122,7 @@
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/layout/toolbar_add_contact.xml" value="0.20416666666666666" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.1375" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_beneficiary_airtime.xml" value="0.1390625" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_bill_pay_confirm.xml" value="0.1765625" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_cashwithdrawal.xml" value="0.1921875" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_confirm_screen.xml" value="0.171875" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_international.xml" value="0.1765625" />
@@ -131,6 +132,7 @@
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_pay.xml" value="0.1921875" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.1734375" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_receipt_screen.xml" value="0.1765625" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_receive_remittance.xml" value="0.1765625" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_register_stepone.xml" value="0.14583333333333334" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_self_airtime.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_set_pin.xml" value="0.1" />

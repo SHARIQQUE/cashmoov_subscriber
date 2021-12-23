@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
@@ -46,26 +48,29 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static MainActivity mainC;
     SmoothBottomBar bottomBar;
-    ImageView imgNotification,imgQR,imgLogo;
+    ImageView imgNotification, imgQR, imgLogo;
     CircleImageView imgProfile;
-    LinearLayout linMain,linClick,linPromotion;
-    TextView tvClick,tvBalance,pro_text;
-    CardView cardMoneyTransfer,cardAirtimePurchase,cardRechargePayment,cardPay,
-    cardCashWithdrawal,cardRecRemittance,cardFee,cardServicePoints;
+    LinearLayout linMain, linClick, linPromotion;
+    TextView tvClick, tvBalance, pro_text;
+    CardView cardMoneyTransfer, cardAirtimePurchase, cardRechargePayment, cardPay,
+            cardCashWithdrawal, cardRecRemittance, cardFee, cardServicePoints;
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayListTemp;
@@ -78,10 +83,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainC = this;
         MyApplication.setLang(mainC);
 
-        resultReceiver = new AddressResultReceiver(new Handler());
         getIds();
-    }
+        MyApplication.IsMainOpen = true;
 
+
+        resultReceiver = new AddressResultReceiver(new Handler());
+
+    }
 
 
     @Override
@@ -95,13 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .error(R.drawable.profil);
 
 
-        String ImageName=MyApplication.getSaveString("ImageName", mainC);
-        if(ImageName!=null&&ImageName.length()>1) {
+        String ImageName = MyApplication.getSaveString("ImageName", mainC);
+        if (ImageName != null && ImageName.length() > 1) {
           /*  String image_url = API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                     MyApplication.getSaveString("walletOwnerCode", mainC)+"/" + ImageName;
 */
-           // System.out.println("Image Url:  "+image_url);
-            System.out.println("Image Name:  "+ImageName);
+            // System.out.println("Image Url:  "+image_url);
+            System.out.println("Image Name:  " + ImageName);
             Glide.with(this).load(ImageName).apply(options).into(imgProfile);
         }
 
@@ -129,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
-        MyApplication.isFirstTime=false;
+        MyApplication.isFirstTime = false;
     }
 
     private void getIds() {
@@ -140,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgProfile = findViewById(R.id.imgProfile);
         linMain = findViewById(R.id.linMain);
         linClick = findViewById(R.id.linClickn);
-        linPromotion =findViewById(R.id.linPromotion);
+        linPromotion = findViewById(R.id.linPromotion);
         tvClick = findViewById(R.id.tvClick);
         tvBalance = findViewById(R.id.tvBalance);
         bottomBar = findViewById(R.id.bottomBar);
@@ -162,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public boolean onItemSelect(int bottomId) {
-                Log.e("PositionMain--",""+bottomId);
+                Log.e("PositionMain--", "" + bottomId);
 
                 if (bottomId == 0) {
 //                    Intent i = new Intent(mainC, MainActivity.class);
@@ -170,14 +178,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
+
                     Intent i = new Intent(mainC, Partner.class);
                     startActivity(i);
-                   // finish();
+                    // finish();
                 }
                 if (bottomId == 2) {
                     Intent i = new Intent(mainC, Profile.class);
                     startActivity(i);
-                   // finish();
+                    // finish();
                 }
                 return false;
             }
@@ -208,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.imgNotification:
                 intent = new Intent(mainC, NotificationList.class);
                 startActivity(intent);
@@ -222,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.linClickn:
-                MyApplication.saveBool("TRANSHISTORYCLICK",true,mainC);
+                MyApplication.saveBool("TRANSHISTORYCLICK", true, mainC);
                 intent = new Intent(mainC, WalletScreen.class);
                 startActivity(intent);
 
@@ -284,22 +293,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void callApiWalletList() {
         try {
-           // MyApplication.showloader(mainC,"Please wait!");
-            API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", mainC),
+            // MyApplication.showloader(mainC,"Please wait!");
+            API.GET("ewallet/api/v1/wallet/walletOwner/" + MyApplication.getSaveString("walletOwnerCode", mainC),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
                             MyApplication.hideLoader();
-                            System.out.println("MiniStatement response======="+jsonObject.toString());
+                            System.out.println("MiniStatement response=======" + jsonObject.toString());
                             if (jsonObject != null) {
 
-                                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                                    if(jsonObject.has("walletList") &&jsonObject.optJSONArray("walletList")!=null){
+                                if (jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
+                                    if (jsonObject.has("walletList") && jsonObject.optJSONArray("walletList") != null) {
                                         JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletList");
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                            if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
-                                                tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
+                                            if (data.optString("walletTypeCode").equalsIgnoreCase("100008")) {
+                                                tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
                                             }
 
                                         }
@@ -322,12 +331,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                                    }
 
 
-
                                 } else {
                                     linPromotion.setVisibility(View.GONE);
                                     linMain.setVisibility(View.VISIBLE);
                                     imgLogo.setVisibility(View.INVISIBLE);
-                                    MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                                    MyApplication.showToast(mainC, jsonObject.optString("resultDescription"));
                                 }
                             }
                         }
@@ -350,26 +358,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void gettempalteList() {
 
-       // MyApplication.showloader(mainC,"Please Wait...");
-        API.GET_WF("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/"+MyApplication.getSaveString("walletOwnerCode", mainC), new Api_Responce_Handler() {
+        // MyApplication.showloader(mainC,"Please Wait...");
+        API.GET_WF("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/" + MyApplication.getSaveString("walletOwnerCode", mainC), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();
 
 
-
-                if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                if (jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
                     JSONArray dataArray = jsonObject.optJSONArray("walletOwnerTemplateList");
 
                     //walletOwnerTemplateList
-                    if(dataArray!=null&&dataArray.length()>0) {
+                    if (dataArray != null && dataArray.length() > 0) {
 
                         Set<Integer> set = new HashSet<>();
 
                         for (int i = 0; i < dataArray.length(); i++) {
                             JSONObject data = dataArray.optJSONObject(i);
-                            if(data.optString("templateCategoryCode").equalsIgnoreCase("100013")){
-                                    set.add(0);
+                            if (data.optString("templateCategoryCode").equalsIgnoreCase("100013")) {
+                                set.add(0);
                                 linPromotion.setVisibility(View.VISIBLE);
                                 linMain.setVisibility(View.GONE);
                                 imgLogo.setVisibility(View.VISIBLE);
@@ -381,8 +388,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                               // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
 //                            }
                         }
-                            Log.e("Set--",set.toString());
-                        if(!set.contains(0)){
+                        Log.e("Set--", set.toString());
+                        if (!set.contains(0)) {
                             linPromotion.setVisibility(View.GONE);
                             linMain.setVisibility(View.VISIBLE);
                             imgLogo.setVisibility(View.INVISIBLE);
@@ -390,13 +397,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
 
-
                     }
-                }else{
+                } else {
                     linPromotion.setVisibility(View.GONE);
                     linMain.setVisibility(View.VISIBLE);
                     imgLogo.setVisibility(View.INVISIBLE);
-                    MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                    MyApplication.showToast(mainC, jsonObject.optString("resultDescription"));
                 }
 
 
@@ -404,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void failure(String aFalse) {
-                MyApplication.showToast(mainC,aFalse);
+                MyApplication.showToast(mainC, aFalse);
             }
         });
     }
@@ -416,23 +422,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //http://202.131.144.130:8081/ewallet/api/v1/promOfferTemplate/101235
         //Bhawesh, 15:02
         //http://192.168.1.171:8081/ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode=101235&status=Y&state=A
-       // MyApplication.showloader(mainC,"Please Wait...");
-        API.GET_WF("ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode="+code+"&status=Y&state=A", new Api_Responce_Handler() {
+        // MyApplication.showloader(mainC,"Please Wait...");
+        API.GET_WF("ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode=" + code + "&status=Y&state=A", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();
 
-                offerPromotionModelArrayList=new ArrayList<>();
+                offerPromotionModelArrayList = new ArrayList<>();
 
                 offerPromotionModelArrayList.clear();
-                offerPromotionModelArrayList=new ArrayList<>();
-                offerPromotionModelArrayListTemp=new ArrayList<>();
-                if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                offerPromotionModelArrayList = new ArrayList<>();
+                offerPromotionModelArrayListTemp = new ArrayList<>();
+                if (jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
                     JSONArray dataArray = jsonObject.optJSONArray("promOfferTemplateList");
                   /*  if(offerPromotionModelArrayList.size()==dataArray.length()){
                         return;
                     }*/
-                    if(dataArray!=null&&dataArray.length()>0) {
+                    if (dataArray != null && dataArray.length() > 0) {
                         for (int i = 0; i < dataArray.length(); i++) {
                             JSONObject data = dataArray.optJSONObject(i);
                             offerPromotionModelArrayList.add(new OfferPromotionModel(
@@ -466,11 +472,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         rv_offer_promotion.setHasFixedSize(true);
                         // rv_offer_promotion.setLayoutManager(new GridLayoutManager(this,2));
-                        rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC,LinearLayoutManager.HORIZONTAL,false));
+                        rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC, LinearLayoutManager.HORIZONTAL, false));
                         //rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
-                       // Collections.sort(offerPromotionModelArrayList, Collections.reverseOrder());
+                        // Collections.sort(offerPromotionModelArrayList, Collections.reverseOrder());
 
-                        offerPromotionAdapter = new OfferPromotionAdapter(mainC,offerPromotionModelArrayList);
+                        offerPromotionAdapter = new OfferPromotionAdapter(mainC, offerPromotionModelArrayList);
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
 
                         offerPromotionAdapter.notifyDataSetChanged();
@@ -478,13 +484,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         timer.scheduleAtFixedRate(new AutoScrollTask(), 3000, 5000);
 
 
-
                     }
-                }else{
+                } else {
                     linPromotion.setVisibility(View.GONE);
                     linMain.setVisibility(View.VISIBLE);
                     imgLogo.setVisibility(View.INVISIBLE);
-                   // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
+                    // MyApplication.showToast(mainC,jsonObject.optString("resultDescription"));
                 }
 
 
@@ -492,26 +497,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void failure(String aFalse) {
-                MyApplication.showToast(mainC,aFalse);
+                MyApplication.showToast(mainC, aFalse);
             }
         });
     }
 
 
-    int position ;
+    int position;
     boolean end;
-    private class AutoScrollTask extends TimerTask{
+
+    private class AutoScrollTask extends TimerTask {
         @Override
         public void run() {
-            if(position == offerPromotionModelArrayList.size() -1){
+            if (position == offerPromotionModelArrayList.size() - 1) {
                 end = true;
             } else if (position == 0) {
                 end = false;
             }
-            if(!end){
+            if (!end) {
                 position++;
             } else {
-                //position=0;
+                position=0;
             }
             rv_offer_promotion.smoothScrollToPosition(position);
         }
@@ -525,8 +531,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (doubleBackToExitPressed == 2) {
             finishAffinity();
             System.exit(0);
-        }
-        else {
+        } else {
             doubleBackToExitPressed++;
             Toast.makeText(this, "Please press Back again to exit", Toast.LENGTH_SHORT).show();
         }
@@ -534,7 +539,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doubleBackToExitPressed=1;
+                doubleBackToExitPressed = 1;
             }
         }, 2000);
     }
@@ -558,8 +563,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static String transactionCoordinate;
     public static String transactionArea;
+
     private void getCurrentLocation() {
-       // progressBar.setVisibility(View.VISIBLE);
+        // progressBar.setVisibility(View.VISIBLE);
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
@@ -587,9 +593,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             int latestlocIndex = locationResult.getLocations().size() - 1;
                             double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-                            System.out.println("loc========="+ lati+""+ longi);
+                            System.out.println("loc=========" + lati + "" + longi);
 
-                            transactionCoordinate=lati+","+longi;
+                            transactionCoordinate = lati + "," + longi;
                             Location location = new Location("providerNA");
                             location.setLongitude(longi);
                             location.setLatitude(lati);
@@ -603,7 +609,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }, Looper.getMainLooper());
 
     }
+
     String textLatLong, address, postcode, locaity, state, district, country;
+
     private class AddressResultReceiver extends ResultReceiver {
         public AddressResultReceiver(Handler handler) {
             super(handler);
@@ -613,26 +621,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected void onReceiveResult(int resultCode, Bundle resultData) {
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
-                address=(resultData.getString(Constants.ADDRESS));
-                locaity=(resultData.getString(Constants.LOCAITY));
-                state=(resultData.getString(Constants.STATE));
-                district=(resultData.getString(Constants.DISTRICT));
-                country=(resultData.getString(Constants.COUNTRY));
-                postcode=(resultData.getString(Constants.POST_CODE));
+                address = (resultData.getString(Constants.ADDRESS));
+                locaity = (resultData.getString(Constants.LOCAITY));
+                state = (resultData.getString(Constants.STATE));
+                district = (resultData.getString(Constants.DISTRICT));
+                country = (resultData.getString(Constants.COUNTRY));
+                postcode = (resultData.getString(Constants.POST_CODE));
 
-                System.out.println("loc========="+address);
-                System.out.println("loc=========locaity"+locaity);
-                System.out.println("loc=========state"+state);
-                System.out.println("loc=========district"+district);
-                System.out.println("loc=========country"+country);
-                System.out.println("loc=========postcode"+postcode);
+                System.out.println("loc=========" + address);
+                System.out.println("loc=========locaity" + locaity);
+                System.out.println("loc=========state" + state);
+                System.out.println("loc=========district" + district);
+                System.out.println("loc=========country" + country);
+                System.out.println("loc=========postcode" + postcode);
 
-                transactionArea=locaity+","+district+","+state+","+country+","+postcode;
+                transactionArea = locaity + "," + district + "," + state + "," + country + "," + postcode;
 
             } else {
                 Toast.makeText(MainActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();
             }
-          //  progressBar.setVisibility(View.GONE);
+            //  progressBar.setVisibility(View.GONE);
         }
 
 
@@ -646,7 +654,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
 
 
 }

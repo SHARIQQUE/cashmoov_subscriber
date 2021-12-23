@@ -76,7 +76,7 @@
         <activity android:name=".activity.login.LoginPin"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.login.SetPin"  android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
-            android:launchMode="singleTop" android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.NotificationList"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.MyQrCode"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.OfferPromotionDetailActivity"  android:screenOrientation="portrait"/>

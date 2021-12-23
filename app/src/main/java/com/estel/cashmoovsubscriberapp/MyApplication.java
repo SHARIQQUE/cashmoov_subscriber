@@ -22,12 +22,19 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
+import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 
 import com.github.florent37.viewtooltip.ViewTooltip;
@@ -43,6 +50,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.Executor;
 import java.util.regex.Pattern;
 import okhttp3.Authenticator;
 import okhttp3.OkHttpClient;
@@ -65,6 +73,8 @@ public class MyApplication extends Application {
     public static String channelTypeCode = "100000";
     public static boolean isFirstTime=false;
     public static boolean isContact=false;
+    public static boolean IsMainOpen=false;
+
 
 
     public static MyApplication getInstance() {
@@ -423,6 +433,77 @@ public class MyApplication extends Application {
         int targetWeek = targetCalendar.get(Calendar.WEEK_OF_YEAR);
         int targetYear = targetCalendar.get(Calendar.YEAR);
         return week == targetWeek && year == targetYear;
+    }
+
+
+    public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
+
+        BiometricManager biometricManager = androidx.biometric.BiometricManager.from(activity);
+        switch (biometricManager.canAuthenticate()) {
+
+            // this means we can use biometric sensor
+            case BiometricManager.BIOMETRIC_SUCCESS:
+
+                // msgText.setText("You can use the fingerprint sensor to login");
+                // msgText.setTextColor(Color.parseColor("#fafafa"));
+                break;
+
+            // this means that the device doesn't have fingerprint sensor
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+                //msgText.setText(getString(R.string.no_fingerprint_senser));
+                //tvFinger.setVisibility(View.GONE);
+                break;
+
+            // this means that biometric sensor is not available
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
+              /*  msgText.setText(getString(R.string.no_biometric_senser));
+                tvFinger.setVisibility(View.GONE);*/
+                break;
+
+            // this means that the device doesn't contain your fingerprint
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
+
+                break;
+        }
+        // creating a variable for our Executor
+        Executor executor = ContextCompat.getMainExecutor(activity);
+        // this will give us result of AUTHENTICATION
+        final BiometricPrompt biometricPrompt = new BiometricPrompt((FragmentActivity) activity, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                //  Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                // tvFinger.setText("Login Successful");
+
+                System.out.println("Biomatric   =>"+result.toString());
+                bioMetric_responce_handler.success("Call API");
+
+               /* Intent intent = new Intent(loginpinC, MainActivity.class);
+                startActivity(intent);*/
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+        // creating a variable for our promptInfo
+        // BIOMETRIC DIALOG
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
+                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
+
+        biometricPrompt.authenticate(promptInfo);
+
+
     }
 
 

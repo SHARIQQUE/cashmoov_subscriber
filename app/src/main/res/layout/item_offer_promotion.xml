@@ -19,14 +19,16 @@
                         <ImageView
                             android:id="@+id/img_offer_logo"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_100sdp"
+                            android:layout_height="@dimen/_110sdp"
                             android:adjustViewBounds="true"
-                            android:scaleType="fitXY" />
+                            android:scaleType="fitXY"
+                            />
 
                         <TextView
                             android:id="@+id/tv_offer_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignBottom="@id/img_offer_logo"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/aileron_bold"
@@ -34,8 +36,7 @@
                             android:text="N/A"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_20sdp"
-                            android:layout_alignBottom="@id/img_offer_logo"/>
+                            android:textSize="@dimen/_20sdp" />
 
                     </RelativeLayout>
           </androidx.cardview.widget.CardView>
