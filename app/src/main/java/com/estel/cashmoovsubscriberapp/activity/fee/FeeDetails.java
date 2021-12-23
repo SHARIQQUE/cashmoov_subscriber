@@ -75,14 +75,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100024")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -111,14 +111,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("NONSUB")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -147,14 +147,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("INTREM")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -183,14 +183,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -219,14 +219,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100028")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -255,14 +255,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100057")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -291,14 +291,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("CSHPIC")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -327,14 +327,14 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("REMON")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
+                                                String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }

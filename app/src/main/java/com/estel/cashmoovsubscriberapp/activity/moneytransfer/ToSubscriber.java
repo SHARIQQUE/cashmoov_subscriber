@@ -1,6 +1,7 @@
 package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -43,6 +45,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     TextView etName,etPhone;
     private boolean isQR;
     private static final int REQUEST_CODE_QR_SCAN = 101;
+
 
 
     @Override
@@ -182,6 +185,9 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                     etFname.setText(list[1]);
                     etLname.setText(list[2]);
                     etAmount.setText("");
+                    etAmount.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(etAmount, InputMethodManager.SHOW_IMPLICIT);
                 }else{
                     etFname.setText("");
                     etLname.setText("");

@@ -91,11 +91,11 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
-        tvView.setVisibility(View.VISIBLE);
-        tvViewHide.setVisibility(View.GONE);
-        rv_mini_statement_trans.setVisibility(View.GONE);
-        loadingPB.setVisibility(View.GONE);
-        tvRefresh.setVisibility(View.GONE);
+//        tvView.setVisibility(View.VISIBLE);
+//        tvViewHide.setVisibility(View.GONE);
+//        rv_mini_statement_trans.setVisibility(View.GONE);
+//        loadingPB.setVisibility(View.GONE);
+//        tvRefresh.setVisibility(View.GONE);
     }
 
     private void getIds() {

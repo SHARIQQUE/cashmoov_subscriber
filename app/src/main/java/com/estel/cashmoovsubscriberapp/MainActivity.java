@@ -505,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(!end){
                 position++;
             } else {
-                position--;
+                position=0;
             }
             rv_offer_promotion.smoothScrollToPosition(position);
         }

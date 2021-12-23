@@ -88,7 +88,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         tvName.setText(International.ownerName+" "+International.lastName);
         //  tvConfCode.setText(International.mobileNo);
         tvCurrency.setText(International.fromCurrency);
-        tvTransAmounts.setText(International.toCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
+        tvTransAmounts.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
         tvAmountPaid.setText(International.toCurrencySymbol+" "+ International.currencyValue);
         tvFee.setText(International.fromCurrencySymbol+" "+International.fee);
 

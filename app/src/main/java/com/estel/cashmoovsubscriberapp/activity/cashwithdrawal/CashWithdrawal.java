@@ -1,6 +1,7 @@
 package com.estel.cashmoovsubscriberapp.activity.cashwithdrawal;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -140,6 +142,9 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                     String[] list = value.split(",");
                     isSet = true;
                     etRecipientNo.setText(list[0]);
+                    etAmount.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(etAmount, InputMethodManager.SHOW_IMPLICIT);
 //                    etFname.setText(list[1]);
 //                    etLname.setText(list[2]);
                 }

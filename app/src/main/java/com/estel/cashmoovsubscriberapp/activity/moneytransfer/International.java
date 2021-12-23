@@ -1,10 +1,12 @@
 package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -266,10 +268,20 @@ public class International extends AppCompatActivity implements View.OnClickList
                 if(value.contains(",")) {
                     String[] list = value.split(",");
                     isSet = true;
-                    etPhone.setText(list[0]);
-                    etFname.setText(list[1]);
-                    etLname.setText(list[2]);
-
+                    if (list.length == 3) {
+                        etPhone.setText(list[0]);
+                        etFname.setText(list[1]);
+                        etLname.setText(list[2]);
+                        etComment.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(etComment, InputMethodManager.SHOW_IMPLICIT);
+                    } else {
+                        etPhone.setText(list[0]);
+                        etFname.setText(list[1]);
+                        etLname.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(etLname, InputMethodManager.SHOW_IMPLICIT);
+                    }
                 }else{
                     etFname.setText("");
                     etLname.setText("");
@@ -655,7 +667,8 @@ public class International extends AppCompatActivity implements View.OnClickList
 
                                     }catch (Exception e){}
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    currencyValue = etAmountNew.getText().toString();
+                                    //currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
                                     fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     rate = jsonObjectAmountDetails.optString("value");
                                     exRateCode = jsonObjectAmountDetails.optString("code");
