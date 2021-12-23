@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AddBeneficiary;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
@@ -45,6 +48,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     TextView etName,etPhone;
     private boolean isQR;
     private static final int REQUEST_CODE_QR_SCAN = 101;
+    public static final int REQUEST_CODE = 1;
 
 
 
@@ -94,6 +98,14 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE  && resultCode  == RESULT_OK) {
+
+            MyApplication.isContact=false;
+            String requiredValue = data.getStringExtra("PHONE");
+            etSubscriberNo.setText(requiredValue);
+
+        }
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)
@@ -133,6 +145,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     public static String currencyValue,fee,serviceProvider,mobileNo,ownerName,lastName,confCode,currency,currencySymbol;
     public static int receiverFee,receiverTax;
 
+
     private void getIds() {
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
@@ -148,6 +161,31 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         Pattern p = Pattern.compile(regex);
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
+
+        etSubscriberNo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (etSubscriberNo.getRight() - etSubscriberNo.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+                        MyApplication.isContact=true;
+                        Intent intent = new Intent(ToSubscriber.this,
+                                AddBeneficiaryToSubscriber.class);
+                        startActivityForResult(intent , REQUEST_CODE);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
         etSubscriberNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -227,6 +265,10 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         tvSend.setOnClickListener(tosubscriberC);
 
     }
+
+
+
+
 
     @Override
     public void onClick(View view) {

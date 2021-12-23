@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     cardCashWithdrawal,cardRecRemittance,cardFee,cardServicePoints;
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
+    ArrayList<OfferPromotionModel> offerPromotionModelArrayListTemp;
 
 
     @Override
@@ -355,7 +356,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();
 
-                offerPromotionModelArrayList=new ArrayList<>();
 
 
                 if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
@@ -425,8 +425,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 offerPromotionModelArrayList=new ArrayList<>();
 
                 offerPromotionModelArrayList.clear();
+                offerPromotionModelArrayList=new ArrayList<>();
+                offerPromotionModelArrayListTemp=new ArrayList<>();
                 if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                     JSONArray dataArray = jsonObject.optJSONArray("promOfferTemplateList");
+                  /*  if(offerPromotionModelArrayList.size()==dataArray.length()){
+                        return;
+                    }*/
                     if(dataArray!=null&&dataArray.length()>0) {
                         for (int i = 0; i < dataArray.length(); i++) {
                             JSONObject data = dataArray.optJSONObject(i);
@@ -464,6 +469,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC,LinearLayoutManager.HORIZONTAL,false));
                         //rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
                        // Collections.sort(offerPromotionModelArrayList, Collections.reverseOrder());
+
                         offerPromotionAdapter = new OfferPromotionAdapter(mainC,offerPromotionModelArrayList);
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
 
@@ -505,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(!end){
                 position++;
             } else {
-                position=0;
+                //position=0;
             }
             rv_offer_promotion.smoothScrollToPosition(position);
         }

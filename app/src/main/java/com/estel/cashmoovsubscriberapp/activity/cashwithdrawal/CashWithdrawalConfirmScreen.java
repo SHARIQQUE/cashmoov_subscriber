@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
@@ -60,7 +61,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
 //        });
 //    }
 
-
+    HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
     private void getIds() {
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
@@ -72,6 +73,8 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
         tvFee = findViewById(R.id.tvFee);
         etPin = findViewById(R.id.etPin);
+        etPin.setTransformationMethod(hiddenPassTransformationMethod);
+
         icPin = findViewById(R.id.icPin);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
@@ -134,7 +137,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         Intent intent;
         switch (view.getId()) {
             case R.id.icPin:
-                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -142,7 +145,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
                 else{
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
                 break;

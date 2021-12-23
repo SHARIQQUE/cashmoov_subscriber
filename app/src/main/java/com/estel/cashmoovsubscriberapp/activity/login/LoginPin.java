@@ -82,13 +82,13 @@ public class LoginPin extends AppCompatActivity {
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
-
-        etPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
         icPin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -97,7 +97,7 @@ public class LoginPin extends AppCompatActivity {
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     //etPin.setTransformationMethod(new HiddenPassTransformationMethod());
-                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
 
                 }

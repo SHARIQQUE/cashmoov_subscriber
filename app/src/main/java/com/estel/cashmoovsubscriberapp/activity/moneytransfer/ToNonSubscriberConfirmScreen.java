@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -73,6 +74,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
         tvFee = findViewById(R.id.tvFee);
         etPin = findViewById(R.id.etPin);
+        etPin.setTransformationMethod(hiddenPassTransformationMethod);
         icPin = findViewById(R.id.icPin);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
@@ -128,13 +130,13 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         btnCancel.setOnClickListener(tononsubscriberconfirmscreenC);
 
     }
-
+    HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.icPin:
-                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -142,7 +144,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                 else{
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
                 break;

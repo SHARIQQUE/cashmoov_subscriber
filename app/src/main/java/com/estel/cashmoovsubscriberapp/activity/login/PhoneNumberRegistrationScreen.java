@@ -80,7 +80,8 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         etPhoneNo = findViewById(R.id.etPhoneNo);
         linPass = findViewById(R.id.linPass);
         etPass = findViewById(R.id.etPass);
-        etPass.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        etPass.setTransformationMethod(hiddenPassTransformationMethod);
         icPin = findViewById(R.id.icPin);
         tvPin = findViewById(R.id.tvPin);
         tvOr = findViewById(R.id.tvOr);
@@ -97,18 +98,22 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 //            }
 //        });
 
+
+
         icPin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(etPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etPass.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
                 }
                 else{
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etPass.setTransformationMethod(hiddenPassTransformationMethod);
+
 
                 }
             }

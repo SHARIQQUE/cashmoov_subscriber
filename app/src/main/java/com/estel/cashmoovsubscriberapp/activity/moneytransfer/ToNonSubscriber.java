@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -42,6 +43,22 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     private ArrayList<String> benefiGenderList = new ArrayList<>();
     private ArrayList<GenderInfoModel.Gender> benefiGenderModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogBenefiGender;
+
+    public static final int REQUEST_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+            MyApplication.isContact = false;
+            String requiredValue = data.getStringExtra("PHONE");
+            etPhone.setText(requiredValue);
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +154,31 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                 }
             }
         });
+
+        etPhone.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (etPhone.getRight() - etPhone.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+                        MyApplication.isContact=true;
+                        Intent intent = new Intent(ToNonSubscriber.this,
+                                AddBeneficiaryToSubscriber.class);
+                        startActivityForResult(intent , REQUEST_CODE);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
 
         etPhone.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

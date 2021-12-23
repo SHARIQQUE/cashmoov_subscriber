@@ -36,10 +36,11 @@ public class ReSetPin extends AppCompatActivity {
     }
 
     private void getIds() {
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
         etPin = findViewById(R.id.etPin);
-        etPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        etPin.setTransformationMethod(hiddenPassTransformationMethod);
         etRePin = findViewById(R.id.etRePin);
-        etRePin.setTransformationMethod(new HiddenPassTransformationMethod());
+        etRePin.setTransformationMethod(hiddenPassTransformationMethod);
         icPin = findViewById(R.id.icPin);
         icRepin = findViewById(R.id.icRePin);
         tvContinue = findViewById(R.id.tvContinue);
@@ -47,7 +48,7 @@ public class ReSetPin extends AppCompatActivity {
         icPin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(etPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -55,7 +56,7 @@ public class ReSetPin extends AppCompatActivity {
                 else{
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
             }
@@ -64,7 +65,7 @@ public class ReSetPin extends AppCompatActivity {
         icRepin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(etRePin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etRePin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icRepin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etRePin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -72,7 +73,7 @@ public class ReSetPin extends AppCompatActivity {
                 else{
                     icRepin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etRePin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etRePin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
             }

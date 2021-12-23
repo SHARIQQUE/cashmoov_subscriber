@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -58,6 +59,10 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         etOldPin = findViewById(R.id.etOldPin);
         etNewPin = findViewById(R.id.etNewPin);
         etReNewPin = findViewById(R.id.etReNewPin);
+
+        etOldPin.setTransformationMethod(hiddenPassTransformationMethod);
+        etNewPin.setTransformationMethod(hiddenPassTransformationMethod);
+        etReNewPin.setTransformationMethod(hiddenPassTransformationMethod);
         icOldPin = findViewById(R.id.icOldPin);
         icNewPin = findViewById(R.id.icNewPin);
         icReNewPin = findViewById(R.id.icReNewPin);
@@ -73,13 +78,13 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         btnCancel.setOnClickListener(changepinC);
         btnConfirm.setOnClickListener(changepinC);
     }
-
+    HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.icOldPin:
-                if(etOldPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etOldPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icOldPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etOldPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -87,12 +92,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 else{
                     icOldPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etOldPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etOldPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
                 break;
             case R.id.icNewPin:
-                if(etNewPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etNewPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icNewPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -100,12 +105,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 else{
                     icNewPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etNewPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etNewPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
                 break;
             case R.id.icReNewPin:
-                if(etReNewPin.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                if(etReNewPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
                     icReNewPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etReNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -113,7 +118,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 else{
                     icReNewPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
-                    etReNewPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    etReNewPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
                 break;

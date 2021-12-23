@@ -155,6 +155,8 @@
                 android:id="@+id/etRecipientNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                android:drawablePadding="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="@color/bgColorHint"
@@ -166,7 +168,7 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_inst_agent_branch_number"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="@dimen/_12sdp" />
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"

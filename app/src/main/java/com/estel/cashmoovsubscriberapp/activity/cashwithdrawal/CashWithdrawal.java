@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -22,6 +23,8 @@ import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.moneytransfer.AddBeneficiaryToSubscriber;
+import com.estel.cashmoovsubscriberapp.activity.pay.Pay;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
@@ -54,6 +57,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
         setBackMenu();
         getIds();
     }
+    public static final int REQUEST_CODE = 1;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -134,6 +138,30 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        etRecipientNo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (etRecipientNo.getRight() - etRecipientNo.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+                        MyApplication.isContact=true;
+                        Intent intent = new Intent(CashWithdrawal.this,
+                                AddBeneficiaryToSubscriber.class);
+                        startActivityForResult(intent , REQUEST_CODE);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
         etRecipientNo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -206,6 +234,14 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+            MyApplication.isContact = false;
+            String requiredValue = data.getStringExtra("PHONE");
+            etRecipientNo.setText(requiredValue);
+
+        }
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)

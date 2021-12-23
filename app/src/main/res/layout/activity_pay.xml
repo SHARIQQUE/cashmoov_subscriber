@@ -158,6 +158,8 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/etRecipientNo"
+                    android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                    android:drawablePadding="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
