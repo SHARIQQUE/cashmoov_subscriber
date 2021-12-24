@@ -38,14 +38,19 @@ public class OfferPromotionAdapter extends RecyclerView.Adapter<OfferPromotionAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OfferPromotionModel offerPromotionModel = offerPromotionList.get(position);
+
+        if(offerPromotionModel.getPromOfferTypeName().equalsIgnoreCase("Both")||
+                offerPromotionModel.getPromOfferTypeName().equalsIgnoreCase("Image")) {
             Glide.with(context)
                     .applyDefaultRequestOptions(new RequestOptions()
                             .placeholder(R.drawable.logo200x70b)
                             .error(R.drawable.logo200x70b))
-                    .load(API.BASEURL+"ewallet/api/v1/promOfferTemplate/download/"+offerPromotionModel.getCode()+"/"+offerPromotionModel.getFileName())
+                    .load(API.BASEURL + "ewallet/api/v1/promOfferTemplate/download/" + offerPromotionModel.getCode() + "/" + offerPromotionModel.getFileName())
                     .into(holder.img_offer_logo);
+        }else {
 
             holder.tv_offer_name.setText(offerPromotionModel.getServiceCategoryName());
+        }
             //holder.txt_title.setText(offerPromotionModel.getHeading());
             //holder.txt_time.setText(offerPromotionModel.getToDate());
 

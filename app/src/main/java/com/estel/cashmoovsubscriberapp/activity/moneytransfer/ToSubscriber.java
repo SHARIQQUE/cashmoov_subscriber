@@ -485,6 +485,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             etSubscriberNo.setText(data.getMobileNumber());
             etFname.setText(data.getOwnerName());
             etLname.setText(data.getLastName());
+            etAmount.setText("");
+            etAmount.requestFocus();
             isQR = false;
 
         } else {
@@ -496,6 +498,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
             etFname.setText(data.getOwnerName());
             etLname.setText(data.getLastName());
+            etAmount.setText("");
+            etAmount.requestFocus();
         }
 
         receiverCode=data.getCode();

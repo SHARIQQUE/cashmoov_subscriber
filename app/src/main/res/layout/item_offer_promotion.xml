@@ -28,14 +28,13 @@
                             android:id="@+id/tv_offer_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@id/img_offer_logo"
+
                             android:layout_centerInParent="true"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/aileron_bold"
                             android:padding="@dimen/_15sdp"
-                            android:text="N/A"
                             android:textAllCaps="false"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorAccent"
                             android:textSize="@dimen/_20sdp" />
 
                     </RelativeLayout>

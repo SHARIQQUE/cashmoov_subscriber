@@ -22,6 +22,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
     Button btnClose;
     public static TextView tvName;
     String checkIntent;
+    int pos;
     ArrayList<FeeDetailModel>feeDetailModelArrayList= new ArrayList<>();
     RecyclerView rvFeeDetail;
 
@@ -58,6 +59,9 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 
         if (getIntent().getExtras() != null) {
             checkIntent = (getIntent().getStringExtra("FEEINTENT"));
+            /*if((getIntent().getIntExtra("FEEINTENTPOS",-1)!=-1)){
+                pos=(getIntent().getIntExtra("FEEINTENTPOS",-1));
+            }*/
             tvName.setText(checkIntent);
         }
 
@@ -181,19 +185,23 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
-                                                String.format("%.2f",childData.optDouble("maxValue")),
-                                        childData.optString("percentFeeValue")
-                                ));
-                            }else{
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
-                                                String.format("%.2f",childData.optDouble("maxValue")),
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
+                            /*if(pos==j) {*/
+                                if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                    feeDetailModelArrayList.add(new FeeDetailModel(
+                                            String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                    String.format("%.2f", childData.optDouble("maxValue"))+
+                                                    "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                            childData.optString("percentFeeValue")
+                                    ));
+                                } else {
+                                    feeDetailModelArrayList.add(new FeeDetailModel(
+                                            String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                    String.format("%.2f", childData.optDouble("maxValue"))+
+                                                    "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                            childData.optString("fixedFeeValue")
+                                    ));
+                                }
+                            //}
                         }
                     }
 
