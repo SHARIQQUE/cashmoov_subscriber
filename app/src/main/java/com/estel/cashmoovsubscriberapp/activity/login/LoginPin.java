@@ -340,7 +340,7 @@ public class LoginPin extends AppCompatActivity {
                 public void failure(String aFalse) {
 
                     if(aFalse.equalsIgnoreCase("1251")){
-                        Intent i = new Intent(loginpinC, VerifyLoginAccountScreen.class);
+                        Intent i = new Intent(loginpinC, VerifyFirstLoginOTP.class);
                         startActivity(i);
                         // callPostGetLoginOTP();
                        /* Intent i = new Intent(loginpinC, ChangeIpLoginActivity.class);
@@ -461,7 +461,7 @@ public class LoginPin extends AppCompatActivity {
                 public void failure(String aFalse) {
 
                     if(aFalse.equalsIgnoreCase("1251")){
-                        Intent i = new Intent(loginpinC, VerifyLoginAccountScreen.class);
+                        Intent i = new Intent(loginpinC, VerifyFirstLoginOTP.class);
                         startActivity(i);
                         // callPostGetLoginOTP();
                        /* Intent i = new Intent(loginpinC, ChangeIpLoginActivity.class);

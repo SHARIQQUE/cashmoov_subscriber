@@ -531,7 +531,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 public void failure(String aFalse) {
 
                     if(aFalse.equalsIgnoreCase("1251")){
-                        Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
+                        Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
                         startActivity(i);
                        // callPostGetLoginOTP();
                        /* Intent i = new Intent(phnoregistrationccreenC, ChangeIpLoginActivity.class);
