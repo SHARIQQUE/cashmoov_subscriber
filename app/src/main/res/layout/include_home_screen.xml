@@ -97,7 +97,24 @@
                 android:lineSpacingExtra="3sp"
                 android:text="@string/promotions" />
 
+            <androidx.cardview.widget.CardView
+                android:visibility="visible"
+                app:cardCornerRadius="6dp"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp">
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/imageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                   app:sliderIndicatorRadius="@dimen/_1sdp"
+                    app:sliderStartAutoCycle="true"
+                     />
+
+            </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/rv_offer_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

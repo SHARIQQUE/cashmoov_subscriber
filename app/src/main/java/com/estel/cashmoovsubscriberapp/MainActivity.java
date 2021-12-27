@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,6 +42,7 @@ import com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemitta
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
 import com.estel.cashmoovsubscriberapp.activity.servicepoint.ServicePoint;
 import com.estel.cashmoovsubscriberapp.adapter.OfferPromotionAdapter;
+import com.estel.cashmoovsubscriberapp.adapter.SliderAdapterExample;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
@@ -48,6 +50,9 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -475,14 +480,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC, LinearLayoutManager.HORIZONTAL, false));
                         //rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
                         // Collections.sort(offerPromotionModelArrayList, Collections.reverseOrder());
+                        SliderView sliderView = findViewById(R.id.imageSlider);
+                        SliderAdapterExample sliderAdapterExample=new SliderAdapterExample(mainC);
+                        sliderAdapterExample.renewItems(mainC,offerPromotionModelArrayList);
+                        sliderView.setSliderAdapter(sliderAdapterExample);
+                        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+                        sliderView.setSliderTransformAnimation(SliderAnimations.HORIZONTALFLIPTRANSFORMATION);
+                        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_RIGHT);
+                        sliderView.setIndicatorSelectedColor(Color.RED);
+                        sliderView.setIndicatorUnselectedColor(Color.BLACK);
+                        sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
+                        sliderView.startAutoCycle();
 
-                        offerPromotionAdapter = new OfferPromotionAdapter(mainC, offerPromotionModelArrayList);
+                       /* offerPromotionAdapter = new OfferPromotionAdapter(mainC, offerPromotionModelArrayList);
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
 
                         offerPromotionAdapter.notifyDataSetChanged();
                         Timer timer = new Timer();
                         timer.scheduleAtFixedRate(new AutoScrollTask(), 3000, 5000);
-
+*/
 
                     }
                 } else {
