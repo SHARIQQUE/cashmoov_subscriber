@@ -228,13 +228,15 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
-                                                String.format("%.2f",childData.optDouble("maxValue")),
+                                                String.format("%.2f",childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
-                                                String.format("%.2f",childData.optDouble("maxValue")),
+                                                String.format("%.2f",childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
