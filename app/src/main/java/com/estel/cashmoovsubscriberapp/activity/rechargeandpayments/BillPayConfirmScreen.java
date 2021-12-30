@@ -215,7 +215,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(billpayconfirmscreenC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/mobile-prepaid", BillPayDetails.dataToSend,
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/payment", BillPayDetails.dataToSend,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

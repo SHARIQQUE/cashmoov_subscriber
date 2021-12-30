@@ -664,6 +664,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                                     jsonObjectTestMain=new JSONObject();
                                     JSONArray jsonArrayMain=new JSONArray();
                                     int pos=0;
+                                    int prdPos=0;
                                     if(data.has("feeTemplateList")){
                                         JSONArray feeTemplateList=data.optJSONArray("feeTemplateList");
                                         for (int i=0;i<feeTemplateList.length();i++){
@@ -671,13 +672,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                                             try {
                                                 JSONObject t = new JSONObject();
-                                                if(jsonArrayMain.toString().contains(fee.optString("serviceName"))){
+                                                if(jsonArrayMain.toString().contains(fee.optString("serviceCategoryCode"))){
 
-                                                    for(int j=0;j<jsonArrayMain.length();j++){
-                                                        if(jsonArrayMain.optJSONObject(j).optString("ServiceName").equalsIgnoreCase(fee.optString("serviceName"))){
-                                                            pos=j;
-                                                        }
-                                                    }
+
+
+
                                                     JSONArray dataArray=new JSONArray();
                                                     JSONObject dataObject=new JSONObject();
                                                     dataObject.put("serviceCategoryCode", fee.optString("serviceCategoryCode"));
@@ -690,19 +689,58 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                                                     dataObject.put("calculationTypeName", fee.optString("calculationTypeName"));
                                                     dataObject.put("minValue", fee.optString("minValue"));
                                                     dataObject.put("maxValue", fee.optString("maxValue"));
+
+
+                                                    JSONObject prodObj=new JSONObject();
+                                                    JSONArray prodArr=new JSONArray();
                                                     if(fee.has("productCode")){
+                                                        prodObj.put("productCode", fee.optString("productCode"));
                                                         dataObject.put("productCode", fee.optString("productCode"));
                                                     }
                                                     if(fee.has("productName")){
+                                                        prodObj.put("productName", fee.optString("productName"));
                                                         dataObject.put("productName", fee.optString("productName"));
                                                     }
+                                                    for(int j=0;j<jsonArrayMain.length();j++){
+                                                        if(jsonArrayMain.optJSONObject(j).optString("serviceCategoryCode").equalsIgnoreCase(fee.optString("serviceCategoryCode"))){
+                                                            pos=j;
+
+                                                        }
+                                                       /* for(int k=0;k<jsonArrayMain.optJSONObject(j).optJSONArray("child").length();k++){
+                                                            JSONObject tt=jsonArrayMain.optJSONObject(j).optJSONArray("child").optJSONObject(k);
+                                                            System.out.println("ttt"+tt.optString("productCode"));
+                                                            System.out.println("ttt    fe"+fee.optString("productCode"));
+                                                            if(tt.optString("productCode").isEmpty()){
+
+                                                            }else {
+                                                                if (tt.optString("productCode").equalsIgnoreCase
+                                                                        (fee.optString("productCode"))) {
+                                                                    prdPos = k;
+                                                                    jsonArrayMain.optJSONObject(j).optJSONArray("child").optJSONObject(k)
+                                                                            .optJSONArray("productArr").put(k + 1, prodObj);
+                                                                }
+                                                            }
+
+                                                        }*/
+
+
+                                                    }
+
+                                                    prodArr.put(prodObj);
+
+                                                    dataObject.put("productArr",prodArr);
+
                                                     dataArray.put(dataObject);
                                                     t.put("child",dataArray);
                                                     //jsonArrayMain.put(t);
+
+
                                                     jsonArrayMain.optJSONObject(pos).optJSONArray("child").put(dataObject);
 
                                                 }else{
                                                     t.put("ServiceName", fee.optString("serviceName"));
+                                                    t.put("serviceCategoryCode", fee.optString("serviceCategoryCode"));
+                                                    t.put("serviceCategoryName", fee.optString("serviceCategoryName"));
                                                     JSONArray dataArray=new JSONArray();
                                                     JSONObject dataObject=new JSONObject();
                                                     dataObject.put("serviceCategoryCode", fee.optString("serviceCategoryCode"));
@@ -715,12 +753,37 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                                                     dataObject.put("calculationTypeName", fee.optString("calculationTypeName"));
                                                     dataObject.put("minValue", fee.optString("minValue"));
                                                     dataObject.put("maxValue", fee.optString("maxValue"));
+                                                    JSONObject prodObj=new JSONObject();
+                                                    JSONArray prodArr=new JSONArray();
                                                     if(fee.has("productCode")){
+                                                        prodObj.put("productCode", fee.optString("productCode"));
                                                         dataObject.put("productCode", fee.optString("productCode"));
                                                     }
                                                     if(fee.has("productName")){
+                                                        prodObj.put("productName", fee.optString("productName"));
                                                         dataObject.put("productName", fee.optString("productName"));
                                                     }
+
+                                                    /*for(int j=0;j<jsonArrayMain.length();j++){
+                                                        if(jsonArrayMain.optJSONObject(j).optString("ServiceName").equalsIgnoreCase(fee.optString("serviceName"))){
+                                                            for(int k=0;k<jsonArrayMain.optJSONObject(j).optJSONArray("child").length();k++){
+                                                                JSONObject jjj=jsonArrayMain.optJSONObject(j).optJSONArray("child").optJSONObject(k);
+                                                                JSONArray pdArr=jjj.optJSONArray("productArr");
+                                                                if(pdArr.length()>0){
+                                                                    for(int a=0;a<pdArr.length();a++) {
+                                                                        if(pdArr.optJSONObject(a).optString("productCode").equalsIgnoreCase(fee.optString("productCode"))){
+                                                                            prdPos=a;
+                                                                            jsonArrayMain.optJSONObject(pos).optJSONArray("child").optJSONObject(k)
+                                                                                    .optJSONArray("productArr").put(a,prodObj);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }*/
+
+                                                    prodArr.put(prodObj);
+                                                    dataObject.put("productArr",prodArr);
                                                     dataArray.put(dataObject);
                                                     t.put("child",dataArray);
                                                     jsonArrayMain.put(t);
@@ -738,8 +801,27 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                                         try {
                                             jsonObjectTestMain.put("data",jsonArrayMain);
+
+
+
                                             JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
-                                            for (int i = 0; i < FeeListArr.length(); i++) {
+
+                                           /* for(int i=0;i<FeeListArr.length();i++){
+                                                JSONArray feeData = FeeListArr.optJSONObject(i).optJSONArray("child");
+
+                                                for(int j=0;j<feeData.length();j++){
+                                                    String prdcode=feeData.optJSONObject(j).optString("productCode");
+                                                    for(int k=0;k<feeData.length();k++){
+                                                      JSONObject kkk=feeData.optJSONObject(k);
+                                                      if(kkk.optString("productCode").equalsIgnoreCase(prdcode)){
+                                                          System.out.println("iuoui"+k);
+                                                      }
+
+                                                    }
+                                                }
+
+                                            }
+*/                                            for (int i = 0; i < FeeListArr.length(); i++) {
                                                 JSONObject feeData = FeeListArr.optJSONObject(i);
                                                 if(feeData.optString("ServiceName").equalsIgnoreCase("Money Transfer")){
                                                     if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")){

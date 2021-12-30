@@ -25,6 +25,8 @@ import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.concurrent.Executor;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,6 +50,8 @@ public class LoginPin extends AppCompatActivity {
     }
 
 
+
+
     String pin;
 
     String FCM_TOKEN;
@@ -57,7 +61,7 @@ public class LoginPin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
+        //callfee();
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -546,6 +550,661 @@ public class LoginPin extends AppCompatActivity {
     }
 
 
+    public void callfee(){
+        try {
+            JSONObject jsonObject = new JSONObject("{\n" +
+                    "    \"transactionId\": \"2193742\",\n" +
+                    "    \"requestTime\": \"Tue Dec 28 04:26:43 UTC 2021\",\n" +
+                    "    \"responseTime\": \"Tue Dec 28 04:26:44 UTC 2021\",\n" +
+                    "    \"resultCode\": \"0\",\n" +
+                    "    \"resultDescription\": \"Transaction Successful\",\n" +
+                    "    \"walletOwnerTemplateList\": [\n" +
+                    "        {\n" +
+                    "            \"id\": 6897,\n" +
+                    "            \"code\": \"106897\",\n" +
+                    "            \"walletOwnerCode\": \"1000002943\",\n" +
+                    "            \"walletOwnerName\": \"test\",\n" +
+                    "            \"templateCode\": \"101277\",\n" +
+                    "            \"templateName\": \"DefaultSubFee\",\n" +
+                    "            \"templateCategoryCode\": \"100002\",\n" +
+                    "            \"templateCategoryName\": \"Fee\",\n" +
+                    "            \"status\": \"Active\",\n" +
+                    "            \"state\": \"Approved\",\n" +
+                    "            \"creationDate\": \"2021-11-23T03:31:27.476+0530\",\n" +
+                    "            \"modificationDate\": \"2021-12-25T01:35:14.443+0530\",\n" +
+                    "            \"modifiedBy\": \"100322\",\n" +
+                    "            \"feeTemplateList\": [\n" +
+                    "                {\n" +
+                    "                    \"id\": 645,\n" +
+                    "                    \"code\": \"100776\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100009\",\n" +
+                    "                    \"serviceName\": \"Airtime Purchase\",\n" +
+                    "                    \"serviceCategoryCode\": \"100021\",\n" +
+                    "                    \"serviceCategoryName\": \"Mobile Prepaid\",\n" +
+                    "                    \"serviceProviderCode\": \"100136\",\n" +
+                    "                    \"serviceProviderName\": \"Noble\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 100000.0,\n" +
+                    "                    \"maxValue\": 1.0E7,\n" +
+                    "                    \"fixedFeeValue\": 200.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100308\",\n" +
+                    "                    \"creationDate\": \"2021-12-25T02:51:13.159+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-12-25T02:51:46.959+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"productCode\": \"100031\",\n" +
+                    "                    \"productName\": \"Recharge CELLCOM\"\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 644,\n" +
+                    "                    \"code\": \"100775\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100009\",\n" +
+                    "                    \"serviceName\": \"Airtime Purchase\",\n" +
+                    "                    \"serviceCategoryCode\": \"100021\",\n" +
+                    "                    \"serviceCategoryName\": \"Mobile Prepaid\",\n" +
+                    "                    \"serviceProviderCode\": \"100136\",\n" +
+                    "                    \"serviceProviderName\": \"Noble\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 1.0,\n" +
+                    "                    \"maxValue\": 100000.0,\n" +
+                    "                    \"fixedFeeValue\": 77.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-12-23T23:50:48.917+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-12-23T23:51:12.428+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"productCode\": \"100029\",\n" +
+                    "                    \"productName\": \"Recharge Orange\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 643,\n" +
+                    "                    \"code\": \"100774\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100001\",\n" +
+                    "                    \"serviceName\": \"Recharge & Payment\",\n" +
+                    "                    \"serviceCategoryCode\": \"100028\",\n" +
+                    "                    \"serviceCategoryName\": \"TV\",\n" +
+                    "                    \"serviceProviderCode\": \"100140\",\n" +
+                    "                    \"serviceProviderName\": \"Noble\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 1.0,\n" +
+                    "                    \"maxValue\": 100000.0,\n" +
+                    "                    \"fixedFeeValue\": 150.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-12-23T23:48:08.645+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-12-23T23:48:53.594+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"productCode\": \"100028\",\n" +
+                    "                    \"productName\": \"STARTIMES RECHARGE\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 629,\n" +
+                    "                    \"code\": \"100760\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100000\",\n" +
+                    "                    \"serviceName\": \"Money Transfer\",\n" +
+                    "                    \"serviceCategoryCode\": \"INTREM\",\n" +
+                    "                    \"serviceCategoryName\": \"International Remittance\",\n" +
+                    "                    \"serviceProviderCode\": \"100113\",\n" +
+                    "                    \"serviceProviderName\": \"Cashmoov\",\n" +
+                    "                    \"calculationTypeCode\": \"100002\",\n" +
+                    "                    \"calculationTypeName\": \"Percentage\",\n" +
+                    "                    \"minValue\": 20001.0,\n" +
+                    "                    \"maxValue\": 30000.0,\n" +
+                    "                    \"fixedFeeValue\": 0.0,\n" +
+                    "                    \"percentFeeValue\": 1.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-24T19:00:49.777+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T19:02:22.845+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"sendCountryCode\": \"100092\",\n" +
+                    "                    \"sendCountryName\": \"Guinea\",\n" +
+                    "                    \"sendCurrencyCode\": \"100062\",\n" +
+                    "                    \"sendCurrencyName\": \"GNF\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 628,\n" +
+                    "                    \"code\": \"100759\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100000\",\n" +
+                    "                    \"serviceName\": \"Money Transfer\",\n" +
+                    "                    \"serviceCategoryCode\": \"INTREM\",\n" +
+                    "                    \"serviceCategoryName\": \"International Remittance\",\n" +
+                    "                    \"serviceProviderCode\": \"100113\",\n" +
+                    "                    \"serviceProviderName\": \"Cashmoov\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 100001.0,\n" +
+                    "                    \"maxValue\": 20000.0,\n" +
+                    "                    \"fixedFeeValue\": 215.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-24T19:00:04.343+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T19:02:22.817+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"sendCountryCode\": \"100092\",\n" +
+                    "                    \"sendCountryName\": \"Guinea\",\n" +
+                    "                    \"sendCurrencyCode\": \"100062\",\n" +
+                    "                    \"sendCurrencyName\": \"GNF\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 626,\n" +
+                    "                    \"code\": \"100757\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100009\",\n" +
+                    "                    \"serviceName\": \"Airtime Purchase\",\n" +
+                    "                    \"serviceCategoryCode\": \"100021\",\n" +
+                    "                    \"serviceCategoryName\": \"Mobile Prepaid\",\n" +
+                    "                    \"serviceProviderCode\": \"100136\",\n" +
+                    "                    \"serviceProviderName\": \"Noble\",\n" +
+                    "                    \"calculationTypeCode\": \"100002\",\n" +
+                    "                    \"calculationTypeName\": \"Percentage\",\n" +
+                    "                    \"minValue\": 10.0,\n" +
+                    "                    \"maxValue\": 1000000.0,\n" +
+                    "                    \"fixedFeeValue\": 0.0,\n" +
+                    "                    \"percentFeeValue\": 0.5,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-24T04:52:26.740+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T04:53:06.570+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"productCode\": \"100031\",\n" +
+                    "                    \"productName\": \"Recharge CELLCOM\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 625,\n" +
+                    "                    \"code\": \"100756\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100009\",\n" +
+                    "                    \"serviceName\": \"Airtime Purchase\",\n" +
+                    "                    \"serviceCategoryCode\": \"100021\",\n" +
+                    "                    \"serviceCategoryName\": \"Mobile Prepaid\",\n" +
+                    "                    \"serviceProviderCode\": \"100136\",\n" +
+                    "                    \"serviceProviderName\": \"Noble\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 10.0,\n" +
+                    "                    \"maxValue\": 1000000.0,\n" +
+                    "                    \"fixedFeeValue\": 75.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-24T03:50:49.301+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T04:26:42.347+0530\",\n" +
+                    "                    \"bearer\": \"100020\",\n" +
+                    "                    \"bearerName\": \"Receiver\",\n" +
+                    "                    \"productCode\": \"100030\",\n" +
+                    "                    \"productName\": \"Recharge MTN\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 622,\n" +
+                    "                    \"code\": \"100753\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100012\",\n" +
+                    "                    \"serviceName\": \"Pay\",\n" +
+                    "                    \"serviceCategoryCode\": \"100057\",\n" +
+                    "                    \"serviceCategoryName\": \"Pay\",\n" +
+                    "                    \"serviceProviderCode\": \"100134\",\n" +
+                    "                    \"serviceProviderName\": \"Cashmoov\",\n" +
+                    "                    \"calculationTypeCode\": \"100002\",\n" +
+                    "                    \"calculationTypeName\": \"Percentage\",\n" +
+                    "                    \"minValue\": 10.0,\n" +
+                    "                    \"maxValue\": 1000000.0,\n" +
+                    "                    \"fixedFeeValue\": 0.0,\n" +
+                    "                    \"percentFeeValue\": 0.3,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-20T00:05:53.994+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T06:59:32.194+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 621,\n" +
+                    "                    \"code\": \"100752\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100000\",\n" +
+                    "                    \"serviceName\": \"Money Transfer\",\n" +
+                    "                    \"serviceCategoryCode\": \"100024\",\n" +
+                    "                    \"serviceCategoryName\": \"To Subscriber\",\n" +
+                    "                    \"serviceProviderCode\": \"100112\",\n" +
+                    "                    \"serviceProviderName\": \"Cashmoov\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 10.0,\n" +
+                    "                    \"maxValue\": 1.0E8,\n" +
+                    "                    \"fixedFeeValue\": 50.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-18T23:48:28.083+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-12-23T23:12:01.431+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"sendCountryCode\": \"100092\",\n" +
+                    "                    \"sendCountryName\": \"Guinea\",\n" +
+                    "                    \"sendCurrencyCode\": \"100062\",\n" +
+                    "                    \"sendCurrencyName\": \"GNF\",\n" +
+                    "                    \"receiveCountryCode\": \"100092\",\n" +
+                    "                    \"receiveCountryName\": \"Guinea\",\n" +
+                    "                    \"receiveCurrencyCode\": \"100062\",\n" +
+                    "                    \"receiveCurrencyName\": \"GNF\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 602,\n" +
+                    "                    \"code\": \"100733\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100000\",\n" +
+                    "                    \"serviceName\": \"Money Transfer\",\n" +
+                    "                    \"serviceCategoryCode\": \"NONSUB\",\n" +
+                    "                    \"serviceCategoryName\": \"To Non Subscriber\",\n" +
+                    "                    \"serviceProviderCode\": \"100122\",\n" +
+                    "                    \"serviceProviderName\": \"Cashmoov\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 10.0,\n" +
+                    "                    \"maxValue\": 10000.0,\n" +
+                    "                    \"fixedFeeValue\": 100.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100403\",\n" +
+                    "                    \"modifiedBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-10T21:35:41.631+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T18:04:35.259+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"sendCountryCode\": \"100092\",\n" +
+                    "                    \"sendCountryName\": \"Guinea\",\n" +
+                    "                    \"sendCurrencyCode\": \"100062\",\n" +
+                    "                    \"sendCurrencyName\": \"GNF\",\n" +
+                    "                    \"receiveCountryCode\": \"100092\",\n" +
+                    "                    \"receiveCountryName\": \"Guinea\",\n" +
+                    "                    \"receiveCurrencyCode\": \"100062\",\n" +
+                    "                    \"receiveCurrencyName\": \"GNF\",\n" +
+                    "                    \"taxConfigurationList\": [\n" +
+                    "                        {\n" +
+                    "                            \"id\": 179,\n" +
+                    "                            \"code\": \"100178\",\n" +
+                    "                            \"taxTypeCode\": \"100133\",\n" +
+                    "                            \"taxTypeName\": \"Financial Tax\",\n" +
+                    "                            \"calculationTypeCode\": \"100002\",\n" +
+                    "                            \"calculationTypeName\": \"Percentage\",\n" +
+                    "                            \"value\": 0.0,\n" +
+                    "                            \"minValue\": 0.0,\n" +
+                    "                            \"maxValue\": 1.0E8,\n" +
+                    "                            \"taxAvailBy\": \"Fee Amount\",\n" +
+                    "                            \"status\": \"Active\",\n" +
+                    "                            \"state\": \"Updated\",\n" +
+                    "                            \"createdBy\": \"100377\",\n" +
+                    "                            \"modifiedBy\": \"100250\",\n" +
+                    "                            \"creationDate\": \"2021-07-14T21:22:09.764+0530\",\n" +
+                    "                            \"modificationDate\": \"2021-11-29T12:51:56.546+0530\",\n" +
+                    "                            \"percentValue\": 13.0\n" +
+                    "                        }\n" +
+                    "                    ]\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"id\": 597,\n" +
+                    "                    \"code\": \"100728\",\n" +
+                    "                    \"templateCode\": \"101277\",\n" +
+                    "                    \"templateName\": \"DefaultSubFee\",\n" +
+                    "                    \"serviceCode\": \"100000\",\n" +
+                    "                    \"serviceName\": \"Money Transfer\",\n" +
+                    "                    \"serviceCategoryCode\": \"INTREM\",\n" +
+                    "                    \"serviceCategoryName\": \"International Remittance\",\n" +
+                    "                    \"serviceProviderCode\": \"100113\",\n" +
+                    "                    \"serviceProviderName\": \"Cashmoov\",\n" +
+                    "                    \"calculationTypeCode\": \"100001\",\n" +
+                    "                    \"calculationTypeName\": \"Fixed\",\n" +
+                    "                    \"minValue\": 1.0,\n" +
+                    "                    \"maxValue\": 10000.0,\n" +
+                    "                    \"fixedFeeValue\": 175.0,\n" +
+                    "                    \"percentFeeValue\": 0.0,\n" +
+                    "                    \"taxTypeCode\": \"100133,100132\",\n" +
+                    "                    \"taxAccount\": \"1000002056\",\n" +
+                    "                    \"taxAccountName\": \"TAX Account\",\n" +
+                    "                    \"status\": \"Active\",\n" +
+                    "                    \"state\": \"Approved\",\n" +
+                    "                    \"createdBy\": \"100375\",\n" +
+                    "                    \"creationDate\": \"2021-11-03T18:54:16.906+0530\",\n" +
+                    "                    \"modificationDate\": \"2021-11-24T19:02:22.787+0530\",\n" +
+                    "                    \"bearer\": \"100021\",\n" +
+                    "                    \"bearerName\": \"Sender\",\n" +
+                    "                    \"sendCountryCode\": \"100092\",\n" +
+                    "                    \"sendCountryName\": \"Guinea\",\n" +
+                    "                    \"sendCurrencyCode\": \"100062\",\n" +
+                    "                    \"sendCurrencyName\": \"GNF\"\n" +
+                    "                }\n" +
+                    "            ]\n" +
+                    "        }\n" +
+                    "    ]\n" +
+                    "}");
 
+            if(jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
+
+                JSONObject mainObject=new JSONObject();
+                JSONArray mainArr=new JSONArray();
+
+                JSONArray walletOwnerTemplateList = jsonObject.optJSONArray("walletOwnerTemplateList");
+                JSONObject data = walletOwnerTemplateList.optJSONObject(0);
+                if(data.has("feeTemplateList")) {
+                    JSONArray feeTemplateList = data.optJSONArray("feeTemplateList");
+                    for (int i = 0; i < feeTemplateList.length(); i++) {
+                        JSONObject fee = feeTemplateList.optJSONObject(i);
+                        if(i==0){
+                            JSONObject jo1=new JSONObject();
+                            jo1.put("serviceCode",fee.optString("serviceCode"));
+                            jo1.put("serviceName",fee.optString("serviceName"));
+                            jo1.put("serviceCategoryCode",fee.optString("serviceCategoryCode"));
+                            jo1.put("serviceCategoryName",fee.optString("serviceCategoryName"));
+                            if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                jo1.put("percentFeeValue", fee.optString("percentFeeValue")+"%");
+                            }else{
+                                jo1.put("fixedFeeValue", fee.optString("fixedFeeValue"));
+                            }
+                            jo1.put("calculationTypeName", fee.optString("calculationTypeName"));
+                            jo1.put("minValue", fee.optString("minValue"));
+                            jo1.put("maxValue", fee.optString("maxValue"));
+
+                            if(fee.has("productCode")){
+                                jo1.put("productCode", fee.optString("productCode"));
+                               // dataObject.put("productCode", fee.optString("productCode"));
+                            }
+                            if(fee.has("productName")){
+                                jo1.put("productName", fee.optString("productName"));
+                               // dataObject.put("productName", fee.optString("productName"));
+                            }
+                            mainArr.put(jo1);
+
+                        }
+
+                        if(i>0){
+
+                            JSONObject jo1=new JSONObject();
+                            jo1.put("serviceCode",fee.optString("serviceCode"));
+                            jo1.put("serviceName",fee.optString("serviceName"));
+                            jo1.put("serviceCategoryCode",fee.optString("serviceCategoryCode"));
+                            jo1.put("serviceCategoryName",fee.optString("serviceCategoryName"));
+                            if(fee.optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                jo1.put("percentFeeValue", fee.optString("percentFeeValue")+"%");
+                            }else{
+                                jo1.put("fixedFeeValue", fee.optString("fixedFeeValue"));
+                            }
+                            jo1.put("calculationTypeName", fee.optString("calculationTypeName"));
+                            jo1.put("minValue", fee.optString("minValue"));
+                            jo1.put("maxValue", fee.optString("maxValue"));
+                            if(fee.has("productCode")){
+                                jo1.put("productCode", fee.optString("productCode"));
+                                // dataObject.put("productCode", fee.optString("productCode"));
+                            }
+                            if(fee.has("productName")){
+                                jo1.put("productName", fee.optString("productName"));
+                                // dataObject.put("productName", fee.optString("productName"));
+                            }
+
+                            for(int j=0;j<mainArr.length();j++){
+
+                                if(mainArr.toString().contains(fee.optString("serviceCategoryCode"))){
+                                    mainArr.put(j,jo1);
+                                    isTrue=true;
+
+
+                                }
+
+                            }
+                            if(isTrue){
+
+                            }else {
+                                mainArr.put(jo1);
+                            }
+
+                        }
+
+                    }
+                }
+
+                mainObject.put("data",mainArr);
+                System.out.println("Fee"+ mainObject.toString());
+            }
+
+
+            }catch (Exception e){
+
+        }
+    }
+
+public boolean isTrue=false;
 
 }

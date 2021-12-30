@@ -217,7 +217,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(billpayconfirmscreenC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/mobile-prepaid", PartnerBillPayDetails.dataToSend,
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/payment", PartnerBillPayDetails.dataToSend,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

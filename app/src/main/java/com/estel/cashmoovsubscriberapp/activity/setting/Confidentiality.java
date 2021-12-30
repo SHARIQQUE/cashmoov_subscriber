@@ -62,8 +62,10 @@ public class Confidentiality extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if (isChecked) {
                     MyApplication.saveString("ACTIVATEPROTECTION", "Activate", confidentialityC);
+                    MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", confidentialityC);
                 } else {
                     MyApplication.saveString("ACTIVATEPROTECTION", "Deactivate", confidentialityC);
+                    MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", confidentialityC);
 
                 }
             }
