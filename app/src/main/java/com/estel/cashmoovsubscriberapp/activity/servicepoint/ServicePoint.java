@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
@@ -19,11 +22,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class ServicePoint extends AppCompatActivity implements View.OnClickListener {
+public class ServicePoint extends FragmentActivity  implements View.OnClickListener,OnMapReadyCallback {
     public static ServicePoint servicepointC;
     ImageView imgBack,imgHome;
     LinearLayout linNext;
@@ -35,14 +39,17 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_service_point);
         servicepointC=this;
         setBackMenu();
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         getIds();
     }
 
-    @Override
+   /* @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
+    }*/
 
     private void setBackMenu() {
         imgBack = findViewById(R.id.imgBack);
@@ -51,7 +58,8 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onSupportNavigateUp();
+                onBackPressed();
+               // onSupportNavigateUp();
             }
         });
 
@@ -68,15 +76,12 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void getIds() {
-        //linNext = findViewById(R.id.linNext);
+    /*OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        OnMapReadyCallback callback = new OnMapReadyCallback() {
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
 
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-
-                callApiLocations(googleMap);
+            callApiLocations(googleMap);
 
 //                locationList.clear();
 //
@@ -94,13 +99,14 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
 //                    //googleMap.moveCamera(CameraUpdateFactory.newLatLng(locationList.get(i)));
 //                }
 
-            }
-        };
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
         }
+    };*/
+    private void getIds() {
+        //linNext = findViewById(R.id.linNext);
+
+
+
+
 
       //  setOnCLickListener();
 
@@ -127,6 +133,7 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
 
     private void callApiLocations(GoogleMap googleMap) {
         try {
+            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             API.GET_PUBLIC("ewallet/api/v1/config/all",
                     new Api_Responce_Handler() {
                         @Override
@@ -139,6 +146,18 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
                                     JSONArray locationListArr = jsonObject.optJSONArray("locationDataList");
                                     for (int i = 0; i < locationListArr.length(); i++) {
                                         JSONObject data = locationListArr.optJSONObject(i);
+                                        if(i==0){
+                                            locationList.add(new LatLongModel(
+                                                    data.optInt("id"),
+                                                    "Cashmoov",
+                                                    "CASHMOOV, Conakry, Guinea",
+                                                   "CASHMOOV, Conakry, Guinea",
+                                                    "9.50916",
+                                                    "-13.71185",
+                                                    data.optString("info")
+
+                                            ));
+                                        }
                                         locationList.add(new LatLongModel(
                                                 data.optInt("id"),
                                                 data.optString("name"),
@@ -155,9 +174,56 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
 
 
                                     }
+/*
+                                    locationList.clear();
+
+                                    for (int i = 0; i <= 2; i++) {
+
+
+                                        if(i==0) {
+                                            locationList.add(new LatLongModel(
+                                                    i,
+                                                    "Block D, Delta I, Greater Noida, Uttar Pradesh 201310",
+                                                    "Block D, Delta I, Greater Noida, Uttar Pradesh 201310",
+                                                    "Block D, Delta I, Greater Noida, Uttar Pradesh 201310",
+                                                    "28.48941",
+                                                    "77.52661",
+                                                    "Block D, Delta I, Greater Noida, Uttar Pradesh 201310"
+                                            ));
+                                        }
+
+                                        if(i==1) {
+                                            locationList.add(new LatLongModel(
+                                                    i,
+                                                    "PLOT NO 27, near IFS SOCIETY, near NSG CHOWK, Amritpuram, Block E, Chandila, Gamma 1, Greater Noida, Uttar Pradesh 201308",
+                                                    "PLOT NO 27, near IFS SOCIETY, near NSG CHOWK, Amritpuram, Block E, Chandila, Gamma 1, Greater Noida, Uttar Pradesh 201308",
+                                                    "PLOT NO 27, near IFS SOCIETY, near NSG CHOWK, Amritpuram, Block E, Chandila, Gamma 1, Greater Noida, Uttar Pradesh 201308",
+                                                    "28.48482",
+                                                    "77.50103",
+                                                    "PLOT NO 27, near IFS SOCIETY, near NSG CHOWK, Amritpuram, Block E, Chandila, Gamma 1, Greater Noida, Uttar Pradesh 201308"
+                                            ));
+                                        }
+
+                                        if(i==2) {
+                                            locationList.add(new LatLongModel(
+                                                    i,
+                                                    "HO-01, Noida Extension, Sector 1, Greater Noida, Uttar Pradesh 201306",
+                                                    "HO-01, Noida Extension, Sector 1, Greater Noida, Uttar Pradesh 201306",
+                                                    "HO-01, Noida Extension, Sector 1, Greater Noida, Uttar Pradesh 201306",
+                                                    "28.58123",
+                                                    "77.44543",
+                                                    "HO-01, Noida Extension, Sector 1, Greater Noida, Uttar Pradesh 201306"
+                                            ));
+                                        }
+
+                                            LatLng latLong = new LatLng(Double.parseDouble(locationList.get(i).getLatitude()),Double.parseDouble(locationList.get(i).getLognitude()));
+                                            googleMap.addMarker(new MarkerOptions().position(latLong).title(locationList.get(i).getName())
+                                            );
+
+                                    }*/
 
                                     LatLng latLong = new LatLng(Double.parseDouble(locationList.get(0).getLatitude()),Double.parseDouble(locationList.get(0).getLognitude()));
-                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong , 5.0f) );
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong , 18.0f) );
 
 
 
@@ -180,4 +246,8 @@ public class ServicePoint extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        callApiLocations(googleMap);
+    }
 }

@@ -61,6 +61,7 @@ public class LoginPin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        test();
         //callfee();
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
@@ -1206,5 +1207,81 @@ public class LoginPin extends AppCompatActivity {
     }
 
 public boolean isTrue=false;
+
+
+    public void test(){
+        try{
+
+            JSONArray jsonArray=new JSONArray("[{id:7, vendorcode:'LIBYANA', productcode:'LMP3', denomination:'3.0', recordcount:'2', pinNo_encript:'4596653520316', serialNumber:'225001150023346', key:'5C441CDF5D0C4A71', status_check:'Y'},\n" +
+                    "{id:9, vendorcode:'LIBYANA', productcode:'LMP5', denomination:'5.0', recordcount:'2', pinNo_encript:'5844757500024', serialNumber:'201621161299710', key:'EBE4FEB2432E0E54', status_check:'Y'},\n" +
+                    "{id:9, vendorcode:'LIBYANA', productcode:'LMP3', denomination:'3.0', recordcount:'2', pinNo_encript:'5844757500024', serialNumber:'201621161299747', key:'EBE4FEB2432E0E54', status_check:'Y'},\n" +
+                    "{id:9, vendorcode:'ABCD', productcode:'aBC', denomination:'3.0', recordcount:'2', pinNo_encript:'5844757500024', serialNumber:'201621161299747', key:'EBE4FEB2432E0E54', status_check:'Y'},\n" +
+                    "{id:10, vendorcode:'LIBYANA', productcode:'LMP5', denomination:'5.0', recordcount:'2', pinNo_encript:'7622364700044', serialNumber:'201621161299711', key:'FED478DF3F23EF0A', status_check:'Y'}]");
+            JSONArray records=new JSONArray();
+
+            for(int i=0;i<jsonArray.length();i++){
+                if(i==0) {
+
+                    JSONObject jsonObject = new JSONObject();
+                    JSONArray stock=new JSONArray();
+                    JSONObject st_Obj=new JSONObject();
+                    jsonObject.put("productcode", jsonArray.optJSONObject(i).optString("productcode"));
+                    jsonObject.put("denomination", jsonArray.optJSONObject(i).optString("denomination"));
+                    jsonObject.put("stockcount", "1");
+
+                    st_Obj.put("s",jsonArray.optJSONObject(i).optString("serialNumber"));
+                    st_Obj.put("d","31/12/21 20:08:33");
+
+                    stock.put(st_Obj);
+                    jsonObject.put("stock",stock);
+                    records.put(jsonObject);
+                }else{
+
+                    int value=hasValue(records,"productcode",jsonArray.optJSONObject(i).optString("productcode"));
+                    if(value!= -1){
+                        JSONObject jsonObject = new JSONObject();
+                        JSONObject st_Obj=new JSONObject();
+                        st_Obj.put("s",jsonArray.optJSONObject(i).optString("serialNumber"));
+                        st_Obj.put("d","31/12/21 20:08:33");
+
+                       records.optJSONObject(value).put("stockcount", (Integer.parseInt(records.optJSONObject(value).optString("stockcount"))+1)+"");
+                        records.optJSONObject(value).optJSONArray("stock").put(st_Obj);
+                    }else {
+                        JSONObject jsonObject = new JSONObject();
+                        JSONArray stock=new JSONArray();
+                        JSONObject st_Obj=new JSONObject();
+                        jsonObject.put("productcode", jsonArray.optJSONObject(i).optString("productcode"));
+                        jsonObject.put("denomination", jsonArray.optJSONObject(i).optString("denomination"));
+                        jsonObject.put("stockcount", "1");
+
+                        st_Obj.put("s",jsonArray.optJSONObject(i).optString("serialNumber"));
+                        st_Obj.put("d","31/12/21 20:08:33");
+
+                        stock.put(st_Obj);
+                        jsonObject.put("stock",stock);
+                        records.put(jsonObject);
+                    }
+                }
+
+            }
+
+
+            System.out.println("=================="+records.toString());
+
+
+
+
+        }catch (Exception e){
+
+        }
+    }
+
+    public int hasValue(JSONArray json, String key, String value) {
+        for(int i = 0; i < json.length(); i++) {  // iterate through the JsonArray
+            // first I get the 'i' JsonElement as a JsonObject, then I get the key as a string and I compare it with the value
+            if(json.optJSONObject(i).optString(key).equals(value)) return i;
+        }
+        return -1;
+    }
 
 }

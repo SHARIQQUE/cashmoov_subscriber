@@ -71,6 +71,7 @@ public class International extends AppCompatActivity implements View.OnClickList
             MyApplication.isContact = false;
             String requiredValue = data.getStringExtra("PHONE");
             etPhone.setText(requiredValue);
+            etFname.requestFocus();
 
         }
     }
