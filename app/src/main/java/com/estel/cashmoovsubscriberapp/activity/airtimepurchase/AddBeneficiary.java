@@ -40,6 +40,14 @@ public class AddBeneficiary extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        searchView.onActionViewCollapsed();
+        searchView.setQuery("", false);
+        searchView.clearFocus();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;

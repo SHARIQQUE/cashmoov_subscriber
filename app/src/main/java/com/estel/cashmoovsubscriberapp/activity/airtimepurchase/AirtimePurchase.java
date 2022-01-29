@@ -33,11 +33,13 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
         setBackMenu();
         getIds();
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
 
     private void setBackMenu() {
         imgBack = findViewById(R.id.imgBack);

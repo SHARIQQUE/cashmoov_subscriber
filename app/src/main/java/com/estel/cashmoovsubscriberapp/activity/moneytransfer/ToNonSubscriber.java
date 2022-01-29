@@ -740,6 +740,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                 dataToSend.put("transactionArea",MainActivity.transactionArea);
                                 dataToSend.put("isGpsOn",true);
 
+                                dataToSend.put("remitType","Wallet to Cash Local");
+
+
                                 System.out.println("Data Send "+dataToSend.toString());
                                 Intent i=new Intent(tononsubscriberC, ToNonSubscriberConfirmScreen.class);
                                 startActivity(i);

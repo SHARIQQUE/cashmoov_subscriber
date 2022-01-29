@@ -1037,6 +1037,8 @@ public class International extends AppCompatActivity implements View.OnClickList
                                 dataToSend.put("transactionArea",MainActivity.transactionArea);
                                 dataToSend.put("isGpsOn",true);
 
+                                dataToSend.put("remitType","Wallet to Cash International");
+
                                 System.out.println("Data Send "+dataToSend.toString());
                                 Intent i=new Intent(internationalC, InternationalConfirmScreen.class);
                                 startActivity(i);

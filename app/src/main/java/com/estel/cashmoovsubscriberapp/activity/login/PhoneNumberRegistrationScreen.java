@@ -378,6 +378,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                             if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")) {
                                 // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                                 MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+                                MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
                                // MyApplication.saveBool("FirstLogin", true, phnoregistrationccreenC);
                                 MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                                 MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
@@ -429,6 +430,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             JSONObject loginJson=new JSONObject();
 
             MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+            MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
             loginJson.put("username",etPhoneNo.getText().toString().trim());
             loginJson.put("password",etPass.getText().toString().trim());
             loginJson.put("grant_type","password");

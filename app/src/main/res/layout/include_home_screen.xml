@@ -410,12 +410,20 @@
                         android:gravity="center"
                         android:padding="@dimen/_10sdp">
 
+                        <LinearLayout
+                            android:layout_width="@dimen/_28sdp"
+                            android:layout_height="@dimen/_28sdp"
+                            android:gravity="center"
+                            android:background="@drawable/blue_circle"
+                            android:backgroundTint="@color/colorPrimary">
                         <ImageView
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
                             android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/ic_paimentfacture" />
-
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/icon_merchant"
+                            app:tint="@color/white"/>
+                        </LinearLayout>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

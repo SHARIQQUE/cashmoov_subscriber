@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -69,7 +70,9 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
             });
         }
 
+
         setOnCLickListener();
+
 
     }
 
@@ -99,7 +102,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
 
             JSONObject loginJson=new JSONObject();
 
-            loginJson.put("username",MyApplication.UserMobile);
+            loginJson.put("username",MyApplication.getSaveString("USERMOBILE",verifyaccountscreenC));
             loginJson.put("password",pass);
             loginJson.put("grant_type","password");
             // loginJson.put("scope","read write");
@@ -176,9 +179,12 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
 //
 //                    }
 
-                    Intent i = new Intent(VerifyFirstLoginOTP.this, SetPinFisrtLogin.class);
+//                    Intent i = new Intent(VerifyFirstLoginOTP.this, SetPinFisrtLogin.class);
+//                    startActivity(i);
+//                    finish();
+                    Intent i = new Intent(VerifyFirstLoginOTP.this, MainActivity.class);
                     startActivity(i);
-                   finish();
+                    finish();
                    // Toast.makeText(VerifyRegisterOTP.this,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
 
                 }
