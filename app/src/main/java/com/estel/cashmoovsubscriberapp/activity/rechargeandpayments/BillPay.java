@@ -78,7 +78,6 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
 
     public static String serviceProvider,mobile,currency,currencySymbol;
     public static JSONObject serviceCategory = new JSONObject();
-    public static JSONObject productCategory = new JSONObject();
 
     public void callwalletOwner(){
 
@@ -192,55 +191,16 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
         rvOperator.setLayoutManager(new GridLayoutManager(this,3));
         rvOperator.setAdapter(operatorAdapter);
 
-        callApiProductProvider();
     }
 
 
 
-    private void callApiProductProvider() {
-        try {
-
-            API.GET("ewallet/api/v1/product/allByCriteria?serviceCategoryCode="+
-                            serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")
-                            +"&operatorCode="+serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("code"),
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
-
-                            if (jsonObject != null) {
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    productCategory = jsonObject;
-                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
-
-
-                                } else {
-                                    MyApplication.showToast(billpayC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-
-    }
-
-    public static String code,name;
+    public static String operatorCode,operatorNname;
     @Override
-    public void onOperatorListItemClick(String Code, String Name) {
-        code = Code;
-        name = Name;
-        Intent intent = new Intent(billpayC, BillPayDetails.class);
+    public void onOperatorListItemClick(String code, String name) {
+        operatorCode = code;
+        operatorNname = name;
+        Intent intent = new Intent(billpayC, BillPayProduct.class);
         startActivity(intent);
     }
 }

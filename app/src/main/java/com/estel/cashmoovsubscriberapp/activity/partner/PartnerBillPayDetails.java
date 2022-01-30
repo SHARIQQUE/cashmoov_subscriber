@@ -74,7 +74,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
 
-        tvOperatorName.setText(Partner.name);
+        tvOperatorName.setText(Partner.operatorName);
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -132,8 +132,8 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                     dataToSend.put("amount",etAmount.getText().toString());
                     dataToSend.put("channel","SELFCARE");
                     dataToSend.put("fromCurrencyCode","100062");
-                    dataToSend.put("operator",Partner.code);
-                    dataToSend.put("productCode",Partner.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"));
+                    dataToSend.put("operator",Partner.operatorCode);
+                    dataToSend.put("productCode",PartnerProduct.productCode);
                     dataToSend.put("requestType","recharge");
                     dataToSend.put("serviceCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
                     dataToSend.put("serviceCategoryCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
@@ -164,7 +164,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                             +"&serviceCategoryCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
                             "&serviceProviderCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", billpaydetailsC)+
-                            "&productCode="+Partner.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
+                            "&productCode="+PartnerProduct.productCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

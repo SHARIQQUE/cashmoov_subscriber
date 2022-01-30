@@ -127,6 +127,7 @@ public class SetPinFisrtLogin extends AppCompatActivity {
 
                                 Intent intent = new Intent(setpinC, PhoneNumberRegistrationScreen.class);
                                 startActivity(intent);
+                                finish();
 
 
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){

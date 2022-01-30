@@ -176,9 +176,9 @@ public class VerifyRegisterOTP extends AppCompatActivity implements View.OnClick
 //
 //                    }
 
-                    Intent i = new Intent(VerifyRegisterOTP.this, SetPin.class);
+                    Intent i = new Intent(VerifyRegisterOTP.this, SetPinFisrtLogin.class);
                     startActivity(i);
-                   finish();
+                    finish();
                    // Toast.makeText(VerifyRegisterOTP.this,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
 
                 }

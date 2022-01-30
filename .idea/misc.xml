@@ -44,6 +44,8 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_notification_list.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_offer_promotion_detail.xml" value="0.2" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_onboarding_two.xml" value="0.20416666666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_partner.xml" value="0.15416666666666667" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_partner_product.xml" value="0.15416666666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_pay.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_profile.xml" value="0.1421875" />
@@ -65,6 +67,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/dialog_view_trans_details.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/fragment_maps.xml" value="0.13854166666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_home_screen.xml" value="0.22" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_partner_screen.xml" value="0.15416666666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/include_wallet_screen.xml" value="0.17083333333333334" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_contact.xml" value="0.10597826086956522" />

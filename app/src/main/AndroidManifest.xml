@@ -86,6 +86,7 @@
         <activity android:name=".activity.wallet.WalletTransactionDetails"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.wallet.TransactionDetailsActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.partner.Partner"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.partner.PartnerProduct"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.partner.PartnerBillPayDetails"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.partner.PartnerBillPayConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.partner.PartnerBillPayReceipt"  android:screenOrientation="portrait"/>
@@ -118,6 +119,7 @@
         <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeConfirm"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeReceipt"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.rechargeandpayments.BillPay"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.rechargeandpayments.BillPayProduct"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.rechargeandpayments.BillPayDetails"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.rechargeandpayments.BillPayConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.rechargeandpayments.BillPayReceipt"  android:screenOrientation="portrait"/>

@@ -92,7 +92,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
 
        // tvProvider.setText(Partner.serviceProvider);
         tvAccNo.setText(PartnerBillPayDetails.etAccountNo.getText().toString());
-        tvOperatorName.setText(Partner.name);
+        tvOperatorName.setText(Partner.operatorName);
        // tvCurrency.setText(Partner.currency);
 
         tvTransAmount.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayDetails.etAmount.getText().toString()));

@@ -89,7 +89,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
 
        // tvProvider.setText(BillPay.serviceProvider);
         tvAccNo.setText(BillPayDetails.etAccountNo.getText().toString());
-        tvOperatorName.setText(BillPay.name);
+        tvOperatorName.setText(BillPay.operatorNname);
        // tvCurrency.setText(BillPay.currency);
 
         tvTransAmount.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.etAmount.getText().toString()));

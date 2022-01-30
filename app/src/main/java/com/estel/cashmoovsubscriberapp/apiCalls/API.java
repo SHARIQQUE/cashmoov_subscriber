@@ -91,6 +91,7 @@ public class API {
                 .addHeaders("source","SUBSCRIBER")
                // .addHeaders("Accept-Language",MyApplication.getLang())
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
                 .setOkHttpClient(okHttpClient)
@@ -167,6 +168,7 @@ public class API {
                 .addHeaders("source","SUBSCRIBER")
                 // .addHeaders("Accept-Language",MyApplication.getLang())
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
                 .setOkHttpClient(okHttpClient)
@@ -240,6 +242,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
                 //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
@@ -307,6 +310,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -366,6 +370,7 @@ public class API {
                .setOkHttpClient(okClientfileUpload)
                .setContentType("multipart/form-data")
                .addHeaders("mac",MyApplication.getUniqueId())
+               .addHeaders("deviceId",MyApplication.getUniqueId())
                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                .addHeaders("source","SUBSCRIBER")
                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
@@ -421,6 +426,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addMultipartFile("file",file)
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addMultipartParameter("docTypeCode",docTypeCode)
                 .addMultipartParameter("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",MyApplication.getInstance()))
                 .setTag("uploadTest")
@@ -485,6 +491,7 @@ public class API {
                 .addMultipartFile("filefront",Frontfile)
                 .addMultipartFile("fileback",BackFile)
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addMultipartParameter("docTypeCodeFront","100012")
                 .addMultipartParameter("docTypeCodeback","100013")
                 .addMultipartParameter("idProofTypeCode",idProofTypeCode)
@@ -550,6 +557,7 @@ public class API {
                 .addMultipartFile("file",file)
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addMultipartParameter("idProofTypeCode","100000")
                 .addMultipartParameter("customerCode","1000000350")
                 .setTag("uploadTest")
@@ -614,6 +622,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
@@ -677,6 +686,7 @@ public class API {
                 .setTag("test")
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -741,6 +751,7 @@ public class API {
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                .setTag("test")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -799,6 +810,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -857,6 +869,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","SUBSCRIBER")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setPriority(Priority.MEDIUM)
@@ -916,6 +929,7 @@ public class API {
                 .addHeaders("Accept-Language","en")
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("source","SUBSCRIBER")
              //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
@@ -978,6 +992,7 @@ public class API {
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1038,6 +1053,7 @@ public class API {
                 .setTag("test")
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1102,6 +1118,7 @@ public class API {
 
                 .addHeaders("type","LOGINOTP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addJSONObjectBody(jsonObject)
                 .setOkHttpClient(okHttpClient)
 
@@ -1161,6 +1178,7 @@ public class API {
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addJSONObjectBody(jsonObject)
                 .setOkHttpClient(okHttpClient)
 
@@ -1219,6 +1237,7 @@ public class API {
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                // .addHeaders("Authorization", "Basic Y2FzaG1vb3Y6MTIzNDU2")
                 .addHeaders("source","SUBSCRIBER")
                 .addHeaders("type", "LOGINOTP")
@@ -1285,6 +1304,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("type", "LOGINOTP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
