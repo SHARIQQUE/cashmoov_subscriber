@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
+    android:layout_gravity="top"
+    android:gravity="top"
     android:orientation="vertical"
     tools:context=".activity.TutorialScreen">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +38,7 @@
                 <VideoView
                     android:id="@+id/videoView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
+                    android:layout_height="@dimen/_160sdp"
                     android:layout_centerInParent="true" />
                 <RelativeLayout
                     android:id="@+id/relPlay"
@@ -99,20 +104,30 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/_13sdp" />
 
+
+
         <TextView
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:fontFamily="@font/aileron_regular"
-            android:lineSpacingExtra="10sp"
+            android:fontFamily="@font/aileron_bold"
+            android:background="@drawable/btn_blue"
+            android:lineSpacingExtra="3sp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
             android:text="@string/already_acc_login"
-            android:textColor="#323232"
-            android:textSize="@dimen/_13sdp" />
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginBottom="@dimen/_15sdp"/>
 
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

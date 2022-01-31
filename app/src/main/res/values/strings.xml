@@ -367,6 +367,7 @@
     <string name="view_transaction_history">View transaction history</string>
     <string name="hide_transaction_history">Hide transaction history</string>
     <string name="choose_product">Choose the product</string>
+    <string name="choose_operator">Choose the operator</string>
 
 
     <string-array name="Spinner_provider">
