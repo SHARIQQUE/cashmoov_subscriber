@@ -132,7 +132,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
 
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyFirstLoginOTP.this,getString(R.string.getting_user_info));
-            API.POST_REQEST_LoginOTP("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {
+            API.POST_REQEST_GENERATEOTP("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
