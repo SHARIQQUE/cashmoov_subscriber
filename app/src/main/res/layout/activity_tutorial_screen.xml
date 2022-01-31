@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_50sdp"
-            android:layout_marginTop="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:layout_marginRight="@dimen/_50sdp"
             android:background="@drawable/btn_blue"
             android:fontFamily="@font/aileron_bold"
@@ -104,15 +104,23 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/_13sdp" />
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:fontFamily="@font/aileron_regular"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="9sp"
+            android:textColor="#29304d"
+            android:textSize="@dimen/_13sdp"
+            android:text="@string/already_acc" />
 
         <TextView
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_50sdp"
             android:layout_gravity="center"
             android:gravity="center"
             android:fontFamily="@font/aileron_bold"
@@ -122,7 +130,7 @@
             android:paddingBottom="@dimen/_15sdp"
             android:paddingStart="@dimen/_15sdp"
             android:paddingEnd="@dimen/_15sdp"
-            android:text="@string/already_acc_login"
+            android:text="@string/login"
             android:textColor="#ffffff"
             android:textSize="@dimen/_13sdp"
             android:layout_marginBottom="@dimen/_15sdp"/>

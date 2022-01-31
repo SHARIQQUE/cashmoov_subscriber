@@ -368,6 +368,7 @@
     <string name="hide_transaction_history">Masquer l\'historique des transactions</string>
     <string name="choose_product">Choisissez le produit</string>
     <string name="choose_operator">Choisissez l\'opérateur</string>
+    <string name="already_acc">Vous avez déjà un compte?</string>
 
 
     <string-array name="Spinner_provider">
