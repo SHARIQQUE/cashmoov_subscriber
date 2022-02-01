@@ -283,6 +283,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
 
                     if (resultCode.equalsIgnoreCase("0")) {
                         Toast.makeText(verifyaccountscreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                        MyApplication.saveBool("FirstLogin",true,verifyaccountscreenC);
                         Intent i = new Intent(verifyaccountscreenC, MainActivity.class);
                         startActivity(i);
                         finish();

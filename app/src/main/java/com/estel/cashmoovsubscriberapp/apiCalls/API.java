@@ -137,6 +137,10 @@ public class API {
                         }
 
                         if (error.getErrorCode() != 0) {
+                            if(error.getErrorCode()==400){
+                                MyApplication.showAPIToast("Server not responding,please try again after some time..");
+
+                            }
                             if(error.getErrorCode()==401){
                                 MyApplication.showAPIToast("Unauthorized Request......");
                                 MyApplication.getInstance().callLogin();

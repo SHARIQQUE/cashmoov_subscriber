@@ -266,7 +266,7 @@
     <string name="verification_register_otp_ip">Veuillez contacter votre service client pour générer l\'OTP ou entrez l\'OTP pour vérifier votre compte.</string>
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
     <string name="logout">Se déconnecter</string>
-    <string name="logout_app">Are you sure you want to logout the app?</string>
+    <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application ?</string>
     <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
     <string name="view_balance">Voir le solde</string>
     <string name="transaction_type">Type de transaction</string>
