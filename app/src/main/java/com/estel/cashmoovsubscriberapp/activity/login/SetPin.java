@@ -125,7 +125,7 @@ public class SetPin extends AppCompatActivity {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             MyApplication.showToast(setpinC,"Your Pin generate Successfully!");
 
-                                Intent intent = new Intent(setpinC, RegisterStepTwo.class);
+                                Intent intent = new Intent(setpinC, PhoneNumberRegistrationScreen.class);
                                 startActivity(intent);
 
 

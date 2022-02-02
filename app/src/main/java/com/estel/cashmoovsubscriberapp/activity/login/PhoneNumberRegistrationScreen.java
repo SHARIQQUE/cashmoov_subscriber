@@ -578,7 +578,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                            Intent i = new Intent(phnoregistrationccreenC, VerifyRegisterOTP.class);
+                            Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
                             startActivity(i);
 
                             MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);

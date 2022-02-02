@@ -32,6 +32,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
+import com.balsikandar.crashreporter.CrashReporter;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
@@ -104,6 +105,8 @@ public class MyApplication extends Application {
         AndroidNetworking.setBitmapDecodeOptions(options);*/
         AndroidNetworking.enableLogging();
         AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BASIC);
+
+        CrashReporter.initialize(this);
 
         if(Build.VERSION.SDK_INT>=24){
             try{
