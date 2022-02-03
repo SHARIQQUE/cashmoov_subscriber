@@ -1,12 +1,18 @@
 package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -99,6 +105,24 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.currencyValue);
 
         tvFee.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.fee);
+
+        etPin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(tosubscriberconfirmscreenC);            }
+        });
+
 
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {

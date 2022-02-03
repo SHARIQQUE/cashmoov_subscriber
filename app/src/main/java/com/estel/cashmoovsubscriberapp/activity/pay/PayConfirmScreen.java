@@ -2,6 +2,8 @@ package com.estel.cashmoovsubscriberapp.activity.pay;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -122,6 +124,22 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
 
         tvAmountCharged.setText(Pay.fromCurrencySymbol+" "+df.format(finalamount));
 
+        etPin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(payconfirmscreenC);            }
+        });
 
 
         TextView tvFinger =findViewById(R.id.tvFinger);

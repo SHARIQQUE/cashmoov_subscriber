@@ -546,7 +546,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="4"/>
+                    android:maxLength="4" />
                 <ImageView
                     android:id="@+id/icPin"
                     android:layout_width="wrap_content"

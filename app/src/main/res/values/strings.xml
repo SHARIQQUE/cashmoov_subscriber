@@ -70,7 +70,7 @@
     <string name="verification">Verification</string>
 
     <string name="verification_message">Enter the 4-digit OTP code we sent to +224 621 123 123.</string>
-    <string name="verification_register_otp_ip">    Kindly contact your customer care for generate OTP or please enter the OTP to verify your account.</string>
+    <string name="verification_register_otp_ip">Kindly contact your customer care for generate OTP or please enter the OTP to verify your account.</string>
     <string name="verification_register_otp">Please enter the OTP (one time password) to verify your account. Code has been sent to registered email id &amp; mobile number</string>
     <string name="session_expired_send_back">The session expires in 60 seconds. Haven\'t received a code? Send it back</string>
     <string name="my_account">My Account</string>

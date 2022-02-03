@@ -2,6 +2,8 @@ package com.estel.cashmoovsubscriberapp.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -43,7 +45,25 @@ public class SetPinFisrtLogin extends AppCompatActivity {
         icRepin = findViewById(R.id.icRePin);
         tvContinue = findViewById(R.id.tvContinue);
 
-       icPin.setOnClickListener(new View.OnClickListener() {
+        etRePin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(setpinC);            }
+        });
+
+
+        icPin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){

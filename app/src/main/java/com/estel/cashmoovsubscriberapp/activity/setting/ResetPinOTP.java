@@ -18,7 +18,7 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONObject;
 
 public class ResetPinOTP extends AppCompatActivity implements View.OnClickListener {
-    public static ResetPinOTP verifyaccountscreenC;
+    public static ResetPinOTP resetpinotpC;
     EditText etOne,etTwo,etThree,etFour,etSix,etFive;
     TextView tvPhoneNoMsg,tvContinue;
 
@@ -26,7 +26,7 @@ public class ResetPinOTP extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_register_otp);
-        verifyaccountscreenC = this;
+        resetpinotpC = this;
         getIds();
     }
 
@@ -39,7 +39,24 @@ public class ResetPinOTP extends AppCompatActivity implements View.OnClickListen
         etSix = findViewById(R.id.etSix);
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
         tvContinue = findViewById(R.id.tvContinue);
-        tvPhoneNoMsg.setText("Kindly contact your customer care for generate OTP or please enter the OTP to verify your account.");
+        tvPhoneNoMsg.setText(getString(R.string.verification_register_otp_ip));
+
+        etSix.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 1)
+                    MyApplication.hideKeyboard(resetpinotpC);            }
+        });
 
         TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
 
@@ -75,7 +92,7 @@ public class ResetPinOTP extends AppCompatActivity implements View.OnClickListen
     }
 
     private void setOnCLickListener() {
-        tvContinue.setOnClickListener(verifyaccountscreenC);
+        tvContinue.setOnClickListener(resetpinotpC);
     }
 
     public String getEditTextString(EditText editText){
