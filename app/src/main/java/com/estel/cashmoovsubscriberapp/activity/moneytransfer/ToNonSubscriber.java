@@ -37,7 +37,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class ToNonSubscriber extends AppCompatActivity implements View.OnClickListener{
     public static ToNonSubscriber tononsubscriberC;
     ImageView imgBack,imgHome;
-    TextView tvSend,tvFee,tvAmtPaid,spGender;
+    TextView tvAmtCurr,tvSend,tvFee,tvAmtPaid,spGender;
     public static AutoCompleteTextView etPhone;
     public static EditText etAmount,etFname,etLname,etComment,etAmountNew;
     private ArrayList<String> benefiGenderList = new ArrayList<>();
@@ -106,11 +106,11 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     public static JSONObject serviceCategory = new JSONObject();
 
     private void getIds() {
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvFee = findViewById(R.id.tvFee);
         tvAmtPaid = findViewById(R.id.tvAmtPaid);
         spGender = findViewById(R.id.spGender);
-        etAmount = findViewById(R.id.etAmount);
         etFname = findViewById(R.id.etFname);
         etLname = findViewById(R.id.etLname);
         etPhone = findViewById(R.id.etPhone);
@@ -148,10 +148,19 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                     if(isSet) {
                         isSet=false;
                     }else{
-                        etFname.setText("");
-                        etLname.setText("");
+                        etFname.getText().clear();
+                        etLname.getText().clear();
+                       // etAmount.getText().clear();
+                        etComment.getText().clear();
+                        spGender.setText(getString(R.string.valid_select_gender));
                         callApiSubsriberList();
                     }
+                }else{
+                    etFname.getText().clear();
+                    etLname.getText().clear();
+                    // etAmount.getText().clear();
+                    etComment.getText().clear();
+                    spGender.setText(getString(R.string.valid_select_gender));
                 }
             }
         });
@@ -664,7 +673,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                     fromCurrency = jsonObject.optJSONObject("country").optString("currencyCode");
                                     fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
 
-
+                                    tvAmtCurr.setText(fromCurrencySymbol);
                                 } else {
                                     MyApplication.showToast(tononsubscriberC,jsonObject.optString("resultDescription", "  "));
                                 }

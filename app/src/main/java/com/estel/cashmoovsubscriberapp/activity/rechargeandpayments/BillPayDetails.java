@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
 public class BillPayDetails extends AppCompatActivity implements View.OnClickListener {
     public static BillPayDetails billpaydetailsC;
     ImageView imgBack,imgHome;
-    TextView tvOperatorName,tvSend;
+    TextView tvOperatorName,tvAmtCurr,tvSend;
     public static EditText etAccountNo,etAmount;
 
     @Override
@@ -67,10 +67,12 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
     private void getIds() {
         tvOperatorName = findViewById(R.id.tvOperatorName);
         etAccountNo = findViewById(R.id.etAccountNo);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
 
         tvOperatorName.setText(BillPay.operatorNname);
+        tvAmtCurr.setText(BillPay.currencySymbol);
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override

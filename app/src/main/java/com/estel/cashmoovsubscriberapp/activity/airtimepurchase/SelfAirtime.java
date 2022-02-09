@@ -31,7 +31,7 @@ import java.text.DecimalFormat;
 public class SelfAirtime extends AppCompatActivity implements View.OnClickListener {
     public static SelfAirtime selfairtimeC;
     ImageView imgBack,imgHome;
-    TextView spOperator,tvSend;
+    TextView tvAmtCurr,spOperator,tvSend;
     public static EditText etPhone,etAmount;
     CardView cardOneThousand,cardTwoThousand,cardFiveThousand,cardTenThousand,cardFifteenThousand,cardTwentyThousand;
 
@@ -76,6 +76,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     private void getIds() {
         spOperator = findViewById(R.id.spOperator);
         etPhone = findViewById(R.id.etPhone);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         cardOneThousand = findViewById(R.id.cardOneThousand);
         cardTwoThousand = findViewById(R.id.cardTwoThousand);
@@ -212,6 +213,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                     mobile = data.optString("walletOwnerMsisdn");
                                     currency = data.optString("currencyName");
                                     currencySymbol = data.optString("currencySymbol");
+                                    tvAmtCurr.setText(currencySymbol);
                                     etPhone.setText(mobile);
                                     callApiMsisdnPrefix();
                                 }

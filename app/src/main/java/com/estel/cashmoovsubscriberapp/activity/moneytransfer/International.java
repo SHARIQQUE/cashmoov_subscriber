@@ -40,7 +40,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class International extends AppCompatActivity implements View.OnClickListener {
     public static International internationalC;
     ImageView imgBack,imgHome;
-    TextView spServiceProvider,spRecCountry,spBenifiCurr,spGender,tvFee,tvAmtPaid,tvRate;
+    TextView spServiceProvider,spRecCountry,spBenifiCurr,spGender,tvFee,tvAmtPaid,tvRate,tvAmtCurr,tvAmtPaidCurr;
     AutoCompleteTextView etPhone;
     public static EditText etAmount,etFname,etLname,etComment,etAmountNew;
     private ArrayList<String> serviceProviderList = new ArrayList<>();
@@ -123,6 +123,8 @@ public class International extends AppCompatActivity implements View.OnClickList
         spServiceProvider = findViewById(R.id.spServiceProvider);
         spRecCountry = findViewById(R.id.spRecCountry);
         spBenifiCurr = findViewById(R.id.spBenifiCurr);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
+        tvAmtPaidCurr = findViewById(R.id.tvAmtPaidCurr);
         etAmount = findViewById(R.id.etAmount);
         tvFee = findViewById(R.id.tvFee);
         tvAmtPaid = findViewById(R.id.tvAmtPaid);
@@ -423,11 +425,15 @@ public class International extends AppCompatActivity implements View.OnClickList
                                                 data.optString("status")
 
                                         ));
-                                        serviceProviderList.add(data.optString("name").trim());
+                                            serviceProviderList.add(data.optString("name").trim());
+                                            spServiceProvider.setText(data.optString("name"));
+
+
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
                                     spinnerDialogSerProvider = new SpinnerDialog(internationalC, serviceProviderList, "Select Service Provider", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
 
                                     spinnerDialogSerProvider.setCancellable(true); // for cancellable
                                     spinnerDialogSerProvider.setShowKeyboard(false);// for open keyboard by default
@@ -437,7 +443,6 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spServiceProvider.setText(item);
                                             spServiceProvider.setTag(position);
-
 
                                         }
                                     });
@@ -767,7 +772,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                 if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
                                     fromCurrency = jsonObject.optJSONObject("country").optString("currencyCode");
                                     fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
-
+                                    tvAmtCurr.setText(fromCurrencySymbol);
 
                                 } else {
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "  "));
@@ -844,6 +849,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             spBenifiCurr.setTag(position);
                                             currency = benefiCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = benefiCurrencyModelList.get(position).getCurrencySymbol();
+                                            tvAmtPaidCurr.setText(toCurrencySymbol);
                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
                                             etAmount.getText().clear();
                                             etAmountNew.getText().clear();

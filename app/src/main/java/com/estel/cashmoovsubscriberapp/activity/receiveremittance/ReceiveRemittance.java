@@ -25,7 +25,7 @@ import org.json.JSONObject;
 public class ReceiveRemittance extends AppCompatActivity implements View.OnClickListener {
     public static ReceiveRemittance receiveremittanceC;
     ImageView imgBack,imgHome;
-    TextView spBenefiCurrency,tvSend;
+    TextView tvAmtCurr,spBenefiCurrency,tvSend;
     public static EditText etPhone,etName,etLname,etConfCode,etAmount,etPin;
 
     @Override
@@ -71,6 +71,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         etName = findViewById(R.id.etName);
         etLname = findViewById(R.id.etLname);
         etConfCode = findViewById(R.id.etConfCode);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         etPin = findViewById(R.id.etPin);
         tvSend = findViewById(R.id.tvSend);
@@ -312,7 +313,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                                     fromCurrency = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyName");
                                     fromCurrencySymbol = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencySymbol");
                                     spBenefiCurrency.setText(fromCurrency);
-
+                                    tvAmtCurr.setText(fromCurrencySymbol);
                                 } else {
                                     MyApplication.showToast(receiveremittanceC,jsonObject.optString("resultDescription", "  "));
                                 }

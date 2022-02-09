@@ -116,7 +116,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
-                vat_r.setText(CashWithdrawal.currencySymbol+" "+df.format(CashWithdrawal.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(CashWithdrawal.fromCurrencySymbol+" "+df.format(CashWithdrawal.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashWithdrawal.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }

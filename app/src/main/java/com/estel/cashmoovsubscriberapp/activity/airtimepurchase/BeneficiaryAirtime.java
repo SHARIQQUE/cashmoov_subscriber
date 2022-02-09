@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
 public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtime beneficiaryairtimeC;
     ImageView imgBack,imgHome;
-    TextView tvSend;
+    TextView tvAmtCurr,tvSend;
     String phone;
     public static EditText etPhone,etAmount;
     CardView cardOneThousand,cardTwoThousand,cardFiveThousand,cardTenThousand,cardFifteenThousand,cardTwentyThousand;
@@ -68,6 +68,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
 
     private void getIds() {
         etPhone = findViewById(R.id.etPhone);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         cardOneThousand = findViewById(R.id.cardOneThousand);
         cardTwoThousand = findViewById(R.id.cardTwoThousand);
@@ -283,6 +284,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                     mobile = data.optString("walletOwnerMsisdn");
                                     currency = data.optString("currencyName");
                                     currencySymbol = data.optString("currencySymbol");
+                                    tvAmtCurr.setText(currencySymbol);
                                     //etPhone.setText(mobile);
                                     callApiMsisdnPrefix();
                                 }

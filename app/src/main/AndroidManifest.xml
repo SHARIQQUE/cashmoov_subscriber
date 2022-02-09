@@ -98,10 +98,13 @@
         <activity android:name=".activity.setting.EditProfile"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.setting.Reset"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.MoneyTransfer"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.ToSubscriber"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.moneytransfer.ToSubscriber"  android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activity.moneytransfer.ToSubscriberConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.ToSubscriberReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.ToNonSubscriber"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.moneytransfer.ToNonSubscriber"  android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
         <activity android:name=".activity.moneytransfer.ToNonSubscriberConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.ToNonSubscriberReceiptScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.International"  android:screenOrientation="portrait"/>

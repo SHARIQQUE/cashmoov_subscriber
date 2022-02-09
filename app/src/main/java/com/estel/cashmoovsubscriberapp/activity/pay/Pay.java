@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
 public class Pay extends AppCompatActivity implements View.OnClickListener {
     public static Pay payC;
     ImageView imgBack,imgHome;
-    TextView tvPhone,spBenifiCurr,tvSend;
+    TextView tvAmtCurr,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
     public static EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
@@ -107,6 +107,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         tvPhone = findViewById(R.id.tvPhone);
         spBenifiCurr = findViewById(R.id.spBenifiCurr);
         etRecipientNo = findViewById(R.id.etRecipientNo);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
 
@@ -409,7 +410,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                                     fromCurrencyCode = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyCode");
                                     fromCurrency = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyName");
                                     fromCurrencySymbol = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencySymbol");
-
+                                    tvAmtCurr.setText(fromCurrencySymbol);
 
                                 } else {
                                     MyApplication.showToast(payC,jsonObject.optString("resultDescription", "  "));

@@ -324,7 +324,7 @@
                         <ImageView
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
-                            app:srcCompat="@drawable/ic_topup"
+                            app:srcCompat="@drawable/ic_airtime"
                             android:scaleType="centerCrop"
                             app:tint="@color/colorPrimary"/>
 

@@ -27,6 +27,7 @@ import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AddBeneficiary;
+import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
@@ -42,7 +43,7 @@ import java.util.regex.Pattern;
 public class ToSubscriber extends AppCompatActivity implements View.OnClickListener {
     public static ToSubscriber tosubscriberC;
     ImageView imgBack,imgHome;
-    TextView tvSend;
+    TextView tvAmtCurr,tvSend;
     AutoCompleteTextView etSubscriberNo;
     public static EditText etFname,etLname,etAmount;
     TextView etName,etPhone;
@@ -152,6 +153,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         etSubscriberNo = findViewById(R.id.etSubscriberNo);
         etFname = findViewById(R.id.etFname);
         etLname = findViewById(R.id.etLname);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
         etFname.setEnabled(false);
@@ -204,10 +206,14 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                     if(isSet) {
                         isSet=false;
                     }else{
-                        etFname.setText("");
-                        etLname.setText("");
+                        etFname.getText().clear();
+                        etLname.getText().clear();
+                        //etAmount.getText().clear();
                         callApiSubsriberList();
                     }
+                }else{
+                    etFname.getText().clear();
+                    etLname.getText().clear();
                 }
             }
         });
@@ -289,7 +295,23 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_valid_amount));
             return;
         }
+        if(mobileNo.toString().trim().isEmpty()) {
+            new android.app.AlertDialog.Builder(this)
+                    //.setTitle(getString(R.string.logout))
+                    //.setIcon(R.drawable.ic_logout)
+                    .setMessage(getString(R.string.msisdn_not_reg_with_subscriber))
+                    .setNegativeButton(android.R.string.no, null)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
+                            startActivity(i);
+                            finish();
+
+                        }
+                    }).create().show();
+            return;
+        }
         try{
             dataToSend.put("transactionType","104591");
             dataToSend.put("desWalletOwnerCode",walletOwner.optJSONArray("walletOwnerList").optJSONObject(0).optString("walletOwnerCode"));
@@ -412,6 +434,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
 
                                 } else {
+                                    subscriberList.clear();
                                     setSubscriberdataf("No Data");
                                     // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -463,7 +486,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     private void setSubscriberdataf(String subscriberInfoModel) {
 
         subscriberList.clear();
-
+        mobileNo = "";
         subscriberList.add(""+""+subscriberInfoModel+""+"");
         adapter = new ArrayAdapter<String>(tosubscriberC,R.layout.item_select, subscriberList);
         etSubscriberNo.setAdapter(adapter);
@@ -526,6 +549,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                                 if (jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
                                     currency = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyName");
                                     currencySymbol = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencySymbol");
+                                    tvAmtCurr.setText(currencySymbol);
                                 } else {
                                     MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription"));
                                 }

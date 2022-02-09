@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
 public class CashWithdrawal extends AppCompatActivity implements View.OnClickListener {
     public static CashWithdrawal cashwithdrawalC;
     ImageView imgBack,imgHome;
-    TextView tvName,tvPhone,spBenifiCurr,tvSend;
+    TextView tvAmtCurr,tvName,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
     EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
@@ -106,6 +106,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
         tvPhone = findViewById(R.id.tvPhone);
         spBenifiCurr = findViewById(R.id.spBenifiCurr);
         etRecipientNo = findViewById(R.id.etRecipientNo);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
 
@@ -413,7 +414,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
                                     fromCurrencyCode = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyCode");
                                     fromCurrency = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencyName");
                                     fromCurrencySymbol = jsonObject.optJSONArray("walletOwnerCountryCurrencyList").optJSONObject(0).optString("currencySymbol");
-
+                                    tvAmtCurr.setText(fromCurrencySymbol);
 
                                 } else {
                                     MyApplication.showToast(cashwithdrawalC,jsonObject.optString("resultDescription", "  "));

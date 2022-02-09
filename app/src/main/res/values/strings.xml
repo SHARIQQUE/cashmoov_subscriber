@@ -369,6 +369,7 @@
     <string name="choose_product">Choose the product</string>
     <string name="choose_operator">Choose the operator</string>
     <string name="already_acc">Already have an account?</string>
+    <string name="msisdn_not_reg_with_subscriber">MSISDN is not saved, do you want to send to non subscriber?</string>
 
 
     <string-array name="Spinner_provider">
