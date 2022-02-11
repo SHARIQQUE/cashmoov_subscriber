@@ -14,17 +14,16 @@
 
         <ImageView
             android:id="@+id/imgNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
             app:srcCompat="@drawable/ic_baseline_notifications"
-            android:layout_gravity="center_vertical"
-            android:padding="@dimen/_5sdp"/>
+            android:layout_gravity="center_vertical" />
 
         <ImageView
             android:visibility="invisible"
             android:id="@+id/imgLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:src="@drawable/logo200x70b"
             android:layout_weight="1"
             android:layout_marginTop="@dimen/_5sdp"/>
@@ -32,11 +31,10 @@
 
         <ImageView
             android:id="@+id/imgQR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
             app:srcCompat="@drawable/ic_baseline_qr"
-            android:layout_gravity="center_vertical"
-            android:padding="@dimen/_5sdp"/>
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 

@@ -13,9 +13,13 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/btn_edittextname.xml" value="0.2046875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/btn_shape.xml" value="0.19010416666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_airtimess.xml" value="0.18072916666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_arrow_back_24.xml" value="0.20364583333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_account_balance_wallet_24.xml" value="0.2046875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.2046875" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_notifications.xml" value="0.20364583333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.2203125" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_qr.xml" value="0.20364583333333333" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_dashboard_24.xml" value="0.20364583333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_hide.xml" value="0.19114583333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_paimentfacture.xml" value="0.18802083333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_paymane24.xml" value="0.20208333333333334" />
@@ -90,7 +94,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_airtime_purchase.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_money_transfer.xml" value="0.33" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar.xml" value="0.18854166666666666" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar_active.xml" value="0.20416666666666666" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar_active.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/menu/bottom_menu.xml" value="0.16041666666666668" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable-xxhdpi/ic_logout.xml" value="0.175" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/drawable/btn_blue.xml" value="0.2203125" />

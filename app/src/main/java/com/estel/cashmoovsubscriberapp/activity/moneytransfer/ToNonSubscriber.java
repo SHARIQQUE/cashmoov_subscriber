@@ -118,6 +118,14 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         tvSend = findViewById(R.id.tvSend);
         etAmountNew = findViewById(R.id.etAmountNew);
 
+        if (getIntent().getExtras() != null) {
+            String msisdn  = (getIntent().getStringExtra("TOSUBMSISDN"));
+            String amount  = (getIntent().getStringExtra("TOSUBAMOUNT"));
+            etPhone.setText(msisdn);
+            etAmount.setText(amount);
+
+        }
+
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

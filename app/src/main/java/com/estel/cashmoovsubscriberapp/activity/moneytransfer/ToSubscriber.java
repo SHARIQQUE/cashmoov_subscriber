@@ -305,6 +305,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
+                            i.putExtra("TOSUBMSISDN",etSubscriberNo.getText().toString().trim());
+                            i.putExtra("TOSUBAMOUNT",etAmount.getText().toString().trim());
                             startActivity(i);
                             finish();
 
