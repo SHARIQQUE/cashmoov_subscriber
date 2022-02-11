@@ -35,7 +35,7 @@
                 android:lineSpacingExtra="7sp"
                 android:text="@string/my_account"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_18sdp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

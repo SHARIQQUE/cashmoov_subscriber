@@ -134,7 +134,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="@string/dashboard"
                 android:textColor="@color/textColorDBlack"
-                android:textSize="@dimen/_14sdp" />
+                android:textSize="@dimen/_18sdp" />
 
             <TextView
                 android:layout_width="match_parent"
