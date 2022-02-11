@@ -33,7 +33,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical">
 
             <TextView
@@ -71,7 +71,7 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_acc_number"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_13sdp"  />
+                android:textSize="@dimen/_15sdp"  />
 
             <LinearLayout
                 android:layout_width="match_parent"

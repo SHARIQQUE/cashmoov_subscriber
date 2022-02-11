@@ -35,7 +35,7 @@
                     android:lineSpacingExtra="7sp"
                     android:text="@string/change_pin"
                     android:textColor="#29304d"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_25sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
+                                android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
@@ -164,7 +164,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
+                                android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
@@ -227,7 +227,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
+                                android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>

@@ -90,8 +90,8 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         vat_label_layout=findViewById(R.id.vat_label_layout);
 
         tvProvider.setText(International.serviceProvider);
-        tvMobile.setText(International.mobileNo);
-        tvName.setText(International.ownerName+" "+International.lastName);
+        tvMobile.setText(InternationalRecipientDetails.mobileNo);
+        tvName.setText(InternationalRecipientDetails.ownerName+" "+InternationalRecipientDetails.lastName);
         //  tvConfCode.setText(International.mobileNo);
         tvCurrency.setText(International.fromCurrency);
         tvTransAmounts.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
@@ -157,7 +157,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            International.dataToSend.put( "pin",encryptionDatanew);
+                            InternationalRecipientDetails.dataToSend.put( "pin",encryptionDatanew);
 
                             callPostAPI();
                         } catch (Exception e) {
@@ -216,7 +216,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
                     etPin.setClickable(false);
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                    International.dataToSend.put("pin", encryptionDatanew);
+                    InternationalRecipientDetails.dataToSend.put("pin", encryptionDatanew);
                     callPostAPI();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -235,7 +235,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         public static JSONArray taxConfigList;
         public void callPostAPI(){
             MyApplication.showloader(internationalconfirmscreenC,"Please Wait...");
-            API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/subscriberP2C", International.dataToSend,
+            API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/subscriberP2C", InternationalRecipientDetails.dataToSend,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

@@ -42,10 +42,13 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_change_pin.xml" value="0.16" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_confidentiality.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_confirm_screen.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_create_password.xml" value="0.18697916666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_fee.xml" value="0.25" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international.xml" value="0.25" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_login_pin.xml" value="0.16" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international.xml" value="0.22" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international_recipient_details.xml" value="0.18697916666666667" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_login.xml" value="0.18697916666666667" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_login_pin.xml" value="0.2" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_money_transfer.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_my_qrcode.xml" value="0.18854166666666666" />

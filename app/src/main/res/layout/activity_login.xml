@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="7sp"
                     android:text="@string/login"
@@ -41,12 +41,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/aileron_regular"
+                    android:fontFamily="@font/aileron_semibold"
                     android:lineSpacingExtra="10sp"
                     android:text="@string/login_message"
                     android:textColor="#323232"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
+                                android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"
                                 android:inputType="phone" />
                         </LinearLayout>
@@ -142,7 +142,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
+                                android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"
                                 android:maxLength="4"
                                 android:inputType="textPassword" />

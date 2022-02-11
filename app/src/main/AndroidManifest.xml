@@ -108,6 +108,7 @@
         <activity android:name=".activity.moneytransfer.ToNonSubscriberConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.ToNonSubscriberReceiptScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.International"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.moneytransfer.InternationalRecipientDetails"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.InternationalConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.InternationalReceiptScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.BankToWallet"  android:screenOrientation="portrait"/>

@@ -34,8 +34,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="33dp"
-
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical">
 
             <TextView
@@ -168,7 +167,7 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_inst_agent_branch_number"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/_15sdp" />
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"
