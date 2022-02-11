@@ -34,27 +34,31 @@
             android:layout_height="wrap_content"
             android:text="@string/confidentiality"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:gravity="center_horizontal" />
+            android:textColor="@color/textColorDBlack"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/_18sdp"
+            android:fontFamily="@font/aileron_bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/action_requires_biometric_auth"
             android:textAlignment="center"
-            android:textSize="16dp"
+            android:textSize="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:gravity="center_horizontal" />
+            android:textColor="@color/textColorDBlack"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/aileron_semibold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/protection_of_sensitive"
             android:textAlignment="center"
-            android:textSize="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:gravity="center_horizontal" />
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/textColorDBlack"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/aileron_semibold"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -84,7 +88,8 @@
                     android:text="@string/activate_ptotection"
                     android:layout_gravity="center"
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,9 +120,10 @@
             android:layout_height="wrap_content"
             android:text="@string/press_cancel_return_to_dashboard"
             android:textAlignment="center"
-            android:textSize="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:gravity="center_horizontal" />
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/textColorDBlack"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/aileron_semibold"/>
 
 
 

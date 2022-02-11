@@ -35,9 +35,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/about_cashmoov_app"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textSize="@dimen/_15sdp"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textColorDBlack"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/aileron_bold"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,8 +47,9 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/_13sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textcolor"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/aileron_bold"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,8 +58,9 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/_13sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textcolor"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/aileron_bold"/>
 
             <TextView
                 android:id="@+id/tvUserId"
@@ -66,8 +69,9 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/_13sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textcolor"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/aileron_bold"/>
 
 
 
@@ -76,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_9sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:background="@drawable/btn_green700"

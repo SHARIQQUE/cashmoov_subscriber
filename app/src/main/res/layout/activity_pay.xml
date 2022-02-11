@@ -26,11 +26,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/you_make_significant_payment"
                     android:textColor="#29304d"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_16sdp" />
 
 
 
@@ -59,7 +59,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
 
                             <LinearLayout
@@ -75,7 +76,7 @@
                                     android:lineSpacingExtra="7sp"
                                     android:text="Scan"
                                     android:textColor="#000"
-                                    android:textSize="28sp" />
+                                    android:textSize="@dimen/_20sdp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -86,7 +87,7 @@
                                     android:lineSpacingExtra="7sp"
                                     android:text="QR"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="28sp" />
+                                    android:textSize="@dimen/_20sdp" />
 
                             </LinearLayout>
                             <LinearLayout
@@ -101,9 +102,10 @@
                                     android:fontFamily="@font/aileron_bold"
                                     android:letterSpacing="-0.02"
                                     android:lineSpacingExtra="7sp"
+                                    android:layout_marginTop="@dimen/_2sdp"
                                     android:text="N/A"
                                     android:textColor="#000"
-                                    android:textSize="28sp" />
+                                    android:textSize="@dimen/_20sdp" />
 
 
 
@@ -129,10 +131,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/_14sdp"
                                 android:layout_gravity="center_horizontal"
                                 android:textColor="#29304d"
-                                android:fontFamily="@font/aileron_semibold"
+                                android:fontFamily="@font/aileron_bold"
                                 android:lineSpacingExtra="3sp"
                                 android:text="@string/scanner"
                                 android:gravity="center_horizontal" />
@@ -149,9 +151,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="#29304d"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/receiver_details"
                     />
@@ -216,7 +218,7 @@
                         android:id="@+id/tvAmtCurr"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_16sdp"
                         android:layout_weight="0.2"
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"
@@ -230,9 +232,9 @@
                         android:lineSpacingExtra="10sp"
                         android:hint="@string/amount"
                         android:background="@null"
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_16sdp" />
                 </LinearLayout>
 
 

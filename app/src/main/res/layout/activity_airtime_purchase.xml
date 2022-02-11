@@ -24,11 +24,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/you_are_reloading"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_16sdp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +56,8 @@
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/my_number"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/_11sdp" />
+                android:fontFamily="@font/aileron_bold"
+                android:textSize="@dimen/_13sdp" />
 
             <TextView
                 android:id="@+id/tvOtherNo"
@@ -71,7 +72,8 @@
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/another_number"
                 android:textColor="@color/bleu_cashmoov"
-                android:textSize="@dimen/_11sdp"
+                android:fontFamily="@font/aileron_bold"
+                android:textSize="@dimen/_13sdp"
                 android:layout_marginTop="@dimen/_10sdp"/>
 
         </LinearLayout>

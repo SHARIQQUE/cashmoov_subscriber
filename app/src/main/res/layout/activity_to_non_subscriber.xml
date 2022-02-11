@@ -26,11 +26,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/non_subscribed_money_transfer"
                 android:textColor="#29304d"
-                android:textSize="17sp" />
+                android:textSize="@dimen/_16sdp" />
 
 
         <LinearLayout
@@ -43,9 +43,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/transaction_details"
                 />
@@ -67,7 +67,7 @@
                     android:id="@+id/tvAmtCurr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_16sdp"
                     android:layout_weight="0.2"
                     android:textColor="@color/textColorLBlack"
                     android:lineSpacingExtra="3sp"
@@ -81,9 +81,9 @@
                     android:lineSpacingExtra="10sp"
                     android:hint="@string/amount"
                     android:background="@null"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_16sdp" />
             </LinearLayout>
 
             <EditText
@@ -165,10 +165,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_14sdp"
                 android:layout_marginTop="10dp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/recipient_details"
                 />

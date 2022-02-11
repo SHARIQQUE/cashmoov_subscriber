@@ -35,7 +35,7 @@
                 android:lineSpacingExtra="7sp"
                 android:text="@string/my_account"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_16sdp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +55,7 @@
                     android:text="@string/your_currency"
                     android:textColor="#ffffff"
                     android:layout_weight="1"
+                    android:fontFamily="@font/aileron_bold"
                     android:textSize="@dimen/_11sdp" />
 
                 <TextView
@@ -69,6 +70,7 @@
                     android:text="@string/acc_statement"
                     android:textColor="@color/bleu_cashmoov"
                     android:textSize="@dimen/_11sdp"
+                    android:fontFamily="@font/aileron_bold"
                     android:layout_weight="1"/>
 
 
@@ -147,9 +149,10 @@
                                         android:id="@+id/tvClick"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="@dimen/_13sdp"
+                                        android:textSize="@dimen/_14sdp"
                                         android:textColor="@color/white"
                                         android:lineSpacingExtra="3sp"
+                                        android:fontFamily="@font/aileron_bold"
                                         android:text="@string/view_balance" />
                                     <TextView
                                         android:id="@+id/tvBalance"
@@ -197,7 +200,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.9"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/view_transaction_history"
                     android:textColor="@color/colorPrimary"
@@ -217,7 +220,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.9"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/hide_transaction_history"
                     android:textColor="@color/colorPrimary"

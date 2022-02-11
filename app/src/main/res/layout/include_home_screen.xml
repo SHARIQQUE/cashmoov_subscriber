@@ -43,7 +43,7 @@
                     android:lineSpacingExtra="4sp"
                     android:text="@string/hello"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_16sdp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -130,11 +130,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/dashboard"
                 android:textColor="@color/textColorDBlack"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -210,10 +210,11 @@
                                         android:id="@+id/tvClick"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="@dimen/_13sdp"
+                                        android:textSize="@dimen/_14sdp"
                                         android:textColor="@color/white"
                                         android:lineSpacingExtra="3sp"
-                                        android:text="@string/view_balance" />
+                                        android:text="@string/view_balance"
+                                        android:fontFamily="@font/aileron_bold"/>
                                     <TextView
                                         android:id="@+id/tvBalance"
                                         android:layout_width="wrap_content"
@@ -251,9 +252,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/textColorDBlack"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/our_operations"
                 />
@@ -297,7 +298,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/money_transfer" />
                     </LinearLayout>
@@ -335,7 +336,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/airtime_purchase" />
 
@@ -374,7 +375,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/bill_payment" />
 
@@ -426,7 +427,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/merchant_payment" />
 
@@ -464,7 +465,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/cash_withdrawal" />
 
@@ -503,7 +504,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/receive_remittance" />
 
@@ -552,7 +553,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/fee" />
 
@@ -592,7 +593,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/service_point" />
 
