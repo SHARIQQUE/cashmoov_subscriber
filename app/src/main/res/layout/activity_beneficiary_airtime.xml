@@ -364,7 +364,7 @@
                         android:layout_weight="0.8"
                         android:inputType="numberDecimal"
                         android:lineSpacingExtra="10sp"
-                        android:hint="@string/valid_amount_send"
+                        android:hint="@string/amount_to_send"
                         android:background="@null"
                         android:fontFamily="@font/aileron_bold"
                         android:textColor="@color/textColorLBlack"

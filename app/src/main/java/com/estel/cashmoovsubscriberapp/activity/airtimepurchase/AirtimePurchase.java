@@ -1,29 +1,24 @@
 package com.estel.cashmoovsubscriberapp.activity.airtimepurchase;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 
 public class AirtimePurchase extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_CODE = 1;
     public static AirtimePurchase airtimepurchaseC;
     ImageView imgBack,imgHome;
-    TextView tvMyNo,tvOtherNo;
+    LinearLayout tvMyNo,tvOtherNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

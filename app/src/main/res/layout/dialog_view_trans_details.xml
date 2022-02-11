@@ -226,7 +226,7 @@
             android:id="@+id/etAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-              android:paddingTop="@dimen/_5sdp"
+            android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
             android:textColor="@color/textcolor"
             android:textSize="@dimen/_11sdp"

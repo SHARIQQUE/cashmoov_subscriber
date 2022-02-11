@@ -40,41 +40,67 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="30dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/tvMyNo"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_green700"
-                android:gravity="center_horizontal"
-                android:lineSpacingExtra="3sp"
-                android:paddingLeft="@dimen/_15sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingRight="@dimen/_15sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:text="@string/my_number"
-                android:textColor="#ffffff"
-                android:fontFamily="@font/aileron_bold"
-                android:textSize="@dimen/_13sdp" />
+                android:orientation="vertical"
+                android:padding="@dimen/_20sdp"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/tvOtherNo"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    app:srcCompat="@drawable/common_full_open_on_phone"
+                    app:tint="@color/white"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/my_number"
+                    android:textColor="#ffffff"
+                    android:fontFamily="@font/aileron_bold"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+            </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/tvOtherNo"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_jaune"
-                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/_20sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_30sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    app:srcCompat="@drawable/common_full_open_on_phone"
+                    app:tint="@color/bleu_cashmoov"
+                    android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:lineSpacingExtra="3sp"
-                android:paddingLeft="@dimen/_15sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingRight="@dimen/_15sdp"
-                android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/another_number"
                 android:textColor="@color/bleu_cashmoov"
                 android:fontFamily="@font/aileron_bold"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_14sdp"
                 android:layout_marginTop="@dimen/_10sdp"/>
+           </LinearLayout>
 
         </LinearLayout>
 

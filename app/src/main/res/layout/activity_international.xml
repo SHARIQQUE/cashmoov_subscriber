@@ -144,7 +144,7 @@
                     android:layout_weight="0.8"
                     android:inputType="numberDecimal"
                     android:lineSpacingExtra="10sp"
-                    android:hint="@string/valid_amount_send"
+                    android:hint="@string/amount_to_send"
                     android:background="@null"
                     android:fontFamily="@font/aileron_bold"
                     android:textColor="@color/textColorLBlack"
@@ -169,7 +169,7 @@
                         android:id="@+id/tvAmtPaidCurr"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_16sdp"
                         android:layout_weight="0.2"
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"
@@ -183,9 +183,9 @@
                         android:lineSpacingExtra="10sp"
                         android:hint="@string/amount_to_paid"
                         android:background="@null"
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_16sdp" />
                 </LinearLayout>
 
                 <LinearLayout

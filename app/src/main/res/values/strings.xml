@@ -110,7 +110,7 @@
     <string name="current_profile_photo">Your current profile photo</string>
     <string name="select_new_profile_photo">Select your new profile photo</string>
     <string name="you_are_reloading">You make a recharge</string>
-    <string name="my_number">My number</string>
+    <string name="my_number">My Number</string>
     <string name="another_number">Another Number</string>
     <string name="bank_transfer_to_wallet">Bank transfer to your wallet</string>
     <string name="transaction_details">Transaction details</string>
