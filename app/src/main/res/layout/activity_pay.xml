@@ -151,6 +151,7 @@
                     android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/receiver_details"
+                    android:layout_marginTop="@dimen/_10sdp"
                     />
 
                 <AutoCompleteTextView
