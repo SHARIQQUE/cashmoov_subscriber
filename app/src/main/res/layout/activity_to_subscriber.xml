@@ -93,8 +93,8 @@
 
                         <ImageButton
                             android:onClick="qrScan"
-                            android:layout_width="85dp"
-                            android:layout_height="85dp"
+                            android:layout_width="@dimen/_65sdp"
+                            android:layout_height="@dimen/_65sdp"
                             android:layout_weight="1"
                             android:scaleType="centerCrop"
                             android:background="@color/white"

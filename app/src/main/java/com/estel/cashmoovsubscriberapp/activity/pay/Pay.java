@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
 public class Pay extends AppCompatActivity implements View.OnClickListener {
     public static Pay payC;
     ImageView imgBack,imgHome;
-    TextView tvAmtCurr,tvPhone,spBenifiCurr,tvSend;
+    TextView tvAmtCurr,tvName,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
     public static EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
@@ -104,6 +104,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     public static JSONObject serviceCategory = new JSONObject();
 
     private void getIds() {
+        tvName = findViewById(R.id.tvName);
         tvPhone = findViewById(R.id.tvPhone);
         spBenifiCurr = findViewById(R.id.spBenifiCurr);
         etRecipientNo = findViewById(R.id.etRecipientNo);
@@ -378,6 +379,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                     walletOwner=jsonObject;
                     JSONObject data=walletOwner.optJSONObject("walletOwner");
+                    tvName.setText(data.optString("ownerName","N/A"));
                     tvPhone.setText(data.optString("mobileNumber","N/A"));
                     callApiFromCurrency(data.optString("code"));
                 }else{
