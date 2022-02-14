@@ -25,11 +25,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/bank_transfer_to_wallet"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_16sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,9 +41,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/transaction_details"
                 />
@@ -61,7 +61,8 @@
                 android:paddingBottom="16dp"
                 android:hint="@string/select_bank"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:fontFamily="@font/aileron_semibold"
+                android:textSize="@dimen/_15sdp" />
             <LinearLayout
                 android:gravity="left"
                 android:layout_width="match_parent"
@@ -83,6 +84,8 @@
                     android:layout_gravity="clip_horizontal"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"
                     android:textColor="#000"
                     />
 
@@ -96,6 +99,8 @@
                     android:layout_marginLeft="10dp"
                     android:paddingBottom="5dp"
                     android:layout_marginRight="10dp"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     android:textColor="#000"
                     />
 
@@ -108,12 +113,14 @@
                 android:backgroundTint="#999999"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/montant_a_envoyer"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold"/>
 
 
             <LinearLayout
@@ -138,6 +145,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"
                     />
 
                 <TextView
@@ -151,6 +160,8 @@
                     android:paddingBottom="5dp"
                     android:layout_marginRight="10dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,6 +171,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"
                     />
 
                 <TextView
@@ -172,6 +185,8 @@
                     android:layout_marginLeft="10dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
             </LinearLayout>
 

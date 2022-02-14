@@ -266,7 +266,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
 
@@ -591,6 +592,7 @@
                         android:paddingBottom="@dimen/_5sdp"
                         android:textColor="#323232"
                         android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLength="4"/>

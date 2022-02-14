@@ -45,6 +45,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_create_password.xml" value="0.18697916666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_fee.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_fee_details.xml" value="0.129981884057971" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_international_recipient_details.xml" value="0.18697916666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_login.xml" value="0.18697916666666667" />
@@ -62,7 +63,8 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_profile.xml" value="0.1421875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_receipt_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_receive_remittance.xml" value="0.22" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_stepone.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_stepone.xml" value="0.2" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_steptwo.xml" value="0.15260416666666668" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_reset.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_self_airtime.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_service_point.xml" value="0.13854166666666667" />
@@ -75,6 +77,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_verify_register_otp.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_wallet_screen.xml" value="0.11820652173913043" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_wallet_to_bank.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.16" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/content_bottom_sheet.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/content_offer_promotion.xml" value="0.20416666666666666" />

@@ -67,11 +67,12 @@
                     android:id="@+id/tvAmtCurr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_16sdp"
                     android:layout_weight="0.2"
                     android:textColor="@color/textColorLBlack"
                     android:lineSpacingExtra="3sp"
-                    android:text="GNF" />
+                    android:text="GNF"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/aileron_semibold"/>
                 <EditText
                     android:id="@+id/etAmount"
                     android:layout_width="0dp"
@@ -126,6 +127,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"
                     />
 
                 <TextView
@@ -138,6 +141,8 @@
                     android:paddingBottom="5dp"
                     android:layout_marginRight="10dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -147,6 +152,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"
                     />
 
                 <TextView
@@ -159,6 +166,8 @@
                     android:layout_marginLeft="10dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
             </LinearLayout>
 
@@ -189,7 +198,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_phone_number"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold"/>
 
             <EditText
                 android:id="@+id/etFname"
@@ -206,7 +216,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_fname"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_15sdp"/>
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold"/>
             <EditText
                 android:id="@+id/etLname"
                 android:layout_width="match_parent"
@@ -222,7 +233,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_lname"
                 android:textColor="@color/textColorBlack"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -245,7 +257,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
             </LinearLayout>
 
             <EditText
@@ -263,7 +276,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/reason_for_sending"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <TextView
                 android:id="@+id/tvSend"

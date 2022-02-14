@@ -104,6 +104,7 @@
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
                                 android:textSize="@dimen/_15sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:password="true"
                                 android:textStyle="bold"
                                 android:inputType="numberPassword"

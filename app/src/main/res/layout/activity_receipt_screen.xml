@@ -40,8 +40,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/details_of_transaction"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:fontFamily="@font/aileron_bold"
+                android:textColor="@color/textColorDBlack"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_16sdp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,9 +55,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="#29304d"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/subscriber_details"
                     />
@@ -101,7 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/receiver_details"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/aileron_bold"
                 android:textColor="#000"
                 android:gravity="left" />
 
@@ -412,7 +415,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
-                 android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
 

@@ -20,7 +20,9 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/aileron_bold">
 
             <TextView
                 android:layout_width="wrap_content"

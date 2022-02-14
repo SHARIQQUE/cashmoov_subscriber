@@ -139,7 +139,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/valid_inst_agent_branch_number"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -182,11 +183,12 @@
                     android:id="@+id/tvAmtCurr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_16sdp"
                     android:layout_weight="0.2"
                     android:textColor="@color/textColorLBlack"
                     android:lineSpacingExtra="3sp"
-                    android:text="GNF" />
+                    android:text="GNF"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/aileron_semibold"/>
                 <EditText
                     android:id="@+id/etAmount"
                     android:layout_width="0dp"

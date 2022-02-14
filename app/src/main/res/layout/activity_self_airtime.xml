@@ -374,11 +374,12 @@
                     android:id="@+id/tvAmtCurr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/_16sdp"
                     android:layout_weight="0.2"
                     android:textColor="@color/textColorLBlack"
                     android:lineSpacingExtra="3sp"
-                    android:text="GNF" />
+                    android:text="GNF"
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/aileron_semibold"/>
 
                 <EditText
                     android:id="@+id/etAmount"

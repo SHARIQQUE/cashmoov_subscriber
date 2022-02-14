@@ -49,7 +49,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_phone_number"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
                     android:id="@+id/etFname"
@@ -66,7 +67,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_fname"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp"/>
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"/>
 
                 <EditText
                     android:id="@+id/etLname"
@@ -83,7 +85,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_lname"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
 
                 <LinearLayout
@@ -107,7 +110,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
                 <EditText
                     android:id="@+id/etComment"
@@ -124,7 +128,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/reason_for_sending"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"/>
 
                 <TextView
                     android:id="@+id/tvSend"
