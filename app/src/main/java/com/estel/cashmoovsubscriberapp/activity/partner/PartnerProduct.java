@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,7 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
     ImageView imgBack, imgHome;
     RecyclerView rvProduct;
     private ArrayList<ProductModel> productList = new ArrayList<>();
+    LinearLayout linMain,linProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
 
 
     private void getIds() {
+        linMain = findViewById(R.id.linMain);
+        linProgress = findViewById(R.id.linProgress);
         rvProduct = findViewById(R.id.rvProduct);
         callApiProductProvider();
 
@@ -74,14 +79,14 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
 
     private void callApiProductProvider() {
         try {
-            MyApplication.showloader(partnerproductC,"Please Wait...");
+           // MyApplication.showloader(partnerproductC,"Please Wait...");
             API.GET("ewallet/api/v1/product/allByCriteria?serviceCategoryCode="+
                             Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")
                             +"&operatorCode="+Partner.operatorCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
+                           // MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 productList.clear();
@@ -125,7 +130,7 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
 
                         @Override
                         public void failure(String aFalse) {
-                            MyApplication.hideLoader();
+                           // MyApplication.hideLoader();
 
                         }
                     });
@@ -140,6 +145,8 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
         rvProduct.setHasFixedSize(true);
         rvProduct.setLayoutManager(new GridLayoutManager(this,3));
         rvProduct.setAdapter(productAdapter);
+        linProgress.setVisibility(View.GONE);
+        linMain.setVisibility(View.VISIBLE);
 
     }
 

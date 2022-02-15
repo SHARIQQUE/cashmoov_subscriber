@@ -365,33 +365,35 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                 benefiGenderList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("genderTypeList");
-                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
-                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                        benefiGenderModelList.add(new GenderInfoModel.Gender(
-                                                data.optInt("id"),
-                                                data.optString("code"),
-                                                data.optString("creationDate"),
-                                                data.optString("status"),
-                                                data.optString("type")
+                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                            benefiGenderModelList.add(new GenderInfoModel.Gender(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("status"),
+                                                    data.optString("type")
 
-                                        ));
+                                            ));
 
-                                        benefiGenderList.add(data.optString("type").trim());
+                                            benefiGenderList.add(data.optString("type").trim());
 
-                                    }
-
-                                    spinnerDialogBenefiGender = new SpinnerDialog(tononsubscriberC, benefiGenderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
-
-                                    spinnerDialogBenefiGender.setCancellable(true); // for cancellable
-                                    spinnerDialogBenefiGender.setShowKeyboard(false);// for open keyboard by default
-                                    spinnerDialogBenefiGender.bindOnSpinerListener(new OnSpinerItemClick() {
-                                        @Override
-                                        public void onClick(String item, int position) {
-                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
-                                            spGender.setText(item);
-                                            spGender.setTag(position);
                                         }
-                                    });
+
+                                        spinnerDialogBenefiGender = new SpinnerDialog(tononsubscriberC, benefiGenderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+                                        spinnerDialogBenefiGender.setCancellable(true); // for cancellable
+                                        spinnerDialogBenefiGender.setShowKeyboard(false);// for open keyboard by default
+                                        spinnerDialogBenefiGender.bindOnSpinerListener(new OnSpinerItemClick() {
+                                            @Override
+                                            public void onClick(String item, int position) {
+                                                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                                spGender.setText(item);
+                                                spGender.setTag(position);
+                                            }
+                                        });
+                                    }
 
                                 } else {
                                     MyApplication.showToast(tononsubscriberC,jsonObject.optString("resultDescription", "N/A"));

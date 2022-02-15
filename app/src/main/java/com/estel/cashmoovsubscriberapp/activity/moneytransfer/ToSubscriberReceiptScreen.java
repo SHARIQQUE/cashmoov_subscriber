@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
 
 public class ToSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ToSubscriberReceiptScreen tosubscriberreceiptscreenC;
-    Button btnShareReceipt;
+    Button btnClose,btnShareReceipt;
     TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
@@ -114,6 +114,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
 
 
     private void getIds() {
+        btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvProvider = findViewById(R.id.tvProvider);
@@ -176,6 +177,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
     }
 
     private void setOnCLickListener() {
+        btnClose.setOnClickListener(tosubscriberreceiptscreenC);
         btnShareReceipt.setOnClickListener(tosubscriberreceiptscreenC);
 
     }
@@ -189,6 +191,11 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
                 //int id= Random(System.currentTimeMillis()).nextInt(1000);
                 createImageFile(bitmap);
                 //store(bitmap,id+"test.jpg");
+                break;
+            case R.id.btnClose:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
 
         }

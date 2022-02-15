@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 
 public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnClickListener {
     public static PartnerBillPayReceipt billpayreceiptC;
-    Button btnShareReceipt;
+    Button btnClose,btnShareReceipt;
     TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
@@ -119,6 +119,7 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
 
     private void getIds() {
         transId = findViewById(R.id.transId);
+        btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
@@ -181,6 +182,7 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
     }
 
     private void setOnCLickListener() {
+        btnClose.setOnClickListener(billpayreceiptC);
         btnShareReceipt.setOnClickListener(billpayreceiptC);
 
     }
@@ -193,6 +195,11 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");
+                break;
+            case R.id.btnClose:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
 
         }

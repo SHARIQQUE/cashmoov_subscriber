@@ -185,8 +185,8 @@ public class International extends AppCompatActivity implements View.OnClickList
                             isAmt=false;
                             callApiAmountDetailsNew();
                         }else{
-                           isAmt=true;
                            etAmount.setEnabled(true);
+                            isAmt=true;
                         }
 
                     }else{

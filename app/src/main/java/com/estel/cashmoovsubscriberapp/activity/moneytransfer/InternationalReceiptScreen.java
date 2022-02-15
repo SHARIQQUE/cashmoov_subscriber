@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 
 public class InternationalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalReceiptScreen internationalreceiptscreenC;
-    Button btnShareReceipt;
+    Button btnClose,btnShareReceipt;
     TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
@@ -112,6 +112,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
 
 
     private void getIds() {
+        btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         linConfCode = findViewById(R.id.linConfCode);
@@ -178,6 +179,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
     }
 
     private void setOnCLickListener() {
+        btnClose.setOnClickListener(internationalreceiptscreenC);
         btnShareReceipt.setOnClickListener(internationalreceiptscreenC);
 
     }
@@ -190,6 +192,11 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                // store(bitmap,"test.jpg");
+                break;
+            case R.id.btnClose:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
 
         }

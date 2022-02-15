@@ -76,13 +76,11 @@
         <activity android:name=".activity.login.Login"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.login.LoginPin"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.login.SetPin"  android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.NotificationList"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.MyQrCode"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.OfferPromotionDetailActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.wallet.WalletScreen"
-             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.wallet.WalletScreen" android:screenOrientation="portrait"/>
         <activity android:name=".activity.wallet.WalletTransactionDetails"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.wallet.TransactionDetailsActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.partner.Partner"  android:screenOrientation="portrait"/>
@@ -107,7 +105,7 @@
 
         <activity android:name=".activity.moneytransfer.ToNonSubscriberConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.ToNonSubscriberReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.International"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.moneytransfer.International" android:resizeableActivity="true" android:windowSoftInputMode="adjustResize"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.InternationalRecipientDetails"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.InternationalConfirmScreen"  android:screenOrientation="portrait"/>
         <activity android:name=".activity.moneytransfer.InternationalReceiptScreen"  android:screenOrientation="portrait"/>

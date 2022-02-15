@@ -14,7 +14,8 @@
             android:text="@string/range"
             android:textColor="#000"
             android:gravity="start|center_vertical"
-            android:textSize="@dimen/_11sdp" />
+            android:fontFamily="@font/aileron_semibold"
+            android:textSize="@dimen/_13sdp" />
 
         <TextView
             android:id="@+id/tvValue"
@@ -25,5 +26,6 @@
             android:gravity="end|center_vertical"
             android:layout_marginLeft="@dimen/_10sdp"
             android:textColor="#000"
-            android:textSize="@dimen/_11sdp" />
+            android:fontFamily="@font/aileron_semibold"
+            android:textSize="@dimen/_13sdp" />
     </LinearLayout>

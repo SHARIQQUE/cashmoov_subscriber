@@ -2,6 +2,8 @@ package com.estel.cashmoovsubscriberapp.activity.cashwithdrawal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -122,6 +124,24 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         }
 
         tvAmountCharged.setText(CashWithdrawal.fromCurrencySymbol+" "+df.format(finalamount));
+
+        etPin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(cashwithdrawalconfirmscreenC);            }
+        });
+
 
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {

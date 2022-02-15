@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 
 public class PayReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static PayReceiptScreen payreceiptscreenC;
-    Button btnShareReceipt;
+    Button btnClose,btnShareReceipt;
     TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
@@ -113,6 +113,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
 
 
     private void getIds() {
+        btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvProvider = findViewById(R.id.tvProvider);
@@ -174,6 +175,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
     }
 
     private void setOnCLickListener() {
+        btnClose.setOnClickListener(payreceiptscreenC);
         btnShareReceipt.setOnClickListener(payreceiptscreenC);
 
     }
@@ -186,6 +188,11 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");
+                break;
+            case R.id.btnClose:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
 
         }

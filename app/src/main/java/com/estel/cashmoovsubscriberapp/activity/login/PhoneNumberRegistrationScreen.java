@@ -142,7 +142,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
         setOnCLickListener();
 
-        callApiCountry();
+       // callApiCountry();
 
     }
 

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +23,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.listners.OperatorListeners;
 import com.estel.cashmoovsubscriberapp.model.OperatorModel;
 import com.estel.cashmoovsubscriberapp.model.ServiceProviderModel;
+import com.github.ybq.android.spinkit.SpinKitView;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -32,6 +37,8 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
     public static Partner partnerC;
     ImageView imgNotification,imgQR;
     RecyclerView rvOperator;
+    RelativeLayout relMain;
+    LinearLayout linProgress;
 
     private ArrayList<String> serviceProviderList = new ArrayList<>();
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
@@ -95,6 +102,8 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         rvOperator = findViewById(R.id.rvOperator);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        relMain = findViewById(R.id.relMain);
+        linProgress = findViewById(R.id.linProgress);
 
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -137,7 +146,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 
     public void callwalletOwner(){
 
-        MyApplication.showloader(partnerC,"Please Wait...");
+       // MyApplication.showloader(partnerC,"Please Wait...");
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -187,7 +196,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
+                           // MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 operatorList.clear();
@@ -229,7 +238,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 
                         @Override
                         public void failure(String aFalse) {
-                            MyApplication.hideLoader();
+                            //MyApplication.hideLoader();
 
                         }
                     });
@@ -246,6 +255,8 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         rvOperator.setHasFixedSize(true);
         rvOperator.setLayoutManager(new GridLayoutManager(this,3));
         rvOperator.setAdapter(operatorAdapter);
+        linProgress.setVisibility(View.GONE);
+        relMain.setVisibility(View.VISIBLE);
 
     }
 

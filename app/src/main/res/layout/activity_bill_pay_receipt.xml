@@ -603,20 +603,43 @@
 
             </LinearLayout>
 
-            <Button
-                android:visibility="visible"
-                android:id="@+id/btnShareReceipt"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:paddingStart="@dimen/_15sdp"
-                android:paddingEnd="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:background="@drawable/btn_green700"
-                android:text="@string/export_receipt"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp"/>
+                android:layout_marginBottom="@dimen/_15sdp">
+
+                <Button
+                    android:visibility="visible"
+                    android:id="@+id/btnClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:background="@drawable/btn_blue"
+                    android:text="@string/close"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+
+                <Button
+                    android:visibility="visible"
+                    android:id="@+id/btnShareReceipt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:background="@drawable/btn_green700"
+                    android:text="@string/export_receipt"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 

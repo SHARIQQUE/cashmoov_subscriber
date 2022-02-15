@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 
 public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeReceipt benefiairtimereceiptC;
-    Button btnShareReceipt;
+    Button btnClose,btnShareReceipt;
     TextView accNo,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
@@ -118,6 +118,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
     private void getIds() {
         accNo = findViewById(R.id.accNo);
         transId = findViewById(R.id.transId);
+        btnClose = findViewById(R.id.close);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
@@ -179,6 +180,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
     }
 
     private void setOnCLickListener() {
+        btnClose.setOnClickListener(benefiairtimereceiptC);
         btnShareReceipt.setOnClickListener(benefiairtimereceiptC);
 
     }
@@ -191,6 +193,11 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");
+                break;
+            case R.id.btnClose:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
 
         }
