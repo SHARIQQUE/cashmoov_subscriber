@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     android:layout_gravity="center">
 
+    <LinearLayout
+        android:id="@+id/linMain"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -652,5 +659,6 @@
 
         </LinearLayout>
     </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

@@ -295,7 +295,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             return;
         }
         if(mobileNo.toString().trim().isEmpty()) {
-            new android.app.AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
                     //.setTitle(getString(R.string.logout))
                     //.setIcon(R.drawable.ic_logout)
                     .setMessage(getString(R.string.msisdn_not_reg_with_subscriber))
@@ -487,14 +487,28 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     private void setSubscriberdataf(String subscriberInfoModel) {
 
         subscriberList.clear();
-        mobileNo = "";
-        subscriberList.add(""+""+subscriberInfoModel+""+"");
-        adapter = new ArrayAdapter<String>(tosubscriberC,R.layout.item_select, subscriberList);
-        etSubscriberNo.setAdapter(adapter);
-        etSubscriberNo.setThreshold(9);
-        etSubscriberNo.showDropDown();
+//        mobileNo = "";
+//        subscriberList.add(""+""+subscriberInfoModel+""+"");
+//        adapter = new ArrayAdapter<String>(tosubscriberC,R.layout.item_select, subscriberList);
+//        etSubscriberNo.setAdapter(adapter);
+//        etSubscriberNo.setThreshold(9);
+//        etSubscriberNo.showDropDown();
 
+        new AlertDialog.Builder(this)
+                //.setTitle(getString(R.string.logout))
+                //.setIcon(R.drawable.ic_logout)
+                .setMessage(getString(R.string.msisdn_not_reg_with_subscriber))
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
+                        i.putExtra("TOSUBMSISDN",etSubscriberNo.getText().toString().trim());
+                        startActivity(i);
+                        finish();
+
+                    }
+                }).create().show();
 
     }
 

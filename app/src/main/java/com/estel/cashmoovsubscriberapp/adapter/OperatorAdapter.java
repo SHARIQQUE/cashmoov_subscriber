@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.listners.OperatorListeners;
 import com.estel.cashmoovsubscriberapp.model.OperatorModel;
-
 import java.util.ArrayList;
 import java.util.List;
 

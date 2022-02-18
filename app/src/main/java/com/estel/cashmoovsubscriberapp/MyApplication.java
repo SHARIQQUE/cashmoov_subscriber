@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -217,14 +219,21 @@ public class MyApplication extends Application {
 
 
     public static void showloader(Activity activity, String message){
+//        ImageView imageView = new ImageView(activity);
+//        imageView.setBackgroundResource(R.drawable.spin_animation);
+//        AnimationDrawable drawable = (AnimationDrawable) imageView.getBackground();
+//        drawable.start();
         hud = KProgressHUD.create(activity)
-                .setStyle(KProgressHUD.Style.PIE_DETERMINATE)
+                //.setCustomView(imageView)
+                .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
                 .setLabel(message)
+                .setMaxProgress(100)
                 // .setDetailsLabel("Downloading data")
                 .setCancellable(false)
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f)
                 .show();
+        hud.setProgress(90);
     }
 
     public static void hideLoader(){

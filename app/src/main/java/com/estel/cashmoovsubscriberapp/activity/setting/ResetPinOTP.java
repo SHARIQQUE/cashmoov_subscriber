@@ -2,25 +2,21 @@ package com.estel.cashmoovsubscriberapp.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
 import org.json.JSONObject;
 
-public class ResetPinOTP extends AppCompatActivity implements View.OnClickListener {
+public class ResetPinOTP extends AppCompatActivity implements View.OnClickListener, OnOtpCompletionListener {
     public static ResetPinOTP resetpinotpC;
-    EditText etOne,etTwo,etThree,etFour,etSix,etFive;
-    TextView tvPhoneNoMsg,tvContinue;
+    OtpView otp_view;
+    TextView tvPhoneNoMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,94 +27,132 @@ public class ResetPinOTP extends AppCompatActivity implements View.OnClickListen
     }
 
     private void getIds() {
-        etOne = findViewById(R.id.etOne);
-        etTwo = findViewById(R.id.etTwo);
-        etThree = findViewById(R.id.etThree);
-        etFour = findViewById(R.id.etFour);
-        etFive = findViewById(R.id.etFive);
-        etSix = findViewById(R.id.etSix);
+        otp_view = findViewById(R.id.otp_view);
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
-        tvContinue = findViewById(R.id.tvContinue);
         tvPhoneNoMsg.setText(getString(R.string.verification_register_otp_ip));
 
-        etSix.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() >= 1)
-                    MyApplication.hideKeyboard(resetpinotpC);            }
-        });
-
-        TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
-
-        for (TextView currTextView : otpTextViews) {
-            currTextView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    nextTextView().requestFocus();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-
-                public TextView nextTextView() {
-
-                    int i;
-                    for (i = 0; i < otpTextViews.length - 1; i++) {
-                        if (otpTextViews[i] == currTextView)
-                            return otpTextViews[i + 1];
-                    }
-                    return otpTextViews[i];
-                }
-            });
-        }
+//        etOne.addTextChangedListener(new GenericTextWatcher(etTwo, etOne));
+//        etTwo.addTextChangedListener(new GenericTextWatcher(etThree, etOne));
+//        etThree.addTextChangedListener(new GenericTextWatcher(etFour, etTwo));
+//        etFour.addTextChangedListener(new GenericTextWatcher(etFive, etThree));
+//        etFive.addTextChangedListener(new GenericTextWatcher(etSix, etFour));
+//        etSix.addTextChangedListener(new GenericTextWatcher(etSix, etFive));
+//
+//
+//
+//        etSix.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {}
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start,
+//                                          int count, int after) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start,
+//                                      int before, int count) {
+//                if(s.length() >= 1)
+//                    MyApplication.hideKeyboard(resetpinotpC);            }
+//        });
+//
+//        TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
+//
+//        for (TextView currTextView : otpTextViews) {
+//            currTextView.addTextChangedListener(new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                    nextTextView().requestFocus();
+//                }
+//
+//                @Override
+//                public void afterTextChanged(Editable s) {
+//                }
+//
+//                public TextView nextTextView() {
+//
+//                    int i;
+//                    for (i = 0; i < otpTextViews.length - 1; i++) {
+//                        if (otpTextViews[i] == currTextView)
+//                            return otpTextViews[i + 1];
+//                    }
+//                    return otpTextViews[i];
+//                }
+//            });
+//        }
 
         setOnCLickListener();
 
     }
 
     private void setOnCLickListener() {
-        tvContinue.setOnClickListener(resetpinotpC);
+        otp_view.setOtpCompletionListener(resetpinotpC);
     }
 
-    public String getEditTextString(EditText editText){
-        return editText.getText().toString().trim();
+    @Override
+    public void onOtpCompleted(String otp) {
+        if(otp.length()==6){
+            callApiLoginPass(otp);
+        }else{
+            MyApplication.showToast(resetpinotpC,getString(R.string.val_otp));
+        }
     }
-    String pass;
+
+//    public class GenericTextWatcher implements TextWatcher {
+//        private EditText etPrev;
+//        private EditText etNext;
+//
+//        public GenericTextWatcher(EditText etNext, EditText etPrev) {
+//            this.etPrev = etPrev;
+//            this.etNext = etNext;
+//        }
+//
+//        @Override
+//        public void afterTextChanged(Editable editable) {
+//            String text = editable.toString();
+//            if (text.length() == 1)
+//                etNext.requestFocus();
+//            else if (text.length() == 0)
+//                etPrev.requestFocus();
+//        }
+//
+//        @Override
+//        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+//        }
+//
+//        @Override
+//        public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+//        }
+//    }
+//
+//    public String getEditTextString(EditText editText){
+//        return editText.getText().toString().trim();
+//    }
+
     @Override
     public void onClick(View view) {
-         pass=getEditTextString(etOne)+getEditTextString(etTwo)+getEditTextString(etThree)+
-                 getEditTextString(etFour)+getEditTextString(etFive)+getEditTextString(etSix);
+         String pass=otp_view.getText().toString().trim();
          if(pass.length()==6){
-             callApiLoginPass();
+             callApiLoginPass(pass);
          }else{
-
+             MyApplication.showToast(resetpinotpC,"Please enter otp");
          }
 
     }
 
 
-    private void callApiLoginPass() {
+    private void callApiLoginPass(String otp) {
         try{
 
             JSONObject loginJson=new JSONObject();
            // {transTypeCode: "101813", otp: "11111"}
             loginJson.put("transTypeCode","101813");
-            loginJson.put("otp",pass);
+            loginJson.put("otp",otp);
 
 
             System.out.println("Login request"+loginJson.toString());

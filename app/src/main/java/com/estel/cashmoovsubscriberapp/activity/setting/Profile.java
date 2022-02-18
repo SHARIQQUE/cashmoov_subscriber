@@ -20,7 +20,9 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
+import com.estel.cashmoovsubscriberapp.activity.fee.Fee;
 import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
+import com.estel.cashmoovsubscriberapp.activity.servicepoint.ServicePoint;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
@@ -35,7 +37,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;
     SmoothBottomBar bottomBar;
-    LinearLayout linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
+    LinearLayout linFee,linServicePoint,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
 
     TextView currency,number,etAddress,name;
@@ -104,6 +106,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         imgNotification = findViewById(R.id.imgNotification);
         imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
+        linFee = findViewById(R.id.linFee);
+        linServicePoint = findViewById(R.id.linServicePoint);
         linBeneficiary = findViewById(R.id.linBeneficiary);
         linChangeLang = findViewById(R.id.linChangeLang);
         linConfidentiality = findViewById(R.id.linConfidentiality);
@@ -185,6 +189,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private void setOnCLickListener() {
         imgNotification.setOnClickListener(profileC);
         imgQR.setOnClickListener(profileC);
+        linFee.setOnClickListener(profileC);
+        linServicePoint.setOnClickListener(profileC);
         linBeneficiary.setOnClickListener(profileC);
         linChangeLang.setOnClickListener(profileC);
         linConfidentiality.setOnClickListener(profileC);
@@ -207,6 +213,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.imgQR:
                 intent = new Intent(profileC, MyQrCode.class);
+                startActivity(intent);
+                break;
+            case R.id.linFee:
+                intent = new Intent(profileC, Fee.class);
+                startActivity(intent);
+                break;
+            case R.id.linServicePoint:
+                intent = new Intent(profileC, ServicePoint.class);
                 startActivity(intent);
                 break;
             case R.id.linBeneficiary:

@@ -27,8 +27,6 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
     public static BillPay billpayC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;
-    LinearLayout linMain,linProgress;
-
     private ArrayList<String> serviceProviderList = new ArrayList<>();
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
 
@@ -73,8 +71,6 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
 
 
     private void getIds() {
-        linMain = findViewById(R.id.linMain);
-        linProgress = findViewById(R.id.linProgress);
         rvOperator = findViewById(R.id.rvOperator);
 
 
@@ -86,7 +82,7 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
 
     public void callwalletOwner(){
 
-        //MyApplication.showloader(billpayC,"Please Wait...");
+        MyApplication.showloader(billpayC,"Please Wait...");
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -136,7 +132,7 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                          //  MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 operatorList.clear();
@@ -178,7 +174,7 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
 
                         @Override
                         public void failure(String aFalse) {
-                            //MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                         }
                     });
@@ -195,8 +191,6 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
         rvOperator.setHasFixedSize(true);
         rvOperator.setLayoutManager(new GridLayoutManager(this,3));
         rvOperator.setAdapter(operatorAdapter);
-        linProgress.setVisibility(View.GONE);
-        linMain.setVisibility(View.VISIBLE);
     }
 
 

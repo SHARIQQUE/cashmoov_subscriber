@@ -76,7 +76,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
         tvSend = findViewById(R.id.tvSend);
 
         tvOperatorName.setText(Partner.operatorName);
-        tvAmtCurr.setText(BillPay.currencySymbol);
+        tvAmtCurr.setText(Partner.currencySymbol);
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override

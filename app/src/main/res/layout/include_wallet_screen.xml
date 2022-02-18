@@ -84,14 +84,14 @@
             <LinearLayout
                 android:id="@+id/linClick"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/blue"
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardElevation="0dp">
@@ -125,17 +125,12 @@
                                     android:layout_height="wrap_content">
 
                                     <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="@dimen/_35sdp"
-                                        android:textSize="15sp"
-                                        android:textColor="#ffffff"
-                                        android:fontFamily="@font/aileron_bold"
+                                        android:layout_width="@dimen/_20sdp"
+                                        android:layout_height="@dimen/_20sdp"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:lineSpacingExtra="10sp"
-                                        app:srcCompat="@drawable/ic_baseline_account_balance_wallet_24"
-
-                                        />
+                                        app:srcCompat="@drawable/ic_view"
+                                        app:tint="@color/white" />
 
                                 </FrameLayout>
 

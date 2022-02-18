@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ public class International extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_international);
         internationalC=this;
         setBackMenu();
@@ -414,19 +416,20 @@ public class International extends AppCompatActivity implements View.OnClickList
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                    if(etAmount.getText().toString().trim().length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                    rate = jsonObjectAmountDetails.optString("value");
-                                    exRateCode = jsonObjectAmountDetails.optString("code");
-                                    //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                    //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    //etAmountNew.setText(currencyValue);
-                                    tvRate.setText(rate);
-                                    tvFee.setText(fee);
-                                    etAmountNew.setText(currencyValue);
-                                    tvAmtPaid.setText(currencyValue);
+                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        rate = jsonObjectAmountDetails.optString("value");
+                                        exRateCode = jsonObjectAmountDetails.optString("code");
+                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        tvRate.setText(rate);
+                                        tvFee.setText(fee);
+                                        etAmountNew.setText(currencyValue);
+                                        tvAmtPaid.setText(currencyValue);
 
 
 //                                    int tax = receiverFee+receiverTax;
@@ -437,10 +440,12 @@ public class International extends AppCompatActivity implements View.OnClickList
 //                                        tvNext.setVisibility(View.VISIBLE);
 //                                    }
 
-                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                    }else{
-                                        taxConfigurationList=null;
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                        } else {
+                                            taxConfigurationList = null;
+                                        }
+
                                     }
 
 
@@ -487,33 +492,35 @@ public class International extends AppCompatActivity implements View.OnClickList
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                    if(etAmountNew.getText().toString().trim().length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    try {
-                                        double currValue = Double.parseDouble(etAmountNew.getText().toString());
-                                        double value = jsonObjectAmountDetails.optDouble("value");
-                                        if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
-                                            tvAmtPaid.setText(String.valueOf(currValue));
-                                        }else{
-                                            String finalValue = df.format(currValue / value);
-                                           // tvAmtPaid.setText(finalValue);
-                                            etAmount.setText(finalValue);
+                                        try {
+                                            double currValue = Double.parseDouble(etAmountNew.getText().toString());
+                                            double value = jsonObjectAmountDetails.optDouble("value");
+                                            if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
+                                                tvAmtPaid.setText(String.valueOf(currValue));
+                                            } else {
+                                                String finalValue = df.format(currValue / value);
+                                                // tvAmtPaid.setText(finalValue);
+                                                etAmount.setText(finalValue);
+                                            }
+
+                                        } catch (Exception e) {
                                         }
 
-                                    }catch (Exception e){}
-
-                                    currencyValue = etAmountNew.getText().toString();
-                                    //currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                    rate = jsonObjectAmountDetails.optString("value");
-                                    exRateCode = jsonObjectAmountDetails.optString("code");
-                                    //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                    //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    //etAmountNew.setText(currencyValue);
-                                    tvRate.setText(rate);
-                                    tvFee.setText(fee);
-                                   // etAmountNew.setText(currencyValue);
-                                    tvAmtPaid.setText(currencyValue);
+                                        currencyValue = etAmountNew.getText().toString();
+                                        //currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        rate = jsonObjectAmountDetails.optString("value");
+                                        exRateCode = jsonObjectAmountDetails.optString("code");
+                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        tvRate.setText(rate);
+                                        tvFee.setText(fee);
+                                        // etAmountNew.setText(currencyValue);
+                                        tvAmtPaid.setText(currencyValue);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -523,10 +530,11 @@ public class International extends AppCompatActivity implements View.OnClickList
 //                                        tvNext.setVisibility(View.VISIBLE);
 //                                    }
 
-                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                    }else{
-                                        taxConfigurationList=null;
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                        } else {
+                                            taxConfigurationList = null;
+                                        }
                                     }
                                 } else {
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));

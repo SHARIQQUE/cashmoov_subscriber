@@ -296,6 +296,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                     }
 
                 }else{
+                    MyApplication.hideLoader();
                     MyApplication.showToast(beneficiaryairtimeC,jsonObject.optString("resultDescription"));
                 }
 
@@ -333,6 +334,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                     callApiProductProvider();
                                 } else {
                                     tvSend.setVisibility(View.GONE);
+                                    MyApplication.hideLoader();
                                     MyApplication.showToast(beneficiaryairtimeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -346,7 +348,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
         }
 
 
@@ -371,6 +373,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
 
 
                                 } else {
+                                    MyApplication.hideLoader();
                                     MyApplication.showToast(beneficiaryairtimeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -384,7 +387,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
         }
 
 

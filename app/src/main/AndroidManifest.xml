@@ -53,7 +53,8 @@
 
         <activity
             android:name=".activity.Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,90 +62,323 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.OnboardingOne"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activity.MapsActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.OnboardingTwo"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.OnboardingThree"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.TutorialScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.register.VerifyAccountScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.register.RegisterStepOne"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.register.RegisterStepTwo"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.register.SelfSignature"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.register.AccountCreatedScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.PhoneNumberRegistrationScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.VerifyLoginAccountScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.Login"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.LoginPin"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.SetPin"  android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.NotificationList"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.MyQrCode"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.OfferPromotionDetailActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.wallet.WalletScreen" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.wallet.WalletTransactionDetails"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.wallet.TransactionDetailsActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.partner.Partner"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.partner.PartnerProduct"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.partner.PartnerBillPayDetails"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.partner.PartnerBillPayConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.partner.PartnerBillPayReceipt"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.Profile"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.ChangeLanguage"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.Confidentiality"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.About"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.ChangePin"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.EditProfile"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.Reset"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.MoneyTransfer"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.ToSubscriber"  android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".activity.moneytransfer.ToSubscriberConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.ToSubscriberReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.ToNonSubscriber"  android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.MapsActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.OnboardingTwo"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.OnboardingThree"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.TutorialScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.register.RegisterStepOne"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.register.RegisterStepTwo"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.register.SelfSignature"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.register.AccountCreatedScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.PhoneNumberRegistrationScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.VerifyLoginAccountScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.Login"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.LoginPin"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.SetPin"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.NotificationList"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.MyQrCode"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.OfferPromotionDetailActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.wallet.WalletScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.wallet.WalletTransactionDetails"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.wallet.TransactionDetailsActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.partner.Partner"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.partner.PartnerProduct"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.partner.PartnerBillPayDetails"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.partner.PartnerBillPayConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.partner.PartnerBillPayReceipt"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.Profile"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.ChangeLanguage"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.Confidentiality"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.About"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.ChangePin"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.EditProfile"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.Reset"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.MoneyTransfer"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.ToSubscriber"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.ToSubscriberConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.ToSubscriberReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.ToNonSubscriber"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
 
-        <activity android:name=".activity.moneytransfer.ToNonSubscriberConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.ToNonSubscriberReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.International" android:resizeableActivity="true" android:windowSoftInputMode="adjustResize"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.InternationalRecipientDetails"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.InternationalConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.InternationalReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.BankToWallet"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.WalletToBank"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.AirtimePurchase"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.SelfAirtime"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.SelfAirtimeConfirm"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.SelfAirtimeReceipt"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.AddBeneficiary"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.AddBeneficiaryToSubscriber"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtime"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeConfirm"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeReceipt"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.rechargeandpayments.BillPay"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.rechargeandpayments.BillPayProduct"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.rechargeandpayments.BillPayDetails"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.rechargeandpayments.BillPayConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.rechargeandpayments.BillPayReceipt"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.pay.Pay"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.pay.PayConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.pay.PayReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.cashwithdrawal.CashWithdrawal"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.cashwithdrawal.CashWithdrawalConfirmScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.cashwithdrawal.CashWithdrawalReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.receiveremittance.ReceiveRemittance"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.receiveremittance.ReceiveRemittancelReceiptScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.fee.Fee"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.fee.FeeDetails"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.servicepoint.ServicePoint"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.servicepoint.SearchResult"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.moneytransfer.TransactionSuccessScreen"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.CreatePassword"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.VerifyRegisterOTP"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.ChangeIpLoginActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.SetPinFisrtLogin"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.login.VerifyFirstLoginOTP"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.ResetPinOTP"  android:screenOrientation="portrait"/>
-        <activity android:name=".activity.setting.ReSetPin"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.moneytransfer.ToNonSubscriberConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.ToNonSubscriberReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.International"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.moneytransfer.InternationalRecipientDetails"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.InternationalConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.InternationalReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.BankToWallet"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.WalletToBank"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.AirtimePurchase"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.SelfAirtime"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.SelfAirtimeConfirm"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.SelfAirtimeReceipt"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.AddBeneficiary"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.AddBeneficiaryToSubscriber"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtime"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeConfirm"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.airtimepurchase.BeneficiaryAirtimeReceipt"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.rechargeandpayments.BillPay"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.rechargeandpayments.BillPayProduct"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.rechargeandpayments.BillPayDetails"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.rechargeandpayments.BillPayConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.rechargeandpayments.BillPayReceipt"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.pay.Pay"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.pay.PayConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.pay.PayReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.cashwithdrawal.CashWithdrawal"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.cashwithdrawal.CashWithdrawalConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.cashwithdrawal.CashWithdrawalReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.receiveremittance.ReceiveRemittance"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.receiveremittance.ReceiveRemittancelReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.fee.Fee"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.fee.FeeDetails"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.servicepoint.ServicePoint"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.servicepoint.SearchResult"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.moneytransfer.TransactionSuccessScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.CreatePassword"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.VerifyRegisterOTP"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.SetPinFisrtLogin"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.login.VerifyFirstLoginOTP"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.ResetPinOTP"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.setting.ReSetPin"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"

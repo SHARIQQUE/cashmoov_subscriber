@@ -14,7 +14,7 @@
     <string name="continu">Continue</string>
     <string name="beneficiary_management">Beneficiary Management</string>
     <string name="add_contact">Add a contact</string>
-    <string name="hello">Hello</string>
+    <string name="hello">Hello,</string>
     <string name="dashboard">Dashboard</string>
     <string name="pay">Pay</string>
     <string name="balance">Balance</string>
@@ -371,6 +371,7 @@
     <string name="already_acc">Already have an account?</string>
     <string name="msisdn_not_reg_with_subscriber">MSISDN is not saved, do you want to send to non subscriber?</string>
     <string name="guinea">Guinea</string>
+    <string name="val_otp">Please enter otp</string>
 
 
     <string-array name="Spinner_provider">

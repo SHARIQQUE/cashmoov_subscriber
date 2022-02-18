@@ -39,7 +39,6 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
     RecyclerView rvOperator;
     RelativeLayout relMain;
     LinearLayout linProgress;
-
     private ArrayList<String> serviceProviderList = new ArrayList<>();
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
 
@@ -146,7 +145,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 
     public void callwalletOwner(){
 
-       // MyApplication.showloader(partnerC,"Please Wait...");
+        MyApplication.showloader(partnerC,"Please Wait...");
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -196,7 +195,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                           // MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 operatorList.clear();
@@ -238,7 +237,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 
                         @Override
                         public void failure(String aFalse) {
-                            //MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                         }
                     });
@@ -255,9 +254,6 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         rvOperator.setHasFixedSize(true);
         rvOperator.setLayoutManager(new GridLayoutManager(this,3));
         rvOperator.setAdapter(operatorAdapter);
-        linProgress.setVisibility(View.GONE);
-        relMain.setVisibility(View.VISIBLE);
-
     }
 
 

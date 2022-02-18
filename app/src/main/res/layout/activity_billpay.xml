@@ -6,14 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.rechargeandpayments.BillPay">
 
-    <include layout="@layout/progress_bar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+
         <LinearLayout
             android:id="@+id/linMain"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">

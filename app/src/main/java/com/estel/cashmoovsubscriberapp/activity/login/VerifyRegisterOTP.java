@@ -2,122 +2,58 @@ package com.estel.cashmoovsubscriberapp.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
 import org.json.JSONObject;
 
-public class VerifyRegisterOTP extends AppCompatActivity implements View.OnClickListener {
-    public static VerifyRegisterOTP verifyaccountscreenC;
-    EditText etOne,etTwo,etThree,etFour,etSix,etFive;
-    TextView tvPhoneNoMsg,tvContinue;
+public class VerifyRegisterOTP extends AppCompatActivity implements OnOtpCompletionListener {
+    public static VerifyRegisterOTP verifyregisterotpC;
+    OtpView otp_view;
+    TextView tvPhoneNoMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_register_otp);
-        verifyaccountscreenC = this;
+        verifyregisterotpC = this;
         getIds();
     }
 
     private void getIds() {
-        etOne = findViewById(R.id.etOne);
-        etTwo = findViewById(R.id.etTwo);
-        etThree = findViewById(R.id.etThree);
-        etFour = findViewById(R.id.etFour);
-        etFive = findViewById(R.id.etFive);
-        etSix = findViewById(R.id.etSix);
+        otp_view = findViewById(R.id.otp_view);
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
-        tvContinue = findViewById(R.id.tvContinue);
-
-        etSix.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() >= 1)
-                    MyApplication.hideKeyboard(verifyaccountscreenC);            }
-        });
-
-        TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
-
-        for (TextView currTextView : otpTextViews) {
-            currTextView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    nextTextView().requestFocus();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-
-                public TextView nextTextView() {
-
-                    int i;
-                    for (i = 0; i < otpTextViews.length - 1; i++) {
-                        if (otpTextViews[i] == currTextView)
-                            return otpTextViews[i + 1];
-                    }
-                    return otpTextViews[i];
-                }
-            });
-        }
 
         setOnCLickListener();
 
     }
 
     private void setOnCLickListener() {
-        tvContinue.setOnClickListener(verifyaccountscreenC);
+        otp_view.setOtpCompletionListener(verifyregisterotpC);
     }
 
-    public String getEditTextString(EditText editText){
-        return editText.getText().toString().trim();
-    }
-    String pass;
     @Override
-    public void onClick(View view) {
-         pass=getEditTextString(etOne)+getEditTextString(etTwo)+getEditTextString(etThree)+
-                 getEditTextString(etFour)+getEditTextString(etFive)+getEditTextString(etSix);
-         if(pass.length()==6){
-             callApiLoginPass();
-         }else{
-
-         }
-
+    public void onOtpCompleted(String otp) {
+        if(otp.length()==6){
+            callApiLoginPass(otp);
+        }else{
+            MyApplication.showToast(verifyregisterotpC,getString(R.string.val_otp));
+        }
     }
 
 
-    private void callApiLoginPass() {
+    private void callApiLoginPass(String otp) {
         try{
 
             JSONObject loginJson=new JSONObject();
 
             loginJson.put("username",MyApplication.UserMobile);
-            loginJson.put("password",pass);
+            loginJson.put("password",otp);
             loginJson.put("grant_type","password");
             // loginJson.put("scope","read write");
 

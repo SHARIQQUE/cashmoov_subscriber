@@ -2,11 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -20,20 +16,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
 import org.json.JSONObject;
 
-public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnClickListener {
-    public static VerifyFirstLoginOTP verifyaccountscreenC;
-    EditText etOne,etTwo,etThree,etFour,etSix,etFive;
-    TextView tvPhoneNoMsg,tvContinue;
+public class VerifyFirstLoginOTP extends AppCompatActivity implements OnOtpCompletionListener {
+    public static VerifyFirstLoginOTP verifyfirstloginotpC;
+    TextView tvPhoneNoMsg;
     String FCM_TOKEN;
+    OtpView otp_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_register_otp);
-        verifyaccountscreenC = this;
+        verifyfirstloginotpC = this;
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -54,60 +51,8 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
 
 
     private void getIds() {
-        etOne = findViewById(R.id.etOne);
-        etTwo = findViewById(R.id.etTwo);
-        etThree = findViewById(R.id.etThree);
-        etFour = findViewById(R.id.etFour);
-        etFive = findViewById(R.id.etFive);
-        etSix = findViewById(R.id.etSix);
+        otp_view = findViewById(R.id.otp_view);
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
-        tvContinue = findViewById(R.id.tvContinue);
-
-        etSix.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() >= 1)
-                    MyApplication.hideKeyboard(verifyaccountscreenC);            }
-        });
-
-        TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
-
-        for (TextView currTextView : otpTextViews) {
-            currTextView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    nextTextView().requestFocus();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-
-                public TextView nextTextView() {
-
-                    int i;
-                    for (i = 0; i < otpTextViews.length - 1; i++) {
-                        if (otpTextViews[i] == currTextView)
-                            return otpTextViews[i + 1];
-                    }
-                    return otpTextViews[i];
-                }
-            });
-        }
 
 
         setOnCLickListener();
@@ -116,33 +61,25 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
     }
 
     private void setOnCLickListener() {
-        tvContinue.setOnClickListener(verifyaccountscreenC);
+        otp_view.setOtpCompletionListener(verifyfirstloginotpC);
     }
 
-    public String getEditTextString(EditText editText){
-        return editText.getText().toString().trim();
-    }
-    String pass;
     @Override
-    public void onClick(View view) {
-         pass=getEditTextString(etOne)+getEditTextString(etTwo)+getEditTextString(etThree)+
-                 getEditTextString(etFour)+getEditTextString(etFive)+getEditTextString(etSix);
-         if(pass.length()==6){
-             callApiLoginPass();
-         }else{
-
-         }
-
+    public void onOtpCompleted(String otp) {
+        if(otp.length()==6){
+            callApiLoginPass(otp);
+        }else{
+            MyApplication.showToast(verifyfirstloginotpC,getString(R.string.val_otp));
+        }
     }
 
-
-    private void callApiLoginPass() {
+    private void callApiLoginPass(String otp) {
         try{
 
             JSONObject loginJson=new JSONObject();
 
-            loginJson.put("username",MyApplication.getSaveString("USERMOBILE",verifyaccountscreenC));
-            loginJson.put("password",pass);
+            loginJson.put("username",MyApplication.getSaveString("USERMOBILE",verifyfirstloginotpC));
+            loginJson.put("password",otp);
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
@@ -242,7 +179,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
     }
 
     public void callAPIWalletOwnerDetails(){
-        API.GET("ewallet/api/v1/walletOwner/"+MyApplication.getSaveString("walletOwnerCode", verifyaccountscreenC), new Api_Responce_Handler() {
+        API.GET("ewallet/api/v1/walletOwner/"+MyApplication.getSaveString("walletOwnerCode", verifyfirstloginotpC), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
@@ -254,10 +191,10 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
                         JSONObject jsonObject1 = jsonObject.optJSONObject("walletOwner");
                         if (jsonObject1.has("profileImageName")){
                             MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
-                                    MyApplication.getSaveString("walletOwnerCode", verifyaccountscreenC)+"/"+
-                                    jsonObject1.optString("profileImageName"),verifyaccountscreenC);
+                                    MyApplication.getSaveString("walletOwnerCode", verifyfirstloginotpC)+"/"+
+                                    jsonObject1.optString("profileImageName"),verifyfirstloginotpC);
                         }else{
-                            MyApplication.saveString("ImageName", "",verifyaccountscreenC);
+                            MyApplication.saveString("ImageName", "",verifyfirstloginotpC);
                         }
                     }catch (Exception e){
 
@@ -266,14 +203,14 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
                     apiCallSecurity();
 
                 }else{
-                    MyApplication.showToast(verifyaccountscreenC,jsonObject.optString("resultDescription"));
+                    MyApplication.showToast(verifyfirstloginotpC,jsonObject.optString("resultDescription"));
                 }
 
             }
 
             @Override
             public void failure(String aFalse) {
-                MyApplication.showToast(verifyaccountscreenC,aFalse);
+                MyApplication.showToast(verifyfirstloginotpC,aFalse);
             }
         });
     }
@@ -299,21 +236,21 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     if (resultCode.equalsIgnoreCase("0")) {
-                        Toast.makeText(verifyaccountscreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
-                        MyApplication.saveBool("FirstLogin",true,verifyaccountscreenC);
-                        Intent i = new Intent(verifyaccountscreenC, MainActivity.class);
+                        Toast.makeText(verifyfirstloginotpC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                        MyApplication.saveBool("FirstLogin",true,verifyfirstloginotpC);
+                        Intent i = new Intent(verifyfirstloginotpC, MainActivity.class);
                         startActivity(i);
                         finish();
 
 
                     } else {
-                        Toast.makeText(verifyaccountscreenC, resultDescription, Toast.LENGTH_LONG).show();
+                        Toast.makeText(verifyfirstloginotpC, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
-                    Toast.makeText(verifyaccountscreenC, e.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(verifyfirstloginotpC, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
@@ -324,7 +261,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements View.OnCli
             public void failure(String aFalse) {
 
                 MyApplication.hideLoader();
-                Toast.makeText(verifyaccountscreenC, aFalse, Toast.LENGTH_SHORT).show();
+                Toast.makeText(verifyfirstloginotpC, aFalse, Toast.LENGTH_SHORT).show();
                 finish();
 
             }

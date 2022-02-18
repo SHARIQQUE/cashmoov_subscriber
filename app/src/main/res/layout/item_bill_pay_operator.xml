@@ -11,7 +11,7 @@
             app:cardCornerRadius="@dimen/_5sdp"
             android:layout_margin="@dimen/_5sdp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/colorPrimary">
+            app:cardBackgroundColor="@color/colorCashmoovWeb">
 
             <LinearLayout
                 android:layout_width="@dimen/_80sdp"
@@ -32,7 +32,7 @@
                     android:id="@+id/tvOperatorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_9sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:textColor="@color/white"
                     android:lineSpacingExtra="3sp"
                     android:layout_marginTop="@dimen/_5sdp"

@@ -14,7 +14,7 @@
     <string name="continu">Continuer</string>
     <string name="beneficiary_management">Gestion des bénéficiaires</string>
     <string name="add_contact">Ajouter un contact</string>
-    <string name="hello">Bonjour</string>
+    <string name="hello">Bonjour,</string>
     <string name="dashboard">Tableau de bord</string>
     <string name="pay">Solde</string>
     <string name="balance">Solde</string>
@@ -371,6 +371,7 @@
     <string name="already_acc">Vous avez déjà un compte?</string>
     <string name="msisdn_not_reg_with_subscriber">MSISDN n\'est pas enregistré, voulez-vous envoyer à un non abonné ?</string>
     <string name="guinea">Guinea</string>
+    <string name="val_otp">Veuillez entrer otp</string>
 
 
     <string-array name="Spinner_provider">

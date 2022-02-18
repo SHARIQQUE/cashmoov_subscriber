@@ -35,7 +35,6 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     TextView tvAmtCurr,spOperator,tvSend;
     public static EditText etPhone,etAmount;
     CardView cardOneThousand,cardTwoThousand,cardFiveThousand,cardTenThousand,cardFifteenThousand,cardTwentyThousand;
-    LinearLayout linMain,linProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +75,6 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
 
     private void getIds() {
-        linMain = findViewById(R.id.linMain);
-        linProgress = findViewById(R.id.linProgress);
         spOperator = findViewById(R.id.spOperator);
         etPhone = findViewById(R.id.etPhone);
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
@@ -202,7 +199,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     public static JSONObject productCategory = new JSONObject();
 
     public void callwalletOwner(){
-       // MyApplication.showloader(selfairtimeC,"Please Wait...");
+        MyApplication.showloader(selfairtimeC,"Please Wait...");
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -230,6 +227,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
                 }else{
                     MyApplication.showToast(selfairtimeC,jsonObject.optString("resultDescription"));
+                    MyApplication.hideLoader();
                 }
 
             }
@@ -238,6 +236,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
             @Override
             public void failure(String aFalse) {
                 MyApplication.showToast(selfairtimeC,aFalse);
+                MyApplication.hideLoader();
             }
         });
 
@@ -266,6 +265,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                     callApiProductProvider();
                                 } else {
                                     tvSend.setVisibility(View.GONE);
+                                    MyApplication.hideLoader();
                                     MyApplication.showToast(selfairtimeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -273,13 +273,13 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
                         @Override
                         public void failure(String aFalse) {
-                           // MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
         }
 
 
@@ -295,16 +295,15 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            //MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     productCategory = jsonObject;
                                     //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
-                                    linProgress.setVisibility(View.GONE);
-                                    linMain.setVisibility(View.VISIBLE);
 
                                 } else {
+                                    MyApplication.hideLoader();
                                     MyApplication.showToast(selfairtimeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -312,13 +311,13 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
                         @Override
                         public void failure(String aFalse) {
-                           // MyApplication.hideLoader();
+                           MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
         }
 
 

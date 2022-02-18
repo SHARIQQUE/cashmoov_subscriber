@@ -163,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardPay = findViewById(R.id.cardPay);
         cardCashWithdrawal = findViewById(R.id.cardCashWithdrawal);
         cardRecRemittance = findViewById(R.id.cardRecRemittance);
-        cardFee = findViewById(R.id.cardFee);
-        cardServicePoints = findViewById(R.id.cardServicePoints);
+      //  cardFee = findViewById(R.id.cardFee);
+       // cardServicePoints = findViewById(R.id.cardServicePoints);
         rv_offer_promotion = findViewById(R.id.rv_offer_promotion);
 
 
@@ -215,8 +215,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardPay.setOnClickListener(mainC);
         cardCashWithdrawal.setOnClickListener(mainC);
         cardRecRemittance.setOnClickListener(mainC);
-        cardFee.setOnClickListener(mainC);
-        cardServicePoints.setOnClickListener(mainC);
+       // cardFee.setOnClickListener(mainC);
+       // cardServicePoints.setOnClickListener(mainC);
     }
 
     @Override
@@ -283,16 +283,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.cardFee:
-                intent = new Intent(mainC, Fee.class);
-                startActivity(intent);
-                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.cardServicePoints:
-                intent = new Intent(mainC, ServicePoint.class);
-                startActivity(intent);
-                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.cardFee:
+//                intent = new Intent(mainC, Fee.class);
+//                startActivity(intent);
+//                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.cardServicePoints:
+//                intent = new Intent(mainC, ServicePoint.class);
+//                startActivity(intent);
+//                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+//                break;
         }
     }
 
@@ -321,8 +321,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                     }
 
+                        //comment for remove permanent promotion list
+                                    //gettempalteList();
 
-                                    gettempalteList();
+
 //                                    if(MyApplication.isFirstTime){
 //                                        linPromotion.setVisibility(View.VISIBLE);
 //                                        linMain.setVisibility(View.GONE);
