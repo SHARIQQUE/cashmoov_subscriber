@@ -225,7 +225,7 @@ public class MyApplication extends Application {
 //        drawable.start();
         hud = KProgressHUD.create(activity)
                 //.setCustomView(imageView)
-                .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel(message)
                 .setMaxProgress(100)
                 // .setDetailsLabel("Downloading data")

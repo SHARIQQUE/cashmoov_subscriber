@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgNotification, imgQR, imgLogo;
     CircleImageView imgProfile;
     LinearLayout linMain, linClick, linPromotion;
-    TextView tvClick, tvBalance, pro_text;
+    TextView tvClick, tvBalance, pro_text,tvName;
     CardView cardMoneyTransfer, cardAirtimePurchase, cardRechargePayment, cardPay,
             cardCashWithdrawal, cardRecRemittance, cardFee, cardServicePoints;
     RecyclerView rv_offer_promotion;
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgQR = findViewById(R.id.imgQR);
         imgLogo = findViewById(R.id.imgLogo);
         imgProfile = findViewById(R.id.imgProfile);
+        tvName = findViewById(R.id.tvName);
         linMain = findViewById(R.id.linMain);
         linClick = findViewById(R.id.linClickn);
         linPromotion = findViewById(R.id.linPromotion);
@@ -313,6 +314,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if (data.optString("walletTypeCode").equalsIgnoreCase("100008")) {
+                                                tvName.setText(data.optString("walletOwnerName"));
                                                 tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
                                             }
 
@@ -339,9 +341,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                 } else {
-                                    linPromotion.setVisibility(View.GONE);
-                                    linMain.setVisibility(View.VISIBLE);
-                                    imgLogo.setVisibility(View.INVISIBLE);
+                                    //comment for remove permanent promotion list
+//                                    linPromotion.setVisibility(View.GONE);
+//                                    linMain.setVisibility(View.VISIBLE);
+//                                    imgLogo.setVisibility(View.INVISIBLE);
                                     MyApplication.showToast(mainC, jsonObject.optString("resultDescription"));
                                 }
                             }

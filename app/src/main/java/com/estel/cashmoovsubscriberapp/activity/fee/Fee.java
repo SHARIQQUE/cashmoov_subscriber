@@ -2,29 +2,32 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.adapter.AirtimeFeeOperatorAdapter;
+import com.estel.cashmoovsubscriberapp.adapter.BillPayFeeOperatorAdapter;
+import com.estel.cashmoovsubscriberapp.adapter.OperatorAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-import com.estel.cashmoovsubscriberapp.model.GenderInfoModel;
-
+import com.estel.cashmoovsubscriberapp.listners.OperatorAirtimeFeeListeners;
+import com.estel.cashmoovsubscriberapp.listners.OperatorBillPayFeeListeners;
+import com.estel.cashmoovsubscriberapp.model.OperatorModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.ArrayList;
 
-public class Fee extends AppCompatActivity implements View.OnClickListener {
+public class Fee extends AppCompatActivity implements View.OnClickListener, OperatorAirtimeFeeListeners, OperatorBillPayFeeListeners {
     public static Fee feeC;
     ImageView imgBack,imgHome;
     JSONObject feeData;
@@ -270,178 +273,331 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         feeDialog.show();
     }
 
-    Dialog feeDialog;
+    Dialog feeAirtimeDialog;
     public void showAirtimePurchasePopup(String serviceName) {
-         feeDialog = new Dialog(feeC);
-        feeDialog.setContentView(R.layout.popup_airtime_purchase);
+        feeAirtimeDialog = new Dialog(feeC);
+        feeAirtimeDialog.setContentView(R.layout.popup_airtime_fee);
 
         Button btnClose;
-        TextView tvServiceName, txt1, txt1_value;
-        tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
+        TextView tvServiceName;
+        RecyclerView rvOperator;
+        tvServiceName = feeAirtimeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
-        txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.recharge_mobile));
-        txt1.setVisibility(View.VISIBLE);
-        txt1_value = feeDialog.findViewById(R.id.txt1_value);
+        rvOperator = feeAirtimeDialog.findViewById(R.id.rvOperator);
 
-        LinearLayout linearLayout=feeDialog.findViewById(R.id.lll);
+        callApiAirtimeOperatorProvider(rvOperator);
 
-
-
-        if (jsonObjectTestMain != null) {
-            JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
-            for (int i = 0; i < FeeListArr.length(); i++) {
-                JSONObject feeData = FeeListArr.optJSONObject(i);
-
-                JSONArray ChildListArr = feeData.optJSONArray("child");
-                for (int j = 0; j < ChildListArr.length(); j++) {
-                    JSONObject childData = ChildListArr.optJSONObject(j);
-
-                    if (feeData.optString("ServiceName").equalsIgnoreCase("Airtime Purchase")) {
-                       /* if (childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")) {
-                            System.out.println("productName==="+childData.optString("productName"));
-                            TextView textView1 = new TextView(this);
-                            textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT));
-                            textView1.setText(childData.optString("productName"));
-                            textView1.setPadding(5,5,5,5);
-                            textView1.setTextColor(Color.parseColor("#000000"));
-                            textView1.setCompoundDrawablePadding(20);
-                            textView1.setTextSize(16);
-                            textView1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_check_circle_outline_24,0,0,0);
-                            textView1.setTag("" + j);
-                            textView1.setClickable(true);//make your TextView Clickable
-                            textView1.setOnClickListener(btnClickListener);
-
-                            linearLayout.addView(textView1);
-                        }*/
-
-
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-
-
-
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
-                                txt1_value.setText(childData.optString("percentFeeValue"));
-                            }
-
-                        }
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
-                                txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-
-        txt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(feeC,FeeDetails.class);
-                i.putExtra("FEEINTENT","Airtime Purchase");
-                i.putExtra("FEEINTENT","Airtime Purchase");
-                startActivity(i);
-                feeDialog.dismiss();
-            }
-        });
-
-        btnClose = feeDialog.findViewById(R.id.btnClose);
+        btnClose = feeAirtimeDialog.findViewById(R.id.btnClose);
         btnClose.setText(getString(R.string.close));
         tvServiceName.setText(serviceName);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                feeDialog.dismiss();
+                feeAirtimeDialog.dismiss();
             }
         });
         //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        feeDialog.show();
+        feeAirtimeDialog.show();
     }
 
-    View.OnClickListener btnClickListener = new View.OnClickListener() {
+//    Dialog feeDialog;
+//    public void showAirtimePurchasePopup(String serviceName) {
+//        feeDialog = new Dialog(feeC);
+//        feeDialog.setContentView(R.layout.popup_airtime_purchase);
+//
+//        Button btnClose;
+//        TextView tvServiceName, txt1, txt2, txt3, txt4, txt1_value, txt2_value, txt3_value, txt4_value;
+//        tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
+//        tvServiceName.setText(serviceName);
+//        txt1 = feeDialog.findViewById(R.id.txt1);
+//        txt2 = feeDialog.findViewById(R.id.txt2);
+//        txt3 = feeDialog.findViewById(R.id.txt3);
+//        txt4 = feeDialog.findViewById(R.id.txt4);
+////        txt1.setText(getString(R.string.recharge_mobile));
+////        txt1.setVisibility(View.VISIBLE);
+//        txt1_value = feeDialog.findViewById(R.id.txt1_value);
+//        txt2_value = feeDialog.findViewById(R.id.txt2_value);
+//        txt3_value = feeDialog.findViewById(R.id.txt3_value);
+//        txt4_value = feeDialog.findViewById(R.id.txt4_value);
+//
+//        LinearLayout lin1=feeDialog.findViewById(R.id.lin1);
+//        LinearLayout lin2=feeDialog.findViewById(R.id.lin2);
+//        LinearLayout lin3=feeDialog.findViewById(R.id.lin3);
+//        LinearLayout lin4=feeDialog.findViewById(R.id.lin4);
+//        lin1.setVisibility(View.GONE);
+//
+//
+//
+//        if (jsonObjectTestMain != null) {
+//            JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
+//            for (int i = 0; i < FeeListArr.length(); i++) {
+//                JSONObject feeData = FeeListArr.optJSONObject(i);
+//
+//                JSONArray ChildListArr = feeData.optJSONArray("child");
+//                for (int j = 0; j < ChildListArr.length(); j++) {
+//                    JSONObject childData = ChildListArr.optJSONObject(j);
+//
+//                    if (feeData.optString("ServiceName").equalsIgnoreCase("Airtime Purchase")) {
+//                       /* if (childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")) {
+//                            System.out.println("productName==="+childData.optString("productName"));
+//                            TextView textView1 = new TextView(this);
+//                            textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+//                                    LinearLayout.LayoutParams.WRAP_CONTENT));
+//                            textView1.setText(childData.optString("productName"));
+//                            textView1.setPadding(5,5,5,5);
+//                            textView1.setTextColor(Color.parseColor("#000000"));
+//                            textView1.setCompoundDrawablePadding(20);
+//                            textView1.setTextSize(16);
+//                            textView1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_check_circle_outline_24,0,0,0);
+//                            textView1.setTag("" + j);
+//                            textView1.setClickable(true);//make your TextView Clickable
+//                            textView1.setOnClickListener(btnClickListener);
+//
+//                            linearLayout.addView(textView1);
+//                        }*/
+//
+//                        if (childData.optString("productCode").equalsIgnoreCase("100029")) {
+//                            lin1.setVisibility(View.VISIBLE);
+//                            txt1.setText(childData.optString("productName"));
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt1_value.setText(childData.optString("percentFeeValue"));
+//                                }
+//
+//                            }
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt1_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+//                                }
+//
+//                            }
+//                        }
+//
+//                        if (childData.optString("productCode").equalsIgnoreCase("100030")) {
+//                            lin2.setVisibility(View.VISIBLE);
+//                            txt2.setText(childData.optString("productName"));
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt2_value.setText(childData.optString("percentFeeValue"));
+//                                }
+//
+//                            }
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt2_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+//                                }
+//
+//                            }
+//                        }
+//
+//                        if (childData.optString("productCode").equalsIgnoreCase("100031")) {
+//                            lin3.setVisibility(View.VISIBLE);
+//                            txt3.setText(childData.optString("productName"));
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt3_value.setText(childData.optString("percentFeeValue"));
+//                                }
+//
+//                            }
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt3_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+//                                }
+//
+//                            }
+//                        }
+//
+//                        if (childData.optString("productCode").equalsIgnoreCase("ALLPRO")) {
+//                            lin4.setVisibility(View.VISIBLE);
+//                            txt4.setText(childData.optString("productName"));
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt4_value.setText(childData.optString("percentFeeValue"));
+//                                }
+//
+//                            }
+//                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+//                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+//                                    txt4_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+//                                }
+//
+//                            }
+//                        }
+//
+//
+//
+//
+//
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//        txt1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(feeC,FeeDetails.class);
+//                i.putExtra("FEEINTENT","Airtime Purchase");
+//                i.putExtra("PRODUCTCODE","100029");
+//                startActivity(i);
+//                feeDialog.dismiss();
+//            }
+//        });
+//        txt2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(feeC,FeeDetails.class);
+//                i.putExtra("FEEINTENT","Airtime Purchase");
+//                i.putExtra("PRODUCTCODE","100030");
+//                startActivity(i);
+//                feeDialog.dismiss();
+//            }
+//        });
+//        txt3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(feeC,FeeDetails.class);
+//                i.putExtra("FEEINTENT","Airtime Purchase");
+//                i.putExtra("PRODUCTCODE","100031");
+//                startActivity(i);
+//                feeDialog.dismiss();
+//            }
+//        });
+//        txt4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(feeC,FeeDetails.class);
+//                i.putExtra("FEEINTENT","Airtime Purchase");
+//                i.putExtra("PRODUCTCODE","ALLPRO");
+//                startActivity(i);
+//                feeDialog.dismiss();
+//            }
+//        });
+//
+//        btnClose = feeDialog.findViewById(R.id.btnClose);
+//        btnClose.setText(getString(R.string.close));
+//        tvServiceName.setText(serviceName);
+//
+//        btnClose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                feeDialog.dismiss();
+//            }
+//        });
+//        //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        feeDialog.show();
+//    }
 
-        @Override
-        public void onClick(View v) {
-            Log.d("btnClickListener",v.getTag()+"");
-            Toast.makeText(Fee.this, "TextView Clicked : "+v.getTag(),
-                    Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(feeC,FeeDetails.class);
-            i.putExtra("FEEINTENT","Airtime Purchase");
-            i.putExtra("FEEINTENTPOS",Integer.parseInt(v.getTag()+""));
-            startActivity(i);
-            feeDialog.dismiss();
-        }
+//    View.OnClickListener btnClickListener = new View.OnClickListener() {
+//
+//        @Override
+//        public void onClick(View v) {
+//            Log.d("btnClickListener",v.getTag()+"");
+//            Toast.makeText(Fee.this, "TextView Clicked : "+v.getTag(),
+//                    Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(feeC,FeeDetails.class);
+//            i.putExtra("FEEINTENT","Airtime Purchase");
+//            i.putExtra("FEEINTENTPOS",Integer.parseInt(v.getTag()+""));
+//            startActivity(i);
+//            feeDialog.dismiss();
+//        }
+//
+//    };
 
-    };
+    Dialog feeBillPayDialog;
     public void showBillPayPopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
-        feeDialog.setContentView(R.layout.popup_airtime_purchase);
+        feeBillPayDialog = new Dialog(feeC);
+        feeBillPayDialog.setContentView(R.layout.popup_airtime_fee);
 
         Button btnClose;
-        TextView tvServiceName, txt1, txt1_value;
-        tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
+        TextView tvServiceName;
+        RecyclerView rvOperator;
+        tvServiceName = feeBillPayDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
-        txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.recharge_tv));
-        txt1_value = feeDialog.findViewById(R.id.txt1_value);
+        rvOperator = feeBillPayDialog.findViewById(R.id.rvOperator);
 
-        if (jsonObjectTestMain != null) {
-            JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
-            for (int i = 0; i < FeeListArr.length(); i++) {
-                JSONObject feeData = FeeListArr.optJSONObject(i);
+        callBillPayOperatorProvider(rvOperator);
 
-                JSONArray ChildListArr = feeData.optJSONArray("child");
-                for (int j = 0; j < ChildListArr.length(); j++) {
-                    JSONObject childData = ChildListArr.optJSONObject(j);
-
-                    if (feeData.optString("ServiceName").equalsIgnoreCase("Recharge & Payment")) {
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("TV")) {
-                                txt1_value.setText(childData.optString("percentFeeValue"));
-                            }
-
-                        }
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("TV")) {
-                                txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-        txt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(feeC,FeeDetails.class);
-                i.putExtra("FEEINTENT","Bill Payment");
-                startActivity(i);
-                feeDialog.dismiss();
-            }
-        });
-
-
-        btnClose = feeDialog.findViewById(R.id.btnClose);
+        btnClose = feeBillPayDialog.findViewById(R.id.btnClose);
         btnClose.setText(getString(R.string.close));
         tvServiceName.setText(serviceName);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                feeDialog.dismiss();
+                feeBillPayDialog.dismiss();
             }
         });
         //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        feeDialog.show();
+        feeBillPayDialog.show();
     }
+
+//    public void showBillPayPopup(String serviceName) {
+//        Dialog feeDialog = new Dialog(feeC);
+//        feeDialog.setContentView(R.layout.popup_airtime_purchase);
+//
+//        Button btnClose;
+//        TextView tvServiceName, txt1, txt1_value;
+//        tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
+//        tvServiceName.setText(serviceName);
+//        txt1 = feeDialog.findViewById(R.id.txt1);
+//        txt1.setText(getString(R.string.recharge_tv));
+//        txt1_value = feeDialog.findViewById(R.id.txt1_value);
+//
+//        if (jsonObjectTestMain != null) {
+//            JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
+//            for (int i = 0; i < FeeListArr.length(); i++) {
+//                JSONObject feeData = FeeListArr.optJSONObject(i);
+//
+//                JSONArray ChildListArr = feeData.optJSONArray("child");
+//                for (int j = 0; j < ChildListArr.length(); j++) {
+//                    JSONObject childData = ChildListArr.optJSONObject(j);
+//
+//                    if (feeData.optString("ServiceName").equalsIgnoreCase("Recharge & Payment")) {
+//                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+//
+//                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("TV")) {
+//                                txt1_value.setText(childData.optString("percentFeeValue"));
+//                            }
+//
+//                        }
+//                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+//                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("TV")) {
+//                                txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        txt1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(feeC,FeeDetails.class);
+//                i.putExtra("FEEINTENT","Bill Payment");
+//                startActivity(i);
+//                feeDialog.dismiss();
+//            }
+//        });
+//
+//
+//        btnClose = feeDialog.findViewById(R.id.btnClose);
+//        btnClose.setText(getString(R.string.close));
+//        tvServiceName.setText(serviceName);
+//
+//        btnClose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                feeDialog.dismiss();
+//            }
+//        });
+//        //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        feeDialog.show();
+//    }
 
     public void showPayPopup(String serviceName) {
         Dialog feeDialog = new Dialog(feeC);
@@ -931,6 +1087,149 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    private ArrayList<OperatorModel> operatorAirtimeList = new ArrayList<>();
+    private void callApiAirtimeOperatorProvider(RecyclerView rvOperator) {
+        try {
+
+            API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100009&serviceCategoryCode=100021&status=Y&offset=0&limit=200",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                operatorAirtimeList.clear();
+                                //serviceProviderModelList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("operatorList");
+                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                            operatorAirtimeList.add(new OperatorModel(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("name"),
+                                                    data.optString("serviceCategoryCode"),
+                                                    data.optString("serviceCategoryName"),
+                                                    data.optString("serviceCode"),
+                                                    data.optString("serviceName"),
+                                                    data.optString("serviceProviderCode"),
+                                                    data.optString("serviceProviderName"),
+                                                    data.optString("state"),
+                                                    data.optString("status")
+
+                                            ));
+
+                                        }
+                                        AirtimeFeeOperatorAdapter airtimeFeeOperatorAdapter = new AirtimeFeeOperatorAdapter(feeC,operatorAirtimeList);
+                                        rvOperator.setHasFixedSize(true);
+                                        rvOperator.setLayoutManager(new LinearLayoutManager(feeC, LinearLayoutManager.VERTICAL,false));
+                                        rvOperator.setAdapter(airtimeFeeOperatorAdapter);
+                                    }
+
+                                } else {
+                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
 
 
+    }
+
+    private ArrayList<OperatorModel> operatorBillPayList = new ArrayList<>();
+    private void callBillPayOperatorProvider(RecyclerView rvOperator) {
+        try {
+
+            API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100001&serviceCategoryCode=100028&status=Y&offset=0&limit=200",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                operatorBillPayList.clear();
+                                //serviceProviderModelList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("operatorList");
+                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                            operatorBillPayList.add(new OperatorModel(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("name"),
+                                                    data.optString("serviceCategoryCode"),
+                                                    data.optString("serviceCategoryName"),
+                                                    data.optString("serviceCode"),
+                                                    data.optString("serviceName"),
+                                                    data.optString("serviceProviderCode"),
+                                                    data.optString("serviceProviderName"),
+                                                    data.optString("state"),
+                                                    data.optString("status")
+
+                                            ));
+
+                                        }
+                                        BillPayFeeOperatorAdapter billPayFeeOperatorAdapter = new BillPayFeeOperatorAdapter(feeC,operatorBillPayList);
+                                        rvOperator.setHasFixedSize(true);
+                                        rvOperator.setLayoutManager(new LinearLayoutManager(feeC, LinearLayoutManager.VERTICAL,false));
+                                        rvOperator.setAdapter(billPayFeeOperatorAdapter);
+                                    }
+
+                                } else {
+                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
+
+
+
+    @Override
+    public void onOperatorAirtimeFeeListItemClick(String code, String name) {
+        Intent i = new Intent(feeC,FeeDetails.class);
+        i.putExtra("FEEINTENT","Airtime Purchase");
+        i.putExtra("PRODUCTCODE","100029");
+        startActivity(i);
+        feeAirtimeDialog.dismiss();
+    }
+
+    @Override
+    public void onOperatorBillPayFeeListItemClick(String code, String name) {
+        Intent i = new Intent(feeC,FeeDetails.class);
+        i.putExtra("FEEINTENT","Bill Payment");
+      //  i.putExtra("PRODUCTCODE","100029");
+        startActivity(i);
+        feeBillPayDialog.dismiss();
+    }
 }

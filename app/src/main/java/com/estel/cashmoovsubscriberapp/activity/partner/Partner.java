@@ -110,12 +110,12 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
                 if (bottomId == 0) {
                     MyApplication.isFirstTime=false;
 
-                    if(isTaskRoot()){
+//                    if(isTaskRoot()){
                         Intent i = new Intent(partnerC, MainActivity.class);
                         startActivity(i);
-                    }else{
-                       onBackPressed();
-                    }
+//                    }else{
+//                       onBackPressed();
+//                    }
 
                     //  finish();
                 }
@@ -125,9 +125,6 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 //                    finish();
                 }
                 if (bottomId == 2) {
-
-
-
                         Intent i = new Intent(partnerC, Profile.class);
                         startActivity(i);
 

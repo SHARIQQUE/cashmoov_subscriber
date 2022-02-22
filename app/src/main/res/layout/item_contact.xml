@@ -28,7 +28,8 @@
         android:textColor="@color/textcolorheading"
         android:gravity="start|center_vertical"
         android:textSize="@dimen/_13sdp"
-        android:text="SHFGJGJ"/>
+        android:fontFamily="@font/aileron_bold"
+        android:text=""/>
     <TextView
         android:id="@+id/tvMobile"
         android:layout_width="wrap_content"
@@ -36,8 +37,9 @@
         android:layout_marginTop="@dimen/_2sdp"
         android:textColor="@color/textcolor"
         android:gravity="start|center_vertical"
-        android:textSize="@dimen/_10sdp"
-        android:text="98598985899"/>
+        android:textSize="@dimen/_11sdp"
+        android:text=""
+        android:fontFamily="@font/aileron_semibold"/>
 
 </LinearLayout>
 </LinearLayout>

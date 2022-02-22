@@ -21,7 +21,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
     // ImageView imgBack;
     Button btnClose;
     public static TextView tvName;
-    String checkIntent;
+    String checkIntent,checkProductCodeIntent;
     int pos;
     ArrayList<FeeDetailModel>feeDetailModelArrayList= new ArrayList<>();
     RecyclerView rvFeeDetail;
@@ -59,6 +59,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 
         if (getIntent().getExtras() != null) {
             checkIntent = (getIntent().getStringExtra("FEEINTENT"));
+            checkProductCodeIntent = (getIntent().getStringExtra("PRODUCTCODE"));
             /*if((getIntent().getIntExtra("FEEINTENTPOS",-1)!=-1)){
                 pos=(getIntent().getIntExtra("FEEINTENTPOS",-1));
             }*/
@@ -173,7 +174,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Airtime Purchase")){
+        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("100029")){
             feeDetailModelArrayList.clear();
             if (Fee.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
@@ -184,7 +185,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("100029")){
                             /*if(pos==j) {*/
                                 if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                     feeDetailModelArrayList.add(new FeeDetailModel(
@@ -201,6 +202,126 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                                             childData.optString("fixedFeeValue")
                                     ));
                                 }
+                            //}
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
+        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("100030")){
+            feeDetailModelArrayList.clear();
+            if (Fee.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("100030")){
+                            /*if(pos==j) {*/
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                String.format("%.2f", childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                        childData.optString("percentFeeValue")
+                                ));
+                            } else {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                String.format("%.2f", childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                            //}
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
+        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("100031")){
+            feeDetailModelArrayList.clear();
+            if (Fee.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("100031")){
+                            /*if(pos==j) {*/
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                String.format("%.2f", childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                        childData.optString("percentFeeValue")
+                                ));
+                            } else {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                String.format("%.2f", childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                            //}
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
+        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("ALLPRO")){
+            feeDetailModelArrayList.clear();
+            if (Fee.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("ALLPRO")){
+                            /*if(pos==j) {*/
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                String.format("%.2f", childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                        childData.optString("percentFeeValue")
+                                ));
+                            } else {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                                String.format("%.2f", childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
                             //}
                         }
                     }

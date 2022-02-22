@@ -7,30 +7,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.listners.OperatorListeners;
+import com.estel.cashmoovsubscriberapp.listners.OperatorAirtimeFeeListeners;
 import com.estel.cashmoovsubscriberapp.model.OperatorModel;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHolder>{
+public class AirtimeFeeOperatorAdapter extends RecyclerView.Adapter<AirtimeFeeOperatorAdapter.ViewHolder>{
     private Context context;
     private List<OperatorModel> operatorList = new ArrayList<>();
-    private OperatorListeners operatorListners;
+    private OperatorAirtimeFeeListeners operatorAirtimeFeeListeners;
 
-    public OperatorAdapter(Context context, List<OperatorModel> operatorList) {
+    public AirtimeFeeOperatorAdapter(Context context, List<OperatorModel> operatorList) {
         this.context = context;
         this.operatorList = operatorList;
-        operatorListners = (OperatorListeners) context;
+        operatorAirtimeFeeListeners = (OperatorAirtimeFeeListeners) context;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.item_bill_pay_operator, parent, false);
+        View listItem= layoutInflater.inflate(R.layout.item_airtime_fee, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -38,18 +36,13 @@ public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OperatorModel opearatorModel = operatorList.get(position);
-        holder.tvOperatorName.setText(opearatorModel.getName());
-        if(opearatorModel.getCode().equalsIgnoreCase("100055")){
-            holder.ivOperatorLogo.setImageResource(R.drawable.canalplus);
-        }
-        if(opearatorModel.getCode().equalsIgnoreCase("100046")){
-            holder.ivOperatorLogo.setImageResource(R.drawable.startimeslogo);
-        }
+        holder.txt1.setText(opearatorModel.getName());
+
         holder.linOperator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opearatorModel.getCode()!=null)
-                 operatorListners.onOperatorListItemClick(opearatorModel.getCode(),opearatorModel.getName());
+                 operatorAirtimeFeeListeners.onOperatorAirtimeFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
             }
         });
     }
@@ -62,13 +55,13 @@ public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linOperator;
-        private ImageView ivOperatorLogo;
-        private TextView tvOperatorName;
+        private ImageView imageView1;
+        private TextView txt1;
         public ViewHolder(View itemView) {
             super(itemView);
             linOperator = itemView.findViewById(R.id.linOperator);
-            ivOperatorLogo = itemView.findViewById(R.id.ivOperatorLogo);
-            tvOperatorName = itemView.findViewById(R.id.tvOperatorName);
+            imageView1 = itemView.findViewById(R.id.imageView1);
+            txt1 = itemView.findViewById(R.id.txt1);
         }
     }
 }
