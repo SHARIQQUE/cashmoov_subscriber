@@ -635,6 +635,23 @@ public class International extends AppCompatActivity implements View.OnClickList
 
                                     }
 
+                                    tvAmtPaidCurr.setText("");
+                                    for(int i=0;i<benefiCurrencyModelList.size();i++){
+                                        if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+                                                benefiCurrencyModelList.get(i).getCurrencySymbol()
+                                        )){
+                                            spBenifiCurr.setText(benefiCurrencyModelList.get(i).getCurrCode() );
+                                            spBenifiCurr.setTag(i);
+                                            currency = benefiCurrencyModelList.get(i).getCurrCode();
+                                            toCurrencySymbol = benefiCurrencyModelList.get(i).getCurrencySymbol();
+                                            tvAmtPaidCurr.setText(toCurrencySymbol);
+                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                            etAmount.getText().clear();
+                                            etAmountNew.getText().clear();
+
+                                        }
+                                    }
+
                                     spinnerDialogBenefiCurrency = new SpinnerDialog(internationalC, benefiCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogBenefiCurrency.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiCurrency.setShowKeyboard(false);// for open keyboard by default
