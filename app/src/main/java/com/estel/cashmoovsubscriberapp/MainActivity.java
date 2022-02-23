@@ -28,6 +28,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
+import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialog;
+import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialogListener;
 import com.estel.cashmoovsubscriberapp.activity.location.Constants;
 import com.estel.cashmoovsubscriberapp.activity.location.FetchAddressIntentServices;
 import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
@@ -50,6 +52,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -101,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
 
+         /*.setTitle("Granny eating chocolate dialog box") // You can also send title like R.string.from_resources
+                .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.") // or pass like R.string.description_from_resources
+                .setTitleTextColor(R.color.red)
+                .setDescriptionTextColor(R.color.blue)
+                .setNegativeBtnText("Cancel") // or pass it like android.R.string.cancel
+                .setPositiveBtnBackground(R.color.white)
+                .setPositiveBtnText("Ok") // or pass it like android.R.string.ok
+                .setNegativeBtnBackground(R.color.red)
+                .setGifResource(R.drawable.location_img)   //Pass your Gif here*/
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
@@ -324,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     }
 
                         //comment for remove permanent promotion list
-                                    //gettempalteList();
+                                    gettempalteList();
 
 
 //                                    if(MyApplication.isFirstTime){
@@ -387,9 +399,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             JSONObject data = dataArray.optJSONObject(i);
                             if (data.optString("templateCategoryCode").equalsIgnoreCase("100013")) {
                                 set.add(0);
-                                linPromotion.setVisibility(View.VISIBLE);
+                               /* linPromotion.setVisibility(View.VISIBLE);
                                 linMain.setVisibility(View.GONE);
-                                imgLogo.setVisibility(View.VISIBLE);
+                                imgLogo.setVisibility(View.VISIBLE);*/
                                 getPromotionList(data.optString("templateCode"));
                             }
 //                            else{
@@ -478,9 +490,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     data.optString("modificationDate")));
 
                         }
+                        OfferPromotionModel OfferPromotionModeltemp = null;
+
+                        for(int i=0;i<offerPromotionModelArrayList.size();i++){
+                            if(offerPromotionModelArrayList.get(i).getPromOfferTypeName().equalsIgnoreCase("Both")||
+                                    offerPromotionModelArrayList.get(i).getPromOfferTypeName().equalsIgnoreCase("Image")) {
+                                OfferPromotionModeltemp=offerPromotionModelArrayList.get(i);
+                            }
+                        }
+
+                        new PromoDialog.Builder(MainActivity.this)
+                                .setTitle(OfferPromotionModeltemp.getHeading()) // You can also send title like R.string.from_resources
+                                .setMessage(OfferPromotionModeltemp.getStatus()) // or pass like R.string.description_from_resources
+                                .setGifResource(OfferPromotionModeltemp.getCode() + "/" + OfferPromotionModeltemp.getFileName())
+                                .setTitleTextColor(R.color.orange_900)
+                                .setDescriptionTextColor(R.color.black)
+                                .setNegativeBtnText("Cancel") // or pass it like android.R.string.cancel
+                                .setPositiveBtnBackground(R.color.green_500)
+                                .setPositiveBtnText("View More") // or pass it like android.R.string.ok
+                                .setNegativeBtnBackground(R.color.red)
+
+                                .isCancellable(true)
+                                .OnPositiveClicked(new PromoDialogListener() {
+                                    @Override
+                                    public void OnClick() {
+                                        Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .OnNegativeClicked(new PromoDialogListener() {
+                                    @Override
+                                    public void OnClick() {
+                                        Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .build();
 
 
-                        rv_offer_promotion.setHasFixedSize(true);
+                       /* rv_offer_promotion.setHasFixedSize(true);
                         // rv_offer_promotion.setLayoutManager(new GridLayoutManager(this,2));
                         rv_offer_promotion.setLayoutManager(new LinearLayoutManager(mainC, LinearLayoutManager.HORIZONTAL, false));
                         //rv_offer_promotion.setItemAnimator(new DefaultItemAnimator());
@@ -496,7 +542,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         sliderView.setIndicatorUnselectedColor(Color.BLACK);
                         sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
                         sliderView.startAutoCycle();
-
+*/
                        /* offerPromotionAdapter = new OfferPromotionAdapter(mainC, offerPromotionModelArrayList);
                         rv_offer_promotion.setAdapter(offerPromotionAdapter);
 

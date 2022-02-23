@@ -49,6 +49,8 @@ public class LoginPin extends AppCompatActivity {
         setContentView(R.layout.activity_login_pin);
         loginpinC = this;
         getIds();
+
+
     }
 
 

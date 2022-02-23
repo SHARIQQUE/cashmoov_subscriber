@@ -73,6 +73,9 @@ dependencies {
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.balsikandar.android:crashreporter:1.1.0'
+
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
+
+
 }
