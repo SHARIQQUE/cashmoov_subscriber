@@ -21,7 +21,7 @@ import java.util.List;
 
 public class NotificationList extends AppCompatActivity {
     public static NotificationList notificationlistC;
-    ImageView imgBack,imgHome;
+    ImageView imgBack,imgPromotion;
     RecyclerView rvNotification;
     private List<NotificationModel> notificationModelArrayList = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class NotificationList extends AppCompatActivity {
 
     private void setBackMenu() {
         imgBack = findViewById(R.id.imgBack);
-        imgHome = findViewById(R.id.imgHome);
+        imgPromotion = findViewById(R.id.imgPromotion);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +50,12 @@ public class NotificationList extends AppCompatActivity {
                 onSupportNavigateUp();
             }
         });
-        imgHome.setOnClickListener(new View.OnClickListener() {
+        imgPromotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(getApplicationContext(), OfferPromotionActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

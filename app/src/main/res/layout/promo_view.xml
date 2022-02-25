@@ -53,37 +53,36 @@
                         android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/aileron_bold"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:textColor="@color/orange_900"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
+                        android:textSize="@dimen/_20sdp"
                         android:visibility="visible"
-                        tools:text="10% de REDUCTION !" />
+                        tools:text="10% de REDUCTION !"
+                        android:layout_marginTop="@dimen/_5sdp"/>
 
                     <TextView
-
                         android:id="@+id/message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/title"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:gravity="center"
-
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="normal"
+                        android:textSize="@dimen/_15sdp"
                         tools:text="This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog." />
 
                     <LinearLayout
-                        android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/message"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:clipToPadding="false"
-                        android:gravity="center_horizontal"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingBottom="12dp"
                         android:weightSum="100">
@@ -96,9 +95,12 @@
                             android:layout_marginRight="4dp"
                             android:layout_weight="50"
                             android:background="@drawable/curved_shape2"
+                            android:drawableStart="@drawable/ic_close_black_24dp"
+                            android:drawablePadding="-30dp"
+                            android:paddingStart="@dimen/_25sdp"
                             android:textAllCaps="false"
                             android:textColor="#ffffff"
-                            tools:text="Rate" />
+                            tools:text="@string/cancel" />
 
                         <Button
                             android:id="@+id/positiveBtn"
@@ -108,9 +110,13 @@
                             android:layout_marginRight="4dp"
                             android:layout_weight="50"
                             android:background="@drawable/curved_shape"
+                            android:drawableStart="@drawable/ic_view"
+                            android:drawablePadding="-15dp"
+                            android:drawableTint="@color/white"
+                            android:paddingStart="@dimen/_15sdp"
                             android:textAllCaps="false"
                             android:textColor="#ffffff"
-                            tools:text="Ok" />
+                            tools:text="@string/view_more" />
                     </LinearLayout>
                 </RelativeLayout>
             </ScrollView>

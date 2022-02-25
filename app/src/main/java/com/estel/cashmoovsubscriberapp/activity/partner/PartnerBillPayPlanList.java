@@ -5,34 +5,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
-import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayPlanList;
-import com.estel.cashmoovsubscriberapp.adapter.ProductAdapter;
+import com.estel.cashmoovsubscriberapp.adapter.PlanListAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-import com.estel.cashmoovsubscriberapp.listners.ProductListeners;
-import com.estel.cashmoovsubscriberapp.model.ProductMasterModel;
+import com.estel.cashmoovsubscriberapp.listners.PlanListeners;
+import com.estel.cashmoovsubscriberapp.model.ProductModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartnerProduct extends AppCompatActivity implements ProductListeners {
-    public static PartnerProduct partnerproductC;
+public class PartnerBillPayPlanList extends AppCompatActivity implements PlanListeners {
+    public static PartnerBillPayPlanList partnerbillplanlistC;
     ImageView imgBack, imgHome;
-    RecyclerView rvProduct;
-    private ArrayList<ProductMasterModel> productList = new ArrayList<>();
+    RecyclerView rvPlanList;
+    private ArrayList<ProductModel> productList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_partner_product);
-        partnerproductC = this;
+        setContentView(R.layout.activity_bill_pay_plan_list);
+        partnerbillplanlistC = this;
         setBackMenu();
         getIds();
     }
@@ -67,50 +65,61 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
 
 
     private void getIds() {
-        rvProduct = findViewById(R.id.rvProduct);
-        callApiProductProvider();
+        rvPlanList = findViewById(R.id.rvPlanList);
+        callApiPlanList();
 
     }
 
     public static JSONObject productCategory = new JSONObject();
 
-    private void callApiProductProvider() {
+    private void callApiPlanList() {
         try {
-            MyApplication.showloader(partnerproductC,"Please Wait...");
-            API.GET("ewallet/api/v1/productMaster/allByCriteria?operatorCode="+ Partner.operatorCode+"&status=Y",
+            MyApplication.showloader(partnerbillplanlistC,"Please Wait...");
+            API.GET("ewallet/api/v1/product/allByCriteria?operatorCode="+PartnerProduct.operatorCode+"&serviceCategoryCode=100028&productMasterCode="+
+                    PartnerProduct.productCode+"&status=Y",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
+                           MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 productList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     productCategory = jsonObject;
-                                    JSONArray walletOwnerListArr = productCategory.optJSONArray("productMasterList");
+                                    JSONArray walletOwnerListArr = productCategory.optJSONArray("productList");
                                     if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                            productList.add(new ProductMasterModel(
+                                            productList.add(new ProductModel(
                                                     data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("creationDate"),
+                                                    data.optString("description"),
+                                                    data.optInt("maxValue"),
+                                                    data.optInt("minValue"),
+                                                    data.optInt("value"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("name"),
                                                     data.optString("operatorCode"),
                                                     data.optString("operatorName"),
-                                                    data.optString("productName"),
+                                                    data.optString("productMasterCode"),
+                                                    data.optString("productTypeCode"),
+                                                    data.optString("productTypeName"),
                                                     data.optString("serviceCategoryCode"),
                                                     data.optString("serviceCategoryName"),
                                                     data.optString("state"),
-                                                    data.optString("status")
+                                                    data.optString("status"),
+                                                    data.optString("vendorProductCode")
 
                                             ));
+
                                         }
 
                                         setData(productList);
                                     }
 
                                 } else {
-                                    MyApplication.showToast(partnerproductC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(partnerbillplanlistC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
                         }
@@ -127,20 +136,22 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
         }
     }
 
-    private void setData(List<ProductMasterModel> productList){
-        ProductAdapter productAdapter = new ProductAdapter(partnerproductC,productList);
-        rvProduct.setHasFixedSize(true);
-        rvProduct.setLayoutManager(new GridLayoutManager(this,3));
-        rvProduct.setAdapter(productAdapter);
+    private void setData(List<ProductModel> productList){
+        PlanListAdapter planListAdapter = new PlanListAdapter(partnerbillplanlistC,productList);
+        rvPlanList.setHasFixedSize(true);
+        rvPlanList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        rvPlanList.setAdapter(planListAdapter);
+
     }
 
-    public static String productCode,operatorCode;
+    public static String productCode;
+    public static int productValue;
 
     @Override
-    public void onProductListItemClick(String code, String opCode) {
+    public void onPlanListItemClick(String code, int value) {
         productCode = code;
-        operatorCode = opCode;
-        Intent intent = new Intent(partnerproductC, PartnerBillPayPlanList.class);
+        productValue = value;
+        Intent intent = new Intent(partnerbillplanlistC, PartnerBillPayDetails.class);
         startActivity(intent);
     }
 }

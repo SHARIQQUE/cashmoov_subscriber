@@ -487,7 +487,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     private void setSubscriberdataf(String subscriberInfoModel) {
 
         subscriberList.clear();
-//        mobileNo = "";
+        mobileNo = "";
 //        subscriberList.add(""+""+subscriberInfoModel+""+"");
 //        adapter = new ArrayAdapter<String>(tosubscriberC,R.layout.item_select, subscriberList);
 //        etSubscriberNo.setAdapter(adapter);

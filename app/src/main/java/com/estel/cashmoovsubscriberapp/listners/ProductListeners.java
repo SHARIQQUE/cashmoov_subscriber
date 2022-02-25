@@ -1,6 +1,6 @@
 package com.estel.cashmoovsubscriberapp.listners;
 
 public interface ProductListeners {
-    void onProductListItemClick(String code,String name);
+    void onProductListItemClick(String code,String operatorCode);
 
 }

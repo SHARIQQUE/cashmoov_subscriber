@@ -78,6 +78,7 @@ public class MyApplication extends Application {
     public static boolean isFirstTime=false;
     public static boolean isContact=false;
     public static boolean IsMainOpen=false;
+    public static boolean IsPromoCalled=false;
 
 
 

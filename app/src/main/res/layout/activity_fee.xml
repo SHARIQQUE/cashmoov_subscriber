@@ -282,9 +282,8 @@
                 </LinearLayout>
             </LinearLayout>
 
-
             <LinearLayout
-                android:id="@+id/linCashWithdrawal"
+                android:id="@+id/linCashOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
@@ -294,7 +293,7 @@
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    app:srcCompat="@drawable/ic_paymane24"
+                    app:srcCompat="@drawable/ic_cashout"
                     android:layout_gravity="center_vertical"/>
 
                 <LinearLayout
@@ -305,31 +304,79 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/tvCashWithdrawal"
+                        android:id="@+id/tvCashOut"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/aileron_bold"
-                         android:layout_gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:lineSpacingExtra="10sp"
-                        android:text="@string/cash_withdrawal"
+                        android:text="@string/cashout"
                         android:textColor="#3a3a3a"
                         android:textSize="@dimen/_13sdp" />
 
-                        <TextView
-                            android:id="@+id/tvFeeCashWithdrawal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/aileron_bold"
-                            android:gravity="right"
-                            android:lineSpacingExtra="10sp"
-                            android:layout_marginTop="@dimen/_2sdp"
-                            android:text="@string/free_service"
-                            android:textColor="@color/bleu_cashmoov"
-                            android:textSize="@dimen/_11sdp"
-                            android:layout_gravity="center_vertical"/>
+                    <TextView
+                        android:id="@+id/tvFeeCashOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aileron_bold"
+                        android:gravity="right"
+                        android:lineSpacingExtra="10sp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:text="@string/free_service"
+                        android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_11sdp"
+                        android:layout_gravity="center_vertical"/>
 
-                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linCashWithdrawal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="@dimen/_10sdp"-->
+<!--                android:background="#ffffff"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_30sdp"-->
+<!--                    android:layout_height="@dimen/_30sdp"-->
+<!--                    app:srcCompat="@drawable/ic_paymane24"-->
+<!--                    android:layout_gravity="center_vertical"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="@dimen/_10sdp"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_gravity="center_vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvCashWithdrawal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/aileron_bold"-->
+<!--                         android:layout_gravity="center_vertical"-->
+<!--                        android:lineSpacingExtra="10sp"-->
+<!--                        android:text="@string/cash_withdrawal"-->
+<!--                        android:textColor="#3a3a3a"-->
+<!--                        android:textSize="@dimen/_13sdp" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvFeeCashWithdrawal"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/aileron_bold"-->
+<!--                            android:gravity="right"-->
+<!--                            android:lineSpacingExtra="10sp"-->
+<!--                            android:layout_marginTop="@dimen/_2sdp"-->
+<!--                            android:text="@string/free_service"-->
+<!--                            android:textColor="@color/bleu_cashmoov"-->
+<!--                            android:textSize="@dimen/_11sdp"-->
+<!--                            android:layout_gravity="center_vertical"/>-->
+
+<!--                    </LinearLayout>-->
+<!--            </LinearLayout>-->
 
 
             <LinearLayout

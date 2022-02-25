@@ -19,6 +19,7 @@ public class OfferPromotionModel {
     public String profileTypeName;
     public String description;
     public String heading;
+    public String subHeading;
     public String fileName;
     public String status;
     public String state;
@@ -26,7 +27,7 @@ public class OfferPromotionModel {
     public String creationDate;
     public String modificationDate;
 
-    public OfferPromotionModel(int id, String code, String templateCode, String templateName, String serviceCode, String serviceName, String serviceCategoryCode, String serviceCategoryName, String serviceProviderCode, String serviceProviderName, String fromDate, String toDate, String promOfferTypeCode, String promOfferTypeName, String profileTypeCode, String profileTypeName, String description, String heading, String fileName, String status, String state, String createdBy, String creationDate, String modificationDate) {
+    public OfferPromotionModel(int id, String code, String templateCode, String templateName, String serviceCode, String serviceName, String serviceCategoryCode, String serviceCategoryName, String serviceProviderCode, String serviceProviderName, String fromDate, String toDate, String promOfferTypeCode, String promOfferTypeName, String profileTypeCode, String profileTypeName, String description, String heading, String subHeading, String fileName, String status, String state, String createdBy, String creationDate, String modificationDate) {
         this.id = id;
         this.code = code;
         this.templateCode = templateCode;
@@ -45,6 +46,7 @@ public class OfferPromotionModel {
         this.profileTypeName = profileTypeName;
         this.description = description;
         this.heading = heading;
+        this.subHeading = subHeading;
         this.fileName = fileName;
         this.status = status;
         this.state = state;
@@ -195,6 +197,14 @@ public class OfferPromotionModel {
 
     public void setHeading(String heading) {
         this.heading = heading;
+    }
+
+    public String getSubHeading() {
+        return subHeading;
+    }
+
+    public void setSubHeading(String subHeading) {
+        this.subHeading = subHeading;
     }
 
     public String getFileName() {

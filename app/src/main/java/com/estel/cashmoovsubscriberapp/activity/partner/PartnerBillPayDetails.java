@@ -8,20 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
-import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 
 public class PartnerBillPayDetails extends AppCompatActivity implements View.OnClickListener {
@@ -77,6 +71,14 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
 
         tvOperatorName.setText(Partner.operatorName);
         tvAmtCurr.setText(Partner.currencySymbol);
+        if(PartnerBillPayPlanList.productValue>0){
+            etAmount.setEnabled(false);
+            etAmount.setText(String.valueOf(PartnerBillPayPlanList.productValue));
+            callApiAmountDetails();
+        }
+        else{
+            etAmount.setEnabled(true);
+        }
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -134,8 +136,8 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                     dataToSend.put("amount",etAmount.getText().toString());
                     dataToSend.put("channel","SELFCARE");
                     dataToSend.put("fromCurrencyCode","100062");
-                    dataToSend.put("operator",Partner.operatorCode);
-                    dataToSend.put("productCode",PartnerProduct.productCode);
+                    dataToSend.put("operator",PartnerProduct.operatorCode);
+                    dataToSend.put("productCode",PartnerBillPayPlanList.productCode);
                     dataToSend.put("requestType","recharge");
                     dataToSend.put("serviceCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
                     dataToSend.put("serviceCategoryCode",Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
@@ -166,7 +168,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                             +"&serviceCategoryCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
                             "&serviceProviderCode="+Partner.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", billpaydetailsC)+
-                            "&productCode="+PartnerProduct.productCode,
+                            "&productCode="+PartnerBillPayPlanList.productCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

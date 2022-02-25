@@ -372,6 +372,10 @@
     <string name="msisdn_not_reg_with_subscriber">MSISDN n\'est pas enregistré, voulez-vous envoyer à un non abonné ?</string>
     <string name="guinea">Guinea</string>
     <string name="val_otp">Veuillez entrer otp</string>
+    <string name="no_promo_found">Aucune promotion trouvée</string>
+    <string name="choose_the_plan">Choisissez le forfait</string>
+    <string name="you_make_cashout">Vous effectuez un retrait</string>
+    <string name="cashout">retrait</string>
 
 
     <string-array name="Spinner_provider">

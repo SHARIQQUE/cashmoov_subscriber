@@ -28,6 +28,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
+import com.estel.cashmoovsubscriberapp.activity.OfferPromotionActivity;
+import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialog;
 import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialogListener;
 import com.estel.cashmoovsubscriberapp.activity.location.Constants;
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CircleImageView imgProfile;
     LinearLayout linMain, linClick, linPromotion;
     TextView tvClick, tvBalance, pro_text,tvName;
-    CardView cardMoneyTransfer, cardAirtimePurchase, cardRechargePayment, cardPay,
+    CardView cardMoneyTransfer, cardAirtimePurchase, cardRechargePayment, cardPay,cardCashOut,
             cardCashWithdrawal, cardRecRemittance, cardFee, cardServicePoints;
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
@@ -174,7 +176,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardAirtimePurchase = findViewById(R.id.cardAirtimePurchase);
         cardRechargePayment = findViewById(R.id.cardRechargePayment);
         cardPay = findViewById(R.id.cardPay);
-        cardCashWithdrawal = findViewById(R.id.cardCashWithdrawal);
+        cardCashOut = findViewById(R.id.cardCashOut);
+        //cardCashWithdrawal = findViewById(R.id.cardCashWithdrawal);
         cardRecRemittance = findViewById(R.id.cardRecRemittance);
       //  cardFee = findViewById(R.id.cardFee);
        // cardServicePoints = findViewById(R.id.cardServicePoints);
@@ -196,9 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
-
-                    Intent i = new Intent(mainC, Partner.class);
-                    startActivity(i);
+                    Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(mainC, Partner.class);
+//                    startActivity(i);
                     // finish();
                 }
                 if (bottomId == 2) {
@@ -226,7 +229,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardAirtimePurchase.setOnClickListener(mainC);
         cardRechargePayment.setOnClickListener(mainC);
         cardPay.setOnClickListener(mainC);
-        cardCashWithdrawal.setOnClickListener(mainC);
+        cardCashOut.setOnClickListener(this);
+        //cardCashWithdrawal.setOnClickListener(mainC);
         cardRecRemittance.setOnClickListener(mainC);
        // cardFee.setOnClickListener(mainC);
        // cardServicePoints.setOnClickListener(mainC);
@@ -278,19 +282,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.cardRechargePayment:
-                intent = new Intent(mainC, BillPay.class);
-                startActivity(intent);
+                Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+//                intent = new Intent(mainC, BillPay.class);
+//                startActivity(intent);
                 break;
             case R.id.cardPay:
                 intent = new Intent(mainC, Pay.class);
                 startActivity(intent);
                 //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.cardCashWithdrawal:
-                intent = new Intent(mainC, CashWithdrawal.class);
+            case R.id.cardCashOut:
+                intent = new Intent(mainC, CashOut.class);
                 startActivity(intent);
                 //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
                 break;
+//            case R.id.cardCashWithdrawal:
+//                intent = new Intent(mainC, CashWithdrawal.class);
+//                startActivity(intent);
+//                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.cardRecRemittance:
                 intent = new Intent(mainC, ReceiveRemittance.class);
                 startActivity(intent);
@@ -336,7 +346,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     }
 
                         //comment for remove permanent promotion list
-                                    gettempalteList();
+                                    if(MyApplication.IsPromoCalled){
+                                        MyApplication.IsPromoCalled=false;
+                                        gettempalteList();
+                                    }
+
 
 
 //                                    if(MyApplication.isFirstTime){
@@ -404,6 +418,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 imgLogo.setVisibility(View.VISIBLE);*/
                                 getPromotionList(data.optString("templateCode"));
                             }
+//                            else{
+//                                MyApplication.hideLoader();
+//                               // MyApplication.showToast(mainC,getString(R.string.no_promo_found));
+//                            }
 //                            else{
 //                                    set.add(1);
 //
@@ -482,6 +500,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     data.optString("profileTypeName"),
                                     data.optString("description"),
                                     data.optString("heading"),
+                                    data.optString("subHeading"),
                                     data.optString("fileName"),
                                     data.optString("subHeading"),
                                     data.optString("state"),
@@ -514,13 +533,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 .OnPositiveClicked(new PromoDialogListener() {
                                     @Override
                                     public void OnClick() {
-                                        Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(mainC, OfferPromotionActivity.class);
+                                        startActivity(i);
+                                        //Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .OnNegativeClicked(new PromoDialogListener() {
                                     @Override
                                     public void OnClick() {
-                                        Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                                       // Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .build();

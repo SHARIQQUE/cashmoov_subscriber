@@ -121,9 +121,15 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         if (getIntent().getExtras() != null) {
             String msisdn  = (getIntent().getStringExtra("TOSUBMSISDN"));
             String amount  = (getIntent().getStringExtra("TOSUBAMOUNT"));
-            etPhone.setText(msisdn);
-            etAmount.setText(amount);
 
+            if(amount!=null){
+                etAmount.setText(amount);
+                callApiAmountDetails();
+            }
+            if(etPhone!=null){
+                etPhone.setText(msisdn);
+                callApiSubsriberList();
+            }
         }
 
         spGender.setOnClickListener(new View.OnClickListener() {
@@ -437,15 +443,16 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                             System.out.println("NonSubscriber response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                    if(etAmount.getText().toString().trim().length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee=  df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                    receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                    receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    //etAmountNew.setText(currencyValue);
-                                    tvFee.setText(fee);
-                                    tvAmtPaid.setText(currencyValue);
+                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        receiverFee = jsonObjectAmountDetails.optInt("receiverFee");
+                                        receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        tvFee.setText(fee);
+                                        tvAmtPaid.setText(currencyValue);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -455,12 +462,12 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
-                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                    }else{
-                                        taxConfigurationList=null;
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                        } else {
+                                            taxConfigurationList = null;
+                                        }
                                     }
-
 
                                 } else {
                                     MyApplication.showToast(tononsubscriberC,jsonObject.optString("resultDescription", "N/A"));
@@ -501,19 +508,21 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                             System.out.println("NonSubscriber response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                    if(etAmountNew.getText().toString().trim().length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    try {
-                                        double currValue = Double.parseDouble(etAmountNew.getText().toString());
-                                        double value = jsonObjectAmountDetails.optDouble("value");
-                                        if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
-                                            etAmount.setText(String.valueOf(currValue));
-                                        }else{
-                                            String finalValue = df.format(currValue / value);
-                                            etAmount.setText(finalValue);
+                                        try {
+                                            double currValue = Double.parseDouble(etAmountNew.getText().toString());
+                                            double value = jsonObjectAmountDetails.optDouble("value");
+                                            if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
+                                                etAmount.setText(String.valueOf(currValue));
+                                            } else {
+                                                String finalValue = df.format(currValue / value);
+                                                etAmount.setText(finalValue);
+                                            }
+
+                                        } catch (Exception e) {
                                         }
-
-                                    }catch (Exception e){}
 //                                    fee=  df.format(jsonObjectAmountDetails.optDouble("fee"));
 //                                    receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
 //                                    receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
@@ -532,7 +541,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 //                                    }else{
 //                                        taxConfigurationList=null;
 //                                    }
-
+                                    }
 
                                 } else {
                                     MyApplication.showToast(tononsubscriberC,jsonObject.optString("resultDescription", "N/A"));

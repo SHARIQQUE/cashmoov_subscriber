@@ -695,6 +695,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     if (resultCode.equalsIgnoreCase("0")) {
+                        MyApplication.IsPromoCalled = true;
                         Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                         Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                         startActivity(i);

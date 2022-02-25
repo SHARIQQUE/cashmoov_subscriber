@@ -372,6 +372,10 @@
     <string name="msisdn_not_reg_with_subscriber">MSISDN is not saved, do you want to send to non subscriber?</string>
     <string name="guinea">Guinea</string>
     <string name="val_otp">Please enter otp</string>
+    <string name="no_promo_found">No promotions found</string>
+    <string name="choose_the_plan">Choose the plan</string>
+    <string name="you_make_cashout">You make a cashout</string>
+    <string name="cashout">Cash Out</string>
 
 
     <string-array name="Spinner_provider">

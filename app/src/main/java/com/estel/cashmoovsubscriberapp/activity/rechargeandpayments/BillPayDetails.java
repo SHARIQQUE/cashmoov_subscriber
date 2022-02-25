@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfirmScreen;
+import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayPlanList;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
@@ -73,6 +73,14 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
 
         tvOperatorName.setText(BillPay.operatorNname);
         tvAmtCurr.setText(BillPay.currencySymbol);
+        if(BillPayPlanList.productValue>0){
+            etAmount.setEnabled(false);
+            etAmount.setText(String.valueOf(BillPayPlanList.productValue));
+            callApiAmountDetails();
+        }
+        else{
+            etAmount.setEnabled(true);
+        }
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -130,8 +138,8 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                     dataToSend.put("amount",etAmount.getText().toString());
                     dataToSend.put("channel","SELFCARE");
                     dataToSend.put("fromCurrencyCode","100062");
-                    dataToSend.put("operator",BillPay.operatorCode);
-                    dataToSend.put("productCode",BillPayProduct.productCode);
+                    dataToSend.put("operator",BillPayProduct.operatorCode);
+                    dataToSend.put("productCode",BillPayPlanList.productCode);
                     dataToSend.put("requestType","recharge");
                     dataToSend.put("serviceCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
                     dataToSend.put("serviceCategoryCode",BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
@@ -164,7 +172,7 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                             +"&serviceCategoryCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode")+
                             "&serviceProviderCode="+BillPay.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode")+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", billpaydetailsC)+
-                            "&productCode="+BillPayProduct.productCode,
+                            "&productCode="+BillPayPlanList.productCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

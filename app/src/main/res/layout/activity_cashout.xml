@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/you_make_withdrawal"
+                android:text="@string/you_make_cashout"
                 android:textColor="#29304d"
                 android:textSize="@dimen/_16sdp" />
 
@@ -142,7 +142,7 @@
                 android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_semibold" />
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"

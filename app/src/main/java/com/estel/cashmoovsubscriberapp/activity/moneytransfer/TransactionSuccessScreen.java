@@ -20,6 +20,7 @@ import com.estel.cashmoovsubscriberapp.activity.OnboardingOne;
 import com.estel.cashmoovsubscriberapp.activity.Splash;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeReceipt;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeReceipt;
+import com.estel.cashmoovsubscriberapp.activity.cashout.CashOutReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayReceipt;
@@ -130,6 +131,11 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                     startActivity(intent);
                     return;
                 }
+                if(checkIntent.equalsIgnoreCase("CASHOUT")) {
+                    intent = new Intent(transSuccessscreenC, CashOutReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
                 if(checkIntent.equalsIgnoreCase("RECEIVEREMITTANCE")) {
                     intent = new Intent(transSuccessscreenC, ReceiveRemittancelReceiptScreen.class);
                     startActivity(intent);
@@ -191,6 +197,11 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 }
                 if(checkIntent.equalsIgnoreCase("CASHWITHDRAWAL")) {
                     intent = new Intent(transSuccessscreenC, CashWithdrawalReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(checkIntent.equalsIgnoreCase("CASHOUT")) {
+                    intent = new Intent(transSuccessscreenC, CashOutReceiptScreen.class);
                     startActivity(intent);
                     return;
                 }

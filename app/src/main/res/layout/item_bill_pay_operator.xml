@@ -9,8 +9,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_50sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
+            android:layout_height="@dimen/_80sdp"
+            app:cardCornerRadius="@dimen/_6sdp"
             android:layout_margin="@dimen/_5sdp"
             app:cardElevation="@dimen/_4sdp"
             app:cardBackgroundColor="@color/white">
@@ -25,8 +25,8 @@
                 <ImageView
                     android:id="@+id/ivOperatorLogo"
                     android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/startimes"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/startimeslogo"
                     android:scaleType="fitXY"
                     app:civ_border_color="@color/colorPrimaryDark"/>
 
@@ -44,7 +44,8 @@
         android:fontFamily="@font/aileron_bold"
         android:gravity="center_horizontal"
         android:text="Star Time"
-        android:maxLines="2"/>
+        android:singleLine="true"
+        android:ellipsize="marquee"/>
 
 
 </LinearLayout>

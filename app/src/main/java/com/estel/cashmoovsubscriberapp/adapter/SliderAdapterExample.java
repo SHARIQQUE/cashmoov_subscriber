@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.MyApplication;
@@ -20,7 +18,6 @@ import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SliderAdapterExample extends
         SliderViewAdapter<SliderAdapterExample.SliderAdapterVH > {
@@ -51,7 +48,7 @@ public class SliderAdapterExample extends
 
     @Override
         public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_offer_promotion, null);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_offer_promotion_slider, null);
         return new SliderAdapterVH(inflate);
     }
 
