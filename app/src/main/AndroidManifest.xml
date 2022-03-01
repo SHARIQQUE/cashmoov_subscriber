@@ -363,6 +363,14 @@
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.fee.AirtimeFeeActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.fee.BillPayFeeActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.fee.FeeDetails"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"

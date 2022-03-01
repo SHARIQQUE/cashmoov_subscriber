@@ -42,7 +42,7 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 if(productModel.getProductMasterCode()!=null)
-                 planListeners.onPlanListItemClick(productModel.getCode(),productModel.getValue());
+                 planListeners.onPlanListItemClick(productModel.getCode(),productModel.getProductTypeCode(),productModel.getValue());
             }
         });
     }

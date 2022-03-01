@@ -199,10 +199,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
-                    Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(mainC, Partner.class);
-//                    startActivity(i);
-                    // finish();
+                    //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mainC, Partner.class);
+                    startActivity(i);
+                     //finish();
                 }
                 if (bottomId == 2) {
                     Intent i = new Intent(mainC, Profile.class);
@@ -282,9 +282,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.cardRechargePayment:
-                Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-//                intent = new Intent(mainC, BillPay.class);
-//                startActivity(intent);
+                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                intent = new Intent(mainC, BillPay.class);
+                startActivity(intent);
                 break;
             case R.id.cardPay:
                 intent = new Intent(mainC, Pay.class);
@@ -483,30 +483,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             JSONObject data = dataArray.optJSONObject(i);
                             offerPromotionModelArrayList.add(new OfferPromotionModel(
                                     data.optInt("id"),
-                                    data.optString("code"),
-                                    data.optString("templateCode"),
-                                    data.optString("templateName"),
-                                    data.optString("serviceCode"),
-                                    data.optString("serviceName"),
-                                    data.optString("serviceCategoryCode"),
-                                    data.optString("serviceCategoryName"),
-                                    data.optString("serviceProviderCode"),
-                                    data.optString("serviceProviderName"),
-                                    data.optString("fromDate"),
-                                    data.optString("toDate"),
-                                    data.optString("promOfferTypeCode"),
-                                    data.optString("promOfferTypeName"),
-                                    data.optString("profileTypeCode"),
-                                    data.optString("profileTypeName"),
-                                    data.optString("description"),
-                                    data.optString("heading"),
-                                    data.optString("subHeading"),
-                                    data.optString("fileName"),
-                                    data.optString("subHeading"),
-                                    data.optString("state"),
-                                    data.optString("createdBy"),
-                                    data.optString("creationDate"),
-                                    data.optString("modificationDate")));
+                                    data.optString("code","NA"),
+                                    data.optString("templateCode","NA"),
+                                    data.optString("templateName","NA"),
+                                    data.optString("serviceCode","NA"),
+                                    data.optString("serviceName","NA"),
+                                    data.optString("serviceCategoryCode","NA"),
+                                    data.optString("serviceCategoryName","NA"),
+                                    data.optString("serviceProviderCode","NA"),
+                                    data.optString("serviceProviderName","NA"),
+                                    data.optString("fromDate","NA"),
+                                    data.optString("toDate","NA"),
+                                    data.optString("promOfferTypeCode","NA"),
+                                    data.optString("promOfferTypeName","NA"),
+                                    data.optString("profileTypeCode","NA"),
+                                    data.optString("profileTypeName","NA"),
+                                    data.optString("description","NA"),
+                                    data.optString("heading","NA"),
+                                    data.optString("subHeading","NA"),
+                                    data.optString("fileName","NA"),
+                                    data.optString("subHeading","NA"),
+                                    data.optString("state","NA"),
+                                    data.optString("createdBy","NA"),
+                                    data.optString("creationDate","NA"),
+                                    data.optString("modificationDate","NA")));
 
                         }
                         OfferPromotionModel OfferPromotionModeltemp = null;

@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
 import com.estel.cashmoovsubscriberapp.adapter.PlanListAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.listners.PlanListeners;
-import com.estel.cashmoovsubscriberapp.listners.ProductListeners;
 import com.estel.cashmoovsubscriberapp.model.ProductModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -71,6 +69,62 @@ public class BillPayPlanList extends AppCompatActivity implements PlanListeners 
         callApiPlanList();
 
     }
+
+//    {
+//        "transactionId": "2650692",
+//            "requestTime": "Mon Feb 28 13:15:19 UTC 2022",
+//            "responseTime": "Mon Feb 28 13:15:19 UTC 2022",
+//            "resultCode": "0",
+//            "resultDescription": "Transaction Successful",
+//            "pageable": {
+//        "totalRecords": 2
+//    },
+//        "productList": [
+//        {
+//            "id": 37,
+//                "code": "100038",
+//                "serviceCategoryCode": "100028",
+//                "serviceCategoryName": "TV",
+//                "operatorCode": "100046",
+//                "operatorName": "STARTIMES RECHARGE",
+//                "productTypeCode": "100001",
+//                "productTypeName": "Flexi",
+//                "name": "STARTIMES BASIQUE",
+//                "productMasterCode": "100002",
+//                "value": 0,
+//                "description": "OTHERS",
+//                "minValue": 1,
+//                "maxValue": 5000,
+//                "status": "Active",
+//                "state": "Approved",
+//                "creationDate": "2022-02-28T11:14:39.318+0530",
+//                "modificationDate": "2022-02-28T11:17:55.773+0530",
+//                "vendorProductCode": "P_2AK0VR0"
+//        },
+//        {
+//            "id": 36,
+//                "code": "100037",
+//                "serviceCategoryCode": "100028",
+//                "serviceCategoryName": "TV",
+//                "operatorCode": "100046",
+//                "operatorName": "STARTIMES RECHARGE",
+//                "productTypeCode": "100000",
+//                "productTypeName": "Fixed",
+//                "name": "STARTIMES BASIQUE",
+//                "productMasterCode": "100002",
+//                "value": 7000,
+//                "description": "STARTIMES BASIQUE JOUR",
+//                "minValue": 0,
+//                "maxValue": 0,
+//                "status": "Active",
+//                "state": "Approved",
+//                "creationDate": "2022-02-28T11:11:44.675+0530",
+//                "modificationDate": "2022-02-28T11:17:35.802+0530",
+//                "vendorProductCode": "P_2AK0VR0"
+//        }
+//  ]
+//    }
+
 
     public static JSONObject productCategory = new JSONObject();
 
@@ -146,14 +200,17 @@ public class BillPayPlanList extends AppCompatActivity implements PlanListeners 
 
     }
 
-    public static String productCode;
+    public static String productCode,productTypeCode;
     public static int productValue;
 
     @Override
-    public void onPlanListItemClick(String code, int value) {
+    public void onPlanListItemClick(String code, String typeCode, int value) {
         productCode = code;
+        productTypeCode = typeCode;
         productValue = value;
         Intent intent = new Intent(billplanlistC, BillPayDetails.class);
         startActivity(intent);
     }
+
+
 }

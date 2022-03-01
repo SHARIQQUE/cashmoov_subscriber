@@ -37,12 +37,27 @@ public class AirtimeFeeOperatorAdapter extends RecyclerView.Adapter<AirtimeFeeOp
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OperatorModel opearatorModel = operatorList.get(position);
         holder.txt1.setText(opearatorModel.getName());
+        if(opearatorModel.getCode().equalsIgnoreCase("100051")){
+            holder.imgLogo.setImageResource(R.drawable.mtn);
+        } if(opearatorModel.getCode().equalsIgnoreCase("100050")){
+            holder.imgLogo.setImageResource(R.drawable.cellcom);
+        }
+        if(opearatorModel.getCode().equalsIgnoreCase("100049")){
+            holder.imgLogo.setImageResource(R.drawable.orange);
+        }
 
         holder.linOperator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opearatorModel.getCode()!=null)
                  operatorAirtimeFeeListeners.onOperatorAirtimeFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
+            }
+        });
+        holder.txt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(opearatorModel.getCode()!=null)
+                    operatorAirtimeFeeListeners.onOperatorAirtimeFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
             }
         });
     }
@@ -55,12 +70,12 @@ public class AirtimeFeeOperatorAdapter extends RecyclerView.Adapter<AirtimeFeeOp
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linOperator;
-        private ImageView imageView1;
+        private ImageView imgLogo;
         private TextView txt1;
         public ViewHolder(View itemView) {
             super(itemView);
             linOperator = itemView.findViewById(R.id.linOperator);
-            imageView1 = itemView.findViewById(R.id.imageView1);
+            imgLogo = itemView.findViewById(R.id.imgLogo);
             txt1 = itemView.findViewById(R.id.txt1);
         }
     }

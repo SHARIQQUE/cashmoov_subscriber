@@ -73,13 +73,12 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
 
         tvOperatorName.setText(BillPay.operatorNname);
         tvAmtCurr.setText(BillPay.currencySymbol);
-        if(BillPayPlanList.productValue>0){
+        if(BillPayPlanList.productTypeCode.equalsIgnoreCase("100001")){
+            etAmount.setEnabled(true);
+        } else{
             etAmount.setEnabled(false);
             etAmount.setText(String.valueOf(BillPayPlanList.productValue));
             callApiAmountDetails();
-        }
-        else{
-            etAmount.setEnabled(true);
         }
 
         etAmount.addTextChangedListener(new TextWatcher() {

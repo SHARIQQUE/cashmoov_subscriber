@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.adapter.AirtimeFeeOperatorAdapter;
 import com.estel.cashmoovsubscriberapp.adapter.BillPayFeeOperatorAdapter;
 import com.estel.cashmoovsubscriberapp.adapter.OperatorAdapter;
@@ -28,12 +29,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class Fee extends AppCompatActivity implements View.OnClickListener, OperatorAirtimeFeeListeners, OperatorBillPayFeeListeners {
+public class Fee extends AppCompatActivity implements View.OnClickListener {
     public static Fee feeC;
     ImageView imgBack,imgHome;
     JSONObject feeData;
     public static JSONObject jsonObjectTestMain=null;
-    public static JSONObject mainJsonObject=null;
+   // public static JSONObject mainJsonObject=null;
     LinearLayout linMoneyTransfer,linAirtimePurhase,linBillPay,linPay,linCashOut,
             linCashWithdrawal,linRecRemittance;
     TextView tvMoneyTransfer,tvFeeMoneyTransfer,tvAirtimePurchase,tvFeeAirtimePurchase,tvBillPayment,tvFeeBillPayment,
@@ -138,14 +139,18 @@ public class Fee extends AppCompatActivity implements View.OnClickListener, Oper
                 if(tvFeeAirtimePurchase.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
-                    showAirtimePurchasePopup(getString(R.string.airtime_purchase));
+                    intent = new Intent(feeC, AirtimeFeeActivity.class);
+                    startActivity(intent);
+                   // showAirtimePurchasePopup(getString(R.string.airtime_purchase));
                 }
                 break;
             case R.id.linBillPay:
                 if(tvFeeBillPayment.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
-                    showBillPayPopup(getString(R.string.bill_payment));
+                    intent = new Intent(feeC, BillPayFeeActivity.class);
+                    startActivity(intent);
+                    //showBillPayPopup(getString(R.string.bill_payment));
                 }
                 break;
             case R.id.linPay:
@@ -295,10 +300,9 @@ public class Fee extends AppCompatActivity implements View.OnClickListener, Oper
         TextView tvServiceName;
         RecyclerView rvOperator;
         tvServiceName = feeAirtimeDialog.findViewById(R.id.tvServiceName);
-        tvServiceName.setText(serviceName);
         rvOperator = feeAirtimeDialog.findViewById(R.id.rvOperator);
 
-        callApiAirtimeOperatorProvider(rvOperator);
+       // callApiAirtimeOperatorProvider(rvOperator);
 
         btnClose = feeAirtimeDialog.findViewById(R.id.btnClose);
         btnClose.setText(getString(R.string.close));
@@ -528,10 +532,9 @@ public class Fee extends AppCompatActivity implements View.OnClickListener, Oper
         TextView tvServiceName;
         RecyclerView rvOperator;
         tvServiceName = feeBillPayDialog.findViewById(R.id.tvServiceName);
-        tvServiceName.setText(serviceName);
         rvOperator = feeBillPayDialog.findViewById(R.id.rvOperator);
 
-        callBillPayOperatorProvider(rvOperator);
+        //callBillPayOperatorProvider(rvOperator);
 
         btnClose = feeBillPayDialog.findViewById(R.id.btnClose);
         btnClose.setText(getString(R.string.close));
@@ -1171,257 +1174,257 @@ public class Fee extends AppCompatActivity implements View.OnClickListener, Oper
 
     }
 
-    private ArrayList<OperatorModel> operatorAirtimeList = new ArrayList<>();
-    private void callApiAirtimeOperatorProvider(RecyclerView rvOperator) {
-        try {
+//    private ArrayList<OperatorModel> operatorAirtimeList = new ArrayList<>();
+//    private void callApiAirtimeOperatorProvider(RecyclerView rvOperator) {
+//        try {
+//
+//            API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100009&serviceCategoryCode=100021&status=Y&offset=0&limit=200",
+//                    new Api_Responce_Handler() {
+//                        @Override
+//                        public void success(JSONObject jsonObject) {
+//                            MyApplication.hideLoader();
+//
+//                            if (jsonObject != null) {
+//                                operatorAirtimeList.clear();
+//                                //serviceProviderModelList.clear();
+//                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+//                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+//                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("operatorList");
+//                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+//                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+//                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+//                                            operatorAirtimeList.add(new OperatorModel(
+//                                                    data.optInt("id"),
+//                                                    data.optString("code"),
+//                                                    data.optString("creationDate"),
+//                                                    data.optString("modificationDate"),
+//                                                    data.optString("name"),
+//                                                    data.optString("serviceCategoryCode"),
+//                                                    data.optString("serviceCategoryName"),
+//                                                    data.optString("serviceCode"),
+//                                                    data.optString("serviceName"),
+//                                                    data.optString("serviceProviderCode"),
+//                                                    data.optString("serviceProviderName"),
+//                                                    data.optString("state"),
+//                                                    data.optString("status")
+//
+//                                            ));
+//
+//                                        }
+//                                        AirtimeFeeOperatorAdapter airtimeFeeOperatorAdapter = new AirtimeFeeOperatorAdapter(feeC,operatorAirtimeList);
+//                                        rvOperator.setHasFixedSize(true);
+//                                        rvOperator.setLayoutManager(new LinearLayoutManager(feeC, LinearLayoutManager.VERTICAL,false));
+//                                        rvOperator.setAdapter(airtimeFeeOperatorAdapter);
+//                                    }
+//
+//                                } else {
+//                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void failure(String aFalse) {
+//                            MyApplication.hideLoader();
+//
+//                        }
+//                    });
+//
+//        } catch (Exception e) {
+//
+//        }
+//
+//
+//    }
 
-            API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100009&serviceCategoryCode=100021&status=Y&offset=0&limit=200",
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
-
-                            if (jsonObject != null) {
-                                operatorAirtimeList.clear();
-                                //serviceProviderModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
-                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("operatorList");
-                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
-                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
-                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                            operatorAirtimeList.add(new OperatorModel(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("creationDate"),
-                                                    data.optString("modificationDate"),
-                                                    data.optString("name"),
-                                                    data.optString("serviceCategoryCode"),
-                                                    data.optString("serviceCategoryName"),
-                                                    data.optString("serviceCode"),
-                                                    data.optString("serviceName"),
-                                                    data.optString("serviceProviderCode"),
-                                                    data.optString("serviceProviderName"),
-                                                    data.optString("state"),
-                                                    data.optString("status")
-
-                                            ));
-
-                                        }
-                                        AirtimeFeeOperatorAdapter airtimeFeeOperatorAdapter = new AirtimeFeeOperatorAdapter(feeC,operatorAirtimeList);
-                                        rvOperator.setHasFixedSize(true);
-                                        rvOperator.setLayoutManager(new LinearLayoutManager(feeC, LinearLayoutManager.VERTICAL,false));
-                                        rvOperator.setAdapter(airtimeFeeOperatorAdapter);
-                                    }
-
-                                } else {
-                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-
-    private ArrayList<OperatorModel> operatorBillPayList = new ArrayList<>();
-    private void callBillPayOperatorProvider(RecyclerView rvOperator) {
-        try {
-
-            API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100001&serviceCategoryCode=100028&status=Y&offset=0&limit=200",
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
-
-                            if (jsonObject != null) {
-                                operatorBillPayList.clear();
-                                //serviceProviderModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
-                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("operatorList");
-                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
-                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
-                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                            operatorBillPayList.add(new OperatorModel(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("creationDate"),
-                                                    data.optString("modificationDate"),
-                                                    data.optString("name"),
-                                                    data.optString("serviceCategoryCode"),
-                                                    data.optString("serviceCategoryName"),
-                                                    data.optString("serviceCode"),
-                                                    data.optString("serviceName"),
-                                                    data.optString("serviceProviderCode"),
-                                                    data.optString("serviceProviderName"),
-                                                    data.optString("state"),
-                                                    data.optString("status")
-
-                                            ));
-
-                                        }
-                                        BillPayFeeOperatorAdapter billPayFeeOperatorAdapter = new BillPayFeeOperatorAdapter(feeC,operatorBillPayList);
-                                        rvOperator.setHasFixedSize(true);
-                                        rvOperator.setLayoutManager(new LinearLayoutManager(feeC, LinearLayoutManager.VERTICAL,false));
-                                        rvOperator.setAdapter(billPayFeeOperatorAdapter);
-                                    }
-
-                                } else {
-                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-
-
-
-    @Override
-    public void onOperatorAirtimeFeeListItemClick(String code, String name) {
-        callAirtimeFee(code);
-        feeAirtimeDialog.dismiss();
-    }
-
-    @Override
-    public void onOperatorBillPayFeeListItemClick(String code, String name) {
-        callBillPayFee(code);
-        feeBillPayDialog.dismiss();
-    }
-
-    private void callAirtimeFee(String operatorCode) {
-        try {
-
-            API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+MyApplication.getSaveString("walletOwnerCode", feeC)+"/"+operatorCode,
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
-
-                            if (jsonObject != null) {
-
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    mainJsonObject = new JSONObject();
-                                    mainJsonObject = jsonObject;
-                                    JSONArray walletOwnerTemplateList=jsonObject.optJSONArray("walletOwnerTemplateList");
-                                    if(walletOwnerTemplateList!=null&& walletOwnerTemplateList.length()>0) {
-                                        JSONObject data=walletOwnerTemplateList.optJSONObject(0);
-
-                                        if(data.has("feeTemplateList")){
-                                            JSONArray feeTemplateList=data.optJSONArray("feeTemplateList");
-                                            for (int i=0;i<feeTemplateList.length();i++){
-                                                JSONObject feeObj=feeTemplateList.optJSONObject(i);
-                                                    if(feeObj.has("calculationTypeName")) {
-                                                        Intent in = new Intent(feeC,FeeDetails.class);
-                                                        in.putExtra("FEEINTENT","Airtime Purchase");
-                                                        //in.putExtra("OPERATORCODE",operatorCode);
-                                                        startActivity(in);
-                                                    }else{
-                                                        MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
-                                                    }
-
-                                            }
+//    private ArrayList<OperatorModel> operatorBillPayList = new ArrayList<>();
+//    private void callBillPayOperatorProvider(RecyclerView rvOperator) {
+//        try {
+//
+//            API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100001&serviceCategoryCode=100028&status=Y&offset=0&limit=200",
+//                    new Api_Responce_Handler() {
+//                        @Override
+//                        public void success(JSONObject jsonObject) {
+//                            MyApplication.hideLoader();
+//
+//                            if (jsonObject != null) {
+//                                operatorBillPayList.clear();
+//                                //serviceProviderModelList.clear();
+//                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+//                                    //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+//                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("operatorList");
+//                                    if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+//                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+//                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+//                                            operatorBillPayList.add(new OperatorModel(
+//                                                    data.optInt("id"),
+//                                                    data.optString("code"),
+//                                                    data.optString("creationDate"),
+//                                                    data.optString("modificationDate"),
+//                                                    data.optString("name"),
+//                                                    data.optString("serviceCategoryCode"),
+//                                                    data.optString("serviceCategoryName"),
+//                                                    data.optString("serviceCode"),
+//                                                    data.optString("serviceName"),
+//                                                    data.optString("serviceProviderCode"),
+//                                                    data.optString("serviceProviderName"),
+//                                                    data.optString("state"),
+//                                                    data.optString("status")
+//
+//                                            ));
+//
+//                                        }
+//                                        BillPayFeeOperatorAdapter billPayFeeOperatorAdapter = new BillPayFeeOperatorAdapter(feeC,operatorBillPayList);
+//                                        rvOperator.setHasFixedSize(true);
+//                                        rvOperator.setLayoutManager(new LinearLayoutManager(feeC, LinearLayoutManager.VERTICAL,false));
+//                                        rvOperator.setAdapter(billPayFeeOperatorAdapter);
+//                                    }
+//
+//                                } else {
+//                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void failure(String aFalse) {
+//                            MyApplication.hideLoader();
+//
+//                        }
+//                    });
+//
+//        } catch (Exception e) {
+//
+//        }
+//
+//
+//    }
+//
 
 
-                                        }else{
-                                            MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
-                                        }
-                                    }
+//    @Override
+//    public void onOperatorAirtimeFeeListItemClick(String code, String name) {
+//        callAirtimeFee(code);
+//        feeAirtimeDialog.dismiss();
+//    }
+//
+//    @Override
+//    public void onOperatorBillPayFeeListItemClick(String code, String name) {
+//        callBillPayFee(code);
+//        feeBillPayDialog.dismiss();
+//    }
 
+//    private void callAirtimeFee(String operatorCode) {
+//        try {
+//
+//            API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+MyApplication.getSaveString("walletOwnerCode", feeC)+"/"+operatorCode,
+//                    new Api_Responce_Handler() {
+//                        @Override
+//                        public void success(JSONObject jsonObject) {
+//                            MyApplication.hideLoader();
+//
+//                            if (jsonObject != null) {
+//
+//                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+//                                    mainJsonObject = new JSONObject();
+//                                    mainJsonObject = jsonObject;
+//                                    JSONArray walletOwnerTemplateList=jsonObject.optJSONArray("walletOwnerTemplateList");
+//                                    if(walletOwnerTemplateList!=null&& walletOwnerTemplateList.length()>0) {
+//                                        JSONObject data=walletOwnerTemplateList.optJSONObject(0);
+//
+//                                        if(data.has("feeTemplateList")){
+//                                            JSONArray feeTemplateList=data.optJSONArray("feeTemplateList");
+//                                            for (int i=0;i<feeTemplateList.length();i++){
+//                                                JSONObject feeObj=feeTemplateList.optJSONObject(i);
+//                                                    if(feeObj.has("calculationTypeName")) {
+//                                                        Intent in = new Intent(feeC,FeeDetails.class);
+//                                                        in.putExtra("FEEINTENT","Airtime Purchase");
+//                                                        //in.putExtra("OPERATORCODE",operatorCode);
+//                                                        startActivity(in);
+//                                                    }else{
+//                                                        MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+//                                                    }
+//
+//                                            }
+//
+//
+//                                        }else{
+//                                            MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+//                                        }
+//                                    }
+//
+//
+//                                } else {
+//                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void failure(String aFalse) {
+//                            MyApplication.hideLoader();
+//
+//                        }
+//                    });
+//
+//        } catch (Exception e) {
+//
+//        }
+//
+//
+//    }
 
-                                } else {
-                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-
-    private void callBillPayFee(String operatorCode) {
-        try {
-
-            API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+MyApplication.getSaveString("walletOwnerCode", feeC)+"/"+operatorCode,
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
-
-                            if (jsonObject != null) {
-
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    mainJsonObject = new JSONObject();
-                                    mainJsonObject = jsonObject;
-                                    JSONArray walletOwnerTemplateList=mainJsonObject.optJSONArray("walletOwnerTemplateList");
-                                    if(walletOwnerTemplateList!=null&& walletOwnerTemplateList.length()>0) {
-                                        JSONObject data=walletOwnerTemplateList.optJSONObject(0);
-                                        if(data.has("feeTemplateList")){
-                                            JSONArray feeTemplateList=data.optJSONArray("feeTemplateList");
-                                            for (int i=0;i<feeTemplateList.length();i++){
-                                                JSONObject fee=feeTemplateList.optJSONObject(i);
-
-
-                                            }
-
-                                            Intent i = new Intent(feeC,FeeDetails.class);
-                                            i.putExtra("FEEINTENT","Bill Payment");
-                                            //i.putExtra("OPERATORCODE",operatorCode);
-                                            startActivity(i);
-                                        }
-                                    }
-
-
-                                } else {
-                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
+//    private void callBillPayFee(String operatorCode) {
+//        try {
+//
+//            API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+MyApplication.getSaveString("walletOwnerCode", feeC)+"/"+operatorCode,
+//                    new Api_Responce_Handler() {
+//                        @Override
+//                        public void success(JSONObject jsonObject) {
+//                            MyApplication.hideLoader();
+//
+//                            if (jsonObject != null) {
+//
+//                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+//                                    mainJsonObject = new JSONObject();
+//                                    mainJsonObject = jsonObject;
+//                                    JSONArray walletOwnerTemplateList=mainJsonObject.optJSONArray("walletOwnerTemplateList");
+//                                    if(walletOwnerTemplateList!=null&& walletOwnerTemplateList.length()>0) {
+//                                        JSONObject data=walletOwnerTemplateList.optJSONObject(0);
+//                                        if(data.has("feeTemplateList")){
+//                                            JSONArray feeTemplateList=data.optJSONArray("feeTemplateList");
+//                                            for (int i=0;i<feeTemplateList.length();i++){
+//                                                JSONObject fee=feeTemplateList.optJSONObject(i);
+//
+//
+//                                            }
+//
+//                                            Intent i = new Intent(feeC,FeeDetails.class);
+//                                            i.putExtra("FEEINTENT","Bill Payment");
+//                                            //i.putExtra("OPERATORCODE",operatorCode);
+//                                            startActivity(i);
+//                                        }
+//                                    }
+//
+//
+//                                } else {
+//                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription", "N/A"));
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void failure(String aFalse) {
+//                            MyApplication.hideLoader();
+//
+//                        }
+//                    });
+//
+//        } catch (Exception e) {
+//
+//        }
+//
+//
+//    }
 
 }

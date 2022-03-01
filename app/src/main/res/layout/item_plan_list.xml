@@ -68,7 +68,7 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/arrow_right_menu"/>

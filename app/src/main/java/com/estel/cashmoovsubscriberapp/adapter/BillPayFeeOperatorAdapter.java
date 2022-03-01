@@ -37,12 +37,25 @@ public class BillPayFeeOperatorAdapter extends RecyclerView.Adapter<BillPayFeeOp
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OperatorModel opearatorModel = operatorList.get(position);
         holder.txt1.setText(opearatorModel.getName());
+        if(opearatorModel.getCode().equalsIgnoreCase("100055")){
+            holder.imgLogo.setImageResource(R.drawable.canalplus);
+        }
+        if(opearatorModel.getCode().equalsIgnoreCase("100046")){
+            holder.imgLogo.setImageResource(R.drawable.startimes);
+        }
 
         holder.linOperator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opearatorModel.getCode()!=null)
                  operatorBillPayFeeListeners.onOperatorBillPayFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
+            }
+        });
+        holder.txt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(opearatorModel.getCode()!=null)
+                    operatorBillPayFeeListeners.onOperatorBillPayFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
             }
         });
     }
@@ -55,12 +68,12 @@ public class BillPayFeeOperatorAdapter extends RecyclerView.Adapter<BillPayFeeOp
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linOperator;
-        private ImageView imageView1;
+        private ImageView imgLogo;
         private TextView txt1;
         public ViewHolder(View itemView) {
             super(itemView);
             linOperator = itemView.findViewById(R.id.linOperator);
-            imageView1 = itemView.findViewById(R.id.imageView1);
+            imgLogo = itemView.findViewById(R.id.imgLogo);
             txt1 = itemView.findViewById(R.id.txt1);
         }
     }

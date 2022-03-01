@@ -165,9 +165,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     //  finish();
                 }
                 if (bottomId == 1) {
-                    Toast.makeText(profileC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(profileC, Partner.class);
-//                    startActivity(i);
+                    //Toast.makeText(profileC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(profileC, Partner.class);
+                    startActivity(i);
 
 
                     //finish();

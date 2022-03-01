@@ -144,12 +144,14 @@ public class PartnerBillPayPlanList extends AppCompatActivity implements PlanLis
 
     }
 
-    public static String productCode;
+    public static String productCode,productTypeCode;
     public static int productValue;
 
+
     @Override
-    public void onPlanListItemClick(String code, int value) {
+    public void onPlanListItemClick(String code, String typeCode, int value) {
         productCode = code;
+        productTypeCode = typeCode;
         productValue = value;
         Intent intent = new Intent(partnerbillplanlistC, PartnerBillPayDetails.class);
         startActivity(intent);

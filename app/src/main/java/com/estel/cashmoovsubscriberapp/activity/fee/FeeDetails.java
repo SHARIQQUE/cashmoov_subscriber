@@ -176,8 +176,8 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 
         if(checkIntent.equalsIgnoreCase("Airtime Purchase")){
             feeDetailModelArrayList.clear();
-            if (Fee.mainJsonObject != null) {
-                JSONArray FeeListArr = Fee.mainJsonObject.optJSONArray("walletOwnerTemplateList");
+            if (AirtimeFeeActivity.mainJsonObject != null) {
+                JSONArray FeeListArr = AirtimeFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
                 for (int i = 0; i < FeeListArr.length(); i++) {
                     JSONObject feeData = FeeListArr.optJSONObject(i);
 
@@ -213,8 +213,8 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 
         if(checkIntent.equalsIgnoreCase("Bill Payment")){
             feeDetailModelArrayList.clear();
-            if (Fee.mainJsonObject != null) {
-                JSONArray FeeListArr = Fee.mainJsonObject.optJSONArray("walletOwnerTemplateList");
+            if (BillPayFeeActivity.mainJsonObject != null) {
+                JSONArray FeeListArr = BillPayFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
                 for (int i = 0; i < FeeListArr.length(); i++) {
                     JSONObject feeData = FeeListArr.optJSONObject(i);
 

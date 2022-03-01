@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayPlanList;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
@@ -71,13 +72,13 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
 
         tvOperatorName.setText(Partner.operatorName);
         tvAmtCurr.setText(Partner.currencySymbol);
-        if(PartnerBillPayPlanList.productValue>0){
+
+        if(PartnerBillPayPlanList.productTypeCode.equalsIgnoreCase("100001")){
+            etAmount.setEnabled(true);
+        } else{
             etAmount.setEnabled(false);
             etAmount.setText(String.valueOf(PartnerBillPayPlanList.productValue));
             callApiAmountDetails();
-        }
-        else{
-            etAmount.setEnabled(true);
         }
 
         etAmount.addTextChangedListener(new TextWatcher() {

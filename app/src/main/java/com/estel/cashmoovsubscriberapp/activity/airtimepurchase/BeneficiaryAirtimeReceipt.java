@@ -118,7 +118,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
     private void getIds() {
         accNo = findViewById(R.id.accNo);
         transId = findViewById(R.id.transId);
-        btnClose = findViewById(R.id.close);
+        btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
