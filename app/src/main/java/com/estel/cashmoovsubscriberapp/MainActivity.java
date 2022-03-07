@@ -520,33 +520,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                         }
 
-                        new PromoDialog.Builder(MainActivity.this)
-                                .setTitle(OfferPromotionModeltemp.getHeading()) // You can also send title like R.string.from_resources
-                                .setMessage(OfferPromotionModeltemp.getStatus()) // or pass like R.string.description_from_resources
-                                .setGifResource(OfferPromotionModeltemp.getCode() + "/" + OfferPromotionModeltemp.getFileName())
-                                .setTitleTextColor(R.color.orange_900)
-                                .setDescriptionTextColor(R.color.black)
-                                .setNegativeBtnText("Cancel") // or pass it like android.R.string.cancel
-                                .setPositiveBtnBackground(R.color.green_500)
-                                .setPositiveBtnText("View More") // or pass it like android.R.string.ok
-                                .setNegativeBtnBackground(R.color.red)
+                        if(OfferPromotionModeltemp!=null) {
+                            new PromoDialog.Builder(MainActivity.this)
+                                    .setTitle(OfferPromotionModeltemp.getHeading()) // You can also send title like R.string.from_resources
+                                    .setMessage(OfferPromotionModeltemp.getStatus()) // or pass like R.string.description_from_resources
+                                    .setGifResource(OfferPromotionModeltemp.getCode() + "/" + OfferPromotionModeltemp.getFileName())
+                                    .setTitleTextColor(R.color.orange_900)
+                                    .setDescriptionTextColor(R.color.black)
+                                    .setNegativeBtnText("Cancel") // or pass it like android.R.string.cancel
+                                    .setPositiveBtnBackground(R.color.green_500)
+                                    .setPositiveBtnText("View More") // or pass it like android.R.string.ok
+                                    .setNegativeBtnBackground(R.color.red)
 
-                                .isCancellable(true)
-                                .OnPositiveClicked(new PromoDialogListener() {
-                                    @Override
-                                    public void OnClick() {
-                                        Intent i = new Intent(mainC, OfferPromotionActivity.class);
-                                        startActivity(i);
-                                        //Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .OnNegativeClicked(new PromoDialogListener() {
-                                    @Override
-                                    public void OnClick() {
-                                       // Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .build();
+                                    .isCancellable(true)
+                                    .OnPositiveClicked(new PromoDialogListener() {
+                                        @Override
+                                        public void OnClick() {
+                                            Intent i = new Intent(mainC, OfferPromotionActivity.class);
+                                            startActivity(i);
+                                            //Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .OnNegativeClicked(new PromoDialogListener() {
+                                        @Override
+                                        public void OnClick() {
+                                            // Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .build();
+                        }else{
+
+                        }
 
 
                        /* rv_offer_promotion.setHasFixedSize(true);
