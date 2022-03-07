@@ -59,6 +59,7 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(OfferPromotionDetailActivity.this);
                 onSupportNavigateUp();
             }
         });
@@ -66,6 +67,7 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(OfferPromotionDetailActivity.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

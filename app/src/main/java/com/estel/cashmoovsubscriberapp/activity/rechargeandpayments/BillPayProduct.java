@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
@@ -48,6 +49,7 @@ public class BillPayProduct extends AppCompatActivity implements ProductListener
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(billpayproductC);
                 onSupportNavigateUp();
             }
         });
@@ -55,6 +57,7 @@ public class BillPayProduct extends AppCompatActivity implements ProductListener
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime = false;
+                MyApplication.hideKeyboard(billpayproductC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -129,7 +132,7 @@ public class BillPayProduct extends AppCompatActivity implements ProductListener
     private void setData(List<ProductMasterModel> productList){
         ProductAdapter productAdapter = new ProductAdapter(billpayproductC,productList);
         rvProduct.setHasFixedSize(true);
-        rvProduct.setLayoutManager(new GridLayoutManager(this,3));
+        rvProduct.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         rvProduct.setAdapter(productAdapter);
 
     }

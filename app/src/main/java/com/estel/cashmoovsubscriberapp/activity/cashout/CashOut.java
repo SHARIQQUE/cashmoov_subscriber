@@ -68,6 +68,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(cashoutC);
                 onSupportNavigateUp();
             }
         });
@@ -75,6 +76,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(cashoutC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

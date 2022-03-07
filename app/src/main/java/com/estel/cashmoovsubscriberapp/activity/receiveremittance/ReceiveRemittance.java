@@ -54,6 +54,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(receiveremittanceC);
                 onSupportNavigateUp();
             }
         });
@@ -61,6 +62,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(receiveremittanceC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

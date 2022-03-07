@@ -72,6 +72,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(cashwithdrawalC);
                 onSupportNavigateUp();
             }
         });
@@ -79,6 +80,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(cashwithdrawalC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

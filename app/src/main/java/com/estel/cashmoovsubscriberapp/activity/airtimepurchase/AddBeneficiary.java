@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.OfferPromotionDetailActivity;
 import com.estel.cashmoovsubscriberapp.adapter.ContactListAdapter;
 import com.estel.cashmoovsubscriberapp.listners.ContactListLisners;
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class AddBeneficiary extends AppCompatActivity implements View.OnClickLis
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(addbeneficiaryC);
                 onSupportNavigateUp();
             }
         });
@@ -67,6 +69,7 @@ public class AddBeneficiary extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(addbeneficiaryC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

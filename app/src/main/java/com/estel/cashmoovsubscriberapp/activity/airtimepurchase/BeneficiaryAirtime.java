@@ -51,6 +51,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(beneficiaryairtimeC);
                 onSupportNavigateUp();
             }
         });
@@ -58,6 +59,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(beneficiaryairtimeC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

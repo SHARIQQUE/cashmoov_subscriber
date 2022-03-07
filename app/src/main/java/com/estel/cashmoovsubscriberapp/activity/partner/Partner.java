@@ -50,6 +50,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner);
         partnerC=this;
+        MyApplication.hideKeyboard(partnerC);
         setMenu();
         getIds();
     }
@@ -57,6 +58,7 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
     @Override
     protected void onRestart() {
         super.onRestart();
+        MyApplication.hideKeyboard(partnerC);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
     

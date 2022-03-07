@@ -60,6 +60,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Tra
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(transactiondetailC);
                 onSupportNavigateUp();
             }
         });
@@ -67,6 +68,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Tra
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(transactiondetailC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

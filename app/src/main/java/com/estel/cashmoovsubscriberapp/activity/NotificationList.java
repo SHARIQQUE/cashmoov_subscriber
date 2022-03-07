@@ -47,6 +47,7 @@ public class NotificationList extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(notificationlistC);
                 onSupportNavigateUp();
             }
         });
@@ -54,6 +55,7 @@ public class NotificationList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(notificationlistC);
                 Intent intent = new Intent(getApplicationContext(), OfferPromotionActivity.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 
 public class SearchResult extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +34,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         bt_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(searchresultC);
                 onSupportNavigateUp();
             }
         });

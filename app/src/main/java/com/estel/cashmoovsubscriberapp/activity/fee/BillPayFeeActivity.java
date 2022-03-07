@@ -6,25 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.adapter.AirtimeFeeOperatorAdapter;
 import com.estel.cashmoovsubscriberapp.adapter.BillPayFeeOperatorAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-import com.estel.cashmoovsubscriberapp.listners.OperatorAirtimeFeeListeners;
 import com.estel.cashmoovsubscriberapp.listners.OperatorBillPayFeeListeners;
 import com.estel.cashmoovsubscriberapp.model.OperatorModel;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class BillPayFeeActivity extends AppCompatActivity implements View.OnClickListener, OperatorBillPayFeeListeners {
@@ -190,7 +183,7 @@ public class BillPayFeeActivity extends AppCompatActivity implements View.OnClic
                                             }
 
                                             Intent i = new Intent(billpayfeeC,FeeDetails.class);
-                                            i.putExtra("FEEINTENT","Bill Payment");
+                                            i.putExtra("FEEINTENT",getString(R.string.bill_payment));
                                             //i.putExtra("OPERATORCODE",operatorCode);
                                             startActivity(i);
                                         }

@@ -138,7 +138,7 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         DecimalFormat df = new DecimalFormat("0.000");
         tvSubscriberMobile.setText(BillPay.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
-        transId.setText(getString(R.string.vendor_trans_id_colom));
+        transId.setText(getString(R.string.vendor_trans_id_colon));
         tvMobile.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
         tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));

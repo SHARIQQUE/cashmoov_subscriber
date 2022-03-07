@@ -48,6 +48,7 @@ public class PartnerBillPayPlanList extends AppCompatActivity implements PlanLis
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(partnerbillplanlistC);
                 onSupportNavigateUp();
             }
         });
@@ -55,6 +56,7 @@ public class PartnerBillPayPlanList extends AppCompatActivity implements PlanLis
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime = false;
+                MyApplication.hideKeyboard(partnerbillplanlistC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

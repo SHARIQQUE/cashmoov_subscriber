@@ -67,6 +67,7 @@ public class International extends AppCompatActivity implements View.OnClickList
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(internationalC);
                 onSupportNavigateUp();
             }
         });
@@ -74,6 +75,7 @@ public class International extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(internationalC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

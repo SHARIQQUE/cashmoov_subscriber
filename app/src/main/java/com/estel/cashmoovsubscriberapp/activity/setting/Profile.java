@@ -48,6 +48,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         profileC=this;
+        MyApplication.hideKeyboard(profileC);
       //  setBackMenu();
         getIds();
     }
@@ -55,6 +56,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.hideKeyboard(profileC);
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.profil)

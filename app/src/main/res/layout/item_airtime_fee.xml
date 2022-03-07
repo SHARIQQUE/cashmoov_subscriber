@@ -45,7 +45,7 @@
                         android:layout_height="@dimen/_30sdp"
                         android:layout_gravity="center_vertical"
                         android:scaleType="fitXY"
-                        android:src="@drawable/mtn"/>
+                        app:srcCompat="@drawable/mtn"/>
                 </androidx.cardview.widget.CardView>
 
 

@@ -58,6 +58,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(selfairtimeC);
                 onSupportNavigateUp();
             }
         });
@@ -65,6 +66,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(selfairtimeC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

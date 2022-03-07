@@ -367,7 +367,8 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("REMON")){
+                    //if(childData.optString("serviceCategoryCode").equalsIgnoreCase("REMON")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("CSHPIC")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
@@ -382,6 +383,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                                 ));
                             }
                         }
+
                     }
 
                 }

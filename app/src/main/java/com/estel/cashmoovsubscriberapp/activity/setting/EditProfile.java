@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -39,7 +40,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     public static EditProfile editprofileC;
     Button btnCancel,btnConfirm;
     ImageButton btnChoose;
-    ImageView imgBack;
+    ImageView imgBack,imgHome;
     CircleImageView profile_img;
     TextView profilname;
 
@@ -61,12 +62,26 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     private void setBackMenu() {
         imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(editprofileC);
                 onSupportNavigateUp();
             }
         });
+
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(editprofileC);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

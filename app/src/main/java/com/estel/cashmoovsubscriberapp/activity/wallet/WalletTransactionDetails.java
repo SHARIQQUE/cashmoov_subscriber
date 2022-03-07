@@ -42,6 +42,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(wallettransdetailsC);
                 onSupportNavigateUp();
             }
         });
@@ -49,6 +50,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(wallettransdetailsC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

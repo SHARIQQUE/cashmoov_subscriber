@@ -54,6 +54,7 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(billpayC);
                 onSupportNavigateUp();
             }
         });
@@ -61,6 +62,7 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(billpayC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

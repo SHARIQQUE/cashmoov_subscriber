@@ -89,6 +89,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_wallet_screen.xml" value="0.11820652173913043" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_wallet_to_bank.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.16" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/cashout_fee.xml" value="0.1814814814814815" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/content_bottom_sheet.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/content_offer_promotion.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/dialog_view_trans_details.xml" value="0.22" />
@@ -113,6 +114,8 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_airtime_fee.xml" value="0.16712962962962963" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_airtime_purchase.xml" value="0.18854166666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_money_transfer.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_pay_fee.xml" value="0.1814814814814815" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/popup_receive_remittance_fee.xml" value="0.1814814814814815" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/progress_bar.xml" value="0.14" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/promo_view.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/toolbar.xml" value="0.18854166666666666" />

@@ -57,6 +57,7 @@ public class AddBeneficiaryToSubscriber extends AppCompatActivity implements Vie
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(addbeneficiaryC);
                 onSupportNavigateUp();
             }
         });
@@ -64,6 +65,7 @@ public class AddBeneficiaryToSubscriber extends AppCompatActivity implements Vie
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(addbeneficiaryC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -73,6 +73,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(tosubscriberC);
                 onSupportNavigateUp();
             }
         });
@@ -80,6 +81,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(tosubscriberC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

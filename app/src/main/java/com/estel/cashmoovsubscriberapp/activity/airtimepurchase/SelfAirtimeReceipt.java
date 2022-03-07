@@ -141,7 +141,7 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tvSubscriberMobile.setText(SelfAirtime.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
-        transId.setText(getString(R.string.vendor_trans_id_colom));
+        transId.setText(getString(R.string.vendor_trans_id_colon));
         tvMobile.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
         tvOperatorName.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));

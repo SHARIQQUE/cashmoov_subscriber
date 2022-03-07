@@ -351,7 +351,7 @@
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Exceller</string>
-    <string name="vendor_trans_id_colom">Identifiant de transaction du fournisseur :</string>
+    <string name="vendor_trans_id_colon">Identifiant de la trasaction :</string>
     <string name="total_amount_colon">Montant total :</string>
     <string name="international_colon">Internationale:</string>
     <string name="gnf_fixed">GNF fixe</string>
@@ -376,6 +376,9 @@
     <string name="choose_the_plan">Choisissez le forfait</string>
     <string name="you_make_cashout">Vous effectuez un retrait</string>
     <string name="cashout">retrait</string>
+    <string name="paid_service">Service payant</string>
+    <string name="view_transaction">Afficher la transaction</string>
+    <string name="hide_transaction">Masquer la transaction</string>
 
 
     <string-array name="Spinner_provider">

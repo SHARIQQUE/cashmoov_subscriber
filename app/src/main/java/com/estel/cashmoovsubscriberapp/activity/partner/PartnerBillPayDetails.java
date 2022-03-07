@@ -47,6 +47,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(PartnerBillPayDetails.this);
                 onSupportNavigateUp();
             }
         });
@@ -54,6 +55,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(PartnerBillPayDetails.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

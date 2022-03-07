@@ -70,6 +70,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(walletscreenC);
                 onSupportNavigateUp();
             }
         });
@@ -77,6 +78,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(walletscreenC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

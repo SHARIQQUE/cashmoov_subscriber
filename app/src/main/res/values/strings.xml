@@ -351,7 +351,7 @@
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Excel</string>
-    <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
+    <string name="vendor_trans_id_colon">Vendor Transaction ID :</string>
     <string name="total_amount_colon">Total Amount :</string>
     <string name="international_colon">International:</string>
     <string name="gnf_fixed">GNF Fixed</string>
@@ -376,6 +376,9 @@
     <string name="choose_the_plan">Choose the plan</string>
     <string name="you_make_cashout">You make a cashout</string>
     <string name="cashout">Cash Out</string>
+    <string name="paid_service">Paid Service</string>
+    <string name="view_transaction">View transaction</string>
+    <string name="hide_transaction">Hide transaction</string>
 
 
     <string-array name="Spinner_provider">

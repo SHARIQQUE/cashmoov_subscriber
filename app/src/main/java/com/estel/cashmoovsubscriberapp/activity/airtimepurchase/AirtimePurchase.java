@@ -43,6 +43,7 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(airtimepurchaseC);
                 onSupportNavigateUp();
             }
         });
@@ -50,6 +51,7 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(airtimepurchaseC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

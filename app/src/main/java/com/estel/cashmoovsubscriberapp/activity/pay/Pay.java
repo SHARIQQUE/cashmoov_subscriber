@@ -74,6 +74,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(payC);
                 onSupportNavigateUp();
             }
         });
@@ -81,6 +82,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 MyApplication.isFirstTime=false;
+                MyApplication.hideKeyboard(payC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

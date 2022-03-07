@@ -141,7 +141,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tvSubscriberMobile.setText(BeneficiaryAirtime.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
-        transId.setText(getString(R.string.vendor_trans_id_colom));
+        transId.setText(getString(R.string.vendor_trans_id_colon));
         tvMobile.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
         tvOperatorName.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
