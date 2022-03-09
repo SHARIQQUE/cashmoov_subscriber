@@ -1,6 +1,5 @@
 package com.estel.cashmoovsubscriberapp.activity.setting;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,20 +22,20 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
-import com.vansuita.pickimage.listeners.IPickClick;
+import com.vansuita.pickimage.listeners.IPickResult;
 
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.security.SecureRandom;
-import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfile extends AppCompatActivity implements View.OnClickListener {
+public class EditProfile extends AppCompatActivity implements View.OnClickListener, IPickResult {
     public static EditProfile editprofileC;
     Button btnCancel,btnConfirm;
     ImageButton btnChoose;
@@ -125,34 +124,44 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         switch (view.getId()) {
             case R.id.btnChoose:
-                PickSetup setup=new PickSetup();
-                PickImageDialog dialog = PickImageDialog.build(setup);
-                dialog.setOnClick(new IPickClick() {
-                            @Override
-                            public void onGalleryClick() {
-                                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                try {
-                                    startActivityForResult(pickPhoto , REQUEST_IMAGE_CAPTURE_GALARY);//one can be replaced with any action code
-                                } catch (ActivityNotFoundException e) {
-                                    // display error state to the user
-                                }
-                                Toast.makeText(editprofileC, "Gallery Click!", Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
-                            }
+                PickImageDialog.build(new PickSetup()
+                        .setTitle(getString(R.string.choose_operation))
+                        .setCancelText(getString(R.string.cancel))
+                        .setCameraButtonText(getString(R.string.take_photo))
+                        .setGalleryButtonText(getString(R.string.choose_image))
+                        .setSystemDialog(false)
+                        .setGalleryIcon(R.drawable.ic_baseline_gallery_24)
+                        .setCameraIcon(R.drawable.ic_baseline_camera_alt_24)
+                ).show(this);
 
-                            @Override
-                            public void onCameraClick() {
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                try {
-                                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE_ONE);
-                                } catch (ActivityNotFoundException e) {
-                                    // display error state to the user
-                                }
-                                Toast.makeText(editprofileC, "Camera Click!", Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
-                            }
-                        }).show(this);
+//                PickSetup setup=new PickSetup();
+//                PickImageDialog dialog = PickImageDialog.build(setup);
+//                dialog.setOnClick(new IPickClick() {
+//                            @Override
+//                            public void onGalleryClick() {
+//                                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+//                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                                try {
+//                                    startActivityForResult(pickPhoto , REQUEST_IMAGE_CAPTURE_GALARY);//one can be replaced with any action code
+//                                } catch (ActivityNotFoundException e) {
+//                                    // display error state to the user
+//                                }
+//                                Toast.makeText(editprofileC, "Gallery Click!", Toast.LENGTH_LONG).show();
+//                                dialog.dismiss();
+//                            }
+//
+//                            @Override
+//                            public void onCameraClick() {
+//                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                                try {
+//                                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE_ONE);
+//                                } catch (ActivityNotFoundException e) {
+//                                    // display error state to the user
+//                                }
+//                                Toast.makeText(editprofileC, "Camera Click!", Toast.LENGTH_LONG).show();
+//                                dialog.dismiss();
+//                            }
+//                        }).show(this);
                 break;
             case R.id.btnCancel:
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
@@ -174,69 +183,96 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     Boolean isSelect=false;
     File file;
     private Intent Data;
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {
-            if (resultCode == RESULT_OK) {
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                Data = data;
+    public void onPickResult(PickResult r) {
+        if (r.getError() == null) {
+            //If you want the Uri.
+            //Mandatory to refresh image from Uri.
+            //getImageView().setImageURI(null);
 
+            //Setting the real returned image.
+            //getImageView().setImageURI(r.getUri());
 
-                Uri cameraImage = getImageUri(getApplicationContext(), imageBitmap);
-                //profile_img.setImageURI(cameraImage);
-                Glide.with(this).load(cameraImage).into(profile_img);
-
-                file = new File(getRealPathFromURI(cameraImage).toString());
-                isSelect=true;
-                int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
-
-                //  btnFrontUpload.setVisibility(View.VISIBLE);
-                // CALL THIS METHOD TO GET THE ACTUAL PATH
-//                File file = new File(getRealPathFromURI(tempUriFront));
-//                System.out.println(file);
-
-            } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(editprofileC,"User Canceled");
-            } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(editprofileC,"Failed");
-            }
-
-        }
-        if (requestCode == REQUEST_IMAGE_CAPTURE_GALARY) {
-            if (resultCode == RESULT_OK) {
-
-
-
-                Uri selectedImage = data.getData();
-                Glide.with(this).load(selectedImage).into(profile_img);
-                file = new File(getPathFromURI(selectedImage));
-                isSelect=true;
-
-               /* Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                Data = data;
-                profile_img.setImageBitmap(imageBitmap);
-                Uri cameraImage = getImageUri(getApplicationContext(), imageBitmap);
-
-
-
-                File CImage = new File(getRealPathFromURI(cameraImage).toString());
-                int file_size = Integer.parseInt(String.valueOf(CImage.length() / 1024));     //calculate size of image in KB
-*/
-                //btnBackUpload.setVisibility(View.VISIBLE);
-                // CALL THIS METHOD TO GET THE ACTUAL PATH
-                // File file = new File(getRealPathFromURI(tempUri));
-
-            } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(editprofileC,"User Canceled");
-            } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(editprofileC,"Failed");
-            }
-
+            //If you want the Bitmap.
+           // getImageView().setImageBitmap(r.getBitmap());
+            Uri selectedImage = getImageUri(getApplicationContext(),r.getBitmap());
+            Glide.with(this).load(selectedImage).into(profile_img);
+            //file = new File(getPathFromURI(selectedImage).toString());
+            file = new File(getRealPathFromURI(selectedImage).toString());
+            isSelect=true;
+            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+            //Image path
+            //r.getPath();
+        } else {
+            //Handle possible errors
+            //TODO: do what you have to do with r.getError();
+            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {
+//            if (resultCode == RESULT_OK) {
+//                Bundle extras = data.getExtras();
+//                Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                Data = data;
+//
+//
+//                Uri cameraImage = getImageUri(getApplicationContext(), imageBitmap);
+//                //profile_img.setImageURI(cameraImage);
+//                Glide.with(this).load(cameraImage).into(profile_img);
+//
+//                file = new File(getRealPathFromURI(cameraImage).toString());
+//                isSelect=true;
+//                int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
+//
+//                //  btnFrontUpload.setVisibility(View.VISIBLE);
+//                // CALL THIS METHOD TO GET THE ACTUAL PATH
+////                File file = new File(getRealPathFromURI(tempUriFront));
+////                System.out.println(file);
+//
+//            } else if (resultCode == RESULT_CANCELED) {
+//                MyApplication.showToast(editprofileC,"User Canceled");
+//            } else if (resultCode == RESULT_CODE_FAILURE) {
+//                MyApplication.showToast(editprofileC,"Failed");
+//            }
+//
+//        }
+//        if (requestCode == REQUEST_IMAGE_CAPTURE_GALARY) {
+//            if (resultCode == RESULT_OK) {
+//
+//
+//                Uri selectedImage = data.getData();
+//                Glide.with(this).load(selectedImage).into(profile_img);
+//                file = new File(getPathFromURI(selectedImage));
+//                isSelect=true;
+//
+//               /* Bundle extras = data.getExtras();
+//                Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                Data = data;
+//                profile_img.setImageBitmap(imageBitmap);
+//                Uri cameraImage = getImageUri(getApplicationContext(), imageBitmap);
+//
+//
+//
+//                File CImage = new File(getRealPathFromURI(cameraImage).toString());
+//                int file_size = Integer.parseInt(String.valueOf(CImage.length() / 1024));     //calculate size of image in KB
+//*/
+//                //btnBackUpload.setVisibility(View.VISIBLE);
+//                // CALL THIS METHOD TO GET THE ACTUAL PATH
+//                // File file = new File(getRealPathFromURI(tempUri));
+//
+//            } else if (resultCode == RESULT_CANCELED) {
+//                MyApplication.showToast(editprofileC,"User Canceled");
+//            } else if (resultCode == RESULT_CODE_FAILURE) {
+//                MyApplication.showToast(editprofileC,"Failed");
+//            }
+//
+//        }
+//    }
 
     public String getPathFromURI(Uri contentUri) {
         String res = null;
@@ -311,6 +347,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                                     }
 
                                     MyApplication.showToast(editprofileC,getString(R.string.upload_success));
+                                    isSelect=false;
                                 }else {
                                     MyApplication.showToast(editprofileC,getString(R.string.technical_failure));
                                 }
