@@ -121,7 +121,7 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:hint="Please enter your mobile number"
+                    android:hint="@string/phoneNumber"
                     android:textColor="#323232"
                     android:backgroundTint="#999999"
                     android:drawableStart="@drawable/ic_baseline_phone_android_24"
@@ -146,10 +146,10 @@
                     android:paddingRight="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp">
                     <EditText
+                        android:id="@+id/etPass"
                         android:visibility="visible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/etPass"
                         android:hint="0000"
                         android:layout_weight="1"
                         android:paddingStart="@dimen/_15sdp"
@@ -165,7 +165,7 @@
                         android:drawableStart="@drawable/ic_baseline_fiber_pin_24"
                         android:drawableTint="@color/colorPrimary"
                         android:drawablePadding="@dimen/_10sdp"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_15sdp"
                         android:textStyle="bold"
                         android:maxLength="4"/>
                     <ImageView

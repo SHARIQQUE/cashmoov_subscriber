@@ -381,6 +381,7 @@
     <string name="hide_transaction">Hide transaction</string>
     <string name="take_photo">Take photo</string>
     <string name="choose_image">Choose image</string>
+    <string name="phoneNumber">Phone number</string>
 
 
     <string-array name="Spinner_provider">

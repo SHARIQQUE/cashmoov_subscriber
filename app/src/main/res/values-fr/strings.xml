@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cashmoov Subscriber</string>
+    <string name="app_name">Abonné Cashmoov</string>
     <string name="home">Accueil</string>
     <string name="wallet">Portefeuille</string>
     <string name="setting">Réglage</string>
@@ -381,6 +381,7 @@
     <string name="hide_transaction">Masquer la transaction</string>
     <string name="take_photo">Prendre une photo</string>
     <string name="choose_image">Choisissez l\'image</string>
+    <string name="phoneNumber">Numero de téléphone</string>
 
 
     <string-array name="Spinner_provider">
