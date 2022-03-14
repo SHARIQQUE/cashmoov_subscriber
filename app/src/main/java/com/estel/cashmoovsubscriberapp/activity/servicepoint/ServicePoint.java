@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentActivity;
 
 import com.estel.cashmoovsubscriberapp.MainActivity;
@@ -24,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
     ImageView imgBack,imgHome;
     LinearLayout linNext;
     private ArrayList<LatLongModel> locationList = new ArrayList<>();
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +111,33 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
         //linNext = findViewById(R.id.linNext);
 
 
+        searchView=findViewById(R.id.searchView);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                int pos=-1;
+                for(int i=0;i<locationList.size();i++){
+                    if(locationList.get(i).getName().equalsIgnoreCase(query)){
+                        pos=i;
+                    }
+                }
+
+                if(pos!=-1){
+                    LatLng latLong = new LatLng(Double.parseDouble(locationList.get(pos).getLatitude()),Double.parseDouble(locationList.get(pos).getLognitude()));
+                    googleMapNew.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong , 18.0f) );
+                }else{
+                    Toast.makeText(ServicePoint.this, "No Match found",Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
 
       //  setOnCLickListener();
@@ -146,9 +176,11 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
                                 locationList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONArray locationListArr = jsonObject.optJSONArray("locationDataList");
+
+                                    //JSONArray locationListArr = loc();
                                     for (int i = 0; i < locationListArr.length(); i++) {
                                         JSONObject data = locationListArr.optJSONObject(i);
-                                        if(i==0){
+                                       /* if(i==0){
                                             locationList.add(new LatLongModel(
                                                     data.optInt("id"),
                                                     "Cashmoov",
@@ -159,7 +191,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
                                                     data.optString("info")
 
                                             ));
-                                        }
+                                        }*/
                                         locationList.add(new LatLongModel(
                                                 data.optInt("id"),
                                                 data.optString("name"),
@@ -248,8 +280,147 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
 
     }
 
+    GoogleMap googleMapNew;
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         callApiLocations(googleMap);
+        googleMapNew=googleMap;
+    }
+
+
+    public JSONArray loc() {
+        try {
+            return new JSONArray(" [ \n" +
+                    "\n" +
+                    " {\n" +
+                    "      \"id\": 1,\n" +
+                    "      \"name\": \"Cashmoov\",\n" +
+                    "      \"address\": \"CASHMOOV, Conakry, Guinea\",\n" +
+                    "      \"outlateName\": \"CASHMOOV outlate\",\n" +
+                    "      \"latitude\": \"9.50916\",\n" +
+                    "      \"lognitude\": \"-13.71185\",\n" +
+                    "      \"info\": \"CASHMOOV Extra Info to show\"\n" +
+                    "  },{\n" +
+                    "      \"id\": 2,\n" +
+                    "      \"name\": \"Kaporo\",\n" +
+                    "      \"address\": \"Conakry, Guinea\",\n" +
+                    "      \"outlateName\": \"Kaporo outlate\",\n" +
+                    "      \"latitude\": \"9.6128514\",\n" +
+                    "      \"lognitude\": \"-13.6443255\",\n" +
+                    "      \"info\": \"Kaporo Extra Info to show\"\n" +
+                    "  },\n" +
+                    "      {\n" +
+                    "          \"id\": 3,\n" +
+                    "          \"name\": \"Lambanyi \",\n" +
+                    "          \"address\": \"clinic.2espoir@yahoo.fr, Guinea\",\n" +
+                    "          \"outlateName\": \"Lambanyi outlate\",\n" +
+                    "          \"latitude\": \"9.6441644\",\n" +
+                    "          \"lognitude\": \"-13.6107783\",\n" +
+                    "          \"info\": \"Lambanyi Extra Info to show\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "          \"id\": 4,\n" +
+                    "          \"name\": \"Sodefa\",\n" +
+                    "          \"address\": \"Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Sodefa outlate\",\n" +
+                    "          \"latitude\": \"9.7232112\",\n" +
+                    "          \"lognitude\": \"-13.4628236\",\n" +
+                    "          \"info\": \"Sodefa Extra Info to show\"\n" +
+                    "      },\n" +
+                    "       {\n" +
+                    "          \"id\": 5,\n" +
+                    "          \"name\": \"Kagbelen\",\n" +
+                    "          \"address\": \"Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Kagbelen outlate\",\n" +
+                    "          \"latitude\": \"9.7150686\",\n" +
+                    "          \"lognitude\": \"-13.5027974\",\n" +
+                    "          \"info\": \"Kagbelen Extra Info to show\"\n" +
+                    "      },\n" +
+                    "       {\n" +
+                    "          \"id\": 6,\n" +
+                    "          \"name\": \"Sonfonia\",\n" +
+                    "          \"address\": \"MC8Q+QP2, Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Sonfonia outlate\",\n" +
+                    "          \"latitude\": \"9.666807\",\n" +
+                    "          \"lognitude\": \"-13.560616\",\n" +
+                    "          \"info\": \"Sonfonia Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 7,\n" +
+                    "          \"name\": \"Coyah\",\n" +
+                    "          \"address\": \"N1, Coyah, Guinea\",\n" +
+                    "          \"outlateName\": \"Coyah outlate\",\n" +
+                    "          \"latitude\": \"9.7082253\",\n" +
+                    "          \"lognitude\": \"-13.3816784\",\n" +
+                    "          \"info\": \"Coyah Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 8,\n" +
+                    "          \"name\": \"Madina\",\n" +
+                    "          \"address\": \"Rte du Niger, Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Madina outlate\",\n" +
+                    "          \"latitude\": \"9.5447134\",\n" +
+                    "          \"lognitude\": \"-13.6662351\",\n" +
+                    "          \"info\": \"Madina Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 9,\n" +
+                    "          \"name\": \"Matam\",\n" +
+                    "          \"address\": \"H942+4GC, Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Matam outlate\",\n" +
+                    "          \"latitude\": \"9.5555759\",\n" +
+                    "          \"lognitude\": \"-13.6487493\",\n" +
+                    "          \"info\": \"Matam Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 10,\n" +
+                    "          \"name\": \"Cosa\",\n" +
+                    "          \"address\": \"Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Cosa outlate\",\n" +
+                    "          \"latitude\": \"9.606482\",\n" +
+                    "          \"lognitude\": \"-13.6129768\",\n" +
+                    "          \"info\": \"Cosa Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 11,\n" +
+                    "          \"name\": \"Cité enco 5\",\n" +
+                    "          \"address\": \"Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Cité enco 5 outlate\",\n" +
+                    "          \"latitude\": \"9.6292325\",\n" +
+                    "          \"lognitude\": \"-13.5932317\",\n" +
+                    "          \"info\": \"Cité enco 5 Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 12,\n" +
+                    "          \"name\": \"Matoto\",\n" +
+                    "          \"address\": \"JC64+VCM, Matoto, Guinea\",\n" +
+                    "          \"outlateName\": \"Matoto outlate\",\n" +
+                    "          \"latitude\": \"9.6120084\",\n" +
+                    "          \"lognitude\": \"-13.5939988\",\n" +
+                    "          \"info\": \"Matoto Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 13,\n" +
+                    "          \"name\": \"Enta\",\n" +
+                    "          \"address\": \"N1, Conakry, Guinea\",\n" +
+                    "          \"outlateName\": \"Enta outlate\",\n" +
+                    "          \"latitude\": \"9.6424487\",\n" +
+                    "          \"lognitude\": \"-13.5631677\",\n" +
+                    "          \"info\": \"Enta Extra Info to show\"\n" +
+                    "      }, {\n" +
+                    "          \"id\": 14,\n" +
+                    "          \"name\": \"KM 36\",\n" +
+                    "          \"address\": \"JC64+VCM, Matoto, Guinea\",\n" +
+                    "          \"outlateName\": \"KM 36 outlate\",\n" +
+                    "          \"latitude\": \"9.7057265\",\n" +
+                    "          \"lognitude\": \"-13.495398\",\n" +
+                    "          \"info\": \"KM 36 Extra Info to show\"\n" +
+                    "      }\n" +
+                    "      \n" +
+                    "      \n" +
+                    "      \n" +
+                    "      \n" +
+                    "      \n" +
+                    "      \n" +
+                    "      \n" +
+                    "      \n" +
+                    "      ]");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

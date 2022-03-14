@@ -43,6 +43,7 @@
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:theme="@style/SearchViewStyle"
+                                android:queryHint="Enter location name"
                                 app:defaultQueryHint="@string/search_here" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
