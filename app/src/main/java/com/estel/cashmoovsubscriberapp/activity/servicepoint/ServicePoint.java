@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentActivity;
-
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -24,7 +21,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,9 +29,10 @@ import java.util.ArrayList;
 public class ServicePoint extends FragmentActivity  implements View.OnClickListener,OnMapReadyCallback {
     public static ServicePoint servicepointC;
     ImageView imgBack,imgHome;
-    LinearLayout linNext;
-    private ArrayList<LatLongModel> locationList = new ArrayList<>();
+    public static ArrayList<LatLongModel> locationList = new ArrayList<>();
     SearchView searchView;
+    TextView textView;
+    int resultPos = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +40,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
         setContentView(R.layout.activity_service_point);
         servicepointC=this;
         setBackMenu();
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -108,55 +106,88 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
         }
     };*/
     private void getIds() {
-        //linNext = findViewById(R.id.linNext);
+        textView = findViewById(R.id.textView);
 
 
-        searchView=findViewById(R.id.searchView);
+//        searchView=findViewById(R.id.searchView);
+//        searchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(servicepointC,
+//                        SearchResult.class);
+//                startActivityForResult(intent , 305);
+//            }
+//        });
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//
+//                int pos=-1;
+//                for(int i=0;i<locationList.size();i++){
+//                    if(locationList.get(i).getName().equalsIgnoreCase(query)){
+//                        pos=i;
+//                    }
+//                }
+//
+//                if(pos!=-1){
+//                    LatLng latLong = new LatLng(Double.parseDouble(locationList.get(pos).getLatitude()),Double.parseDouble(locationList.get(pos).getLognitude()));
+//                    googleMapNew.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong , 18.0f) );
+//                }else{
+//                    Toast.makeText(ServicePoint.this, "No Match found",Toast.LENGTH_LONG).show();
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
 
-                int pos=-1;
-                for(int i=0;i<locationList.size();i++){
-                    if(locationList.get(i).getName().equalsIgnoreCase(query)){
-                        pos=i;
-                    }
-                }
-
-                if(pos!=-1){
-                    LatLng latLong = new LatLng(Double.parseDouble(locationList.get(pos).getLatitude()),Double.parseDouble(locationList.get(pos).getLognitude()));
-                    googleMapNew.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong , 18.0f) );
-                }else{
-                    Toast.makeText(ServicePoint.this, "No Match found",Toast.LENGTH_LONG).show();
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-
-      //  setOnCLickListener();
+       setOnCLickListener();
 
     }
-//
-//    private void setOnCLickListener() {
-//        linNext.setOnClickListener(servicepointC);
-//    }
 
+    private void setOnCLickListener() {
+        textView.setOnClickListener(servicepointC);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 305 && resultCode == RESULT_OK) {
+
+            resultPos = data.getIntExtra("POSITION",-1);
+//            searchView.setActivated(true);
+//            searchView.onActionViewExpanded();
+//            searchView.setIconified(false);
+//            searchView.clearFocus();
+//            searchView.setQuery(locationList.get(resultPos).getName());
+            if(resultPos!=-1){
+                LatLng latLong = new LatLng(Double.parseDouble(locationList.get(resultPos).getLatitude()),Double.parseDouble(locationList.get(resultPos).getLognitude()));
+                googleMapNew.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong , 18.0f) );
+                //Toast.makeText(ServicePoint.this, "Location is "+locationList.get(resultPos).getName(),Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(ServicePoint.this, "No Match found",Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+    }
 
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-//            case R.id.linNext:
-//                intent = new Intent(servicepointC, SearchResult.class);
-//                startActivity(intent);
-//                break;
+            case R.id.textView:
+                intent = new Intent(servicepointC,
+                        SearchResult.class);
+                startActivityForResult(intent , 305);
+                break;
 
         }
     }
@@ -283,8 +314,10 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
     GoogleMap googleMapNew;
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        callApiLocations(googleMap);
-        googleMapNew=googleMap;
+        if(resultPos==-1){
+            callApiLocations(googleMap);
+            googleMapNew=googleMap;
+        }
     }
 
 

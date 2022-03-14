@@ -382,6 +382,7 @@
     <string name="take_photo">Prendre une photo</string>
     <string name="choose_image">Choisissez l\'image</string>
     <string name="phoneNumber">Numero de téléphone</string>
+    <string name="tap_here">Appuyez ici...</string>
 
 
     <string-array name="Spinner_provider">

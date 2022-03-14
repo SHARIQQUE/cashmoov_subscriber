@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linPlan"
+    android:id="@+id/linLocation"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -32,7 +32,7 @@
             android:layout_gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/tvDescription"
+                android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textcolor"
@@ -50,16 +50,28 @@
                 android:layout_marginBottom="@dimen/_10sdp"/>
 
             <TextView
-                android:id="@+id/tvAmount"
+                android:id="@+id/tvOutletName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/_10sdp"
                 android:textColor="@color/textColorDBlack"
                 android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_bold"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:gravity="start|center_vertical" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:drawableStart="@drawable/ic_location_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/textcolor"
+                android:fontFamily="@font/aileron_bold"/>
+
         </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"

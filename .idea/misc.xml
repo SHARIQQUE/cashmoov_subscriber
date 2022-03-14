@@ -37,6 +37,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/rect_lightcolor_outline.xml" value="0.19583333333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/show_hide_selector.xml" value="0.19114583333333332" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/spin_animation.xml" value="0.15925925925925927" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/acticity_self_signature.xml" value="0.15324074074074073" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_about.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.17" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_airtime_purchase.xml" value="0.21" />
@@ -79,8 +80,9 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_stepone.xml" value="0.2" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_steptwo.xml" value="0.15260416666666668" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_reset.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_search_result.xml" value="0.15324074074074073" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_self_airtime.xml" value="0.18854166666666666" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_service_point.xml" value="0.13854166666666667" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_service_point.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_set_pin.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_to_non_subscriber.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_to_subscriber.xml" value="0.22" />
@@ -109,6 +111,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_offer_promotion_slider.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_plan_list.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_product.xml" value="0.14479166666666668" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_search_result.xml" value="0.15324074074074073" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_select.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_service_fee.xml" value="0.15520833333333334" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/item_terms_conditions.xml" value="0.20416666666666666" />
