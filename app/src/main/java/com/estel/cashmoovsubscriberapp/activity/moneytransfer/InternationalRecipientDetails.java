@@ -496,7 +496,7 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
                             lastName = jsonObjectSender.optString("lastName");
 
                             try{
-                                dataToSend.put("amount",International.etAmount.getText().toString());
+                                dataToSend.put("amount",International.etAmount.getText().toString().trim().replace(",",""));
                                 dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
                                 dataToSend.put("comments",etComment.getText().toString());
                                 dataToSend.put("conversionRate",International.rate);

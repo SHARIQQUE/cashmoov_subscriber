@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayListTemp;
-    String notificationCount="0";
+    int notificationCountCurrent=0;
+    int notificationCountPrevious=0;
 
 
     @Override
@@ -165,9 +166,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
         MyApplication.isFirstTime = false;
-        if(MyApplication.isNotification){
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
-            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",mainC));
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC)));
         }else{
             tvBadge.setVisibility(View.GONE);
         }
@@ -775,14 +776,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("appHoldinglist");
-                                    notificationCount = String.valueOf(walletOwnerListArr.length());
-                                    if(MyApplication.isNotification){
-                                        tvBadge.setVisibility(View.VISIBLE);
-                                        tvBadge.setText(notificationCount);
-                                    }else{
-                                        tvBadge.setVisibility(View.GONE);
+                                    int apiCount = walletOwnerListArr.length();
+                                    notificationCountPrevious = MyApplication.getSaveInt("NOTIFICATIONCOUNTPREV",mainC);
+                                    notificationCountCurrent = MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC);
+                                    if(notificationCountPrevious<=apiCount){
+                                        notificationCountCurrent = (apiCount-notificationCountPrevious);
+                                        notificationCountPrevious = apiCount;
+                                        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC)!=0){
+                                            tvBadge.setVisibility(View.VISIBLE);
+                                            tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                        }else{
+                                            tvBadge.setVisibility(View.GONE);
+                                        }
+                                        MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,mainC);
+                                        MyApplication.saveInt("NOTIFICATIONCOUNTPREV",notificationCountPrevious,mainC);
                                     }
-                                    MyApplication.saveString("NOTIFICATIONCOUNT",notificationCount,mainC);
+
 //                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
 //                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
 

@@ -63,9 +63,9 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         MyApplication.hideKeyboard(partnerC);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-        if(MyApplication.isNotification){
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",partnerC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
-            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",partnerC));
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",partnerC)));
         }else{
             tvBadge.setVisibility(View.GONE);
         }
@@ -89,9 +89,9 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
 
-        if(MyApplication.isNotification){
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",partnerC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
-            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",partnerC));
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",partnerC)));
         }else{
             tvBadge.setVisibility(View.GONE);
         }

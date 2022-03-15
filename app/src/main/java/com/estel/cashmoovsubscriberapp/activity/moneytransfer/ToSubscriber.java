@@ -17,13 +17,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.blikoon.qrcodescanner.QrCodeActivity;
-
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -33,7 +30,6 @@ import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
 import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -158,9 +154,6 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         etLname = findViewById(R.id.etLname);
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
-
-
-        
 
 
 

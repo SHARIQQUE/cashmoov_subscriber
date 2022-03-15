@@ -6,12 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import java.util.StringTokenizer;
 
 
 public class AirtimePurchase extends AppCompatActivity implements View.OnClickListener {
@@ -126,6 +129,7 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
 
             }
         }
-    };
+    }
+
 
 }

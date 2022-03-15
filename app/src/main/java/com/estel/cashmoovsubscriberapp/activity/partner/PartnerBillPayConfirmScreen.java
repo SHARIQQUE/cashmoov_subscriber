@@ -97,18 +97,18 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
         tvOperatorName.setText(Partner.operatorName);
        // tvCurrency.setText(Partner.currency);
 
-        tvTransAmount.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayDetails.etAmount.getText().toString()));
+        tvTransAmount.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayDetails.etAmount.getText().toString().replace(",","")));
         tvAmountPaid.setText(Partner.currencySymbol+" "+ PartnerBillPayDetails.currencyValue);
         tvFee.setText(Partner.currencySymbol+" "+PartnerBillPayDetails.fee);
 
-        finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString());
+        finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString().replace(",",""));
         DecimalFormat df = new DecimalFormat("0.000");
         if(PartnerBillPayDetails.taxConfigurationList!=null){
             if(PartnerBillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
                 tax_r.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
-                finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString())+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(PartnerBillPayDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -118,7 +118,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(PartnerBillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
                 vat_r.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayDetails.taxConfigurationList.optJSONObject(1).optDouble("value")));
-                finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString())+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(1).optString("value"));
+                finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 

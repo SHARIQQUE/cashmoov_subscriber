@@ -102,9 +102,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onRestart();
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-        if(MyApplication.isNotification){
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
-            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",profileC));
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)));
         }else{
             tvBadge.setVisibility(View.GONE);
         }
@@ -134,9 +134,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         name = findViewById(R.id.name);
         profile_img = findViewById(R.id.profile_img);
 
-        if(MyApplication.isNotification){
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
-            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",profileC));
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)));
         }else{
             tvBadge.setVisibility(View.GONE);
         }

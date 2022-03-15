@@ -149,7 +149,7 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
         tvFee.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(ReceiveRemittance.receiptJson.optJSONObject("remittance").optInt("fee"))));
 
-        tvTransAmt.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(ReceiveRemittance.etAmount.getText().toString()));
+        tvTransAmt.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(ReceiveRemittance.etAmount.getText().toString().replace(",","")));
         tvAmountPaid.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
         tvAmountCharged.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("amount")));
 

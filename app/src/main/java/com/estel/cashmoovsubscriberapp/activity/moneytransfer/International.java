@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -22,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
@@ -144,8 +148,14 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                    if(s.length()>=1) {
-                        if(isAmt){
+                if (isFormatting) {
+                    return;
+                }
+
+                if(s.length()>=1) {
+                    formatInput(etAmount,s, s.length(), s.length());
+
+                    if(isAmt){
                             etAmountNew.setEnabled(false);
                             isAmtPaid=false;
                             callApiAmountDetails();
@@ -161,6 +171,8 @@ public class International extends AppCompatActivity implements View.OnClickList
                         tvAmtPaid.setText("");
                         tvRate.setText("");
                 }
+
+                isFormatting = false;
 
             }
 
@@ -183,7 +195,12 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                    if(s.length()>=1) {
+                if (isFormatting) {
+                    return;
+                }
+
+                if(s.length()>=1) {
+                    formatInput(etAmountNew,s, s.length(), s.length());
                         if(isAmtPaid){
                             etAmount.setEnabled(false);
                             isAmt=false;
@@ -201,6 +218,9 @@ public class International extends AppCompatActivity implements View.OnClickList
                         tvAmtPaid.setText("");
                         tvRate.setText("");
                     }
+
+                    isFormatting = false;
+
                 }
 
 
@@ -232,16 +252,17 @@ public class International extends AppCompatActivity implements View.OnClickList
             MyApplication.showErrorToast(internationalC,getString(R.string.val_select_curr));
             return;
         }
-        if(etAmount.getText().toString().trim().isEmpty()) {
+        if(etAmount.getText().toString().trim().replace(",","").isEmpty()) {
             MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
             return;
         }
-        if(etAmount.getText().toString().trim().equals("0")||etAmount.getText().toString().trim().equals(".")||etAmount.getText().toString().trim().equals(".0")||
-                etAmount.getText().toString().trim().equals("0.")||etAmount.getText().toString().trim().equals("0.0")||etAmount.getText().toString().trim().equals("0.00")){
+        if(etAmount.getText().toString().trim().replace(",","").equals("0")||etAmount.getText().toString().replace(",","").trim().equals(".")||etAmount.getText().toString().trim().replace(",","").equals(".0")||
+                etAmount.getText().toString().trim().replace(",","").equals("0.")||etAmount.getText().toString().trim().replace(",","").equals("0.0")||etAmount.getText().toString().trim().replace(",","").equals("0.00")){
             MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
             return;
         }
-        MyApplication.saveString("AMOUNTINTERNATIONAL",etAmount.getText().toString(),internationalC);
+
+        MyApplication.saveString("AMOUNTINTERNATIONAL",etAmount.getText().toString().trim().replace(",",""),internationalC);
         Intent i=new Intent(internationalC, InternationalRecipientDetails.class);
         startActivity(i);
 
@@ -404,7 +425,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                             "&sendCountryCode="+"100092"
                             +"&sendCurrencyCode="+"100062"+
                             "&receiveCurrencyCode="+benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode()+
-                            "&currencyValue="+etAmount.getText().toString()+
+                            "&currencyValue="+etAmount.getText().toString().trim().replace(",","")+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
                             "&serviceCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")+
@@ -418,7 +439,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    if(etAmount.getText().toString().trim().length()>0) {
+                                    if(etAmount.getText().toString().trim().replace(",","").length()>0) {
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
                                         currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
@@ -480,7 +501,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                             "&sendCountryCode="+"100092"
                             +"&sendCurrencyCode="+"100062"+
                             "&receiveCurrencyCode="+benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode()+
-                            "&currencyValue="+etAmountNew.getText().toString()+
+                            "&currencyValue="+etAmountNew.getText().toString().trim().replace(",","")+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
                             "&serviceCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")+
@@ -494,11 +515,11 @@ public class International extends AppCompatActivity implements View.OnClickList
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    if(etAmountNew.getText().toString().trim().length()>0) {
+                                    if(etAmountNew.getText().toString().trim().replace(",","").length()>0) {
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
                                         try {
-                                            double currValue = Double.parseDouble(etAmountNew.getText().toString());
+                                            double currValue = Double.parseDouble(etAmountNew.getText().toString().trim().replace(",",""));
                                             double value = jsonObjectAmountDetails.optDouble("value");
                                             if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
                                                 tvAmtPaid.setText(String.valueOf(currValue));
@@ -511,7 +532,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         } catch (Exception e) {
                                         }
 
-                                        currencyValue = etAmountNew.getText().toString();
+                                        currencyValue = etAmountNew.getText().toString().trim().replace(",","");
                                         //currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
                                         fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
                                         rate = jsonObjectAmountDetails.optString("value");
@@ -693,6 +714,109 @@ public class International extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
+    private boolean isFormatting;
+    private int prevCommaAmount;
+    private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        isFormatting = true;
+
+        StringBuilder sbResult = new StringBuilder();
+        String result;
+        int newStart = start;
+
+        try {
+            // Extract value without its comma
+            String digitAndDotText = s.toString().replace(",", "");
+            int commaAmount = 0;
+
+            // if user press . turn it into 0.
+            if (s.toString().startsWith(".") && s.length() == 1) {
+                editText.setText("0.");
+                editText.setSelection(editText.getText().toString().length());
+                return;
+            }
+
+            // if user press . when number already exist turns it into comma
+            if (s.toString().startsWith(".") && s.length() > 1) {
+                StringTokenizer st = new StringTokenizer(s.toString());
+                String afterDot = st.nextToken(".");
+                editText.setText("0." + AutoFormatUtil.extractDigits(afterDot));
+                editText.setSelection(2);
+                return;
+            }
+
+            if (digitAndDotText.contains(".")) {
+                // escape sequence for .
+                String[] wholeText = digitAndDotText.split("\\.");
+
+                if (wholeText.length == 0) {
+                    return;
+                }
+
+                // in 150,000.45 non decimal is 150,000 and decimal is 45
+                String nonDecimal = wholeText[0];
+                if (nonDecimal.length() == 0) {
+                    return;
+                }
+
+                // only format the non-decimal value
+                result = AutoFormatUtil.formatToStringWithoutDecimal(nonDecimal);
+
+                sbResult
+                        .append(result)
+                        .append(".");
+
+                if (wholeText.length > 1) {
+                    sbResult.append(wholeText[1]);
+                }
+
+            } else {
+                result = AutoFormatUtil.formatWithDecimal(digitAndDotText);
+                sbResult.append(result);
+            }
+
+            // count == 0 indicates users is deleting a text
+            // count == 1 indicates users is entering a text
+            newStart += ((count == 0) ? 0 : 1);
+
+            // calculate comma amount in edit text
+            commaAmount += AutoFormatUtil.getCharOccurance(result, ',');
+
+            // flag to mark whether new comma is added / removed
+            if (commaAmount >= 1 && prevCommaAmount != commaAmount) {
+                newStart += ((count == 0) ? -1 : 1);
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without comma
+            if (commaAmount == 0 && count == 0 && prevCommaAmount != commaAmount) {
+                newStart -= 1;
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without dots
+            if (count == 0 && !sbResult.toString()
+                    .contains(".") && prevCommaAmount != commaAmount) {
+                newStart = start;
+                prevCommaAmount = commaAmount;
+            }
+
+            editText.setText(sbResult.toString());
+
+            // ensure newStart is within result length
+            if (newStart > sbResult.toString().length()) {
+                newStart = sbResult.toString().length();
+            } else if (newStart < 0) {
+                newStart = 0;
+            }
+
+            editText.setSelection(newStart);
+
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

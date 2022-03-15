@@ -46,30 +46,33 @@
 
                 <TextView
                     android:id="@+id/tvCurrency"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_green700"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:lineSpacingExtra="3sp"
-                    android:padding="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
                     android:text="@string/your_currency"
                     android:textColor="#ffffff"
                     android:layout_weight="1"
                     android:fontFamily="@font/aileron_bold"
-                    android:textSize="@dimen/_11sdp" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tvAccStatement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/btn_jaune"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:lineSpacingExtra="3sp"
-                    android:padding="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
                     android:text="@string/acc_statement"
                     android:textColor="@color/bleu_cashmoov"
-                    android:textSize="@dimen/_11sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/aileron_bold"
                     android:layout_weight="1"/>
 

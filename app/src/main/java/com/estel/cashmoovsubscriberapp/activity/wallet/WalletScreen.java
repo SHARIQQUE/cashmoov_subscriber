@@ -246,7 +246,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
-                                                tvCurrency.setText(getString(R.string.your_currency)+" : "+data.optString("currencyName"));
+                                                tvCurrency.setText(getString(R.string.your_currency)+" :  "+data.optString("currencyName"));
                                                 tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
                                             }

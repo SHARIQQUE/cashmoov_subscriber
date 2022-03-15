@@ -206,7 +206,8 @@
                     android:textColor="#000"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_gravity="center_vertical"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
                 <EditText
