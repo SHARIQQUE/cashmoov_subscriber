@@ -404,6 +404,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         if(resultPos==-1){
+
             callApiLocations(googleMap);
             googleMapNew=googleMap;
         }
