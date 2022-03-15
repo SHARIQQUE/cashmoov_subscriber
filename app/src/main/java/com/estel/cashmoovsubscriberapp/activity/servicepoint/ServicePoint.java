@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.servicepoint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,9 +33,14 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
     public static ServicePoint servicepointC;
     ImageView imgBack,imgHome;
     public static ArrayList<LatLongModel> locationList = new ArrayList<>();
+    private GoogleMap googleMapNew;
     SearchView searchView;
     TextView textView;
     int resultPos = -1;
+    Boolean isAllFabsVisible;
+    FloatingActionButton fab,fabOne,fabTwo,fabThree,fabFour;
+    TextView tvOne,tvTwo,tvThree,tvFour;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +115,26 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
     };*/
     private void getIds() {
         textView = findViewById(R.id.textView);
+        fab = findViewById(R.id.fab);
+        fabOne = findViewById(R.id.fabOne);
+        fabTwo = findViewById(R.id.fabTwo);
+        fabThree = findViewById(R.id.fabThree);
+        fabFour = findViewById(R.id.fabFour);
+        tvOne = findViewById(R.id.tvOne);
+        tvTwo = findViewById(R.id.tvTwo);
+        tvThree = findViewById(R.id.tvThree);
+        tvFour = findViewById(R.id.tvFour);
+
+        fabOne.setVisibility(View.GONE);
+        tvOne.setVisibility(View.GONE);
+        fabTwo.setVisibility(View.GONE);
+        tvTwo.setVisibility(View.GONE);
+        fabThree.setVisibility(View.GONE);
+        tvThree.setVisibility(View.GONE);
+        fabFour.setVisibility(View.GONE);
+        tvFour.setVisibility(View.GONE);
+
+        isAllFabsVisible = false;
 
 
 //        searchView=findViewById(R.id.searchView);
@@ -152,6 +180,11 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
 
     private void setOnCLickListener() {
         textView.setOnClickListener(servicepointC);
+        fab.setOnClickListener(servicepointC);
+        fabOne.setOnClickListener(servicepointC);
+        fabTwo.setOnClickListener(servicepointC);
+        fabThree.setOnClickListener(servicepointC);
+        fabFour.setOnClickListener(servicepointC);
     }
 
     @Override
@@ -188,6 +221,60 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
                         SearchResult.class);
                 startActivityForResult(intent , 305);
                 break;
+            case R.id.fab:
+                if (!isAllFabsVisible) {
+                    fab.setImageResource(R.drawable.ic_baseline_close_24);
+                    fabOne.show();
+                    fabTwo.show();
+                    fabThree.show();
+                    fabFour.show();
+                    tvOne.setVisibility(View.VISIBLE);
+                    tvTwo.setVisibility(View.VISIBLE);
+                    tvThree.setVisibility(View.VISIBLE);
+                    tvFour.setVisibility(View.VISIBLE);
+                    isAllFabsVisible = true;
+                } else {
+                    fab.setImageResource(R.drawable.ic_baseline_add_24);
+                    fabOne.hide();
+                    fabTwo.hide();
+                    fabThree.hide();
+                    fabFour.hide();
+                    tvOne.setVisibility(View.GONE);
+                    tvTwo.setVisibility(View.GONE);
+                    tvThree.setVisibility(View.GONE);
+                    tvFour.setVisibility(View.GONE);
+                    isAllFabsVisible = false;
+                }
+                break;
+            case R.id.fabOne:
+                googleMapNew.setMapType(GoogleMap.MAP_TYPE_NONE);
+                tvOne.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                tvTwo.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                tvThree.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                tvFour.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                break;
+            case R.id.fabTwo:
+                googleMapNew.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                tvOne.setTextColor(getResources().getColor(R.color.white));
+                tvTwo.setTextColor(getResources().getColor(R.color.white));
+                tvThree.setTextColor(getResources().getColor(R.color.white));
+                tvFour.setTextColor(getResources().getColor(R.color.white));
+                break;
+            case R.id.fabThree:
+                googleMapNew.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                tvOne.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                tvTwo.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                tvThree.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                tvFour.setTextColor(getResources().getColor(R.color.textColorDBlack));
+                break;
+            case R.id.fabFour:
+                googleMapNew.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                tvOne.setTextColor(getResources().getColor(R.color.white));
+                tvTwo.setTextColor(getResources().getColor(R.color.white));
+                tvThree.setTextColor(getResources().getColor(R.color.white));
+                tvFour.setTextColor(getResources().getColor(R.color.white));
+                break;
+
 
         }
     }
@@ -196,6 +283,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
 
     private void callApiLocations(GoogleMap googleMap) {
         try {
+
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             API.GET_PUBLIC("ewallet/api/v1/config/all",
                     new Api_Responce_Handler() {
@@ -226,6 +314,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
                                         locationList.add(new LatLongModel(
                                                 data.optInt("id"),
                                                 data.optString("name"),
+                                                data.optString("mssisdn"),
                                                 data.optString("address"),
                                                 data.optString("outlateName"),
                                                 data.optString("latitude"),
@@ -311,7 +400,7 @@ public class ServicePoint extends FragmentActivity  implements View.OnClickListe
 
     }
 
-    GoogleMap googleMapNew;
+
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         if(resultPos==-1){

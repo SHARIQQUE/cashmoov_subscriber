@@ -59,11 +59,26 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:gravity="start|center_vertical" />
+            <TextView
+                android:id="@+id/tvMsisdn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableTint="@color/colorPrimary"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/textcolor"
+                android:fontFamily="@font/aileron_bold"/>
+
 
             <TextView
                 android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:drawableStart="@drawable/ic_location_24"
                 android:drawablePadding="@dimen/_10sdp"

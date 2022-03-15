@@ -68,6 +68,7 @@ public class MyApplication extends Application {
     public static boolean isScan;
     public static ArrayList<OfferPromotionModel> offerPromotionModelArrayList=new ArrayList<>();
     public static int offerPromtionPos=0;
+    public static boolean isNotification=false;
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;

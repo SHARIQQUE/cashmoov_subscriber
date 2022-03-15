@@ -383,6 +383,11 @@
     <string name="choose_image">Choose image</string>
     <string name="phoneNumber">Phone number</string>
     <string name="tap_here">Tap here...</string>
+    <string name="normal">Normal</string>
+    <string name="satellite">Satellite</string>
+    <string name="terrain">Terrain</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="none">None</string>
 
 
     <string-array name="Spinner_provider">

@@ -65,6 +65,7 @@
                 tools:context="example.com.mapexample.MapsActivity" />
 
         </LinearLayout>
+
     </FrameLayout>
 
     <!--<me.ibrahimsn.lib.SmoothBottomBar
@@ -88,5 +89,115 @@
         app:sideMargins="10dp"
         app:textColor="#ffffff"
         app:textSize="14sp" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:src="@drawable/ic_baseline_add_24"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fab"
+        app:layout_constraintEnd_toEndOf="@+id/fab"
+        app:layout_constraintStart_toStartOf="@+id/fab"
+        app:srcCompat="@drawable/ic_view"
+        android:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/tvOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:text="@string/none"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/textColorDBlack"
+        android:fontFamily="@font/aileron_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fabOne"
+        app:layout_constraintStart_toEndOf="@+id/fabOne"
+        app:layout_constraintTop_toTopOf="@+id/fabOne" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fabOne"
+        app:layout_constraintEnd_toEndOf="@+id/fabOne"
+        app:layout_constraintStart_toStartOf="@+id/fabOne"
+        app:srcCompat="@drawable/ic_view"
+        android:tint="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:text="@string/satellite"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/textColorDBlack"
+        android:fontFamily="@font/aileron_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fabTwo"
+        app:layout_constraintStart_toEndOf="@+id/fabTwo"
+        app:layout_constraintTop_toTopOf="@+id/fabTwo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fabTwo"
+        app:layout_constraintEnd_toEndOf="@+id/fabTwo"
+        app:layout_constraintStart_toStartOf="@+id/fabTwo"
+        app:srcCompat="@drawable/ic_view"
+        android:tint="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:text="@string/terrain"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/textColorDBlack"
+        android:fontFamily="@font/aileron_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fabThree"
+        app:layout_constraintStart_toEndOf="@+id/fabThree"
+        app:layout_constraintTop_toTopOf="@+id/fabThree" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fabThree"
+        app:layout_constraintEnd_toEndOf="@+id/fabThree"
+        app:layout_constraintStart_toStartOf="@+id/fabThree"
+        app:srcCompat="@drawable/ic_view"
+        android:tint="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:text="@string/hybrid"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/textColorDBlack"
+        android:fontFamily="@font/aileron_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fabFour"
+        app:layout_constraintStart_toEndOf="@+id/fabFour"
+        app:layout_constraintTop_toTopOf="@+id/fabFour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

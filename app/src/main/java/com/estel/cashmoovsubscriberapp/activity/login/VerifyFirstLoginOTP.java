@@ -237,6 +237,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements OnOtpCompl
 
                     if (resultCode.equalsIgnoreCase("0")) {
                         MyApplication.IsPromoCalled = true;
+                        MyApplication.isNotification=true;
                         Toast.makeText(verifyfirstloginotpC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                         MyApplication.saveBool("FirstLogin",true,verifyfirstloginotpC);
                         Intent i = new Intent(verifyfirstloginotpC, MainActivity.class);

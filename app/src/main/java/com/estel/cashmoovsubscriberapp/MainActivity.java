@@ -19,6 +19,7 @@ import android.os.Looper;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ import com.estel.cashmoovsubscriberapp.adapter.OfferPromotionAdapter;
 import com.estel.cashmoovsubscriberapp.adapter.SliderAdapterExample;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
+import com.estel.cashmoovsubscriberapp.model.NotificationModel;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static MainActivity mainC;
     SmoothBottomBar bottomBar;
     ImageView imgNotification, imgQR, imgLogo;
+    TextView tvBadge;
     CircleImageView imgProfile;
     LinearLayout linMain, linClick, linPromotion;
     TextView tvClick, tvBalance, pro_text,tvName;
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayListTemp;
+    String notificationCount="0";
 
 
     @Override
@@ -99,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         resultReceiver = new AddressResultReceiver(new Handler());
+
+        callApiNotificationList();
 
     }
 
@@ -159,11 +165,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
         MyApplication.isFirstTime = false;
+        if(MyApplication.isNotification){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",mainC));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
     }
 
     private void getIds() {
         pro_text = findViewById(R.id.pro_text);
         imgNotification = findViewById(R.id.imgNotification);
+        tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
         imgLogo = findViewById(R.id.imgLogo);
         imgProfile = findViewById(R.id.imgProfile);
@@ -245,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.imgNotification:
                 intent = new Intent(mainC, NotificationList.class);
                 startActivity(intent);
+                MyApplication.isNotification = false;
                 break;
             case R.id.imgQR:
                 intent = new Intent(mainC, MyQrCode.class);
@@ -748,6 +762,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+    private void callApiNotificationList() {
+        try {
+            API.GET_PUBLIC("ewallet/api/v1/inappholding/"+ MyApplication.getSaveString("walletOwnerCode",mainC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("appHoldinglist");
+                                    notificationCount = String.valueOf(walletOwnerListArr.length());
+                                    if(MyApplication.isNotification){
+                                        tvBadge.setVisibility(View.VISIBLE);
+                                        tvBadge.setText(notificationCount);
+                                    }else{
+                                        tvBadge.setVisibility(View.GONE);
+                                    }
+                                    MyApplication.saveString("NOTIFICATIONCOUNT",notificationCount,mainC);
+//                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+//                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+
+                                } else {
+                                    //MyApplication.showToast(notificationlistC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
 
 
 }

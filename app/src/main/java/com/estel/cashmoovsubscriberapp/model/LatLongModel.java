@@ -4,15 +4,17 @@ public class LatLongModel {
 
     public int id;
     public String name;
+    public String mssisdn;
     public String address;
     public String outlateName;
     public String latitude;
     public String lognitude;
     public String info;
 
-    public LatLongModel(int id, String name, String address, String outlateName, String latitude, String lognitude, String info) {
+    public LatLongModel(int id, String name, String mssisdn, String address, String outlateName, String latitude, String lognitude, String info) {
         this.id = id;
         this.name = name;
+        this.mssisdn = mssisdn;
         this.address = address;
         this.outlateName = outlateName;
         this.latitude = latitude;
@@ -34,6 +36,14 @@ public class LatLongModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMssisdn() {
+        return mssisdn;
+    }
+
+    public void setMssisdn(String mssisdn) {
+        this.mssisdn = mssisdn;
     }
 
     public String getAddress() {

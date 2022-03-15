@@ -41,6 +41,7 @@ public class SearchResultListAdapter extends RecyclerView.Adapter<SearchResultLi
 
         holder.tvName.setText(latLongModel.getName());
         holder.tvOutletName.setText(latLongModel.getOutlateName());
+        holder.tvMsisdn.setText(latLongModel.getMssisdn());
         holder.tvAddress.setText(latLongModel.getAddress());
 
         holder.linLocation.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +61,13 @@ public class SearchResultListAdapter extends RecyclerView.Adapter<SearchResultLi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linLocation;
-        private TextView tvName,tvOutletName,tvAddress;
+        private TextView tvName,tvOutletName,tvMsisdn,tvAddress;
         public ViewHolder(View itemView) {
             super(itemView);
             linLocation = itemView.findViewById(R.id.linLocation);
             tvName = itemView.findViewById(R.id.tvName);
             tvOutletName = itemView.findViewById(R.id.tvOutletName);
+            tvMsisdn = itemView.findViewById(R.id.tvMsisdn);
             tvAddress = itemView.findViewById(R.id.tvAddress);
         }
     }

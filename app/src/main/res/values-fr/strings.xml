@@ -383,6 +383,11 @@
     <string name="choose_image">Choisissez l\'image</string>
     <string name="phoneNumber">Numero de téléphone</string>
     <string name="tap_here">Appuyez ici...</string>
+    <string name="normal">Normal</string>
+    <string name="satellite">Satellite</string>
+    <string name="terrain">Terrain</string>
+    <string name="hybrid">Hybride</string>
+    <string name="none">Aucun</string>
 
 
     <string-array name="Spinner_provider">

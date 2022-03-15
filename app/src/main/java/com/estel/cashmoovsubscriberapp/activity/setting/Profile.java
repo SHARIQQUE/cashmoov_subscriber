@@ -36,6 +36,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public static Profile profileC;
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;
+    TextView tvBadge;
     SmoothBottomBar bottomBar;
     LinearLayout linFee,linServicePoint,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
@@ -101,11 +102,18 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onRestart();
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        if(MyApplication.isNotification){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",profileC));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
     }
 
 
     private void getIds() {
         imgNotification = findViewById(R.id.imgNotification);
+        tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
         linFee = findViewById(R.id.linFee);
@@ -126,6 +134,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         name = findViewById(R.id.name);
         profile_img = findViewById(R.id.profile_img);
 
+        if(MyApplication.isNotification){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",profileC));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
 
 
         String naam= MyApplication.getSaveString("firstName",profileC)+" "+
@@ -213,6 +227,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.imgNotification:
                 intent = new Intent(profileC, NotificationList.class);
                 startActivity(intent);
+                MyApplication.isNotification = false;
                 break;
             case R.id.imgQR:
                 intent = new Intent(profileC, MyQrCode.class);

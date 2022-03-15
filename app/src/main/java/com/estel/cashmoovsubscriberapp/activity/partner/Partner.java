@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -36,6 +37,7 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class Partner extends AppCompatActivity implements OperatorListeners {
     public static Partner partnerC;
     ImageView imgNotification,imgQR;
+    TextView tvBadge;
     RecyclerView rvOperator;
     RelativeLayout relMain;
     LinearLayout linProgress;
@@ -61,7 +63,13 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
         MyApplication.hideKeyboard(partnerC);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-    
+        if(MyApplication.isNotification){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",partnerC));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -78,13 +86,23 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 //
     private void setMenu() {
         imgNotification = findViewById(R.id.imgNotification);
+        tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
+
+        if(MyApplication.isNotification){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(MyApplication.getSaveString("NOTIFICATIONCOUNT",partnerC));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
+
 
         imgNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(partnerC, NotificationList.class);
                 startActivity(intent);
+                MyApplication.isNotification = false;
             }
         });
         imgQR.setOnClickListener(new View.OnClickListener() {

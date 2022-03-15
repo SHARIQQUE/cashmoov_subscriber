@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -43,6 +46,15 @@ public class NotificationList extends AppCompatActivity {
     private void setBackMenu() {
         imgBack = findViewById(R.id.imgBack);
         imgPromotion = findViewById(R.id.imgPromotion);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.offers)
+                .error(R.drawable.offers);
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.offers)
+                .apply(options)
+                .into(imgPromotion);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
