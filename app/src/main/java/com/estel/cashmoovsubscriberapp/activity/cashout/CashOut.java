@@ -202,12 +202,12 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
                     return;
                 }
                 else {
-                    if (isFormatting) {
+                  /*  if (isFormatting) {
                         return;
-                    }
+                    }*/
 
                     if (s.length() > 1) {
-                        formatInput(etAmount,s, s.length(), s.length());
+                       // formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
 
@@ -216,7 +216,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
 //                        tvAmtPaid.setText("");
 //                        tvRate.setText("");
                     }
-                    isFormatting = false;
+                    //isFormatting = false;
                 }
 
 

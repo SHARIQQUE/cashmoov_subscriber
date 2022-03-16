@@ -209,12 +209,12 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                     return;
                 }
                 else {
-                    if (isFormatting) {
+                    /*if (isFormatting) {
                         return;
-                    }
+                    }*/
 
                     if (s.length() > 1) {
-                        formatInput(etAmount,s, s.length(), s.length());
+                      //  formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
                     }else{
@@ -222,7 +222,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
 //                        tvAmtPaid.setText("");
 //                        tvRate.setText("");
                     }
-                    isFormatting = false;
+                   // isFormatting = false;
                 }
 
 
