@@ -5,9 +5,13 @@ import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.format.Formatter;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -43,6 +47,12 @@ public class Splash extends AppCompatActivity {
                 PermissionListener permissionlistener = new PermissionListener() {
                     @Override
                     public void onPermissionGranted() {
+
+                        Context context = Splash.this;
+                        WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+
+                        System.out.println("IPPPP  "+ip);
                         if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
                             Intent i = new Intent(Splash.this, LoginPin.class);
                             startActivity(i);
@@ -82,6 +92,9 @@ public class Splash extends AppCompatActivity {
 
 
     }
+
+
+
 
 
    /* public void createJson(){
