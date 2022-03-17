@@ -208,12 +208,11 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                    // MyApplication.showErrorToast(payC, getString(R.string.val_select_curr));
                     return;
                 }
-                else {
                     if (isFormatting) {
                         return;
                     }
 
-                    if (s.length() > 1) {
+                if(s.length()>=1) {
                         formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
@@ -225,9 +224,6 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                     isFormatting = false;
                 }
 
-
-
-            }
 
         });
 

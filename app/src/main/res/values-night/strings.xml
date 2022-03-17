@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rate_btn_pos">RATE NOW</string>
+    <string name="rate_btn_neg">REMIND ME LATER</string>
+    <string name="rate_btn_nut">NO, THANKS</string>
+    <string name="rate_app_message">If you are enjoying our app, please take a moment to rate it on Playstore. Thanks for your support!</string>
+</resources>
