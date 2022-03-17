@@ -1,11 +1,7 @@
 package com.estel.cashmoovsubscriberapp.activity.setting;
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,9 +21,12 @@ import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
 import com.estel.cashmoovsubscriberapp.activity.servicepoint.ServicePoint;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
-
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.tasks.Task;
 import org.json.JSONObject;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -38,17 +37,20 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ImageView imgNotification,imgQR;
     TextView tvBadge;
     SmoothBottomBar bottomBar;
-    LinearLayout linFee,linServicePoint,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
+    LinearLayout linRateUs,linFee,linServicePoint,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
 
     TextView currency,number,etAddress,name;
     CircleImageView profile_img;
+    private ReviewManager reviewManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         profileC=this;
+        reviewManager = ReviewManagerFactory.create(profileC);
         MyApplication.hideKeyboard(profileC);
       //  setBackMenu();
         getIds();
@@ -116,6 +118,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
         bottomBar = findViewById(R.id.bottomBar);
+        linRateUs = findViewById(R.id.linRateUs);
         linFee = findViewById(R.id.linFee);
         linServicePoint = findViewById(R.id.linServicePoint);
         linBeneficiary = findViewById(R.id.linBeneficiary);
@@ -134,12 +137,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         name = findViewById(R.id.name);
         profile_img = findViewById(R.id.profile_img);
 
+
         if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
             tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)));
         }else{
             tvBadge.setVisibility(View.GONE);
         }
+
 
 
         String naam= MyApplication.getSaveString("firstName",profileC)+" "+
@@ -206,6 +211,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private void setOnCLickListener() {
         imgNotification.setOnClickListener(profileC);
         imgQR.setOnClickListener(profileC);
+        linRateUs.setOnClickListener(profileC);
         linFee.setOnClickListener(profileC);
         linServicePoint.setOnClickListener(profileC);
         linBeneficiary.setOnClickListener(profileC);
@@ -232,6 +238,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.imgQR:
                 intent = new Intent(profileC, MyQrCode.class);
                 startActivity(intent);
+                break;
+            case R.id.linRateUs:
+                showRateApp();
                 break;
             case R.id.linFee:
                 intent = new Intent(profileC, Fee.class);
@@ -347,5 +356,55 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
+
+    /**
+     * Shows rate app bottom sheet using In-App review API
+     * The bottom sheet might or might not shown depending on the Quotas and limitations
+     * https://developer.android.com/guide/playcore/in-app-review#quotas
+     * We show fallback dialog if there is any error
+     */
+    public void showRateApp() {
+        Task<ReviewInfo> request = reviewManager.requestReviewFlow();
+        request.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // We can get the ReviewInfo object
+                ReviewInfo reviewInfo = task.getResult();
+
+                Task<Void> flow = reviewManager.launchReviewFlow(profileC, reviewInfo);
+                flow.addOnCompleteListener(task1 -> {
+                    // The flow has finished. The API does not indicate whether the user
+                    // reviewed or not, or even whether the review dialog was shown. Thus, no
+                    // matter the result, we continue our app flow.
+                });
+            } else {
+                // There was some problem, continue regardless of the result.
+                // show native rate app dialog on error
+                showRateAppFallbackDialog();
+            }
+        });
+    }
+
+    /**
+     * Showing native dialog with three buttons to review the app
+     * Redirect user to playstore to review the app
+     */
+    private void showRateAppFallbackDialog() {
+        new MaterialAlertDialogBuilder(profileC)
+                .setTitle(R.string.rate_app)
+                .setMessage(R.string.rate_app_message)
+                .setPositiveButton(R.string.rate_btn_pos, (dialog, which) -> {
+
+                })
+                .setNegativeButton(R.string.rate_btn_neg,
+                        (dialog, which) -> {
+                        })
+                .setNeutralButton(R.string.rate_btn_nut,
+                        (dialog, which) -> {
+                        })
+                .setOnDismissListener(dialog -> {
+                })
+                .show();
+      }
+
 
 }
