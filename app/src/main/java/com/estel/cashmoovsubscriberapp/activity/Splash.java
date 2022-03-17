@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
+import com.estel.cashmoovsubscriberapp.apiCalls.API;
+import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -53,19 +55,9 @@ public class Splash extends AppCompatActivity {
                         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
                         System.out.println("IPPPP  "+ip);
-                        if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
-                            Intent i = new Intent(Splash.this, LoginPin.class);
-                            startActivity(i);
-                            finish();
-                            /*Intent i = new Intent(Splash.this, Login.class);
-                            startActivity(i);
-                            finish();*/
-                        }else{
-                            Intent i = new Intent(Splash.this, OnboardingOne.class);
-                            startActivity(i);
-                            finish();
 
-                        }
+                        callAPI();
+
                     }
 
                     @Override
@@ -91,6 +83,46 @@ public class Splash extends AppCompatActivity {
 
 //test
 
+    }
+
+    private void callAPI() {
+
+        API.GET_PUBLICN("https://api.myip.com/", new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                System.out.println(jsonObject.toString());
+                if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
+                    Intent i = new Intent(Splash.this, LoginPin.class);
+                    startActivity(i);
+                    finish();
+                            /*Intent i = new Intent(Splash.this, Login.class);
+                            startActivity(i);
+                            finish();*/
+                }else{
+                    Intent i = new Intent(Splash.this, OnboardingOne.class);
+                    startActivity(i);   
+                    finish();
+
+                }
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
+                    Intent i = new Intent(Splash.this, LoginPin.class);
+                    startActivity(i);
+                    finish();
+                            /*Intent i = new Intent(Splash.this, Login.class);
+                            startActivity(i);
+                            finish();*/
+                }else{
+                    Intent i = new Intent(Splash.this, OnboardingOne.class);
+                    startActivity(i);
+                    finish();
+
+                }
+            }
+        });
     }
 
 
