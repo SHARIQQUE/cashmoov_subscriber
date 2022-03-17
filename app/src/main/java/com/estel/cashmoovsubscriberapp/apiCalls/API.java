@@ -1074,6 +1074,61 @@ public class API {
 
     }
 
+    public static void GET_PUBLICN(String URL, final Api_Responce_Handler responce_handler){
+
+        AndroidNetworking.get(URL)
+                .setOkHttpClient(okClient)
+
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        responce_handler.success(response);
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+
+                        try {
+
+                            JSONObject errorJ=new JSONObject(error.getErrorBody());
+                            responce_handler.failure(errorJ.optString("error_message"));
+                        }catch (Exception e)
+                        {
+
+                        }
+                        if (error.getErrorCode() != 0) {
+                            if(error.getErrorCode()==401){
+                                MyApplication.showAPIToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+
+    }
+
     public static void PUT_REQUEST_NEW(String URL, final Api_Responce_Handler responce_handler){
 
         AndroidNetworking.put(BASEURL+URL)
