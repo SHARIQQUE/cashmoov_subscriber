@@ -50,7 +50,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         profileC=this;
-        reviewManager = ReviewManagerFactory.create(profileC);
+        reviewManager = ReviewManagerFactory.create(this);
         MyApplication.hideKeyboard(profileC);
       //  setBackMenu();
         getIds();
@@ -357,6 +357,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+//    private void init() {
+//        reviewManager = ReviewManagerFactory.create(this);
+//        // Referencing the button
+//        findViewById(R.id.linRateUs).setOnClickListener(view -> showRateApp());
+//    }
+
+
     /**
      * Shows rate app bottom sheet using In-App review API
      * The bottom sheet might or might not shown depending on the Quotas and limitations
@@ -370,7 +377,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 // We can get the ReviewInfo object
                 ReviewInfo reviewInfo = task.getResult();
 
-                Task<Void> flow = reviewManager.launchReviewFlow(profileC, reviewInfo);
+                Task<Void> flow = reviewManager.launchReviewFlow(this, reviewInfo);
                 flow.addOnCompleteListener(task1 -> {
                     // The flow has finished. The API does not indicate whether the user
                     // reviewed or not, or even whether the review dialog was shown. Thus, no
@@ -389,7 +396,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
      * Redirect user to playstore to review the app
      */
     private void showRateAppFallbackDialog() {
-        new MaterialAlertDialogBuilder(profileC)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.rate_app)
                 .setMessage(R.string.rate_app_message)
                 .setPositiveButton(R.string.rate_btn_pos, (dialog, which) -> {
