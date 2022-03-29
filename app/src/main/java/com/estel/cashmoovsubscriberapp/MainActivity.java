@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void success(JSONObject jsonObject) {
                             MyApplication.hideLoader();
-                            System.out.println("MiniStatement response=======" + jsonObject.toString());
+                            System.out.println("WalletOwner response=======" + jsonObject.toString());
                             if (jsonObject != null) {
 
                                 if (jsonObject.optString("resultCode").equalsIgnoreCase("0")) {

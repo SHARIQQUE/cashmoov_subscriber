@@ -10,6 +10,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxhdpi/shape_fill.xml" value="0.1671875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxhdpi/top_shape.xml" value="0.1671875" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable-xxxhdpi/ic_view.xml" value="0.15833333333333333" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/abonne_24.xml" value="0.19583333333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/badge_background.xml" value="0.14166666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/bg_otp_item.xml" value="0.19583333333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/btn_edittextname.xml" value="0.2046875" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_galllery_24.xml" value="0.1300925925925926" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_notifications.xml" value="0.20364583333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.2203125" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_photo_bl.xml" value="0.19583333333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_qr.xml" value="0.20364583333333333" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_baseline_wrong_location_24.xml" value="0.14166666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/ic_close_black_24dp.xml" value="0.19583333333333333" />
@@ -44,6 +46,7 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/drawable/spin_animation.xml" value="0.15925925925925927" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/acticity_self_signature.xml" value="0.15324074074074073" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_about.xml" value="0.25" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_account_created_screen.xml" value="0.1814814814814815" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.17" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_airtime_purchase.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_bank_to_wallet.xml" value="0.20416666666666666" />
@@ -79,11 +82,11 @@
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_partner_product.xml" value="0.15416666666666667" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_pay.xml" value="0.21" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.25" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_profile.xml" value="0.18" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_profile.xml" value="0.16" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_receipt_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_receive_remittance.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_stepone.xml" value="0.2" />
-        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_steptwo.xml" value="0.15260416666666668" />
+        <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_register_steptwo.xml" value="0.22" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_reset.xml" value="0.25" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_search_result.xml" value="0.15324074074074073" />
         <entry key="..\:/Abhay/Git/app/src/main/res/layout/activity_self_airtime.xml" value="0.18854166666666666" />
