@@ -788,6 +788,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         }else{
                                             tvBadge.setVisibility(View.GONE);
                                         }
+
+                                        if(notificationCountCurrent>notificationCountPrevious){
+                                            tvBadge.setVisibility(View.VISIBLE);
+                                            tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                        }else{
+                                            tvBadge.setVisibility(View.GONE);
+                                        }
                                         MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,mainC);
                                         MyApplication.saveInt("NOTIFICATIONCOUNTPREV",notificationCountPrevious,mainC);
                                     }
