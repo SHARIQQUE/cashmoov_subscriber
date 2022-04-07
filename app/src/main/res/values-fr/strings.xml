@@ -393,6 +393,7 @@
     <string name="rate_btn_neg">RAPPELEZ-MOI PLUS TARD</string>
     <string name="rate_btn_nut">NON, MERCI</string>
     <string name="rate_app_message">Si vous appréciez notre application, veuillez prendre un moment pour l\'évaluer sur Playstore. Merci pour votre aide!</string>
+    <string name="cash_pickup">Collecte d\'espèces</string>
 
 
     <string-array name="Spinner_provider">
