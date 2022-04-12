@@ -299,6 +299,7 @@
                             android:scaleType="centerCrop"/>
 
                         <TextView
+                            android:id="@+id/tvMoneyTransfer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/_13sdp"

@@ -83,16 +83,31 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
         Intent intent;
         switch(view.getId()){
             case R.id.cardToSubscriber:
-                intent = new Intent(moneytransferC, ToSubscriber.class);
-                startActivity(intent);
+                if(!MyApplication.showToSubscriber){
+                    // cardToSubscriber.setVisibility(View.VISIBLE);
+                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(moneytransferC, ToSubscriber.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardToNonSubscriber:
-                intent = new Intent(moneytransferC, ToNonSubscriber.class);
-                startActivity(intent);
+                if(!MyApplication.showToNonSubscriber){
+                    //cardToNonSubscriber.setVisibility(View.VISIBLE);
+                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(moneytransferC, ToNonSubscriber.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardInternational:
-                intent = new Intent(moneytransferC, International.class);
-                startActivity(intent);
+                if(!MyApplication.showInternationalRemit){
+                    //cardInternational.setVisibility(View.VISIBLE);
+                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
+                }else {
+                    intent = new Intent(moneytransferC, International.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardBankToWallet:
                 MyApplication.showToast(moneytransferC,"Coming soon...");

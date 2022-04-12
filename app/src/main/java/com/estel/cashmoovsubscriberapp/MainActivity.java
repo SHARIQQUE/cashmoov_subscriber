@@ -52,6 +52,7 @@ import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.NotificationModel;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
+import com.estel.cashmoovsubscriberapp.model.ServiceList;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -199,6 +200,110 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        // cardServicePoints = findViewById(R.id.cardServicePoints);
         rv_offer_promotion = findViewById(R.id.rv_offer_promotion);
 
+        ServiceList data=MyApplication.tinyDB.getObject("ServiceList", ServiceList.class);
+        ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
+        dataM=data.getServiceListMains();
+
+        for(int i=0;i<dataM.size();i++){
+            for(int j=0;j<dataM.get(i).getServiceCategoryListArrayList().size();j++){
+                ServiceList.serviceCategoryList da=dataM.get(i).getServiceCategoryListArrayList().get(j);
+                if(dataM.get(i).code.equalsIgnoreCase("100000")){
+                    MyApplication.showMoneyTransfer = true;
+                    //cardMoneyTransfer.setVisibility(View.VISIBLE);
+                    //transfer_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100024")){
+                        MyApplication.showToSubscriber = true;
+                    }
+                    if(da.getCode().equalsIgnoreCase("NONSUB")){
+                        MyApplication.showToNonSubscriber = true;
+                    }
+
+                    if(da.getCode().equalsIgnoreCase("INTREM")){
+                        MyApplication.showInternationalRemit = true;
+                    }
+
+                }
+                if(dataM.get(i).code.equalsIgnoreCase("100009")){
+                    MyApplication.showAirtimePurchase = true;
+                    //cardAirtimePurchase.setVisibility(View.VISIBLE);
+                   // wallet_owner_head.setText(dataM.get(i).name);
+                    if(da.getCode().equalsIgnoreCase("100021")){
+                        cardAirtimePurchase.setVisibility(View.VISIBLE);
+                    }
+//                    if(da.getCode().equalsIgnoreCase("SUBS")){
+//                        txt_subscriber.setText(da.getName());
+//                        wallet_subscriber.setVisibility(View.VISIBLE);
+//                    }
+                }
+                if(dataM.get(i).code.equalsIgnoreCase("100001")){
+                    MyApplication.showBillPayment = true;
+                    //cardRechargePayment.setVisibility(View.VISIBLE);
+                    //remittance_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100028")){
+                        cardRechargePayment.setVisibility(View.VISIBLE);
+                    }
+//                    if(da.getCode().equalsIgnoreCase("100001")){
+//                        send_remii_text.setText(da.getName());
+//                        send_remii.setVisibility(View.VISIBLE);
+//                    }
+//                    if(da.getCode().equalsIgnoreCase("100061")){
+//                        cash_to_wallet_text.setText(da.getName());
+//                        cash_to_wallet.setVisibility(View.VISIBLE);
+//                    }
+
+
+
+                }
+                if(dataM.get(i).code.equalsIgnoreCase("100012")){
+                    MyApplication.showPay = true;
+                    //cardPay.setVisibility(View.VISIBLE);
+                    //cash_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100057")){
+                        cardPay.setVisibility(View.VISIBLE);
+                    }
+//                    if(da.getCode().equalsIgnoreCase("100012")){
+//                        cash_out_text.setText(da.getName());
+//                        cash_out.setVisibility(View.VISIBLE);
+//                    }
+
+
+                }
+
+                if(dataM.get(i).code.equalsIgnoreCase("100003")){
+                    MyApplication.showCashOut = true;
+                    //Layrecharge.setVisibility(View.VISIBLE);
+                   // recharge_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100012")){
+                        cardCashOut.setVisibility(View.VISIBLE);
+                    }
+
+
+                }
+
+
+                if(dataM.get(i).code.equalsIgnoreCase("100019")){
+                    MyApplication.showCashPickup = true;
+                    //cardRecRemittance.setVisibility(View.VISIBLE);
+                    //report_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("CSHPIC")){
+                        cardRecRemittance.setVisibility(View.VISIBLE);
+                    }
+//                    if(da.getCode().equalsIgnoreCase("TRNSRT")){
+//                        remit_detail.setVisibility(View.VISIBLE);
+//                        remit_detail_text.setText(da.getName());
+//                    }
+
+                }
+
+
+            }
+        }
+
 
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -291,27 +396,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                }
                 break;
             case R.id.cardMoneyTransfer:
-                intent = new Intent(mainC, MoneyTransfer.class);
-                startActivity(intent);
+                if(!MyApplication.showMoneyTransfer){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(mainC, MoneyTransfer.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardAirtimePurchase:
-                intent = new Intent(mainC, AirtimePurchase.class);
-                startActivity(intent);
+                if(!MyApplication.showAirtimePurchase){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(mainC, AirtimePurchase.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardRechargePayment:
-                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-                intent = new Intent(mainC, BillPay.class);
-                startActivity(intent);
+                if(!MyApplication.showBillPayment){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(mainC, BillPay.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardPay:
-                intent = new Intent(mainC, Pay.class);
-                startActivity(intent);
-                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                if(!MyApplication.showPay){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(mainC, Pay.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.cardCashOut:
-                intent = new Intent(mainC, CashOut.class);
-                startActivity(intent);
-                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                if(!MyApplication.showCashOut){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(mainC, CashOut.class);
+                    startActivity(intent);
+                    //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                }
                 break;
 //            case R.id.cardCashWithdrawal:
 //                intent = new Intent(mainC, CashWithdrawal.class);
@@ -319,9 +444,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
 //                break;
             case R.id.cardRecRemittance:
-                intent = new Intent(mainC, ReceiveRemittance.class);
-                startActivity(intent);
-                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                if(!MyApplication.showCashPickup){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(mainC, ReceiveRemittance.class);
+                    startActivity(intent);
+                    //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                }
                 break;
 //            case R.id.cardFee:
 //                intent = new Intent(mainC, Fee.class);
