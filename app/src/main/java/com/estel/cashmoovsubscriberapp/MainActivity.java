@@ -225,11 +225,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
                 if(dataM.get(i).code.equalsIgnoreCase("100009")){
-                    MyApplication.showAirtimePurchase = true;
                     //cardAirtimePurchase.setVisibility(View.VISIBLE);
                    // wallet_owner_head.setText(dataM.get(i).name);
                     if(da.getCode().equalsIgnoreCase("100021")){
-                        cardAirtimePurchase.setVisibility(View.VISIBLE);
+                        MyApplication.showAirtimePurchase = true;
+                       // cardAirtimePurchase.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("SUBS")){
 //                        txt_subscriber.setText(da.getName());
@@ -237,12 +237,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    }
                 }
                 if(dataM.get(i).code.equalsIgnoreCase("100001")){
-                    MyApplication.showBillPayment = true;
                     //cardRechargePayment.setVisibility(View.VISIBLE);
                     //remittance_head.setText(dataM.get(i).name);
 
                     if(da.getCode().equalsIgnoreCase("100028")){
-                        cardRechargePayment.setVisibility(View.VISIBLE);
+                        MyApplication.showBillPayment = true;
+                        //cardRechargePayment.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("100001")){
 //                        send_remii_text.setText(da.getName());
@@ -257,12 +257,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
                 if(dataM.get(i).code.equalsIgnoreCase("100012")){
-                    MyApplication.showPay = true;
                     //cardPay.setVisibility(View.VISIBLE);
                     //cash_head.setText(dataM.get(i).name);
 
                     if(da.getCode().equalsIgnoreCase("100057")){
-                        cardPay.setVisibility(View.VISIBLE);
+                        MyApplication.showPay = true;
+                       // cardPay.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("100012")){
 //                        cash_out_text.setText(da.getName());
@@ -273,12 +273,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 if(dataM.get(i).code.equalsIgnoreCase("100003")){
-                    MyApplication.showCashOut = true;
                     //Layrecharge.setVisibility(View.VISIBLE);
                    // recharge_head.setText(dataM.get(i).name);
 
                     if(da.getCode().equalsIgnoreCase("100012")){
-                        cardCashOut.setVisibility(View.VISIBLE);
+                        MyApplication.showCashOut = true;
+                       // cardCashOut.setVisibility(View.VISIBLE);
                     }
 
 
@@ -286,12 +286,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 if(dataM.get(i).code.equalsIgnoreCase("100019")){
-                    MyApplication.showCashPickup = true;
                     //cardRecRemittance.setVisibility(View.VISIBLE);
                     //report_head.setText(dataM.get(i).name);
 
                     if(da.getCode().equalsIgnoreCase("CSHPIC")){
-                        cardRecRemittance.setVisibility(View.VISIBLE);
+                        MyApplication.showCashPickup = true;
+                        //cardRecRemittance.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("TRNSRT")){
 //                        remit_detail.setVisibility(View.VISIBLE);
