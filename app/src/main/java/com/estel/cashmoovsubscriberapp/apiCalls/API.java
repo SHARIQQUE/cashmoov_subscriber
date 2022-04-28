@@ -30,7 +30,6 @@ public class API {
     public static String BASEURL="http://180.179.201.110:8081/";  //Production
    //http://202.140.50.120:8081/
 
-
     public static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build();
@@ -1069,6 +1068,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });

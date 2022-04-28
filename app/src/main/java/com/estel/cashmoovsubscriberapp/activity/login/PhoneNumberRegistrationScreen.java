@@ -439,7 +439,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             });
 
         }catch (Exception e){
-
+            MyApplication.hideLoader();
         }
 
     }
