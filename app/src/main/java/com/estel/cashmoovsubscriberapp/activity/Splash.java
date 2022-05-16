@@ -56,7 +56,19 @@ public class Splash extends AppCompatActivity {
 
                         System.out.println("IPPPP  "+ip);
 
-                        callAPI();
+                        if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
+                            Intent i = new Intent(Splash.this, LoginPin.class);
+                            startActivity(i);
+                            finish();
+                            /*Intent i = new Intent(Splash.this, Login.class);
+                            startActivity(i);
+                            finish();*/
+                        }else{
+                            Intent i = new Intent(Splash.this, OnboardingOne.class);
+                            startActivity(i);
+                            finish();
+
+                        }
 
                     }
 
@@ -85,45 +97,7 @@ public class Splash extends AppCompatActivity {
 
     }
 
-    private void callAPI() {
 
-        API.GET_PUBLICN("https://api.myip.com/", new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
-                System.out.println(jsonObject.toString());
-                if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
-                    Intent i = new Intent(Splash.this, LoginPin.class);
-                    startActivity(i);
-                    finish();
-                            /*Intent i = new Intent(Splash.this, Login.class);
-                            startActivity(i);
-                            finish();*/
-                }else{
-                    Intent i = new Intent(Splash.this, OnboardingOne.class);
-                    startActivity(i);   
-                    finish();
-
-                }
-            }
-
-            @Override
-            public void failure(String aFalse) {
-                if(MyApplication.getSaveBool("FirstLogin",Splash.this)) {
-                    Intent i = new Intent(Splash.this, LoginPin.class);
-                    startActivity(i);
-                    finish();
-                            /*Intent i = new Intent(Splash.this, Login.class);
-                            startActivity(i);
-                            finish();*/
-                }else{
-                    Intent i = new Intent(Splash.this, OnboardingOne.class);
-                    startActivity(i);
-                    finish();
-
-                }
-            }
-        });
-    }
 
 
 

@@ -12,6 +12,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import okhttp3.Authenticator;
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
@@ -22,25 +26,40 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class API {
     private static final String TAG = "API CALLS";
-    //"http://202.131.144.130:8081/";//QA
-    //http://202.131.144.147:8081/ DEV
-    //http://202.131.144.129:8081/ UAT
+
     //public static String BASEURL="http://202.131.144.130:8081/";         //QA
     //public static String BASEURL="http://202.131.144.129:8081/";           //UAT
-    public static String BASEURL="http://180.179.201.110:8081/";  //Production
+   public static String BASEURL="https://cashmoovmm.com:8081/";  //Production
    //http://202.140.50.120:8081/
-
     public static OkHttpClient client = new OkHttpClient.Builder()
+           .hostnameVerifier(new HostnameVerifier() {
+               @Override
+               public boolean verify(String hostname, SSLSession session) {
+                   return true;
+               }
+           })
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build();
 
 
     public static OkHttpClient clientBASIC = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
             .build();
 
 
     public static OkHttpClient okClientfileUpload = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BASIC))
             .authenticator(new Authenticator() {
                 @Override
@@ -54,6 +73,12 @@ public class API {
             .build();
 
     public static OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .authenticator(new Authenticator() {
                 @Override
@@ -65,6 +90,12 @@ public class API {
             .build();
 
     public static OkHttpClient okHttpClient1 = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .authenticator(new Authenticator() {
                 @Override

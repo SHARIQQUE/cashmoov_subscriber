@@ -57,6 +57,10 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.Executor;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import okhttp3.Authenticator;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -145,6 +149,12 @@ public class MyApplication extends Application {
 
 
     public static OkHttpClient okClient = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))
             .authenticator(new Authenticator() {
                 @Override
@@ -158,6 +168,12 @@ public class MyApplication extends Application {
             .build();
 
     public static OkHttpClient okClientfileUpload = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BASIC))
             .authenticator(new Authenticator() {
                 @Override
