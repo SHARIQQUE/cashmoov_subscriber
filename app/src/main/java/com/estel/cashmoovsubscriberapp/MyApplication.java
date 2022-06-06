@@ -37,6 +37,7 @@ import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 
 import com.balsikandar.crashreporter.CrashReporter;
+import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
@@ -129,6 +130,7 @@ public class MyApplication extends Application {
 
 
         CrashReporter.initialize(this);
+        AESEncryption.getAESEncryption("1234");
 
         if(Build.VERSION.SDK_INT>=24){
             try{

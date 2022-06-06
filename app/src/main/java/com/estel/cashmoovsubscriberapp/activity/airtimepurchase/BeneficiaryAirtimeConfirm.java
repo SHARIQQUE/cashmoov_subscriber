@@ -236,7 +236,16 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(benefiairtimeconfirmC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/mobile-prepaid", BeneficiaryAirtime.dataToSend,
+
+        String requestNo=AESEncryption.getAESEncryption(BeneficiaryAirtime.dataToSend.toString());
+        JSONObject jsonObjectA=null;
+        try{
+            jsonObjectA=new JSONObject();
+            jsonObjectA.put("request",requestNo);
+        }catch (Exception e){
+
+        }
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/mobile-prepaid", jsonObjectA,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {
