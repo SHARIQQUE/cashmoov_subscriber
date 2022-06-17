@@ -43,7 +43,7 @@ import com.google.firebase.iid.InstanceIdResult;
 public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
     EditText etPin;
-    TextView tvContinue,tvFinger,msgText,tvregister;
+    TextView tvContinue,tvFinger,msgText,tvregister,tvregister1;
     ImageView icPin;
 
 
@@ -95,6 +95,7 @@ public class LoginPin extends AppCompatActivity {
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
+        tvregister1 = findViewById(R.id.tvregister1);
 
         etPin.addTextChangedListener(new TextWatcher() {
 
@@ -142,6 +143,13 @@ public class LoginPin extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(loginpinC, RegisterStepOne.class);
                 startActivity(intent);
+            }
+        });
+
+        tvregister1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               callMssidn(MyApplication.getSaveString("mobile",loginpinC));
             }
         });
 
@@ -193,6 +201,46 @@ public class LoginPin extends AppCompatActivity {
         });
 
     }
+
+    private void callMssidn(String mobile) {
+
+        MyApplication.showloader(loginpinC,"Please wait!");
+        API.GET_PUBLIC("ewallet/public/walletOwner/msisdn/"+mobile, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+                System.out.println("PhoneNoRegister response======="+jsonObject.toString());
+
+                if (jsonObject != null) {
+                    if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                        // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+
+                       if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
+                           MyApplication.UserMobile=mobile;
+                            // MyApplication.showToast(PhoneNumberRegistrationScreen.this,"Reset PIN Called");
+                            Intent i = new Intent(loginpinC, VerifyRESETPINScreen.class);
+                            startActivity(i);
+
+                        }else {
+
+                           MyApplication.showToast(loginpinC,"Please Contact Admin To Reset Pin");
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                //MyApplication.showToast(phnoregistrationccreenC,aFalse);
+                MyApplication.hideLoader();
+            }
+        });
+
+
+}
+
 
     private void setOnClickListener() {
 
@@ -355,10 +403,11 @@ public class LoginPin extends AppCompatActivity {
                     }
 
 
-                    if(jsonObject.optString("firstLoginStatus").equalsIgnoreCase("Y")){
+                    if(jsonObject.optBoolean("reSetPinCredRequest")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
 
-                       callAPIWalletOwnerDetails();
+                        Intent i = new Intent(loginpinC, VerifyRESETPINScreen.class);
+                        startActivity(i);
                         //callLogin();
                         // callPostGetLoginOTP();
                         //Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
@@ -479,10 +528,11 @@ public class LoginPin extends AppCompatActivity {
                     }
 
 
-                    if(jsonObject.optString("firstLoginStatus").equalsIgnoreCase("Y")){
+                    if(jsonObject.optBoolean("reSetPinCredRequest")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
 
-                       callAPIWalletOwnerDetails();
+                        Intent i = new Intent(loginpinC, VerifyRESETPINScreen.class);
+                        startActivity(i);
                         //callLogin();
                         // callPostGetLoginOTP();
                         //Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();

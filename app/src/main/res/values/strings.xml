@@ -395,6 +395,7 @@
     <string name="rate_app_message">If you are enjoying our app, please take a moment to rate it on Playstore. Thanks for your support!</string>
     <string name="cash_pickup">Cash PickUp</string>
     <string name="service_not_available">This service is not available</string>
+    <string name="reset_pin"><u>Reset Pin?</u></string>
 
 
     <string-array name="Spinner_provider">

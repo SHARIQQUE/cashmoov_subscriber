@@ -408,6 +408,21 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
                                 callPostGetLoginOTP();
+                            }else  if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
+                                // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
+                                MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+                                MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
+                                // MyApplication.saveBool("FirstLogin", true, phnoregistrationccreenC);
+                                MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
+                                MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
+                                //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
+                                MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
+                                MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
+
+                               // MyApplication.showToast(PhoneNumberRegistrationScreen.this,"Reset PIN Called");
+                                Intent i = new Intent(phnoregistrationccreenC, VerifyRESETPINScreen.class);
+                                startActivity(i);
+
                             }else {
 
                                 linPass.setVisibility(View.VISIBLE);
