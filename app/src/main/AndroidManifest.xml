@@ -107,6 +107,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
 
+
         <activity android:name=".activity.login.VerifyRESETPINScreen"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
@@ -211,6 +212,21 @@
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.internationaltransfer.InternationalTransferOption"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.internationaltransfer.OutTransfer"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.internationaltransfer.InTransfer"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.moneytransfer.ToSubscriber"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
@@ -223,6 +239,33 @@
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.internationaltransfer.Outform"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.internationaltransfer.OutFormConfirmation"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.internationaltransfer.OutFormReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.internationaltransfer.Inform"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.internationaltransfer.InFormConfirmation"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+        <activity android:name=".activity.internationaltransfer.InFormReceiptScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
         <activity android:name=".activity.moneytransfer.ToNonSubscriber"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"

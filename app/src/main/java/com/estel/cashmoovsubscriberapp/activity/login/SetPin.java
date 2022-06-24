@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepTwo;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -135,8 +136,17 @@ public class SetPin extends AppCompatActivity {
             JSONObject setPinJson=new JSONObject();
             setPinJson.put("pin",encryptionDatanew);
 
+            String requestNo=AESEncryption.getAESEncryption(setPinJson.toString());
+            JSONObject jsonObject=null;
+            try{
+                jsonObject=new JSONObject();
+                jsonObject.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+
             MyApplication.showloader(setpinC,"Please wait!");
-            API.PUT("ewallet/api/v1/walletOwnerUser/setPin", setPinJson, new Api_Responce_Handler() {
+            API.PUT("ewallet/api/v1/walletOwnerUser/setPin", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

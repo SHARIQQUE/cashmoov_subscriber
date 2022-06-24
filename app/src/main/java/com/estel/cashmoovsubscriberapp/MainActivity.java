@@ -33,6 +33,7 @@ import com.estel.cashmoovsubscriberapp.activity.OfferPromotionActivity;
 import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialog;
 import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialogListener;
+import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InternationalTransferOption;
 import com.estel.cashmoovsubscriberapp.activity.location.Constants;
 import com.estel.cashmoovsubscriberapp.activity.location.FetchAddressIntentServices;
 import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout linMain, linClick, linPromotion;
     TextView tvClick, tvBalance, pro_text,tvName;
     CardView cardMoneyTransfer, cardAirtimePurchase, cardRechargePayment, cardPay,cardCashOut,
-            cardCashWithdrawal, cardRecRemittance, cardFee, cardServicePoints;
+            cardCashWithdrawal, cardRecRemittance, cardFee, cardServicePoints,cardInttest;
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayListTemp;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         resultReceiver = new AddressResultReceiver(new Handler());
 
-        callApiNotificationList();
+
 
     }
 
@@ -155,6 +156,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        tvBadge.setVisibility(View.GONE);
+        callApiNotificationList();
         //MyApplication.isFirstTime=false;
     }
 
@@ -196,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardCashOut = findViewById(R.id.cardCashOut);
         //cardCashWithdrawal = findViewById(R.id.cardCashWithdrawal);
         cardRecRemittance = findViewById(R.id.cardRecRemittance);
+        cardInttest= findViewById(R.id.cardInttest);
       //  cardFee = findViewById(R.id.cardFee);
        // cardServicePoints = findViewById(R.id.cardServicePoints);
         rv_offer_promotion = findViewById(R.id.rv_offer_promotion);
@@ -353,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardCashOut.setOnClickListener(this);
         //cardCashWithdrawal.setOnClickListener(mainC);
         cardRecRemittance.setOnClickListener(mainC);
+        cardInttest.setOnClickListener(mainC);
        // cardFee.setOnClickListener(mainC);
        // cardServicePoints.setOnClickListener(mainC);
     }
@@ -448,6 +453,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
                     intent = new Intent(mainC, ReceiveRemittance.class);
+                    startActivity(intent);
+                    //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.cardInttest:
+                if(!MyApplication.showCashPickup){
+                    MyApplication.showToast(mainC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(mainC, InternationalTransferOption.class);
                     startActivity(intent);
                     //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
                 }
