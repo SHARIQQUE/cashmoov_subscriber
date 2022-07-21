@@ -33,6 +33,7 @@ import com.estel.cashmoovsubscriberapp.activity.OfferPromotionActivity;
 import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialog;
 import com.estel.cashmoovsubscriberapp.activity.dialog_promo.PromoDialogListener;
+import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InTransfer;
 import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InternationalTransferOption;
 import com.estel.cashmoovsubscriberapp.activity.location.Constants;
 import com.estel.cashmoovsubscriberapp.activity.location.FetchAddressIntentServices;

@@ -267,7 +267,7 @@
                 />
 
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -295,7 +295,7 @@
                         <ImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            app:srcCompat="@drawable/int_transfer"
+                            app:srcCompat="@drawable/baseline_swipe_left_alt_black_24dp"
                             android:scaleType="centerCrop"
                             app:tint="@color/colorPrimary"/>
 
@@ -308,7 +308,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
-                            android:text="International Transfer" />
+                            android:text="In International Transfer" />
                     </LinearLayout>
 
 

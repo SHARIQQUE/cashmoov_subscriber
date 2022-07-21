@@ -41,7 +41,6 @@ public class API {
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build();
 
-
     public static OkHttpClient clientBASIC = new OkHttpClient.Builder()
             .hostnameVerifier(new HostnameVerifier() {
                 @Override
