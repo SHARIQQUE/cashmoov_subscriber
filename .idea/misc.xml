@@ -186,9 +186,17 @@
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/layout/item_wallet.xml" value="0.25" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/layout/popup_money_transfer.xml" value="0.20416666666666666" />
         <entry key="..\:/Abhay/Workspace/CashmoovSubscriber/app/src/main/res/layout/toolbar_add_contact.xml" value="0.20416666666666666" />
+
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable-xxhdpi/arrow_right_menu.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/baseline_swipe_left_alt_black_24dp.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/baseline_swipe_right_alt_black_24dp.xml" value="0.1" />
+
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable-anydpi/ic_cashout.xml" value="0.1" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable-xxxhdpi/ic_view.xml" value="0.1" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/ic_baseline_payment_24.xml" value="0.1" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/ic_baseline_qr.xml" value="0.1" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/ic_cashpickup24.xml" value="0.1" />
+
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/ic_moneytransfert.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.1375" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_beneficiary_airtime.xml" value="0.1390625" />
@@ -221,13 +229,17 @@
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_verify_register_otp.xml" value="0.16927083333333334" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_wallet_screen.xml" value="0.1765625" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/content_offer_promotion.xml" value="0.1765625" />
+
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/include_home_screen.xml" value="0.12" />
+
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/include_wallet_screen.xml" value="0.1734375" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.17239583333333333" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/item_fee_details.xml" value="0.1875" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/item_offer_promotion.xml" value="0.1765625" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/popup_airtime_purchase.xml" value="0.1" />
+
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+
         <entry key="app/src/main/res/layout/activity_register_steptwo.xml" value="0.20104166666666667" />
       </map>
     </option>
