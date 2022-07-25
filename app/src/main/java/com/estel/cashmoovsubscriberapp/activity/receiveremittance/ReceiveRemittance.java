@@ -437,7 +437,16 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(receiveremittanceC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/cashPickUp", dataToSend,
+
+        String requestNo=AESEncryption.getAESEncryption(dataToSend.toString());
+        JSONObject jsonObjectA=null;
+        try{
+            jsonObjectA=new JSONObject();
+            jsonObjectA.put("request",requestNo);
+        }catch (Exception e){
+
+        }
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/cashPickUp", jsonObjectA,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {
