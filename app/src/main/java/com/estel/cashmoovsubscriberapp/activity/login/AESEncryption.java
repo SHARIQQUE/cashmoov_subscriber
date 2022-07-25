@@ -57,6 +57,8 @@ public class AESEncryption {
             byte[] encrypted = cipher.doFinal(plainText.getBytes());
             String encHex = asHex(encrypted);
             str = encHex.toUpperCase();
+            System.out.println("Secrete Key  "+skey.toString());
+            System.out.println("str  "+str);
         }
         catch (Exception e){
             //throw e.printStackTrace();

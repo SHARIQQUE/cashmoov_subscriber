@@ -16,11 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -29,6 +31,7 @@ import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.CountryInfoModel;
+import com.estel.cashmoovsubscriberapp.model.ServiceList;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -407,6 +410,21 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
                                 callPostGetLoginOTP();
+                            }else  if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
+                                // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
+                                MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+                                MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
+                                // MyApplication.saveBool("FirstLogin", true, phnoregistrationccreenC);
+                                MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
+                                MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
+                                //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
+                                MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
+                                MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
+
+                               // MyApplication.showToast(PhoneNumberRegistrationScreen.this,"Reset PIN Called");
+                                Intent i = new Intent(phnoregistrationccreenC, VerifyRESETPINScreen.class);
+                                startActivity(i);
+
                             }else {
 
                                 linPass.setVisibility(View.VISIBLE);
@@ -438,11 +456,10 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             });
 
         }catch (Exception e){
-
+            MyApplication.hideLoader();
         }
 
     }
-
 
     private void callApiLoginPass() {
         try{
@@ -464,7 +481,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 public void success(JSONObject jsonObject) {
 
                     MyApplication.hideLoader();
-                    //ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
+                    ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
                     System.out.println("Login response======="+jsonObject.toString());
                     MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
                     MyApplication.saveString("firstName",jsonObject.optString("firstName"),phnoregistrationccreenC);
@@ -481,53 +498,55 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
                     // MyApplication.saveString("locale", jsonObject.optString("locale"), LoginActivity.this);
 //
-//                    try {
-//                        JSONArray serviceListResponceArray=jsonObject.optJSONArray("serviceList");
-//                        if(serviceListResponceArray!=null&&serviceListResponceArray.length()>0){
-//
-//                            dataM.clear();
-//                            for (int i=0;i<serviceListResponceArray.length();i++){
-//
-//                                JSONObject jsonObjectServiceList=serviceListResponceArray.optJSONObject(i);
-//                                JSONArray serviceCategoryListResArray=jsonObjectServiceList.optJSONArray("serviceCategoryList");
-//                                if(serviceCategoryListResArray!=null&&serviceCategoryListResArray.length()>0){
-//                                    ArrayList<ServiceList.serviceCategoryList> data=new ArrayList<>();
-//                                    data.clear();
-//                                    for (int j=0;j<serviceCategoryListResArray.length();j++){
-//                                        JSONObject jsonObjectServiceListResponceArray=serviceCategoryListResArray.optJSONObject(j);
-//
-//                                        data.add(new ServiceList.serviceCategoryList(
-//                                                jsonObjectServiceListResponceArray.optInt("id"),
-//                                                jsonObjectServiceListResponceArray.optString("code"),
-//                                                jsonObjectServiceListResponceArray.optString("serviceCode"),
-//                                                jsonObjectServiceListResponceArray.optString("serviceName"),
-//                                                jsonObjectServiceListResponceArray.optString("name"),
-//                                                jsonObjectServiceListResponceArray.optString("nameFr"),
-//                                                jsonObjectServiceListResponceArray.optString("status"),
-//                                                jsonObjectServiceListResponceArray.optString("creationDate")
-//                                        ));
-//
-//                                    }
-//
-//                                    dataM.add(new ServiceList.serviceListMain(
-//                                            jsonObjectServiceList.optInt("id"),
-//                                            jsonObjectServiceList.optString("code"),
-//                                            jsonObjectServiceList.optString("nameFr"),
-//                                            jsonObjectServiceList.optString("name"),
-//                                            jsonObjectServiceList.optString("status"),
-//                                            jsonObjectServiceList.optString("creationDate"),
-//                                            data
-//                                    ));
-//
-//                                }
-//                            }
-//
-//                            ServiceList serviceList=new ServiceList(dataM);
-//                            MyApplication.tinyDB.putObject("ServiceList",serviceList);
-//                        }
-//                    }catch (Exception e){
-//
-//                    }
+                    try {
+                        JSONArray serviceListResponceArray=jsonObject.optJSONArray("serviceList");
+                        if(serviceListResponceArray!=null&&serviceListResponceArray.length()>0){
+
+                            dataM.clear();
+                            for (int i=0;i<serviceListResponceArray.length();i++){
+
+                                JSONObject jsonObjectServiceList=serviceListResponceArray.optJSONObject(i);
+                                JSONArray serviceCategoryListResArray=jsonObjectServiceList.optJSONArray("serviceCategoryList");
+                                if(serviceCategoryListResArray!=null&&serviceCategoryListResArray.length()>0){
+                                    ArrayList<ServiceList.serviceCategoryList> data=new ArrayList<>();
+                                    data.clear();
+                                    for (int j=0;j<serviceCategoryListResArray.length();j++){
+                                        JSONObject jsonObjectServiceListResponceArray=serviceCategoryListResArray.optJSONObject(j);
+
+                                        data.add(new ServiceList.serviceCategoryList(
+                                                jsonObjectServiceListResponceArray.optInt("id"),
+                                                jsonObjectServiceListResponceArray.optString("code"),
+                                                jsonObjectServiceListResponceArray.optString("serviceCode"),
+                                                jsonObjectServiceListResponceArray.optString("serviceName"),
+                                                jsonObjectServiceListResponceArray.optString("name"),
+                                                jsonObjectServiceListResponceArray.optString("status"),
+                                                jsonObjectServiceListResponceArray.optString("creationDate"),
+                                                jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                        ));
+
+                                    }
+
+                                    dataM.add(new ServiceList.serviceListMain(
+                                            jsonObjectServiceList.optInt("id"),
+                                            jsonObjectServiceList.optString("code"),
+                                            jsonObjectServiceList.optString("name"),
+                                            jsonObjectServiceList.optString("status"),
+                                            jsonObjectServiceList.optString("creationDate"),
+                                            jsonObjectServiceList.optBoolean("isOverdraftTrans"),
+                                            data
+                                    ));
+
+                                }
+                            }
+
+                            ServiceList serviceList=new ServiceList(dataM);
+                            MyApplication.tinyDB.putObject("ServiceList",serviceList);
+                        }
+                    }catch (Exception e){
+
+                    }
+
+
                     if(jsonObject.optString("pinLoginStatus").equalsIgnoreCase("Y")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                         MyApplication.saveBool("FirstLogin",true,phnoregistrationccreenC);

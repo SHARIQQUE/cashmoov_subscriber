@@ -22,6 +22,8 @@ import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirti
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeReceipt;
 import com.estel.cashmoovsubscriberapp.activity.cashout.CashOutReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen;
+import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InFormReceiptScreen;
+import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.OutFormReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayReceipt;
 import com.estel.cashmoovsubscriberapp.activity.pay.PayReceiptScreen;
@@ -86,6 +88,12 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
         Intent intent;
         switch (view.getId()) {
             case R.id.tvContinue:
+
+                if(checkIntent.equalsIgnoreCase("OTOSUB")){
+                    intent = new Intent(transSuccessscreenC, OutFormReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
                 if(checkIntent.equalsIgnoreCase("TOSUB")){
                     intent = new Intent(transSuccessscreenC, ToSubscriberReceiptScreen.class);
                     startActivity(intent);
@@ -155,6 +163,19 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
             @Override
             public void run() {
                 Intent intent;
+
+                if(checkIntent.equalsIgnoreCase("INTOSUB")){
+                    intent = new Intent(transSuccessscreenC, InFormReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                if(checkIntent.equalsIgnoreCase("OTOSUB")){
+                    intent = new Intent(transSuccessscreenC, OutFormReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+
                 if(checkIntent.equalsIgnoreCase("TOSUB")){
                     intent = new Intent(transSuccessscreenC, ToSubscriberReceiptScreen.class);
                     startActivity(intent);

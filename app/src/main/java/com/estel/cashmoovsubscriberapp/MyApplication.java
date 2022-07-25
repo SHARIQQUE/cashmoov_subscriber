@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
+import android.media.MediaMetadataEditor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -36,6 +37,7 @@ import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 
 import com.balsikandar.crashreporter.CrashReporter;
+import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
@@ -56,6 +58,10 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.Executor;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import okhttp3.Authenticator;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -69,6 +75,16 @@ public class MyApplication extends Application {
     public static ArrayList<OfferPromotionModel> offerPromotionModelArrayList=new ArrayList<>();
     public static int offerPromtionPos=0;
     public static boolean isNotification=false;
+    public static TinyDB tinyDB;
+    public static boolean showToSubscriber=false;
+    public static boolean showToNonSubscriber=false;
+    public static boolean showInternationalRemit=false;
+    public static boolean showMoneyTransfer=false;
+    public static boolean showAirtimePurchase=false;
+    public static boolean showBillPayment=false;
+    public static boolean showPay=false;
+    public static boolean showCashOut=false;
+    public static boolean showCashPickup=false;
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;
@@ -80,7 +96,6 @@ public class MyApplication extends Application {
     public static boolean isContact=false;
     public static boolean IsMainOpen=false;
     public static boolean IsPromoCalled=false;
-
 
 
     public static MyApplication getInstance() {
@@ -100,6 +115,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appInstance = this;
+        tinyDB=new TinyDB(appInstance);
 
         ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                 MyApplication.getSaveString("walletOwnerCode", this)+"/";
@@ -114,6 +130,7 @@ public class MyApplication extends Application {
 
 
         CrashReporter.initialize(this);
+        AESEncryption.getAESEncryption("1234");
 
         if(Build.VERSION.SDK_INT>=24){
             try{
@@ -134,6 +151,12 @@ public class MyApplication extends Application {
 
 
     public static OkHttpClient okClient = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))
             .authenticator(new Authenticator() {
                 @Override
@@ -147,6 +170,12 @@ public class MyApplication extends Application {
             .build();
 
     public static OkHttpClient okClientfileUpload = new OkHttpClient.Builder()
+            .hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            })
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BASIC))
             .authenticator(new Authenticator() {
                 @Override
