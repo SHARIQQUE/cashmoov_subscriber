@@ -86,7 +86,7 @@ public class NotificationList extends AppCompatActivity {
 
     private void callApiNotificationList() {
         try {
-            API.GET_PUBLIC("ewallet/api/v1/inappholding/"+ MyApplication.getSaveString("walletOwnerCode",notificationlistC),
+            API.GET_PUBLIC("ewallet/api/v1/inappholding/"+ MyApplication.getSaveString("walletOwnerCode",notificationlistC)+"/0",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

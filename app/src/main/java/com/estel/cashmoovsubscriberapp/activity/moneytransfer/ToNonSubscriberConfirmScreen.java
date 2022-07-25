@@ -236,7 +236,17 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(tononsubscriberconfirmscreenC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/subscriberP2C", ToNonSubscriber.dataToSend,
+
+        System.out.println("data string  "+ToNonSubscriber.dataToSend.toString());
+        String requestNo=AESEncryption.getAESEncryption(ToNonSubscriber.dataToSend.toString());
+        JSONObject jsonObject=null;
+        try{
+            jsonObject=new JSONObject();
+            jsonObject.put("request",requestNo);
+        }catch (Exception e){
+
+        }
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/subscriberP2C", jsonObject,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

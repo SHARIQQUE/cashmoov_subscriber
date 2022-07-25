@@ -236,7 +236,15 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         public static JSONArray taxConfigList;
         public void callPostAPI(){
             MyApplication.showloader(cashoutconfirmscreenC,"Please Wait...");
-            API.POST_REQEST_WH_NEW("ewallet/api/v1/walletTransfer/cashOut", CashOut.dataToSend,
+            String requestNo=AESEncryption.getAESEncryption(CashOut.dataToSend.toString());
+            JSONObject jsonObject=null;
+            try{
+                 jsonObject=new JSONObject();
+                jsonObject.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+            API.POST_REQEST_WH_NEW("ewallet/api/v1/walletTransfer/cashOut", jsonObject,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

@@ -58,7 +58,7 @@ public class ReceiveRemittanceFeeActivity extends AppCompatActivity implements V
     private void getIds() {
         cardReceiveRemit = findViewById(R.id.cardReceiveRemit);
         tvServiceName = findViewById(R.id.tvServiceName);
-        tvServiceName.setText(getString(R.string.receive_remittance));
+        tvServiceName.setText(getString(R.string.cash_pickup));
         btnClose = findViewById(R.id.btnClose);
 
         setOnCLickListener();

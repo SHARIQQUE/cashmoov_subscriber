@@ -44,7 +44,7 @@
         android:fontFamily="@font/aileron_bold"
         android:gravity="center_horizontal"
         android:text="Star Time"
-        android:singleLine="true"
+        android:singleLine="false"
         android:ellipsize="marquee"/>
 
 
