@@ -1,14 +1,26 @@
 package com.estel.cashmoovsubscriberapp.activity.register;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.DialogFragment;
+
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.VerifyRegisterOTP;
@@ -22,8 +34,14 @@ import com.estel.cashmoovsubscriberapp.model.RegionInfoModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
@@ -34,6 +52,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     DatePickerDialog picker;
     public static EditText etFname,etLname,etPhone,etEmail,etAddress,etDob;
     TextView tvNext,spRegion,spCity,spGender,spOccupation;
+    private ImageView mCalenderIcon_Image;
     SpinnerDialog spinnerDialogGender,spinnerDialogOccupation,spinnerDialogRegion,spinnerDialogCity;
 
     private ArrayList<String> regionList = new ArrayList<>();
@@ -47,6 +66,11 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     private ArrayList<String> occupationTypeList = new ArrayList<>();
     private ArrayList<OccupationTypeModel.OccupationType> occupationTypeModelList=new ArrayList<>();
 
+    private static String dob = "";
+    public static Dialog dialog;
+    private TextView mDobText;
+    String calmsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,37 +82,43 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
     private void getIds() {
 
+        mDobText=findViewById(R.id.dobText);
+
         etFname = findViewById(R.id.etFname);
+        etFname.setNextFocusDownId(R.id.etLname);
+
         etLname = findViewById(R.id.etLname);
+        etLname.setNextFocusDownId(R.id.etPhone);
+
         etPhone = findViewById(R.id.etPhone);
+        etPhone.setNextFocusDownId(R.id.etEmail);
+
         etEmail = findViewById(R.id.etEmail);
+        etEmail.setNextFocusDownId(R.id.etAddress);
+
         spRegion = findViewById(R.id.spRegion);
         spCity = findViewById(R.id.spCity);
         etAddress = findViewById(R.id.etAddress);
+        etAddress.setNextFocusDownId(R.id.etDob);
+
         etDob = findViewById(R.id.etDob);
         spGender = findViewById(R.id.spGender);
         spOccupation = findViewById(R.id.spOccupation);
         tvNext = findViewById(R.id.tvNext);
-
-        etDob.setInputType(InputType.TYPE_NULL);
-        etDob.setOnClickListener(new View.OnClickListener() {
+        mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
+        // etDob.setInputType(InputType.TYPE_NULL);
+        mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
-                picker = new DatePickerDialog(RegisterStepOne.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                etDob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                            }
-                        }, 1960, 01, 00);
-                picker.show();
+                DialogFragment dialogfragment = new DatePickerDialogTheme5();
+
+                dialogfragment.show(getSupportFragmentManager(), "Theme 3");
+
             }
         });
+
+        // date picker dialog
+
 
         spRegion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +161,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -149,7 +181,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         switch(view.getId()){
             case R.id.tvNext:
                 if(etFname.getText().toString().trim().isEmpty()) {
-                   // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_fname));
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_fname));
                     MyApplication.showTipError(this,getString(R.string.val_fname),etFname);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
@@ -162,7 +194,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                 }
 
                 if(etLname.getText().toString().trim().isEmpty()) {
-                   // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_lname));
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_lname));
                     MyApplication.showTipError(this,getString(R.string.val_lname),etLname);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
@@ -186,7 +218,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     return;
                 }
                 if(etEmail.getText().toString().trim().isEmpty()) {
-                   // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_email));
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_email));
                     MyApplication.showTipError(this,getString(R.string.val_email_valid),etEmail);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
@@ -209,7 +241,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     return;
                 }
                 if(etAddress.getText().toString().trim().isEmpty()) {
-                   // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_address));
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_address));
                     MyApplication.showTipError(this,getString(R.string.val_address),etAddress);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
@@ -227,7 +259,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     return;
                 }
                 if(etDob.getText().toString().trim().isEmpty()) {
-                   // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_dob));
+                    // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_dob));
                     MyApplication.showTipError(this,getString(R.string.val_dob),etDob);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
@@ -241,8 +273,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     jsonObject.put("email",etEmail.getText().toString().trim());
                     jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
-                   // jsonObject.put("idProofNumber","");
-                   // jsonObject.put("idProofTypeCode","");
+                    // jsonObject.put("idProofNumber","");
+                    // jsonObject.put("idProofTypeCode","");
 
                     jsonObject.put("issuingCountryCode","100092");
                     jsonObject.put("registerCountryCode","100092");
@@ -257,6 +289,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                System.out.println("RegisterOne request======="+jsonObject.toString());
 
                 callRegisterApi(jsonObject);
 
@@ -544,7 +577,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                         }
                         Intent i = new Intent(registersteponeC, VerifyRegisterOTP.class);
                         startActivity(i);
-                       // callApiAddSubscriberAddress(subscriberWalletOwnerCode);
+                        // callApiAddSubscriberAddress(subscriberWalletOwnerCode);
                     }else{
                         MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription"));
                     }
@@ -614,7 +647,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
         }
 
+
+
     }
+
 
     ////////// For address Post Api
 
@@ -637,4 +673,31 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 //
 //        http://202.131.144.130:8081/ewallet/api/v1/address
 
+    public static class DatePickerDialogTheme5 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.add(Calendar.YEAR, -18);
+
+            DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
+                    AlertDialog.THEME_TRADITIONAL, this, year, month, day);
+
+            datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+
+            return datepickerdialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            etDob.setText(year + "-" + (month+1) + "-" + day);
+
+            // etDob.setText(year + "-" + (month+1) + "-" + day);
+
+        }
+    }
 }

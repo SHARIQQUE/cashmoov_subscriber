@@ -253,12 +253,12 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (isFormatting) {
+               /* if (isFormatting) {
                     return;
-                }
+                }*/
 
                 if(s.length()>=1) {
-                    formatInput(etAmount,s, s.length(), s.length());
+                   // formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }else{
@@ -266,7 +266,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                     tvFee.setText("");
                     tvAmtPaid.setText("");
                 }
-                isFormatting = false;
+               // isFormatting = false;
 
 
             }
@@ -287,12 +287,12 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (isFormatting) {
+               /* if (isFormatting) {
                     return;
-                }
+                }*/
 
                 if(s.length()>=1) {
-                    formatInput(etAmountNew,s, s.length(), s.length());
+                   // formatInput(etAmountNew,s, s.length(), s.length());
 
                     callApiAmountDetailsNew();
                 }else{
@@ -301,7 +301,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                     tvAmtPaid.setText("");
                 }
 
-                isFormatting = false;
+               // isFormatting = false;
             }
 
         });
