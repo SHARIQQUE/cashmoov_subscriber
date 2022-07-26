@@ -94,10 +94,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int notificationCountPrevious=0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      //  ddd
         mainC = this;
         MyApplication.hideKeyboard(mainC);
         MyApplication.setLang(mainC);
