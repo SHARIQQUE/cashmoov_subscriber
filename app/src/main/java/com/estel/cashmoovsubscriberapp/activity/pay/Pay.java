@@ -45,7 +45,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvName,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
-    public static EditText etAmount,etFname;
+    public static EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
     private boolean isSuccess;
@@ -110,7 +110,6 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
 
     private void getIds() {
         tvName = findViewById(R.id.tvName);
-        etFname = findViewById(R.id.etFname);
         tvPhone = findViewById(R.id.tvPhone);
         spBenifiCurr = findViewById(R.id.spBenifiCurr);
         etRecipientNo = findViewById(R.id.etRecipientNo);
@@ -209,12 +208,13 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                    // MyApplication.showErrorToast(payC, getString(R.string.val_select_curr));
                     return;
                 }
-                    if (isFormatting) {
+                else {
+                    /*if (isFormatting) {
                         return;
-                    }
+                    }*/
 
-                if(s.length()>=1) {
-                        formatInput(etAmount,s, s.length(), s.length());
+                    if (s.length() > 1) {
+                      //  formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
                     }else{
@@ -222,9 +222,12 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
 //                        tvAmtPaid.setText("");
 //                        tvRate.setText("");
                     }
-                    isFormatting = false;
+                   // isFormatting = false;
                 }
 
+
+
+            }
 
         });
 
@@ -617,7 +620,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         lastName = data.getLastName();
         receiveCountryCode = data.getRegisterCountryCode();
         payAgentCode = data.getCode();
-        etFname.setText(ownerName);
+
         if(isQR){
             etRecipientNo.setText(data.getMobileNumber());
 //            et_fname.setText(data.getOwnerName());
@@ -643,7 +646,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormat df = new DecimalFormat("0.000");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {

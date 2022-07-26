@@ -124,17 +124,17 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
             @Override
             public void afterTextChanged(Editable s) {
-
+/*
                 if (isFormatting) {
                     return;
-                }
+                }*/
 
                 if (s.length() > 0) {
-                    formatInput(etAmount,s, s.length(), s.length());
+                   // formatInput(etAmount,s, s.length(), s.length());
 
                 }
 
-                isFormatting = false;
+                //isFormatting = false;
 
 
 

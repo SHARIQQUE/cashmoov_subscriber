@@ -148,12 +148,12 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                if (isFormatting) {
+                /*if (isFormatting) {
                     return;
                 }
-
+*/
                 if(s.length()>=1) {
-                    formatInput(etAmount,s, s.length(), s.length());
+                   // formatInput(etAmount,s, s.length(), s.length());
 
                     if(isAmt){
                             etAmountNew.setEnabled(false);
@@ -172,7 +172,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                         tvRate.setText("");
                 }
 
-                isFormatting = false;
+              //  isFormatting = false;
 
             }
 
@@ -195,12 +195,12 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                if (isFormatting) {
+                /*if (isFormatting) {
                     return;
-                }
+                }*/
 
                 if(s.length()>=1) {
-                    formatInput(etAmountNew,s, s.length(), s.length());
+                  //  formatInput(etAmountNew,s, s.length(), s.length());
                         if(isAmtPaid){
                             etAmount.setEnabled(false);
                             isAmt=false;
@@ -219,7 +219,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                         tvRate.setText("");
                     }
 
-                    isFormatting = false;
+                   // isFormatting = false;
 
                 }
 

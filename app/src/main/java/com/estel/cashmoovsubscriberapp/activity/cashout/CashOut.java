@@ -43,7 +43,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvName,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
-    EditText etAmount,etFname;
+    EditText etAmount;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
     private boolean isSuccess;
@@ -110,7 +110,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
-        etFname = findViewById(R.id.etFname);
+
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
         // agent_mob_no.setText("991085918540");//dev
@@ -201,25 +201,27 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
                    // MyApplication.showErrorToast(cashoutC, getString(R.string.val_select_curr));
                     return;
                 }
-                    if (isFormatting) {
+                else {
+                  /*  if (isFormatting) {
                         return;
-                    }
+                    }*/
 
-                if(s.length()>=1) {
-                        formatInput(etAmount,s, s.length(), s.length());
+                    if (s.length() > 1) {
+                       // formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
 
-                       // comment
                     }else{
 //                        tvFee.setText("");
 //                        tvAmtPaid.setText("");
 //                        tvRate.setText("");
                     }
-                    isFormatting = false;
+                    //isFormatting = false;
                 }
 
 
+
+            }
 
         });
 
@@ -625,7 +627,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
         lastName = data.getLastName();
         receiveCountryCode = data.getRegisterCountryCode();
         payAgentCode = data.getCode();
-        etFname.setText(ownerName);
+
         if(isQR){
             etRecipientNo.setText(data.getMobileNumber());
 //            et_fname.setText(data.getOwnerName());
@@ -650,7 +652,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormat df = new DecimalFormat("0.000");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {

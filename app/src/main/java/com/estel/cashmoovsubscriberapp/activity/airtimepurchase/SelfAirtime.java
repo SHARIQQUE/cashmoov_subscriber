@@ -105,16 +105,16 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (isFormatting) {
+                /*if (isFormatting) {
                     return;
-                }
+                }*/
 
                 if(s.length()>=1) {
-                    formatInput(etAmount,s, s.length(), s.length());
+                    //formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }
-                isFormatting = false;
+                //isFormatting = false;
 
             }
 
