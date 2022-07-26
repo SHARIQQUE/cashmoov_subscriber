@@ -133,7 +133,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("srcWalletOwner").optString("mobileNumber"));
         tvProvider.setText(Pay.serviceProvider);
         tvTransType.setText(PayConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));
@@ -184,7 +184,7 @@ public class PayReceiptScreen extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");

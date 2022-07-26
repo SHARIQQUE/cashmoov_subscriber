@@ -401,7 +401,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     private void callApiAmountDetails(String value) {
         try {
             //MyApplication.showloader(cashinC, "Please wait!");
@@ -459,8 +459,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                         dataToSend.put("transactionArea",MainActivity.transactionArea);
                                         dataToSend.put("isGpsOn",true);
                                         System.out.println("Data Send " + dataToSend.toString());
-                                        Intent i = new Intent(selfairtimeC, SelfAirtimeConfirm.class);
-                                        startActivity(i);
+                                        /*Intent i = new Intent(selfairtimeC, SelfAirtimeConfirm.class);
+                                        startActivity(i);*/
                                     } catch (Exception e) {
 
                                     }

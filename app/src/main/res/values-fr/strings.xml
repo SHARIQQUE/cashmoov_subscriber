@@ -347,7 +347,7 @@
     <string name="trans_date">Date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>
     <string name="post_balance">Publier le solde</string>
-    <string name="search_here">Cherche ici...</string>
+    <string name="search_here">Entrez le nom ou le mobile...</string>
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Exceller</string>

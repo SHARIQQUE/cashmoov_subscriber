@@ -138,7 +138,7 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(Partner.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         transId.setText(getString(R.string.vendor_trans_id_colon));
@@ -191,7 +191,7 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");

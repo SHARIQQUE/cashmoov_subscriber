@@ -137,7 +137,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.VISIBLE);
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
         tvConfCode.setText(ToNonSubscriberConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(ToNonSubscriber.serviceProvider);
@@ -189,7 +189,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");

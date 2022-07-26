@@ -136,7 +136,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.VISIBLE);
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
         tvConfCode.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(International.serviceProvider);
@@ -188,7 +188,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                // store(bitmap,"test.jpg");

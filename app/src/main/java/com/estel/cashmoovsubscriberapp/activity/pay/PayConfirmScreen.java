@@ -103,7 +103,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         tvFee.setText(Pay.fromCurrencySymbol+" "+Pay.fee);
 
        finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(Pay.taxConfigurationList!=null){
             if(Pay.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

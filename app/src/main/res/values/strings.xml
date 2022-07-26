@@ -347,7 +347,7 @@
     <string name="trans_date">Transaction Date</string>
     <string name="view_deatils">View Details</string>
     <string name="post_balance">Post Balance</string>
-    <string name="search_here">Search here...</string>
+    <string name="search_here">Enter Name or Mobile...</string>
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Excel</string>
@@ -364,8 +364,8 @@
     <string name="view_balance_trans_history"><![CDATA[Balance & Transaction history]]></string>
     <string name="go">Go</string>
     <string name="Contacts">Contacts</string>
-    <string name="view_transaction_history">View transaction history</string>
-    <string name="hide_transaction_history">Hide transaction history</string>
+    <string name="view_transaction_history">View Transaction History</string>
+    <string name="hide_transaction_history">Hide Transaction History</string>
     <string name="choose_product">Choose the product</string>
     <string name="choose_operator">Choose the operator</string>
     <string name="already_acc">Already have an account?</string>

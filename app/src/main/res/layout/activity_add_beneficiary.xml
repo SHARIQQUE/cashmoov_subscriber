@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <LinearLayout
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:layout_width="0dp"
                 android:layout_weight="0.75"
                 android:layout_height="wrap_content"
@@ -56,10 +57,13 @@
                     app:iconifiedByDefault="false"
                     android:focusableInTouchMode="true"
                     android:theme="@style/SearchViewStyle"
+
                     app:defaultQueryHint="@string/search_here" />
 
         </androidx.cardview.widget.CardView>
             </LinearLayout>
+
+
 
             <TextView
                 android:visibility="gone"

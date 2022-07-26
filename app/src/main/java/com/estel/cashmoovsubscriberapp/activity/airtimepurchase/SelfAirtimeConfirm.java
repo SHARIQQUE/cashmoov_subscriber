@@ -99,7 +99,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
         tvFee.setText(SelfAirtime.currencySymbol+" "+SelfAirtime.fee);
 
         finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(SelfAirtime.taxConfigurationList!=null){
             if(SelfAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

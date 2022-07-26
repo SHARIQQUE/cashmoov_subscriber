@@ -176,7 +176,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
         //finalamount=Double.parseDouble(Outform.fee)+Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""));
 
         finalamount=Double.parseDouble(Outform.fee)+Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(Outform.taxConfigurationList!=null){
 
 
@@ -352,7 +352,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                 });*/
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     JSONObject dataToSendBear;
     private void callApiAmountDetailsIbear() {
         try {

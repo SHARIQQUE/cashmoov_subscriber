@@ -178,7 +178,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         });
 
         finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(ToSubscriber.taxConfigurationList!=null){
 
 
@@ -324,7 +324,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                 });
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     JSONObject dataToSendBear;
     private void callApiAmountDetailsIbear() {
         try {

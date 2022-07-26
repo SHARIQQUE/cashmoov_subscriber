@@ -166,7 +166,7 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     public static  JSONObject dataToSend=new JSONObject();
     public static String currencyValue,fee;
     public static int receiverFee,receiverTax;

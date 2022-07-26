@@ -646,7 +646,7 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {

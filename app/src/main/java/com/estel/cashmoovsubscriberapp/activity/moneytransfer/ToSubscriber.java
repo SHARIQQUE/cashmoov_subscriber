@@ -622,7 +622,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
 
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {

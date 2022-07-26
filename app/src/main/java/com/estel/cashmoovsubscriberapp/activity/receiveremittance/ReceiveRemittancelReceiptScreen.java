@@ -188,7 +188,7 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");

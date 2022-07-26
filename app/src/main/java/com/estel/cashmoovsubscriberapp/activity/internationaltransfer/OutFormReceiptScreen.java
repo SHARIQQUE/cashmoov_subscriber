@@ -138,7 +138,7 @@ public class OutFormReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
         tvProvider.setText(OutTransfer.operatorNname);
         tvTransType.setText("OUT Transfer");
@@ -193,7 +193,7 @@ public class OutFormReceiptScreen extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 //int id= Random(System.currentTimeMillis()).nextInt(1000);
                 createImageFile(bitmap);

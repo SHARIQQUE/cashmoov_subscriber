@@ -175,7 +175,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
         //finalamount=Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmount.getText().toString().replace(",",""));
 
         finalamount=Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmountN.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(Inform.taxConfigurationList!=null){
 
 
@@ -431,7 +431,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
                 });*/
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     JSONObject dataToSendBear;
     private void callApiAmountDetailsIbear() {
         try {

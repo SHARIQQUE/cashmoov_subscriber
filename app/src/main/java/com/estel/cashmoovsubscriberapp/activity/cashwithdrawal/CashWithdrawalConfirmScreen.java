@@ -103,7 +103,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         tvFee.setText(CashWithdrawal.fromCurrencySymbol+" "+CashWithdrawal.fee);
 
        finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(CashWithdrawal.taxConfigurationList!=null){
             if(CashWithdrawal.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

@@ -102,7 +102,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
         tvFee.setText(Partner.currencySymbol+" "+PartnerBillPayDetails.fee);
 
         finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(PartnerBillPayDetails.taxConfigurationList!=null){
             if(PartnerBillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

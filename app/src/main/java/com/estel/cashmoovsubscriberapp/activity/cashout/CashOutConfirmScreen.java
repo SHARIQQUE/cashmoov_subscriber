@@ -99,7 +99,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         tvFee.setText(CashOut.fromCurrencySymbol+" "+CashOut.fee);
 
        finalamount=Double.parseDouble(CashOut.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHOUT",cashoutconfirmscreenC));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(CashOut.taxConfigurationList!=null){
             if(CashOut.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

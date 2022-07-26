@@ -101,7 +101,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+BeneficiaryAirtime.fee);
 
         finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(BeneficiaryAirtime.taxConfigurationList!=null){
             if(BeneficiaryAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

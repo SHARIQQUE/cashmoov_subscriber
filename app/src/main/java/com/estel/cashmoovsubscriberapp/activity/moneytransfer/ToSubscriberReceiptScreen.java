@@ -135,7 +135,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("srcWalletOwner").optString("mobileNumber"));
         tvProvider.setText(ToSubscriber.serviceProvider);
         tvTransType.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));
@@ -186,7 +186,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 //int id= Random(System.currentTimeMillis()).nextInt(1000);
                 createImageFile(bitmap);

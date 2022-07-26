@@ -136,7 +136,7 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.GONE);
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvSubscriberMobile.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("srcWalletOwner").optString("mobileNumber"));
         //tvConfCode.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("confirmationCode"));
         tvProvider.setText(CashOut.serviceProvider);
@@ -188,7 +188,7 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
-                btnShareReceipt.setVisibility(View.GONE);
+                btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap,"test.jpg");
