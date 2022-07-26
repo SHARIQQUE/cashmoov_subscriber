@@ -239,6 +239,8 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:inputType="text"
+                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+
                     android:lineSpacingExtra="10sp"
                     android:singleLine="true"
                     android:nextFocusDown="@+id/etDob"
