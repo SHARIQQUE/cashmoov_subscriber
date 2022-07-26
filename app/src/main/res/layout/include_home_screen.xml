@@ -285,7 +285,7 @@
                 />
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -300,6 +300,7 @@
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
                     app:cardElevation="0dp"
+                    android:visibility="gone"
                     app:cardBackgroundColor="#ffffff">
 
                     <LinearLayout

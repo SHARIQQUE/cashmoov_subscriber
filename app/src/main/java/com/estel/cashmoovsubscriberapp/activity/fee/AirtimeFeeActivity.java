@@ -112,8 +112,7 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
                                     if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                            operatorAirtimeList.add(new OperatorModel(
-                                                    data.optInt("id"),
+                                            operatorAirtimeList.add(new OperatorModel(                                                  data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("creationDate"),
                                                     data.optString("modificationDate"),

@@ -52,7 +52,7 @@
             android:id="@+id/imgQR"
             android:layout_width="@dimen/_28sdp"
             android:layout_height="@dimen/_28sdp"
-            app:srcCompat="@drawable/ic_baseline_qr"
+            app:srcCompat="@drawable/ic_baseline_qr_code_scanner_24"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp"/>
 

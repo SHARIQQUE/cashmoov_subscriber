@@ -108,7 +108,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
 
             MyApplication.isContact=false;
             String requiredValue = data.getStringExtra("PHONE");
-            etSubscriberNo.setText(requiredValue);
+          //  etSubscriberNo.setText(requiredValue);
 
         }
         if (resultCode != Activity.RESULT_OK) {
@@ -161,11 +161,11 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         etAmount = findViewById(R.id.etAmount);
         etAmountN= findViewById(R.id.etAmountN);
 
-        etSubscriberNo.setText("111111111");
-        etFname.setText("Hardy");
-        etLname.setText("Versovy");
-        etAmount.setText("10,000");
-        etAmountN.setText("670.00");
+       // etSubscriberNo.setText("111111111");
+        //  etFname.setText("Hardy");
+       // etLname.setText("Versovy");
+       // etAmount.setText("10,000");
+       // etAmountN.setText("670.00");
 
         mobileNo = etSubscriberNo.getText().toString();
         ownerName =  etFname.getText().toString();
@@ -174,8 +174,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         headText.setText(OutTransfer.operatorNname);
 
         tvSend = findViewById(R.id.tvSend);
-        etFname.setEnabled(false);
-        etLname.setEnabled(false);
+        etFname.setEnabled(true);
+        etLname.setEnabled(true);
 
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
@@ -555,8 +555,8 @@ callApiWalletCountryCurrencyJSOn();
         lastName = data.getLastName();
         if (isQR) {
             etSubscriberNo.setText(data.getMobileNumber());
-            etFname.setText(data.getOwnerName());
-            etLname.setText(data.getLastName());
+           // etFname.setText(data.getOwnerName());
+           // etLname.setText(data.getLastName());
             etAmount.setText("");
             etAmount.requestFocus();
             isQR = false;
@@ -568,8 +568,8 @@ callApiWalletCountryCurrencyJSOn();
             etSubscriberNo.setThreshold(9);
             etSubscriberNo.showDropDown();
 
-            etFname.setText(data.getOwnerName());
-            etLname.setText(data.getLastName());
+            //etFname.setText(data.getOwnerName());
+           // etLname.setText(data.getLastName());
             etAmount.setText("");
             etAmount.requestFocus();
         }

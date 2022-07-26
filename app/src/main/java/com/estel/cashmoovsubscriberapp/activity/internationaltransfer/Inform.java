@@ -159,11 +159,11 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         etAmount = findViewById(R.id.etAmount);
         etAmountN= findViewById(R.id.etAmountN);
 
-        etSubscriberNo.setText("111111111");
-        etFname.setText("Ravi");
-        etLname.setText("Singh");
-        etAmount.setText("9,329.11");
-        etAmountN.setText("670");
+       // etSubscriberNo.setText("111111111");
+       // etFname.setText("Ravi");
+       // etLname.setText("Singh");
+       // etAmount.setText("9,329.11");
+      //  etAmountN.setText("670");
 
         mobileNo = etSubscriberNo.getText().toString();
         ownerName =  etFname.getText().toString();
@@ -172,8 +172,8 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         headText.setText(InTransfer.operatorNname);
 
         tvSend = findViewById(R.id.tvSend);
-        etFname.setEnabled(false);
-        etLname.setEnabled(false);
+        etFname.setEnabled(true);
+        etLname.setEnabled(true);
 
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
@@ -244,9 +244,9 @@ callApiWalletCountryCurrencyJSOn();
                     String[] list = value.split(",");
                     isSet = true;
                     etSubscriberNo.setText(list[0]);
-                    etFname.setText(list[1]);
-                    etLname.setText(list[2]);
-                    etAmount.setText("");
+                    //etFname.setText(list[1]);
+                   // etLname.setText(list[2]);
+                   // etAmount.setText("");
                     etAmount.requestFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.showSoftInput(etAmount, InputMethodManager.SHOW_IMPLICIT);
@@ -553,8 +553,8 @@ callApiWalletCountryCurrencyJSOn();
         lastName = data.getLastName();
         if (isQR) {
             etSubscriberNo.setText(data.getMobileNumber());
-            etFname.setText(data.getOwnerName());
-            etLname.setText(data.getLastName());
+          //  etFname.setText(data.getOwnerName());
+          //  etLname.setText(data.getLastName());
             etAmount.setText("");
             etAmount.requestFocus();
             isQR = false;
@@ -566,8 +566,8 @@ callApiWalletCountryCurrencyJSOn();
             etSubscriberNo.setThreshold(9);
             etSubscriberNo.showDropDown();
 
-            etFname.setText(data.getOwnerName());
-            etLname.setText(data.getLastName());
+        //    etFname.setText(data.getOwnerName());
+           // etLname.setText(data.getLastName());
             etAmount.setText("");
             etAmount.requestFocus();
         }

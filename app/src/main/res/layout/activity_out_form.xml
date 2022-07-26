@@ -232,6 +232,7 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:inputType="phone"
+                    android:editable="true"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"
@@ -252,6 +253,8 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/grey_100_"
                     android:inputType="text"
+                    android:editable="true"
+
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"

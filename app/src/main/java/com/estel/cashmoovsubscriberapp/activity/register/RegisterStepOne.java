@@ -68,7 +68,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
     private static String dob = "";
     public static Dialog dialog;
-    private TextView mDobText;
+    public static TextView mDobText;
     String calmsg;
 
     @Override
@@ -697,7 +697,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         public void onDateSet(DatePicker view, int year, int month, int day) {
 
             etDob.setText(year + "-" + (month+1) + "-" + day);
-
+            mDobText.setVisibility(View.VISIBLE);
             // etDob.setText(year + "-" + (month+1) + "-" + day);
 
         }
