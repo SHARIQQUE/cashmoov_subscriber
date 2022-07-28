@@ -6,7 +6,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -110,9 +112,9 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogfragment = new DatePickerDialogTheme5();
+                DialogFragment dialogfragment = new DatePickerDialogTheme();
 
-                dialogfragment.show(getSupportFragmentManager(), "Theme 3");
+                dialogfragment.show(getSupportFragmentManager(), "");
 
                // ffffff
 
@@ -154,7 +156,6 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     spinnerDialogOccupation.showSpinerDialog();
             }
         });
-
 
         setOnCLickListener();
 
@@ -675,7 +676,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 //
 //        http://202.131.144.130:8081/ewallet/api/v1/address
 
-    public static class DatePickerDialogTheme5 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    public static class DatePickerDialogTheme extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
