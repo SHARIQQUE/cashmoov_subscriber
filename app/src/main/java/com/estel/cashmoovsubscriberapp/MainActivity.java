@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  ddd
+      //  dd
         mainC = this;
         MyApplication.hideKeyboard(mainC);
         MyApplication.setLang(mainC);
