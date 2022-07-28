@@ -29,7 +29,12 @@ public class API {
 
     //public static String BASEURL="http://202.131.144.130:8081/";         //QA
     //public static String BASEURL="http://202.131.144.129:8081/";           //UAT
-    public static String BASEURL="https://cashmoovmm.com:8081/";  //Production
+    public static String BASEURL="https://cashmoovmm.com:8081/";
+
+    public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
+
+
+    //Production
     //http://202.140.50.120:8081/
     public static OkHttpClient client = new OkHttpClient.Builder()
             .hostnameVerifier(new HostnameVerifier() {
@@ -519,6 +524,62 @@ public class API {
                         responce_handler.success(response);
 
                         Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        MyApplication.hideLoader();
+                        responce_handler.failure(error.getErrorDetail());
+                        if (error.getErrorCode() != 0) {
+                            if(error.getErrorCode()==401){
+                                MyApplication.showAPIToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+
+    }
+
+
+    public static void POST_REQEST_TransferAMount(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+
+        AndroidNetworking.post(BASEURL_AMOUNT+URL)
+                .addJSONObjectBody(jsonObject) // posting json
+                .setTag("test")
+                .setOkHttpClient(client)
+                // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                .addHeaders("channel","APP")
+                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        MyApplication.hideLoader();
+                        responce_handler.success(response);
+
+                        Log.d(TAG, "onResponse sonu object : " + response.toString());
                     }
 
                     @Override
