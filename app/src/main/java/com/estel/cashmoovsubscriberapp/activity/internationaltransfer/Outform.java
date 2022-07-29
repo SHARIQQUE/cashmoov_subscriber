@@ -47,6 +47,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Outform extends AppCompatActivity implements View.OnClickListener {
+    //tr
     public static Outform tosubscriberC;
     ImageView imgBack,imgHome;
     public  static TextView tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
