@@ -299,6 +299,12 @@ callApiWalletCountryCurrencyJSOn();
 
                 }
 
+                if(s.length()==0){
+                    tvFee.setText("");
+                    tvRate.setText("");
+                    etAmountN.setText("");
+                }
+
                 isFormatting = false;
 
 
@@ -990,8 +996,8 @@ callApiWalletCountryCurrencyJSOn();
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                       /* tvRate.setText(rate);
-                                        tvFee.setText(fee);*/
+                                        tvRate.setText(rate);
+                                        tvFee.setText(fee);
                                         etAmountN.setText(currencyValue);
                                        // tvAmtPaid.setText(currencyValue);
 
