@@ -25,6 +25,9 @@ import com.estel.cashmoovsubscriberapp.model.MiniStatement;
 import com.estel.cashmoovsubscriberapp.model.MiniStatementTrans;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -247,7 +250,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 tvCurrency.setText(getString(R.string.your_currency)+" :  "+data.optString("currencyName"));
-                                                tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
+                                                NumberFormat myformatter = new DecimalFormat("########");
+                                                tvBalance.setText(myformatter.format(data.optString("value"))+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
                                             }
 
@@ -297,13 +301,29 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
                                             //if(data.optString("transactionTypeCode").equalsIgnoreCase("101441")){
-                                            if(data.has("receiverCustomer")){
+                                            if (data.has("receiverCustomer")) {
                                                 msisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
-                                                name = data.optJSONObject("receiverCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
-                                            }else{
+                                                name = data.optJSONObject("receiverCustomer").optString("firstName") + " " + data.optJSONObject("receiverCustomer").optString("lastName");
+                                            } else {
                                                 msisdn = data.optString("toWalletOwnerMsisdn").trim();
-                                                name =  data.optString("toWalletOwnerName").trim();
+                                                name = data.optString("toWalletOwnerName").trim();
 
+                                            }
+                                            String feeTax = "";
+                                            if (data.optDouble("fee") > 0.0) {
+                                                feeTax = "FEE : " + data.optDouble("fee");
+                                            }
+                                            if (data.has("tax")) {
+
+                                                try {
+                                                    JSONArray taxArray = new JSONArray(data.optJSONArray("tax"));
+                                                    JSONObject taxObject = taxArray.optJSONObject(0);
+                                                    feeTax = "FEE : " + data.optDouble("fee") + "   " +
+                                                            taxObject.optString("taxTypeName") + " : " + taxObject.optString("value");
+
+                                                } catch (Exception e) {
+
+                                                }
                                             }
 
                                             miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
@@ -346,7 +366,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optDouble("principalAmount"),
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
-                                                    data.optBoolean("isReverse")));
+                                                    data.optBoolean("isReverse"),
+                                                    feeTax.toString()));
                                         }
 
                                         setData(miniStatementTransList);
@@ -384,7 +405,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status,String FeeTax) {
         String name="";
         if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
             name = walletOwnerMsisdn;
@@ -398,6 +419,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
+        intent.putExtra("FeeTax",FeeTax);
         startActivity(intent);
     }
 

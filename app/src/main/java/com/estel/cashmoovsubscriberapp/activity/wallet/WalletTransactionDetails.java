@@ -17,7 +17,7 @@ import java.util.Date;
 public class WalletTransactionDetails extends AppCompatActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
-    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
+    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success,txt_fee;
 
 
     @Override
@@ -68,7 +68,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
         txt_creation_date = findViewById(R.id.txt_creation_date);
         txt_status = findViewById(R.id.txt_status);
         txt_success = findViewById(R.id.txt_success);
-
+        txt_fee = findViewById(R.id.txt_fee);
         if (getIntent().getExtras() != null) {
             String transType = (getIntent().getStringExtra("TRANSTYPE"));
             String fromOwnerName = (getIntent().getStringExtra("FROMWALLETOWNERNAME"));
@@ -82,6 +82,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
+            txt_fee.setText(getIntent().getStringExtra("FeeTax"));
             try {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");

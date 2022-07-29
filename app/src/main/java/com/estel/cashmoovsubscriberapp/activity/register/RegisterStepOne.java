@@ -281,7 +281,9 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
                     jsonObject.put("issuingCountryCode","100092");
                     jsonObject.put("registerCountryCode","100092");
-                    jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
+                    jsonObject.put("notificationLanguage","fr");
+                    jsonObject.put("addTypeCode","100001");
+                    //jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
                     jsonObject.put("notificationTypeCode","100002");
                     jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
                     jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());

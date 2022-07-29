@@ -113,13 +113,13 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
                                 miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getFeeTax());
                     }
                     if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
                                 miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getFeeTax());
                     }
 
             }

@@ -38,6 +38,7 @@ import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.Internatio
 import com.estel.cashmoovsubscriberapp.activity.location.Constants;
 import com.estel.cashmoovsubscriberapp.activity.location.FetchAddressIntentServices;
 import com.estel.cashmoovsubscriberapp.activity.partner.Partner;
+import com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemittance;
 import com.estel.cashmoovsubscriberapp.activity.setting.Profile;
 import com.estel.cashmoovsubscriberapp.activity.wallet.WalletScreen;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.AirtimePurchase;
@@ -45,7 +46,7 @@ import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawal;
 import com.estel.cashmoovsubscriberapp.activity.fee.Fee;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.MoneyTransfer;
 import com.estel.cashmoovsubscriberapp.activity.pay.Pay;
-import com.estel.cashmoovsubscriberapp.activity.receiveremittance.ReceiveRemittance;
+
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
 import com.estel.cashmoovsubscriberapp.activity.servicepoint.ServicePoint;
 import com.estel.cashmoovsubscriberapp.adapter.OfferPromotionAdapter;
@@ -933,17 +934,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             tvBadge.setVisibility(View.VISIBLE);
                                             tvBadge.setText(String.valueOf(notificationCountCurrent));
                                         }else{
-                                            tvBadge.setVisibility(View.GONE);
+                                           // tvBadge.setVisibility(View.GONE);
                                         }
 
                                         if(notificationCountCurrent>notificationCountPrevious){
                                             tvBadge.setVisibility(View.VISIBLE);
                                             tvBadge.setText(String.valueOf(notificationCountCurrent));
                                         }else{
-                                            tvBadge.setVisibility(View.GONE);
+                                           // tvBadge.setVisibility(View.GONE);
                                         }
                                         MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,mainC);
                                         MyApplication.saveInt("NOTIFICATIONCOUNTPREV",notificationCountPrevious,mainC);
+                                        if(notificationCountCurrent>0){
+                                            tvBadge.setVisibility(View.VISIBLE);
+                                        tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                        }else{
+                                            tvBadge.setVisibility(View.GONE);
+                                        }
+
                                     }
 
 //                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {

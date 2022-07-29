@@ -42,9 +42,10 @@ public class MiniStatementTrans {
     private String fromWalletOwnerSurname;
     private String fromWalletTypeCode;
     private boolean isReverse;
+    private String feeTax;
 
 
-    public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode, boolean isReverse) {
+    public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode, boolean isReverse, String feeTax) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -86,6 +87,7 @@ public class MiniStatementTrans {
         this.fromWalletOwnerSurname = fromWalletOwnerSurname;
         this.fromWalletTypeCode = fromWalletTypeCode;
         this.isReverse = isReverse;
+        this.feeTax = feeTax;
     }
 
     public int getId() {
@@ -94,6 +96,14 @@ public class MiniStatementTrans {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getFeeTax() {
+        return feeTax;
+    }
+
+    public void setFeeTax(String feeTax) {
+        this.feeTax = feeTax;
     }
 
     public String getCode() {

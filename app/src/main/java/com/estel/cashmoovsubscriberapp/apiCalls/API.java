@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
@@ -28,7 +29,7 @@ public class API {
     private static final String TAG = "API CALLS";
 
     //public static String BASEURL="http://202.131.144.130:8081/";         //QA
-    //public static String BASEURL="http://202.131.144.129:8081/";           //UAT
+   // public static String BASEURL="http://202.131.144.129:8081/";           //UAT
     public static String BASEURL="https://cashmoovmm.com:8081/";
 
     public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
@@ -37,6 +38,9 @@ public class API {
     //Production
     //http://202.140.50.120:8081/
     public static OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -47,6 +51,9 @@ public class API {
             .build();
 
     public static OkHttpClient clientBASIC = new OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -58,6 +65,9 @@ public class API {
 
 
     public static OkHttpClient okClientfileUpload = new OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -77,6 +87,9 @@ public class API {
             .build();
 
     public static OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -94,6 +107,9 @@ public class API {
             .build();
 
     public static OkHttpClient okHttpClient1 = new OkHttpClient.Builder()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {

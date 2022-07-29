@@ -24,6 +24,7 @@ import com.estel.cashmoovsubscriberapp.activity.cashout.CashOutReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InFormReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.OutFormReceiptScreen;
+import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.OutFormRecptNew;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayReceipt;
 import com.estel.cashmoovsubscriberapp.activity.pay.PayReceiptScreen;
@@ -90,7 +91,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
             case R.id.tvContinue:
 
                 if(checkIntent.equalsIgnoreCase("OTOSUB")){
-                    intent = new Intent(transSuccessscreenC, OutFormReceiptScreen.class);
+                    intent = new Intent(transSuccessscreenC, OutFormRecptNew.class);
                     startActivity(intent);
                     return;
                 }
@@ -171,7 +172,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 }
 
                 if(checkIntent.equalsIgnoreCase("OTOSUB")){
-                    intent = new Intent(transSuccessscreenC, OutFormReceiptScreen.class);
+                    intent = new Intent(transSuccessscreenC, OutFormRecptNew.class);
                     startActivity(intent);
                     return;
                 }

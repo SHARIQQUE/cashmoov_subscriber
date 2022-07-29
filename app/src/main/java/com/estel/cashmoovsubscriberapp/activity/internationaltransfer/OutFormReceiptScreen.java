@@ -139,7 +139,7 @@ public class OutFormReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_value = findViewById(R.id.tax2_value);
 
         DecimalFormat df = new DecimalFormat("0.00");
-        tvSubscriberMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
+        tvSubscriberMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optJSONObject("sender").optString("mobileNumber"));
         tvProvider.setText(OutTransfer.operatorNname);
         tvTransType.setText("OUT Transfer");
         //tvTransType.setText(OutFormConfirmation.receiptJson.optJSONObject("remittance").optString("transactionType"));

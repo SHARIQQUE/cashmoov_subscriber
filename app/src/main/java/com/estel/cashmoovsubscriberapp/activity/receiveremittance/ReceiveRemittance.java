@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,8 @@ import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayConfirmScreen;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayDetails;
+import com.estel.cashmoovsubscriberapp.activity.setting.ReSetPin;
+import com.estel.cashmoovsubscriberapp.activity.setting.ResetPinOTP;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
@@ -34,7 +37,8 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     public static ReceiveRemittance receiveremittanceC;
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,spBenefiCurrency,tvSend;
-    public static EditText etPhone,etName,etLname,etConfCode,etAmount,etPin;
+    public static EditText etPhone,etName,etLname,etConfCode,etAmount,etPin,etOtp;
+    public LinearLayout pin_layout,otp_layout,ll_resendOtp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,19 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         etAmount = findViewById(R.id.etAmount);
         etPin = findViewById(R.id.etPin);
         tvSend = findViewById(R.id.tvSend);
+        etOtp = findViewById(R.id.etOtp);
+        tvSend.setVisibility(View.GONE);
+
+        pin_layout = findViewById(R.id.pin_layout);
+        otp_layout = findViewById(R.id.otp_layout);
+        ll_resendOtp= findViewById(R.id.ll_resendOtp);
+
+        ll_resendOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                otp_generate_api();
+            }
+        });
 
         etPhone.setEnabled(false);
         etName.setEnabled(false);
@@ -103,10 +120,13 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if(s.length() >= 11)
+                if(s.length() >= 11) {
                     etAmount.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(etAmount, InputMethodManager.SHOW_IMPLICIT);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(etAmount, InputMethodManager.SHOW_IMPLICIT);
+
+                    callGetDetails(s.toString());
+                }
             }
         });
 
@@ -159,6 +179,23 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     MyApplication.hideKeyboard(receiveremittanceC);            }
         });
 
+        etOtp.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 6)
+                    MyApplication.hideKeyboard(receiveremittanceC);            }
+        });
+
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
@@ -169,6 +206,8 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         }else{
             tvFinger.setVisibility(View.VISIBLE);
         }
+        tvFinger.setVisibility(View.GONE);
+
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,10 +292,45 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
     }
 
+    String beneficiaryCustomerCode;
+    private void callGetDetails(String toString) {
+
+
+        API.GET("ewallet/api/v1/holdingAccount/confirmationCode/"+ toString, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                    walletOwner=jsonObject;
+                    JSONObject data=walletOwner.optJSONObject("accountHolding");
+                    beneficiaryCustomerCode=data.optString("beneficiaryCustomerCode");
+                    etAmount.setText(data.optString("beneficiaryAmount"));
+                    otp_layout.setVisibility(View.VISIBLE);
+                    ll_resendOtp.setVisibility(View.VISIBLE);
+                    tvSend.setVisibility(View.VISIBLE);
+                    tvSend.setText("Verify OTP");
+                    otp_generate_api();
+
+                }else{
+                    MyApplication.showToast(receiveremittanceC,jsonObject.optString("resultDescription"));
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(receiveremittanceC,aFalse);
+            }
+        });
+
+    }
+
     private void setOnCLickListener() {
         tvSend.setOnClickListener(receiveremittanceC);
     }
 
+
+    public boolean step1=false;
+    public boolean step2=false;
 
     @Override
     public void onClick(View view) {
@@ -291,6 +365,20 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_valid_amount));
                     return;
                 }
+
+                if(step1 && !step2){
+                    if (etOtp.getText().toString().trim().isEmpty()) {
+                        MyApplication.showErrorToast(receiveremittanceC, "Please enter OTP");
+                        return;
+                    }
+                    if (etOtp.getText().toString().trim().length() < 6) {
+                        MyApplication.showErrorToast(receiveremittanceC, "OTP  must be at least 6 digit");
+                        return;
+                    }
+                    callVerifyOTP(etOtp.getText().toString().trim());
+                }
+
+                if(step1 && step2){
                 if (etPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(receiveremittanceC, getString(R.string.val_pin));
                     return;
@@ -299,24 +387,24 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     MyApplication.showErrorToast(receiveremittanceC, getString(R.string.val_valid_pin));
                     return;
                 }
-                try{
-                    dataToSend.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
-                    dataToSend.put("toCurrencyCode",fromCurrencyCode);
-                    dataToSend.put("amount",etAmount.getText().toString().trim().replace(",",""));
-                    dataToSend.put("confirmationCode",etConfCode.getText().toString());
-                    dataToSend.put("firstName",etName.getText().toString());
-                    dataToSend.put("lastName",etLname.getText().toString());
-                    dataToSend.put("phoneNumber",etPhone.getText().toString());
-                    dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
-                    dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
-                    dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                try {
+                    dataToSend.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", getApplicationContext()));
+                    dataToSend.put("toCurrencyCode", fromCurrencyCode);
+                    dataToSend.put("amount", etAmount.getText().toString().trim().replace(",", ""));
+                    dataToSend.put("confirmationCode", etConfCode.getText().toString());
+                    dataToSend.put("firstName", etName.getText().toString());
+                    dataToSend.put("lastName", etLname.getText().toString());
+                    dataToSend.put("phoneNumber", etPhone.getText().toString());
+                    dataToSend.put("serviceCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                    dataToSend.put("serviceCategoryCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                    dataToSend.put("serviceProviderCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
                     dataToSend.put("pin", encryptionDatanew);
-                    dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
-                    dataToSend.put("transactionArea",MainActivity.transactionArea);
-                    dataToSend.put("isGpsOn",true);
+                    dataToSend.put("transactionCoordinate", MainActivity.transactionCoordinate);
+                    dataToSend.put("transactionArea", MainActivity.transactionArea);
+                    dataToSend.put("isGpsOn", true);
 
-                    System.out.println("Data Send "+dataToSend.toString());
+                    System.out.println("Data Send " + dataToSend.toString());
 
                     etPin.setClickable(false);
                     tvSend.setVisibility(View.GONE);
@@ -326,7 +414,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                 }catch (Exception e){
 
                 }
-
+                }
                 break;
 
         }
@@ -460,10 +548,15 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                             }else{
                                 taxConfigList=null;
                             }
-                            tvSend.setVisibility(View.VISIBLE);
+                            tvSend.setVisibility(View.GONE);
+                            otp_layout.setVisibility(View.GONE);
+                            ll_resendOtp.setVisibility(View.GONE);
+                            pin_layout.setVisibility(View.GONE);
                             Intent intent=new Intent(receiveremittanceC, TransactionSuccessScreen.class);
                             intent.putExtra("SENDINTENT","RECEIVEREMITTANCE");
                             startActivity(intent);
+
+
                             // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
                         }else{
                             etPin.setClickable(true);
@@ -584,5 +677,108 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         }
     }
 
+
+    private void callVerifyOTP(String otp) {
+        try{
+
+            JSONObject loginJson=new JSONObject();
+            // {transTypeCode: "101813", otp: "11111"}
+            loginJson.put("transTypeCode","101442");
+            loginJson.put("otp",otp);
+            loginJson.put("customerCode",beneficiaryCustomerCode);
+
+
+            System.out.println("Login request"+loginJson.toString());
+            MyApplication.showloader(ReceiveRemittance.this,getString(R.string.getting_user_info));
+            API.PUT("ewallet/api/v1/otp/verify", loginJson, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+
+
+                    if (jsonObject != null) {
+                        if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+                            // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+                            step2=true;
+
+                            otp_layout.setVisibility(View.GONE);
+                            ll_resendOtp.setVisibility(View.GONE);
+                            pin_layout.setVisibility(View.VISIBLE);
+                            tvSend.setText("SEND");
+
+                        } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
+                            step2=false;
+                            MyApplication.showToast(ReceiveRemittance.this,getString(R.string.technical_failure));
+                        } else {
+                            step2=false;
+                            MyApplication.showToast(ReceiveRemittance.this,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+
+                    // Toast.makeText(VerifyRegisterOTP.this,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+
+                }
+
+                @Override
+                public void failure(String aFalse) {
+                    step2=false;
+                    MyApplication.showToast(ReceiveRemittance.this,aFalse);
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+
+    }
+
+
+
+
+    private void otp_generate_api() {
+       try {
+           JSONObject jsonObject=new JSONObject();
+
+
+           jsonObject.put("transTypeCode","101442");
+
+           jsonObject.put("customerCode",beneficiaryCustomerCode);
+
+
+           API.POST_GET_OTP("ewallet/api/v1/otp", jsonObject, new Api_Responce_Handler() {
+               @Override
+               public void success(JSONObject jsonObject) {
+                   if (jsonObject != null) {
+                       if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+                            MyApplication.showToast(receiveremittanceC,jsonObject.optString("resultDescription", "N/A"));
+                           step1=true;
+
+                       } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
+                           step1=false;
+                           MyApplication.showToast(ReceiveRemittance.this,getString(R.string.technical_failure));
+                       } else {
+                           step1=false;
+                           MyApplication.showToast(ReceiveRemittance.this,jsonObject.optString("resultDescription", "N/A"));
+                       }
+                   }
+               }
+
+               @Override
+               public void failure(String aFalse) {
+                   step1=false;
+                   MyApplication.showToast(ReceiveRemittance.this,aFalse);
+
+               }
+           });
+       }catch (Exception e){
+
+       }
+
+
+
+
+
+    }
 
 }
