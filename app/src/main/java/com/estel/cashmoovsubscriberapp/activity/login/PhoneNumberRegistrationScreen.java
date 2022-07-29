@@ -480,7 +480,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
                     ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
                     System.out.println("Login response======="+jsonObject.toString());
                     MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
@@ -702,7 +702,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -717,10 +717,12 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.IsPromoCalled = true;
                         MyApplication.isNotification=true;
                         Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+
                         Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                         startActivity(i);
                         finish();
 
+                        MyApplication.hideLoader();
 
                     } else {
                         Toast.makeText(phnoregistrationccreenC, resultDescription, Toast.LENGTH_LONG).show();

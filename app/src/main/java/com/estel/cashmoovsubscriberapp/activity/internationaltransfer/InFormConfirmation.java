@@ -355,7 +355,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
             if (jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
                 MyApplication.showToast(tosubscriberconfirmscreenC, jsonObject.optString("resultDescription"));
                 receiptJson = jsonObject;
-                JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("remittance");
+                JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("intechResponse");
                 if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                     taxConfigList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                 } else {

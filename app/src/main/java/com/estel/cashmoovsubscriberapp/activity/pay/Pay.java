@@ -45,7 +45,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvName,tvPhone,spBenifiCurr,tvSend;
     AutoCompleteTextView etRecipientNo;
-    public static EditText etAmount;
+    public static EditText etAmount,etFname;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
     private boolean isSuccess;
@@ -116,6 +116,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
+        etFname=findViewById(R.id.etFname);
 
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
@@ -620,6 +621,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         lastName = data.getLastName();
         receiveCountryCode = data.getRegisterCountryCode();
         payAgentCode = data.getCode();
+        etFname.setText(ownerName);
 
         if(isQR){
             etRecipientNo.setText(data.getMobileNumber());

@@ -187,6 +187,7 @@
     <string name="fee_colon">Frais :</string>
     <string name="i_bear_fees">je supporte les frais</string>
     <string name="pin_colon">PIN :</string>
+    <string name="otp_colon">OTP :</string>
     <string name="ex_1234">Ex: 1234</string>
     <string name="transaction_success">Transaction\nsuccèss!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
@@ -397,7 +398,8 @@
     <string name="service_not_available">Ce service n\'est pas disponible</string>
     <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
 
-
+    <string name="didnot_get_the_Code"> Vous n avez pas reçu le code ?</string>
+    <string name="resend_it">Renvoyez-le</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

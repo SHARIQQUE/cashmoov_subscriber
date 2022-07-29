@@ -333,7 +333,7 @@ public class LoginPin extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
                     ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
                     System.out.println("Login response======="+jsonObject.toString());
                     MyApplication.saveString("pin",etPin.getText().toString().trim(),loginpinC);
@@ -405,7 +405,7 @@ public class LoginPin extends AppCompatActivity {
 
                     if(jsonObject.optBoolean("reSetPinCredRequest")){
                         // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
-
+                        MyApplication.hideLoader();
                         Intent i = new Intent(loginpinC, VerifyRESETPINScreen.class);
                         startActivity(i);
                         //callLogin();
@@ -611,7 +611,6 @@ public class LoginPin extends AppCompatActivity {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -626,6 +625,8 @@ public class LoginPin extends AppCompatActivity {
                         MyApplication.isFirstTime=true;
                         MyApplication.IsPromoCalled = true;
                         MyApplication.isNotification=true;
+                        MyApplication.hideLoader();
+
                         Intent i = new Intent(loginpinC, MainActivity.class);
                         startActivity(i);
                         finish();
@@ -633,6 +634,7 @@ public class LoginPin extends AppCompatActivity {
 
 
                     } else {
+
                         Toast.makeText(loginpinC, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }

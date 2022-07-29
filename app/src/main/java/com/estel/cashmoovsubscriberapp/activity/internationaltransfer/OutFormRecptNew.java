@@ -1,4 +1,4 @@
-package com.estel.cashmoovsubscriberapp.activity.cashwithdrawal;
+package com.estel.cashmoovsubscriberapp.activity.internationaltransfer;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -11,29 +11,33 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
-import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriberConfirmScreen;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
+import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
-public class CashWithdrawalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
-    public static CashWithdrawalReceiptScreen cashdrawalreceiptscreenC;
+public class OutFormRecptNew extends AppCompatActivity implements View.OnClickListener {
+    public static OutFormRecptNew billpayreceiptC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
-    LinearLayout linConfCode,tax1_layout,tax2_layout;
+    LinearLayout tax1_layout,tax2_layout;
     View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receipt_screen);
-        cashdrawalreceiptscreenC=this;
+        setContentView(R.layout.activity_bill_pay_receipt);
+        billpayreceiptC=this;
         rootView = getWindow().getDecorView().findViewById(R.id.lin);
 
         getIds();
@@ -78,6 +82,7 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         }
     }
 
+
 //    public  void store(Bitmap bm, String fileName){
 //        final  String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
 //        File dir = new File(dirPath);
@@ -113,19 +118,16 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
 
 
     private void getIds() {
+        transId = findViewById(R.id.transId);
         btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
-        linConfCode = findViewById(R.id.linConfCode);
-        tvConfCode = findViewById(R.id.tvConfCode);
-        tvProvider = findViewById(R.id.tvProvider);
         tvTransType = findViewById(R.id.tvTransType);
         tvMobile = findViewById(R.id.tvMobile);
-        tvName = findViewById(R.id.tvName);
+        tvOperatorName = findViewById(R.id.tvOperatorName);
         tvTransId = findViewById(R.id.tvTransId);
-        tvCurrency = findViewById(R.id.tvCurrency);
         tvFee = findViewById(R.id.tvFee);
-        tvTransAmt = findViewById(R.id.tvTransAmt);
+        tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
 
@@ -136,40 +138,40 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        linConfCode.setVisibility(View.VISIBLE);
         DecimalFormat df = new DecimalFormat("0.00");
-        tvSubscriberMobile.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optJSONObject("sender").optString("mobileNumber"));
-        tvConfCode.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("confirmationCode"));
-        tvProvider.setText(CashWithdrawal.serviceProvider);
-        tvTransType.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("transactionType"));
-        tvMobile.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optJSONObject("receiver").optString("mobileNumber"));
-        tvName.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optJSONObject("receiver").optString("firstName")+" "+
-                CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optJSONObject("receiver").optString("lastName"));
-        tvTransId.setText(CashWithdrawalConfirmScreen.receiptJson.optString("transactionId"));
-        tvCurrency.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("toCurrencyName"));
-        tvFee.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("fromCurrencySymbol")+" "
-                + df.format(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
+        tvSubscriberMobile.setText(Outform.mobileNo);
+        tvTransType.setText(OutTransfer.operatorNname);
+        transId.setText(getString(R.string.vendor_trans_id_colon));
+        tvMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("mobileNumber"));
+        tvOperatorName.setText("Intech");
+        //tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("operator"));
+        tvTransId.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorTransId"));
+        tvFee.setText(Outform.currencySymbol+" "
+                + df.format(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
 
-        tvTransAmt.setText(MyApplication.addDecimal(CashWithdrawalConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("toCurrencySymbol")+" "+df.format(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optDouble("amountToPaid")));
-        tvAmountCharged.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("fromCurrencySymbol")+" "+df.format(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optDouble("amount")));
+//        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
+//        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
+//        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
+
+        tvTransAmount.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
+        tvAmountCharged.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
 
 
-        if(CashWithdrawalConfirmScreen.taxConfigList!=null){
-            if(CashWithdrawalConfirmScreen.taxConfigList.length()==1){
+        if(OutFormConfirmation.taxConfigList!=null){
+            if(OutFormConfirmation.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax1_value.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("fromCurrencySymbol")+" "+df.format(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_lable.setText(OutFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
-            if(CashWithdrawalConfirmScreen.taxConfigList.length()==2){
+            if(OutFormConfirmation.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax1_value.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("fromCurrencySymbol")+" "+df.format(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_lable.setText(OutFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
-                tax2_value.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_lable.setText(OutFormConfirmation.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
+                tax2_value.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
@@ -180,8 +182,8 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
     }
 
     private void setOnCLickListener() {
-        btnClose.setOnClickListener(cashdrawalreceiptscreenC);
-        btnShareReceipt.setOnClickListener(cashdrawalreceiptscreenC);
+        btnClose.setOnClickListener(billpayreceiptC);
+        btnShareReceipt.setOnClickListener(billpayreceiptC);
 
     }
 

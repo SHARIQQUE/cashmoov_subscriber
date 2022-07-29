@@ -19,6 +19,7 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
+import com.estel.cashmoovsubscriberapp.activity.moneytransfer.InternationalRecipientDetails;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -51,15 +52,15 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
         getIds();
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        onBackPressed();
-//        return true;
-//    }
-//
-//    private void setBackMenu() {
-//        imgBack = findViewById(R.id.imgBack);
-//        imgBack.setOnClickListener(new View.OnClickListener() {
+   @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+ //  private void setBackMenu() {
+ //       imgBack = findViewById(R.id.imgBack);
+ //      imgBack.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                onSupportNavigateUp();
@@ -98,7 +99,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
       //  tvConfCode.setText(Outform.mobileNo);
         tvCurrency.setText(Outform.currency);
         tvTransAmount.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(Outform.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(Outform.currencySymbol+" "+Outform.currencyValue);
+        tvAmountPaid.setText("XOF"+" "+Outform.currencyValue);
 
         tvFee.setText(Outform.currencySymbol+" "+Outform.fee);
 
@@ -140,7 +141,8 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            Outform.dataToSend.put( "pin",encryptionDatanew);
+                            Outform.jsonObjectNew.put( "pin",encryptionDatanew);
+
                             if(switch_button.isChecked()) {
                                 dataToSendBear.put("pin", encryptionDatanew);
                             }
@@ -245,7 +247,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                     etPin.setClickable(false);
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                    Outform.dataToSend.put( "pin",encryptionDatanew);
+                    Outform.jsonObjectNew.put( "pin",encryptionDatanew);
                     if(switch_button.isChecked()) {
                         dataToSendBear.put("pin", encryptionDatanew);
                     }
@@ -269,7 +271,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
     String ReceiptJSOn="{\"transactionId\":\"130288\",\"requestTime\":\"Fri Jun 24 06:13:03 UTC 2022\",\"responseTime\":\"Fri Jun 24 06:04:42 UTC 2022\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"remittance\":{\"code\":\"1000003209\",\"walletOwnerCode\":\"1000003966\",\"transactionType\":\"Wallet to Cash International\",\"senderCode\":\"1000003966\",\"receiverCode\":\"1000002458\",\"fromCurrencyCode\":\"100062\",\"fromCurrencyName\":\"GNF\",\"fromCurrencySymbol\":\"GNF\",\"toCurrencyCode\":\"100018\",\"toCurrencyName\":\"XOF\",\"toCurrencySymbol\":\"CFA\",\"comments\":\"test\",\"amount\":12360.0,\"amountToPaid\":670.0,\"fee\":2000.0,\"tax\":\"360.0\",\"conversionRate\":0.067,\"confirmationCode\":\"MM883846807\",\"transactionReferenceNo\":\"130288\",\"transactionDateTime\":\"2022-06-24 06:04:42\",\"sender\":{\"id\":111817,\"code\":\"1000003966\",\"firstName\":\"Rahul\",\"lastName\":\"Singh\",\"mobileNumber\":\"9910859185\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"123456\",\"idExpiryDate\":\"2021-11-09\",\"dateOfBirth\":\"1988-07-07\",\"email\":\"rahul.singh@esteltelecom.com\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"status\":\"Active\",\"creationDate\":\"2022-05-12 18:15:55\",\"modificationDate\":\"2022-06-17 14:29:43\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"ownerName\":\"Rahul\",\"regesterCountryDialCode\":\"+224\"},\"receiver\":{\"id\":2362,\"code\":\"1000002458\",\"firstName\":\"Hardy\",\"lastName\":\"Versovy\",\"mobileNumber\":\"111111111\",\"gender\":\"M\",\"countryCode\":\"100195\",\"countryName\":\"Senegal\",\"status\":\"Active\",\"creationDate\":\"2022-06-24 11:34:32\",\"createdBy\":\"102809\",\"dialCode\":\"+221\"},\"taxConfigurationList\":[{\"taxTypeCode\":\"100131\",\"taxTypeName\":\"VAT\",\"value\":360.0,\"taxAvailBy\":\"Fee Amount\"}],\"channelTypeCode\":\"100002\",\"sendCountryCode\":\"100092\",\"receiveCountryCode\":\"100195\",\"sendCountryName\":\"Guinea\",\"receiveCountryName\":\"Senegal\",\"walletToCash\":true,\"walletOwnerUserName\":\"Rahul\"}}";
 
-    public void callPostAPI(){
+    /*public void callPostAPI(){
 
         try {
             JSONObject jsonObject = new JSONObject(ReceiptJSOn);
@@ -296,7 +298,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
         }
 
-      /*  MyApplication.showloader(tosubscriberconfirmscreenC,"Please Wait...");
+      *//*  MyApplication.showloader(tosubscriberconfirmscreenC,"Please Wait...");
         JSONObject clone=null;
         try {
             if (switch_button.isChecked()) {
@@ -349,7 +351,53 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                         etPin.setClickable(true);
                         btnConfirm.setVisibility(View.VISIBLE);
                     }
-                });*/
+                });*//*
+    }*/
+
+    public void callPostAPI(){
+        MyApplication.showloader(OutFormConfirmation.this,"Please Wait...");
+      /*  String requestNo=AESEncryption.getAESEncryption(InternationalRecipientDetails.dataToSend.toString());
+        JSONObject jsonObjectA=null;
+        try{
+            jsonObjectA=new JSONObject();
+            jsonObjectA.put("request",requestNo);
+        }catch (Exception e){
+
+        }*/
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/intech/transferOut", Outform.jsonObjectNew,
+                new Api_Responce_Handler() {
+                    @Override
+                    public void success(JSONObject jsonObject) {
+                        MyApplication.hideLoader();
+                        if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                            MyApplication.showToast(OutFormConfirmation.this,jsonObject.optString("resultDescription"));
+                            receiptJson=jsonObject;
+                            JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("intechResponse");
+                            if(jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                taxConfigList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                            }else{
+                                taxConfigList=null;
+                            }
+                            btnConfirm.setVisibility(View.VISIBLE);
+                            Intent intent=new Intent(tosubscriberconfirmscreenC, TransactionSuccessScreen.class);
+                            intent.putExtra("SENDINTENT","OTOSUB");
+                            startActivity(intent);
+                            // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
+                        }else{
+                            etPin.setClickable(true);
+                            btnConfirm.setVisibility(View.VISIBLE);
+                            MyApplication.showToast(OutFormConfirmation.this,jsonObject.optString("resultDescription"));
+                        }
+                    }
+
+                    @Override
+                    public void failure(String aFalse) {
+                        MyApplication.hideLoader();
+                        etPin.setClickable(true);
+                        btnConfirm.setVisibility(View.VISIBLE);
+                    }
+                });
+
     }
 
     DecimalFormat df = new DecimalFormat("0.00");
