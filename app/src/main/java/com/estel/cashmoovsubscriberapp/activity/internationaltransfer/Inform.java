@@ -264,37 +264,6 @@ callApiWalletCountryCurrencyJSOn();
         });
         callwalletOwner();
 
-        etAmountN.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (isFormatting) {
-                    return;
-                }
-
-                if (s.length() > 0) {
-                    formatInput(etAmount,s, s.length(), s.length());
-
-                    callApiAmountDetailsstatic();
-
-                }
-
-                isFormatting = false;
-
-
-
-            }
-        });
         callApiAmountDetailsJSON();
         setOnCLickListener();
 
@@ -331,32 +300,7 @@ callApiWalletCountryCurrencyJSOn();
             return;
         }
 
-        JSONObject jsonObject=new JSONObject();
-        try {
-            jsonObject.put("serviceCode","100023");
-            jsonObject.put("serviceCategoryCode","TRTWLT");
-           // jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-            jsonObject.put("serviceProviderCode","100160");
-            jsonObject.put("requestType","transferout");
-            jsonObject.put("serviceItemId","5");
-            jsonObject.put("fromCurrencyCode","100062");
-            jsonObject.put("toCurrencyCode","100018");
-            jsonObject.put("mobileNumber","775389850");
-            jsonObject.put("amount",etAmount.getText().toString());
-            jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
-            jsonObject.put("providerServiceItemCode","100000");
-            jsonObject.put("firstName",etFname.getText().toString());
 
-            // jsonObject.put("idProofNumber","");
-            // jsonObject.put("idProofTypeCode","");
-
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Inform request======="+jsonObject.toString());
-        callsaveDataApi(jsonObject);
 
        /* if(mobileNo.toString().trim().isEmpty()) {
             new AlertDialog.Builder(this)
@@ -780,90 +724,6 @@ callApiWalletCountryCurrencyJSOn();
                                     fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-//                                    int tax = receiverFee+receiverTax;
-//                                    if(currencyValue<tax){
-//                                        tvSend.setVisibility(View.GONE);
-//                                        MyApplication.showErrorToast(tosubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
-//                                    }else{
-//                                        tvSend.setVisibility(View.VISIBLE);
-//                                    }
-
-                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                    }else{
-                                        taxConfigurationList=null;
-                                    }
-
-
-                                } else {
-                                    MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-    }
-    private void callApiAmountDetailsstatic() {
-        try {
-            //MyApplication.showloader(cashinC, "Please wait!");
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
-                            "&receiveCurrencyCode="+"100018"+
-                            "&sendCountryCode="+walletOwner.optJSONArray("walletOwnerList").optJSONObject(0).optString("registerCountryCode")
-                            +"&receiveCountryCode="+"100195"+
-                            "&currencyValue="+etAmount.getText().toString().replace(",","")+
-                            "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+"100023"
-                            +"&serviceCategoryCode="+"TRTWLT"+
-                            "&serviceProviderCode="+"100160"+
-                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC)+
-                            "&remitAgentCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC)+
-                            "&payAgentCode="+walletOwner.optJSONArray("walletOwnerList").optJSONObject(0).optString("walletOwnerCode"),
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
-                            System.out.println("ToSubscriber response======="+jsonObject.toString());
-                            if (jsonObject != null) {
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
-                                    AmountDetailsInfoModel.AmountDetails amountDetails = new AmountDetailsInfoModel.AmountDetails(
-                                            jsonObjectAmountDetails.optInt("fee"),
-                                            jsonObjectAmountDetails.optInt("receiverFee"),
-                                            jsonObjectAmountDetails.optInt("receiverTax"),
-                                            jsonObjectAmountDetails.optString("value", "N/A"),
-                                            jsonObjectAmountDetails.optString("currencyValue", "N/A")
-
-                                    );
-
-                                    AmountDetailsInfoModel amountDetailsInfoModel = new AmountDetailsInfoModel(
-                                            jsonObject.optString("transactionId", "N/A"),
-                                            jsonObject.optString("requestTime", "N/A"),
-                                            jsonObject.optString("responseTime", "N/A"),
-                                            jsonObject.optString("resultCode", "N/A"),
-                                            jsonObject.optString("resultDescription", "N/A"),
-                                            amountDetails
-                                    );
-
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                    receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                    receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    String rate = jsonObjectAmountDetails.optString("value");
-
-                                    tvRate.setText(rate);
-                                    tvFee.setText(fee);
-                                    etAmountN.setText(currencyValue);
-                                    tvAmtPaid.setText(currencyValue);
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
 //                                        tvSend.setVisibility(View.GONE);

@@ -32,8 +32,6 @@ import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfir
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
-import com.estel.cashmoovsubscriberapp.model.CountryCurrencyInfoModel;
-import com.estel.cashmoovsubscriberapp.model.CountryInfoModel;
 import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 
 import org.json.JSONArray;
@@ -49,7 +47,7 @@ import java.util.regex.Pattern;
 public class Outform extends AppCompatActivity implements View.OnClickListener {
     public static Outform tosubscriberC;
     ImageView imgBack,imgHome;
-    public  static TextView tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
+    TextView tvAmtCurr,tvSend,headText;
     AutoCompleteTextView etSubscriberNo;
     public static EditText etFname,etLname,etAmount,etAmountN;
     TextView etName,etPhone;
@@ -57,11 +55,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_CODE_QR_SCAN = 101;
     public static final int REQUEST_CODE = 1;
     private String current = "";
-    private boolean isAmt=true;
-    private boolean isAmtPaid=true;
-    public static String serviceProvider,currencyValue,fee,rate,exRateCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
-    public static ArrayList<CountryInfoModel.Country> benefiCountryModelList = new ArrayList<>();
-    public static ArrayList<CountryCurrencyInfoModel.CountryCurrency> benefiCurrencyModelList = new ArrayList<>();
+    public  static TextView tvFee,tvAmtPaid,tvRate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +64,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         tosubscriberC=this;
         setBackMenu();
         getIds();
+        callApiAmountDetailsstatic();
+
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -155,7 +151,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
 
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
-    public static String mobileNo,ownerName,lastName,confCode,currencySymbol;
+    public static String currencyValue,fee,serviceProvider,mobileNo,ownerName,lastName,confCode,currency,currencySymbol;
     public static int receiverFee,receiverTax;
 
 
@@ -168,11 +164,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         etAmountN= findViewById(R.id.etAmountN);
-        tvFee = findViewById(R.id.tvFee);
-        tvAmtPaid = findViewById(R.id.tvAmtPaid);
-        tvRate = findViewById(R.id.tvRate);
 
-        // etSubscriberNo.setText("111111111");
+       // etSubscriberNo.setText("111111111");
         //  etFname.setText("Hardy");
        // etLname.setText("Versovy");
        // etAmount.setText("10,000");
@@ -190,9 +183,42 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
 
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
+
+
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
 
+        etAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (isFormatting) {
+                    return;
+                }
+
+                if (s.length() > 0) {
+                    formatInput(etAmount,s, s.length(), s.length());
+
+                    callApiAmountDetailsstatic();
+
+                }
+
+                isFormatting = false;
+
+
+
+            }
+        });
 
 
         etSubscriberNo.setOnTouchListener(new View.OnTouchListener() {
@@ -272,177 +298,10 @@ callApiWalletCountryCurrencyJSOn();
         });
         callwalletOwner();
 
-        etAmount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-              /*  if (isFormatting) {
-                    return;
-                }*/
-
-                if (s.length() > 0) {
-                    formatInput(etAmount,s, s.length(), s.length());
-
-                    callApiAmountDetailsstatic();
-
-                }
-
-                isFormatting = false;
-
-
-
-            }
-        });
-
-
-        etAmountN.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                /*if (isFormatting) {
-                    return;
-                }*/
-
-                if(s.length()>=1) {
-                    //  formatInput(etAmountNew,s, s.length(), s.length());
-                    if(isAmtPaid){
-                        etAmount.setEnabled(false);
-                        isAmt=false;
-                       // callApiAmountDetailsNew();
-                    }else{
-                        etAmount.setEnabled(true);
-                        isAmt=true;
-                    }
-
-                }else{
-                    isAmt=true;
-                    etAmount.setEnabled(true);
-                    etAmount.getText().clear();
-                    tvFee.setText("");
-                    tvAmtPaid.setText("");
-                    tvRate.setText("");
-                }
-
-                // isFormatting = false;
-
-            }
-
-
-        });
-
         callApiAmountDetailsJSON();
         setOnCLickListener();
 
     }
-
-/*
-    private void callApiAmountDetailsNew() {
-        try {
-            //MyApplication.showloader(cashinC, "Please wait!");receiveCountryCode
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"receiveCountryCode="
-                            +benefiCountryModelList.get((Integer) spRecCountry.getTag()).getCode()+
-                            "&sendCountryCode="+"100092"
-                            +"&sendCurrencyCode="+"100062"+
-                            "&receiveCurrencyCode="+benefiCurrencyModelList.get((Integer) spBenifiCurr.getTag()).getCurrencyCode()+
-                            "&currencyValue="+etAmountN.getText().toString().trim().replace(",","")+
-                            "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
-                            "&serviceCategoryCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")+
-                            "&serviceProviderCode="+serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")+
-                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", Outform.this),
-
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
-                            System.out.println("International response======="+jsonObject.toString());
-                            if (jsonObject != null) {
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    if(etAmountNew.getText().toString().trim().replace(",","").length()>0) {
-                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
-
-                                        try {
-                                            double currValue = Double.parseDouble(etAmountNew.getText().toString().trim().replace(",",""));
-                                            double value = jsonObjectAmountDetails.optDouble("value");
-                                            if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
-                                                tvAmtPaid.setText(String.valueOf(currValue));
-                                            } else {
-                                                String finalValue = df.format(currValue / value);
-                                                // tvAmtPaid.setText(finalValue);
-                                                etAmount.setText(finalValue);
-                                            }
-
-                                        } catch (Exception e) {
-                                        }
-
-                                        currencyValue = etAmountN.getText().toString().trim().replace(",","");
-                                        //currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                        rate = jsonObjectAmountDetails.optString("value");
-                                        exRateCode = jsonObjectAmountDetails.optString("code");
-                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                        //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(rate);
-                                        tvFee.setText(fee);
-                                        // etAmountNew.setText(currencyValue);
-                                        tvAmtPaid.setText(currencyValue);
-
-//                                    int tax = receiverFee+receiverTax;
-//                                    if(currencyValue<tax){
-//                                        tvNext.setVisibility(View.GONE);
-//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
-//                                    }else{
-//                                        tvNext.setVisibility(View.VISIBLE);
-//                                    }
-
-                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                        } else {
-                                            taxConfigurationList = null;
-                                        }
-                                    }
-                                } else {
-                                    MyApplication.showToast(Outform.this,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-*/
-
 
     private void setOnCLickListener() {
         tvSend.setOnClickListener(tosubscriberC);
@@ -474,7 +333,6 @@ callApiWalletCountryCurrencyJSOn();
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_valid_amount));
             return;
         }
-
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("serviceCode","100023");
@@ -501,25 +359,6 @@ callApiWalletCountryCurrencyJSOn();
         }
         System.out.println("Inform request======="+jsonObject.toString());
         callsaveDataApi(jsonObject);
-       /* if(mobileNo.toString().trim().isEmpty()) {
-            new AlertDialog.Builder(this)
-                    //.setTitle(getString(R.string.logout))
-                    //.setIcon(R.drawable.ic_logout)
-                    .setMessage(getString(R.string.msisdn_not_reg_with_subscriber))
-                    .setNegativeButton(android.R.string.no, null)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
-                            i.putExtra("TOSUBMSISDN",etSubscriberNo.getText().toString().trim());
-                            i.putExtra("TOSUBAMOUNT",etAmount.getText().toString().trim().replace(",",""));
-                            startActivity(i);
-                            finish();
-
-                        }
-                    }).create().show();
-            return;
-        }*/
         try{
             dataToSend.put("transactionType","104591");
             dataToSend.put("desWalletOwnerCode","100100383");
@@ -545,45 +384,6 @@ callApiWalletCountryCurrencyJSOn();
         }
 
     }
-
-    private void callsaveDataApi(JSONObject jsonObject) {
-
-        MyApplication.showloader(Outform.this,"Please wait...");
-        API.POST_REQEST_TransferAMount("ewallet/api/v1/intech/transferOut", jsonObject, new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
-                MyApplication.hideLoader();
-                System.out.println("Inform response======="+jsonObject.toString());
-                if(jsonObject!=null){
-                    if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                        MyApplication.saveBool("FirstLogin",false,Outform.this);
-                        MyApplication.UserMobile=etPhone.getText().toString().trim();
-                        // subscriberWalletOwnerCode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCode");
-                        etFname.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName"));
-                        etLname.setText(jsonObject.optJSONObject("walletOwner").optString("lastName"));
-                        etPhone.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber"));
-
-
-                        Intent i=new Intent(Outform.this, InFormConfirmation.class);
-                        startActivity(i);
-                        // callApiAddSubscriberAddress(subscriberWalletOwnerCode);
-                    }else{
-                        MyApplication.showToast(Outform.this,jsonObject.optString("resultDescription"));
-                    }
-
-                }
-            }
-
-            @Override
-            public void failure(String aFalse) {
-                MyApplication.hideLoader();
-                MyApplication.showToast(Outform.this,aFalse);
-            }
-
-        });
-
-    }
-
 
     public void callwalletOwner(){
 
@@ -955,6 +755,7 @@ callApiWalletCountryCurrencyJSOn();
         }
 
     }
+
     private void callApiAmountDetailsstatic() {
         try {
             //MyApplication.showloader(cashinC, "Please wait!");
@@ -1000,6 +801,12 @@ callApiWalletCountryCurrencyJSOn();
                                     fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                    String rate = jsonObjectAmountDetails.optString("value");
+
+                                    tvRate.setText(rate);
+                                    tvFee.setText(fee);
+                                    etAmountN.setText(currencyValue);
+                                    tvAmtPaid.setText(currencyValue);
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
 //                                        tvSend.setVisibility(View.GONE);
@@ -1033,7 +840,6 @@ callApiWalletCountryCurrencyJSOn();
         }
 
     }
-
 
     private void callApiAmountDetailsJSON() {
         try {
@@ -1193,5 +999,42 @@ callApiWalletCountryCurrencyJSOn();
         }
     }
 
+    private void callsaveDataApi(JSONObject jsonObject) {
+
+        MyApplication.showloader(Outform.this,"Please wait...");
+        API.POST_REQEST_TransferAMount("ewallet/api/v1/intech/transferOut", jsonObject, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                MyApplication.hideLoader();
+                System.out.println("Inform response======="+jsonObject.toString());
+                if(jsonObject!=null){
+                    if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                        MyApplication.saveBool("FirstLogin",false,Outform.this);
+                        MyApplication.UserMobile=etPhone.getText().toString().trim();
+                        // subscriberWalletOwnerCode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCode");
+                        etFname.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName"));
+                        etLname.setText(jsonObject.optJSONObject("walletOwner").optString("lastName"));
+                        etPhone.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber"));
+
+
+                        Intent i=new Intent(Outform.this, InFormConfirmation.class);
+                        startActivity(i);
+                        // callApiAddSubscriberAddress(subscriberWalletOwnerCode);
+                    }else{
+                        MyApplication.showToast(Outform.this,jsonObject.optString("resultDescription"));
+                    }
+
+                }
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.hideLoader();
+                MyApplication.showToast(Outform.this,aFalse);
+            }
+
+        });
+
+    }
 
 }

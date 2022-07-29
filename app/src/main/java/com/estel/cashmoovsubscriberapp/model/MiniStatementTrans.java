@@ -26,6 +26,8 @@ public class MiniStatementTrans {
     private String holdingAccountCode;
     private String status;
     private double fromAmount;
+    private double fee;
+
     private double toAmount;
     private double comReceiveAmount;
     private double srcPostBalance;
@@ -42,6 +44,8 @@ public class MiniStatementTrans {
     private String fromWalletOwnerSurname;
     private String fromWalletTypeCode;
     private boolean isReverse;
+
+
 
 
     public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode, boolean isReverse) {
@@ -415,4 +419,7 @@ public class MiniStatementTrans {
     public void setReverse(boolean reverse) {
         isReverse = reverse;
     }
+
+
+
 }

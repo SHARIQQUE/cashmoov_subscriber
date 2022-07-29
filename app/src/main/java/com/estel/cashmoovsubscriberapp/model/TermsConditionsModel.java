@@ -1,8 +1,8 @@
 package com.estel.cashmoovsubscriberapp.model;
 
 public class TermsConditionsModel {
-    private int id;
-    private String title;
+        private int id;
+        private String title;
     private String description;
 
     public TermsConditionsModel(int id, String title, String description) {

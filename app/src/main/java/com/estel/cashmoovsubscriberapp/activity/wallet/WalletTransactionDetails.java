@@ -9,15 +9,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.model.Taxmodel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class WalletTransactionDetails extends AppCompatActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
-    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
+    TextView taxText,txt_trans_type_name,txt_from_owner_name,tax_value,fee_value,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
 
 
     @Override
@@ -68,6 +74,11 @@ public class WalletTransactionDetails extends AppCompatActivity {
         txt_creation_date = findViewById(R.id.txt_creation_date);
         txt_status = findViewById(R.id.txt_status);
         txt_success = findViewById(R.id.txt_success);
+        tax_value=findViewById(R.id.tax_value);
+        fee_value=findViewById(R.id.fee_value);
+
+
+        Bundle b = getIntent().getExtras();
 
         if (getIntent().getExtras() != null) {
             String transType = (getIntent().getStringExtra("TRANSTYPE"));
@@ -76,12 +87,32 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String transId = (getIntent().getStringExtra("TRANSID"));
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
+            String tax = (getIntent().getStringExtra("taxvalue"));
+            double result = b.getDouble("newamount");
+
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText(fromOwnerName);
             txt_from_amount.setText(fromAmount);
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
+            fee_value.setText("Fee :  "+"" +result);
+
+            Gson gson = new Gson();
+
+            Type userListType = new TypeToken<ArrayList<Taxmodel>>(){}.getType();
+
+            ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
+
+            for(Taxmodel user : userArray) {
+                tax_value.setText(user.getTaxTypeName()+" :"+ " "+ user.getValue());
+
+                System.out.println("get user"+user.getTaxTypeName());
+            }
+
+
+
+            // taxText.setText(tax);
             try {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");

@@ -326,13 +326,17 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optString("transactionTypeCode").trim(),
                                                     data.optString("transactionTypeName").trim(),
                                                     data.optString("creationDate").trim(),
+
                                                     data.optString("comReceiveWalletCode").trim(),
-                                                    data.optString("taxAsJson").trim(),
+
+                                                    data.optString("taxAsJson"),
                                                     data.optString("holdingAccountCode").trim(),
                                                     data.optString("status").trim(),
+
                                                     data.optDouble("fromAmount"),
-                                                    data.optDouble("toAmount"),
                                                     data.optDouble("comReceiveAmount"),
+
+                                                    data.optDouble("toAmount"),
                                                     data.optDouble("srcPostBalance"),
                                                     data.optDouble("srcPreviousBalance"),
                                                     data.optDouble("destPreviousBalance"),
@@ -340,9 +344,12 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optDouble("commissionAmountForInstitute"),
                                                     data.optDouble("commissionAmountForAgent"),
                                                     data.optDouble("commissionAmountForBranch"),
+
                                                     data.optDouble("commissionAmountForMerchant"),
                                                     data.optDouble("commissionAmountForOutlet"),
                                                     data.optDouble("transactionAmount"),
+
+
                                                     data.optDouble("principalAmount"),
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
@@ -384,7 +391,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status,double comReceiveAmount,String tax) {
         String name="";
         if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
             name = walletOwnerMsisdn;
@@ -398,6 +405,10 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
+
+        intent.putExtra("taxvalue",tax);
+        intent.putExtra("newamount",comReceiveAmount);
+
         startActivity(intent);
     }
 

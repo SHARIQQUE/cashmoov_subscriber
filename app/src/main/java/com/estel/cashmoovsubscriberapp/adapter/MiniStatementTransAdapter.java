@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -32,6 +34,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         this.miniStatementTransList = miniStatementTransList;
         miniStatemetListners = (MiniStatemetListners) context;
     }
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -113,13 +116,18 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
                                 miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+
+
+                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson());
+
                     }
                     if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
                                 miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+
+
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson());
                     }
 
             }

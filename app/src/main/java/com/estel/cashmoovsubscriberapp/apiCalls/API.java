@@ -28,7 +28,7 @@ public class API {
     private static final String TAG = "API CALLS";
 
     //public static String BASEURL="http://202.131.144.130:8081/";         //QA
-    //public static String BASEURL="http://202.131.144.129:8081/";           //UAT
+   // public static String BASEURL="http://202.131.144.129:8081/";           //UAT
     public static String BASEURL="https://cashmoovmm.com:8081/";
 
     public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
