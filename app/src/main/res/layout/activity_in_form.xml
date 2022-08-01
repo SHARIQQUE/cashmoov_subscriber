@@ -306,7 +306,7 @@
                         android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"/>
                     <EditText
-                        android:id="@+id/etAmountN"
+                        android:id="@+id/etAmount"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.8"
@@ -343,7 +343,7 @@
                         android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"/>
                     <EditText
-                        android:id="@+id/etAmount"
+                        android:id="@+id/etAmountN"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.8"

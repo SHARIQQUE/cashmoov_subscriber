@@ -47,6 +47,7 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
     public static Inform tosubscriberC;
     ImageView imgBack,imgHome;
     public  static TextView tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
+    public static String serviceProvider,currencyValue,fee,rate,exRateCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
 
     AutoCompleteTextView etSubscriberNo;
     public static EditText etFname,etLname,etAmount,etAmountN;
@@ -148,9 +149,9 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
 
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
-    public static String currencyValue,fee,serviceProvider,mobileNo,ownerName,lastName,confCode,currency,currencySymbol;
     public static int receiverFee,receiverTax;
 
+    public static String mobileNo,ownerName,lastName,confCode,currencySymbol;
 
     private void getIds() {
         etName = findViewById(R.id.etName);
@@ -179,6 +180,10 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         tvSend = findViewById(R.id.tvSend);
         etFname.setEnabled(true);
         etLname.setEnabled(true);
+
+        etSubscriberNo.setText("775389850");
+        etFname.setText("Sandeep");
+        etLname.setText("Singh");
 
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
@@ -263,11 +268,121 @@ callApiWalletCountryCurrencyJSOn();
             }
         });
         callwalletOwner();
+        etAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (isFormatting) {
+                    return;
+                }
+
+                if (s.length() > 0) {
+                    formatInput(etAmount,s, s.length(), s.length());
+
+                    callApiAmountDetailsstatic();
+
+                }
+
+                if(s.length()==0){
+                    tvFee.setText("");
+                    tvRate.setText("");
+                    etAmountN.setText("");
+                }
+
+                isFormatting = false;
+
+
+
+            }
+        });
 
         callApiAmountDetailsJSON();
         setOnCLickListener();
 
     }
+
+    private void callApiAmountDetailsstatic() {
+        try {
+            //MyApplication.showloader(cashinC, "Please wait!");
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
+                            "&receiveCurrencyCode="+"100018"+
+                            "&sendCountryCode="+"100092"
+                            +"&receiveCountryCode="+"100195"+
+                            "&currencyValue="+etAmount.getText().toString().replace(",","")+
+                            "&channelTypeCode="+MyApplication.channelTypeCode+
+                            "&serviceCode="+"100000"
+                            +"&serviceCategoryCode="+"INTREM"+
+                            "&serviceProviderCode="+"100163"+
+                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            // MyApplication.hideLoader();
+                            System.out.println("International response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    if(etAmount.getText().toString().trim().replace(",","").length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+
+                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        rate = jsonObjectAmountDetails.optString("value");
+                                        exRateCode = jsonObjectAmountDetails.optString("code");
+                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        tvRate.setText(rate);
+                                        tvFee.setText(fee);
+                                        etAmountN.setText(currencyValue);
+                                        // tvAmtPaid.setText(currencyValue);
+
+
+//                                    int tax = receiverFee+receiverTax;
+//                                    if(currencyValue<tax){
+//                                        tvNext.setVisibility(View.GONE);
+//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
+//                                    }else{
+//                                        tvNext.setVisibility(View.VISIBLE);
+//                                    }
+
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                        } else {
+                                            taxConfigurationList = null;
+                                        }
+
+                                    }
+
+
+                                } else {
+                                    MyApplication.showToast(Inform.this,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
 
     private void setOnCLickListener() {
         tvSend.setOnClickListener(tosubscriberC);
@@ -278,6 +393,7 @@ callApiWalletCountryCurrencyJSOn();
 
 
 
+    public static JSONObject jsonObjectNew=new JSONObject();
     @Override
     public void onClick(View view) {
         if(etSubscriberNo.getText().toString().trim().isEmpty()) {
@@ -301,7 +417,35 @@ callApiWalletCountryCurrencyJSOn();
         }
 
 
+        try {
+            jsonObjectNew.put("channel","SELFCARE");
+            jsonObjectNew.put("serviceCode","100023");
+            jsonObjectNew.put("serviceCategoryCode","TRTWLT");
+            // jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
+            jsonObjectNew.put("serviceProviderCode","100160");
+            jsonObjectNew.put("requestType","transferout");
+            jsonObjectNew.put("serviceItemId","5");
+            jsonObjectNew.put("fromCurrencyCode","100062");
+            jsonObjectNew.put("toCurrencyCode","100018");
+            jsonObjectNew.put("mobileNumber","775389850");
+            jsonObjectNew.put("amount",etAmount.getText().toString());
+            //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
+            jsonObjectNew.put("providerServiceItemCode","100000");
+            jsonObjectNew.put("firstName",etFname.getText().toString());
+            // jsonObjectNew.put("lastName",etLname.getText().toString());
 
+            // jsonObject.put("idProofNumber","");
+            // jsonObject.put("idProofTypeCode","");
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Inform request======="+jsonObjectNew.toString());
+        Intent i=new Intent(Inform.this, InFormConfirmation.class);
+        startActivity(i);
+        // callsaveDataApi(jsonObjectNew);
        /* if(mobileNo.toString().trim().isEmpty()) {
             new AlertDialog.Builder(this)
                     //.setTitle(getString(R.string.logout))
@@ -339,8 +483,8 @@ callApiWalletCountryCurrencyJSOn();
             dataToSend.put("transactionArea",MainActivity.transactionArea);
             dataToSend.put("isGpsOn",true);
 
-            Intent i=new Intent(tosubscriberC, InFormConfirmation.class);
-            startActivity(i);
+            Intent in=new Intent(tosubscriberC, InFormConfirmation.class);
+            startActivity(in);
         }catch (Exception e){
 
         }

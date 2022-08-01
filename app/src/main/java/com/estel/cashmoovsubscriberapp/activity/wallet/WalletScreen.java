@@ -247,8 +247,10 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 tvCurrency.setText(getString(R.string.your_currency)+" :  "+data.optString("currencyName"));
-                                                tvBalance.setText(data.optString("value")+" "+data.optString("currencySymbol"));
+                                                tvBalance.setText(data.optInt("value")+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
+
+                                                System.out.println("get value"+data.optString("value"));
                                             }
 
                                         }

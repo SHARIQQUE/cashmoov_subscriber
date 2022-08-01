@@ -97,18 +97,24 @@ public class WalletTransactionDetails extends AppCompatActivity {
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
             fee_value.setText("Fee :  "+"" +result);
+            try {
 
             Gson gson = new Gson();
 
             Type userListType = new TypeToken<ArrayList<Taxmodel>>(){}.getType();
 
             ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
+                for(Taxmodel user : userArray) {
+                    tax_value.setText(user.getTaxTypeName() + " :" + " " + user.getValue());
 
-            for(Taxmodel user : userArray) {
-                tax_value.setText(user.getTaxTypeName()+" :"+ " "+ user.getValue());
+                    System.out.println("get user" + user.getTaxTypeName());
+                }
 
-                System.out.println("get user"+user.getTaxTypeName());
+
+            } catch (Exception e) {
+
             }
+
 
 
 

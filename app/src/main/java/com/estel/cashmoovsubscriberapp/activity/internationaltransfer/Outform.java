@@ -274,43 +274,43 @@ callApiWalletCountryCurrencyJSOn();
         });
         callwalletOwner();
 
-        etAmount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-               if (isFormatting) {
-                    return;
-                }
-
-                if (s.length() > 0) {
-                    formatInput(etAmount,s, s.length(), s.length());
-
-                    callApiAmountDetailsstatic();
+            etAmount.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 }
 
-                if(s.length()==0){
-                    tvFee.setText("");
-                    tvRate.setText("");
-                    etAmountN.setText("");
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
                 }
 
-                isFormatting = false;
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                   if (isFormatting) {
+                        return;
+                    }
+
+                    if (s.length() > 0) {
+                        formatInput(etAmount,s, s.length(), s.length());
+
+                        callApiAmountDetailsstatic();
+
+                    }
+
+                    if(s.length()==0){
+                        tvFee.setText("");
+                        tvRate.setText("");
+                        etAmountN.setText("");
+                    }
+
+                    isFormatting = false;
 
 
 
-            }
-        });
+                }
+            });
 
 
         etAmountN.addTextChangedListener(new TextWatcher() {
@@ -510,8 +510,7 @@ callApiWalletCountryCurrencyJSOn();
             e.printStackTrace();
         }
         System.out.println("Inform request======="+jsonObjectNew.toString());
-        Intent i=new Intent(Outform.this, InFormConfirmation.class);
-        startActivity(i);
+
        // callsaveDataApi(jsonObjectNew);
        /* if(mobileNo.toString().trim().isEmpty()) {
             new AlertDialog.Builder(this)

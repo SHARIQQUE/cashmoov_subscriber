@@ -92,8 +92,8 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
         vat_label_layout=findViewById(R.id.vat_label_layout);
 
         tvProvider.setText(Inform.serviceProvider);
-        tvMobile.setText(Inform.mobileNo);
-        tvName.setText(Inform.ownerName+" "+Inform.lastName);
+        tvMobile.setText("775389850");
+        tvName.setText("Sandeep"+" "+"Singh");
       //  tvConfCode.setText(Inform.mobileNo);
         tvCurrency.setText(Inform.currency);
         tvTransAmount.setText("XOF"+" "+MyApplication.addDecimal(Inform.etAmountN.getText().toString().replace(",","")));
