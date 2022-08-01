@@ -722,7 +722,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         startActivity(i);
                         finish();
 
-                        MyApplication.hideLoader();
+                        //MyApplication.hideLoader();
 
                     } else {
                         Toast.makeText(phnoregistrationccreenC, resultDescription, Toast.LENGTH_LONG).show();

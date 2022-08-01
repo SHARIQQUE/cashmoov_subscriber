@@ -625,13 +625,13 @@ public class LoginPin extends AppCompatActivity {
                         MyApplication.isFirstTime=true;
                         MyApplication.IsPromoCalled = true;
                         MyApplication.isNotification=true;
-                        MyApplication.hideLoader();
+
 
                         Intent i = new Intent(loginpinC, MainActivity.class);
                         startActivity(i);
                         finish();
                         Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
-
+                        //MyApplication.hideLoader();
 
                     } else {
 

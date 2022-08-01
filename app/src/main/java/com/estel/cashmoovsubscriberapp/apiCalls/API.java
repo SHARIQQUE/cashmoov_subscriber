@@ -242,7 +242,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
 
 
                         responce_handler.success(response);
@@ -320,7 +320,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
 
 
                         responce_handler.success(response);
@@ -398,7 +398,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
 
 
                         responce_handler.success(response);
@@ -471,8 +471,9 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         if(response.optString("resultCode").equalsIgnoreCase("1059")) {
+                            MyApplication.hideLoader();
                             responce_handler.failure(response.optString("resultDescription"));
                         }else{
                             responce_handler.success(response);
@@ -536,7 +537,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         responce_handler.success(response);
 
                         Log.d(TAG, "onResponse object : " + response.toString());
@@ -592,7 +593,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         responce_handler.success(response);
 
                         Log.d(TAG, "onResponse sonu object : " + response.toString());
@@ -914,7 +915,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         responce_handler.success(response);
                         Log.d(TAG, "onResponse object : " + response.toString());
                     }
@@ -977,7 +978,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         responce_handler.success(response);
                         Log.d(TAG, "onResponse object : " + response.toString());
                     }
@@ -1043,7 +1044,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         responce_handler.success(response);
                         Log.d(TAG, "onResponse object : " + response.toString());
                     }
@@ -1404,10 +1405,11 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
                         if(response.optBoolean("success")) {
                             responce_handler.success(response);
                         }else{
+                            MyApplication.hideLoader();
                             responce_handler.failure(response.optString("errorMessage"));
                         }
                         Log.d(TAG, "onResponse object : " + response.toString());
@@ -1593,7 +1595,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
 
                         responce_handler.success(response);
 
@@ -1657,7 +1659,7 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MyApplication.hideLoader();
+
 
                         responce_handler.success(response);
 

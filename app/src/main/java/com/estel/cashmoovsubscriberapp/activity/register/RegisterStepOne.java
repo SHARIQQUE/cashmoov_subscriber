@@ -50,7 +50,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class RegisterStepOne extends AppCompatActivity implements View.OnClickListener {
 
     public static RegisterStepOne registersteponeC;
-    public static String subscriberWalletOwnerCode;
+    public static String subscriberWalletOwnerCode="";
     DatePickerDialog picker;
     public static EditText etFname,etLname,etPhone,etEmail,etAddress,etDob;
     TextView tvNext,spRegion,spCity,spGender,spOccupation;
@@ -78,7 +78,9 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_stepone);
         registersteponeC=this;
+        MyApplication.saveString("TempSubscriberCode","",registersteponeC);
         getIds();
+
 
     }
 
@@ -290,6 +292,9 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     jsonObject.put("city",cityModelList.get((Integer) spCity.getTag()).getCode());
                     jsonObject.put("addressLine1",etAddress.getText().toString().trim());
 
+
+                    //MyApplication.saveString("TempSubscriberCode",subscriberWalletOwnerCode,registersteponeC);
+                    jsonObject.put("code",MyApplication.getSaveString("TempSubscriberCode",registersteponeC));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -569,12 +574,14 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                         MyApplication.saveBool("FirstLogin",false,registersteponeC);
                         MyApplication.UserMobile=etPhone.getText().toString().trim();
+
                         subscriberWalletOwnerCode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCode");
                         etFname.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName"));
                         etLname.setText(jsonObject.optJSONObject("walletOwner").optString("lastName"));
                         etPhone.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber"));
                         etEmail.setText(jsonObject.optJSONObject("walletOwner").optString("email"));
                         etDob.setText(jsonObject.optJSONObject("walletOwner").optString("dateOfBirth"));
+                        MyApplication.saveString("TempSubscriberCode",subscriberWalletOwnerCode,registersteponeC);
                         if(jsonObject.optJSONObject("walletOwner").optString("gender").equalsIgnoreCase("M")){
                             spGender.setText("Male");
                         } if(jsonObject.optJSONObject("walletOwner").optString("gender").equalsIgnoreCase("F")){

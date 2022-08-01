@@ -314,7 +314,7 @@
                         <ImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            app:srcCompat="@drawable/baseline_swipe_left_alt_black_24dp"
+                            app:srcCompat="@drawable/baseline_swipe_right_alt_black_24dp"
                             android:scaleType="centerCrop"
                             app:tint="@color/colorPrimary"/>
 
@@ -327,7 +327,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
-                            android:text="In International Transfer" />
+                            android:text="Wallet International" />
                     </LinearLayout>
 
 
