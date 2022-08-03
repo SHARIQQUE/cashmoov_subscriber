@@ -263,7 +263,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                                 dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
                                 dataToSend.put("transactionArea",MainActivity.transactionArea);
                                 dataToSend.put("isGpsOn",true);
-
+                                dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
                                 System.out.println("Data Send "+dataToSend.toString());
 
                                 etPin.setClickable(false);
@@ -403,7 +403,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     dataToSend.put("transactionCoordinate", MainActivity.transactionCoordinate);
                     dataToSend.put("transactionArea", MainActivity.transactionArea);
                     dataToSend.put("isGpsOn", true);
-
+                    dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
                     System.out.println("Data Send " + dataToSend.toString());
 
                     etPin.setClickable(false);
@@ -695,7 +695,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                 public void success(JSONObject jsonObject) {
 
 
-
+                    MyApplication.hideLoader();
                     if (jsonObject != null) {
                         if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
@@ -721,6 +721,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
                 @Override
                 public void failure(String aFalse) {
+                    MyApplication.hideLoader();
                     step2=false;
                     MyApplication.showToast(ReceiveRemittance.this,aFalse);
 
@@ -749,6 +750,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
            API.POST_GET_OTP("ewallet/api/v1/otp", jsonObject, new Api_Responce_Handler() {
                @Override
                public void success(JSONObject jsonObject) {
+                   MyApplication.hideLoader();
                    if (jsonObject != null) {
                        if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                             MyApplication.showToast(receiveremittanceC,jsonObject.optString("resultDescription", "N/A"));
@@ -766,6 +768,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
                @Override
                public void failure(String aFalse) {
+                   MyApplication.hideLoader();
                    step1=false;
                    MyApplication.showToast(ReceiveRemittance.this,aFalse);
 

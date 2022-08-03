@@ -278,8 +278,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     jsonObject.put("email",etEmail.getText().toString().trim());
                     jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
-                    // jsonObject.put("idProofNumber","");
-                    // jsonObject.put("idProofTypeCode","");
+                    //jsonObject.put("idProofNumber","");
+                    //jsonObject.put("idProofTypeCode","");
 
                     jsonObject.put("issuingCountryCode","100092");
                     jsonObject.put("registerCountryCode","100092");
