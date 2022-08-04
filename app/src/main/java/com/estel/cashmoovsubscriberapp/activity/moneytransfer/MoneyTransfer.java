@@ -18,7 +18,7 @@ import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.OutTransfe
 public class MoneyTransfer extends AppCompatActivity implements View.OnClickListener {
     public static MoneyTransfer moneytransferC;
     ImageView imgBack,imgHome;
-    CardView cardToSubscriber,cardToNonSubscriber,cardInternational,cardBankToWallet,cardWalletToBank,cardInternationalIn;
+    CardView cardToreceiveinternational,cardToSubscriber,cardToNonSubscriber,cardInternational,cardBankToWallet,cardWalletToBank,cardInternationalIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +62,10 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
     private void getIds() {
         cardToSubscriber = findViewById(R.id.cardToSubscriber);
         cardToNonSubscriber = findViewById(R.id.cardToNonSubscriber);
-        cardInternational = findViewById(R.id.cardInternational);
         cardInternationalIn = findViewById(R.id.cardInternationalIn);
         cardBankToWallet = findViewById(R.id.cardBankToWallet);
         cardWalletToBank = findViewById(R.id.cardWalletToBank);
+        cardToreceiveinternational=findViewById(R.id.cardToreceiveinternational);
 
         cardBankToWallet.setVisibility(View.GONE);
         cardWalletToBank.setVisibility(View.GONE);
@@ -77,10 +77,10 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
     private void setOnCLickListener() {
         cardToSubscriber.setOnClickListener(moneytransferC);
         cardToNonSubscriber.setOnClickListener(moneytransferC);
-        cardInternational.setOnClickListener(moneytransferC);
         cardInternationalIn.setOnClickListener(moneytransferC);
         cardBankToWallet.setOnClickListener(moneytransferC);
         cardWalletToBank.setOnClickListener(moneytransferC);
+        cardToreceiveinternational.setOnClickListener(moneytransferC);
     }
 
     @Override
@@ -96,6 +96,16 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                     startActivity(intent);
                 }
                 break;
+
+            case R.id.cardToreceiveinternational:
+                if(!MyApplication.showToSubscriber){
+                    // cardToSubscriber.setVisibility(View.VISIBLE);
+                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
+                }else{
+                    intent = new Intent(moneytransferC, InTransfer.class);
+                    startActivity(intent);
+                }
+                break;
             case R.id.cardToNonSubscriber:
                 if(!MyApplication.showToNonSubscriber){
                     //cardToNonSubscriber.setVisibility(View.VISIBLE);
@@ -105,25 +115,17 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                     startActivity(intent);
                 }
                 break;
-            case R.id.cardInternational:
-                if(!MyApplication.showInternationalRemit){
-                    //cardInternational.setVisibility(View.VISIBLE);
-                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
-                }else {
-                    intent = new Intent(moneytransferC, International.class);
-                    startActivity(intent);
-                }
-                break;
-
             case R.id.cardInternationalIn:
                 if(!MyApplication.showInternationalRemit){
                     //cardInternational.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
                 }else {
-                    intent = new Intent(moneytransferC, OutTransfer.class);
+                    intent = new Intent(moneytransferC, MoneyOutboundTransfer.class);
                     startActivity(intent);
                 }
                 break;
+
+
             case R.id.cardBankToWallet:
                 MyApplication.showToast(moneytransferC,"Coming soon...");
 //                intent = new Intent(moneytransferC, BankToWallet.class);

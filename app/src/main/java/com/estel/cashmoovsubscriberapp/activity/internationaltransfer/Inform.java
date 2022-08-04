@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -32,6 +33,8 @@ import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriber;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
+import com.estel.cashmoovsubscriberapp.model.CountryCurrencyInfoModel;
+import com.estel.cashmoovsubscriberapp.model.CountryInfoModel;
 import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 
 import org.json.JSONArray;
@@ -43,19 +46,35 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
+
 public class Inform extends AppCompatActivity implements View.OnClickListener {
     public static Inform tosubscriberC;
     ImageView imgBack,imgHome;
-    public  static TextView tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
+    public  static TextView spBenifiCurr,spCountry,tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
     public static String serviceProvider,currencyValue,fee,rate,exRateCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
 
     AutoCompleteTextView etSubscriberNo;
     public static EditText etFname,etLname,etAmount,etAmountN;
-    TextView etName,etPhone;
+    TextView etName,etPhone,tvAmtCurrN;
     private boolean isQR;
     private static final int REQUEST_CODE_QR_SCAN = 101;
     public static final int REQUEST_CODE = 1;
     private String current = "";
+
+    private ArrayList<String> benefiCurrencyList = new ArrayList<>();
+    public static ArrayList<CountryCurrencyInfoModel.CountryCurrency> benefiCurrencyModelList = new ArrayList<>();
+
+    private ArrayList<String> benefiCountryList = new ArrayList<>();
+    public static ArrayList<CountryInfoModel.Country> benefiCountryModelList = new ArrayList<>();
+
+    SpinnerDialog spinnerDialogBenefiCountry;
+
+    private String  countrycode;
+    private LinearLayout xofAmountLinear;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +183,9 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         etAmountN= findViewById(R.id.etAmountN);
         tvRate = findViewById(R.id.tvRate);
         tvFee = findViewById(R.id.tvFee);
-
+        tvAmtCurrN=findViewById(R.id.tvAmtCurrN);
+        spCountry = findViewById(R.id.spinner_senderCountry);
+        xofAmountLinear=findViewById(R.id.xofAmountLinear);
        // etSubscriberNo.setText("111111111");
        // etFname.setText("Ravi");
        // etLname.setText("Singh");
@@ -189,6 +210,15 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         Pattern p = Pattern.compile(regex);
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
+
+        callApiCountry();
+        spCountry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogBenefiCountry!=null)
+                    spinnerDialogBenefiCountry.showSpinerDialog();
+            }
+        });
 
 
 
@@ -314,8 +344,8 @@ callApiWalletCountryCurrencyJSOn();
     private void callApiAmountDetailsstatic() {
         try {
             //MyApplication.showloader(cashinC, "Please wait!");
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
-                            "&receiveCurrencyCode="+"100018"+
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"receiveCountryCode="
+                            +benefiCountryModelList.get((Integer) spCountry.getTag()).getCode()+
                             "&sendCountryCode="+"100092"
                             +"&receiveCountryCode="+"100195"+
                             "&currencyValue="+etAmount.getText().toString().replace(",","")+
@@ -404,6 +434,14 @@ callApiWalletCountryCurrencyJSOn();
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_subscriber_no_val));
             return;
         }
+
+        if(spCountry.getText().toString().equals(getString(R.string.valid_select_rec_country))) {
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_select_country));
+            return;
+        }
+
+
+
         if(etAmount.getText().toString().trim().trim().replace(",","").isEmpty()) {
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_amount));
             return;
@@ -1095,6 +1133,80 @@ callApiWalletCountryCurrencyJSOn();
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
+    }
+    private void callApiCountry() {
+        try {
+
+            API.GET("ewallet/api/v1/country/all",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            if (jsonObject != null) {
+                                benefiCountryList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        if (!MyApplication.getSaveString("userCountryCode", tosubscriberC).equalsIgnoreCase(data.optString("code"))) {
+                                            benefiCountryModelList.add(new CountryInfoModel.Country(
+                                                    data.optInt("id"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("code"),
+                                                    data.optString("isoCode"),
+                                                    data.optString("name"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("status"),
+                                                    data.optString("dialCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("creationDate"),
+                                                    data.optBoolean("subscriberAllowed")
+                                            ));
+
+                                            benefiCountryList.add(data.optString("name").trim());
+
+                                        }
+                                    }
+
+                                    spinnerDialogBenefiCountry= new SpinnerDialog(tosubscriberC, benefiCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiCountry.setCancellable(true); // for cancellable
+                                    spinnerDialogBenefiCountry.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogBenefiCountry.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCountry.setText(item);
+                                            spCountry.setTag(position);
+                                             countrycode=benefiCountryModelList.get(position).getCurrencyCode();
+                                            tvAmtCurrN.setVisibility(View.VISIBLE);
+                                             tvAmtCurrN.setText(countrycode);
+                                            xofAmountLinear.setVisibility(View.VISIBLE);
+
+                                          //  spBenifiCurr.setText(getString(R.string.valid_select_benifi_curr));
+                                            //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            //callApiCurrency(benefiCountryModelList.get(position).getCode());
+                                        }
+                                    });
+
+
+                                } else {
+                                    MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 

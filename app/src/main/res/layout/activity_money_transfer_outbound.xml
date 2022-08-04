@@ -56,7 +56,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardToSubscriber"
+                        android:id="@+id/cardCashmoov"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_100sdp"
                         app:cardCornerRadius="14dp"
@@ -87,7 +87,7 @@
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:fontFamily="@font/aileron_bold"
                                 android:gravity="center_horizontal"
-                                android:text="@string/subscriber"
+                                android:text="@string/Cashmoov"
                                 />
 
 
@@ -97,7 +97,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardToNonSubscriber"
+                        android:id="@+id/cardToPartners"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_100sdp"
                         app:cardCornerRadius="14dp"
@@ -129,7 +129,7 @@
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:fontFamily="@font/aileron_bold"
                                 android:gravity="center_horizontal"
-                                android:text="@string/non_subscriber"
+                                android:text="@string/Parteners"
                                 />
 
 
@@ -140,7 +140,9 @@
 
                 </LinearLayout>
 
+
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
                     android:id="@+id/cardInternationalIn"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -160,7 +162,7 @@
                         <ImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            app:srcCompat="@drawable/ic_baseline_language_24"
+                            app:srcCompat="@drawable/baseline_swipe_right_alt_black_24dp"
                             android:scaleType="centerCrop"/>
 
                         <TextView
@@ -172,49 +174,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
-                            android:text="@string/international"
-                            />
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:visibility="visible"
-                    android:id="@+id/cardToreceiveinternational"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    app:cardCornerRadius="14dp"
-                    android:layout_weight="1"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="#ffffff">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_gravity="center"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            app:srcCompat="@drawable/ic_baseline_language_24"
-                            android:scaleType="centerCrop"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/_13sdp"
-                            android:textColor="#3a3a3a"
-                            android:lineSpacingExtra="2sp"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/aileron_bold"
-                            android:gravity="center_horizontal"
-                            android:text="Receive International"
+                            android:text="Wallet International"
                             />
 
 

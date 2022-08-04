@@ -280,9 +280,14 @@
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_15sdp"/>
 
+                <TextView
+                    android:id="@+id/spinner_senderCountry"
+                    android:text="@string/sedingcountry"
+                    style="@style/SpinnerStyleNew1"/>
 
 
                 <LinearLayout
+                    android:id="@+id/xofAmountLinear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -290,6 +295,8 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:paddingLeft="@dimen/_15sdp"
+                    android:visibility="gone"
+
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
@@ -303,6 +310,7 @@
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"
                         android:text="XOF"
+                        android:visibility="gone"
                         android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"/>
                     <EditText

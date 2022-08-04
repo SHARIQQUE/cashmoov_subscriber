@@ -125,6 +125,10 @@
     <string name="subscriber">Subscriber</string>
     <string name="non_subscriber">Non Subscriber</string>
     <string name="international">International</string>
+    <string name="receiveinternational">Receive International</string>
+    <string name="Cashmoov">Cashmoov</string>
+    <string name="Parteners">Partners</string>
+
     <string name="bank_to_wallet">Bank to wallet</string>
     <string name="wallet_to_bank">wallet to Bank</string>
     <string name="money_transfer_to_subscriber">Money transfer to subscriber</string>
@@ -338,6 +342,9 @@
     <string name="trans_id">Transaction Id</string>
     <string name="source">Source</string>
     <string name="destination">Destination</string>
+    <string name="destinationcountry">Destination Country</string>
+    <string name="sedingcountry">Sending Country</string>
+
     <string name="source_msisdn">Source MSISDN</string>
     <string name="dest_msisdn">Destination MSISDN</string>
     <string name="recharge_no">Recharge Number</string>

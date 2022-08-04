@@ -213,6 +213,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
 
+        <activity android:name=".activity.moneytransfer.MoneyOutboundTransfer"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
         <activity android:name=".activity.internationaltransfer.InternationalTransferOption"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
@@ -476,6 +481,7 @@
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"

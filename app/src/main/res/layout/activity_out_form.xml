@@ -282,8 +282,14 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_15sdp"/>
+                <TextView
+                    android:id="@+id/spinner_destinaioncountry"
+                    android:text="@string/destinationcountry"
+                    style="@style/SpinnerStyleNew1"/>
+
 
                 <LinearLayout
+                    android:id="@+id/xofAmountLinear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -293,6 +299,7 @@
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
+                    android:visibility="gone"
                     android:paddingEnd="@dimen/_15sdp"
                     android:layout_gravity="center_vertical">
 
@@ -304,6 +311,7 @@
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"
                         android:text="GNF"
+                        android:visibility="gone"
                         android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"/>
                 <EditText

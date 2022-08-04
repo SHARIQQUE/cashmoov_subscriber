@@ -248,6 +248,8 @@ public class International extends AppCompatActivity implements View.OnClickList
             MyApplication.showErrorToast(internationalC,getString(R.string.val_select_country));
             return;
         }
+
+
         if(spBenifiCurr.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
             MyApplication.showErrorToast(internationalC,getString(R.string.val_select_curr));
             return;

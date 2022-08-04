@@ -83,8 +83,13 @@ TextView  opt_text;
         rvOperator = findViewById(R.id.rvOperator);
         opt_text = findViewById(R.id.opt_text);
         opt_text.setText("Choose the Service");
+
+
         callJSON();
-       // callwalletOwner();
+
+      //  CallApiOutboundServiceJsonList();
+
+        // callwalletOwner();
     }
 
     public static String serviceProvider,mobile,currency,currencySymbol;
@@ -129,7 +134,8 @@ TextView  opt_text;
         });
 
        // callApioperatorProvider();
-        callJSON();
+        //callJSON();
+        CallApiOutboundServiceJsonList();
 
     }
 
@@ -194,6 +200,58 @@ TextView  opt_text;
 
     }
 
+
+    public  void CallApiOutboundServiceJsonList(){
+        MyApplication.showloader(OutTransfer.this,"Please wait");
+        API.GETPreProd("http://180.179.201.109:8081/ewallet/api/v1/serviceProvider/serviceCategory/TRTWLT",
+                new Api_Responce_Handler() {
+                    @Override
+                    public void success(JSONObject jsonObject) {
+                        MyApplication.hideLoader();
+                        if (jsonObject != null) {
+
+                            //serviceProviderModelList.clear();
+                            if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+                                serviceCategory = jsonObject;
+                                JSONArray walletOwnerListArr = serviceCategory.optJSONArray("providerserviceitemslist");
+                                if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        serviceProviderModelList.add(new OutTransferModel.OutModel(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("serviceCode"),
+                                                data.optString("serviceCategoryCode"),
+                                                data.optString("serviceProviderCode"),
+                                                data.optString("serviceItemId"),
+                                                data.optString("nameFr"),
+                                                data.optString("name"),
+                                                data.optString("status"),
+                                                data.optString("state"),
+                                                data.optString("creationDate")
+                                        ));
+
+                                    }
+
+                                    setData(serviceProviderModelList);
+                                }
+
+                            } else {
+                                MyApplication.showToast(billpayC,jsonObject.optString("resultDescription", "N/A"));
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void failure(String aFalse) {
+                        MyApplication.hideLoader();
+
+                    }
+                });
+    }
     private void callJSON() {
         try {
             JSONObject jsonObject=new JSONObject("{\n" +

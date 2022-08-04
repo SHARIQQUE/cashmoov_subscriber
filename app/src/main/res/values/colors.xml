@@ -12,6 +12,8 @@
     <color name="bg_home">#F8F7FB</color>
     <color name="white">#ffffff</color>
     <color name="view_color">#FDD3D0D0</color>
+    <color name="spinner_color">#323232</color>
+
     <color name="textcolorheading">#333333</color>
     <color name="textcolor">#666666</color>
     <color name="textcolorLight">#a8a6a6</color>

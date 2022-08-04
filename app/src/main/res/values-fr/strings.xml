@@ -120,6 +120,11 @@
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>
     <string name="subscriber">Abonné</string>
+    <string name="receiveinternational">recevoirinternational</string>
+    <string name="Cashmoov">Cashmoov</string>
+    <string name="Parteners">Partenaires</string>
+    <string name="destinationcountry">Pays de destination</string>
+    <string name="sedingcountry">Pays d\'envoi</string>
     <string name="non_subscriber">Non Abonné</string>
     <string name="international">Internationale</string>
     <string name="bank_to_wallet">Banque au portefeuille</string>

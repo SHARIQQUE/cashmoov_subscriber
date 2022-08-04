@@ -300,7 +300,8 @@
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
                     app:cardElevation="0dp"
-                    android:visibility="visible"
+
+                    android:visibility="gone"
                     app:cardBackgroundColor="#ffffff">
 
                     <LinearLayout

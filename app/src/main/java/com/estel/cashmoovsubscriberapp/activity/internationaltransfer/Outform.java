@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -46,11 +47,14 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
+
 public class Outform extends AppCompatActivity implements View.OnClickListener {
     //tr
     public static Outform tosubscriberC;
     ImageView imgBack,imgHome;
-    public  static TextView tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
+    public  static TextView spinner_destinaioncountry,tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
     AutoCompleteTextView etSubscriberNo;
     public static EditText etFname,etLname,etAmount,etAmountN;
     TextView etName,etPhone;
@@ -61,8 +65,13 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
     private boolean isAmt=true;
     private boolean isAmtPaid=true;
     public static String serviceProvider,currencyValue,fee,rate,exRateCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
-    public static ArrayList<CountryInfoModel.Country> benefiCountryModelList = new ArrayList<>();
+    private ArrayList<String> benefiCurrencyList = new ArrayList<>();
     public static ArrayList<CountryCurrencyInfoModel.CountryCurrency> benefiCurrencyModelList = new ArrayList<>();
+    private ArrayList<String> benefiCountryList = new ArrayList<>();
+    public static ArrayList<CountryInfoModel.Country> benefiCountryModelList = new ArrayList<>();
+    SpinnerDialog spinnerDialogCountry;
+    private String  countrycode;
+    private LinearLayout xofAmountLinear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +181,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         tvFee = findViewById(R.id.tvFee);
         tvAmtPaid = findViewById(R.id.tvAmtPaid);
         tvRate = findViewById(R.id.tvRate);
-
+        xofAmountLinear=findViewById(R.id.xofAmountLinear);
+        spinner_destinaioncountry=findViewById(R.id.spinner_destinaioncountry);
 
          etSubscriberNo.setText("775389850");
           etFname.setText("Sandeep");
@@ -194,6 +204,15 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         Pattern p = Pattern.compile(regex);
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
+
+        callApiCountry();
+        spinner_destinaioncountry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCountry!=null)
+                    spinnerDialogCountry.showSpinerDialog();
+            }
+        });
 
 
 
@@ -471,6 +490,14 @@ callApiWalletCountryCurrencyJSOn();
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_subscriber_no_val));
             return;
         }
+
+        if(spinner_destinaioncountry.getText().toString().equals(getString(R.string.valid_select_rec_country))) {
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_select_country));
+            return;
+        }
+
+
+
         if(etAmount.getText().toString().trim().trim().replace(",","").isEmpty()) {
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_amount));
             return;
@@ -1194,6 +1221,79 @@ callApiWalletCountryCurrencyJSOn();
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
+    }
+    private void callApiCountry() {
+        try {
+
+            API.GET("ewallet/api/v1/country/all",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            if (jsonObject != null) {
+                                benefiCountryList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        if (!MyApplication.getSaveString("userCountryCode", tosubscriberC).equalsIgnoreCase(data.optString("code"))) {
+                                            benefiCountryModelList.add(new CountryInfoModel.Country(
+                                                    data.optInt("id"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("code"),
+                                                    data.optString("isoCode"),
+                                                    data.optString("name"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("status"),
+                                                    data.optString("dialCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("creationDate"),
+                                                    data.optBoolean("subscriberAllowed")
+                                            ));
+
+                                            benefiCountryList.add(data.optString("name").trim());
+
+                                        }
+                                    }
+
+                                    spinnerDialogCountry= new SpinnerDialog(tosubscriberC, benefiCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCountry.setCancellable(true); // for cancellable
+                                    spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCountry.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spinner_destinaioncountry.setText(item);
+                                            spinner_destinaioncountry.setTag(position);
+                                            countrycode=benefiCountryModelList.get(position).getCurrencyCode();
+                                            tvAmtCurr.setVisibility(View.VISIBLE);
+                                            tvAmtCurr.setText(countrycode);
+                                            xofAmountLinear.setVisibility(View.VISIBLE);
+                                            //  spBenifiCurr.setText(getString(R.string.valid_select_benifi_curr));
+                                            //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            // callApiCurrency(benefiCountryModelList.get(position).getCode());
+                                        }
+                                    });
+
+
+                                } else {
+                                    MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 

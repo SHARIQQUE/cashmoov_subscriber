@@ -103,7 +103,7 @@
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_fname"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_semibold" />
