@@ -289,7 +289,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/xofAmountLinear"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -299,7 +299,7 @@
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:paddingEnd="@dimen/_15sdp"
                     android:layout_gravity="center_vertical">
 
@@ -311,7 +311,7 @@
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"
                         android:text="GNF"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"/>
                 <EditText
@@ -329,12 +329,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/xofAmountLinear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
+                    android:visibility="gone"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"

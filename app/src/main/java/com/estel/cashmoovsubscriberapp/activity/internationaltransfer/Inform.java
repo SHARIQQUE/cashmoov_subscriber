@@ -54,7 +54,8 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     public  static TextView spBenifiCurr,spCountry,tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
     public static String serviceProvider,currencyValue,fee,rate,exRateCode,currency,fromCurrency,fromCurrencySymbol,toCurrencySymbol;
-
+    private boolean isAmt=true;
+    private boolean isAmtPaid=true;
     AutoCompleteTextView etSubscriberNo;
     public static EditText etFname,etLname,etAmount,etAmountN;
     TextView etName,etPhone,tvAmtCurrN;
@@ -312,40 +313,180 @@ callApiWalletCountryCurrencyJSOn();
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (isFormatting) {
-                    return;
-                }
+                  /* if (isFormatting) {
+                        return;
+                    }*/
 
-                if (s.length() > 0) {
-                    formatInput(etAmount,s, s.length(), s.length());
+                if(s.length()>=1) {
+                    // formatInput(etAmount,s, s.length(), s.length());
 
-                    callApiAmountDetailsstatic();
-
-                }
-
-                if(s.length()==0){
+                    if(isAmt){
+                        etAmountN.setEnabled(false);
+                        isAmtPaid=false;
+                        callApiAmountDetailsstatic();
+                    }else{
+                        etAmountN.setEnabled(true);
+                        isAmtPaid=true;
+                    }
+                }else{
+                    isAmtPaid=true;
+                    etAmountN.setEnabled(true);
+                    etAmountN.getText().clear();
                     tvFee.setText("");
+                    tvAmtPaid.setText("");
                     tvRate.setText("");
-                    etAmountN.setText("");
                 }
 
-                isFormatting = false;
+
+                // isFormatting = false;
 
 
 
             }
         });
 
+
+        etAmountN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+               /* if (spBenifiCurr.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
+                    MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
+                    return;
+                }*/
+                /*if (isFormatting) {
+                    return;
+                }*/
+
+                if(s.length()>=1) {
+                    //  formatInput(etAmountNew,s, s.length(), s.length());
+                    if(isAmtPaid){
+                        etAmount.setEnabled(false);
+                        isAmt=false;
+                        callApiAmountDetailsstaticreverse();
+                    }else{
+                        etAmount.setEnabled(true);
+                        isAmt=true;
+                    }
+
+                }else{
+                    isAmt=true;
+                    etAmount.setEnabled(true);
+                    etAmount.getText().clear();
+                    tvFee.setText("");
+                    tvAmtPaid.setText("");
+                    tvRate.setText("");
+                }
+
+                // isFormatting = false;
+
+            }
+
+
+        });
+
+
         callApiAmountDetailsJSON();
         setOnCLickListener();
 
     }
 
+    private void callApiAmountDetailsstaticreverse() {
+        try {
+            //MyApplication.showloader(cashinC, "Please wait!");
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
+                            "&receiveCurrencyCode="+"100018"+
+                            "&sendCountryCode="+"1000092"
+                            +"&receiveCountryCode="+"100195"+
+                            "&currencyValue="+etAmountN.getText().toString().replace(",","")+
+                            "&channelTypeCode="+MyApplication.channelTypeCode+
+                            "&serviceCode="+"100000"
+                            +"&serviceCategoryCode="+"INTREM"+
+                            "&serviceProviderCode="+"100163"+
+                            "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            // MyApplication.hideLoader();
+                            System.out.println("International response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    if(etAmountN.getText().toString().trim().replace(",","").length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+
+                                        try {
+                                            double currValue = Double.parseDouble(etAmountN.getText().toString().trim().replace(",",""));
+                                            double value = jsonObjectAmountDetails.optDouble("value");
+                                            if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
+                                                tvAmtPaid.setText(String.valueOf(currValue));
+                                            } else {
+                                                String finalValue = df.format(currValue / value);
+                                                // tvAmtPaid.setText(finalValue);
+                                                etAmount.setText(finalValue);
+                                            }
+
+                                        } catch (Exception e) {
+                                        }
+
+                                        currencyValue = etAmountN.getText().toString().trim().replace(",","");
+                                        //currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        rate = jsonObjectAmountDetails.optString("value");
+                                        exRateCode = jsonObjectAmountDetails.optString("code");
+                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        tvRate.setText(rate);
+                                        tvFee.setText(fee);
+                                        // etAmountNew.setText(currencyValue);
+                                        tvAmtPaid.setText(currencyValue);
+
+//                                    int tax = receiverFee+receiverTax;
+//                                    if(currencyValue<tax){
+//                                        tvNext.setVisibility(View.GONE);
+//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
+//                                    }else{
+//                                        tvNext.setVisibility(View.VISIBLE);
+//                                    }
+
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                        } else {
+                                            taxConfigurationList = null;
+                                        }
+                                    }
+                                } else {
+                                    MyApplication.showToast(Inform.this,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
     private void callApiAmountDetailsstatic() {
         try {
             //MyApplication.showloader(cashinC, "Please wait!");
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"receiveCountryCode="
-                            +benefiCountryModelList.get((Integer) spCountry.getTag()).getCode()+
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
+                            "&receiveCurrencyCode="+"100018"+
                             "&sendCountryCode="+"100092"
                             +"&receiveCountryCode="+"100195"+
                             "&currencyValue="+etAmount.getText().toString().replace(",","")+
@@ -412,6 +553,7 @@ callApiWalletCountryCurrencyJSOn();
         }
 
     }
+
 
 
     private void setOnCLickListener() {
