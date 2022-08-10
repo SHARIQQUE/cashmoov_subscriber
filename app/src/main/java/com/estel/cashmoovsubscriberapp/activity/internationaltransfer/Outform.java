@@ -529,7 +529,7 @@ callApiWalletCountryCurrencyJSOn();
             jsonObjectNew.put("serviceCode","100023");
             jsonObjectNew.put("serviceCategoryCode","TRTWLT");
             // jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-            jsonObjectNew.put("serviceProviderCode","100160");
+            jsonObjectNew.put("serviceProviderCode","100182");
             jsonObjectNew.put("requestType","transferout");
             jsonObjectNew.put("serviceItemId","5");
             jsonObjectNew.put("fromCurrencyCode","100062");
@@ -537,7 +537,7 @@ callApiWalletCountryCurrencyJSOn();
             jsonObjectNew.put("mobileNumber","775389850");
             jsonObjectNew.put("amount",etAmount.getText().toString());
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
-            jsonObjectNew.put("providerServiceItemCode","100000");
+            jsonObjectNew.put("providerServiceItemCode","100002");
             jsonObjectNew.put("firstName",etFname.getText().toString());
            // jsonObjectNew.put("lastName",etLname.getText().toString());
 
@@ -1015,9 +1015,9 @@ callApiWalletCountryCurrencyJSOn();
                             +"&receiveCountryCode="+"100195"+
                             "&currencyValue="+etAmountN.getText().toString().replace(",","")+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+"100000"
-                            +"&serviceCategoryCode="+"INTREM"+
-                            "&serviceProviderCode="+"100163"+
+                            "&serviceCode="+"100023"
+                            +"&serviceCategoryCode="+"TRTWLT"+
+                            "&serviceProviderCode="+"100182"+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
                     new Api_Responce_Handler() {
                         @Override
@@ -1097,9 +1097,9 @@ callApiWalletCountryCurrencyJSOn();
                             +"&receiveCountryCode="+"100195"+
                             "&currencyValue="+etAmount.getText().toString().replace(",","")+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+"100000"
-                            +"&serviceCategoryCode="+"INTREM"+
-                            "&serviceProviderCode="+"100163"+
+                            "&serviceCode="+"100023"
+                            +"&serviceCategoryCode="+"TRTWLT"+
+                            "&serviceProviderCode="+"100182"+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
                            new Api_Responce_Handler() {
                         @Override

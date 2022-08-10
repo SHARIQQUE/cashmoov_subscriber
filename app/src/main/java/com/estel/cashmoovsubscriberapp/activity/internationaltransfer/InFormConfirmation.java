@@ -143,6 +143,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
                             if(switch_button.isChecked()) {
                                 dataToSendBear.put("pin", encryptionDatanew);
                             }
+                            Inform.jsonObjectNew.put( "pin",encryptionDatanew);
                             callPostAPI();
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -245,6 +246,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
                     Inform.dataToSend.put( "pin",encryptionDatanew);
+                    Inform.jsonObjectNew.put( "pin",encryptionDatanew);
                     if(switch_button.isChecked()) {
                         dataToSendBear.put("pin", encryptionDatanew);
                     }
@@ -348,7 +350,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
             "  }\n" +
             "}";
 
-    public void callPostAPI(){
+    /*public void callPostAPI(){
 
         try {
             JSONObject jsonObject = new JSONObject(ReceiptJSOn);
@@ -373,7 +375,54 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
             }
         }catch (Exception e){
 
-        }
+        }*/
+
+
+    public void callPostAPI(){
+        MyApplication.showloader(InFormConfirmation.this,"Please Wait...");
+      /*  String requestNo=AESEncryption.getAESEncryption(InternationalRecipientDetails.dataToSend.toString());
+        JSONObject jsonObjectA=null;
+        try{
+            jsonObjectA=new JSONObject();
+            jsonObjectA.put("request",requestNo);
+        }catch (Exception e){
+
+        }*/
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/intech/transferIn", Inform.jsonObjectNew,
+                new Api_Responce_Handler() {
+                    @Override
+                    public void success(JSONObject jsonObject) {
+                        MyApplication.hideLoader();
+                        if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                            MyApplication.showToast(InFormConfirmation.this,jsonObject.optString("resultDescription"));
+                            receiptJson=jsonObject;
+                            JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("intechResponse");
+                            if(jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                taxConfigList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                            }else{
+                                taxConfigList=null;
+                            }
+                            btnConfirm.setVisibility(View.VISIBLE);
+                            Intent intent=new Intent(tosubscriberconfirmscreenC, TransactionSuccessScreen.class);
+                            intent.putExtra("SENDINTENT","INTOSUB");
+                            startActivity(intent);
+                            // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
+                        }else{
+                            etPin.setClickable(true);
+                            btnConfirm.setVisibility(View.VISIBLE);
+                            MyApplication.showToast(InFormConfirmation.this,jsonObject.optString("resultDescription"));
+                        }
+                    }
+
+                    @Override
+                    public void failure(String aFalse) {
+                        MyApplication.hideLoader();
+                        etPin.setClickable(true);
+                        btnConfirm.setVisibility(View.VISIBLE);
+                    }
+                });
+
+    }
 
       /*  MyApplication.showloader(tosubscriberconfirmscreenC,"Please Wait...");
         JSONObject clone=null;
@@ -429,7 +478,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
                         btnConfirm.setVisibility(View.VISIBLE);
                     }
                 });*/
-    }
+
 
     DecimalFormat df = new DecimalFormat("0.00");
     JSONObject dataToSendBear;

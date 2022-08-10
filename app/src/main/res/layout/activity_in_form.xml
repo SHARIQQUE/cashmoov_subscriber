@@ -309,8 +309,8 @@
                         android:layout_weight="0.2"
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"
-                        android:text="XOF"
-                        android:visibility="gone"
+                        android:text="GNF"
+                        android:visibility="visible"
                         android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"/>
                     <EditText

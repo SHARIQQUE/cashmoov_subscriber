@@ -266,7 +266,7 @@
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
-        <activity android:name=".activity.internationaltransfer.InFormReceiptScreen"
+        <activity android:name=".activity.internationaltransfer.InFormRecptNew"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>

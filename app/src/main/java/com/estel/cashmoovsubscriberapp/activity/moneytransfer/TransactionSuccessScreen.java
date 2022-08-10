@@ -23,6 +23,7 @@ import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeRecei
 import com.estel.cashmoovsubscriberapp.activity.cashout.CashOutReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawalReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InFormReceiptScreen;
+import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.InFormRecptNew;
 import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.OutFormReceiptScreen;
 import com.estel.cashmoovsubscriberapp.activity.internationaltransfer.OutFormRecptNew;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
@@ -166,7 +167,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 Intent intent;
 
                 if(checkIntent.equalsIgnoreCase("INTOSUB")){
-                    intent = new Intent(transSuccessscreenC, InFormReceiptScreen.class);
+                    intent = new Intent(transSuccessscreenC, InFormRecptNew.class);
                     startActivity(intent);
                     return;
                 }

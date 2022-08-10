@@ -333,7 +333,7 @@ callApiWalletCountryCurrencyJSOn();
                     etAmountN.setEnabled(true);
                     etAmountN.getText().clear();
                     tvFee.setText("");
-                    tvAmtPaid.setText("");
+                   // tvAmtPaid.setText("");
                     tvRate.setText("");
                 }
 
@@ -383,7 +383,7 @@ callApiWalletCountryCurrencyJSOn();
                     etAmount.setEnabled(true);
                     etAmount.getText().clear();
                     tvFee.setText("");
-                    tvAmtPaid.setText("");
+                   // tvAmtPaid.setText("");
                     tvRate.setText("");
                 }
 
@@ -409,9 +409,9 @@ callApiWalletCountryCurrencyJSOn();
                             +"&receiveCountryCode="+"100195"+
                             "&currencyValue="+etAmountN.getText().toString().replace(",","")+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+"100000"
-                            +"&serviceCategoryCode="+"INTREM"+
-                            "&serviceProviderCode="+"100163"+
+                            "&serviceCode="+"100023"
+                            +"&serviceCategoryCode="+"TRFWLT"+
+                            "&serviceProviderCode="+"100183"+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
                     new Api_Responce_Handler() {
                         @Override
@@ -427,7 +427,7 @@ callApiWalletCountryCurrencyJSOn();
                                             double currValue = Double.parseDouble(etAmountN.getText().toString().trim().replace(",",""));
                                             double value = jsonObjectAmountDetails.optDouble("value");
                                             if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
-                                                tvAmtPaid.setText(String.valueOf(currValue));
+                                              //  tvAmtPaid.setText(String.valueOf(currValue));
                                             } else {
                                                 String finalValue = df.format(currValue / value);
                                                 // tvAmtPaid.setText(finalValue);
@@ -447,8 +447,8 @@ callApiWalletCountryCurrencyJSOn();
                                         //etAmountNew.setText(currencyValue);
                                         tvRate.setText(rate);
                                         tvFee.setText(fee);
-                                        // etAmountNew.setText(currencyValue);
-                                        tvAmtPaid.setText(currencyValue);
+                                         //etAmountN.setText(currencyValue);
+                                        //tvAmtPaid.setText(currencyValue);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -483,17 +483,18 @@ callApiWalletCountryCurrencyJSOn();
 
     }
     private void callApiAmountDetailsstatic() {
+
         try {
             //MyApplication.showloader(cashinC, "Please wait!");
             API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?"+"sendCurrencyCode="+"100062"+
                             "&receiveCurrencyCode="+"100018"+
-                            "&sendCountryCode="+"100092"
+                            "&sendCountryCode="+"1000092"
                             +"&receiveCountryCode="+"100195"+
                             "&currencyValue="+etAmount.getText().toString().replace(",","")+
                             "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode="+"100000"
-                            +"&serviceCategoryCode="+"INTREM"+
-                            "&serviceProviderCode="+"100163"+
+                            "&serviceCode="+"100023"
+                            +"&serviceCategoryCode="+"TRFWLT"+
+                            "&serviceProviderCode="+"100183"+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
                     new Api_Responce_Handler() {
                         @Override
@@ -600,17 +601,17 @@ callApiWalletCountryCurrencyJSOn();
         try {
             jsonObjectNew.put("channel","SELFCARE");
             jsonObjectNew.put("serviceCode","100023");
-            jsonObjectNew.put("serviceCategoryCode","TRTWLT");
+            jsonObjectNew.put("serviceCategoryCode","TRFWLT");
             // jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-            jsonObjectNew.put("serviceProviderCode","100160");
-            jsonObjectNew.put("requestType","transferout");
-            jsonObjectNew.put("serviceItemId","5");
+            jsonObjectNew.put("serviceProviderCode","100183");
+            jsonObjectNew.put("requestType","transferin");
+            jsonObjectNew.put("serviceItemId","15");
             jsonObjectNew.put("fromCurrencyCode","100062");
             jsonObjectNew.put("toCurrencyCode","100018");
             jsonObjectNew.put("mobileNumber","775389850");
             jsonObjectNew.put("amount",etAmount.getText().toString());
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
-            jsonObjectNew.put("providerServiceItemCode","100000");
+            jsonObjectNew.put("providerServiceItemCode","100006");
             jsonObjectNew.put("firstName",etFname.getText().toString());
             // jsonObjectNew.put("lastName",etLname.getText().toString());
 
@@ -1321,8 +1322,8 @@ callApiWalletCountryCurrencyJSOn();
                                             spCountry.setText(item);
                                             spCountry.setTag(position);
                                              countrycode=benefiCountryModelList.get(position).getCurrencyCode();
-                                            tvAmtCurrN.setVisibility(View.VISIBLE);
-                                             tvAmtCurrN.setText(countrycode);
+                                            tvAmtCurr.setVisibility(View.VISIBLE);
+                                             tvAmtCurr.setText(countrycode);
                                             xofAmountLinear.setVisibility(View.VISIBLE);
 
                                           //  spBenifiCurr.setText(getString(R.string.valid_select_benifi_curr));
