@@ -118,7 +118,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                                 miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
 
 
-                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson());
+                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson(),miniStatementTrans.getSrcPostBalance());
 
                     }
                     if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
@@ -127,7 +127,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                                 miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
 
 
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson());
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson(),miniStatementTrans.getSrcPostBalance());
                     }
 
             }

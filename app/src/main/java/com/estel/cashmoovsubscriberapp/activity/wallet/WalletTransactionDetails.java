@@ -23,7 +23,7 @@ import java.util.Date;
 public class WalletTransactionDetails extends AppCompatActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
-    TextView taxText,txt_trans_type_name,txt_from_owner_name,tax_value,fee_value,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
+    TextView taxText,postbalance_value,txt_trans_type_name,txt_from_owner_name,tax_value,fee_value,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
 
 
     @Override
@@ -76,6 +76,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
         txt_success = findViewById(R.id.txt_success);
         tax_value=findViewById(R.id.tax_value);
         fee_value=findViewById(R.id.fee_value);
+        postbalance_value=findViewById(R.id.postbalance_value);
+
 
 
         Bundle b = getIntent().getExtras();
@@ -89,6 +91,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String status = (getIntent().getStringExtra("STATUS"));
             String tax = (getIntent().getStringExtra("taxvalue"));
             double result = b.getDouble("newamount");
+            double postbalanmce = b.getDouble("postbalance");
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText(fromOwnerName);
@@ -97,6 +100,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
             fee_value.setText("Fee :  "+"" +result);
+            postbalance_value.setText("Post Balance :" +String.format("%.2f", postbalanmce));
+
             try {
 
             Gson gson = new Gson();

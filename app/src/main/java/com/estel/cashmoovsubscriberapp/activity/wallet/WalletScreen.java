@@ -393,7 +393,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status,double comReceiveAmount,String tax) {
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status,double comReceiveAmount,String tax,double srcpostbalance) {
         String name="";
         if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
             name = walletOwnerMsisdn;
@@ -410,6 +410,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
         intent.putExtra("taxvalue",tax);
         intent.putExtra("newamount",comReceiveAmount);
+        intent.putExtra("postbalance",srcpostbalance);
 
         startActivity(intent);
     }

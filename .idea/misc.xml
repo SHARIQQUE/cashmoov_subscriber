@@ -244,6 +244,8 @@
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_international_option.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_international_recipient_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_maps.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_money_transfer.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_out_form.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_receipt_screen.xml" value="0.20416666666666666" />
@@ -252,9 +254,14 @@
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_set_pin.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_transaction_success.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_wallet_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/dialog_logout.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/include_home_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_offer_promotion_slider.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_transaction_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_wallet.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_register_steptwo.xml" value="0.20104166666666667" />
       </map>

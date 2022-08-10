@@ -121,6 +121,16 @@
                     android:fontFamily="@font/aileron_semibold" />
 
                 <TextView
+                    android:id="@+id/postbalance_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="N/A"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/aileron_semibold" />
+
+                <TextView
                         android:id="@+id/txt_success"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
