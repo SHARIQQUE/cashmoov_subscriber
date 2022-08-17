@@ -1,3 +1,4 @@
 rootProject.name = "Cashmoov Subscriber"
 include ':app'
 include ':android-networking'
+include ':autoformatedittext'
