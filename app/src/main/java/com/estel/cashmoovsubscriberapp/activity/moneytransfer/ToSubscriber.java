@@ -257,17 +257,17 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
 
-                /*if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
                 if (s.length() > 0) {
-                   // formatInput(etAmount,s, s.length(), s.length());
+                    formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }
 
-               // isFormatting = false;
+                isFormatting = false;
 
 
 
