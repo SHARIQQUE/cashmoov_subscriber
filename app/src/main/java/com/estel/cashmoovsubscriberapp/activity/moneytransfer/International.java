@@ -23,7 +23,9 @@ import com.estel.cashmoovsubscriberapp.model.ServiceProviderModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
@@ -416,8 +418,8 @@ public class International extends AppCompatActivity implements View.OnClickList
 
     }
 
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {

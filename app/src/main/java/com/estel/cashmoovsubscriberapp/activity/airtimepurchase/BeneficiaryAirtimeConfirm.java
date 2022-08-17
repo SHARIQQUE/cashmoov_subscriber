@@ -28,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeConfirm benefiairtimeconfirmC;
@@ -101,7 +103,8 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+BeneficiaryAirtime.fee);
 
         finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(BeneficiaryAirtime.taxConfigurationList!=null){
             if(BeneficiaryAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

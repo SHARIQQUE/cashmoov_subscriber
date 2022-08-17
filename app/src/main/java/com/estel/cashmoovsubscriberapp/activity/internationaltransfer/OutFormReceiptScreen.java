@@ -23,7 +23,9 @@ import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfir
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class OutFormReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static OutFormReceiptScreen tosubscriberreceiptscreenC;
@@ -138,7 +140,8 @@ public class OutFormReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optJSONObject("sender").optString("mobileNumber"));
         tvProvider.setText(OutTransfer.operatorNname);
         tvTransType.setText("OUT Transfer");

@@ -20,6 +20,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class PartnerBillPayDetails extends AppCompatActivity implements View.OnClickListener {
@@ -165,7 +167,9 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
 
         }
     }
-    DecimalFormat df = new DecimalFormat("0.00");
+
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static  JSONObject dataToSend=new JSONObject();
     public static String currencyValue,fee;
     public static int receiverFee,receiverTax;

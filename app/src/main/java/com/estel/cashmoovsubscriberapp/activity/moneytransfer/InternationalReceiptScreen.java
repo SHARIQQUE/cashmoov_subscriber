@@ -18,7 +18,9 @@ import com.estel.cashmoovsubscriberapp.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class InternationalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalReceiptScreen internationalreceiptscreenC;
@@ -136,7 +138,8 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.VISIBLE);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
         tvConfCode.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(International.serviceProvider);

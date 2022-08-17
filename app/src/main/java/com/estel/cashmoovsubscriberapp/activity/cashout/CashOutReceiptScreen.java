@@ -18,7 +18,9 @@ import com.estel.cashmoovsubscriberapp.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CashOutReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashOutReceiptScreen cashoutreceiptscreenC;
@@ -136,7 +138,8 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.GONE);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("srcWalletOwner").optString("mobileNumber"));
         //tvConfCode.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("confirmationCode"));
         tvProvider.setText(CashOut.serviceProvider);

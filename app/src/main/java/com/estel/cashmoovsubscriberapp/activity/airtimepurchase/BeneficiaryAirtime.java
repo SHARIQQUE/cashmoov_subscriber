@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClickListener {
@@ -188,7 +190,8 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
     }
 
     public String customFormat(String pattern, double value) {
-        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat myFormatter = new DecimalFormat(pattern,symbols);
         String output = myFormatter.format(value);
         return output;
     }
@@ -453,8 +456,8 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
 
 
     }
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static  JSONObject dataToSend=new JSONObject();
     public static String currencyValue,fee;
     public static int receiverFee,receiverTax;

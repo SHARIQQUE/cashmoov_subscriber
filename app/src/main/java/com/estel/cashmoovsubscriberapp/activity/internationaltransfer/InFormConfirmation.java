@@ -29,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class InFormConfirmation extends AppCompatActivity implements View.OnClickListener {
     public static InFormConfirmation tosubscriberconfirmscreenC;
@@ -176,7 +178,8 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
         //finalamount=Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmount.getText().toString().replace(",",""));
 
         finalamount=Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmountN.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(Inform.taxConfigurationList!=null){
 
 
@@ -479,8 +482,8 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
                     }
                 });*/
 
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     JSONObject dataToSendBear;
     private void callApiAmountDetailsIbear() {
         try {

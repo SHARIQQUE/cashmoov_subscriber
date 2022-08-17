@@ -30,6 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class PayConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static PayConfirmScreen payconfirmscreenC;
@@ -103,7 +105,9 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         tvFee.setText(Pay.fromCurrencySymbol+" "+Pay.fee);
 
        finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.00");
+       DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(Pay.taxConfigurationList!=null){
             if(Pay.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

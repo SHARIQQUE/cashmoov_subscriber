@@ -28,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static ToNonSubscriberConfirmScreen tononsubscriberconfirmscreenC;
@@ -155,7 +157,9 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         tvFee.setText(ToNonSubscriber.fromCurrencySymbol+" "+ToNonSubscriber.fee);
 
         finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.00");
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(ToNonSubscriber.taxConfigurationList!=null){
             if(ToNonSubscriber.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

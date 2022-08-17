@@ -29,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class SelfAirtime extends AppCompatActivity implements View.OnClickListener {
@@ -400,8 +402,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
 
     }
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     private void callApiAmountDetails(String value) {
         try {
             //MyApplication.showloader(cashinC, "Please wait!");

@@ -19,7 +19,9 @@ import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriberCon
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CashWithdrawalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashWithdrawalReceiptScreen cashdrawalreceiptscreenC;
@@ -137,7 +139,8 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.VISIBLE);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optJSONObject("sender").optString("mobileNumber"));
         tvConfCode.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("confirmationCode"));
         tvProvider.setText(CashWithdrawal.serviceProvider);

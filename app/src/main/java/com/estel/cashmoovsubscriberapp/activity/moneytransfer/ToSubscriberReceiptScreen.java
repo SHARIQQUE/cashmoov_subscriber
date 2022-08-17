@@ -20,7 +20,9 @@ import com.estel.cashmoovsubscriberapp.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class ToSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ToSubscriberReceiptScreen tosubscriberreceiptscreenC;
@@ -135,7 +137,8 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("srcWalletOwner").optString("mobileNumber"));
         tvProvider.setText(ToSubscriber.serviceProvider);
         tvTransType.setText(ToSubscriberConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));

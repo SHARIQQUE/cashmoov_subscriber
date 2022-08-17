@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class BillPayDetails extends AppCompatActivity implements View.OnClickListener {
@@ -166,7 +168,9 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-    DecimalFormat df = new DecimalFormat("0.00");
+
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static  JSONObject dataToSend=new JSONObject();
     public static String currencyValue,fee;
     public static int receiverFee,receiverTax;

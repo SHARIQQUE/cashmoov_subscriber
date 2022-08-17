@@ -21,7 +21,9 @@ import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfi
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static SelfAirtimeReceipt selfairtimereceiptC;
@@ -136,8 +138,8 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
-
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(SelfAirtime.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));

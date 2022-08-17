@@ -29,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class CashWithdrawalConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashWithdrawalConfirmScreen cashwithdrawalconfirmscreenC;
@@ -103,7 +105,8 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         tvFee.setText(CashWithdrawal.fromCurrencySymbol+" "+CashWithdrawal.fee);
 
        finalamount=Double.parseDouble(CashWithdrawal.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHWITHDRAWAL",cashwithdrawalconfirmscreenC));
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+       DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(CashWithdrawal.taxConfigurationList!=null){
             if(CashWithdrawal.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

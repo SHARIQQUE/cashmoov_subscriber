@@ -36,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 import naturalizer.separator.Separator;
@@ -185,7 +186,9 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         });
 
         finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""));
-        DecimalFormat df = new DecimalFormat("0.00");
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(ToSubscriber.taxConfigurationList!=null){
 
 
@@ -331,7 +334,8 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                 });
     }
 
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     JSONObject dataToSendBear;
     private void callApiAmountDetailsIbear() {
         try {

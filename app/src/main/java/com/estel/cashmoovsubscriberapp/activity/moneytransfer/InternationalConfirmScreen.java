@@ -26,6 +26,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class InternationalConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalConfirmScreen internationalconfirmscreenC;
@@ -99,7 +101,9 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         tvFee.setText(International.fromCurrencySymbol+" "+International.fee);
 
        finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
-        DecimalFormat df = new DecimalFormat("0.00");
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(International.taxConfigurationList!=null){
             if(International.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

@@ -25,6 +25,8 @@ import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class CashOutConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashOutConfirmScreen cashoutconfirmscreenC;
@@ -99,7 +101,8 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         tvFee.setText(CashOut.fromCurrencySymbol+" "+CashOut.fee);
 
        finalamount=Double.parseDouble(CashOut.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHOUT",cashoutconfirmscreenC));
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+       DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(CashOut.taxConfigurationList!=null){
             if(CashOut.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

@@ -31,6 +31,7 @@ import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -621,8 +622,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static JSONArray taxConfigurationList;
     private void callApiAmountDetails() {
         try {
