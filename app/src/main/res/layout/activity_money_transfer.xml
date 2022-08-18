@@ -182,13 +182,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/cardToreceiveinternational"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_height="@dimen/_100sdp"
                     app:cardCornerRadius="14dp"
                     android:layout_weight="1"
+
+
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="#ffffff">
 

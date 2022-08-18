@@ -314,6 +314,10 @@
     <string name="acc_number_colon">Account number :</string>
     <string name="operator_colon">Operator :</string>
     <string name="valid_select_operator">Select Operator*</string>
+
+
+  /////Done part
+
     <string name="val_select_operator">Please select operator</string>
     <string name="val_recipient_no_len">Recipient number must be at least 9 digits long</string>
     <string name="val_beneficiairy_name">Please enter beneficiary name</string>
