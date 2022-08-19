@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,9 +43,10 @@ import com.google.firebase.iid.InstanceIdResult;
 
 public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
-    EditText etPin;
-    TextView tvContinue,tvFinger,msgText,tvregister,tvregister1;
-    ImageView icPin;
+    EditText etPin,etmobile;
+    TextView tvContinue,tvFinger,msgText,tvregister,tvregister1,nameText;
+    String mName,mMobile;
+    boolean  isPasswordVisible;
 
 
     @Override
@@ -90,13 +92,20 @@ public class LoginPin extends AppCompatActivity {
 
     private void getIds() {
         etPin = findViewById(R.id.etPin);
-        icPin = findViewById(R.id.icPin);
         tvContinue = findViewById(R.id.tvContinue);
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
         tvregister1 = findViewById(R.id.tvregister1);
+        nameText=findViewById(R.id.nameText);
+        etmobile=findViewById(R.id.etmobile);
 
+        mName=MyApplication.getSaveString("firstName", LoginPin.this);
+        mMobile=MyApplication.getSaveString("mobile", LoginPin.this);
+
+        nameText.setText("Hi "+ mName);
+        etmobile.setText(mMobile);
+        etmobile.setEnabled(false);
         etPin.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -117,25 +126,38 @@ public class LoginPin extends AppCompatActivity {
 
         HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
         etPin.setTransformationMethod(hiddenPassTransformationMethod);
-
-        icPin.setOnClickListener(new View.OnClickListener() {
+        etPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                if(etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
-                    icPin.setImageResource(R.drawable.ic_show);
-                    //Show Password
-                    etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (etPin.getRight() - etPin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = etPin.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            etPin.setTransformationMethod(hiddenPassTransformationMethod);
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        etPin.setSelection(selection);
+                        return true;
+                    }
                 }
-                else{
-                    icPin.setImageResource(R.drawable.ic_hide);
-                    //Hide Password
-                    //etPin.setTransformationMethod(new HiddenPassTransformationMethod());
-                    etPin.setTransformationMethod(hiddenPassTransformationMethod);
-
-
-                }
+                return false;
             }
         });
+
+
+
+
+
 
 
         tvregister.setOnClickListener(new View.OnClickListener() {
