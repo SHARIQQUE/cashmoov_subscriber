@@ -45,7 +45,7 @@ public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
     EditText etPin,etmobile;
     TextView tvContinue,tvFinger,msgText,tvregister,tvregister1,nameText;
-    String mName,mMobile;
+    String mName,mLastName,mMobile;
     boolean  isPasswordVisible;
 
 
@@ -101,9 +101,18 @@ public class LoginPin extends AppCompatActivity {
         etmobile=findViewById(R.id.etmobile);
 
         mName=MyApplication.getSaveString("firstName", LoginPin.this);
+        mLastName=MyApplication.getSaveString("lastName", LoginPin.this);
+
         mMobile=MyApplication.getSaveString("mobile", LoginPin.this);
 
-        nameText.setText("Hi "+ mName);
+        if(mLastName.equalsIgnoreCase("null")){
+            nameText.setText("Hi "+ mName);
+
+        }else{
+            nameText.setText("Hi "+ mName+" "+mLastName);
+
+        }
+
         etmobile.setText(mMobile);
         etmobile.setEnabled(false);
         etPin.addTextChangedListener(new TextWatcher() {
