@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -104,7 +105,26 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
             MyApplication.isContact=false;
             String requiredValue = data.getStringExtra("PHONE");
-            etSubscriberNo.setText(requiredValue);
+            if(requiredValue.length()>11)
+            {
+                if(requiredValue.contains("+91") || requiredValue.length()==11){
+                    int startidx=requiredValue.length()-10;
+                    String getnumber=requiredValue.substring(startidx,requiredValue.length());
+                    etSubscriberNo.setText(getnumber);
+                }else{
+                    int startidx=requiredValue.length()-9;
+                    String getnumber=requiredValue.substring(startidx,requiredValue.length());
+                    etSubscriberNo.setText(getnumber);
+
+                }
+
+
+            }
+            else
+            {
+                etSubscriberNo.setText(requiredValue);
+            }
+         //   etSubscriberNo.setText(requiredValue);
 
         }
         if (resultCode != Activity.RESULT_OK) {

@@ -583,8 +583,8 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                         dataToSend.put("serviceProviderCode", serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode"));
 
                                         System.out.println("Data Send " + dataToSend.toString());
-                                        Intent i = new Intent(beneficiaryairtimeC, BeneficiaryAirtimeConfirm.class);
-                                        startActivity(i);
+                                       /* Intent i = new Intent(beneficiaryairtimeC, BeneficiaryAirtimeConfirm.class);
+                                        startActivity(i);*/
                                     } catch (Exception e) {
 
                                     }
