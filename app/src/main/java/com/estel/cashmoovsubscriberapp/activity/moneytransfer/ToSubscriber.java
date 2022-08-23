@@ -105,25 +105,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
             MyApplication.isContact=false;
             String requiredValue = data.getStringExtra("PHONE");
-            if(requiredValue.length()>11)
-            {
-                if(requiredValue.contains("+91") || requiredValue.length()==11){
-                    int startidx=requiredValue.length()-10;
-                    String getnumber=requiredValue.substring(startidx,requiredValue.length());
-                    etSubscriberNo.setText(getnumber);
-                }else{
-                    int startidx=requiredValue.length()-9;
-                    String getnumber=requiredValue.substring(startidx,requiredValue.length());
-                    etSubscriberNo.setText(getnumber);
 
-                }
-
-
-            }
-            else
-            {
-                etSubscriberNo.setText(requiredValue);
-            }
+              MyApplication.contactValidation(requiredValue,etSubscriberNo);
          //   etSubscriberNo.setText(requiredValue);
 
         }
