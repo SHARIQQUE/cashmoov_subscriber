@@ -107,13 +107,14 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             String requiredValue = data.getStringExtra("PHONE");
 
               MyApplication.contactValidation(requiredValue,etSubscriberNo);
-         //   etSubscriberNo.setText(requiredValue);
+         //    etSubscriberNo.setText(requiredValue);
 
         }
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)
                 return;
+
             //Getting the passed result
             String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
             if (result != null) {
