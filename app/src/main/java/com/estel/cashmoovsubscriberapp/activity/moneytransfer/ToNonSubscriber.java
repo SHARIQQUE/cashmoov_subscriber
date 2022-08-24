@@ -60,7 +60,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
             MyApplication.isContact = false;
             String requiredValue = data.getStringExtra("PHONE");
-            etPhone.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,etPhone);
+
+           // etPhone.setText(requiredValue);
             etFname.requestFocus();
 
         }

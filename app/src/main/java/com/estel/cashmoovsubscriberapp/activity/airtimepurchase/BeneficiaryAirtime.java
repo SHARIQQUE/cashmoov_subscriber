@@ -87,8 +87,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
 
         if (getIntent().getExtras() != null) {
             phone = (getIntent().getStringExtra("PHONE"));
-            phone = phone.replaceAll("[^0-9]","");
-            etPhone.setText(phone);
+           //zx phone = phone.replaceAll("[^0-9]","");
+            MyApplication.contactValidation(phone,etPhone);
+
+        //    etPhone.setText(phone);
 
         }
 

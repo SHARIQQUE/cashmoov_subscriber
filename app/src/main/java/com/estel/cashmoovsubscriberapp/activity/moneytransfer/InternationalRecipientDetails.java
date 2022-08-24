@@ -59,7 +59,8 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
 
             MyApplication.isContact = false;
             String requiredValue = data.getStringExtra("PHONE");
-            etPhone.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,etPhone);
+            //etPhone.setText(requiredValue);
             etFname.requestFocus();
 
         }

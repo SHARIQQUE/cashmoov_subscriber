@@ -39,7 +39,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
     public static TextView tvProvider,tvAccNo,tvOperatorName,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
-    LinearLayout tax_label_layout,vat_label_layout;
+    LinearLayout tax_label_layout,vat_label_layout,pinLinear;
     CardView cardBearFee;
     ImageView icPin;
 
@@ -83,7 +83,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
         icPin = findViewById(R.id.icPin);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
-
+        pinLinear=findViewById(R.id.pinLinear);
         tax_r=findViewById(R.id.tax_r);
         vat_r=findViewById(R.id.vat_r);
         tax_label=findViewById(R.id.tax_label);
@@ -146,12 +146,12 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                tvFinger.setVisibility(View.VISIBLE);
+               // tvFinger.setVisibility(View.VISIBLE);
             } else {
-                tvFinger.setVisibility(View.GONE);
+              //  tvFinger.setVisibility(View.GONE);
             }
         }else{
-            tvFinger.setVisibility(View.VISIBLE);
+           // tvFinger.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +208,30 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
                 }
                 break;
             case R.id.btnConfirm:
-                if(etPin.getText().toString().trim().isEmpty()){
+
+            {
+                MyApplication.biometricAuth(BillPayConfirmScreen.this, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            BillPayDetails.dataToSend.put( "pin",encryptionDatanew);
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(BillPayConfirmScreen.this,failure);
+                        pinLinear.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+               /* if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(billpayconfirmscreenC,getString(R.string.val_pin));
                     return;
                 }
@@ -226,7 +249,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
                     e.printStackTrace();
                 }
 
-                System.out.println("dataToSend---"+BillPayDetails.dataToSend.toString());
+                System.out.println("dataToSend---"+BillPayDetails.dataToSend.toString());*/
                 break;
             case R.id.btnCancel:
                 finish();

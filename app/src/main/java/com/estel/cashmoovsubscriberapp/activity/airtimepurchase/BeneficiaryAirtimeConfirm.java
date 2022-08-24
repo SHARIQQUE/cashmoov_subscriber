@@ -38,7 +38,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
     public static TextView tvProvider,tvMobileTxt,tvAccNo,tvOperatorName,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
-    LinearLayout tax_label_layout,vat_label_layout;
+    LinearLayout tax_label_layout,vat_label_layout,pinLinear;
     CardView cardBearFee;
     ImageView icPin;
 
@@ -79,7 +79,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
         tvFee = findViewById(R.id.tvFee);
         etPin = findViewById(R.id.etPin);
-
+        pinLinear=findViewById(R.id.pinLinear);
         etPin.setTransformationMethod(hiddenPassTransformationMethod);
         icPin = findViewById(R.id.icPin);
         btnConfirm = findViewById(R.id.btnConfirm);
@@ -146,12 +146,12 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                tvFinger.setVisibility(View.VISIBLE);
+               // tvFinger.setVisibility(View.VISIBLE);
             } else {
-                tvFinger.setVisibility(View.GONE);
+              //  tvFinger.setVisibility(View.GONE);
             }
         }else{
-            tvFinger.setVisibility(View.VISIBLE);
+           // tvFinger.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +209,31 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                 }
                 break;
             case R.id.btnConfirm:
-                if(etPin.getText().toString().trim().isEmpty()){
+
+            {
+                MyApplication.biometricAuth(benefiairtimeconfirmC, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            BeneficiaryAirtime.dataToSend.put( "pin",encryptionDatanew);
+
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(benefiairtimeconfirmC,failure);
+                        pinLinear.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+               /* if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(benefiairtimeconfirmC,getString(R.string.val_pin));
                     return;
                 }
@@ -227,7 +251,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                     e.printStackTrace();
                 }
 
-                System.out.println("dataToSend---"+BeneficiaryAirtime.dataToSend.toString());
+                System.out.println("dataToSend---"+BeneficiaryAirtime.dataToSend.toString());*/
                 break;
             case R.id.btnCancel:
                 finish();

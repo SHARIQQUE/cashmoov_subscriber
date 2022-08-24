@@ -244,7 +244,9 @@ public class CashWithdrawal extends AppCompatActivity implements View.OnClickLis
 
             MyApplication.isContact = false;
             String requiredValue = data.getStringExtra("PHONE");
-            etRecipientNo.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,etRecipientNo);
+
+            // etRecipientNo.setText(requiredValue);
             etAmount.requestFocus();
 
         }

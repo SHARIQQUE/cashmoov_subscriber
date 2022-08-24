@@ -38,7 +38,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
     public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
-    LinearLayout tax_label_layout,vat_label_layout;
+    LinearLayout tax_label_layout,vat_label_layout,pinLinear;
     CardView cardBearFee;
     ImageView icPin;
 
@@ -92,7 +92,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         vat_label=findViewById(R.id.vat_label);
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
-
+        pinLinear=findViewById(R.id.pinLinear);
         etPin.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -113,12 +113,12 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                tvFinger.setVisibility(View.VISIBLE);
+               // tvFinger.setVisibility(View.VISIBLE);
             } else {
-                tvFinger.setVisibility(View.GONE);
+               // tvFinger.setVisibility(View.GONE);
             }
         }else{
-            tvFinger.setVisibility(View.VISIBLE);
+          //  tvFinger.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,25 +210,29 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                 }
                 break;
             case R.id.btnConfirm:
-                if(etPin.getText().toString().trim().isEmpty()){
-                    MyApplication.showErrorToast(tononsubscriberconfirmscreenC,getString(R.string.val_pin));
-                    return;
-                }
-                if(etPin.getText().toString().trim().length()<4){
-                    MyApplication.showErrorToast(tononsubscriberconfirmscreenC,getString(R.string.val_valid_pin));
-                    return;
-                }
-                try {
-                    etPin.setClickable(false);
-                    btnConfirm.setVisibility(View.GONE);
-                    String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                    ToNonSubscriber.dataToSend.put( "pin",encryptionDatanew);
-                    callPostAPI();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            {
+                MyApplication.biometricAuth(tononsubscriberconfirmscreenC, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            ToNonSubscriber.dataToSend.put( "pin",encryptionDatanew);
 
-                System.out.println("dataToSend---"+ToNonSubscriber.dataToSend.toString());
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(tononsubscriberconfirmscreenC,failure);
+                        pinLinear.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
                 break;
             case R.id.btnCancel:
                 finish();
