@@ -285,9 +285,8 @@
     <string name="are_you_sure_exit">etes vous sur de vouloir quitter?</string>
     <string name="val_recipient_no">Veuillez saisir le numéro du destinataire</string>
     <string name="val_amount">Veuillez saisir le montant</string>
-
-    <string name="val_amount_min">Please enter minimum amount </string>
-    <string name="val_amount_max">Please enter maximum amount </string>
+    <string name="val_amount_min">Veuillez entrer le montant minimum </string>
+    <string name="val_amount_max">Veuillez entrer le montant maximum </string>
     <string name="scan_error">Echec Scanning</string>
     <string name="val_scan_error_content">le QR code ne peut pas etre scanne</string>
     <string name="fee_tax_greater_than_trans_amt"><![CDATA[les frais et taxes sont superieurs au montant de la transaction]]></string>

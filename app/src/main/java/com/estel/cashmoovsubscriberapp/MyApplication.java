@@ -48,7 +48,6 @@ import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 
-import com.github.abhi10jul.savelogs.SaveLogsInStorage;
 import com.github.florent37.viewtooltip.ViewTooltip;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
@@ -89,7 +88,6 @@ public class MyApplication extends Application {
 
 
     private static final int PERMISSION_REQUEST_CODE = 101;
-    public static SaveLogsInStorage saveLoggerInstance;
     public static final String directoryName = "CustomLoggerSubs";
     private static final String TAG = MyApplication.class.getSimpleName();
     public static boolean isScan;
@@ -168,7 +166,6 @@ public class MyApplication extends Application {
 
         /*File Directory = new File(directoryName);
         Directory.mkdirs();*/
-        saveLoggerInstance = SaveLogsInStorage.getSaveLoggerInstance(message.getApplicationContext(), storageDir.getAbsolutePath());
 
         /*
          *Explain how to use all save logs instance method

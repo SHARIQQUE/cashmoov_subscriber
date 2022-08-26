@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 import androidx.cardview.widget.CardView;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
@@ -209,9 +211,41 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
 
                 }
                 break;
-            case R.id.btnConfirm:
-            {
-                MyApplication.biometricAuth(tononsubscriberconfirmscreenC, new BioMetric_Responce_Handler() {
+            case R.id.btnConfirm: {
+
+                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(ToNonSubscriberConfirmScreen.this);
+                switch (biometricManager.canAuthenticate()) {
+
+                    // this means we can use biometric sensor
+                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+
+                        Toast.makeText(ToNonSubscriberConfirmScreen.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                        pinLinear.setVisibility(View.VISIBLE);
+
+                        if (etPin.getText().toString().trim().isEmpty()) {
+                            MyApplication.showErrorToast(tononsubscriberconfirmscreenC, getString(R.string.val_pin));
+                            return;
+                        }
+                        if (etPin.getText().toString().trim().length() < 4) {
+                            MyApplication.showErrorToast(tononsubscriberconfirmscreenC, getString(R.string.val_valid_pin));
+                            return;
+                        }
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                            ToNonSubscriber.dataToSend.put("pin", encryptionDatanew);
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        return;
+                }
+            }
+            case BiometricManager.BIOMETRIC_SUCCESS:
+
+
+               MyApplication.biometricAuth(tononsubscriberconfirmscreenC, new BioMetric_Responce_Handler() {
                     @Override
                     public void success(String success) {
                         try {
@@ -229,10 +263,9 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                     @Override
                     public void failure(String failure) {
                         MyApplication.showToast(tononsubscriberconfirmscreenC,failure);
-                        pinLinear.setVisibility(View.VISIBLE);
                     }
                 });
-            }
+
                 break;
             case R.id.btnCancel:
                 finish();

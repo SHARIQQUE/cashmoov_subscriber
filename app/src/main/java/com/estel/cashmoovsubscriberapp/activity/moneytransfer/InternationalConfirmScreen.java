@@ -12,7 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
@@ -207,9 +210,40 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
 
                 }
                 break;
-            case R.id.btnConfirm:
+            case R.id.btnConfirm: {
 
-            {
+                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(InternationalConfirmScreen.this);
+                switch (biometricManager.canAuthenticate()) {
+
+                    // this means we can use biometric sensor
+                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+
+                        Toast.makeText(InternationalConfirmScreen.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                        pinLinear.setVisibility(View.VISIBLE);
+
+
+                        if (etPin.getText().toString().trim().isEmpty()) {
+                            MyApplication.showErrorToast(internationalconfirmscreenC, getString(R.string.val_pin));
+                            return;
+                        }
+                        if (etPin.getText().toString().trim().length() < 4) {
+                            MyApplication.showErrorToast(internationalconfirmscreenC, getString(R.string.val_valid_pin));
+                            return;
+                        }
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                            InternationalRecipientDetails.dataToSend.put("pin", encryptionDatanew);
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        return;
+                }
+            }
+            case BiometricManager.BIOMETRIC_SUCCESS:
+
                 MyApplication.biometricAuth(internationalconfirmscreenC, new BioMetric_Responce_Handler() {
                     @Override
                     public void success(String success) {
@@ -228,10 +262,9 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
                     @Override
                     public void failure(String failure) {
                         MyApplication.showToast(internationalconfirmscreenC,failure);
-                        pinLinear.setVisibility(View.VISIBLE);
                     }
                 });
-            }
+
                /* if (etPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalconfirmscreenC, getString(R.string.val_pin));
                     return;
