@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +13,11 @@ import android.location.Location;
 import android.media.MediaMetadataEditor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Html;
 import android.text.format.DateUtils;
@@ -44,11 +48,20 @@ import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.OfferPromotionModel;
 
+import com.github.abhi10jul.savelogs.SaveLogsInStorage;
 import com.github.florent37.viewtooltip.ViewTooltip;
 import com.kaopiz.kprogresshud.KProgressHUD;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,6 +78,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import okhttp3.Authenticator;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -72,6 +86,11 @@ import okhttp3.Route;
 
 
 public class MyApplication extends Application {
+
+
+    private static final int PERMISSION_REQUEST_CODE = 101;
+    public static SaveLogsInStorage saveLoggerInstance;
+    public static final String directoryName = "CustomLoggerSubs";
     private static final String TAG = MyApplication.class.getSimpleName();
     public static boolean isScan;
     public static ArrayList<OfferPromotionModel> offerPromotionModelArrayList=new ArrayList<>();
@@ -87,6 +106,22 @@ public class MyApplication extends Application {
     public static boolean showPay=false;
     public static boolean showCashOut=false;
     public static boolean showCashPickup=false;
+    public static int ToSubscriberMinAmount;
+    public static int ToSubscriberMaxAmount;
+    public static int ToNonSubscriberMinAmount;
+    public static int ToNonSubscriberMaxAmount;
+    public static int InternationalMinAmount;
+    public static int InternationalMaxAmount;
+    public static int AirtimePurchaseMinAmount;
+    public static int AirtimePurchaseMaxAmount;
+    public static int BillPaymentMinAmount;
+    public static int BillPaymentMaxAmount;
+    public static int PayMinAmount;
+    public static int PayMaxAmount;
+    public static int CashOutMinAmount;
+    public static int CashOutMaxAmount;
+    public static int CashPickupMinAmount;
+    public static int CashPickupMaxAmount;
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;
@@ -104,6 +139,42 @@ public class MyApplication extends Application {
         return appInstance;
     }
 
+
+    public static void initialisedLogger(Application message) {
+        /*
+         * First initialised SaveLogsInStorage in variable
+         * to access all save logs instance method
+         */
+
+
+
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+                .format(System.currentTimeMillis());
+        File storageDir = new File(Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/Cashmoov/");
+        if (!storageDir.exists())
+            storageDir.mkdirs();
+       /* File image = File.createTempFile(
+                timeStamp,
+                ".jpeg",
+                storageDir
+        );*/
+
+
+
+
+
+
+        /*File Directory = new File(directoryName);
+        Directory.mkdirs();*/
+        saveLoggerInstance = SaveLogsInStorage.getSaveLoggerInstance(message.getApplicationContext(), storageDir.getAbsolutePath());
+
+        /*
+         *Explain how to use all save logs instance method
+         */
+        //printLogsInStorage();
+    }
 
     public  void callLogin() {
         saveBool("isLogin",false,getInstance());
@@ -129,6 +200,7 @@ public class MyApplication extends Application {
         AndroidNetworking.enableLogging();
         AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BASIC);
 
+        initialisedLogger(this);
 
 
         CrashReporter.initialize(this);
@@ -162,6 +234,7 @@ public class MyApplication extends Application {
                     return true;
                 }
             })
+
             .addInterceptor(new okhttp3.logging.HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))
             .authenticator(new Authenticator() {
                 @Override
@@ -581,6 +654,23 @@ public class MyApplication extends Application {
         {
             editText.setText(Phoneno);
         }
+    }
+
+
+    public static boolean checkMinMax(Activity activity,CharSequence s,EditText editText,int minAmount,int maxAmount){
+        if(s.length()==1 && s.toString().equalsIgnoreCase(".")){
+            return true;
+        }
+        if (Double.parseDouble(s.toString().trim().replace(",","")) < minAmount) {
+            MyApplication.showTipError(activity, "Minimum Amount should be " + minAmount, editText);
+            return true;
+        }
+
+        if (Double.parseDouble(s.toString().trim().replace(",","")) > maxAmount) {
+            MyApplication.showTipError(activity, "Maximum Amount should be " + maxAmount, editText);
+            return true;
+        }
+        return false;
     }
 
 

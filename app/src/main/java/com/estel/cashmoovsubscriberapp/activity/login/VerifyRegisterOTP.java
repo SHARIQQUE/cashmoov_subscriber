@@ -110,6 +110,9 @@ public class VerifyRegisterOTP extends AppCompatActivity implements OnOtpComplet
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
                                                 jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                                ,
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")
                                         ));
 
                                     }

@@ -1,17 +1,30 @@
 package com.estel.cashmoovsubscriberapp.apiCalls;
 
 import static com.estel.cashmoovsubscriberapp.MyApplication.okClient;
+
+import android.content.ContentValues;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.estel.cashmoovsubscriberapp.Logger;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -22,6 +35,7 @@ import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -1289,6 +1303,9 @@ public class API {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                      /*  Logger.LogCapture capture = Logger.getLogCat("main");
+                        MyApplication.saveLoggerInstance.saveInfoLogs("Logs",response.toString());*/
+
                         responce_handler.success(response);
 
                         Log.d(TAG, "onResponse object : " + response.toString());
@@ -1760,6 +1777,11 @@ public class API {
                 });
 
     }
+
+
+
+
+
 
 
 

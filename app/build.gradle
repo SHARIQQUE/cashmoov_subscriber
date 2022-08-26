@@ -26,10 +26,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src\\main\\assets'
+            }
+        }
+    }
 }
 
 dependencies {
 
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'com.github.tony19:logback-android:2.0.0'
+
+    implementation 'com.github.abhi10jul:SaveLogsInStorage:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
@@ -78,7 +89,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
 
-  //  implementation 'com.aldoapps:autoformatedittext:0.9.3'
+    implementation 'com.aldoapps:autoformatedittext:0.9.3'
 
     // Play core library
     implementation "com.google.android.play:core:1.8.0"
@@ -87,6 +98,4 @@ dependencies {
     implementation "com.google.android.material:material:1.3.0-alpha02"
 
     implementation 'com.github.NaturalizerINA:AndroidNumberSeparator:1.2.3'
-
-
 }

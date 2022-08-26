@@ -284,6 +284,8 @@
     <string name="are_you_sure_exit">Are you sure you want to exit?</string>
     <string name="val_recipient_no">Please enter recipient number</string>
     <string name="val_amount">Please enter amount</string>
+    <string name="val_amount_min">Please enter minimum amount </string>
+    <string name="val_amount_max">Please enter maximum amount </string>
     <string name="scan_error">Scan Error</string>
     <string name="val_scan_error_content">QR Code could not be scanned</string>
     <string name="fee_tax_greater_than_trans_amt"><![CDATA[Fee & tax amount is greater than transaction amount]]></string>

@@ -102,17 +102,18 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
             @Override
             public void afterTextChanged(Editable s) {
 
-                /*if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
-                if (s.length() > 1) {
-                   // formatInput(etAmount,s, s.length(), s.length());
+                if (s.length() > 0) {
+
+                    formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }
 
-                //isFormatting = false;
+                isFormatting = false;
 
 
 
@@ -148,6 +149,16 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                     MyApplication.showErrorToast(billpaydetailsC,getString(R.string.val_valid_amount));
                     return;
                 }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.BillPaymentMinAmount) {
+            MyApplication.showErrorToast(billpaydetailsC,getString(R.string.val_amount_min)+" "+MyApplication.BillPaymentMinAmount);
+            return;
+        }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.BillPaymentMaxAmount) {
+            MyApplication.showErrorToast(billpaydetailsC,getString(R.string.val_amount_max)+" "+MyApplication.BillPaymentMaxAmount);
+            return;
+        }
                 try{
                     dataToSend.put("accountNumber",etAccountNo.getText().toString());
                     dataToSend.put("amount",etAmount.getText().toString().trim().replace(",",""));
@@ -240,6 +251,11 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        if(MyApplication.checkMinMax(billpaydetailsC,s,editText
+                ,MyApplication.BillPaymentMinAmount,MyApplication.BillPaymentMaxAmount)){
+            return;
+        }
+
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

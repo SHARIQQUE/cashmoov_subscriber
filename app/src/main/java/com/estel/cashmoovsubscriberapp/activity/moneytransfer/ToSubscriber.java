@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
@@ -262,12 +263,19 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
 
+
                 if (isFormatting) {
                     return;
                 }
 
                 if (s.length() > 0) {
+
+
+
+
                     formatInput(etAmount,s, s.length(), s.length());
+
+
 
                     callApiAmountDetails();
                 }
@@ -311,6 +319,16 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                 etAmount.getText().toString().trim().replace(",","").equals("0.")||
                 etAmount.getText().toString().trim().replace(",","").equals("0.0")||etAmount.getText().toString().trim().replace(",","").equals("0.00")){
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_valid_amount));
+            return;
+        }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.ToSubscriberMinAmount) {
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_amount_min)+" "+MyApplication.ToSubscriberMinAmount);
+            return;
+        }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.ToSubscriberMaxAmount) {
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_amount_max)+" "+MyApplication.ToSubscriberMaxAmount);
             return;
         }
         if(mobileNo.toString().trim().isEmpty()) {
@@ -711,6 +729,11 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+
+       if(MyApplication.checkMinMax(tosubscriberC,s,etAmount
+               ,MyApplication.ToSubscriberMinAmount,MyApplication.ToSubscriberMaxAmount)){
+           return;
+       }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

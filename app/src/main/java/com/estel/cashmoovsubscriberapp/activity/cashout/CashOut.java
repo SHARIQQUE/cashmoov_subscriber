@@ -199,17 +199,14 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (spBenifiCurr.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
-                   // MyApplication.showErrorToast(cashoutC, getString(R.string.val_select_curr));
-                    return;
-                }
-                else {
-                  /*  if (isFormatting) {
-                        return;
-                    }*/
 
-                    if (s.length() > 1) {
-                       // formatInput(etAmount,s, s.length(), s.length());
+                    if (isFormatting) {
+                        return;
+                    }
+
+                    if (s.length() > 0) {
+
+                        formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
 
@@ -218,12 +215,12 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
 //                        tvAmtPaid.setText("");
 //                        tvRate.setText("");
                     }
-                    //isFormatting = false;
+                    isFormatting = false;
                 }
 
 
 
-            }
+
 
         });
 
@@ -326,6 +323,16 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
                     MyApplication.showErrorToast(cashoutC,getString(R.string.val_valid_amount));
                     return;
                 }
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.CashOutMaxAmount) {
+                    MyApplication.showErrorToast(cashoutC,getString(R.string.val_amount_min)+" "+MyApplication.CashOutMaxAmount);
+                    return;
+                }
+
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.CashOutMaxAmount) {
+                    MyApplication.showErrorToast(cashoutC,getString(R.string.val_amount_max)+" "+MyApplication.CashOutMaxAmount);
+                    return;
+                }
+
                 if(isSuccess){
                 try{
                     dataToSend.put("transactionType","100001");
@@ -744,6 +751,11 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        if(MyApplication.checkMinMax(cashoutC,s,editText
+                ,MyApplication.CashOutMinAmount,MyApplication.CashOutMaxAmount)){
+            return;
+        }
+
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

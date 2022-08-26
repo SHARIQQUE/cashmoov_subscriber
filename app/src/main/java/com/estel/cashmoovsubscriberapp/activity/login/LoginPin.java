@@ -409,6 +409,9 @@ public class LoginPin extends AppCompatActivity {
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
                                                 jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                                ,
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")
                                         ));
 
                                     }
@@ -534,6 +537,9 @@ public class LoginPin extends AppCompatActivity {
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
                                                 jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                                ,
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")
                                         ));
 
                                     }

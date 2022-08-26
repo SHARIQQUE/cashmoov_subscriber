@@ -150,12 +150,13 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                /*if (isFormatting) {
+                if (isFormatting) {
                     return;
                 }
-*/
-                if(s.length()>=1) {
-                   // formatInput(etAmount,s, s.length(), s.length());
+
+                if(s.length()>0) {
+
+                    formatInput(etAmount,s, s.length(), s.length());
 
                     if(isAmt){
                             etAmountNew.setEnabled(false);
@@ -174,7 +175,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                         tvRate.setText("");
                 }
 
-              //  isFormatting = false;
+                isFormatting = false;
 
             }
 
@@ -197,12 +198,14 @@ public class International extends AppCompatActivity implements View.OnClickList
                     MyApplication.showErrorToast(internationalC, getString(R.string.val_select_curr));
                     return;
                 }
-                /*if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
-                if(s.length()>=1) {
-                  //  formatInput(etAmountNew,s, s.length(), s.length());
+                if(s.length()>0) {
+
+
+                    formatInput(etAmountNew,s, s.length(), s.length());
                         if(isAmtPaid){
                             etAmount.setEnabled(false);
                             isAmt=false;
@@ -221,7 +224,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                         tvRate.setText("");
                     }
 
-                   // isFormatting = false;
+                    isFormatting = false;
 
                 }
 
@@ -263,6 +266,16 @@ public class International extends AppCompatActivity implements View.OnClickList
         if(etAmount.getText().toString().trim().replace(",","").equals("0")||etAmount.getText().toString().replace(",","").trim().equals(".")||etAmount.getText().toString().trim().replace(",","").equals(".0")||
                 etAmount.getText().toString().trim().replace(",","").equals("0.")||etAmount.getText().toString().trim().replace(",","").equals("0.0")||etAmount.getText().toString().trim().replace(",","").equals("0.00")){
             MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
+            return;
+        }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.InternationalMinAmount) {
+            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_min)+" "+MyApplication.InternationalMinAmount);
+            return;
+        }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.InternationalMaxAmount) {
+            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_max)+" "+MyApplication.InternationalMaxAmount);
             return;
         }
 
@@ -722,6 +735,10 @@ public class International extends AppCompatActivity implements View.OnClickList
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        if(MyApplication.checkMinMax(internationalC,s,editText
+                ,MyApplication.InternationalMinAmount,MyApplication.InternationalMaxAmount)){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

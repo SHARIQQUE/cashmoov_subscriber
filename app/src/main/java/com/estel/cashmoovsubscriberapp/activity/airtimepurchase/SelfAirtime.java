@@ -107,16 +107,17 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-                /*if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
-                if(s.length()>=1) {
-                    //formatInput(etAmount,s, s.length(), s.length());
+                if(s.length()>0) {
+
+                  formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }
-                //isFormatting = false;
+                isFormatting = false;
 
             }
 
@@ -159,6 +160,16 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                 if (etAmount.getText().toString().trim().replace(",","").equals("0") || etAmount.getText().toString().trim().replace(",","").equals(".") || etAmount.getText().toString().trim().replace(",","").equals(".0") ||
                         etAmount.getText().toString().trim().replace(",","").equals("0.") || etAmount.getText().toString().trim().replace(",","").equals("0.0") || etAmount.getText().toString().trim().replace(",","").equals("0.00")) {
                     MyApplication.showErrorToast(selfairtimeC, getString(R.string.val_valid_amount));
+                    return;
+                }
+
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.AirtimePurchaseMinAmount) {
+                    MyApplication.showErrorToast(selfairtimeC,getString(R.string.val_amount_min)+" "+MyApplication.AirtimePurchaseMinAmount);
+                    return;
+                }
+
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.AirtimePurchaseMaxAmount) {
+                    MyApplication.showErrorToast(selfairtimeC,getString(R.string.val_amount_max)+" "+MyApplication.AirtimePurchaseMaxAmount);
                     return;
                 }
                 try {
@@ -491,6 +502,10 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText, CharSequence s, int start, int count) {
+
+        if(MyApplication.checkMinMax(selfairtimeC,s,etAmount,MyApplication.AirtimePurchaseMinAmount,MyApplication.AirtimePurchaseMaxAmount)){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

@@ -137,6 +137,9 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements OnOtpCompl
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
                                                 jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                                ,
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")
                                         ));
 
                                     }

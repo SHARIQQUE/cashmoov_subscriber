@@ -110,6 +110,9 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements OnOtp
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
                                                 jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                                ,
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")
                                         ));
 
                                     }

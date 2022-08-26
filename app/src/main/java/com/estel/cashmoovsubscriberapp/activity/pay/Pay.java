@@ -207,17 +207,14 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (spBenifiCurr.getText().toString().equals(getString(R.string.valid_select_benifi_curr))) {
-                   // MyApplication.showErrorToast(payC, getString(R.string.val_select_curr));
-                    return;
-                }
-                else {
-                    /*if (isFormatting) {
-                        return;
-                    }*/
 
-                    if (s.length() > 1) {
-                      //  formatInput(etAmount,s, s.length(), s.length());
+                    if (isFormatting) {
+                        return;
+                    }
+
+                    if (s.length() > 0) {
+
+                        formatInput(etAmount,s, s.length(), s.length());
 
                         callApiAmountDetails();
                     }else{
@@ -225,9 +222,9 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
 //                        tvAmtPaid.setText("");
 //                        tvRate.setText("");
                     }
-                   // isFormatting = false;
-                }
 
+
+                isFormatting = false;
 
 
             }
@@ -333,6 +330,16 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                     MyApplication.showErrorToast(payC,getString(R.string.val_valid_amount));
                     return;
                 }
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.PayMinAmount) {
+                    MyApplication.showErrorToast(payC,getString(R.string.val_amount_min)+" "+MyApplication.PayMinAmount);
+                    return;
+                }
+
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.PayMaxAmount) {
+                    MyApplication.showErrorToast(payC,getString(R.string.val_amount_max)+" "+MyApplication.PayMaxAmount);
+                    return;
+                }
+
                 if(isSuccess){
                     try{
                         dataToSend.put("transactionType","105068");
@@ -739,6 +746,11 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        if(MyApplication.checkMinMax(payC,s,etAmount
+                ,MyApplication.PayMinAmount,MyApplication.PayMaxAmount)){
+            return;
+        }
+
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

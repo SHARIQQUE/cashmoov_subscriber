@@ -521,7 +521,9 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                                 jsonObjectServiceListResponceArray.optString("name"),
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
-                                                jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                                jsonObjectServiceListResponceArray.optBoolean("productAllowed"),
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")
                                         ));
 
                                     }

@@ -257,12 +257,13 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             @Override
             public void afterTextChanged(Editable s) {
 
-               /* if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
-                if(s.length()>=1) {
-                   // formatInput(etAmount,s, s.length(), s.length());
+                if(s.length()>0) {
+
+                    formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }else{
@@ -270,7 +271,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                     tvFee.setText("");
                     tvAmtPaid.setText("");
                 }
-               // isFormatting = false;
+                isFormatting = false;
 
 
             }
@@ -291,12 +292,14 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             @Override
             public void afterTextChanged(Editable s) {
 
-               /* if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
-                if(s.length()>=1) {
-                   // formatInput(etAmountNew,s, s.length(), s.length());
+                if(s.length()>0) {
+
+
+                    formatInput(etAmountNew,s, s.length(), s.length());
 
                     callApiAmountDetailsNew();
                 }else{
@@ -305,7 +308,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                     tvAmtPaid.setText("");
                 }
 
-               // isFormatting = false;
+                isFormatting = false;
             }
 
         });
@@ -323,6 +326,8 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+
+
         if(etAmount.getText().toString().trim().replace(",","").isEmpty()) {
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_amount));
             return;
@@ -332,6 +337,18 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_valid_amount));
             return;
         }
+
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.ToNonSubscriberMinAmount) {
+            MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_amount_min)+" "+MyApplication.ToNonSubscriberMinAmount);
+            return;
+        }
+
+        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.ToNonSubscriberMaxAmount) {
+            MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_amount_max)+" "+MyApplication.ToNonSubscriberMaxAmount);
+            return;
+        }
+
         if(etPhone.getText().toString().trim().isEmpty()) {
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_phone));
             return;
@@ -823,6 +840,10 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        if(MyApplication.checkMinMax(tononsubscriberC,s,editText
+                ,MyApplication.ToNonSubscriberMinAmount,MyApplication.ToNonSubscriberMaxAmount)){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

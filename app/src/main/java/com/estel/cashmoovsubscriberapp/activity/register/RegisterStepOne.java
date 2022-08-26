@@ -36,7 +36,8 @@ import com.estel.cashmoovsubscriberapp.model.RegionInfoModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -77,7 +78,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_stepone);
+
         registersteponeC=this;
+        Logger log = LoggerFactory.getLogger(RegisterStepOne.class);
+        log.info("hello world");
         MyApplication.saveString("TempSubscriberCode","",registersteponeC);
         getIds();
 

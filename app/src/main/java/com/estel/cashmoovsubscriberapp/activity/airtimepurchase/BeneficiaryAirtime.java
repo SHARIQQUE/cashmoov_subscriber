@@ -133,16 +133,17 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
             @Override
             public void afterTextChanged(Editable s) {
 
-                /*if (isFormatting) {
+                if (isFormatting) {
                     return;
-                }*/
+                }
 
-                if(s.length()>=1) {
-                    //formatInput(etAmount,s, s.length(), s.length());
+                if(s.length()>0) {
+
+                    formatInput(etAmount,s, s.length(), s.length());
 
                     callApiAmountDetails();
                 }
-                //isFormatting = false;
+                isFormatting = false;
 
 
             }
@@ -235,6 +236,16 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         etAmount.getText().toString().trim().replace(",","").equals("0.") || etAmount.getText().toString().trim().replace(",","").equals("0.0") || etAmount.getText().toString().trim().replace(",","").equals("0.00")) {
                         MyApplication.showErrorToast(beneficiaryairtimeC, getString(R.string.val_valid_amount));
                         return;
+                }
+
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.AirtimePurchaseMinAmount) {
+                    MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_amount_min)+" "+MyApplication.AirtimePurchaseMinAmount);
+                    return;
+                }
+
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.AirtimePurchaseMaxAmount) {
+                    MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_amount_max)+" "+MyApplication.AirtimePurchaseMaxAmount);
+                    return;
                 }
                 try {
                         dataToSend.put("accountNumber", etPhone.getText().toString());

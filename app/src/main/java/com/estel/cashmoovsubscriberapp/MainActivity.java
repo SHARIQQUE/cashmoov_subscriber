@@ -222,13 +222,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if(da.getCode().equalsIgnoreCase("100024")){
                         MyApplication.showToSubscriber = true;
+                        MyApplication.ToSubscriberMinAmount=da.getMinTransValue();//1000
+                        MyApplication.ToSubscriberMaxAmount=da.getMaxTransValue();//200000
                     }
                     if(da.getCode().equalsIgnoreCase("NONSUB")){
                         MyApplication.showToNonSubscriber = true;
+                        MyApplication.ToNonSubscriberMinAmount=da.getMinTransValue();
+                        MyApplication.ToNonSubscriberMaxAmount=da.getMaxTransValue();
                     }
 
                     if(da.getCode().equalsIgnoreCase("INTREM")){
                         MyApplication.showInternationalRemit = true;
+                        MyApplication.InternationalMinAmount=da.getMinTransValue();
+                        MyApplication.InternationalMaxAmount=da.getMaxTransValue();
                     }
 
                 }
@@ -237,6 +243,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    // wallet_owner_head.setText(dataM.get(i).name);
                     if(da.getCode().equalsIgnoreCase("100021")){
                         MyApplication.showAirtimePurchase = true;
+                        MyApplication.AirtimePurchaseMinAmount=da.getMinTransValue();
+                        MyApplication.AirtimePurchaseMaxAmount=da.getMaxTransValue();
                        // cardAirtimePurchase.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("SUBS")){
@@ -250,6 +258,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if(da.getCode().equalsIgnoreCase("100028")){
                         MyApplication.showBillPayment = true;
+                        MyApplication.BillPaymentMinAmount=da.getMinTransValue();
+                        MyApplication.BillPaymentMaxAmount=da.getMaxTransValue();
                         //cardRechargePayment.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("100001")){
@@ -270,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if(da.getCode().equalsIgnoreCase("100057")){
                         MyApplication.showPay = true;
+                        MyApplication.PayMinAmount=da.getMinTransValue();
+                        MyApplication.PayMaxAmount=da.getMaxTransValue();
                        // cardPay.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("100012")){
@@ -286,6 +298,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if(da.getCode().equalsIgnoreCase("100012")){
                         MyApplication.showCashOut = true;
+                        MyApplication.CashOutMinAmount=da.getMinTransValue();
+                        MyApplication.CashOutMaxAmount=da.getMaxTransValue();
                        // cardCashOut.setVisibility(View.VISIBLE);
                     }
 
@@ -299,6 +313,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if(da.getCode().equalsIgnoreCase("CSHPIC")){
                         MyApplication.showCashPickup = true;
+                        MyApplication.CashPickupMinAmount=da.getMinTransValue();
+                        MyApplication.CashPickupMaxAmount=da.getMaxTransValue();
                         //cardRecRemittance.setVisibility(View.VISIBLE);
                     }
 //                    if(da.getCode().equalsIgnoreCase("TRNSRT")){
