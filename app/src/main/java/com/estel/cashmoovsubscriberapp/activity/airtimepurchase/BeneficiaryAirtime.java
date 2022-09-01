@@ -419,6 +419,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         @Override
                         public void failure(String aFalse) {
                             MyApplication.hideLoader();
+                            tvSend.setVisibility(View.GONE);
 
                         }
                     });

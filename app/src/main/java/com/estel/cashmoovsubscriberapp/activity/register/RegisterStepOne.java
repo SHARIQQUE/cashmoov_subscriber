@@ -32,6 +32,8 @@ import com.estel.cashmoovsubscriberapp.model.CityInfoModel;
 import com.estel.cashmoovsubscriberapp.model.GenderModel;
 import com.estel.cashmoovsubscriberapp.model.OccupationTypeModel;
 import com.estel.cashmoovsubscriberapp.model.RegionInfoModel;
+import com.estel.cashmoovsubscriberapp.model.RegistrationMobileModel;
+import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +46,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -96,10 +100,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         etFname.setNextFocusDownId(R.id.etLname);
 
         etLname = findViewById(R.id.etLname);
-        etLname.setNextFocusDownId(R.id.etPhone);
+        etLname.setNextFocusDownId(R.id.etEmail);
 
         etPhone = findViewById(R.id.etPhone);
-        etPhone.setNextFocusDownId(R.id.etEmail);
+        etPhone.setNextFocusDownId(R.id.etFname);
 
         etEmail = findViewById(R.id.etEmail);
         etEmail.setNextFocusDownId(R.id.etAddress);
@@ -114,6 +118,32 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         spOccupation = findViewById(R.id.spOccupation);
         tvNext = findViewById(R.id.tvNext);
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
+
+        String regex = "[0-9]+";
+        Pattern p = Pattern.compile(regex);
+        etPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Matcher m = p.matcher(s);
+                if(s.length()>=9 && m.matches()){
+
+                        callApiSubsriberList();
+
+                }else{
+                   clearData();
+                }
+            }
+        });
         // etDob.setInputType(InputType.TYPE_NULL);
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -713,6 +743,163 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
             etDob.setText(year + "-" + (month+1) + "-" + day);
             mDobText.setVisibility(View.VISIBLE);
             // etDob.setText(year + "-" + (month+1) + "-" + day);
+
+        }
+    }
+
+
+    private void callApiSubsriberList() {
+        try {
+            //walletOwnerCategoryCode
+            // MyApplication.showloader(TransferToAccountActivity.this, "Please wait!");
+            API.GET_PUBLIC("ewallet/public/subscriber/msisdn/" + (etPhone.getText().toString()),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+
+                                    JSONObject data=jsonObject.optJSONObject("walletOwner");
+
+                                    if(data.optString("status").equalsIgnoreCase("Active") && data.optString("state").equalsIgnoreCase("Approved")){
+                                        MyApplication.showToast(registersteponeC,"Mobile number already exust in the system please try with another number !");
+                                    }else{
+
+                                        RegistrationMobileModel registrationMobileModel=new RegistrationMobileModel(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("walletOwnerCategoryCode"),
+                                                data.optString("ownerName"),
+                                                data.optString("mobileNumber"),
+                                                data.optString("idProofNumber"),
+                                                data.optString("email"),
+                                                data.optString("status"),
+                                                data.optString("state"),
+                                                data.optString("stage"),
+                                                data.optString("idProofTypeCode"),
+                                                data.optString("idProofTypeName"),
+                                                data.optString("idExpiryDate"),
+                                                data.optString("notificationLanguage"),
+                                                data.optString("notificationTypeCode"),
+                                                data.optString("notificationName"),
+                                                data.optString("gender"),
+                                                data.optString("dateOfBirth"),
+                                                data.optString("lastName"),
+                                                data.optString("issuingCountryCode"),
+                                                data.optString("issuingCountryName"),
+                                                data.optString("registerCountryCode"),
+                                                data.optString("registerCountryName"),
+                                                data.optString("modifiedBy"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optBoolean("walletExists"),
+                                                data.optString("profileTypeCode"),
+                                                data.optString("profileTypeName"),
+                                                data.optString("currencyCode"),
+                                                data.optString("walletOwnerCatName"),
+                                                data.optString("occupationTypeCode"),
+                                                data.optString("occupationTypeName"),
+                                                data.optString("requestedSource"),
+                                                data.optString("regesterCountryDialCode"),
+                                                data.optString("issuingCountryDialCode"),
+                                                data.optString("walletOwnerCode"),
+                                                data.optBoolean("hasChild"),
+                                                data.optString("profileImageName"),
+                                                data.optString("currencySymbol"),
+                                                data.optString("currencyName"),
+                                                data.optBoolean("loginWithOtpRequired"),
+                                                data.optString("timeZone")
+                                        );
+                                        
+                                        setData(registrationMobileModel);
+
+                                    }
+
+
+                                } else {
+
+                                     MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.showToast(registersteponeC,aFalse);
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void clearData(){
+        etFname.setText("");
+        etLname.setText("");
+        etEmail.setText("");
+        MyApplication.saveString("TempSubscriberCode","",registersteponeC);
+    }
+
+    private void setData(RegistrationMobileModel registrationMobileModel) {
+
+        try{
+
+            etFname.setText(registrationMobileModel.getOwnerName());
+            etLname.setText(registrationMobileModel.getLastName());
+            etEmail.setText(registrationMobileModel.getEmail());
+            MyApplication.saveString("TempSubscriberCode",registrationMobileModel.getWalletOwnerCode(),registersteponeC);
+
+
+
+
+
+          /*  if(spRegion.getText().toString().equals(getString(R.string.valid_select_region))) {
+                //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                MyApplication.showTipError(this,getString(R.string.val_select_region),spRegion);
+                MyApplication.hideKeyboard(registersteponeC);
+                return;
+            }
+            if(spCity.getText().toString().equals(getString(R.string.valid_select_city))) {
+                //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                MyApplication.showTipError(this,getString(R.string.val_select_city),spCity);
+                MyApplication.hideKeyboard(registersteponeC);
+                return;
+            }
+            if(etAddress.getText().toString().trim().isEmpty()) {
+                // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_address));
+                MyApplication.showTipError(this,getString(R.string.val_address),etAddress);
+                MyApplication.hideKeyboard(registersteponeC);
+                return;
+            }
+            if(spGender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+                //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                MyApplication.showTipError(this,getString(R.string.val_select_gender),spGender);
+                MyApplication.hideKeyboard(registersteponeC);
+                return;
+            }
+            if(spOccupation.getText().toString().equals(getString(R.string.valid_select_occupation))) {
+                //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_occupation));
+                MyApplication.showTipError(this,getString(R.string.val_select_occupation),spOccupation);
+                MyApplication.hideKeyboard(registersteponeC);
+                return;
+            }
+            if(etDob.getText().toString().trim().isEmpty()) {
+                // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_dob));
+                MyApplication.showTipError(this,getString(R.string.val_dob),etDob);
+                MyApplication.hideKeyboard(registersteponeC);
+                return;
+            }
+*/
+
+        }catch (Exception e){
 
         }
     }
