@@ -23,8 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 
+import com.estel.cashmoovsubscriberapp.Logger;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.activity.login.VerifyRegisterOTP;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -38,8 +40,7 @@ import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -84,8 +85,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_register_stepone);
 
         registersteponeC=this;
-        Logger log = LoggerFactory.getLogger(RegisterStepOne.class);
-        log.info("hello world");
+       /* Logger log = LoggerFactory.getLogger(RegisterStepOne.class);
+        log.info("hello world");*/
         MyApplication.saveString("TempSubscriberCode","",registersteponeC);
         getIds();
 
@@ -303,40 +304,43 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
-                JSONObject jsonObject=new JSONObject();
-                try {
-                    jsonObject.put("ownerName",etFname.getText().toString().trim());
-                    jsonObject.put("lastName",etLname.getText().toString().trim());
-                    jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-                    jsonObject.put("idExpiryDate","2021-11-09");
-                    jsonObject.put("email",etEmail.getText().toString().trim());
-                    jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
-                    jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
-                    //jsonObject.put("idProofNumber","");
-                    //jsonObject.put("idProofTypeCode","");
+                if(!MyApplication.isConnectingToInternet(RegisterStepOne.this)){
+                    Toast.makeText(RegisterStepOne.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                }else {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("ownerName", etFname.getText().toString().trim());
+                        jsonObject.put("lastName", etLname.getText().toString().trim());
+                        jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
+                        jsonObject.put("idExpiryDate", "2021-11-09");
+                        jsonObject.put("email", etEmail.getText().toString().trim());
+                        jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
+                        jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
+                        //jsonObject.put("idProofNumber","");
+                        //jsonObject.put("idProofTypeCode","");
 
-                    jsonObject.put("issuingCountryCode","100092");
-                    jsonObject.put("registerCountryCode","100092");
-                    jsonObject.put("notificationLanguage","fr");
-                    jsonObject.put("addTypeCode","100001");
-                    //jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
-                    jsonObject.put("notificationTypeCode","100002");
-                    jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
-                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
-                    jsonObject.put("city",cityModelList.get((Integer) spCity.getTag()).getCode());
-                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
+                        jsonObject.put("issuingCountryCode", "100092");
+                        jsonObject.put("registerCountryCode", "100092");
+                        jsonObject.put("notificationLanguage", "fr");
+                        jsonObject.put("addTypeCode", "100001");
+                        //jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", registersteponeC));
+                        jsonObject.put("notificationTypeCode", "100002");
+                        jsonObject.put("occupationTypeCode", occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
+                        jsonObject.put("regionCode", regionModelList.get((Integer) spRegion.getTag()).getCode());
+                        jsonObject.put("city", cityModelList.get((Integer) spCity.getTag()).getCode());
+                        jsonObject.put("addressLine1", etAddress.getText().toString().trim());
 
 
-                    //MyApplication.saveString("TempSubscriberCode",subscriberWalletOwnerCode,registersteponeC);
-                    jsonObject.put("code",MyApplication.getSaveString("TempSubscriberCode",registersteponeC));
+                        //MyApplication.saveString("TempSubscriberCode",subscriberWalletOwnerCode,registersteponeC);
+                        jsonObject.put("code", MyApplication.getSaveString("TempSubscriberCode", registersteponeC));
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("RegisterOne request=======" + jsonObject.toString());
+
+                    callRegisterApi(jsonObject);
                 }
-                System.out.println("RegisterOne request======="+jsonObject.toString());
-
-                callRegisterApi(jsonObject);
-
         }
 
     }

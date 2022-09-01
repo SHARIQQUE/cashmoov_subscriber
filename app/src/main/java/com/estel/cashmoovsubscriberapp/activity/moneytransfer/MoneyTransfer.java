@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -92,8 +93,13 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                     // cardToSubscriber.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
                 }else{
-                    intent = new Intent(moneytransferC, ToSubscriber.class);
-                    startActivity(intent);
+                    if(!MyApplication.isConnectingToInternet(MoneyTransfer.this)){
+                        Toast.makeText(moneytransferC, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                    }else{
+                        intent = new Intent(moneytransferC, ToSubscriber.class);
+                        startActivity(intent);
+                    }
+
                 }
                 break;
 

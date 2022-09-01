@@ -195,8 +195,14 @@ public class LoginPin extends AppCompatActivity {
                     MyApplication.showErrorToast(loginpinC, getString(R.string.val_valid_pin));
                     return;
                 } 
+                
+                if(!MyApplication.isConnectingToInternet(LoginPin.this)){
+                    Toast.makeText(LoginPin.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                }else{
                     callApiLoginPass();
-                    
+
+                }
+
                 
 
             }

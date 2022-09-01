@@ -253,9 +253,18 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     return;
                 } else {
                     if(etPass.isShown()){
-                        callApiLoginPass();
-                    }else{
-                        callApiCheckMobile();
+                        if(!MyApplication.isConnectingToInternet(PhoneNumberRegistrationScreen.this)){
+                            Toast.makeText(PhoneNumberRegistrationScreen.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                        }else{
+                            callApiLoginPass();
+
+                        }
+                    }else {
+                        if (!MyApplication.isConnectingToInternet(PhoneNumberRegistrationScreen.this)) {
+                            Toast.makeText(PhoneNumberRegistrationScreen.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                        } else {
+                            callApiCheckMobile();
+                        }
                     }
 
                 }

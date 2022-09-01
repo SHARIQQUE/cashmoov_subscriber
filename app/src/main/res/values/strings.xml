@@ -371,6 +371,8 @@
     <string name="gnf_fixed">GNF Fixed</string>
     <string name="recharge_tv">Recharge TV</string>
     <string name="recharge_mobile">Recharge Mobile</string>
+    <string name="please_check_internet">Please connect to the internet</string>
+
     <string name="range">Range</string>
     <string name="value">Value</string>
     <string name="range_value_not_available"><![CDATA[No range & value available]]></string>

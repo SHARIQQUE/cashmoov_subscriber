@@ -17,6 +17,8 @@ import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.estel.cashmoovsubscriberapp.Logger;
 import com.estel.cashmoovsubscriberapp.MyApplication;
+import com.estel.cashmoovsubscriberapp.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
@@ -149,495 +151,530 @@ public class API {
 
 
     public static void POST_REQEST_Login(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addBodyParameter("username",jsonObject.optString("username")) // posting json
-                .addBodyParameter("password",jsonObject.optString("password"))
-                .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
-                .addBodyParameter("grant_type","password")
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                // .addHeaders("Accept-Language",MyApplication.getLang())
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+            AndroidNetworking.post(BASEURL + URL)
+                    .addBodyParameter("username", jsonObject.optString("username")) // posting json
+                    .addBodyParameter("password", jsonObject.optString("password"))
+                    .addBodyParameter("fcmToken", jsonObject.optString("fcmToken"))
+                    .addBodyParameter("grant_type", "password")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    // .addHeaders("Accept-Language",MyApplication.getLang())
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
-                .setOkHttpClient(okHttpClient)
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        //  MyApplication.hideLoader();
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            //  MyApplication.hideLoader();
 
 
-                        responce_handler.success(response);
+                            responce_handler.success(response);
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-                            JSONObject error1=new JSONObject(error.getErrorBody());
-                            if(error1.optString("error").equalsIgnoreCase("1251")){
-                                //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure("1251");
-                            }else{
-                                JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure(errorJ.optString("error_message"));
-                            }
-
-                        }catch (Exception e)
-                        {
-
+                            Log.d(TAG, "onResponse object : " + response.toString());
                         }
 
-                        if (error.getErrorCode() != 0) {
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
+
+                            }
+
+                            if (error.getErrorCode() != 0) {
 //                            if(error.getErrorCode()==400){
 //                                MyApplication.showAPIToast("Server not responding,please try again after some time..");
 //
 //                            }
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
 
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
     public static void POST_REQEST_GENERATEOTP(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addBodyParameter("username",jsonObject.optString("username")) // posting json
-                .addBodyParameter("password",jsonObject.optString("password"))
-                .addBodyParameter("grant_type","password")
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("type","GENERATEOTP")
-                .addHeaders("source","SUBSCRIBER")
-                // .addHeaders("Accept-Language",MyApplication.getLang())
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+            AndroidNetworking.post(BASEURL + URL)
+                    .addBodyParameter("username", jsonObject.optString("username")) // posting json
+                    .addBodyParameter("password", jsonObject.optString("password"))
+                    .addBodyParameter("grant_type", "password")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("type", "GENERATEOTP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    // .addHeaders("Accept-Language",MyApplication.getLang())
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
-                .setOkHttpClient(okHttpClient)
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
 
+                            responce_handler.success(response);
 
-                        responce_handler.success(response);
-
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-                            JSONObject error1=new JSONObject(error.getErrorBody());
-                            if(error1.optString("error").equalsIgnoreCase("1251")){
-                                //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure("1251");
-                            }else{
-                                JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure(errorJ.optString("error_message"));
-                            }
-
-                        }catch (Exception e)
-                        {
-
+                            Log.d(TAG, "onResponse object : " + response.toString());
                         }
 
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
 
     public static void POST_RESETPIN(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addBodyParameter("username",jsonObject.optString("username")) // posting json
-                .addBodyParameter("password",jsonObject.optString("password"))
-                .addBodyParameter("grant_type","password")
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("type","RESETPIN")
-                .addHeaders("source","SUBSCRIBER")
-                // .addHeaders("Accept-Language",MyApplication.getLang())
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                .setOkHttpClient(okHttpClient)
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+            AndroidNetworking.post(BASEURL + URL)
+                    .addBodyParameter("username", jsonObject.optString("username")) // posting json
+                    .addBodyParameter("password", jsonObject.optString("password"))
+                    .addBodyParameter("grant_type", "password")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("type", "RESETPIN")
+                    .addHeaders("source", "SUBSCRIBER")
+                    // .addHeaders("Accept-Language",MyApplication.getLang())
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
 
+                            responce_handler.success(response);
 
-                        responce_handler.success(response);
-
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-                            JSONObject error1=new JSONObject(error.getErrorBody());
-                            if(error1.optString("error").equalsIgnoreCase("1251")){
-                                //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure("1251");
-                            }else{
-                                JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure(errorJ.optString("error_message"));
-                            }
-
-                        }catch (Exception e)
-                        {
-
+                            Log.d(TAG, "onResponse object : " + response.toString());
                         }
 
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
 
     public static void POST_REQEST_LoginOTP(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addBodyParameter("username",jsonObject.optString("username")) // posting json
-                .addBodyParameter("password",jsonObject.optString("password"))
-                .addBodyParameter("grant_type","password")
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("type","LOGINOTP")
-                .addHeaders("source","SUBSCRIBER")
-                // .addHeaders("Accept-Language",MyApplication.getLang())
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+            AndroidNetworking.post(BASEURL + URL)
+                    .addBodyParameter("username", jsonObject.optString("username")) // posting json
+                    .addBodyParameter("password", jsonObject.optString("password"))
+                    .addBodyParameter("grant_type", "password")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("type", "LOGINOTP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    // .addHeaders("Accept-Language",MyApplication.getLang())
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
-                .setOkHttpClient(okHttpClient)
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
 
+                            responce_handler.success(response);
 
-                        responce_handler.success(response);
-
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-                            JSONObject error1=new JSONObject(error.getErrorBody());
-                            if(error1.optString("error").equalsIgnoreCase("1251")){
-                                //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure("1251");
-                            }else{
-                                JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                responce_handler.failure(errorJ.optString("error_message"));
-                            }
-
-                        }catch (Exception e)
-                        {
-
+                            Log.d(TAG, "onResponse object : " + response.toString());
                         }
 
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
     public static void POST_REQEST_CHECK(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.post(BASEURL+URL)
-                .setOkHttpClient(okHttpClient)
-                .addJSONObjectBody(jsonObject) // posting json
-                //.addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
-                //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+            AndroidNetworking.post(BASEURL + URL)
+                    .setOkHttpClient(okHttpClient)
+                    .addJSONObjectBody(jsonObject) // posting json
+                    //.addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+                    //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-                        if(response.optString("resultCode").equalsIgnoreCase("1059")) {
+                            if (response.optString("resultCode").equalsIgnoreCase("1059")) {
+                                MyApplication.hideLoader();
+                                responce_handler.failure(response.optString("resultDescription"));
+                            } else {
+                                responce_handler.success(response);
+                            }
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            responce_handler.failure(response.optString("resultDescription"));
-                        }else{
-                            responce_handler.success(response);
-                        }
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
+                            try {
 
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
-                        }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
     public static void POST_REQEST_REGISTER(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addJSONObjectBody(jsonObject) // posting json
-                .setTag("test")
-                .setOkHttpClient(client)
-                // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        responce_handler.success(response);
-
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        responce_handler.failure(error.getErrorDetail());
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
-
-                            }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+            AndroidNetworking.post(BASEURL + URL)
+                    .addJSONObjectBody(jsonObject) // posting json
+                    .setTag("test")
+                    .setOkHttpClient(client)
+                    // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                    }
-                });
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            responce_handler.failure(error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
 
     public static void POST_REQEST_TransferAMount(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.post(BASEURL_AMOUNT+URL)
-                .addJSONObjectBody(jsonObject) // posting json
-                .setTag("test")
-                .setOkHttpClient(client)
-                // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        responce_handler.success(response);
-
-                        Log.d(TAG, "onResponse sonu object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        responce_handler.failure(error.getErrorDetail());
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
-
-                            }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+            AndroidNetworking.post(BASEURL_AMOUNT + URL)
+                    .addJSONObjectBody(jsonObject) // posting json
+                    .setTag("test")
+                    .setOkHttpClient(client)
+                    // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                    }
-                });
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse sonu object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            responce_handler.failure(error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
@@ -706,141 +743,153 @@ public class API {
     }
 
     public static void Upload_REQEST(String URL, File file,String docTypeCode, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
 
-        AndroidNetworking.upload(BASEURL+URL)
-                .addHeaders("channel","APP")
-                .addMultipartFile("file",file)
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addMultipartParameter("docTypeCode",docTypeCode)
-                .addMultipartParameter("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",MyApplication.getInstance()))
-                .setTag("uploadTest")
-                .setPriority(Priority.HIGH)
-                .setOkHttpClient(okClientfileUpload)
-                .setContentType("multipart/form-data")
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .build()
-                // setting an executor to get response or completion on that executor thread
-                /* .setUploadProgressListener(new UploadProgressListener() {
-                     @Override
-                     public void onProgress(long bytesUploaded, long totalBytes) {
-                         // do anything with progress
-                     }
-                 })*/
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
-                        // below code will be executed in the executor provided
-                        // do anything with response
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+            AndroidNetworking.upload(BASEURL + URL)
+                    .addHeaders("channel", "APP")
+                    .addMultipartFile("file", file)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addMultipartParameter("docTypeCode", docTypeCode)
+                    .addMultipartParameter("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", MyApplication.getInstance()))
+                    .setTag("uploadTest")
+                    .setPriority(Priority.HIGH)
+                    .setOkHttpClient(okClientfileUpload)
+                    .setContentType("multipart/form-data")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .build()
+                    // setting an executor to get response or completion on that executor thread
+                    /* .setUploadProgressListener(new UploadProgressListener() {
+                         @Override
+                         public void onProgress(long bytesUploaded, long totalBytes) {
+                             // do anything with progress
+                         }
+                     })*/
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+                            // below code will be executed in the executor provided
+                            // do anything with response
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==400){
-                                MyApplication.showAPIToast("Server not responding,please try again after some time..");
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 400) {
+                                    MyApplication.showAPIToast("Server not responding,please try again after some time..");
 
+                                }
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
     }
 
 
     public static void Upload_REQESTID(String URL, String idProofTypeCode,String idProofNumber,File Frontfile,File BackFile,
                                        final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
 
-        AndroidNetworking.upload(BASEURL+URL)
-                .addHeaders("channel","APP")
-                .addMultipartFile("filefront",Frontfile)
-                .addMultipartFile("fileback",BackFile)
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addMultipartParameter("docTypeCodeFront","100012")
-                .addMultipartParameter("docTypeCodeback","100013")
-                .addMultipartParameter("idProofTypeCode",idProofTypeCode)
-                .addMultipartParameter("idProofNumber",idProofNumber)
-                .addMultipartParameter("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",MyApplication.getInstance()))
-                .setTag("uploadTest")
-                .setPriority(Priority.HIGH)
-                .setOkHttpClient(clientBASIC)
-                .setContentType("multipart/form-data")
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .build()
-                // setting an executor to get response or completion on that executor thread
-                /* .setUploadProgressListener(new UploadProgressListener() {
-                     @Override
-                     public void onProgress(long bytesUploaded, long totalBytes) {
-                         // do anything with progress
-                     }
-                 })*/
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
-                        // below code will be executed in the executor provided
-                        // do anything with response
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+            AndroidNetworking.upload(BASEURL + URL)
+                    .addHeaders("channel", "APP")
+                    .addMultipartFile("filefront", Frontfile)
+                    .addMultipartFile("fileback", BackFile)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addMultipartParameter("docTypeCodeFront", "100012")
+                    .addMultipartParameter("docTypeCodeback", "100013")
+                    .addMultipartParameter("idProofTypeCode", idProofTypeCode)
+                    .addMultipartParameter("idProofNumber", idProofNumber)
+                    .addMultipartParameter("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", MyApplication.getInstance()))
+                    .setTag("uploadTest")
+                    .setPriority(Priority.HIGH)
+                    .setOkHttpClient(clientBASIC)
+                    .setContentType("multipart/form-data")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .build()
+                    // setting an executor to get response or completion on that executor thread
+                    /* .setUploadProgressListener(new UploadProgressListener() {
+                         @Override
+                         public void onProgress(long bytesUploaded, long totalBytes) {
+                             // do anything with progress
+                         }
+                     })*/
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+                            // below code will be executed in the executor provided
+                            // do anything with response
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==400){
-                                MyApplication.showAPIToast("Server not responding,please try again after some time..");
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 400) {
+                                    MyApplication.showAPIToast("Server not responding,please try again after some time..");
 
+                                }
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
     }
 
 
@@ -909,131 +958,143 @@ public class API {
 
     public static void POST_REQEST_WH_NEW(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addJSONObjectBody(jsonObject) // posting json
-                .setOkHttpClient(client)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                        responce_handler.success(response);
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+            AndroidNetworking.post(BASEURL + URL)
+                    .addJSONObjectBody(jsonObject) // posting json
+                    .setOkHttpClient(client)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                        if (error.getErrorCode() != 0) {
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                            responce_handler.success(response);
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
     public static void PUT(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.put(BASEURL+URL)
-                .addJSONObjectBody(jsonObject) // posting json
-                .setOkHttpClient(client)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .setTag("test")
-                .addHeaders("channel","APP")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                        responce_handler.success(response);
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            if(errorJ.has("resultDescription")){
-                                responce_handler.failure(errorJ.optString("resultDescription"));
-                            }else{
-                                responce_handler.failure(errorJ.optString("error_message"));
-                            }
-
-                        }catch (Exception e)
-                        {
-
+            AndroidNetworking.put(BASEURL + URL)
+                    .addJSONObjectBody(jsonObject) // posting json
+                    .setOkHttpClient(client)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .setTag("test")
+                    .addHeaders("channel", "APP")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            responce_handler.success(response);
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                if (errorJ.has("resultDescription")) {
+                                    responce_handler.failure(errorJ.optString("resultDescription"));
+                                } else {
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
@@ -1099,251 +1160,274 @@ public class API {
     }
     public static void GET_WF(String URL, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.get(BASEURL+URL)
-                .setOkHttpClient(okClient)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+            AndroidNetworking.get(BASEURL + URL)
+                    .setOkHttpClient(okClient)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
     public static void GET(String URL, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.get(BASEURL+URL)
-                .setOkHttpClient(client)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
+            AndroidNetworking.get(BASEURL + URL)
+                    .setOkHttpClient(client)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
     public static void GETPreProd(String URL, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.get(URL)
-                .setOkHttpClient(client)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
+            AndroidNetworking.get(URL)
+                    .setOkHttpClient(client)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
     public static void GET_PUBLIC(String URL, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-        AndroidNetworking.get(BASEURL+URL)
-                .setOkHttpClient(okClient)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("channel","APP")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("source","SUBSCRIBER")
-                //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+            AndroidNetworking.get(BASEURL + URL)
+                    .setOkHttpClient(okClient)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("source", "SUBSCRIBER")
+                    //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
                       /*  Logger.LogCapture capture = Logger.getLogCat("main");
                         MyApplication.saveLoggerInstance.saveInfoLogs("Logs",response.toString());*/
 
-                        responce_handler.success(response);
+                            responce_handler.success(response);
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                        try {
-
-                            JSONObject errorJ=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(errorJ.optString("error_message"));
-                        }catch (Exception e)
-                        {
-
+                            Log.d(TAG, "onResponse object : " + response.toString());
                         }
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+
+                        @Override
+                        public void onError(ANError error) {
+
+                            try {
+
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
-                                //MyApplication.showToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
 
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
@@ -1531,118 +1615,132 @@ public class API {
 
     public static void POST_LOGIN_OTP(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("channel","APP")
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                .addHeaders("type","LOGINOTP")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addJSONObjectBody(jsonObject)
-                .setOkHttpClient(okHttpClient)
+            AndroidNetworking.post(BASEURL + URL)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("channel", "APP")
 
-                .setPriority(Priority.MEDIUM)
-                .setTag("LOGINOTP")
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
+                    .addHeaders("type", "LOGINOTP")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addJSONObjectBody(jsonObject)
+                    .setOkHttpClient(okHttpClient)
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                        responce_handler.failure(error.getErrorDetail());
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
-
-                            }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                    .setPriority(Priority.MEDIUM)
+                    .setTag("LOGINOTP")
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                    }
-                });
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+
+                            responce_handler.failure(error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
 
     public static void POST_GET_OTP(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.post(BASEURL+URL)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("channel","APP")
-                //.addHeaders("Authorization","Bearer b1b80862-17b3-48f0-83a3-b4d27ddd09e2")
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+            AndroidNetworking.post(BASEURL + URL)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("channel", "APP")
+                    //.addHeaders("Authorization","Bearer b1b80862-17b3-48f0-83a3-b4d27ddd09e2")
 
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addJSONObjectBody(jsonObject)
-                .setOkHttpClient(okHttpClient)
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
 
-                .setPriority(Priority.MEDIUM)
-                .setTag("LOGINOTP")
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        responce_handler.success(response);
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addJSONObjectBody(jsonObject)
+                    .setOkHttpClient(okHttpClient)
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                        responce_handler.failure(error.getErrorDetail());
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
-
-                            }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                    .setPriority(Priority.MEDIUM)
+                    .setTag("LOGINOTP")
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
                         }
-                    }
-                });
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+
+                            responce_handler.failure(error.getErrorDetail());
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
@@ -1716,65 +1814,72 @@ public class API {
 
     public static void PUT_SET_PASS(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
-        AndroidNetworking.put(BASEURL+URL)
-                .addJSONObjectBody(jsonObject)
-                .setOkHttpClient(okHttpClient)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
-                .addHeaders("channel","APP")
-                .addHeaders("type", "LOGINOTP")
-                .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("deviceId",MyApplication.getUniqueId())
-                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .setAnalyticsListener(new AnalyticsListener() {
-                    @Override
-                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                        Log.d(TAG, " bytesSent : " + bytesSent);
-                        Log.d(TAG, " bytesReceived : " + bytesReceived);
-                        Log.d(TAG, " isFromCache : " + isFromCache);
-                    }
-                })
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.put(BASEURL + URL)
+                    .addJSONObjectBody(jsonObject)
+                    .setOkHttpClient(okHttpClient)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("channel", "APP")
+                    .addHeaders("type", "LOGINOTP")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
 
-                        responce_handler.success(response);
+                            responce_handler.success(response);
 
-                        Log.d(TAG, "onResponse object : " + response.toString());
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        MyApplication.hideLoader();
-                        try {
-                            JSONObject jsonObject1=new JSONObject(error.getErrorBody());
-                            responce_handler.failure(jsonObject1.optString("error_message"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            Log.d(TAG, "onResponse object : " + response.toString());
                         }
 
-                        if (error.getErrorCode() != 0) {
-                            if(error.getErrorCode()==401){
-                                MyApplication.showAPIToast("Unauthorized Request......");
-                                MyApplication.getInstance().callLogin();
-
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            try {
+                                JSONObject jsonObject1 = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(jsonObject1.optString("error_message"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                        } else {
-                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
 
     }
 
