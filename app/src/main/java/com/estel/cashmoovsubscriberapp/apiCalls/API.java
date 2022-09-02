@@ -230,6 +230,8 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
+
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -311,6 +313,8 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
+
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -394,6 +398,8 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
+
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -476,6 +482,8 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
+
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -549,6 +557,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -610,6 +619,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -672,6 +682,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -809,6 +820,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -887,6 +899,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1019,6 +1032,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1092,6 +1106,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1218,6 +1233,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1284,6 +1300,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1351,6 +1368,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1425,6 +1443,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1671,6 +1690,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1738,6 +1758,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 
@@ -1877,6 +1898,7 @@ public class API {
                     });
         }
         else{
+            MyApplication.hideLoader();
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
 

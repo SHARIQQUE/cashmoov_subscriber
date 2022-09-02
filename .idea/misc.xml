@@ -206,7 +206,7 @@
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.1734375" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_receipt_screen.xml" value="0.1765625" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_receive_remittance.xml" value="0.1765625" />
-        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_register_stepone.xml" value="0.25" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_register_stepone.xml" value="0.14583333333333334" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_self_airtime.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_service_point.xml" value="0.13958333333333334" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_set_pin.xml" value="0.1" />
@@ -281,6 +281,7 @@
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/dialog_view_trans_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/include_home_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/include_partner_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/include_wallet_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_offer_promotion_slider.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/item_transaction_list.xml" value="0.20416666666666666" />

@@ -25,8 +25,13 @@ import com.estel.cashmoovsubscriberapp.model.MiniStatement;
 import com.estel.cashmoovsubscriberapp.model.MiniStatementTrans;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -247,7 +252,11 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 tvCurrency.setText(getString(R.string.your_currency)+" :  "+data.optString("currencyName"));
-                                                tvBalance.setText(data.optInt("value")+" "+data.optString("currencySymbol"));
+                                                DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+
+                                                DecimalFormat df = new DecimalFormat("0.00",symbols);
+
+                                                tvBalance.setText(df.format(data.optInt("value"))+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
 
                                                 System.out.println("get value"+data.optString("value"));
@@ -308,7 +317,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
                                             }
 
-                                            miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
+                                            miniStatementTransList.add(new MiniStatementTrans(
+                                                    data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
                                                     data.optString("fromWalletOwnerCode").trim(),
@@ -328,17 +338,13 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optString("transactionTypeCode").trim(),
                                                     data.optString("transactionTypeName").trim(),
                                                     data.optString("creationDate").trim(),
-
                                                     data.optString("comReceiveWalletCode").trim(),
-
                                                     data.optString("taxAsJson"),
                                                     data.optString("holdingAccountCode").trim(),
                                                     data.optString("status").trim(),
-
                                                     data.optDouble("fromAmount"),
-                                                    data.optDouble("comReceiveAmount"),
-
                                                     data.optDouble("toAmount"),
+                                                    data.optDouble("comReceiveAmount"),
                                                     data.optDouble("srcPostBalance"),
                                                     data.optDouble("srcPreviousBalance"),
                                                     data.optDouble("destPreviousBalance"),
@@ -346,12 +352,9 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optDouble("commissionAmountForInstitute"),
                                                     data.optDouble("commissionAmountForAgent"),
                                                     data.optDouble("commissionAmountForBranch"),
-
                                                     data.optDouble("commissionAmountForMerchant"),
                                                     data.optDouble("commissionAmountForOutlet"),
                                                     data.optDouble("transactionAmount"),
-
-
                                                     data.optDouble("principalAmount"),
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),

@@ -14,10 +14,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class WalletTransactionDetails extends AppCompatActivity {
@@ -90,17 +93,20 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
             String tax = (getIntent().getStringExtra("taxvalue"));
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+            DecimalFormat df = new DecimalFormat("0.00",symbols);
+
             double result = b.getDouble("newamount");
             double postbalanmce = b.getDouble("postbalance");
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText(fromOwnerName);
-            txt_from_amount.setText(fromAmount);
+            txt_from_amount.setText(MyApplication.addDecimal(fromAmount));
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
-            fee_value.setText("Fee :  "+"" +result);
-            postbalance_value.setText("Post Balance :" +String.format("%.2f", postbalanmce));
+            fee_value.setText("Fee :  "+"" +df.format(result));
+            //postbalance_value.setText("Post Balance :" +String.format("%.2f", postbalanmce));
 
             try {
 
