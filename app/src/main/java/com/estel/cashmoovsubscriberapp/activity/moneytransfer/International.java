@@ -735,7 +735,7 @@ public class International extends AppCompatActivity implements View.OnClickList
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-        if(MyApplication.checkMinMax(internationalC,s,editText
+        if(MyApplication.checkMinMax(internationalC,s,etAmount
                 ,MyApplication.InternationalMinAmount,MyApplication.InternationalMaxAmount)){
             return;
         }
@@ -837,6 +837,8 @@ public class International extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
     }
+
+
 
 
 

@@ -323,8 +323,8 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
                     MyApplication.showErrorToast(cashoutC,getString(R.string.val_valid_amount));
                     return;
                 }
-                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.CashOutMaxAmount) {
-                    MyApplication.showErrorToast(cashoutC,getString(R.string.val_amount_min)+" "+MyApplication.CashOutMaxAmount);
+                if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.CashOutMinAmount) {
+                    MyApplication.showErrorToast(cashoutC,getString(R.string.val_amount_min)+" "+MyApplication.CashOutMinAmount);
                     return;
                 }
 
