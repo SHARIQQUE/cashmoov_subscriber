@@ -17,6 +17,8 @@
     <string name="hello">Hello,</string>
     <string name="dashboard">Dashboard</string>
     <string name="pay">Pay</string>
+    <string name="convertionRate_reviewPage"> Conversion Rate:</string>
+
     <string name="balance">Balance</string>
     <string name="our_operations">Our Operations</string>
     <string name="money_transfer">Money Transfer</string>

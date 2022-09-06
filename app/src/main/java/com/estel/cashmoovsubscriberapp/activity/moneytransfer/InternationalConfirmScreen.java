@@ -36,7 +36,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
     public static InternationalConfirmScreen internationalconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
-    public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    public static TextView tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout,pinLinear;
@@ -71,6 +71,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
 
     private void getIds() {
         tvProvider = findViewById(R.id.tvProvider);
+        tvrate=findViewById(R.id.tvrate);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
       //  tvConfCode = findViewById(R.id.tvConfCode);
@@ -102,7 +103,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         tvTransAmounts.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
         tvAmountPaid.setText(International.toCurrencySymbol+" "+ International.currencyValue);
         tvFee.setText(International.fromCurrencySymbol+" "+International.fee);
-
+        tvrate.setText(International.rate);
        finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);

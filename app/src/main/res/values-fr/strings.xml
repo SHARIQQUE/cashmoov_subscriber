@@ -289,6 +289,7 @@
     <string name="val_amount_max">Veuillez entrer le montant maximum </string>
     <string name="scan_error">Echec Scanning</string>
     <string name="please_check_internet">Veuillez verifier votre connexion Internet </string>
+    <string name="convertionRate_reviewPage"> Taux de conversion:</string>
 
     <string name="val_scan_error_content">le QR code ne peut pas etre scanne</string>
     <string name="fee_tax_greater_than_trans_amt"><![CDATA[les frais et taxes sont superieurs au montant de la transaction]]></string>

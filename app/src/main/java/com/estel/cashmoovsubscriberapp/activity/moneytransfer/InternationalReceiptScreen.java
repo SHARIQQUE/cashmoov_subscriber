@@ -25,7 +25,7 @@ import java.util.Locale;
 public class InternationalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalReceiptScreen internationalreceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvrate,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -127,6 +127,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tvCurrency = findViewById(R.id.tvCurrency);
         tvFee = findViewById(R.id.tvFee);
         tvTransAmt = findViewById(R.id.tvTransAmt);
+        tvrate=findViewById(R.id.tvrate);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
 
@@ -155,7 +156,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tvTransAmt.setText(MyApplication.addDecimal(InternationalConfirmScreen.tvTransAmounts.getText().toString()));
         tvAmountPaid.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+df.format(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
         tvAmountCharged.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
-
+        tvrate.setText(International.rate);
 
         if(InternationalConfirmScreen.taxConfigList!=null){
             if(InternationalConfirmScreen.taxConfigList.length()==1){
