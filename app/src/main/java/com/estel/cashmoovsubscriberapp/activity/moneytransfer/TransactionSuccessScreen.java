@@ -227,6 +227,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                     intent = new Intent(transSuccessscreenC, CashOutReceiptScreen.class);
                     startActivity(intent);
                     return;
+
                 }
                 if(checkIntent.equalsIgnoreCase("RECEIVEREMITTANCE")) {
                     intent = new Intent(transSuccessscreenC, ReceiveRemittancelReceiptScreen.class);
