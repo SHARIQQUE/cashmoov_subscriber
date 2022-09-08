@@ -219,6 +219,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void success(String success) {
                         try {
+                            pinLinear.setVisibility(View.VISIBLE);
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
@@ -233,51 +234,8 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void failure(String failure) {
                         MyApplication.showToast(payconfirmscreenC,failure);
-                        {
-                            MyApplication.biometricAuth(payconfirmscreenC, new BioMetric_Responce_Handler() {
-                                @Override
-                                public void success(String success) {
-                                    try {
-                                        etPin.setClickable(false);
-                                        btnConfirm.setVisibility(View.GONE);
-                                        String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                        Pay.dataToSend.put( "pin",encryptionDatanew);
 
-                                        callPostAPI();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
 
-                                @Override
-                                public void failure(String failure) {
-                                    MyApplication.showToast(payconfirmscreenC,failure);
-                                    {
-                                        MyApplication.biometricAuth(payconfirmscreenC, new BioMetric_Responce_Handler() {
-                                            @Override
-                                            public void success(String success) {
-                                                try {
-                                                    etPin.setClickable(false);
-                                                    btnConfirm.setVisibility(View.GONE);
-                                                    String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                                    Pay.dataToSend.put( "pin",encryptionDatanew);
-
-                                                    callPostAPI();
-                                                } catch (Exception e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
-
-                                            @Override
-                                            public void failure(String failure) {
-                                                MyApplication.showToast(payconfirmscreenC,failure);
-                                                pinLinear.setVisibility(View.VISIBLE);
-                                            }
-                                        });
-                                    }
-                                }
-                            });
-                        }
                     }
                 });
             }

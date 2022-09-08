@@ -21,6 +21,7 @@ import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.internet.InternetCheck;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -212,16 +213,9 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                 }
                 break;
             case R.id.btnConfirm: {
+                {
 
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(ToNonSubscriberConfirmScreen.this);
-                switch (biometricManager.canAuthenticate()) {
-
-                    // this means we can use biometric sensor
-                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                        Toast.makeText(ToNonSubscriberConfirmScreen.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                        pinLinear.setVisibility(View.VISIBLE);
-
+                    if(pinLinear.getVisibility()==View.VISIBLE){
                         if (etPin.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(tononsubscriberconfirmscreenC, getString(R.string.val_pin));
                             return;
@@ -231,6 +225,8 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                             return;
                         }
                         try {
+                            pinLinear.setVisibility(View.VISIBLE);
+
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
@@ -238,34 +234,41 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                             callPostAPI();
                         } catch (Exception e) {
                             e.printStackTrace();
+
                         }
-                        return;
+                    }else {
+                        MyApplication.biometricAuth(ToNonSubscriberConfirmScreen.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+                                    etPin.setClickable(false);
+                                    btnConfirm.setVisibility(View.GONE);
+                                    String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    ToNonSubscriber.dataToSend.put( "pin",encryptionDatanew);
+
+                                    callPostAPI();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(tononsubscriberconfirmscreenC,failure);
+                                pinLinear.setVisibility(View.VISIBLE);
+
+                            }
+                        });
+
+
+
+
+                    }
+
+
                 }
+
             }
-            case BiometricManager.BIOMETRIC_SUCCESS:
-
-
-               MyApplication.biometricAuth(tononsubscriberconfirmscreenC, new BioMetric_Responce_Handler() {
-                    @Override
-                    public void success(String success) {
-                        try {
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
-                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            ToNonSubscriber.dataToSend.put( "pin",encryptionDatanew);
-
-                            callPostAPI();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void failure(String failure) {
-                        MyApplication.showToast(tononsubscriberconfirmscreenC,failure);
-                    }
-                });
-
                 break;
             case R.id.btnCancel:
                 finish();

@@ -213,6 +213,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
                     @Override
                     public void success(String success) {
                         try {
+                            pinLinear.setVisibility(View.VISIBLE);
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());

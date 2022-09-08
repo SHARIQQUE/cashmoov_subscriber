@@ -317,7 +317,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvSend"
+                        android:id="@+id/tvSend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"

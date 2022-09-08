@@ -248,64 +248,59 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                 }
                 break;
             case R.id.btnConfirm: {
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(ToSubscriberConfirmScreen.this);
-                switch (biometricManager.canAuthenticate()) {
 
-                    // this means we can use biometric sensor
-                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                        Toast.makeText(ToSubscriberConfirmScreen.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                        pinLinear.setVisibility(View.VISIBLE);
-
-                        if (etPin.getText().toString().trim().isEmpty()) {
-                            MyApplication.showErrorToast(tosubscriberconfirmscreenC, getString(R.string.val_pin));
-                            return;
-                        }
-                        if (etPin.getText().toString().trim().length() < 4) {
-                            MyApplication.showErrorToast(tosubscriberconfirmscreenC, getString(R.string.val_valid_pin));
-                            return;
-                        }
-                        try {
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
-                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                            ToSubscriber.dataToSend.put("pin", encryptionDatanew);
-                            if (switch_button.isChecked()) {
-                                dataToSendBear.put("pin", encryptionDatanew);
-                            }
-                            callPostAPI();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                if (pinLinear.getVisibility() == View.VISIBLE) {
+                    if(etPin.getText().toString().trim().isEmpty()){
+                        MyApplication.showErrorToast(tosubscriberconfirmscreenC,getString(R.string.val_pin));
                         return;
-                }
-            }
-            case BiometricManager.BIOMETRIC_SUCCESS:
-
-
-                MyApplication.biometricAuth(tosubscriberconfirmscreenC, new BioMetric_Responce_Handler() {
-                    @Override
-                    public void success(String success) {
-                        try {
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
-                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
-                            ToSubscriber.dataToSend.put("pin", encryptionDatanew);
-                            if (switch_button.isChecked()) {
-                                dataToSendBear.put("pin", encryptionDatanew);
-                            }
-                            callPostAPI();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                    }
+                    if(etPin.getText().toString().trim().length()<4){
+                        MyApplication.showErrorToast(tosubscriberconfirmscreenC,getString(R.string.val_valid_pin));
+                        return;
+                    }
+                    try {
+                        pinLinear.setVisibility(View.VISIBLE);
+                        etPin.setClickable(false);
+                        btnConfirm.setVisibility(View.GONE);
+                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                        ToSubscriber.dataToSend.put( "pin",encryptionDatanew);
+                        if(switch_button.isChecked()) {
+                            dataToSendBear.put("pin", encryptionDatanew);
                         }
-                    }
+                        callPostAPI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
 
-                    @Override
-                    public void failure(String failure) {
-                        MyApplication.showToast(tosubscriberconfirmscreenC, failure);
 
-                    }
-                });
+
+                }
+                } else {
+                    MyApplication.biometricAuth(ToSubscriberConfirmScreen.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+                                etPin.setClickable(false);
+                                btnConfirm.setVisibility(View.GONE);
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
+                                ToSubscriber.dataToSend.put("pin", encryptionDatanew);
+                                if (switch_button.isChecked()) {
+                                    dataToSendBear.put("pin", encryptionDatanew);
+                                }
+                                callPostAPI();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(tosubscriberconfirmscreenC, failure);
+                            pinLinear.setVisibility(View.VISIBLE);
+
+                        }
+                    });
+
+                }
 
                /* if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(tosubscriberconfirmscreenC,getString(R.string.val_pin));
@@ -328,8 +323,8 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                     e.printStackTrace();
                 }*/
 
-                System.out.println("dataToSend---"+ToSubscriber.dataToSend.toString());
-
+                //  System.out.println("dataToSend---"+ToSubscriber.dataToSend.toString());
+            }
                 break;
             case R.id.btnCancel:
                 finish();

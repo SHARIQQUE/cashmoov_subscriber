@@ -212,17 +212,9 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.btnConfirm: {
 
+                {
 
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashOutConfirmScreen.this);
-                switch (biometricManager.canAuthenticate()) {
-
-                    // this means we can use biometric sensor
-                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                        Toast.makeText(CashOutConfirmScreen.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                        pinLinear.setVisibility(View.VISIBLE);
-
-
+                    if(pinLinear.getVisibility()==View.VISIBLE){
                         if (etPin.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(cashoutconfirmscreenC, getString(R.string.val_pin));
                             return;
@@ -232,6 +224,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
                             return;
                         }
                         try {
+                            pinLinear.setVisibility(View.VISIBLE);
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
@@ -239,32 +232,35 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
                             callPostAPI();
                         } catch (Exception e) {
                             e.printStackTrace();
+
                         }
-                        return;
+                    }else {
+                        MyApplication.biometricAuth(CashOutConfirmScreen.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+                                    etPin.setClickable(false);
+                                    btnConfirm.setVisibility(View.GONE);
+                                    String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    CashOut.dataToSend.put( "pin",encryptionDatanew);
+
+                                    callPostAPI();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(cashoutconfirmscreenC,failure);
+                                pinLinear.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
+
+
                 }
-            }
-                case BiometricManager.BIOMETRIC_SUCCESS:
 
-                    MyApplication.biometricAuth(cashoutconfirmscreenC, new BioMetric_Responce_Handler() {
-                    @Override
-                    public void success(String success) {
-                        try {
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
-                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            CashOut.dataToSend.put( "pin",encryptionDatanew);
-
-                            callPostAPI();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void failure(String failure) {
-                        MyApplication.showToast(cashoutconfirmscreenC,failure);
-                    }
-                });
 
                 /*if (etPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashoutconfirmscreenC, getString(R.string.val_pin));
@@ -286,6 +282,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
 
                 System.out.println("dataToSend---" + ToSubscriber.dataToSend.toString());
 */
+            }
                 break;
             case R.id.btnCancel:
                 finish();
