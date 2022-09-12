@@ -299,19 +299,38 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         API.GET("ewallet/api/v1/holdingAccount/confirmationCode/"+ toString, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
-                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                    walletOwner=jsonObject;
-                    JSONObject data=walletOwner.optJSONObject("accountHolding");
-                    beneficiaryCustomerCode=data.optString("beneficiaryCustomerCode");
-                    etAmount.setText(data.optString("beneficiaryAmount"));
-                    otp_layout.setVisibility(View.VISIBLE);
-                    ll_resendOtp.setVisibility(View.VISIBLE);
-                    tvSend.setVisibility(View.VISIBLE);
-                    tvSend.setText("Verify OTP");
-                    otp_generate_api();
+                try {
+                    if (jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
+                        walletOwner = jsonObject;
+                        JSONObject data = walletOwner.optJSONObject("accountHolding");
 
-                }else{
-                    MyApplication.showToast(receiveremittanceC,jsonObject.optString("resultDescription"));
+                        if (data.has("beneficiaryCustomer")) {
+                            JSONObject jsonObject_beneficiaryCustomer = data.getJSONObject("beneficiaryCustomer");
+
+
+                            if (!jsonObject_beneficiaryCustomer.getString("countryCode").equalsIgnoreCase(MyApplication.getSaveString("userCountryCode", ReceiveRemittance.this))) {
+                                MyApplication.showToast(ReceiveRemittance.this, getString(R.string.not_allowed));
+                                return;
+                            }
+
+                        }
+                        beneficiaryCustomerCode = data.optString("beneficiaryCustomerCode");
+
+
+                        etAmount.setText(data.optString("beneficiaryAmount"));
+
+
+                        otp_layout.setVisibility(View.VISIBLE);
+                        ll_resendOtp.setVisibility(View.VISIBLE);
+                        tvSend.setVisibility(View.VISIBLE);
+                        tvSend.setText("Verify OTP");
+                        otp_generate_api();
+
+                    } else {
+                        MyApplication.showToast(receiveremittanceC, jsonObject.optString("resultDescription"));
+                    }
+                }catch (Exception e){
+
                 }
 
             }

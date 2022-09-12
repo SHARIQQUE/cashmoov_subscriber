@@ -219,9 +219,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void success(String success) {
                         try {
-                            pinLinear.setVisibility(View.VISIBLE);
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
+
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
                             Pay.dataToSend.put( "pin",encryptionDatanew);
 
@@ -234,7 +232,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void failure(String failure) {
                         MyApplication.showToast(payconfirmscreenC,failure);
-
+                        pinLinear.setVisibility(View.VISIBLE);
 
                     }
                 });

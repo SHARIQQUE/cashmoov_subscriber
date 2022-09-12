@@ -270,7 +270,7 @@
 
     <string name="verification_register_otp">Veuillez entrer l\'OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l\'identifiant de messagerie enregistré et au numéro de téléphone portable</string>
     <string name="verification_register_otp_ip">Veuillez contacter votre service client pour générer l\'OTP ou entrez l\'OTP pour vérifier votre compte.</string>
-    <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
+    <string name="u_don_t_have_an_account_signup_u"><u>Vous n\'avez pas de compte ? S\'inscrire</u>></string>
     <string name="logout">Se déconnecter</string>
     <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application ?</string>
     <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
@@ -409,8 +409,14 @@
     <string name="service_not_available">Ce service n\'est pas disponible</string>
     <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
 
+    <string name="min_amount">"Le montant minimum doit être  "</string>
+    <string name="max_amount">"Le montant maximum doit être  "</string>
     <string name="didnot_get_the_Code"> Vous n avez pas reçu le code ?</string>
     <string name="resend_it">Renvoyez-le</string>
+    <string name="post_balance_colon">Publier le solde :</string>
+    <string name="cancel_pop">Annuler</string>
+    <string name="view_more_string">Voir plus</string>
+    <string name="not_allowed">"Ce code de confirmation n'est pas autorisé dans votre pays "</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

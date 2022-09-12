@@ -98,15 +98,16 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             double result = b.getDouble("newamount");
             double postbalanmce = b.getDouble("postbalance");
+            double fee = b.getDouble("fee");
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText(fromOwnerName);
-            txt_from_amount.setText(MyApplication.addDecimal(fromAmount));
-            txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
+            txt_from_amount.setText(getString(R.string.transaction_type_colon)+" "+MyApplication.addDecimal(fromAmount));
+            txt_trans_id.setText(getString(R.string.trans_amount_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
-            fee_value.setText("Fee :  "+"" +MyApplication.addDecimal(df.format(result)));
-            postbalance_value.setText("Post Balance :" +String.format("%.2f", postbalanmce));
+            fee_value.setText("Fee :  "+"" +MyApplication.addDecimal(fee+""));
+            postbalance_value.setText(getString(R.string.post_balance_colon) +String.format("%.2f", postbalanmce));
 
             try {
 

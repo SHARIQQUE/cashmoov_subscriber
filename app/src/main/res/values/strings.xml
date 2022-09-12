@@ -416,8 +416,17 @@
     <string name="service_not_available">This service is not available</string>
     <string name="reset_pin"><u>Reset Pin?</u></string>
 
+
+    <string name="min_amount">"Minimum Amount should be  "</string>
+    <string name="max_amount">"Maximum Amount should be  "</string>
+
+
     <string name="didnot_get_the_Code"> Didnot get the code?</string>
     <string name="resend_it">Resend it</string>
+    <string name="post_balance_colon">Post Balance :</string>
+    <string name="cancel_pop">Cancel</string>
+    <string name="view_more_string">View More</string>
+    <string name="not_allowed">"This Confirmation Code Not Allowed to Your Country "</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

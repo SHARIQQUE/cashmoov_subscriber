@@ -706,9 +706,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     .setGifResource(OfferPromotionModeltemp.getCode() + "/" + OfferPromotionModeltemp.getFileName())
                                     .setTitleTextColor(R.color.orange_900)
                                     .setDescriptionTextColor(R.color.black)
-                                    .setNegativeBtnText("Cancel") // or pass it like android.R.string.cancel
+                                    .setNegativeBtnText(R.string.cancel_pop) // or pass it like android.R.string.cancel
                                     .setPositiveBtnBackground(R.color.green_500)
-                                    .setPositiveBtnText("View More") // or pass it like android.R.string.ok
+                                    .setPositiveBtnText(R.string.view_more_string) // or pass it like android.R.string.ok
                                     .setNegativeBtnBackground(R.color.red)
 
                                     .isCancellable(true)
