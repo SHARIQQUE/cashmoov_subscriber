@@ -105,8 +105,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
-            fee_value.setText("Fee :  "+"" +df.format(result));
-            //postbalance_value.setText("Post Balance :" +String.format("%.2f", postbalanmce));
+            fee_value.setText("Fee :  "+"" +MyApplication.addDecimal(df.format(result)));
+            postbalance_value.setText("Post Balance :" +String.format("%.2f", postbalanmce));
 
             try {
 

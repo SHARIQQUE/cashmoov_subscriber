@@ -297,6 +297,8 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         public static JSONArray taxConfigList;
         public void callPostAPI(){
             MyApplication.showloader(internationalconfirmscreenC,"Please Wait...");
+
+            System.out.println("International Request :"+InternationalRecipientDetails.dataToSend.toString());
             String requestNo=AESEncryption.getAESEncryption(InternationalRecipientDetails.dataToSend.toString());
             JSONObject jsonObjectA=null;
             try{
