@@ -102,8 +102,8 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         //  tvConfCode.setText(Pay.mobileNo);
         tvCurrency.setText(Pay.fromCurrency);
         tvTransAmount.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(Pay.currencySymbol+" "+Pay.currencyValue);
-        tvFee.setText(Pay.fromCurrencySymbol+" "+Pay.fee);
+        tvAmountPaid.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.currencyValue));
+        tvFee.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.fee));
 
        finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString().replace(",",""));
        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
@@ -268,6 +268,8 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         public static JSONArray taxConfigList;
         public void callPostAPI(){
             MyApplication.showloader(payconfirmscreenC,"Please Wait...");
+
+            System.out.println("Pay Confirm Request  "+Pay.dataToSend.toString());
             String requestNo=AESEncryption.getAESEncryption(Pay.dataToSend.toString());
             JSONObject jsonObject=null;
             try{
