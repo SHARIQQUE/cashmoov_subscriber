@@ -220,6 +220,18 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         Intent i;
         switch(view.getId()){
             case R.id.tvNext:
+                if(etPhone.getText().toString().trim().isEmpty()) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_no),etPhone);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
+                if(etPhone.getText().toString().trim().length()<9) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_no_val),etPhone);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
                 if(etFname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_fname));
                     MyApplication.showTipError(this,getString(R.string.val_fname),etFname);
@@ -245,18 +257,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
-                if(etPhone.getText().toString().trim().isEmpty()) {
-                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this,getString(R.string.enter_phone_no),etPhone);
-                    MyApplication.hideKeyboard(registersteponeC);
-                    return;
-                }
-                if(etPhone.getText().toString().trim().length()<9) {
-                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this,getString(R.string.enter_phone_no_val),etPhone);
-                    MyApplication.hideKeyboard(registersteponeC);
-                    return;
-                }
+
                 if(etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_email));
                     MyApplication.showTipError(this,getString(R.string.val_email_valid),etEmail);

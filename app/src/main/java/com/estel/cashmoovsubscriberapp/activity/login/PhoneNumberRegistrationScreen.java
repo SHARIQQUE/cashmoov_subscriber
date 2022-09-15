@@ -489,7 +489,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-
+                    MyApplication.saveString("pin",etPass.getText().toString().trim(),phnoregistrationccreenC);
                     ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
                     System.out.println("Login response======="+jsonObject.toString());
                     MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);

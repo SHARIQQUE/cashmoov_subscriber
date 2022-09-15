@@ -186,7 +186,7 @@
     <string name="service_provider_colon">fournisseur de services :</string>
     <string name="mobile_number_colom">Numero de telephone mobile :</string>
     <string name="user_colon">utilisateur :</string>
-    <string name="confirmation_code_colon">Confirmation code :</string>
+    <string name="confirmation_code_colon">Code de confirmation :</string>
     <string name="currency_colon">Devise :</string>
     <string name="amount_colon">Montant :</string>
     <string name="fee_colon">Frais :</string>
@@ -197,7 +197,7 @@
     <string name="transaction_success">Transaction\nsuccèss!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
     <string name="transaction_type_colon">type de transaction:</string>
-    <string name="transaction_id_colon">Transaction ID :</string>
+    <string name="transaction_id_colon">identifiant de transaction :</string>
     <string name="export_receipt">Exportez le reçu</string>
     <string name="change_pin_caps">Changer de PIN</string>
     <string name="change_pin_message">Veuillez saisir l\'ancien code PIN et le nouveau code PIN pour changer votre code PIN.</string>
@@ -358,7 +358,7 @@
     <string name="trans_reversed">Transaction annulée</string>
     <string name="trans_date">date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>
-    <string name="post_balance">Publier le solde</string>
+
     <string name="search_here">Entrez le nom ou le mobile...</string>
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
@@ -413,7 +413,9 @@
     <string name="max_amount">"Le montant maximum doit être  "</string>
     <string name="didnot_get_the_Code"> Vous n avez pas reçu le code ?</string>
     <string name="resend_it">Renvoyez-le</string>
-    <string name="post_balance_colon">Publier le solde :</string>
+    <string name="post_balance_colon">solde apres :</string>
+    <string name="post_balance">solde apres</string>
+
     <string name="cancel_pop">Annuler</string>
     <string name="view_more_string">Voir plus</string>
     <string name="not_allowed">"Ce code de confirmation n'est pas autorisé dans votre pays "</string>

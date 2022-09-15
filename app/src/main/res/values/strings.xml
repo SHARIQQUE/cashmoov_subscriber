@@ -363,7 +363,7 @@
     <string name="trans_reversed">Transaction Reversed</string>
     <string name="trans_date">Transaction Date</string>
     <string name="view_deatils">View Details</string>
-    <string name="post_balance">Post Balance</string>
+
     <string name="search_here">Enter Name or Mobile...</string>
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
@@ -424,6 +424,7 @@
     <string name="didnot_get_the_Code"> Didnot get the code?</string>
     <string name="resend_it">Resend it</string>
     <string name="post_balance_colon">Post Balance :</string>
+    <string name="post_balance">Post Balance</string>
     <string name="cancel_pop">Cancel</string>
     <string name="view_more_string">View More</string>
     <string name="not_allowed">"This Confirmation Code Not Allowed to Your Country "</string>

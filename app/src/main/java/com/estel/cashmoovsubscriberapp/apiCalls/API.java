@@ -245,6 +245,7 @@ public class API {
                     .addBodyParameter("username", jsonObject.optString("username")) // posting json
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("grant_type", "password")
+                    .addBodyParameter("fcmToken", jsonObject.optString("fcmToken"))
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "GENERATEOTP")
@@ -330,6 +331,7 @@ public class API {
                     .addBodyParameter("username", jsonObject.optString("username")) // posting json
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("grant_type", "password")
+                    .addBodyParameter("fcmToken", jsonObject.optString("fcmToken"))
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "RESETPIN")
@@ -414,6 +416,7 @@ public class API {
                     .addBodyParameter("username", jsonObject.optString("username")) // posting json
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("grant_type", "password")
+                    .addBodyParameter("fcmToken", jsonObject.optString("fcmToken"))
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "LOGINOTP")

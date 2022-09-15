@@ -17,6 +17,8 @@ import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
+import com.estel.cashmoovsubscriberapp.activity.cashout.CashOutConfirmScreen;
 import com.estel.cashmoovsubscriberapp.activity.cashwithdrawal.CashWithdrawal;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriber;
@@ -215,27 +217,56 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
             case R.id.btnConfirm:
 
             {
-                MyApplication.biometricAuth(payconfirmscreenC, new BioMetric_Responce_Handler() {
-                    @Override
-                    public void success(String success) {
+                {
+
+                    if(pinLinear.getVisibility()==View.VISIBLE){
+                        if (etPin.getText().toString().trim().isEmpty()) {
+                            MyApplication.showErrorToast(payconfirmscreenC, getString(R.string.val_pin));
+                            return;
+                        }
+                        if (etPin.getText().toString().trim().length() < 4) {
+                            MyApplication.showErrorToast(payconfirmscreenC, getString(R.string.val_valid_pin));
+                            return;
+                        }
                         try {
-
-                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            Pay.dataToSend.put( "pin",encryptionDatanew);
-
+                            pinLinear.setVisibility(View.VISIBLE);
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                            Pay.dataToSend.put("pin", encryptionDatanew);
                             callPostAPI();
                         } catch (Exception e) {
                             e.printStackTrace();
+
                         }
+                    }else {
+                        MyApplication.biometricAuth(PayConfirmScreen.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+                                    etPin.setClickable(false);
+                                    btnConfirm.setVisibility(View.GONE);
+                                    String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    Pay.dataToSend.put( "pin",encryptionDatanew);
+
+                                    callPostAPI();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(payconfirmscreenC,failure);
+                                pinLinear.setVisibility(View.VISIBLE);
+                            }
+                        });
                     }
 
-                    @Override
-                    public void failure(String failure) {
-                        MyApplication.showToast(payconfirmscreenC,failure);
-                        pinLinear.setVisibility(View.VISIBLE);
 
-                    }
-                });
+                }
+
+
             }
                /* if (etPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(payconfirmscreenC, getString(R.string.val_pin));
