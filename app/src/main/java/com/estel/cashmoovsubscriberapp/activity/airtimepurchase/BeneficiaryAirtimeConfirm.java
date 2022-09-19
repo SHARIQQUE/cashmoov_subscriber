@@ -228,6 +228,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                         pinLinear.setVisibility(View.VISIBLE);
                         etPin.setClickable(false);
                         btnConfirm.setVisibility(View.GONE);
+
                         String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
                         BeneficiaryAirtime.dataToSend.put( "pin",encryptionDatanew);
 
