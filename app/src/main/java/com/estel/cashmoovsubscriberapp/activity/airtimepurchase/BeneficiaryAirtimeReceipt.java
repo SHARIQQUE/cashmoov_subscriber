@@ -28,7 +28,7 @@ import java.util.Locale;
 public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeReceipt benefiairtimereceiptC;
     Button btnClose,btnShareReceipt;
-    TextView accNo,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tax_label,accNo,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -138,6 +138,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
+        tax_label=findViewById(R.id.tax_label);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(BeneficiaryAirtime.mobile);
@@ -161,17 +162,19 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
             if(BeneficiaryAirtimeConfirm.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(BeneficiaryAirtime.currencySymbol+" "+(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
+
+
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BeneficiaryAirtimeConfirm.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(BeneficiaryAirtime.currencySymbol+" "+(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
-                tax2_value.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_value.setText(BeneficiaryAirtime.currencySymbol+" "+(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

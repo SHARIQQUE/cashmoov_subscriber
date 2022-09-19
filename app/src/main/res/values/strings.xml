@@ -19,7 +19,8 @@
     <string name="pay">Pay</string>
     <string name="convertionRate_reviewPage"> Conversion Rate:</string>
     <string name="please_wait">Please wait....</string>
-
+    <string name="Taxvat">VAT</string>
+    <string name="Taxfinancial">Financial Tax</string>
     <string name="balance">Balance</string>
     <string name="our_operations">Our Operations</string>
     <string name="money_transfer">Money Transfer</string>

@@ -17,6 +17,9 @@
     <string name="hello">Bonjour,</string>
     <string name="dashboard">Tableau de bord</string>
     <string name="pay">Solde</string>
+    <string name="Taxvat">T.V.A</string>
+    <string name="Taxfinancial">Taxe financière</string>
+
     <string name="balance">Solde</string>
     <string name="our_operations">Nos operations</string>
     <string name="money_transfer">Transfert d\'argent</string>
