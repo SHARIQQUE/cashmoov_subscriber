@@ -210,18 +210,16 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
 
                 }
                 break;
-            case R.id.btnConfirm:
-
-            {
+            case R.id.btnConfirm: {
 
 
-                if(pinLinear.getVisibility()==View.VISIBLE){
-                    if(etPin.getText().toString().trim().isEmpty()){
-                        MyApplication.showErrorToast(BeneficiaryAirtimeConfirm.this,getString(R.string.val_pin));
+                if (pinLinear.getVisibility() == View.VISIBLE) {
+                    if (etPin.getText().toString().trim().isEmpty()) {
+                        MyApplication.showErrorToast(BeneficiaryAirtimeConfirm.this, getString(R.string.val_pin));
                         return;
                     }
-                    if(etPin.getText().toString().trim().length()<4){
-                        MyApplication.showErrorToast(BeneficiaryAirtimeConfirm.this,getString(R.string.val_valid_pin));
+                    if (etPin.getText().toString().trim().length() < 4) {
+                        MyApplication.showErrorToast(BeneficiaryAirtimeConfirm.this, getString(R.string.val_valid_pin));
                         return;
                     }
                     try {
@@ -229,8 +227,8 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                         etPin.setClickable(false);
                         btnConfirm.setVisibility(View.GONE);
 
-                        String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                        BeneficiaryAirtime.dataToSend.put( "pin",encryptionDatanew);
+                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                        BeneficiaryAirtime.dataToSend.put("pin", encryptionDatanew);
 
                         callPostAPI();
                     } catch (Exception e) {
@@ -238,15 +236,15 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
 
 
                     }
-                }else {
+                } else {
                     MyApplication.biometricAuth(BeneficiaryAirtimeConfirm.this, new BioMetric_Responce_Handler() {
                         @Override
                         public void success(String success) {
                             try {
                                 etPin.setClickable(false);
                                 btnConfirm.setVisibility(View.GONE);
-                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                BeneficiaryAirtime.dataToSend.put( "pin",encryptionDatanew);
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
+                                BeneficiaryAirtime.dataToSend.put("pin", encryptionDatanew);
 
                                 callPostAPI();
                             } catch (Exception e) {
@@ -285,7 +283,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                         MyApplication.showToast(benefiairtimeconfirmC,failure);
                         pinLinear.setVisibility(View.VISIBLE);
                     }
-                });*/
+                });
             }
                /* if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(benefiairtimeconfirmC,getString(R.string.val_pin));
@@ -306,6 +304,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                 }
 
                 System.out.println("dataToSend---"+BeneficiaryAirtime.dataToSend.toString());*/
+            }
                 break;
             case R.id.btnCancel:
                 finish();

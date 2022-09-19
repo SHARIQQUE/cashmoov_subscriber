@@ -22,6 +22,7 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtime;
+import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.SelfAirtimeConfirm;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
@@ -210,85 +211,59 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
 
                 }
                 break;
+
             case R.id.btnConfirm: {
 
 
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(PartnerBillPayConfirmScreen.this);
-                switch (biometricManager.canAuthenticate()) {
-
-                    // this means we can use biometric sensor
-                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                        Toast.makeText(PartnerBillPayConfirmScreen.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                        pinLinear.setVisibility(View.VISIBLE);
-
-
-                        if (etPin.getText().toString().trim().isEmpty()) {
-                            MyApplication.showErrorToast(billpayconfirmscreenC, getString(R.string.val_pin));
-                            return;
-                        }
-                        if (etPin.getText().toString().trim().length() < 4) {
-                            MyApplication.showErrorToast(billpayconfirmscreenC, getString(R.string.val_valid_pin));
-                            return;
-                        }
-                        try {
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
-                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                            PartnerBillPayDetails.dataToSend.put("pin", encryptionDatanew);
-                            callPostAPI();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                if (pinLinear.getVisibility() == View.VISIBLE) {
+                    if(etPin.getText().toString().trim().isEmpty()){
+                        MyApplication.showErrorToast(billpayconfirmscreenC,getString(R.string.val_pin));
                         return;
+                    }
+                    if(etPin.getText().toString().trim().length()<4){
+                        MyApplication.showErrorToast(billpayconfirmscreenC,getString(R.string.val_valid_pin));
+                        return;
+                    }
+                    try {
+                        etPin.setClickable(false);
+                        btnConfirm.setVisibility(View.GONE);
+                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                        PartnerBillPayDetails.dataToSend.put( "pin",encryptionDatanew);
+                        callPostAPI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    MyApplication.biometricAuth(PartnerBillPayConfirmScreen.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+                                etPin.setClickable(false);
+                                btnConfirm.setVisibility(View.GONE);
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
+                                PartnerBillPayDetails.dataToSend.put("pin", encryptionDatanew);
+
+                                callPostAPI();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(PartnerBillPayConfirmScreen.this, failure);
+                            pinLinear.setVisibility(View.VISIBLE);
+
+                        }
+                    });
+
+
                 }
+
+
             }
 
-            case BiometricManager.BIOMETRIC_SUCCESS:
-
-
-
-                MyApplication.biometricAuth(PartnerBillPayConfirmScreen.this, new BioMetric_Responce_Handler() {
-                    @Override
-                    public void success(String success) {
-                        try {
-                            etPin.setClickable(false);
-                            btnConfirm.setVisibility(View.GONE);
-                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            PartnerBillPayDetails.dataToSend.put( "pin",encryptionDatanew);
-
-                            callPostAPI();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void failure(String failure) {
-                        MyApplication.showToast(PartnerBillPayConfirmScreen.this,failure);
-                    }
-                });
-
-               /* if(etPin.getText().toString().trim().isEmpty()){
-                    MyApplication.showErrorToast(billpayconfirmscreenC,getString(R.string.val_pin));
-                    return;
-                }
-                if(etPin.getText().toString().trim().length()<4){
-                    MyApplication.showErrorToast(billpayconfirmscreenC,getString(R.string.val_valid_pin));
-                    return;
-                }
-                try {
-                    etPin.setClickable(false);
-                    btnConfirm.setVisibility(View.GONE);
-                    String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                    PartnerBillPayDetails.dataToSend.put( "pin",encryptionDatanew);
-                    callPostAPI();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                System.out.println("dataToSend---"+PartnerBillPayDetails.dataToSend.toString());*/
-                break;
+            break;
             case R.id.btnCancel:
                 finish();
                 break;

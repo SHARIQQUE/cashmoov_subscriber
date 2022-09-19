@@ -207,17 +207,68 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
 
                 }
                 break;
-            case R.id.btnConfirm:
-            {
-                MyApplication.biometricAuth(selfairtimeconfirmC, new BioMetric_Responce_Handler() {
+
+            case R.id.btnConfirm: {
+
+
+                if (pinLinear.getVisibility() == View.VISIBLE) {
+                    if (etPin.getText().toString().trim().isEmpty()) {
+                        MyApplication.showErrorToast(SelfAirtimeConfirm.this, getString(R.string.val_pin));
+                        return;
+                    }
+                    if (etPin.getText().toString().trim().length() < 4) {
+                        MyApplication.showErrorToast(SelfAirtimeConfirm.this, getString(R.string.val_valid_pin));
+                        return;
+                    }
+                    try {
+                        pinLinear.setVisibility(View.VISIBLE);
+                        etPin.setClickable(false);
+                        btnConfirm.setVisibility(View.GONE);
+
+                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                        BeneficiaryAirtime.dataToSend.put("pin", encryptionDatanew);
+
+                        callPostAPI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+
+                    }
+                } else {
+                    MyApplication.biometricAuth(SelfAirtimeConfirm.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+                                etPin.setClickable(false);
+                                btnConfirm.setVisibility(View.GONE);
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
+                                BeneficiaryAirtime.dataToSend.put("pin", encryptionDatanew);
+
+                                callPostAPI();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(SelfAirtimeConfirm.this, failure);
+                            pinLinear.setVisibility(View.VISIBLE);
+
+                        }
+                    });
+
+
+                }
+
+              /*  MyApplication.biometricAuth(benefiairtimeconfirmC, new BioMetric_Responce_Handler() {
                     @Override
                     public void success(String success) {
                         try {
-                            pinLinear.setVisibility(View.VISIBLE);
                             etPin.setClickable(false);
                             btnConfirm.setVisibility(View.GONE);
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            SelfAirtime.dataToSend.put( "pin",encryptionDatanew);
+                            BeneficiaryAirtime.dataToSend.put( "pin",encryptionDatanew);
 
                             callPostAPI();
                         } catch (Exception e) {
@@ -227,31 +278,33 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(selfairtimeconfirmC,failure);
-                        pinLinear.setVisibility(View.GONE);
+                        MyApplication.showToast(benefiairtimeconfirmC,failure);
+                        pinLinear.setVisibility(View.VISIBLE);
                     }
                 });
             }
                /* if(etPin.getText().toString().trim().isEmpty()){
-                    MyApplication.showErrorToast(selfairtimeconfirmC,getString(R.string.val_pin));
+                    MyApplication.showErrorToast(benefiairtimeconfirmC,getString(R.string.val_pin));
                     return;
                 }
                 if(etPin.getText().toString().trim().length()<4){
-                    MyApplication.showErrorToast(selfairtimeconfirmC,getString(R.string.val_valid_pin));
+                    MyApplication.showErrorToast(benefiairtimeconfirmC,getString(R.string.val_valid_pin));
                     return;
                 }
                 try {
                     etPin.setClickable(false);
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                    SelfAirtime.dataToSend.put( "pin",encryptionDatanew);
+                    BeneficiaryAirtime.dataToSend.put( "pin",encryptionDatanew);
                     callPostAPI();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                System.out.println("dataToSend---"+SelfAirtime.dataToSend.toString());
-         */       break;
+                System.out.println("dataToSend---"+BeneficiaryAirtime.dataToSend.toString());*/
+            }
+
+           break;
             case R.id.btnCancel:
                 finish();
                 break;

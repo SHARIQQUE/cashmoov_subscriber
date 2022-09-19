@@ -36,6 +36,7 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
@@ -62,6 +63,7 @@ import java.lang.reflect.Method;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -432,6 +434,115 @@ public class MyApplication extends Application {
             }
         }
         return false;
+    }
+    public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    public static String addDecimalq(String number) {
+       /* String data="0.00";
+        DecimalFormat df = new DecimalFormat("###,###.##", symbols);
+        System.out.println(("get datatype" + (Object) number).getClass().getName());
+        data =df.format(Double.parseDouble(number));*/
+        /*if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
+            DecimalFormat df = new DecimalFormat("0.00", symbols);
+            System.out.println(("get datatype" + (Object) number).getClass().getName());
+             data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
+        }else{
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            symbols.setGroupingSeparator('.');
+            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.00#", symbols);
+            data = goodNumberFormat1.format(Double.parseDouble(number));
+        }*/
+        return formatInput(number,0,0);
+    }
+
+    public static int prevCommaAmount;
+    public static String formatInput(CharSequence s, int start, int count) {
+
+
+        StringBuilder sbResult = new StringBuilder();
+        String result;
+        int newStart = start;
+
+        try {
+            // Extract value without its comma
+            String digitAndDotText = s.toString().replace(",", "");
+            int commaAmount = 0;
+
+
+
+
+            if (digitAndDotText.contains(".")) {
+                // escape sequence for .
+                String[] wholeText = digitAndDotText.split("\\.");
+
+
+
+                // in 150,000.45 non decimal is 150,000 and decimal is 45
+                String nonDecimal = wholeText[0];
+
+
+                // only format the non-decimal value
+                result = AutoFormatUtil.formatToStringWithoutDecimal(nonDecimal);
+
+                sbResult
+                        .append(result)
+                        .append(".");
+
+                if (wholeText.length > 1) {
+                    sbResult.append(wholeText[1]);
+                }
+
+            } else {
+                result = AutoFormatUtil.formatWithDecimal(digitAndDotText);
+                sbResult.append(result);
+            }
+
+            // count == 0 indicates users is deleting a text
+            // count == 1 indicates users is entering a text
+            newStart += ((count == 0) ? 0 : 1);
+
+            // calculate comma amount in edit text
+            commaAmount += AutoFormatUtil.getCharOccurance(result, ',');
+
+            // flag to mark whether new comma is added / removed
+            if (commaAmount >= 1 && prevCommaAmount != commaAmount) {
+                newStart += ((count == 0) ? -1 : 1);
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without comma
+            if (commaAmount == 0 && count == 0 && prevCommaAmount != commaAmount) {
+                newStart -= 1;
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without dots
+            if (count == 0 && !sbResult.toString()
+                    .contains(".") && prevCommaAmount != commaAmount) {
+                newStart = start;
+                prevCommaAmount = commaAmount;
+            }
+
+            //editText.setText(sbResult.toString());
+
+            // ensure newStart is within result length
+            if (newStart > sbResult.toString().length()) {
+                newStart = sbResult.toString().length();
+            } else if (newStart < 0) {
+                newStart = 0;
+            }
+
+            // editText.setSelection(newStart);
+            return sbResult.toString();
+
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        return sbResult.toString();
+    }
+    public static String addDecimalthreenew(String number) {
+        DecimalFormat df = new DecimalFormat("0.000",symbols);
+        return df.format(Double.parseDouble(number));
     }
 
 

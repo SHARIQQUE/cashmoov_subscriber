@@ -102,8 +102,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText(fromOwnerName);
-            txt_from_amount.setText(getString(R.string.transaction_type_colon)+" "+MyApplication.addDecimal(fromAmount));
-            txt_trans_id.setText(getString(R.string.trans_amount_colon)+" "+transId);
+            txt_from_amount.setText(getString(R.string.trans_amount_colon)+" "+fromAmount);
+            txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
             fee_value.setText(getString(R.string.fee_colon)+"" +MyApplication.addDecimal(fee+""));
@@ -117,7 +117,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
                 for(Taxmodel user : userArray) {
-                    tax_value.setText(MyApplication.getTaxString(user.getTaxTypeName()) + " :" + " " + user.getValue());
+                    tax_value.setText(MyApplication.getTaxString(user.getTaxTypeName()) + " :" + " " + MyApplication.addDecimal(user.getValue()));
 
                     System.out.println("get user" + user.getTaxTypeName());
                 }
