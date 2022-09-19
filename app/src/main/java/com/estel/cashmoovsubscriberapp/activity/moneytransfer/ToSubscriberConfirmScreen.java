@@ -198,17 +198,17 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
 
             if(ToSubscriber.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(ToSubscriber.currencySymbol+" "+df.format(ToSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=(Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value")));
             }
             if(ToSubscriber.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(ToSubscriber.currencySymbol+" "+df.format(ToSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_label.setText(MyApplication.getTaxString(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
                 vat_r.setText(ToSubscriber.currencySymbol+" "+df.format(ToSubscriber.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=(Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("value")));
             }

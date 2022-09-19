@@ -161,17 +161,17 @@ public class InFormRecptNew extends AppCompatActivity implements View.OnClickLis
         if(InFormConfirmation.taxConfigList!=null){
             if(InFormConfirmation.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(InFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_lable.setText(MyApplication.getTaxString(InFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax1_value.setText(Inform.currencySymbol+" "+df.format(InFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(InFormConfirmation.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(InFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_lable.setText(MyApplication.getTaxString(InFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax1_value.setText(Inform.currencySymbol+" "+df.format(InFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(InFormConfirmation.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
+                tax2_lable.setText(MyApplication.getTaxString(InFormConfirmation.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
                 tax2_value.setText(Inform.currencySymbol+" "+df.format(InFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }

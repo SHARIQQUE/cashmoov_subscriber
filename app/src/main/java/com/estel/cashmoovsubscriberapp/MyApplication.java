@@ -688,5 +688,20 @@ public class MyApplication extends Application {
         return false;
     }
 
+    public static String getTaxString(String test){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")){
+            return test;
+        }else {
+            if (test.equalsIgnoreCase("VAT")) {
+                return "T.V.A";
+            }
+            if (test.equalsIgnoreCase("Financial Tax")) {
+                return "Taxe financière";
+            }
+        }
+
+        return test;
+    }
+
 
 }

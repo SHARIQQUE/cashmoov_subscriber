@@ -56,7 +56,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         holder.transType.setText(transaction.getTransTypeName());
         holder.amount.setText(transaction.getSrcCurrencySymbol()+" "+(String.valueOf(transaction.getTransactionAmount())));
         holder.fee.setText(MyApplication.addDecimal(String.valueOf((transaction.getFee()))));
-        holder.taxType.setText(transaction.getTaxTypeName());
+        holder.taxType.setText(MyApplication.getTaxString(transaction.getTaxTypeName()));
         holder.tax.setText(MyApplication.addDecimal(String.valueOf(transaction.getTax())));
         holder.transReversed.setText(String.valueOf(transaction.isTransactionReversed()));
         holder.status.setText(transaction.getResultDescription());
@@ -79,7 +79,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
                     transactionListLisners.onTransactionViewItemClick(transaction.getTransactionId(),transaction.getTransTypeName(),
                             transaction.getCreationDate(),transaction.getSrcWalletOwnerName(),transaction.getDesWalletOwnerName(),
                             transaction.getSrcMobileNumber(),transaction.getDestMobileNumber(),transaction.getSrcCurrencySymbol(),
-                            transaction.getTransactionAmount(),transaction.getFee(),transaction.getTaxTypeName(),transaction.getTax(),
+                            transaction.getTransactionAmount(),transaction.getFee(),MyApplication.getTaxString(transaction.getTaxTypeName()),transaction.getTax(),
                             transaction.getDestPostBalance(),transaction.getResultDescription());
             }
         });

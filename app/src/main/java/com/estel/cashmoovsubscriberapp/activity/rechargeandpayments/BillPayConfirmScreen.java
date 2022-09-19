@@ -109,17 +109,17 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
         if(BillPayDetails.taxConfigurationList!=null){
             if(BillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BillPayDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_label.setText(MyApplication.getTaxString(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
                 vat_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("value"));
             }

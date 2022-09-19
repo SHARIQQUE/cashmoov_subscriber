@@ -108,17 +108,17 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         if(BeneficiaryAirtime.taxConfigurationList!=null){
             if(BeneficiaryAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BeneficiaryAirtime.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_label.setText(MyApplication.getTaxString(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
                 vat_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("value"));
             }

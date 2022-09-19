@@ -111,17 +111,17 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         if(International.taxConfigurationList!=null){
             if(International.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(International.fromCurrencySymbol+" "+df.format(International.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(International.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(International.fromCurrencySymbol+" "+df.format(International.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(International.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_label.setText(MyApplication.getTaxString(International.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
                 vat_r.setText(International.fromCurrencySymbol+" "+df.format(International.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(International.taxConfigurationList.optJSONObject(1).optString("value"));
             }

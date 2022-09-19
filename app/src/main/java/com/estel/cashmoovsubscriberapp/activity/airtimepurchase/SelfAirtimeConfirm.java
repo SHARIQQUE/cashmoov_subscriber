@@ -106,17 +106,17 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
         if(SelfAirtime.taxConfigurationList!=null){
             if(SelfAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(SelfAirtime.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax_label.setText(MyApplication.getTaxString(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(SelfAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
+                vat_label.setText(MyApplication.getTaxString(SelfAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
                 vat_r.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtime.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(1).optString("value"));
             }

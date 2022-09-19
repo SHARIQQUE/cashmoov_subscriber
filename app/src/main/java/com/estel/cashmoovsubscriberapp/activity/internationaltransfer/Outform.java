@@ -985,6 +985,7 @@ callApiWalletCountryCurrencyJSOn();
 
                                     if(jsonObjectAmountDetails.has("taxConfigurationList")) {
                                         taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+
                                     }else{
                                         taxConfigurationList=null;
                                     }
@@ -1068,7 +1069,9 @@ callApiWalletCountryCurrencyJSOn();
 //                                    }
 
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+
                                         } else {
                                             taxConfigurationList = null;
                                         }
