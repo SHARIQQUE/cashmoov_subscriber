@@ -450,13 +450,12 @@
                 <TextView
                     android:id="@+id/tvrate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="00.00"
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="00.000"
                     android:textColor="#000"
-                    android:textSize="@dimen/_13sdp"
-                    />
+                    android:textSize="@dimen/_13sdp" />
 
 
             </LinearLayout>

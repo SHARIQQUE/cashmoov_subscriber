@@ -28,7 +28,7 @@ import java.util.Locale;
 public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static SelfAirtimeReceipt selfairtimereceiptC;
     Button btnClose,btnShareReceipt;
-    TextView accNo,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView accNo,transId,transIdnew,tvTransIdnew,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -131,6 +131,8 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
+        tvTransIdnew=findViewById(R.id.tvTransIdnew);
+        transIdnew=findViewById(R.id.transIdnew);
 
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
@@ -144,6 +146,8 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
         transId.setText(getString(R.string.vendor_trans_id_colon));
+        transIdnew.setText(getString(R.string.trans_id));
+        tvTransIdnew.setText(SelfAirtimeConfirm.receiptJson.optString("transactionId"));
         tvMobile.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
         tvOperatorName.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));

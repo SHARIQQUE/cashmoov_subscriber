@@ -100,8 +100,8 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         //  tvConfCode.setText(CashOut.mobileNo);
         tvCurrency.setText(CashOut.fromCurrency);
         tvTransAmount.setText(CashOut.currencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTCASHOUT",cashoutconfirmscreenC)));
-        tvAmountPaid.setText(CashOut.currencySymbol+" "+ CashOut.currencyValue);
-        tvFee.setText(CashOut.fromCurrencySymbol+" "+CashOut.fee);
+        tvAmountPaid.setText(CashOut.currencySymbol+" "+ MyApplication.addDecimal(CashOut.currencyValue));
+        tvFee.setText(CashOut.fromCurrencySymbol+" "+MyApplication.addDecimal(CashOut.fee));
 
        finalamount=Double.parseDouble(CashOut.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHOUT",cashoutconfirmscreenC));
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
@@ -110,22 +110,22 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
             if(CashOut.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(CashOut.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(CashOut.fromCurrencySymbol+" "+df.format(CashOut.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(CashOut.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(CashOut.taxConfigurationList.optJSONObject(0).optDouble("value"))));
                 finalamount=Double.parseDouble(CashOut.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHOUT",cashoutconfirmscreenC))+Double.parseDouble(CashOut.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashOut.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(CashOut.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(CashOut.fromCurrencySymbol+" "+df.format(CashOut.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(CashOut.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(CashOut.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(CashOut.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(CashOut.fromCurrencySymbol+" "+df.format(CashOut.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(CashOut.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(CashOut.taxConfigurationList.optJSONObject(1).optDouble("value"))));
                 finalamount=Double.parseDouble(CashOut.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTCASHOUT",cashoutconfirmscreenC))+Double.parseDouble(CashOut.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashOut.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(CashOut.fromCurrencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(CashOut.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(finalamount)));
 
         etPin.addTextChangedListener(new TextWatcher() {
 

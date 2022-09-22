@@ -111,13 +111,12 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
       //  tvConfCode.setText(ToSubscriber.mobileNo);
         tvCurrency.setText(ToSubscriber.currency);
 
-        String get_number_value=ToSubscriber.etAmount.getText().toString().replace(",","");
+       // String get_number_value=ToSubscriber.etAmount.getText().toString().replace(",","");
+      // tvTransAmount.setText(Separator.getInstance().doSeparate(get_number_value, Locale.FRENCH));
+        tvTransAmount.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.etAmount.getText().toString().replace(",","")));
+        tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.currencyValue));
 
-        tvTransAmount.setText(Separator.getInstance().doSeparate(get_number_value, Locale.FRENCH));
-       // tvTransAmount.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.currencyValue);
-
-        tvFee.setText(ToSubscriber.currencySymbol+" "+ToSubscriber.fee);
+        tvFee.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.fee));
 
         etPin.addTextChangedListener(new TextWatcher() {
 
@@ -191,32 +190,32 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
 
         finalamount=Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""));
 
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
-        DecimalFormat df = new DecimalFormat("0.00",symbols);
+
+
         if(ToSubscriber.taxConfigurationList!=null){
 
 
             if(ToSubscriber.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(ToSubscriber.currencySymbol+" "+df.format(ToSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value"))));
                 finalamount=(Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value")));
             }
             if(ToSubscriber.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(ToSubscriber.currencySymbol+" "+df.format(ToSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(ToSubscriber.currencySymbol+" "+df.format(ToSubscriber.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToSubscriber.taxConfigurationList.optJSONObject(1).optDouble("value"))));
                 finalamount=(Double.parseDouble(ToSubscriber.fee)+Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(1).optString("value")));
             }
         }
 
 
 
-        tvAmountCharged.setText(ToSubscriber.currencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(finalamount)));
 
 
 
@@ -432,7 +431,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                                         Double transAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""));
                                         Double paidAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.currencyValue);
                                         Double chargeAmount = jsonObjectAmountDetails.optDouble("fee") + finalamount;
-                                        tvTransAmount.setText(ToSubscriber.currencySymbol + " " + df.format(transAmount));
+                                        tvTransAmount.setText(ToSubscriber.currencySymbol + " " + MyApplication.addDecimal(String.valueOf(transAmount)));
                                         tvAmountPaid.setText(ToSubscriber.currencySymbol + " " + df.format(paidAmount));
 
                                         tvAmountCharged.setText(ToSubscriber.currencySymbol + " " + df.format(chargeAmount));

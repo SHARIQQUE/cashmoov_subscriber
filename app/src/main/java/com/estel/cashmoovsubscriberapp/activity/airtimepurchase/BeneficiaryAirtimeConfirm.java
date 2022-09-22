@@ -111,22 +111,22 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
             if(BeneficiaryAirtime.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value"))));
                 finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BeneficiaryAirtime.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optDouble("value"))));
                 finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BeneficiaryAirtime.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(finalamount)));
 
         etPin.addTextChangedListener(new TextWatcher() {
 
@@ -148,12 +148,12 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-               // tvFinger.setVisibility(View.VISIBLE);
+                // tvFinger.setVisibility(View.VISIBLE);
             } else {
-              //  tvFinger.setVisibility(View.GONE);
+                //  tvFinger.setVisibility(View.GONE);
             }
         }else{
-           // tvFinger.setVisibility(View.VISIBLE);
+            // tvFinger.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,7 +305,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
 
                 System.out.println("dataToSend---"+BeneficiaryAirtime.dataToSend.toString());*/
             }
-                break;
+            break;
             case R.id.btnCancel:
                 finish();
                 break;
@@ -331,6 +331,8 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                     @Override
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
+
+
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                             MyApplication.showToast(benefiairtimeconfirmC,jsonObject.optString("resultDescription"));
                             receiptJson=jsonObject;

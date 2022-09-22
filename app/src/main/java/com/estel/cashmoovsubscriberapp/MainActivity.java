@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvBadge.setVisibility(View.VISIBLE);
             tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC)));
         }else{
+
             tvBadge.setVisibility(View.GONE);
         }
     }

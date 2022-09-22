@@ -734,6 +734,9 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                ,MyApplication.ToSubscriberMinAmount,MyApplication.ToSubscriberMaxAmount)){
            return;
        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

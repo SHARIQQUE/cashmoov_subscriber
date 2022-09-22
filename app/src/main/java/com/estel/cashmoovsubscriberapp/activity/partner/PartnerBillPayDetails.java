@@ -255,6 +255,9 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                 ,MyApplication.BillPaymentMinAmount,MyApplication.BillPaymentMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
 
         isFormatting = true;
 

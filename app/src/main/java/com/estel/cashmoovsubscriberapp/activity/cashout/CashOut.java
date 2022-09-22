@@ -755,6 +755,9 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
                 ,MyApplication.CashOutMinAmount,MyApplication.CashOutMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
 
         isFormatting = true;
 

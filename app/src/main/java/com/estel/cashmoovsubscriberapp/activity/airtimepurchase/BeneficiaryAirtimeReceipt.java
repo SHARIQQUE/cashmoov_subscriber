@@ -28,7 +28,7 @@ import java.util.Locale;
 public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeReceipt benefiairtimereceiptC;
     Button btnClose,btnShareReceipt;
-    TextView tax_label,accNo,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tax_label,accNo,transId,tvTransIdnew,transIdnew,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -120,6 +120,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
     private void getIds() {
         accNo = findViewById(R.id.accNo);
         transId = findViewById(R.id.transId);
+        transIdnew=findViewById(R.id.transIdnew);
         btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
@@ -139,12 +140,15 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
         tax_label=findViewById(R.id.tax_label);
+        tvTransIdnew=findViewById(R.id.tvTransIdnew);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(BeneficiaryAirtime.mobile);
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
         transId.setText(getString(R.string.vendor_trans_id_colon));
+        transIdnew.setText(getString(R.string.trans_id));
+        tvTransIdnew.setText(BeneficiaryAirtimeConfirm.receiptJson.optString("transactionId"));
         tvMobile.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
         tvOperatorName.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));

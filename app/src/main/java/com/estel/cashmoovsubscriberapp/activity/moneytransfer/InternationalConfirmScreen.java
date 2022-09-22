@@ -101,8 +101,8 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         //  tvConfCode.setText(International.mobileNo);
         tvCurrency.setText(International.fromCurrency);
         tvTransAmounts.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
-        tvAmountPaid.setText(International.toCurrencySymbol+" "+ International.currencyValue);
-        tvFee.setText(International.fromCurrencySymbol+" "+International.fee);
+        tvAmountPaid.setText(International.toCurrencySymbol+" "+ MyApplication.addDecimal(International.currencyValue));
+        tvFee.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(International.fee));
         tvrate.setText(International.rate);
        finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
 
@@ -112,22 +112,22 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
             if(International.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(International.fromCurrencySymbol+" "+df.format(International.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(International.taxConfigurationList.optJSONObject(0).optDouble("value"))));
                 finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(International.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(International.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(International.fromCurrencySymbol+" "+df.format(International.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(International.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(International.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(International.fromCurrencySymbol+" "+df.format(International.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(International.taxConfigurationList.optJSONObject(1).optDouble("value"))));
                 finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC))+Double.parseDouble(International.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(International.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(International.fromCurrencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(finalamount)));
 
         etPin.addTextChangedListener(new TextWatcher() {
 

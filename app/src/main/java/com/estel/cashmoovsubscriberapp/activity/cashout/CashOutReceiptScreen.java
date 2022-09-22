@@ -150,24 +150,24 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         tvTransId.setText(CashOutConfirmScreen.receiptJson.optString("transactionId"));
         tvCurrency.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencyName"));
         tvFee.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
-                + df.format(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee")));
+                + MyApplication.addDecimal(String.valueOf(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee"))));
 
-        tvTransAmt.setText(MyApplication.addDecimal(CashOutConfirmScreen.tvTransAmount.getText().toString()));
-        tvAmountPaid.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+df.format(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount")));
-        tvAmountCharged.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+df.format(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("value")));
+        tvTransAmt.setText((CashOutConfirmScreen.tvTransAmount.getText().toString()));
+        tvAmountPaid.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+MyApplication.addDecimal(String.valueOf(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));
+        tvAmountCharged.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(String.valueOf(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("value"))));
 
 
         if(CashOutConfirmScreen.taxConfigList!=null){
             if(CashOutConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+df.format(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimalthreenew(String.valueOf(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashOutConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+df.format(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimalthreenew(String.valueOf(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(CashOutConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");

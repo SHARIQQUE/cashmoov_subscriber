@@ -156,8 +156,8 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         //  tvConfCode.setText(ToNonSubscriber.mobileNo);
         tvCurrency.setText(ToNonSubscriber.fromCurrency);
         tvTransAmount.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(ToNonSubscriber.fromCurrencySymbol+" "+ ToNonSubscriber.currencyValue);
-        tvFee.setText(ToNonSubscriber.fromCurrencySymbol+" "+ToNonSubscriber.fee);
+        tvAmountPaid.setText(ToNonSubscriber.fromCurrencySymbol+" "+ MyApplication.addDecimal(ToNonSubscriber.currencyValue));
+        tvFee.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(ToNonSubscriber.fee));
 
         finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString().replace(",",""));
 
@@ -167,22 +167,22 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
             if(ToNonSubscriber.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+df.format(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value"))));
                 finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString().replace(",",""))+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(ToNonSubscriber.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+df.format(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(ToNonSubscriber.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+df.format(ToNonSubscriber.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ToNonSubscriber.taxConfigurationList.optJSONObject(1).optDouble("value"))));
                 finalamount=Double.parseDouble(ToNonSubscriber.fee)+Double.parseDouble(ToNonSubscriber.etAmount.getText().toString().replace(",",""))+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToNonSubscriber.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(ToNonSubscriber.fromCurrencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(ToNonSubscriber.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(finalamount)));
 
         setOnCLickListener();
 

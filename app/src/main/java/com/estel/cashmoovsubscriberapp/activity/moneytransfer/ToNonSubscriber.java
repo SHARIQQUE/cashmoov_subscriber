@@ -492,8 +492,8 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                         receiverFee = jsonObjectAmountDetails.optInt("receiverFee");
                                         receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvFee.setText(fee);
-                                        tvAmtPaid.setText(currencyValue);
+                                        tvFee.setText(MyApplication.addDecimal(fee));
+                                        tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -842,6 +842,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         if(MyApplication.checkMinMax(tononsubscriberC,s,editText
                 ,MyApplication.ToNonSubscriberMinAmount,MyApplication.ToNonSubscriberMaxAmount)){
+            return;
+        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
             return;
         }
         isFormatting = true;

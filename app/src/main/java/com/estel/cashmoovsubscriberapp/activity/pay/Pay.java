@@ -750,6 +750,9 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                 ,MyApplication.PayMinAmount,MyApplication.PayMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
 
         isFormatting = true;
 

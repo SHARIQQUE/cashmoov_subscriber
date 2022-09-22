@@ -466,8 +466,8 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(rate);
-                                        tvFee.setText(fee);
+                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
+                                        tvFee.setText(MyApplication.addDecimal(fee));
                                         etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);
 
@@ -737,6 +737,9 @@ public class International extends AppCompatActivity implements View.OnClickList
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         if(MyApplication.checkMinMax(internationalC,s,etAmount
                 ,MyApplication.InternationalMinAmount,MyApplication.InternationalMaxAmount)){
+            return;
+        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
             return;
         }
         isFormatting = true;

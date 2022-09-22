@@ -506,6 +506,9 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
         if(MyApplication.checkMinMax(selfairtimeC,s,etAmount,MyApplication.AirtimePurchaseMinAmount,MyApplication.AirtimePurchaseMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

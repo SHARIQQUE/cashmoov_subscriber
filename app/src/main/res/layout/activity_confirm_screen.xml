@@ -276,6 +276,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 android:layout_marginTop="@dimen/_5sdp">
 
                 <ImageView
@@ -326,13 +327,12 @@
                 <TextView
 
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fee_colon"
-                   android:layout_gravity="center_vertical"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/fee_colon"
                     android:textColor="#000"
-                    android:textSize="@dimen/_13sdp"
-                    />
+                    android:textSize="@dimen/_13sdp" />
 
                 <TextView
                     android:id="@+id/tvFee"
@@ -485,7 +485,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tvAmountPaid"
+                        android:id="@+id/tvAmountPaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00.00"

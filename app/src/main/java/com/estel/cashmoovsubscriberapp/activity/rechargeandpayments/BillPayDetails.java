@@ -257,6 +257,9 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
 
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
 
         isFormatting = true;
 
