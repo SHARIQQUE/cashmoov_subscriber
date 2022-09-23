@@ -615,9 +615,9 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
     private void setSubscriberdataf(String subscriberInfoModel) {
         isSuccess = false;
         subscriberList.clear();
-        subscriberList.add(""+""+subscriberInfoModel+""+"");
+       /* subscriberList.add(""+""+subscriberInfoModel+""+"");
         adapter = new ArrayAdapter<String>(payC,R.layout.item_select, subscriberList);
-        etRecipientNo.setAdapter(adapter);
+       */ etRecipientNo.setAdapter(adapter);
         etRecipientNo.setThreshold(9);
         etRecipientNo.showDropDown();
 
@@ -641,9 +641,9 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
             isQR=false;
 
         }else{
-            subscriberList.add(data.getMobileNumber()+","+data.getOwnerName()+","+data.getLastName());
+            /*subscriberList.add(data.getMobileNumber()+","+data.getOwnerName()+","+data.getLastName());
             adapter = new ArrayAdapter<String>(payC,R.layout.item_select, subscriberList);
-            etRecipientNo.setAdapter(adapter);
+            */etRecipientNo.setAdapter(adapter);
             etRecipientNo.setThreshold(9);
             etRecipientNo.showDropDown();
         }
@@ -721,7 +721,9 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
                                     }else{
                                         taxConfigurationList=null;
                                     }
-
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     tvSend.setVisibility(View.GONE);

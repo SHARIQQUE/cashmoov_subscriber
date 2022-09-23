@@ -583,6 +583,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 public void failure(String aFalse) {
 
                     if(aFalse.equalsIgnoreCase("1251")){
+                        MyApplication.saveString("pin",etPass.getText().toString().trim(),phnoregistrationccreenC);
                         Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
                         startActivity(i);
                        // callPostGetLoginOTP();

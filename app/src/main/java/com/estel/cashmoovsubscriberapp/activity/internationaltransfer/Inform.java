@@ -433,7 +433,7 @@ callApiWalletCountryCurrencyJSOn();
                                             if (value == 0 || value == .0 || value == 0.0 || value == 0.00 || value == 0.000) {
                                               //  tvAmtPaid.setText(String.valueOf(currValue));
                                             } else {
-                                                String finalValue = df.format(currValue / value);
+                                                String finalValue = MyApplication.addDecimal(""+currValue / value);
                                                 // tvAmtPaid.setText(finalValue);
                                                 etAmount.setText(finalValue);
                                             }
@@ -466,6 +466,10 @@ callApiWalletCountryCurrencyJSOn();
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                         } else {
                                             taxConfigurationList = null;
+                                        }
+
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
                                         }
                                     }
                                 } else {
@@ -510,7 +514,7 @@ callApiWalletCountryCurrencyJSOn();
                                     if(etAmount.getText().toString().trim().replace(",","").length()>0) {
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        currencyValue =df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
                                         fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
                                         rate = jsonObjectAmountDetails.optString("value");
                                         exRateCode = jsonObjectAmountDetails.optString("code");
@@ -535,6 +539,9 @@ callApiWalletCountryCurrencyJSOn();
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                         } else {
                                             taxConfigurationList = null;
+                                        }
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
                                         }
 
                                     }
@@ -906,9 +913,9 @@ callApiWalletCountryCurrencyJSOn();
             isQR = false;
 
         } else {
-            subscriberList.add(data.getMobileNumber() + "," + data.getOwnerName() + "," + data.getLastName());
+            /*subscriberList.add(data.getMobileNumber() + "," + data.getOwnerName() + "," + data.getLastName());
             adapter = new ArrayAdapter<String>(tosubscriberC, R.layout.item_select, subscriberList);
-            etSubscriberNo.setAdapter(adapter);
+            */etSubscriberNo.setAdapter(adapter);
             etSubscriberNo.setThreshold(9);
             etSubscriberNo.showDropDown();
 
@@ -1049,7 +1056,7 @@ callApiWalletCountryCurrencyJSOn();
                                             amountDetails
                                     );
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    currencyValue=df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
                                     fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
@@ -1066,7 +1073,9 @@ callApiWalletCountryCurrencyJSOn();
                                     }else{
                                         taxConfigurationList=null;
                                     }
-
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription", "N/A"));

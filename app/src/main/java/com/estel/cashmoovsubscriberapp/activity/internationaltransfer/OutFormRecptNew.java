@@ -150,31 +150,31 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
         //tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("operator"));
         tvTransId.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorTransId"));
         tvFee.setText(Outform.currencySymbol+" "
-                + df.format(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
+                + MyApplication.addDecimal(""+OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
 
 //        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
-        tvAmountCharged.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
+        tvTransAmount.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
+        tvAmountCharged.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
 
 
         if(OutFormConfirmation.taxConfigList!=null){
             if(OutFormConfirmation.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(OutFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(OutFormConfirmation.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(OutFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(OutFormConfirmation.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
-                tax2_value.setText(Outform.currencySymbol+" "+df.format(OutFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_value.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+OutFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

@@ -153,30 +153,30 @@ public class SelfAirtimeReceipt extends AppCompatActivity implements View.OnClic
         tvOperatorName.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(SelfAirtime.currencySymbol+" "
-                + df.format(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("fee")));
+                + MyApplication.addDecimal(""+SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("fee")));
 
 //        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+ MyApplication.addDecimal(SelfAirtimeConfirm.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtimeConfirm.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("amount")));
-        tvAmountCharged.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
+        tvTransAmount.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(""+SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("amount")));
+        tvAmountCharged.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(""+SelfAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
 
         if(SelfAirtimeConfirm.taxConfigList!=null){
             if(SelfAirtimeConfirm.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(""+SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(SelfAirtimeConfirm.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(""+SelfAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
-                tax2_value.setText(SelfAirtime.currencySymbol+" "+df.format(SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_value.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(""+SelfAirtimeConfirm.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

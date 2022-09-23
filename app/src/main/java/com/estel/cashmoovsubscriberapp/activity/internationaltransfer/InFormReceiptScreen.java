@@ -150,13 +150,13 @@ public class InFormReceiptScreen extends AppCompatActivity implements View.OnCli
         tvTransId.setText(InFormConfirmation.receiptJson.optString("transactionId"));
         tvCurrency.setText(InFormConfirmation.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
         tvFee.setText(InFormConfirmation.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
-                + df.format(InFormConfirmation.receiptJson.optJSONObject("remittance").optDouble("fee")));
+                +MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("remittance").optDouble("fee")));
 
         tvTransAmt.setText(MyApplication.addDecimal(InFormConfirmation.tvTransAmount.getText().toString()));
         tvAmountPaid.setText(InFormConfirmation.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "
-                +df.format(InFormConfirmation.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
+                +MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
         tvAmountCharged.setText(InFormConfirmation.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")
-                +" "+df.format(InFormConfirmation.receiptJson.optJSONObject("remittance").optDouble("amount")));
+                +" "+MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("remittance").optDouble("amount")));
 
         if(InFormConfirmation.taxConfigList!=null){
             if(InFormConfirmation.taxConfigList.length()==1){

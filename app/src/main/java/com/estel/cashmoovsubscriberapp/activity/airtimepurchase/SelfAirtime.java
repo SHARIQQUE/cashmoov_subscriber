@@ -237,7 +237,9 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                     currency = data.optString("currencyName");
                                     currencySymbol = data.optString("currencySymbol");
                                     tvAmtCurr.setText(currencySymbol);
-                                    etPhone.setText(mobile);
+                                   // etPhone.setText(mobile);
+
+                                    etPhone.setText("624623497");
                                     callApiMsisdnPrefix();
                                 }
 
@@ -393,7 +395,9 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                         taxConfigurationList=null;
                                     }
 
-
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
                                 } else {
                                     MyApplication.showToast(selfairtimeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -454,6 +458,9 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                     if(jsonObjectAmountDetails.has("taxConfigurationList")) {
                                         taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                     }else{
+                                        taxConfigurationList=null;
+                                    }
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
                                         taxConfigurationList=null;
                                     }
                                     try {

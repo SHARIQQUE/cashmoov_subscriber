@@ -492,7 +492,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                         receiverFee = jsonObjectAmountDetails.optInt("receiverFee");
                                         receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvFee.setText(MyApplication.addDecimal(fee));
+                                        tvFee.setText(fee);
                                         tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
 
 //                                    int tax = receiverFee+receiverTax;
@@ -507,6 +507,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                         } else {
                                             taxConfigurationList = null;
+                                        }
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
                                         }
                                     }
 
@@ -582,6 +585,10 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 //                                    }else{
 //                                        taxConfigurationList=null;
 //                                    }
+
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
+                                        }
                                     }
 
                                 } else {
@@ -692,9 +699,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
         subscriberList.clear();
 
-        subscriberList.add(""+""+subscriberInfoModel+""+"");
+       /* subscriberList.add(""+""+subscriberInfoModel+""+"");
         adapter = new ArrayAdapter<String>(tononsubscriberC,R.layout.item_select, subscriberList);
-        etPhone.setAdapter(adapter);
+       */ etPhone.setAdapter(adapter);
         etPhone.setThreshold(9);
         etPhone.showDropDown();
     }
@@ -706,9 +713,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         ownerName = data.getFirstName();
         lastName = data.getLastName();
 
-            subscriberList.add(data.getMobileNumber() + "," + data.getFirstName() + "," + data.getLastName());
+           /* subscriberList.add(data.getMobileNumber() + "," + data.getFirstName() + "," + data.getLastName());
             adapter = new ArrayAdapter<String>(tononsubscriberC, R.layout.item_select, subscriberList);
-            etPhone.setAdapter(adapter);
+           */ etPhone.setAdapter(adapter);
             etPhone.setThreshold(9);
             etPhone.showDropDown();
 

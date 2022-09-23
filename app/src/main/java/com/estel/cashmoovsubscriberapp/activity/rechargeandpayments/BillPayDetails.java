@@ -226,7 +226,9 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
                                     }else{
                                         taxConfigurationList=null;
                                     }
-
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     MyApplication.showToast(billpaydetailsC,jsonObject.optString("resultDescription", "N/A"));

@@ -519,7 +519,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if (data.optString("walletTypeCode").equalsIgnoreCase("100008")) {
                                                 tvName.setText(data.optString("walletOwnerName"));
-                                                tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
+                                                tvBalance.setText(MyApplication.addDecimal(""+data.optDouble("value")) + " " + data.optString("currencySymbol"));
                                             }
 
                                         }

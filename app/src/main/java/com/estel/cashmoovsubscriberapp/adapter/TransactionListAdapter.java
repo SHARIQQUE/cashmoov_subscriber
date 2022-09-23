@@ -54,9 +54,9 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         holder.destMSISDN.setText(String.valueOf(transaction.getDestMobileNumber()));
         holder.rechargeNumber.setText(transaction.getRechargeNumber());
         holder.transType.setText(transaction.getTransTypeName());
-        holder.amount.setText(transaction.getSrcCurrencySymbol()+" "+(String.valueOf(transaction.getTransactionAmount())));
+        holder.amount.setText(transaction.getSrcCurrencySymbol()+" "+MyApplication.addDecimal(String.valueOf(transaction.getTransactionAmount())));
         holder.fee.setText(MyApplication.addDecimal(String.valueOf((transaction.getFee()))));
-        holder.taxType.setText(MyApplication.getTaxString(transaction.getTaxTypeName()));
+        holder.taxType.setText(MyApplication.addDecimal(MyApplication.getTaxString(transaction.getTaxTypeName())));
         holder.tax.setText(MyApplication.addDecimal(String.valueOf(transaction.getTax())));
         holder.transReversed.setText(String.valueOf(transaction.isTransactionReversed()));
         holder.status.setText(transaction.getResultDescription());

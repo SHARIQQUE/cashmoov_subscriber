@@ -208,7 +208,7 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    currencyValue=df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
                                     fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                   //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
@@ -227,6 +227,9 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
                                         taxConfigurationList=null;
                                     }
 
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     MyApplication.showToast(billpaydetailsC,jsonObject.optString("resultDescription", "N/A"));

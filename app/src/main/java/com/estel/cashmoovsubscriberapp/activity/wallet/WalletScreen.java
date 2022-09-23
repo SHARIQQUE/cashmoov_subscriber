@@ -256,7 +256,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
                                                 DecimalFormat df = new DecimalFormat("0.00",symbols);
 
-                                                tvBalance.setText(df.format(data.optInt("value"))+" "+data.optString("currencySymbol"));
+                                                tvBalance.setText(MyApplication.addDecimal(""+data.optDouble("value"))+" "+data.optString("currencySymbol"));
                                                 walletCode = data.optString("code");
 
                                                 System.out.println("get value"+data.optString("value"));
@@ -300,7 +300,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                             if (jsonObject != null) {
 
                                 miniStatementTransList.clear();
-                                String msisdn,name;
+                                String msisdn,name,taxAsJson;
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
@@ -315,6 +315,12 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                 msisdn = data.optString("toWalletOwnerMsisdn").trim();
                                                 name =  data.optString("toWalletOwnerName").trim();
 
+                                            }
+//receiverBearer
+                                            if(data.has("receiverBearer")&&data.optBoolean("receiverBearer")){
+                                                taxAsJson="";
+                                            }else{
+                                                taxAsJson=data.optString("taxAsJson");
                                             }
 
                                             miniStatementTransList.add(new MiniStatementTrans(
@@ -339,7 +345,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                                                     data.optString("transactionTypeName").trim(),
                                                     data.optString("creationDate").trim(),
                                                     data.optString("comReceiveWalletCode").trim(),
-                                                    data.optString("taxAsJson"),
+                                                    taxAsJson,
                                                     data.optString("holdingAccountCode").trim(),
                                                     data.optString("status").trim(),
                                                     data.optDouble("fromAmount"),
@@ -411,7 +417,8 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(walletscreenC, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",name);
-        intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
+        intent.putExtra("FROMAMOUNT",fromAmount);
+        intent.putExtra("FROMCURR",currencySymbol);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);

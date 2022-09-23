@@ -171,7 +171,7 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(CashOutConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
-                tax2_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+df.format(CashOutConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(""+CashOutConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

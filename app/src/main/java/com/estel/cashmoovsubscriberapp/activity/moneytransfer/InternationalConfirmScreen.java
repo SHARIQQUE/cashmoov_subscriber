@@ -101,9 +101,9 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         //  tvConfCode.setText(International.mobileNo);
         tvCurrency.setText(International.fromCurrency);
         tvTransAmounts.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
-        tvAmountPaid.setText(International.toCurrencySymbol+" "+ MyApplication.addDecimal(International.currencyValue));
+        tvAmountPaid.setText(International.toCurrencySymbol+" "+MyApplication.addDecimal(International.currencyValue));
         tvFee.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(International.fee));
-        tvrate.setText(International.rate);
+        tvrate.setText(MyApplication.addDecimalthreenew(International.rate));
        finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);

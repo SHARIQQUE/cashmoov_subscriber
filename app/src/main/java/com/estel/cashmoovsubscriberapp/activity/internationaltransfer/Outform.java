@@ -828,9 +828,9 @@ callApiWalletCountryCurrencyJSOn();
             isQR = false;
 
         } else {
-            subscriberList.add(data.getMobileNumber() + "," + data.getOwnerName() + "," + data.getLastName());
+           /* subscriberList.add(data.getMobileNumber() + "," + data.getOwnerName() + "," + data.getLastName());
             adapter = new ArrayAdapter<String>(tosubscriberC, R.layout.item_select, subscriberList);
-            etSubscriberNo.setAdapter(adapter);
+           */ etSubscriberNo.setAdapter(adapter);
             etSubscriberNo.setThreshold(9);
             etSubscriberNo.showDropDown();
 
@@ -989,7 +989,9 @@ callApiWalletCountryCurrencyJSOn();
                                     }else{
                                         taxConfigurationList=null;
                                     }
-
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription", "N/A"));
@@ -1075,6 +1077,9 @@ callApiWalletCountryCurrencyJSOn();
                                         } else {
                                             taxConfigurationList = null;
                                         }
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
+                                        }
                                     }
                                 } else {
                                     MyApplication.showToast(Outform.this,jsonObject.optString("resultDescription", "N/A"));
@@ -1143,7 +1148,9 @@ callApiWalletCountryCurrencyJSOn();
                                         } else {
                                             taxConfigurationList = null;
                                         }
-
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
+                                        }
                                     }
 
 

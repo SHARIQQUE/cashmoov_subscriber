@@ -88,40 +88,45 @@ public class WalletTransactionDetails extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             String transType = (getIntent().getStringExtra("TRANSTYPE"));
             String fromOwnerName = (getIntent().getStringExtra("FROMWALLETOWNERNAME"));
-            String fromAmount = (getIntent().getStringExtra("FROMAMOUNT"));
+           // String fromAmount = (getIntent().getStringExtra("FROMAMOUNT"));
+            String fromCurr = (getIntent().getStringExtra("FROMCURR"));
             String transId = (getIntent().getStringExtra("TRANSID"));
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
             String tax = (getIntent().getStringExtra("taxvalue"));
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             DecimalFormat df = new DecimalFormat("0.00",symbols);
-
+            double fromAmount =  b.getDouble("FROMAMOUNT");
             double result = b.getDouble("newamount");
             double postbalanmce = b.getDouble("postbalance");
             double fee = b.getDouble("fee");
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText(fromOwnerName);
-            txt_from_amount.setText(getString(R.string.trans_amount_colon)+" "+(fromAmount));
+            txt_from_amount.setText(getString(R.string.trans_amount_colon)+" "+fromCurr+" "+MyApplication.addDecimal(""+fromAmount));
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
             fee_value.setText(getString(R.string.fee_colon)+"" +MyApplication.addDecimal(fee+""));
-            postbalance_value.setText(getString(R.string.post_balance_colon) +(String.format("%.2f", postbalanmce)));
+            postbalance_value.setText(getString(R.string.post_balance_colon) +MyApplication.addDecimal( ""+postbalanmce));
 
             try {
 
-            Gson gson = new Gson();
+                if (tax.equalsIgnoreCase("")){
+                    tax_value.setText(MyApplication.getTaxString("TAX") + " :" + " " + MyApplication.addDecimal("0.00"));
+                }else {
+                    Gson gson = new Gson();
 
-            Type userListType = new TypeToken<ArrayList<Taxmodel>>(){}.getType();
+                    Type userListType = new TypeToken<ArrayList<Taxmodel>>() {
+                    }.getType();
 
-            ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
-                for(Taxmodel user : userArray) {
-                    tax_value.setText(MyApplication.getTaxString(user.getTaxTypeName()) + " :" + " " + MyApplication.addDecimal(user.getValue()));
+                    ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
+                    for (Taxmodel user : userArray) {
+                        tax_value.setText(MyApplication.getTaxString(user.getTaxTypeName()) + " :" + " " + MyApplication.addDecimal(user.getValue()));
 
-                    System.out.println("get user" + user.getTaxTypeName());
+                        System.out.println("get user" + user.getTaxTypeName());
+                    }
                 }
-
 
             } catch (Exception e) {
 

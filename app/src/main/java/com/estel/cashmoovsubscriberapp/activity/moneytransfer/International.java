@@ -467,7 +467,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
                                         tvRate.setText(MyApplication.addDecimalthreenew(rate));
-                                        tvFee.setText(MyApplication.addDecimal(fee));
+                                        tvFee.setText(fee);
                                         etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);
 
@@ -485,7 +485,9 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         } else {
                                             taxConfigurationList = null;
                                         }
-
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
+                                        }
                                     }
 
 
@@ -557,7 +559,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(rate);
+                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
                                         tvFee.setText(fee);
                                         // etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);
@@ -574,6 +576,9 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                         } else {
                                             taxConfigurationList = null;
+                                        }
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
                                         }
                                     }
                                 } else {

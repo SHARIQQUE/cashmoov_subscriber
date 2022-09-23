@@ -520,6 +520,9 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                         taxConfigurationList=null;
                                     }
 
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     tvSend.setVisibility(View.GONE);
@@ -584,6 +587,9 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                                     }else{
                                         taxConfigurationList=null;
                                     }
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
                                     try {
                                         dataToSend.put("accountNumber", etPhone.getText().toString());
                                         dataToSend.put("amount", value);
@@ -628,6 +634,16 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText, CharSequence s, int start, int count) {
+
+        if(MyApplication.checkMinMax(beneficiaryairtimeC,s,etAmount
+                ,MyApplication.AirtimePurchaseMinAmount,MyApplication.AirtimePurchaseMaxAmount)){
+            return;
+        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
+
+
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

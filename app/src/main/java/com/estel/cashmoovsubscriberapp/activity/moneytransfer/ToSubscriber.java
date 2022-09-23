@@ -565,9 +565,9 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
             isQR = false;
 
         } else {
-            subscriberList.add(data.getMobileNumber() + "," + data.getOwnerName() + "," + data.getLastName());
+           /* subscriberList.add(data.getMobileNumber() + "," + data.getOwnerName() + "," + data.getLastName());
             adapter = new ArrayAdapter<String>(tosubscriberC, R.layout.item_select, subscriberList);
-            etSubscriberNo.setAdapter(adapter);
+           */ etSubscriberNo.setAdapter(adapter);
             etSubscriberNo.setThreshold(9);
             etSubscriberNo.showDropDown();
 
@@ -705,7 +705,9 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                                     }else{
                                         taxConfigurationList=null;
                                     }
-
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
+                                    }
 
                                 } else {
                                     MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription", "N/A"));

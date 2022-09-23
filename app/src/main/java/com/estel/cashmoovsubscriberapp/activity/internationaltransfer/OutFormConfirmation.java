@@ -188,24 +188,24 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
             if(Outform.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(Outform.currencySymbol+" "+df.format(Outform.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+Outform.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=(Double.parseDouble(Outform.fee)+Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Outform.taxConfigurationList.optJSONObject(0).optString("value")));
             }
             if(Outform.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(Outform.currencySymbol+" "+df.format(Outform.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+Outform.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(Outform.currencySymbol+" "+df.format(Outform.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+Outform.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=(Double.parseDouble(Outform.fee)+Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Outform.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Outform.taxConfigurationList.optJSONObject(1).optString("value")));
             }
         }
 
 
 
-        tvAmountCharged.setText(Outform.currencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
 
 
@@ -443,10 +443,10 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                                         Double transAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""));
                                         Double paidAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(Outform.currencyValue);
                                         Double chargeAmount = jsonObjectAmountDetails.optDouble("fee") + finalamount;
-                                        tvTransAmount.setText(Outform.currencySymbol + " " + df.format(transAmount));
-                                        tvAmountPaid.setText(Outform.currencySymbol + " " + df.format(paidAmount));
+                                        tvTransAmount.setText(Outform.currencySymbol + " " + MyApplication.addDecimal(""+transAmount));
+                                        tvAmountPaid.setText(Outform.currencySymbol + " " + MyApplication.addDecimal(""+paidAmount));
 
-                                        tvAmountCharged.setText(Outform.currencySymbol + " " + df.format(chargeAmount));
+                                        tvAmountCharged.setText(Outform.currencySymbol + " " + MyApplication.addDecimal(""+chargeAmount));
 
 
                                         try {

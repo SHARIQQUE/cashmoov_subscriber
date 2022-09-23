@@ -151,14 +151,14 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
         tvOperatorName.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(Partner.currencySymbol+" "
-                + df.format(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("fee")));
+                + MyApplication.addDecimal(""+PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("fee")));
 
 //        tvTransAmount.setText(Partner.currencySymbol+" "+ MyApplication.addDecimal(PartnerBillPayConfirmScreen.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("amount")));
-        tvAmountCharged.setText(Partner.currencySymbol+" "+df.format(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
+        tvTransAmount.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(""+PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("amount")));
+        tvAmountCharged.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(""+PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
 
 
         if(PartnerBillPayConfirmScreen.taxConfigList!=null){

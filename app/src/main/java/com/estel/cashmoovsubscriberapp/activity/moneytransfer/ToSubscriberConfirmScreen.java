@@ -432,9 +432,9 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                                         Double paidAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.currencyValue);
                                         Double chargeAmount = jsonObjectAmountDetails.optDouble("fee") + finalamount;
                                         tvTransAmount.setText(ToSubscriber.currencySymbol + " " + MyApplication.addDecimal(String.valueOf(transAmount)));
-                                        tvAmountPaid.setText(ToSubscriber.currencySymbol + " " + df.format(paidAmount));
+                                        tvAmountPaid.setText(ToSubscriber.currencySymbol + " " + MyApplication.addDecimal(""+paidAmount));
 
-                                        tvAmountCharged.setText(ToSubscriber.currencySymbol + " " + df.format(chargeAmount));
+                                        tvAmountCharged.setText(ToSubscriber.currencySymbol + " " + MyApplication.addDecimal(""+chargeAmount));
 
 
                                         try {

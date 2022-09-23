@@ -97,7 +97,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
         // tvCurrency.setText(SelfAirtime.currency);
 
         tvTransAmount.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtime.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+ SelfAirtime.currencyValue);
+        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+ MyApplication.addDecimal(SelfAirtime.currencyValue));
         tvFee.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtime.fee));
 
         finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""));

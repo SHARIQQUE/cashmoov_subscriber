@@ -115,22 +115,22 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
             if(Pay.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(Pay.fromCurrencySymbol+" "+df.format(Pay.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(""+Pay.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(Pay.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(Pay.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(Pay.fromCurrencySymbol+" "+df.format(Pay.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(""+Pay.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(Pay.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(Pay.currencySymbol+" "+df.format(Pay.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(""+Pay.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Pay.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(Pay.fromCurrencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
         etPin.addTextChangedListener(new TextWatcher() {
 

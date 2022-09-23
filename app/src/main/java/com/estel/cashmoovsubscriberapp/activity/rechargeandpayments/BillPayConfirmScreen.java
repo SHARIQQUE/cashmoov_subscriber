@@ -101,7 +101,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
 
         tvTransAmount.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.etAmount.getText().toString().replace(",","")));
         tvAmountPaid.setText(BillPay.currencySymbol+" "+ BillPayDetails.currencyValue);
-        tvFee.setText(BillPay.currencySymbol+" "+BillPayDetails.fee);
+        tvFee.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayDetails.fee));
 
         finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString().replace(",",""));
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
@@ -110,22 +110,22 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
             if(BillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(""+BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(BillPayDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(""+BillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(BillPay.currencySymbol+" "+df.format(BillPayDetails.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_r.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(""+BillPayDetails.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(BillPayDetails.fee)+Double.parseDouble(BillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(BillPayDetails.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(BillPay.currencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
 
         etPin.addTextChangedListener(new TextWatcher() {
