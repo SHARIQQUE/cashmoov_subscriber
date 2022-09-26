@@ -226,7 +226,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
                         btnConfirm.setVisibility(View.GONE);
 
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                        BeneficiaryAirtime.dataToSend.put("pin", encryptionDatanew);
+                        SelfAirtime.dataToSend.put("pin", encryptionDatanew);
 
                         callPostAPI();
                     } catch (Exception e) {
@@ -242,7 +242,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
                                 etPin.setClickable(false);
                                 btnConfirm.setVisibility(View.GONE);
                                 String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
-                                BeneficiaryAirtime.dataToSend.put("pin", encryptionDatanew);
+                                SelfAirtime.dataToSend.put("pin", encryptionDatanew);
 
                                 callPostAPI();
                             } catch (Exception e) {

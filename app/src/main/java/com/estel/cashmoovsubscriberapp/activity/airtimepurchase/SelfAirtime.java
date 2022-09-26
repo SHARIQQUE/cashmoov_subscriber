@@ -237,9 +237,9 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                     currency = data.optString("currencyName");
                                     currencySymbol = data.optString("currencySymbol");
                                     tvAmtCurr.setText(currencySymbol);
-                                   // etPhone.setText(mobile);
+                                    etPhone.setText(mobile);
 
-                                    etPhone.setText("624623497");
+                                   // etPhone.setText("624623497");
                                     callApiMsisdnPrefix();
                                 }
 
