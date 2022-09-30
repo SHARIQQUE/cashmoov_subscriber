@@ -244,8 +244,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                 }
 
                             }
-
-
+                            
                         }
                     }
 

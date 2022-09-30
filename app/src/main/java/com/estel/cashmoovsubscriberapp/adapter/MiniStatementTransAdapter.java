@@ -15,6 +15,11 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.listners.MiniStatemetListners;
 import com.estel.cashmoovsubscriberapp.model.MiniStatementTrans;
+import com.estel.cashmoovsubscriberapp.model.Taxmodel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -83,14 +88,68 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         holder.tvTransType.setText(miniStatementTrans.getTransactionTypeName());
 
         if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-            holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-            holder.tvAmount.setText(MyApplication.addDecimal(""+miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
-            holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+            if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106443")){
+                Double transactionAmount=0.00;
+                try {
+
+                    if (miniStatementTrans.getTaxAsJson().equalsIgnoreCase("")){
+                        transactionAmount=miniStatementTrans.getFromAmount()-miniStatementTrans.getFee();
+                    }else {
+                        Gson gson = new Gson();
+
+                        Type userListType = new TypeToken<ArrayList<Taxmodel>>() {
+                        }.getType();
+
+                        ArrayList<Taxmodel> userArray = gson.fromJson(miniStatementTrans.getTaxAsJson(), userListType);
+                        for (Taxmodel user : userArray) {
+                            transactionAmount=miniStatementTrans.getFromAmount()-miniStatementTrans.getFee()-Double.parseDouble(user.getValue());
+
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+                holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                holder.tvAmount.setText(MyApplication.addDecimal("" + transactionAmount) + " " + miniStatementTrans.getFromCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+            }else {
+                holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getFromAmount()) + " " + miniStatementTrans.getFromCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+            }
         }
         if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-            holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
-            holder.tvAmount.setText(MyApplication.addDecimal(""+miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
-            holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+            if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106443")){
+                Double transactionAmount=0.00;
+                try {
+
+                    if (miniStatementTrans.getTaxAsJson().equalsIgnoreCase("")){
+                        transactionAmount=miniStatementTrans.getToAmount()-miniStatementTrans.getFee();
+                    }else {
+                        Gson gson = new Gson();
+
+                        Type userListType = new TypeToken<ArrayList<Taxmodel>>() {
+                        }.getType();
+
+                        ArrayList<Taxmodel> userArray = gson.fromJson(miniStatementTrans.getTaxAsJson(), userListType);
+                        for (Taxmodel user : userArray) {
+                            transactionAmount=miniStatementTrans.getToAmount()-miniStatementTrans.getFee()-Double.parseDouble(user.getValue());
+
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+                holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                holder.tvAmount.setText(MyApplication.addDecimal("" + transactionAmount) + " " + miniStatementTrans.getToCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+            }else {
+                holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+            }
         }
 
         if(holder.tvMsisdn.getText().toString().isEmpty()){
@@ -115,14 +174,15 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     //: Cash To Wallet
                     if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100000")
                             ||miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101667")
-                            ||miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106449")){
+                            ||miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106449")
+                            ||miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("104591")){
 
 
 
                         if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                             miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                     miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                                    miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
                                     miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
                                     miniStatementTrans.getTaxAsJson(),
                                     miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
@@ -141,6 +201,36 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                          return;
                     }
 
+                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106443")){
+
+
+
+                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+
+
+
+
+                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
+                                miniStatementTrans.getTaxAsJson(),
+                                miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+
+                    }
+                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                miniStatementTrans.getCreationDate(),
+                                miniStatementTrans.getStatus(),
+                                miniStatementTrans.getComReceiveAmount(),
+                                miniStatementTrans.getTaxAsJson(),
+                                miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+                    }
+                    return;
+                }
+
 
 
                 //101441 Case Reversal and Wallet To Cash InterNational //101667 salry Apyment
@@ -158,7 +248,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                                miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
+                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
                                 miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
                                 miniStatementTrans.getTaxAsJson(),PostBalance,miniStatementTrans.getFee());
 
@@ -180,7 +270,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                     miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                             miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                            miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
+                            miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
 
 
                             miniStatementTrans.getCreationDate(),

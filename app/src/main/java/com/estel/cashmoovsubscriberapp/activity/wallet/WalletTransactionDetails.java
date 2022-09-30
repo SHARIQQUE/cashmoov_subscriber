@@ -112,7 +112,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             try {
 
-                if (tax.equalsIgnoreCase("")){
+                if (tax.equalsIgnoreCase("")||tax.equalsIgnoreCase("N/A")){
                     tax_value.setText(MyApplication.getTaxString("TAX") + " :" + " " + MyApplication.addDecimal("0.00"));
                 }else {
                     Gson gson = new Gson();
