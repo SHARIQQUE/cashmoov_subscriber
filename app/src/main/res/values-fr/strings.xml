@@ -197,7 +197,7 @@
     <string name="pin_colon">PIN :</string>
     <string name="otp_colon">OTP :</string>
     <string name="ex_1234">Ex: 1234</string>
-    <string name="transaction_success">Transaction\nsuccèss!</string>
+    <string name="transaction_success">Transaction\nréussie !</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
     <string name="transaction_type_colon">type de transaction:</string>
     <string name="transaction_id_colon">identifiant de transaction :</string>
@@ -422,6 +422,8 @@
     <string name="cancel_pop">Annuler</string>
     <string name="view_more_string">Voir plus</string>
     <string name="not_allowed">"Ce code de confirmation n'est pas autorisé dans votre pays "</string>
+    <string name="pin_generate_success">Votre Pin a été généré avec succès !</string>
+    <string name="mobile_no_exist_reg">Le numéro de téléphone portable existe déjà dans le système, veuillez essayer avec un autre numéro !</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

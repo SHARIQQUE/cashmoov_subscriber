@@ -97,7 +97,7 @@ public class MyQrCode extends AppCompatActivity {
 
             System.out.println("QR request"+qrJson.toString());
 
-            MyApplication.showloader(myqrcodeC,"Please wait!");
+            MyApplication.showloader(myqrcodeC,myqrcodeC.getString(R.string.please_wait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/qrCode", qrJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {

@@ -241,7 +241,7 @@ public class LoginPin extends AppCompatActivity {
 
     private void callMssidn(String mobile) {
 
-        MyApplication.showloader(loginpinC,"Please wait!");
+        MyApplication.showloader(loginpinC,loginpinC.getString(R.string.please_wait));
         API.GET_PUBLIC("ewallet/public/walletOwner/msisdn/"+mobile, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

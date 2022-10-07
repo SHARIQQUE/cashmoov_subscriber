@@ -884,7 +884,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
             receiveRemmitanceFee=new JSONObject();
             cashOutFee=new JSONObject();
             INTREMFee=new JSONObject();
-             MyApplication.showloader(feeC,"Please wait!");
+             MyApplication.showloader(feeC,feeC.getString(R.string.please_wait));
             API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+ MyApplication.getSaveString("walletOwnerCode", feeC),
                     new Api_Responce_Handler() {
                         @Override

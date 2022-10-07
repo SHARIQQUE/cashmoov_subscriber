@@ -175,7 +175,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             setPinJson.put("oldPin",encryptionDataOld);
             setPinJson.put("pin",encryptionDataNew);
 
-            MyApplication.showloader(changepinC,"Please wait!");
+            MyApplication.showloader(changepinC,changepinC.getString(R.string.please_wait));
             API.PUT("ewallet/api/v1/walletOwnerUser/changePin", setPinJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {

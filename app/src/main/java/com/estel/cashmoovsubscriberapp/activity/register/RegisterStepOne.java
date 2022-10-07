@@ -379,7 +379,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogRegion = new SpinnerDialog(registersteponeC, regionList, "Select Region", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRegion = new SpinnerDialog(registersteponeC, regionList, getString(R.string.valid_select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogRegion.setCancellable(true); // for cancellable
                                     spinnerDialogRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -670,7 +670,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
             }
 
-            MyApplication.showloader(registersteponeC,"Please wait!");
+            MyApplication.showloader(registersteponeC,registersteponeC.getString(R.string.please_wait));
             API.POST_REQEST_REGISTER("ewallet/api/v1/address", addSubscriberJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
@@ -770,7 +770,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                     JSONObject data=jsonObject.optJSONObject("walletOwner");
 
                                     if(data.optString("status").equalsIgnoreCase("Active") && data.optString("state").equalsIgnoreCase("Approved")){
-                                        MyApplication.showToast(registersteponeC,"Mobile number already exust in the system please try with another number !");
+                                        MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
                                     }else{
 
                                         RegistrationMobileModel registrationMobileModel=new RegistrationMobileModel(

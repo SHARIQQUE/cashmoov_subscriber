@@ -477,7 +477,7 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
 
             System.out.println("BenefiLocal request"+benefiJson.toString());
 
-            MyApplication.showloader(internationalC,"Please wait!");
+            MyApplication.showloader(internationalC,internationalC.getString(R.string.please_wait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/receiver", benefiJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {

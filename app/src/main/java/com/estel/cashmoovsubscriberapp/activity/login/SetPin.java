@@ -145,14 +145,14 @@ public class SetPin extends AppCompatActivity {
 
             }
 
-            MyApplication.showloader(setpinC,"Please wait!");
+            MyApplication.showloader(setpinC,setpinC.getString(R.string.please_wait));
             API.PUT("ewallet/api/v1/walletOwnerUser/setPin", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                            MyApplication.showToast(setpinC,"Your Pin generate Successfully!");
+                            MyApplication.showToast(setpinC,getString(R.string.pin_generate_success));
 
                                 Intent intent = new Intent(setpinC, PhoneNumberRegistrationScreen.class);
                                 startActivity(intent);

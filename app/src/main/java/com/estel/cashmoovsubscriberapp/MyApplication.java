@@ -804,7 +804,9 @@ public class MyApplication extends Application {
     }
 
     public static String getTaxString(String test){
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+                ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
+                MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
             return test;
         }else {
             if (test.equalsIgnoreCase("VAT")) {

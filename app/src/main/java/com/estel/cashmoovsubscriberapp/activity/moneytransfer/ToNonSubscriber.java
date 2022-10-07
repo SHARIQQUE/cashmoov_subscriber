@@ -776,7 +776,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
             System.out.println("BenefiLocal request"+benefiJson.toString());
 
-            MyApplication.showloader(tononsubscriberC,"Please wait!");
+            MyApplication.showloader(tononsubscriberC,tononsubscriberC.getString(R.string.please_wait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/receiver", benefiJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {

@@ -199,7 +199,7 @@
     <string name="pin_colon">PIN :</string>
     <string name="otp_colon">OTP :</string>
     <string name="ex_1234">Ex: 1234</string>
-    <string name="transaction_success">Transaction\nsuccess!</string>
+    <string name="transaction_success">Transaction\nsuccessfully!</string>
     <string name="details_of_transaction">Details of your transaction</string>
     <string name="transaction_type_colon">Transaction type:</string>
     <string name="transaction_id_colon">Transaction ID :</string>
@@ -272,7 +272,7 @@
     <string name="technical_failure">Please try after some time</string>
     <string name="register_first_time_message">User doesn\'t have an account, please register once to create an account.</string>
     <string name="getting_user_info">Getting User Info Please wait!</string>
-    <string name="login_successful">Login Successful</string>
+    <string name="login_successful">Login Successfully</string>
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u></string>
     <string name="logout">Logout</string>
     <string name="logout_app">Are you sure you want to logout the app?</string>
@@ -429,6 +429,8 @@
     <string name="cancel_pop">Cancel</string>
     <string name="view_more_string">View More</string>
     <string name="not_allowed">"This Confirmation Code Not Allowed to Your Country "</string>
+    <string name="pin_generate_success">Your Pin generated Successfully!</string>
+    <string name="mobile_no_exist_reg">Mobile number already exist in the system please try with another number !</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

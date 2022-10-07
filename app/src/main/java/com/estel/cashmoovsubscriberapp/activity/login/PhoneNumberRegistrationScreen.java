@@ -351,7 +351,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             loginOtpJson.put("mobileNumber",etPhoneNo.getText().toString());
             loginOtpJson.put("walletOwnerCategoryCode","100010");
 
-            MyApplication.showloader(phnoregistrationccreenC,"Please wait!");
+            MyApplication.showloader(phnoregistrationccreenC,phnoregistrationccreenC.getString(R.string.please_wait));
             API.POST_REQEST_CHECK("ewallet/public/login-otp", loginOtpJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
@@ -395,7 +395,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             loginOtpJson.put("mobileNumber",etPhoneNo.getText().toString());
             loginOtpJson.put("walletOwnerCategoryCode","100010");
 
-            MyApplication.showloader(phnoregistrationccreenC,"Please wait!");
+            MyApplication.showloader(phnoregistrationccreenC,phnoregistrationccreenC.getString(R.string.please_wait));
             API.GET_PUBLIC("ewallet/public/walletOwner/msisdn/"+etPhoneNo.getText().toString(), new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {

@@ -235,7 +235,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
 
     private void callApiWalletList() {
         try {
-            MyApplication.showloader(walletscreenC,"Please wait!");
+            MyApplication.showloader(walletscreenC,walletscreenC.getString(R.string.please_wait));
             API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", walletscreenC),
                     new Api_Responce_Handler() {
                         @Override
