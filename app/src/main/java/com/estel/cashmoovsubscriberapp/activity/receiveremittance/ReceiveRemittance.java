@@ -317,7 +317,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                         beneficiaryCustomerCode = data.optString("beneficiaryCustomerCode");
 
 
-                        etAmount.setText(data.optString("beneficiaryAmount"));
+                       // etAmount.setText(data.optString("beneficiaryAmount"));
 
 
                         otp_layout.setVisibility(View.VISIBLE);

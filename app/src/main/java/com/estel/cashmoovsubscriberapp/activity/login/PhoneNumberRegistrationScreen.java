@@ -212,7 +212,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
         final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setDescription(getString(R.string.use_finger_to_login)).setNegativeButtonText(getString(R.string.cancel)).build();
+                .setConfirmationRequired(false).setDescription(getString(R.string.use_finger_to_login)).setNegativeButtonText(getString(R.string.cancel)).build();
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

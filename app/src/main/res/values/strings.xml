@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 1.0</string>
+    <string name="version">Version : 11-10-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -121,7 +121,7 @@
     <string name="select_bank">Select Bank*</string>
     <string name="acc_number">Account number:</string>
     <string name="montant_a_envoyer">Amount to send</string>
-    <string name="fees">Fees:</string>
+    <string name="fees">Fee:</string>
     <string name="amount_to_paid">Amount to be paid</string>
     <string name="amount_to_paid_colon">Amount to be paid:</string>
     <string name="send">Send</string>

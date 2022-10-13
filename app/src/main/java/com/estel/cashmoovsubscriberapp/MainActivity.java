@@ -451,6 +451,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
                     //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                    MyApplication.isScanNew=false;
                     intent = new Intent(mainC, Pay.class);
                     startActivity(intent);
                 }

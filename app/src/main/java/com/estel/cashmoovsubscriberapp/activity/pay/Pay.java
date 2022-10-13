@@ -254,6 +254,7 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
 
             MyApplication.isContact = false;
+            MyApplication.isScanNew=true;
             String requiredValue = data.getStringExtra("PHONE");
             MyApplication.contactValidation(requiredValue,etRecipientNo);
 
@@ -606,6 +607,19 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
 
         }
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+       /* if(MyApplication.isScanNew){
+
+        }else {
+            Intent i = new Intent(payC, QrCodeActivity.class);
+            startActivityForResult(i, REQUEST_CODE_QR_SCAN);
+            MyApplication.isScanNew=true;
+        }*/
     }
 
     private ArrayList<String> subscriberList = new ArrayList<String>();

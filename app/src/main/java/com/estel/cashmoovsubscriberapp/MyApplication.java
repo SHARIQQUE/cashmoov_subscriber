@@ -94,6 +94,7 @@ public class MyApplication extends Application {
     public static final String directoryName = "CustomLoggerSubs";
     private static final String TAG = MyApplication.class.getSimpleName();
     public static boolean isScan;
+    public static boolean isScanNew=false;
     public static ArrayList<OfferPromotionModel> offerPromotionModelArrayList=new ArrayList<>();
     public static int offerPromtionPos=0;
     public static boolean isNotification=false;
@@ -723,6 +724,11 @@ public class MyApplication extends Application {
 
                 break;
         }
+
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
+                .setConfirmationRequired(false).setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
+
+
         // creating a variable for our Executor
         Executor executor = ContextCompat.getMainExecutor(activity);
         // this will give us result of AUTHENTICATION
@@ -730,6 +736,20 @@ public class MyApplication extends Application {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                System.out.println("Biomatric  TEST =>"+errString);
+                if(attmptCount==maxattmptCount) {
+                    attmptCount=0;
+                    bioMetric_responce_handler.failure("Please enter pin to complete the transaction");
+                    biometricPrompt.cancelAuthentication();
+                }else{
+                    attmptCount=attmptCount+1;
+                    showToast(activity,errString.toString());
+                    biometricPrompt.cancelAuthentication();
+
+                }
+
+
+
             }
 
             // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS
@@ -749,20 +769,26 @@ public class MyApplication extends Application {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-                bioMetric_responce_handler.failure("Please enter pin to complete the transaction");
-                biometricPrompt.cancelAuthentication();
+                System.out.println("Biomatric  TEST => failed");
+                if(attmptCount==maxattmptCount) {
+                    bioMetric_responce_handler.failure("Please enter pin to complete the transaction");
+                    biometricPrompt.cancelAuthentication();
+                }else{
+                    biometricPrompt.cancelAuthentication();
+                    //biometricPrompt.authenticate(promptInfo);
+                }
+
             }
         });
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
-        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
-
         biometricPrompt.authenticate(promptInfo);
 
 
     }
 
+public static int  attmptCount=0;
+    public static int  maxattmptCount=2;
 
     public static  void contactValidation(String Phoneno, EditText editText){
         if(Phoneno.length()>11)
@@ -810,14 +836,14 @@ public class MyApplication extends Application {
             return test;
         }else {
             if (test.equalsIgnoreCase("VAT")) {
-                return "T.V.A";
+                return "T.V.A :";
             }
             if (test.equalsIgnoreCase("Financial Tax")) {
-                return "Taxe financière";
+                return "Taxe financière :";
             }
         }
 
-        return test;
+        return test+" :";
     }
 
 

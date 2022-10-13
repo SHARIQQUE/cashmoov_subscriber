@@ -492,7 +492,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                         receiverFee = jsonObjectAmountDetails.optInt("receiverFee");
                                         receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvFee.setText(fee);
+                                        tvFee.setText(MyApplication.addDecimal(fee));
                                         tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
 
 //                                    int tax = receiverFee+receiverTax;
