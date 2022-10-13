@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
+
+
     android:isScrollContainer="true"
+
     tools:context=".activity.moneytransfer.ToNonSubscriber">
 
     <LinearLayout
