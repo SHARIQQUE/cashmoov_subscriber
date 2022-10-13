@@ -375,8 +375,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                    currencyValue= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("currencyValue")));
+                                    fee= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("fee")));
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 
@@ -441,8 +441,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                    currencyValue= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("currencyValue")));
+                                    fee= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("fee")));
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 

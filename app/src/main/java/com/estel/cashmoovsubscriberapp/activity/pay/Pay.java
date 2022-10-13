@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -125,6 +126,8 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         // agent_mob_no.setText("991085918540");//dev
         //agent_mob_no.setText("9015050968");//qa
 
+        etRecipientNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});
         etRecipientNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

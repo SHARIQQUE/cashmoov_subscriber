@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -46,6 +47,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvSend;
     AutoCompleteTextView etSubscriberNo;
+    String etSubscriberNostr;
     public static EditText etFname,etLname,etAmount;
     TextView etName,etPhone;
     private boolean isQR;
@@ -161,8 +163,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
 
-
-
+        etSubscriberNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});
         tvSend = findViewById(R.id.tvSend);
         etFname.setEnabled(false);
         etLname.setEnabled(false);
@@ -688,8 +690,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                                             amountDetails
                                     );
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                    currencyValue= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("currencyValue")));
+                                    fee = MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("fee")));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 //                                    int tax = receiverFee+receiverTax;

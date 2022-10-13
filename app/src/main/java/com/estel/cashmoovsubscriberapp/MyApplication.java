@@ -135,6 +135,7 @@ public class MyApplication extends Application {
     public static boolean isContact=false;
     public static boolean IsMainOpen=false;
     public static boolean IsPromoCalled=false;
+    public static int mobileLength=9;
 
 
     public static MyApplication getInstance() {
@@ -811,6 +812,9 @@ public static int  attmptCount=0;
             editText.setText(Phoneno);
         }
     }
+
+
+
 
 
     public static boolean checkMinMax(Activity activity,CharSequence s,EditText editText,int minAmount,int maxAmount){

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -108,6 +109,9 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
         callwalletOwnerDetails();
 
+
+        etPhone.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});
         etConfCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {}

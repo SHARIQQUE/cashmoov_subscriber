@@ -75,7 +75,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
-       // tvConfCode = findViewById(R.id.tvConfCode);
+        // tvConfCode = findViewById(R.id.tvConfCode);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
@@ -116,12 +116,12 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-               // tvFinger.setVisibility(View.VISIBLE);
+                // tvFinger.setVisibility(View.VISIBLE);
             } else {
-               // tvFinger.setVisibility(View.GONE);
+                // tvFinger.setVisibility(View.GONE);
             }
         }else{
-          //  tvFinger.setVisibility(View.VISIBLE);
+            //  tvFinger.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,7 +269,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
                 }
 
             }
-                break;
+            break;
             case R.id.btnCancel:
                 finish();
                 break;

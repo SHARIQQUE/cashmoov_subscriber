@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -131,6 +132,8 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
         Pattern p = Pattern.compile(regex);
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
+
+
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
