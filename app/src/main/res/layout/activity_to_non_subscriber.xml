@@ -72,6 +72,7 @@
                     android:textColor="@color/textColorLBlack"
                     android:lineSpacingExtra="3sp"
                     android:text="GNF"
+
                     android:textSize="@dimen/_16sdp"
                     android:fontFamily="@font/aileron_semibold"/>
                 <EditText
