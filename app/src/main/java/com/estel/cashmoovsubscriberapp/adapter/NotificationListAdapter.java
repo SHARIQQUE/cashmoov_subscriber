@@ -50,13 +50,13 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         //String date="2017-04-04T20:22:33";
         //2021-12-03T15:20:55.624+0530
         try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            /*SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(notificationModel.getCreationDate());
-            String formattedDate = outputFormat.format(date);
-            holder.tvCreationDate.setText(formattedDate);
-        } catch (ParseException e) {
+            String formattedDate = outputFormat.format(date);*/
+            holder.tvCreationDate.setText(notificationModel.getCreationDate());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

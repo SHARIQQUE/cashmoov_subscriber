@@ -138,7 +138,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             // taxText.setText(tax);
             try {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                 Date date = null;
                 date = inputFormat.parse(creationDate);
                 String formattedDate = outputFormat.format(date);

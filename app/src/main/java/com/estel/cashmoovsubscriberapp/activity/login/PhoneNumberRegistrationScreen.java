@@ -407,7 +407,8 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
 
-                            if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")) {
+                            if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")&&
+                                    !jsonObject.optJSONObject("walletOwnerUser").optBoolean("isPinAlreadySet")) {
                                 // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                                 MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
                                 MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);

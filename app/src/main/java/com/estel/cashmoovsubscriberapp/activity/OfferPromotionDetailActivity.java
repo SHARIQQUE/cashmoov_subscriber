@@ -98,7 +98,7 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
 //        String formattedDate = outputFormat.format(date);
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(data.getToDate());
             String formattedDate = outputFormat.format(date);

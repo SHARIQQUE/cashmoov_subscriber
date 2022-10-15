@@ -690,8 +690,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                                             amountDetails
                                     );
 
-                                    currencyValue= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("currencyValue")));
-                                    fee = MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("fee")));
+                                    currencyValue= String.valueOf(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                    fee = String.valueOf(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 //                                    int tax = receiverFee+receiverTax;
