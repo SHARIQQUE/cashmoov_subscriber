@@ -96,6 +96,7 @@ public class NotificationList extends AppCompatActivity {
                                 notificationModelArrayList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("appHoldinglist");
+                                    MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),notificationlistC);
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         notificationModelArrayList.add(new NotificationModel(

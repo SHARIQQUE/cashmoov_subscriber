@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rv_offer_promotion;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayList;
     ArrayList<OfferPromotionModel> offerPromotionModelArrayListTemp;
-    int notificationCountCurrent=0;
-    int notificationCountPrevious=0;
+    int notificationCountCurrent;
+    int notificationCountPrevious;
 
 
 
@@ -945,6 +945,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     int apiCount = walletOwnerListArr.length();
                                     notificationCountPrevious = MyApplication.getSaveInt("NOTIFICATIONCOUNTPREV",mainC);
                                     notificationCountCurrent = MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC);
+
+
                                     if(notificationCountPrevious<=apiCount){
                                         notificationCountCurrent = (apiCount-notificationCountPrevious);
                                         notificationCountPrevious = apiCount;
@@ -962,7 +964,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                            // tvBadge.setVisibility(View.GONE);
                                         }
                                         MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,mainC);
-                                        MyApplication.saveInt("NOTIFICATIONCOUNTPREV",notificationCountPrevious,mainC);
+
                                         if(notificationCountCurrent>0){
                                             tvBadge.setVisibility(View.VISIBLE);
                                         tvBadge.setText(String.valueOf(notificationCountCurrent));

@@ -585,7 +585,7 @@ public class MyApplication extends Application {
                 Settings.Secure.ANDROID_ID);
 
         Log.d("Android==","Android ID : "+android_id);
-
+        //android_id="963E768F-B803-4F46-B8DB-0D2B3AA53155";
         // return  "SA2132425277828";
         return  android_id;
 
