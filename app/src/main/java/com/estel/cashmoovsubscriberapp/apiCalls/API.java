@@ -46,9 +46,9 @@ public class API {
 
     //public static String BASEURL="http://202.131.144.130:8081/";         //QA
    // public static String BASEURL="http://202.131.144.129:8081/";           //UAT
-    public static String BASEURL="https://cashmoovmm.com:8081/";//Prod
+   // public static String BASEURL="https://cashmoovmm.com:8081/";//Prod
    // public static String BASEURL="http://180.179.201.109:8081/";
-    //public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
+    public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
 
 
     public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
@@ -1316,7 +1316,7 @@ public class API {
 
         if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-            AndroidNetworking.get(URL)
+            AndroidNetworking.get(BASEURL+URL)
                     .setOkHttpClient(client)
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")

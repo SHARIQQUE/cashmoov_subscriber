@@ -610,13 +610,14 @@ callApiWalletCountryCurrencyJSOn();
 
 
         try {
+            jsonObjectNew.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
             jsonObjectNew.put("channel","SELFCARE");
             jsonObjectNew.put("serviceCode","100023");
             jsonObjectNew.put("serviceCategoryCode","TRFWLT");
             // jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
             jsonObjectNew.put("serviceProviderCode","100183");
             jsonObjectNew.put("requestType","transferin");
-            jsonObjectNew.put("serviceItemId","15");
+            jsonObjectNew.put("serviceItemId",InTransfer.serviceItemId);
             jsonObjectNew.put("fromCurrencyCode","100062");
             jsonObjectNew.put("toCurrencyCode","100018");
             jsonObjectNew.put("mobileNumber","775389850");
@@ -624,6 +625,7 @@ callApiWalletCountryCurrencyJSOn();
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
             jsonObjectNew.put("providerServiceItemCode","100006");
             jsonObjectNew.put("firstName",etFname.getText().toString());
+            jsonObjectNew.put("productCode",InTransfer.operatorCode);
             // jsonObjectNew.put("lastName",etLname.getText().toString());
 
             // jsonObject.put("idProofNumber","");

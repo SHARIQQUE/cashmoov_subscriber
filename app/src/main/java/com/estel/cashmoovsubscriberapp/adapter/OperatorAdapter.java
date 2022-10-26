@@ -49,7 +49,8 @@ public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 if(opearatorModel.getCode()!=null)
-                 operatorListners.onOperatorListItemClick(opearatorModel.getCode(),opearatorModel.getName());
+                 operatorListners.onOperatorListItemClick(opearatorModel.getCode(),opearatorModel.getName(),
+                         opearatorModel.getServiceProviderName());
             }
         });
     }

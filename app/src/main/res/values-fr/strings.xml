@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 17-10-2022</string>
+    <string name="version">Version : 26-10-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -408,7 +408,7 @@
     <string name="rate_btn_neg">RAPPELEZ-MOI PLUS TARD</string>
     <string name="rate_btn_nut">NON, MERCI</string>
     <string name="rate_app_message">Si vous appréciez notre application, veuillez prendre un moment pour l\'évaluer sur Playstore. Merci pour votre aide!</string>
-    <string name="cash_pickup">Collecte d\'espèces</string>
+    <string name="cash_pickup">Cash pick up</string>
     <string name="service_not_available">Ce service n\'est pas disponible</string>
     <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
 

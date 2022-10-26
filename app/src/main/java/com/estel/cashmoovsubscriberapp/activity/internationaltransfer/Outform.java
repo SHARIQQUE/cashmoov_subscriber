@@ -534,7 +534,7 @@ callApiWalletCountryCurrencyJSOn();
             // jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
             jsonObjectNew.put("serviceProviderCode","100182");
             jsonObjectNew.put("requestType","transferout");
-            jsonObjectNew.put("serviceItemId","5");
+            jsonObjectNew.put("serviceItemId",OutTransfer.serviceItemId);
             jsonObjectNew.put("fromCurrencyCode","100062");
             jsonObjectNew.put("toCurrencyCode","100018");
             jsonObjectNew.put("mobileNumber","775389850");
@@ -542,61 +542,23 @@ callApiWalletCountryCurrencyJSOn();
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
             jsonObjectNew.put("providerServiceItemCode","100002");
             jsonObjectNew.put("firstName",etFname.getText().toString());
+            jsonObjectNew.put("productCode",OutTransfer.operatorCode);
            // jsonObjectNew.put("lastName",etLname.getText().toString());
 
             // jsonObject.put("idProofNumber","");
             // jsonObject.put("idProofTypeCode","");
-
+            Intent i1=new Intent(tosubscriberC, OutFormConfirmation.class);
+            startActivity(i1);
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         System.out.println("Inform request======="+jsonObjectNew.toString());
 
-       // callsaveDataApi(jsonObjectNew);
-       /* if(mobileNo.toString().trim().isEmpty()) {
-            new AlertDialog.Builder(this)
-                    //.setTitle(getString(R.string.logout))
-                    //.setIcon(R.drawable.ic_logout)
-                    .setMessage(getString(R.string.msisdn_not_reg_with_subscriber))
-                    .setNegativeButton(android.R.string.no, null)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
-                            i.putExtra("TOSUBMSISDN",etSubscriberNo.getText().toString().trim());
-                            i.putExtra("TOSUBAMOUNT",etAmount.getText().toString().trim().replace(",",""));
-                            startActivity(i);
-                            finish();
 
-                        }
-                    }).create().show();
-            return;
-        }*/
-        try{
-            dataToSend.put("transactionType","104591");
-            dataToSend.put("desWalletOwnerCode","100100383");
-          //  dataToSend.put("desWalletOwnerCode",walletOwner.optJSONArray("walletOwnerList").optJSONObject(0).optString("walletOwnerCode"));
-            dataToSend.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode",tosubscriberC));
-            dataToSend.put("srcCurrencyCode","100062");
-            dataToSend.put("desCurrencyCode","100062");
-            dataToSend.put("value",etAmount.getText().toString().trim().replace(",",""));
-            dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
-            dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
-            dataToSend.put("serviceCategoryCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
-            dataToSend.put("serviceProviderCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
-            dataToSend.put("bearerAllow", false);
-            dataToSend.put("bearerFee", 0.0);
-            dataToSend.put("transactionCoordinate",MainActivity.transactionCoordinate);
-            dataToSend.put("transactionArea",MainActivity.transactionArea);
-            dataToSend.put("isGpsOn",true);
-
-            Intent i1=new Intent(tosubscriberC, OutFormConfirmation.class);
-            startActivity(i1);
-        }catch (Exception e){
-
-        }
 
     }
 

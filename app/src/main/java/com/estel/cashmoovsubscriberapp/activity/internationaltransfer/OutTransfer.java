@@ -85,9 +85,9 @@ TextView  opt_text;
         opt_text.setText("Choose the Service");
 
 
-        callJSON();
+      //  callJSON();
 
-      //  CallApiOutboundServiceJsonList();
+        CallApiOutboundServiceJsonList();
 
         // callwalletOwner();
     }
@@ -203,7 +203,7 @@ TextView  opt_text;
 
     public  void CallApiOutboundServiceJsonList(){
         MyApplication.showloader(OutTransfer.this,"Please wait");
-        API.GETPreProd("http://180.179.201.109:8081/ewallet/api/v1/serviceProvider/serviceCategory/TRTWLT",
+        API.GETPreProd("ewallet/api/v1/productMaster/allByCriteria?serviceCategoryCode=TRTWLT&status=Y",
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {
@@ -214,7 +214,7 @@ TextView  opt_text;
                             if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                 //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
                                 serviceCategory = jsonObject;
-                                JSONArray walletOwnerListArr = serviceCategory.optJSONArray("providerserviceitemslist");
+                                JSONArray walletOwnerListArr = serviceCategory.optJSONArray("productMasterList");
                                 if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
@@ -225,8 +225,8 @@ TextView  opt_text;
                                                 data.optString("serviceCategoryCode"),
                                                 data.optString("serviceProviderCode"),
                                                 data.optString("serviceItemId"),
-                                                data.optString("nameFr"),
-                                                data.optString("name"),
+                                                data.optString("productName"),
+                                                data.optString("productName"),
                                                 data.optString("status"),
                                                 data.optString("state"),
                                                 data.optString("creationDate")
@@ -366,11 +366,12 @@ TextView  opt_text;
 
 
 
-    public static String operatorCode,operatorNname;
+    public static String operatorCode,operatorNname,serviceItemId;
     @Override
-    public void onOperatorListItemClick(String code, String name) {
+    public void onOperatorListItemClick(String code, String name,String serviceItemId) {
         operatorCode = code;
         operatorNname = name;
+        this.serviceItemId=serviceItemId;
         Intent intent = new Intent(billpayC, Outform.class);
         startActivity(intent);
     }

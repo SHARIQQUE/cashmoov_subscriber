@@ -82,8 +82,9 @@ public class InTransfer extends AppCompatActivity implements OperatorListeners {
         opt_text = findViewById(R.id.opt_text);
         opt_text.setText("Choose the Service");
 
-        callJSON();
+       // callJSON();
        // callwalletOwner();
+        CallApiOutboundServiceJsonList();
     }
 
     public static String serviceProvider,mobile,currency,currencySymbol;
@@ -191,6 +192,58 @@ public class InTransfer extends AppCompatActivity implements OperatorListeners {
         }
 
 
+    }
+
+    public  void CallApiOutboundServiceJsonList(){
+        MyApplication.showloader(InTransfer.this,"Please wait");
+        API.GETPreProd("ewallet/api/v1/productMaster/allByCriteria?serviceCategoryCode=TRFWLT&status=Y",
+                new Api_Responce_Handler() {
+                    @Override
+                    public void success(JSONObject jsonObject) {
+                        MyApplication.hideLoader();
+                        if (jsonObject != null) {
+
+                            //serviceProviderModelList.clear();
+                            if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                //  serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+                                serviceCategory = jsonObject;
+                                JSONArray walletOwnerListArr = serviceCategory.optJSONArray("productMasterList");
+                                if(walletOwnerListArr!=null&& walletOwnerListArr.length()>0) {
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        serviceProviderModelList.add(new OutTransferModel.OutModel(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("serviceCode"),
+                                                data.optString("serviceCategoryCode"),
+                                                data.optString("serviceProviderCode"),
+                                                data.optString("serviceItemId"),
+                                                data.optString("productName"),
+                                                data.optString("productName"),
+                                                data.optString("status"),
+                                                data.optString("state"),
+                                                data.optString("creationDate")
+                                        ));
+
+                                    }
+
+                                    setData(serviceProviderModelList);
+                                }
+
+                            } else {
+                                MyApplication.showToast(billpayC,jsonObject.optString("resultDescription", "N/A"));
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void failure(String aFalse) {
+                        MyApplication.hideLoader();
+
+                    }
+                });
     }
 
     private void callJSON() {
@@ -320,11 +373,12 @@ public class InTransfer extends AppCompatActivity implements OperatorListeners {
 
 
 
-    public static String operatorCode,operatorNname;
+    public static String operatorCode,operatorNname,serviceItemId;
     @Override
-    public void onOperatorListItemClick(String code, String name) {
+    public void onOperatorListItemClick(String code, String name ,String serviceItemId) {
         operatorCode = code;
         operatorNname = name;
+        this.serviceItemId=serviceItemId;
         Intent intent = new Intent(billpayC, Inform.class);
         startActivity(intent);
     }

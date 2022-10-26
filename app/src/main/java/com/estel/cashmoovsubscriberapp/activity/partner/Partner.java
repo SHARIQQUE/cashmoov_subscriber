@@ -275,12 +275,13 @@ public class Partner extends AppCompatActivity implements OperatorListeners {
 
 
 
-    public static String operatorCode,operatorName;
+    public static String operatorCode,operatorName,serviceItemId;
 
     @Override
-    public void onOperatorListItemClick(String code, String name) {
+    public void onOperatorListItemClick(String code, String name,String serviceItemId) {
         operatorCode = code;
         operatorName = name;
+        this.serviceItemId=serviceItemId;
         Intent intent = new Intent(partnerC, PartnerProduct.class);
         startActivity(intent);
 

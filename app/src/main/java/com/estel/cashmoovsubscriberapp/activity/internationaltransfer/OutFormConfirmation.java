@@ -20,6 +20,8 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.InternationalRecipientDetails;
+import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriber;
+import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriberConfirmScreen;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -38,8 +40,8 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
     public static OutFormConfirmation tosubscriberconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
-    LinearLayout tax_label_layout,vat_label_layout,bearLay;
-    public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    LinearLayout tax_label_layout,vat_label_layout,bearLay,pinLinear;
+    public static TextView tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     ImageView icPin;
@@ -71,6 +73,9 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 //    }
 
     private void getIds() {
+        tvrate=findViewById(R.id.tvrate);
+        tvrate.setText(Outform.rate);
+        pinLinear=findViewById(R.id.pinLinear);
         bearLay=findViewById(R.id.bearLay);
         bearLay.setVisibility(View.GONE);
         tvProvider = findViewById(R.id.tvProvider);
@@ -131,7 +136,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                 tvFinger.setVisibility(View.GONE);
             }
         }else{
-            tvFinger.setVisibility(View.VISIBLE);
+            tvFinger.setVisibility(View.GONE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,28 +243,58 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
             }
             break;
             case R.id.btnConfirm:
-                if(etPin.getText().toString().trim().isEmpty()){
-                    MyApplication.showErrorToast(tosubscriberconfirmscreenC,getString(R.string.val_pin));
-                    return;
-                }
-                if(etPin.getText().toString().trim().length()<4){
-                    MyApplication.showErrorToast(tosubscriberconfirmscreenC,getString(R.string.val_valid_pin));
-                    return;
-                }
-                try {
-                    etPin.setClickable(false);
-                    btnConfirm.setVisibility(View.GONE);
-                    String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                    Outform.jsonObjectNew.put( "pin",encryptionDatanew);
-                    if(switch_button.isChecked()) {
-                        dataToSendBear.put("pin", encryptionDatanew);
+
+                if(pinLinear.getVisibility()==View.VISIBLE){
+                    if (etPin.getText().toString().trim().isEmpty()) {
+                        MyApplication.showErrorToast(OutFormConfirmation.this, getString(R.string.val_pin));
+                        return;
                     }
-                    callPostAPI();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    if (etPin.getText().toString().trim().length() < 4) {
+                        MyApplication.showErrorToast(OutFormConfirmation.this, getString(R.string.val_valid_pin));
+                        return;
+                    }
+                    try {
+                        pinLinear.setVisibility(View.VISIBLE);
+
+                        etPin.setClickable(false);
+                        btnConfirm.setVisibility(View.GONE);
+                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                        Outform.jsonObjectNew.put( "pin",encryptionDatanew);
+                        callPostAPI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+                }else {
+                    MyApplication.biometricAuth(OutFormConfirmation.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+                                etPin.setClickable(false);
+                                btnConfirm.setVisibility(View.GONE);
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                Outform.jsonObjectNew.put( "pin",encryptionDatanew);
+
+                                callPostAPI();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(OutFormConfirmation.this,failure);
+                            pinLinear.setVisibility(View.VISIBLE);
+
+                        }
+                    });
+
+
+
+
                 }
 
-                System.out.println("dataToSend---"+Outform.dataToSend.toString());
+
 
                 break;
             case R.id.btnCancel:

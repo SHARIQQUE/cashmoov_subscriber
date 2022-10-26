@@ -31,7 +31,7 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
     public static OutFormRecptNew billpayreceiptC;
     Button btnClose,btnShareReceipt;
     TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
-            tax1_lable,tax1_value,tax2_lable,tax2_value;
+            tax1_lable,tax1_value,tax2_lable,tax2_value,transIdnew;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
 
@@ -120,6 +120,7 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
 
 
     private void getIds() {
+        transIdnew  = findViewById(R.id.transIdnew);
         transId = findViewById(R.id.transId);
         btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
@@ -148,7 +149,8 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
         tvMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("mobileNumber"));
         tvOperatorName.setText("Intech");
         //tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("operator"));
-        tvTransId.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorTransId"));
+        tvTransId.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionId"));
+        transIdnew.setText(OutFormConfirmation.receiptJson.optString("transactionId"));
         tvFee.setText(Outform.currencySymbol+" "
                 + MyApplication.addDecimal(""+OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
 

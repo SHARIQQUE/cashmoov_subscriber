@@ -199,9 +199,10 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
 
     public static String operatorCode,operatorNname;
     @Override
-    public void onOperatorListItemClick(String code, String name) {
+    public void onOperatorListItemClick(String code, String name,String serviceItem) {
         operatorCode = code;
         operatorNname = name;
+
         Intent intent = new Intent(billpayC, BillPayProduct.class);
         startActivity(intent);
     }
