@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 26-10-2022</string>
+    <string name="version">Version : 27-10-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -28,7 +28,7 @@
     <string name="merchant_payment">Paiments Marchand</string>
     <string name="cash_withdrawal">Retrait d\'argent</string>
     <string name="receive_remittance">Recevoir un transfert</string>
-    <string name="fee">Frais de service</string>
+    <string name="fee">Frais</string>
     <string name="service_point">Point de service</string>
     <string name="complete_profile">Completez le profile</string>
     <string name="complet_70">Effectué à 70 %</string>
@@ -88,7 +88,7 @@
     <string name="terms_conditions">Conditions générales</string>
     <string name="about">A propos</string>
     <string name="change_pin">Changer de code PIN</string>
-    <string name="edit_profile">Modifier la photo de profile</string>
+    <string name="edit_profile">Modifier le profil</string>
     <string name="reset">Reinitialisation</string>
     <string name="hello_this_is_your">Hello c\'est votre</string>
     <string name="cash">Cash</string>
@@ -199,7 +199,7 @@
     <string name="ex_1234">Ex: 1234</string>
     <string name="transaction_success">Transaction echouée!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
-    <string name="transaction_type_colon">Type de transaction:</string>
+    <string name="transaction_type_colon">type de transaction:</string>
     <string name="transaction_id_colon">Identifiant de transaction :</string>
     <string name="export_receipt">Exportez le reçu</string>
     <string name="change_pin_caps">Changer de PIN</string>
@@ -279,7 +279,7 @@
     <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
     <string name="view_balance">Afficher le solde</string>
     <string name="transaction_type">Type de transaction</string>
-    <string name="status">statut</string>
+    <string name="status">Statut</string>
     <string name="transaction_successful">Transaction réussie</string>
     <string name="from">De</string>
     <string name="date">Date</string>
@@ -330,13 +330,13 @@
     <string name="val_confirmation_code">Veuillez saisir le code de confirmation</string>
     <string name="val_select_benifi_curr">Veuillez sélectionner la devise du bénéficiaire</string>
     <string name="benefi_msisdn_colom">Bénéficiaire MSISDN :</string>
-    <string name="valid_mer_outlet_number">Numéro de mobile du commerçant/du point de vente*</string>
+    <string name="valid_mer_outlet_number">Numéro de telephone du Marchand/ point de vente*</string>
     <string name="valid_inst_agent_branch_number">Numéro de mobile de l\'institut/de l\'agent/de la succursale</string>
     <string name="val_mer_outlet_no">Veuillez saisir le numéro du commerçant/du point de vente</string>
     <string name="val_mer_outlet_no_len">Merchant/Outlet number must be at least 9 digits long</string>
     <string name="val_inst_agent_branch_no">Veuillez entrer le numéro d\'institut/agent/succursale</string>
     <string name="val_inst_agemt_branch_no_len">Le numéro de l\'institut/de l\'agent/de la succursale doit comporter au moins 9 chiffres</string>
-    <string name="valid_subscriber_number">Numéro d\'adhérant*</string>
+    <string name="valid_subscriber_number">Numéro d\'abonné*</string>
     <string name="val_subscriber_no">Veuillez saisir le numéro d\'abonné</string>
     <string name="enter_subscriber_no_val">Le numéro d\'abonné doit comporter au moins 9 chiffres</string>
     <string name="promotions">Promotions</string>

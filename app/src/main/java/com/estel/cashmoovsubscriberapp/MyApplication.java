@@ -847,7 +847,7 @@ public static int  attmptCount=0;
             }
         }
 
-        return test+" :";
+        return test+" ";
     }
 
 
