@@ -396,7 +396,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         }
                                     }
 
-                                    spinnerDialogBenefiCountry= new SpinnerDialog(internationalC, benefiCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiCountry= new SpinnerDialog(internationalC, benefiCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogBenefiCountry.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogBenefiCountry.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -697,7 +697,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         }
                                     }
 
-                                    spinnerDialogBenefiCurrency = new SpinnerDialog(internationalC, benefiCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiCurrency = new SpinnerDialog(internationalC, benefiCurrencyList, getString(R.string.val_select_curr), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogBenefiCurrency.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiCurrency.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogBenefiCurrency.bindOnSpinerListener(new OnSpinerItemClick() {

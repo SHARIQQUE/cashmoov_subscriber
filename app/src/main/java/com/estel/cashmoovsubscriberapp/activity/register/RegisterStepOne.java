@@ -453,7 +453,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogCity = new SpinnerDialog(registersteponeC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity = new SpinnerDialog(registersteponeC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogCity.setCancellable(true); // for cancellable
                                     spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -513,7 +513,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
                                     }
 
-                                    spinnerDialogGender = new SpinnerDialog(registersteponeC, genderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogGender = new SpinnerDialog(registersteponeC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogGender.setCancellable(true); // for cancellable
                                     spinnerDialogGender.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogGender.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -574,7 +574,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                                         occupationTypeList.add(data.optString("type").trim());
 
                                     }
-                                    spinnerDialogOccupation = new SpinnerDialog(registersteponeC, occupationTypeList, "Select Occupation", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogOccupation = new SpinnerDialog(registersteponeC, occupationTypeList, getString(R.string.select_occupation), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogOccupation.setCancellable(true); // for cancellable
                                     spinnerDialogOccupation.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogOccupation.bindOnSpinerListener(new OnSpinerItemClick() {

@@ -283,7 +283,7 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
 
                                     }
 
-                                    spinnerDialogBenefiGender = new SpinnerDialog(internationalC, benefiGenderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiGender = new SpinnerDialog(internationalC, benefiGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                     spinnerDialogBenefiGender.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiGender.setShowKeyboard(false);// for open keyboard by default

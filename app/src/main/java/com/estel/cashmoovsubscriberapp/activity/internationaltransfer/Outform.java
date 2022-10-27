@@ -1328,7 +1328,7 @@ callApiWalletCountryCurrencyJSOn();
                                         }
                                     }
 
-                                    spinnerDialogCountry= new SpinnerDialog(tosubscriberC, benefiCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCountry= new SpinnerDialog(tosubscriberC, benefiCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogCountry.setCancellable(true); // for cancellable
                                     spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCountry.bindOnSpinerListener(new OnSpinerItemClick() {

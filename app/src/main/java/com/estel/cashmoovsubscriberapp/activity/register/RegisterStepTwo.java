@@ -287,7 +287,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
 
                                     }
 
-                                    spinnerDialogIdProofType = new SpinnerDialog(registersteptwoC, idProofTypeList, "Select Id Proof", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIdProofType = new SpinnerDialog(registersteptwoC, idProofTypeList, getString(R.string.select_id_proof), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogIdProofType.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogIdProofType.bindOnSpinerListener(new OnSpinerItemClick() {

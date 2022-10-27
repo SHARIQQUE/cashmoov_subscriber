@@ -120,7 +120,7 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
 
 
     private void getIds() {
-        transIdnew  = findViewById(R.id.transIdnew);
+        transIdnew  = findViewById(R.id.tvTransIdnew);
         transId = findViewById(R.id.transId);
         btnClose = findViewById(R.id.btnClose);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);

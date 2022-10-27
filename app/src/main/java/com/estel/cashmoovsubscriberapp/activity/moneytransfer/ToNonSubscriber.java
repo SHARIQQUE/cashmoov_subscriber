@@ -431,7 +431,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
                                         }
 
-                                        spinnerDialogBenefiGender = new SpinnerDialog(tononsubscriberC, benefiGenderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                        spinnerDialogBenefiGender = new SpinnerDialog(tononsubscriberC, benefiGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                         spinnerDialogBenefiGender.setCancellable(true); // for cancellable
                                         spinnerDialogBenefiGender.setShowKeyboard(false);// for open keyboard by default
