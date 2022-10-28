@@ -24,7 +24,7 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
     Button btnClose,btnShareReceipt;
     TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
-    LinearLayout linConfCode,tax1_layout,tax2_layout;
+    LinearLayout linConfCode,tax1_layout,tax2_layout,linearAmounttobeCharge;
     View rootView;
 
     @Override
@@ -130,13 +130,14 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
 
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
+        linearAmounttobeCharge=findViewById(R.id.linearAmounttobeCharge);
         tax1_lable = findViewById(R.id.tax1_lable);
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
         linConfCode.setVisibility(View.VISIBLE);
-
+        linearAmounttobeCharge.setVisibility(View.GONE);
         tvSubscriberMobile.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
         tvConfCode.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvProvider.setText(ReceiveRemittance.serviceProvider);

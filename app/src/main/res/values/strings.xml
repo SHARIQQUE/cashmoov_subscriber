@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 27-10-2022</string>
+    <string name="version">Version : 28-10-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -201,7 +201,7 @@
     <string name="ex_1234">Ex: 1234</string>
     <string name="transaction_success">Transaction\nsuccessfully!</string>
     <string name="details_of_transaction">Details of your transaction</string>
-    <string name="transaction_type_colon">Transaction type:</string>
+    <string name="transaction_type_colon">Transaction Type:</string>
     <string name="transaction_id_colon">Transaction ID :</string>
     <string name="export_receipt">Export receipt</string>
     <string name="change_pin_caps">Change PIN</string>

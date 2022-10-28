@@ -850,5 +850,22 @@ public static int  attmptCount=0;
         return test+" ";
     }
 
+    public static String getTaxStringnew(String test){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+                ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
+                MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
+            return test;
+        }else {
+            if (test.equalsIgnoreCase("T.V.A")) {
+                return "T.V.A :";
+            }
+            if (test.equalsIgnoreCase("Financial Tax")) {
+                return "Taxe financière :";
+            }
+        }
+
+        return test+" ";
+    }
+
 
 }

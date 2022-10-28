@@ -243,9 +243,14 @@
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_money_transfer.xml" value="0.1995831162063575" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_money_transfer_outbound.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_partner.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_receipt_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_receive_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_to_non_subscriber.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_transaction_success.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/include_home_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/include_partner_screen.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/activity_register_steptwo.xml" value="0.20104166666666667" />
       </map>
     </option>

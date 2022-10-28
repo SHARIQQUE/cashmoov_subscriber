@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 27-10-2022</string>
+    <string name="version">Version : 28-10-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -25,7 +25,7 @@
     <string name="money_transfer">Transfert d\'argent</string>
     <string name="airtime_purchase">Achat de credit</string>
     <string name="payment">Paiements</string>
-    <string name="merchant_payment">Paiments Marchand</string>
+    <string name="merchant_payment">Payer</string>
     <string name="cash_withdrawal">Retrait d\'argent</string>
     <string name="receive_remittance">Recevoir un transfert</string>
     <string name="fee">Frais</string>
@@ -375,14 +375,14 @@
     <string name="range">Gamme</string>
     <string name="value">Valeur</string>
     <string name="range_value_not_available"><![CDATA[Aucune plage et valeur disponibles]]></string>
-    <string name="partner">Partenaire</string>
+    <string name="partner">Les partenaires</string>
     <string name="view_balance_trans_history"><![CDATA[Solde et historique des transactions]]></string>
     <string name="go">Aller</string>
     <string name="Contacts">Contacts</string>
     <string name="view_transaction_history">Afficher l\'historique des transactions</string>
     <string name="hide_transaction_history">Masquer l\'historique des transactions</string>
     <string name="choose_product">Choisissez le produit</string>
-    <string name="choose_operator">Choisissez l\'opérateur</string>
+    <string name="choose_operator">Selectionnez l\'opérateur</string>
     <string name="already_acc">Vous avez déjà un compte?</string>
     <string name="msisdn_not_reg_with_subscriber">MSISDN n\'est pas enregistré, voulez-vous envoyer à un non abonné ?</string>
     <string name="guinea">Guinea</string>
