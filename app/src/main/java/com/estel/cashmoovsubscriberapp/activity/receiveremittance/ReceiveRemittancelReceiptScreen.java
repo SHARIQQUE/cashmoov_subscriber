@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ReceiveRemittancelReceiptScreen receiveremittancereceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvrate,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout,linearAmounttobeCharge;
     View rootView;
@@ -127,7 +127,7 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
         tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
-
+        tvrate=findViewById(R.id.tvrate);
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
         linearAmounttobeCharge=findViewById(R.id.linearAmounttobeCharge);
@@ -149,6 +149,7 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
         tvCurrency.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
         tvFee.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(ReceiveRemittance.receiptJson.optJSONObject("remittance").optInt("fee"))));
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
         tvTransAmt.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+ MyApplication.addDecimal(ReceiveRemittance.etAmount.getText().toString().replace(",","")));
         tvAmountPaid.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("amountToPaid")));

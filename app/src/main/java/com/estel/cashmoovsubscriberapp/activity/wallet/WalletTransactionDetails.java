@@ -107,13 +107,13 @@ public class WalletTransactionDetails extends AppCompatActivity {
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
-            fee_value.setText(getString(R.string.fee_colon)+" " +MyApplication.addDecimal(fee+""));
+            fee_value.setText(getString(R.string.fee_colon)+ "  " +MyApplication.addDecimal(fee+""));
             postbalance_value.setText(getString(R.string.post_balance_colon) +MyApplication.addDecimal( ""+postbalanmce));
 
             try {
 
                 if (tax.equalsIgnoreCase("")||tax.equalsIgnoreCase("N/A")){
-                    tax_value.setText(MyApplication.getTaxString("TAX") + " :" + " " + MyApplication.addDecimal("0.00"));
+                    tax_value.setText(MyApplication.getTaxString(getString(R.string.tax)) + " " + " " + MyApplication.addDecimal("0.00"));
                 }else {
                     Gson gson = new Gson();
 
@@ -122,7 +122,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
                     ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
                     for (Taxmodel user : userArray) {
-                        tax_value.setText(MyApplication.getTaxString(user.getTaxTypeName()) + " :" + " " + MyApplication.addDecimal(user.getValue()));
+                        tax_value.setText(MyApplication.getTaxString(user.getTaxTypeName()) + " " + " " + MyApplication.addDecimal(user.getValue()));
 
                         System.out.println("get user" + user.getTaxTypeName());
                     }

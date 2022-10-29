@@ -238,12 +238,16 @@
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/drawable/shape_border_white_background.xml" value="0.1555" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_register_stepone.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/dialog_logout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_cashout.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_international.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_international_option.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_money_transfer.xml" value="0.1995831162063575" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_money_transfer_outbound.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_partner.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_pay.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_receive_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_to_non_subscriber.xml" value="0.19947916666666668" />

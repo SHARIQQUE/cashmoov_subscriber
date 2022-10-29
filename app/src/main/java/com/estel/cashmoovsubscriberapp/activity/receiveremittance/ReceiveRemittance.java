@@ -327,7 +327,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                         otp_layout.setVisibility(View.VISIBLE);
                         ll_resendOtp.setVisibility(View.VISIBLE);
                         tvSend.setVisibility(View.VISIBLE);
-                        tvSend.setText("Verify OTP");
+                        tvSend.setText(getString(R.string.veryfyotp));
                         otp_generate_api();
 
                     } else {
@@ -727,7 +727,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                             otp_layout.setVisibility(View.GONE);
                             ll_resendOtp.setVisibility(View.GONE);
                             pin_layout.setVisibility(View.VISIBLE);
-                            tvSend.setText("SEND");
+                            tvSend.setText(getString(R.string.send));
 
                         } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                             step2=false;

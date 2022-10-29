@@ -458,6 +458,26 @@ public class MyApplication extends Application {
         return data;
     }
 
+
+    public static String addDecimalfrench(String number) {
+        String data="0.00";
+       /* DecimalFormat df = new DecimalFormat("0.00", symbols);
+        System.out.println(("get datatype" + (Object) number).getClass().getName());
+        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);*/
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
+            DecimalFormat df = new DecimalFormat("0.000", symbols);
+            System.out.println(("get datatype" + (Object) number).getClass().getName());
+            data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
+        }else{
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            symbols.setGroupingSeparator('.');
+            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.000#", symbols);
+            data = goodNumberFormat1.format(Double.parseDouble(number));
+        }
+        return data;
+    }
+
     public static int prevCommaAmount;
     public static String formatInput(CharSequence s, int start, int count) {
 
@@ -837,6 +857,25 @@ public static int  attmptCount=0;
         if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
                 ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
                 MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
+
+            return test +" :";
+        }else {
+            if (test.equalsIgnoreCase("VAT")) {
+                return "T.V.A :";
+            }
+            if (test.equalsIgnoreCase("Financial Tax")) {
+                return "Taxe financière :";
+            }
+        }
+
+        return test+" :";
+    }
+
+    public static String getTaxStringnew(String test){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+                ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
+                MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
+
             return test;
         }else {
             if (test.equalsIgnoreCase("VAT")) {
@@ -847,25 +886,10 @@ public static int  attmptCount=0;
             }
         }
 
-        return test+" ";
+        return test;
     }
 
-    public static String getTaxStringnew(String test){
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
-                ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
-                MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
-            return test;
-        }else {
-            if (test.equalsIgnoreCase("T.V.A")) {
-                return "T.V.A :";
-            }
-            if (test.equalsIgnoreCase("Financial Tax")) {
-                return "Taxe financière :";
-            }
-        }
 
-        return test+" ";
-    }
 
 
 }

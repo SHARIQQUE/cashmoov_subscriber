@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 28-10-2022</string>
+    <string name="version">Version : 29-10-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -197,9 +197,9 @@
     <string name="pin_colon">Code PIN :</string>
     <string name="otp_colon">OTP :</string>
     <string name="ex_1234">Ex: 1234</string>
-    <string name="transaction_success">Transaction echouée!</string>
+    <string name="transaction_success">Transaction réussie!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
-    <string name="transaction_type_colon">type de transaction:</string>
+    <string name="transaction_type_colon">Type de transaction :</string>
     <string name="transaction_id_colon">Identifiant de transaction :</string>
     <string name="export_receipt">Exportez le reçu</string>
     <string name="change_pin_caps">Changer de PIN</string>
@@ -264,7 +264,7 @@
     <string name="val_proof_no">Veuillez entrer le numéro de piece d\'identité</string>
     <string name="val_select_id_proof">Veuillez selectionner le numéro de piece d\'identite</string>
     <string name="val_select_country">Veuillez sélectionner le pays</string>
-    <string name="valid_select_country">Choisissez le pays*</string>
+    <string name="valid_select_country">Selectionnez le pays*</string>
     <string name="val_email_valid">Veuillez saisir une adresse e-mail valide</string>
     <string name="technical_failure">Veuillez ressayer plus tard</string>
     <string name="register_first_time_message">L\'utilisateur n\'a pas de compte, veuillez vous inscrire une fois pour créer un compte.</string>
@@ -331,7 +331,7 @@
     <string name="val_select_benifi_curr">Veuillez sélectionner la devise du bénéficiaire</string>
     <string name="benefi_msisdn_colom">Bénéficiaire MSISDN :</string>
     <string name="valid_mer_outlet_number">Numéro de telephone du Marchand/ point de vente*</string>
-    <string name="valid_inst_agent_branch_number">Numéro de mobile de l\'institut/de l\'agent/de la succursale</string>
+    <string name="valid_inst_agent_branch_number">Numéro de mobile de l\'institut/de l\'agent/de lagence</string>
     <string name="val_mer_outlet_no">Veuillez saisir le numéro du commerçant/du point de vente</string>
     <string name="val_mer_outlet_no_len">Merchant/Outlet number must be at least 9 digits long</string>
     <string name="val_inst_agent_branch_no">Veuillez entrer le numéro d\'institut/agent/succursale</string>
@@ -424,6 +424,8 @@
     <string name="not_allowed">"Ce code de confirmation n'est pas autorisé dans votre pays "</string>
     <string name="pin_generate_success">Votre Pin a été généré avec succès !</string>
     <string name="mobile_no_exist_reg">Le numéro de téléphone portable existe déjà dans le système, veuillez essayer avec un autre numéro !</string>
+    <string name="veryfyotp">Vérifier OTP</string>
+
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

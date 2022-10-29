@@ -118,7 +118,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.login.LoginPin"
-            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:windowSoftInputMode="adjustPan"
+
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.login.SetPin"

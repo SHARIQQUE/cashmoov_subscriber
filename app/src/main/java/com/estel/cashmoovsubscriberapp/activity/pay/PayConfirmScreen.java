@@ -39,7 +39,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
     public static PayConfirmScreen payconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
-    public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvrate,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout,pinLinear;
@@ -90,7 +90,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         btnCancel = findViewById(R.id.btnCancel);
         cardBearFee = findViewById(R.id.cardBearFee);
         cardBearFee.setVisibility(View.GONE);
-
+        tvrate=findViewById(R.id.tvrate);
         tax_r=findViewById(R.id.tax_r);
         vat_r=findViewById(R.id.vat_r);
         tax_label=findViewById(R.id.tax_label);
@@ -106,6 +106,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         tvTransAmount.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.etAmount.getText().toString().replace(",","")));
         tvAmountPaid.setText(Pay.currencySymbol+" "+MyApplication.addDecimal(Pay.currencyValue));
         tvFee.setText(Pay.fromCurrencySymbol+" "+MyApplication.addDecimal(Pay.fee));
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
        finalamount=Double.parseDouble(Pay.fee)+Double.parseDouble(Pay.etAmount.getText().toString().replace(",",""));
        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);

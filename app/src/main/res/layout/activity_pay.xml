@@ -171,7 +171,7 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_mer_outlet_number"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_11sdp"
                     android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
