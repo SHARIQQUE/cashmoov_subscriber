@@ -432,6 +432,10 @@
     <string name="pin_generate_success">Your Pin generated Successfully!</string>
     <string name="mobile_no_exist_reg">Mobile number already exist in the system please try with another number !</string>
     <string name="veryfyotp">Verify OTP</string>
+    <string name="sending_amount">Sending Amount :</string>
+    <string name="receiving_amount">Receiving Amount</string>
+    <string name="vendor_result_description">Vendor Result Description :</string>
+    <string name="sending_amount_n">Sending Amount</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

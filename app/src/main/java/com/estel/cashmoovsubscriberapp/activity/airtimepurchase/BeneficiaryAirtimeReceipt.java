@@ -147,7 +147,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
         transId.setText(getString(R.string.vendor_trans_id_colon));
-        transIdnew.setText(getString(R.string.trans_id));
+        transIdnew.setText(getString(R.string.transaction_id_colon));
         tvTransIdnew.setText(BeneficiaryAirtimeConfirm.receiptJson.optString("transactionId"));
         tvMobile.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
         tvOperatorName.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
@@ -165,7 +165,7 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         if(BeneficiaryAirtimeConfirm.taxConfigList!=null){
             if(BeneficiaryAirtimeConfirm.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName")));
                 tax1_value.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(""+(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value"))));
 
 
@@ -173,11 +173,11 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
             }
             if(BeneficiaryAirtimeConfirm.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optString("taxTypeName")));
                 tax1_value.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(""+(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(0).optDouble("value"))));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
+                tax2_lable.setText(MyApplication.getTaxString(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(1).optString("taxTypeName")));
                 tax2_value.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(""+(BeneficiaryAirtimeConfirm.taxConfigList.optJSONObject(1).optDouble("value"))));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }

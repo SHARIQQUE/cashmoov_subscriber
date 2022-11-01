@@ -148,7 +148,9 @@ public class InFormRecptNew extends AppCompatActivity implements View.OnClickLis
         //tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("operator"));
         tvTransId.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorTransId"));
        TextView transIdnew=findViewById(R.id.tvTransIdnew);
-        transIdnew.setText(OutFormConfirmation.receiptJson.optString("transactionId"));
+        TextView tvTransIdnewV=findViewById(R.id.tvTransIdnewV);
+        tvTransIdnewV.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorResultDescription"));
+        transIdnew.setText(InFormConfirmation.receiptJson.optString("transactionId"));
         tvFee.setText(Inform.currencySymbol+" "
                 + MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
 

@@ -408,7 +408,7 @@
     <string name="rate_btn_neg">RAPPELEZ-MOI PLUS TARD</string>
     <string name="rate_btn_nut">NON, MERCI</string>
     <string name="rate_app_message">Si vous appréciez notre application, veuillez prendre un moment pour l\'évaluer sur Playstore. Merci pour votre aide!</string>
-    <string name="cash_pickup">Cash pick up</string>
+    <string name="cash_pickup">Retrait d\'especes</string>
     <string name="service_not_available">Ce service n\'est pas disponible</string>
     <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
 
@@ -425,6 +425,10 @@
     <string name="pin_generate_success">Votre Pin a été généré avec succès !</string>
     <string name="mobile_no_exist_reg">Le numéro de téléphone portable existe déjà dans le système, veuillez essayer avec un autre numéro !</string>
     <string name="veryfyotp">Vérifier OTP</string>
+    <string name="sending_amount">Sending Amount :</string>
+    <string name="receiving_amount">Receiving Amount</string>
+    <string name="vendor_result_description">Vendor Result Description :</string>
+    <string name="sending_amount_n">Sending Amount</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>

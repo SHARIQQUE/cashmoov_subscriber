@@ -159,13 +159,13 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
         if(ReceiveRemittance.taxConfigList!=null){
             if(ReceiveRemittance.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax1_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(ReceiveRemittance.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax1_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);

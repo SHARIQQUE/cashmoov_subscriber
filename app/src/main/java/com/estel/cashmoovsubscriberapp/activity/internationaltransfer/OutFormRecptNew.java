@@ -149,8 +149,11 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
         tvMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("mobileNumber"));
         tvOperatorName.setText("Intech");
         //tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("operator"));
-        tvTransId.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionId"));
+        tvTransId.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorTransId"));
         transIdnew.setText(OutFormConfirmation.receiptJson.optString("transactionId"));
+        TextView tvTransIdnewV=findViewById(R.id.tvTransIdnewV);
+        tvTransIdnewV.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorResultDescription"));
+
         tvFee.setText(Outform.currencySymbol+" "
                 + MyApplication.addDecimal(""+OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
 

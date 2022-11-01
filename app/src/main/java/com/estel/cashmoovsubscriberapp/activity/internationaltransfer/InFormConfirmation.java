@@ -101,8 +101,8 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
         tvName.setText("Sandeep"+" "+"Singh");
       //  tvConfCode.setText(Inform.mobileNo);
         tvCurrency.setText(Inform.currency);
-        tvTransAmount.setText("XOF"+" "+MyApplication.addDecimal(Inform.etAmountN.getText().toString().replace(",","")));
-        tvAmountPaid.setText(Inform.currencySymbol+" "+Inform.currencyValue);
+        tvTransAmount.setText("GNF"+" "+MyApplication.addDecimal(Inform.etAmount.getText().toString().replace(",","")));
+        tvAmountPaid.setText("XOF"+" "+Inform.currencyValue);
 
         tvFee.setText(Inform.currencySymbol+" "+Inform.fee);
 
@@ -180,7 +180,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
 
         //finalamount=Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmount.getText().toString().replace(",",""));
 
-        finalamount=Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmountN.getText().toString().replace(",",""));
+        finalamount=Double.parseDouble(Inform.rate)+Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmount.getText().toString().replace(",",""));
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(Inform.taxConfigurationList!=null){
@@ -188,19 +188,19 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
 
             if(Inform.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(Inform.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(Inform.taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
                 tax_r.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+Inform.taxConfigurationList.optJSONObject(0).optDouble("value")));
-                finalamount=(Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmountN.getText().toString().replace(",",""))+Double.parseDouble(Inform.taxConfigurationList.optJSONObject(0).optString("value")));
+                finalamount=(Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Inform.taxConfigurationList.optJSONObject(0).optString("value")));
             }
             if(Inform.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(Inform.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(Inform.taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
                 tax_r.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+Inform.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(MyApplication.getTaxString(Inform.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
+                vat_label.setText(MyApplication.getTaxString(Inform.taxConfigurationList.optJSONObject(1).optString("taxTypeName")));
                 vat_r.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+Inform.taxConfigurationList.optJSONObject(1).optDouble("value")));
-                finalamount=(Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmountN.getText().toString().replace(",",""))+Double.parseDouble(Inform.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Inform.taxConfigurationList.optJSONObject(1).optString("value")));
+                finalamount=(Double.parseDouble(Inform.fee)+Double.parseDouble(Inform.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Inform.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Inform.taxConfigurationList.optJSONObject(1).optString("value")));
             }
         }
 
