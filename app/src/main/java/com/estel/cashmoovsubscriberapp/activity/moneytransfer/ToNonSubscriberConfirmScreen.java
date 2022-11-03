@@ -75,6 +75,8 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
+        tvrate=findViewById(R.id.tvrate);
+
         // tvConfCode = findViewById(R.id.tvConfCode);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvTransAmount = findViewById(R.id.tvTransAmount);
@@ -96,6 +98,9 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
         pinLinear=findViewById(R.id.pinLinear);
+
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
+
         etPin.addTextChangedListener(new TextWatcher() {
 
             @Override

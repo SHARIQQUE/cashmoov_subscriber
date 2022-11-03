@@ -27,7 +27,7 @@ import java.util.Locale;
 public class ToSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ToSubscriberReceiptScreen tosubscriberreceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView tvrate,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     double finalamount;
@@ -129,13 +129,14 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
-
+        tvrate=findViewById(R.id.tvrate);
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
         tax1_lable = findViewById(R.id.tax1_lable);
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);

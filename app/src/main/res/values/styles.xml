@@ -10,7 +10,12 @@
         <item name="android:windowFullscreen">true</item>
         <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
     </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
 
+
+    </style>
     <style name="CalenderViewCustom" parent="Theme.AppCompat">
         <item name="colorAccent">@android:color/holo_blue_dark</item>
         <item name="colorPrimary">@android:color/darker_gray</item>

@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ReceiveRemittancelReceiptScreen receiveremittancereceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvrate,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView tvrate,tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout,linearAmounttobeCharge;
     View rootView;

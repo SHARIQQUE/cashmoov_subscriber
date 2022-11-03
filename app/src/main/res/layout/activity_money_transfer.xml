@@ -172,7 +172,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
-                            android:text="@string/international"
+                            android:text="@string/sendinternational"
                             />
 
 

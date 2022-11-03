@@ -35,7 +35,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
     public static CashOutConfirmScreen cashoutconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
-    public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    public static TextView tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout,pinLinear;
@@ -86,13 +86,14 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         btnCancel = findViewById(R.id.btnCancel);
         cardBearFee = findViewById(R.id.cardBearFee);
         cardBearFee.setVisibility(View.GONE);
-
+        tvrate=findViewById(R.id.tvrate);
         tax_r=findViewById(R.id.tax_r);
         vat_r=findViewById(R.id.vat_r);
         tax_label=findViewById(R.id.tax_label);
         vat_label=findViewById(R.id.vat_label);
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
         tvProvider.setText(CashOut.serviceProvider);
         tvMobile.setText(CashOut.mobileNo);

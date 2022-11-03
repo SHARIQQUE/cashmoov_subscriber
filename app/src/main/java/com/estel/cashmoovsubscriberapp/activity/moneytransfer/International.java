@@ -468,7 +468,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         //etAmountNew.setText(currencyValue);
                                         tvRate.setText(MyApplication.addDecimalthreenew(rate));
                                         tvFee.setText(MyApplication.addDecimal(fee));
-                                        etAmountNew.setText(MyApplication.addDecimal(currencyValue));
+                                        etAmountNew.setText(MyApplication.addDecimaltwo(currencyValue));
                                         tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
 
 

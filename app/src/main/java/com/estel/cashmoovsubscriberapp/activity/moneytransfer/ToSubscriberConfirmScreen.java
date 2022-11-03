@@ -48,7 +48,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
     LinearLayout tax_label_layout,vat_label_layout,pinLinear;
-    public static TextView tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    public static TextView tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     ImageView icPin;
@@ -84,6 +84,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvProvider = findViewById(R.id.tvProvider);
         tvMobile = findViewById(R.id.tvMobile);
         tvName = findViewById(R.id.tvName);
+        tvrate=findViewById(R.id.tvrate);
        // tvConfCode = findViewById(R.id.tvConfCode);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvTransAmount = findViewById(R.id.tvTransAmount);
@@ -109,7 +110,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvName.setText(ToSubscriber.ownerName+" "+ToSubscriber.lastName);
       //  tvConfCode.setText(ToSubscriber.mobileNo);
         tvCurrency.setText(ToSubscriber.currency);
-
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
        // String get_number_value=ToSubscriber.etAmount.getText().toString().replace(",","");
       // tvTransAmount.setText(Separator.getInstance().doSeparate(get_number_value, Locale.FRENCH));
         tvTransAmount.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.etAmount.getText().toString().replace(",","")));

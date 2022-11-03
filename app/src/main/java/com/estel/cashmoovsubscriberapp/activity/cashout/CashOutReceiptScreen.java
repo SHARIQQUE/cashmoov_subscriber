@@ -25,7 +25,7 @@ import java.util.Locale;
 public class CashOutReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashOutReceiptScreen cashoutreceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView tvrate,tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -136,6 +136,9 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
+        tvrate=findViewById(R.id.tvrate);
+
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
         linConfCode.setVisibility(View.GONE);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
@@ -161,13 +164,13 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
             if(CashOutConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxStringnew(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimalthreenew(String.valueOf(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
+                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(String.valueOf(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashOutConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxStringnew(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimalthreenew(String.valueOf(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
+                tax1_value.setText(CashOutConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+MyApplication.addDecimal(String.valueOf(CashOutConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxStringnew(CashOutConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");

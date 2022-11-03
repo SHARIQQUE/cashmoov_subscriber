@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 29-10-2022</string>
+    <string name="version">Version : 01-11-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -130,6 +130,8 @@
     <string name="sedingcountry">Pays d\'envoi</string>
     <string name="non_subscriber">Non abonné</string>
     <string name="international">International</string>
+    <string name="sendinternational"> Envoyer International</string>
+
     <string name="bank_to_wallet">Banque au portefeuille</string>
     <string name="wallet_to_bank">Mobile vers banque</string>
     <string name="money_transfer_to_subscriber">Transfert d\'argent vers abonné</string>
@@ -292,7 +294,7 @@
     <string name="val_amount_max">Veuillez entrer le montant maximum </string>
     <string name="scan_error">Echec Scanning</string>
     <string name="please_check_internet">Veuillez verifier votre connexion Internet </string>
-    <string name="convertionRate_reviewPage"> Taux de conversion:</string>
+    <string name="convertionRate_reviewPage"> Taux de conversion :</string>
     <string name="please_wait">S\'il vous plaît, attendez....</string>
 
     <string name="val_scan_error_content">Le QR code ne peut pas etre scanne</string>
@@ -362,7 +364,10 @@
     <string name="trans_date">Date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>
 
-    <string name="search_here">Entrez le nom ou le mobile...</string>
+    <string name="search_here"> Entrez le nom ou le numero de telephone...</string>
+
+
+
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Exceller</string>
@@ -385,7 +390,7 @@
     <string name="choose_operator">Selectionnez l\'opérateur</string>
     <string name="already_acc">Vous avez déjà un compte?</string>
     <string name="msisdn_not_reg_with_subscriber">MSISDN n\'est pas enregistré, voulez-vous envoyer à un non abonné ?</string>
-    <string name="guinea">Guinea</string>
+    <string name="guinea">Guinée</string>
     <string name="val_otp">veuillez entrer le code OTP</string>
     <string name="no_promo_found">Aucune promotion trouvée</string>
     <string name="choose_the_plan">Choisissez le forfait</string>
@@ -396,7 +401,7 @@
     <string name="hide_transaction">Masquer la transaction</string>
     <string name="take_photo">Prendre une photo</string>
     <string name="choose_image">Choisissez l\'image</string>
-    <string name="phoneNumber">Numero de telephone</string>
+    <string name="phoneNumber">Numéro de téléphone</string>
     <string name="tap_here">Appuyez ici...</string>
     <string name="normal">Normal</string>
     <string name="satellite">Satellite</string>

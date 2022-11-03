@@ -25,7 +25,7 @@ import java.util.Locale;
 public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ToNonSubscriberReceiptScreen tononsubscriberreceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView tvrate,tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
     tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -137,6 +137,9 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
+        tvrate=findViewById(R.id.tvrate);
+
+        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
         linConfCode.setVisibility(View.VISIBLE);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);

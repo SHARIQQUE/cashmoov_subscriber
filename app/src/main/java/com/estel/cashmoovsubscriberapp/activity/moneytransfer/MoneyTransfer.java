@@ -1,8 +1,14 @@
 package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -122,12 +128,13 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.cardInternationalIn:
-                if(!MyApplication.showInternationalRemit){
+
+
+               if(!MyApplication.showInternationalRemit){
                     //cardInternational.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
                 }else {
-                    intent = new Intent(moneytransferC, MoneyOutboundTransfer.class);
-                    startActivity(intent);
+                   showDialoginternational();
                 }
                 break;
 
@@ -144,4 +151,50 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    private void showDialoginternational(){
+        final Dialog dialog =new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_money_transfer_international);
+
+
+      CardView  mCardCashmoov = dialog.findViewById(R.id.cardCashmoov);
+        CardView mCardToPartners=dialog.findViewById(R.id.cardToPartners);
+        mCardCashmoov.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MyApplication.showToSubscriber){
+                    // cardToSubscriber.setVisibility(View.VISIBLE);
+                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
+                }else{
+                    dialog.dismiss();
+
+                    Intent intent = new Intent(moneytransferC, International.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        mCardToPartners.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MyApplication.showInternationalRemit){
+                    //cardInternational.setVisibility(View.VISIBLE);
+                    MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
+                }else {
+                    dialog.dismiss();
+                    Intent intent = new Intent(moneytransferC, OutTransfer.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
+
 }

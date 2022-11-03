@@ -108,7 +108,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));
             fee_value.setText(getString(R.string.fee_colon)+ "  " +MyApplication.addDecimal(fee+""));
-            postbalance_value.setText(getString(R.string.post_balance_colon) +MyApplication.addDecimal( ""+postbalanmce));
+            postbalance_value.setText(getString(R.string.post_balance_colon) + " "+MyApplication.addDecimal( ""+postbalanmce));
 
             try {
 

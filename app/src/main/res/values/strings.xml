@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 29-10-2022</string>
+    <string name="version">Version : 01-11-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -17,7 +17,7 @@
     <string name="hello">Hello,</string>
     <string name="dashboard">Dashboard</string>
     <string name="pay">Pay</string>
-    <string name="convertionRate_reviewPage"> Conversion Rate:</string>
+    <string name="convertionRate_reviewPage"> Conversion Rate :</string>
     <string name="please_wait">Please wait....</string>
     <string name="Taxvat">VAT</string>
     <string name="Taxfinancial">Financial Tax</string>
@@ -129,6 +129,8 @@
     <string name="subscriber">Subscriber</string>
     <string name="non_subscriber">Non Subscriber</string>
     <string name="international">International</string>
+    <string name="sendinternational"> Send International</string>
+
     <string name="receiveinternational">Receive International</string>
     <string name="Cashmoov">Cashmoov</string>
     <string name="Parteners">Partners</string>
