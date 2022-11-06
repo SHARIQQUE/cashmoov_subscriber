@@ -74,7 +74,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
     private void getIds() {
         tvrate=findViewById(R.id.tvrate);
-        tvrate.setText(Outform.rate);
+        tvrate.setText(MyApplication.addDecimalthreenew(Outform.rate));
         pinLinear=findViewById(R.id.pinLinear);
         bearLay=findViewById(R.id.bearLay);
         bearLay.setVisibility(View.GONE);
