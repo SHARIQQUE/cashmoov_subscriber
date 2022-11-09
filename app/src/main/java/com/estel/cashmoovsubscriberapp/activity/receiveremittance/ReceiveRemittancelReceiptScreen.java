@@ -147,7 +147,7 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
                 ReceiveRemittance.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("lastName"));
         tvTransId.setText(ReceiveRemittance.receiptJson.optString("transactionId"));
         tvCurrency.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
-        tvFee.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
+        tvFee.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "
                 + MyApplication.addDecimal(String.valueOf(ReceiveRemittance.receiptJson.optJSONObject("remittance").optInt("fee"))));
         tvrate.setText(MyApplication.addDecimalfrench("00.000"));
 
@@ -160,17 +160,17 @@ public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implement
             if(ReceiveRemittance.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" ");
-                tax1_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(ReceiveRemittance.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" ");
-                tax1_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("value")));
+                tax1_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(0).optString("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(ReceiveRemittance.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
-                tax2_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(1).optString("value")));
+                tax2_value.setText(ReceiveRemittance.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(ReceiveRemittance.taxConfigList.optJSONObject(1).optString("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

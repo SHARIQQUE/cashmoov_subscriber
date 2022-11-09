@@ -238,7 +238,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                                miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
                                 miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
                                 miniStatementTrans.getTaxAsJson(),
                                 miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
@@ -247,7 +247,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
-                                miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
                                 miniStatementTrans.getCreationDate(),
                                 miniStatementTrans.getStatus(),
                                 miniStatementTrans.getComReceiveAmount(),
