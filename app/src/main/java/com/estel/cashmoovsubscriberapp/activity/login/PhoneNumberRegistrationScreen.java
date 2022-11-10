@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -94,6 +95,8 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         msgText = findViewById(R.id.msgText);
         tvContinue = findViewById(R.id.tvContinue);
 
+        etPhoneNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});
         etPass.addTextChangedListener(new TextWatcher() {
 
             @Override
