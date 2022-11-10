@@ -197,9 +197,7 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
        // etAmount.setText("9,329.11");
       //  etAmountN.setText("670");
 
-        mobileNo = etSubscriberNo.getText().toString();
-        ownerName =  etFname.getText().toString();
-        lastName =  etLname.getText().toString();
+
         headText = findViewById(R.id.headText);
         headText.setText(InTransfer.operatorNname);
 
@@ -207,10 +205,10 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         etFname.setEnabled(true);
         etLname.setEnabled(true);
 
-        etSubscriberNo.setText("775389850");
+       /* etSubscriberNo.setText("775389850");
         etFname.setText("Sandeep");
         etLname.setText("Singh");
-
+*/
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
         //  agent_mob_no.setText("9078678111");
@@ -610,6 +608,10 @@ callApiWalletCountryCurrencyJSOn();
 
 
         try {
+            mobileNo = etSubscriberNo.getText().toString();
+            ownerName =  etFname.getText().toString();
+            lastName =  etLname.getText().toString();
+
             jsonObjectNew.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",getApplicationContext()));
             jsonObjectNew.put("channel","SELFCARE");
             jsonObjectNew.put("serviceCode","100023");
@@ -620,7 +622,7 @@ callApiWalletCountryCurrencyJSOn();
             jsonObjectNew.put("serviceItemId",InTransfer.serviceItemId);
             jsonObjectNew.put("fromCurrencyCode","100062");
             jsonObjectNew.put("toCurrencyCode","100018");
-            jsonObjectNew.put("mobileNumber","775389850");
+            jsonObjectNew.put("mobileNumber",mobileNo);
             jsonObjectNew.put("amount",etAmount.getText().toString());
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
             jsonObjectNew.put("providerServiceItemCode","100006");

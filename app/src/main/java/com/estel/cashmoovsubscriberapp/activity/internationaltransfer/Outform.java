@@ -189,15 +189,13 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         xofAmountLinear=findViewById(R.id.xofAmountLinear);
         spinner_destinaioncountry=findViewById(R.id.spinner_destinaioncountry);
 
-         etSubscriberNo.setText("775389850");
+         /*etSubscriberNo.setText("775389850");
           etFname.setText("Sandeep");
-        etLname.setText("Singh");
+        etLname.setText("Singh");*/
        // etAmount.setText("10,000");
        // etAmountN.setText("670.00");
 
-        mobileNo = etSubscriberNo.getText().toString();
-        ownerName =  etFname.getText().toString();
-        lastName =  etLname.getText().toString();
+
         headText = findViewById(R.id.headText);
         headText.setText(OutTransfer.operatorNname);
 
@@ -528,6 +526,10 @@ callApiWalletCountryCurrencyJSOn();
 
 
         try {
+
+            mobileNo = etSubscriberNo.getText().toString();
+            ownerName =  etFname.getText().toString();
+            lastName =  etLname.getText().toString();
             jsonObjectNew.put("channel","SELFCARE");
             jsonObjectNew.put("serviceCode","100023");
             jsonObjectNew.put("serviceCategoryCode","TRTWLT");
@@ -537,7 +539,7 @@ callApiWalletCountryCurrencyJSOn();
             jsonObjectNew.put("serviceItemId",OutTransfer.serviceItemId);
             jsonObjectNew.put("fromCurrencyCode","100062");
             jsonObjectNew.put("toCurrencyCode","100018");
-            jsonObjectNew.put("mobileNumber","775389850");
+            jsonObjectNew.put("mobileNumber",mobileNo);
             jsonObjectNew.put("amount",etAmount.getText().toString());
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
             jsonObjectNew.put("providerServiceItemCode","100002");
@@ -547,6 +549,8 @@ callApiWalletCountryCurrencyJSOn();
 
             // jsonObject.put("idProofNumber","");
             // jsonObject.put("idProofTypeCode","");
+
+
             Intent i1=new Intent(tosubscriberC, OutFormConfirmation.class);
             startActivity(i1);
 
