@@ -422,7 +422,10 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
                                 MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
-                                callPostGetLoginOTP();
+                                Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
+                                startActivity(i);
+
+                               // callPostGetLoginOTP();
                             }else  if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
                                 // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                                 MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
