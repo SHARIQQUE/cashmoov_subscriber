@@ -118,9 +118,9 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
         Pattern p = Pattern.compile(regex);
         // agent_mob_no.setText("991085918540");//dev
         //agent_mob_no.setText("9015050968");//qa
-        etRecipientNo.setFilters(new InputFilter[] {
+       /* etRecipientNo.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.mobileLength)});
-
+*/
 
         etRecipientNo.addTextChangedListener(new TextWatcher() {
             @Override

@@ -331,7 +331,7 @@
     <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>
     <string name="val_confirmation_code">Veuillez saisir le code de confirmation</string>
     <string name="val_select_benifi_curr">Veuillez sélectionner la devise du bénéficiaire</string>
-    <string name="benefi_msisdn_colom">Bénéficiaire MSISDN :</string>
+    <string name="benefi_msisdn_colom">Numéro du bénéficiaire :</string>
     <string name="valid_mer_outlet_number">Numéro de telephone du Marchand/ point de vente*</string>
     <string name="valid_inst_agent_branch_number">Numéro de telephone de l\'institut/de l\'agent/de l\'agence</string>
     <string name="val_mer_outlet_no">Veuillez saisir le numéro du commerçant/du point de vente</string>

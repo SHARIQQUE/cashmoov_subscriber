@@ -163,8 +163,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
 
-        etSubscriberNo.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLength)});
+        /*etSubscriberNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});*/
         tvSend = findViewById(R.id.tvSend);
         etFname.setEnabled(false);
         etLname.setEnabled(false);

@@ -156,8 +156,8 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         //agent_mob_no.setText("");
 
 
-        etPhone.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLength)});
+      /*  etPhone.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});*/
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

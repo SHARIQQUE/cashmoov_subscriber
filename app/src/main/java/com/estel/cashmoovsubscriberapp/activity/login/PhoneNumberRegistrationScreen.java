@@ -95,8 +95,8 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         msgText = findViewById(R.id.msgText);
         tvContinue = findViewById(R.id.tvContinue);
 
-        etPhoneNo.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLength)});
+       /* etPhoneNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLength)});*/
         etPass.addTextChangedListener(new TextWatcher() {
 
             @Override
