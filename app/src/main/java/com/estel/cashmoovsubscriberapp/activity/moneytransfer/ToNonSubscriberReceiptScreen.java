@@ -27,7 +27,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
     Button btnClose,btnShareReceipt;
     TextView tvrate,tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
     tax1_lable,tax1_value,tax2_lable,tax2_value;
-    LinearLayout linConfCode,tax1_layout,tax2_layout;
+    LinearLayout linConfCode,tax1_layout,tax2_layout,conversionrateLinear;
     View rootView;
 
     @Override
@@ -130,6 +130,8 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         tvTransAmt = findViewById(R.id.tvTransAmt);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
+        conversionrateLinear=findViewById(R.id.conversionrateLinear);
+        conversionrateLinear.setVisibility(View.GONE);
 
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
