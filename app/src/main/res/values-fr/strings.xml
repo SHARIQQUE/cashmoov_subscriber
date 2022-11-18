@@ -118,8 +118,8 @@
     <string name="acc_number">Numéro de compte:</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais:</string>
-    <string name="amount_to_paid">Montant a payer</string>
-    <string name="amount_to_paid_colon">Montant à payer:</string>
+    <string name="amount_to_paid">Montant facturé</string>
+    <string name="amount_to_paid_colon">Montant facturé :</string>
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>
     <string name="subscriber">Abonne</string>
