@@ -25,7 +25,7 @@ import java.util.Locale;
 public class InternationalReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalReceiptScreen internationalreceiptscreenC;
     Button btnClose,btnShareReceipt;
-    TextView tvSubscriberMobile,tvrate,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
+    TextView amountpaidinternational,tvSubscriberMobile,tvrate,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
@@ -130,7 +130,7 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
         tvrate=findViewById(R.id.tvrate);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
-
+        amountpaidinternational=findViewById(R.id.amountpaidinternational);
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
         tax1_lable = findViewById(R.id.tax1_lable);
@@ -154,7 +154,11 @@ public class InternationalReceiptScreen extends AppCompatActivity implements Vie
                 + MyApplication.addDecimal(String.valueOf(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee"))));
 
         tvTransAmt.setText((InternationalConfirmScreen.tvTransAmounts.getText().toString()));
-        tvAmountPaid.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(""+InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
+
+        amountpaidinternational.setVisibility(View.GONE);
+
+
+        tvAmountPaid.setText(getString(R.string.amount_to_paid_international)+ " : " +"  "+ InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+MyApplication.addDecimal(""+InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
         tvAmountCharged.setText(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(String.valueOf(InternationalConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount"))));
         tvrate.setText(MyApplication.addDecimalthreenew(International.rate));
 

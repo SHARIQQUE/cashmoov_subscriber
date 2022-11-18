@@ -620,6 +620,7 @@
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
 
                 <TextView
+                    android:id="@+id/amountpaidinternational"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/amount_paid_colon"

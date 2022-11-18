@@ -119,6 +119,9 @@
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais:</string>
     <string name="amount_to_paid">Montant facturé</string>
+    <string name="amount_to_be_paid">Montant facturé :</string>
+    <string name="amount_to_paid_international">Montant a facturé</string>
+
     <string name="amount_to_paid_colon">Montant facturé :</string>
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>

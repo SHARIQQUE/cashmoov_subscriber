@@ -123,6 +123,9 @@
     <string name="montant_a_envoyer">Amount to send</string>
     <string name="fees">Fee:</string>
     <string name="amount_to_paid">Amount paid</string>
+    <string name="amount_to_be_paid">Amount  paid</string>
+    <string name="amount_to_paid_international">Amount to be Paid</string>
+
     <string name="amount_to_paid_colon">Amount paid:</string>
     <string name="send">Send</string>
     <string name="choose_operation">Choose the operation</string>
@@ -305,7 +308,7 @@
     <string name="val_select_curr">Please select currency</string>
     <string name="kyc_detail_response_msg">Kyc details submitted successfully</string>
     <string name="trans_amount_colon">Transaction Amount :</string>
-    <string name="amount_paid_colon">Amount to be Paid :</string>
+    <string name="amount_paid_colon">Amount paid :</string>
     <string name="amount_charged_colon">Amount to be Charged :</string>
     <string name="enter_old_pin">Enter your old pin</string>
     <string name="enter_new_pin">Enter your new pin</string>

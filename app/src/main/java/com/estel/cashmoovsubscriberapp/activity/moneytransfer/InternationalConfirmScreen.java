@@ -36,7 +36,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
     public static InternationalConfirmScreen internationalconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
-    public static TextView tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    public static TextView amountopaidText,tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout,pinLinear;
@@ -88,6 +88,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         cardBearFee = findViewById(R.id.cardBearFee);
         cardBearFee.setVisibility(View.GONE);
         pinLinear=findViewById(R.id.pinLinear);
+        amountopaidText=findViewById(R.id.amountopaidText);
         tax_r=findViewById(R.id.tax_r);
         vat_r=findViewById(R.id.vat_r);
         tax_label=findViewById(R.id.tax_label);
@@ -101,7 +102,8 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         //  tvConfCode.setText(International.mobileNo);
         tvCurrency.setText(International.fromCurrency);
         tvTransAmounts.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC)));
-        tvAmountPaid.setText(International.toCurrencySymbol+" "+MyApplication.addDecimal(International.currencyValue));
+         amountopaidText.setVisibility(View.GONE);
+        tvAmountPaid.setText(getString(R.string.amount_to_paid_international)+ " : " +"  "+International.toCurrencySymbol+" "+MyApplication.addDecimal(International.currencyValue));
         tvFee.setText(International.fromCurrencySymbol+" "+MyApplication.addDecimal(International.fee));
         tvrate.setText(MyApplication.addDecimalthreenew(International.rate));
        finalamount=Double.parseDouble(International.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTINTERNATIONAL",internationalconfirmscreenC));
