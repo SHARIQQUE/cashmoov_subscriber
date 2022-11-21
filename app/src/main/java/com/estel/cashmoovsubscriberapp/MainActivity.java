@@ -212,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ServiceList data=MyApplication.tinyDB.getObject("ServiceList", ServiceList.class);
         ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
         dataM=data.getServiceListMains();
+        System.out.println("get dataM"+dataM);
 
         for(int i=0;i<dataM.size();i++){
             for(int j=0;j<dataM.get(i).getServiceCategoryListArrayList().size();j++){
@@ -260,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(da.getCode().equalsIgnoreCase("100028")){
                         MyApplication.showBillPayment = true;
                         MyApplication.BillPaymentMinAmount=da.getMinTransValue();
+                        System.out.println("get max "+da.getMaxTransValue());
                         MyApplication.BillPaymentMaxAmount=da.getMaxTransValue();
                         //cardRechargePayment.setVisibility(View.VISIBLE);
                     }

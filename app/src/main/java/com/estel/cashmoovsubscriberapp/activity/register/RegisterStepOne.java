@@ -773,6 +773,70 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
                                     JSONObject data=jsonObject.optJSONObject("walletOwner");
 
+                                    if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+                                        if(data.optString("status").equalsIgnoreCase("Actif") && data.optString("state").equalsIgnoreCase("Approuvée")){
+                                            MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
+                                        }else {
+
+                                            RegistrationMobileModel registrationMobileModel = new RegistrationMobileModel(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("walletOwnerCategoryCode"),
+                                                    data.optString("ownerName"),
+                                                    data.optString("mobileNumber"),
+                                                    data.optString("idProofNumber"),
+                                                    data.optString("email"),
+                                                    data.optString("status"),
+                                                    data.optString("state"),
+                                                    data.optString("stage"),
+                                                    data.optString("idProofTypeCode"),
+                                                    data.optString("idProofTypeName"),
+                                                    data.optString("idExpiryDate"),
+                                                    data.optString("notificationLanguage"),
+                                                    data.optString("notificationTypeCode"),
+                                                    data.optString("notificationName"),
+                                                    data.optString("gender"),
+                                                    data.optString("dateOfBirth"),
+                                                    data.optString("lastName"),
+                                                    data.optString("issuingCountryCode"),
+                                                    data.optString("issuingCountryName"),
+                                                    data.optString("registerCountryCode"),
+                                                    data.optString("registerCountryName"),
+                                                    data.optString("modifiedBy"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("modificationDate"),
+                                                    data.optBoolean("walletExists"),
+                                                    data.optString("profileTypeCode"),
+                                                    data.optString("profileTypeName"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("walletOwnerCatName"),
+                                                    data.optString("occupationTypeCode"),
+                                                    data.optString("occupationTypeName"),
+                                                    data.optString("requestedSource"),
+                                                    data.optString("regesterCountryDialCode"),
+                                                    data.optString("issuingCountryDialCode"),
+                                                    data.optString("walletOwnerCode"),
+                                                    data.optBoolean("hasChild"),
+                                                    data.optString("profileImageName"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("currencyName"),
+                                                    data.optBoolean("loginWithOtpRequired"),
+                                                    data.optString("timeZone")
+                                            );
+
+                                            setData(registrationMobileModel);
+
+                                        }
+
+
+                                    } else {
+
+                                        // MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                                    }
+
+
+
+
                                     if(data.optString("status").equalsIgnoreCase("Active") && data.optString("state").equalsIgnoreCase("Approved")){
                                         MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
                                     }else{
@@ -830,7 +894,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
                                 } else {
 
-                                     MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                                   // MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
 
                             }
