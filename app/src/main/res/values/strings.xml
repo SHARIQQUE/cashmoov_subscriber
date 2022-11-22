@@ -128,6 +128,7 @@
 
     <string name="amount_to_paid_colon">Amount paid:</string>
     <string name="send">Send</string>
+
     <string name="choose_operation">Choose the operation</string>
     <string name="subscriber">Subscriber</string>
     <string name="non_subscriber">Non Subscriber</string>
