@@ -128,6 +128,7 @@
 
     <string name="amount_to_paid_colon">Amount paid:</string>
     <string name="send">Send</string>
+    <string name="please_enter_signature">Please enter signature</string>
 
     <string name="choose_operation">Choose the operation</string>
     <string name="subscriber">Subscriber</string>
@@ -209,6 +210,7 @@
     <string name="details_of_transaction">Details of your transaction</string>
     <string name="transaction_type_colon">Transaction Type:</string>
     <string name="transaction_id_colon">Transaction ID :</string>
+
     <string name="export_receipt">Export receipt</string>
     <string name="change_pin_caps">Change PIN</string>
     <string name="change_pin_message">Please enter old pin and new pin to change your pin.</string>
@@ -286,6 +288,9 @@
     <string name="view_balance">View balance</string>
     <string name="transaction_type">Transaction Type</string>
     <string name="status">Status</string>
+    <string name="transaction_status_colon">Transaction Status :</string>
+    <string name="conversion_rate_colon">Conversion Rate :</string>
+
     <string name="transaction_successful">Transaction Successful</string>
     <string name="from">From</string>
     <string name="date">Date</string>

@@ -30,7 +30,7 @@ import java.util.Locale;
 public class OutFormRecptNew extends AppCompatActivity implements View.OnClickListener {
     public static OutFormRecptNew billpayreceiptC;
     Button btnClose,btnShareReceipt;
-    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvConvRate,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,transtionstatus,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value,transIdnew;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -131,10 +131,11 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
             tvOperatorName = findViewById(R.id.tvOperatorName);
             tvTransId = findViewById(R.id.tvTransId);
             tvFee = findViewById(R.id.tvFee);
+            transtionstatus=findViewById(R.id.transtionstatus);
             tvTransAmount = findViewById(R.id.tvTransAmount);
             tvAmountPaid = findViewById(R.id.tvAmountPaid);
             tvAmountCharged = findViewById(R.id.tvAmountCharged);
-
+            tvConvRate=findViewById(R.id.tvConvRate);
             tax1_layout = findViewById(R.id.tax1_layout);
             tax2_layout = findViewById(R.id.tax2_layout);
             tax1_lable = findViewById(R.id.tax1_lable);
@@ -145,7 +146,7 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             DecimalFormat df = new DecimalFormat("0.00", symbols);
             tvSubscriberMobile.setText(Outform.mobileNo);
-            tvTransType.setText(OutTransfer.operatorNname);
+         //   tvTransType.setText(OutTransfer.operatorNname);
             transId.setText(getString(R.string.vendor_trans_id_colon));
             tvMobile.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("mobileNumber"));
             tvOperatorName.setText("Intech");
@@ -154,33 +155,35 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
             transIdnew.setText(OutFormConfirmation.receiptJson.optString("transactionId"));
             TextView tvTransIdnewV = findViewById(R.id.tvTransIdnewV);
             tvTransIdnewV.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorResultDescription"));
-
-            tvFee.setText(Outform.currencySymbol + " "
+       tvAmountPaid.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +"  "+MyApplication.addDecimal(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("amountToBePaid")));
+            transtionstatus.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionStatus"));
+            tvFee.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " "
                     + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
-
+            tvTransType.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionType"));
 //        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-            tvTransAmount.setText(Outform.currencySymbol + " " + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
-            tvAmountCharged.setText(Outform.currencySymbol + " " + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
+            tvConvRate.setText(MyApplication.addDecimalthreenew((OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("exchangeRateValue"))));
+            tvTransAmount.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
+            tvAmountCharged.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
 
 
             if (OutFormConfirmation.taxConfigList != null) {
                 if (OutFormConfirmation.taxConfigList.length() == 1) {
                     tax1_layout.setVisibility(View.VISIBLE);
                     tax1_lable.setText(MyApplication.getTaxString(OutFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName")) );
-                    tax1_value.setText(Outform.currencySymbol + " " + MyApplication.addDecimal("" + OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
+                    tax1_value.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
                     // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
                 }
                 if (OutFormConfirmation.taxConfigList.length() == 2) {
                     tax1_layout.setVisibility(View.VISIBLE);
                     tax1_lable.setText(MyApplication.getTaxString(OutFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName")) );
-                    tax1_value.setText(Outform.currencySymbol + " " + MyApplication.addDecimal("" + OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
+                    tax1_value.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
 
                     tax2_layout.setVisibility(View.VISIBLE);
                     tax2_lable.setText(MyApplication.getTaxString(OutFormConfirmation.taxConfigList.optJSONObject(1).optString("taxTypeName")) );
-                    tax2_value.setText(Outform.currencySymbol + " " + MyApplication.addDecimal("" + OutFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
+                    tax2_value.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
                     // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
                 }
             }

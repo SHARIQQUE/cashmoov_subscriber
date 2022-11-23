@@ -321,14 +321,16 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                         beneficiaryCustomerCode = data.optString("beneficiaryCustomerCode");
 
 
+
+                        tvSend.setVisibility(View.VISIBLE);
                        // etAmount.setText(data.optString("beneficiaryAmount"));
 
 
-                        otp_layout.setVisibility(View.VISIBLE);
+                     /*   otp_layout.setVisibility(View.VISIBLE);
                         ll_resendOtp.setVisibility(View.VISIBLE);
                         tvSend.setVisibility(View.VISIBLE);
                         tvSend.setText(getString(R.string.veryfyotp));
-                        otp_generate_api();
+                        otp_generate_api();*/
 
                     } else {
                         MyApplication.showToast(receiveremittanceC, jsonObject.optString("resultDescription"));
@@ -388,6 +390,13 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_valid_amount));
                     return;
                 }
+
+                    otp_layout.setVisibility(View.VISIBLE);
+                        ll_resendOtp.setVisibility(View.VISIBLE);
+                        tvSend.setVisibility(View.VISIBLE);
+                        tvSend.setText(getString(R.string.veryfyotp));
+                        otp_generate_api();
+
 
                 if(step1 && !step2){
                     if (etOtp.getText().toString().trim().isEmpty()) {

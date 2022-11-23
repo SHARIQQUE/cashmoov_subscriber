@@ -45,6 +45,8 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
     Bitmap signatureBitmapBillElectricity;
 
     Button btnClear,btnSave;
+    boolean isphotoSigntature=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,7 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
         signaturePad_electricityBill.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
+                isphotoSigntature=true;
 
                 signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
                 System.out.println(signatureBitmapBillElectricity);
@@ -70,12 +73,18 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onSigned() {
+                isphotoSigntature=true;
+
                 btnClear.setEnabled(true);
                 btnSave.setEnabled(true);
             }
 
             @Override
             public void onClear() {
+                photoSend=null;
+
+                isphotoSigntature=false;
+
                 btnClear.setEnabled(true);  // change all page
                 btnClear.setEnabled(false);
             }
@@ -106,11 +115,20 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
             break;
 
             case R.id.btnSave: {
-                signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
+                if(isphotoSigntature){
+
+                    signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
                 addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                 if(photoSend!=null){
                     callupload(photoSend,"100039");
+                }else{
+                    MyApplication.showToast(SelfSignature.this,getString(R.string.please_enter_signature));
+                }
+
+                }
+                else{
+                    MyApplication.showToast(SelfSignature.this,getString(R.string.please_enter_signature));
                 }
 
             }

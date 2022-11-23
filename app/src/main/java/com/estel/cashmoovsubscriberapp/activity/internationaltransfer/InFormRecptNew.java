@@ -28,7 +28,7 @@ import java.util.Locale;
 public class InFormRecptNew extends AppCompatActivity implements View.OnClickListener {
     public static InFormRecptNew billpayreceiptC;
     Button btnClose,btnShareReceipt;
-    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvConvRate,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,transtionstatus,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -130,6 +130,7 @@ public class InFormRecptNew extends AppCompatActivity implements View.OnClickLis
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
         tvAmountCharged = findViewById(R.id.tvAmountCharged);
+        tvConvRate=findViewById(R.id.tvConvRate);
 
         tax1_layout = findViewById(R.id.tax1_layout);
         tax2_layout = findViewById(R.id.tax2_layout);
@@ -141,7 +142,7 @@ public class InFormRecptNew extends AppCompatActivity implements View.OnClickLis
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(Inform.mobileNo);
-        tvTransType.setText(InTransfer.operatorNname);
+       // tvTransType.setText(InTransfer.operatorNname);
         transId.setText(getString(R.string.vendor_trans_id_colon));
         tvMobile.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("mobileNumber"));
         tvOperatorName.setText("Intech");
@@ -151,32 +152,38 @@ public class InFormRecptNew extends AppCompatActivity implements View.OnClickLis
         TextView tvTransIdnewV=findViewById(R.id.tvTransIdnewV);
         tvTransIdnewV.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("vendorResultDescription"));
         transIdnew.setText(InFormConfirmation.receiptJson.optString("transactionId"));
-        tvFee.setText(Inform.currencySymbol+" "
+        tvFee.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +" "
                 + MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("fee")));
 
-//        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
+        tvAmountPaid.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +"  "+MyApplication.addDecimal(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("amountToBePaid")));
+        transtionstatus.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionStatus"));
+        tvTransType.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionType"));
+        tvConvRate.setText(MyApplication.addDecimalthreenew((OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("exchangeRateValue"))));
+
+
+        //        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
-        tvAmountCharged.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
+        tvTransAmount.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +" "+MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
+        tvAmountCharged.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +" "+MyApplication.addDecimal(""+InFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
 
 
         if(InFormConfirmation.taxConfigList!=null){
             if(InFormConfirmation.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(InFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+InFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +" "+MyApplication.addDecimal(""+InFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(InFormConfirmation.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
                 tax1_lable.setText(MyApplication.getTaxString(InFormConfirmation.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax1_value.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+InFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_value.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +" "+MyApplication.addDecimal(""+InFormConfirmation.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
                 tax2_lable.setText(MyApplication.getTaxString(InFormConfirmation.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
-                tax2_value.setText(Inform.currencySymbol+" "+MyApplication.addDecimal(""+InFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_value.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +" "+MyApplication.addDecimal(""+InFormConfirmation.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }

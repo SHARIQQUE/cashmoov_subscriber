@@ -124,6 +124,9 @@
 
     <string name="amount_to_paid_colon">Montant facturé :</string>
     <string name="send">Envoyer</string>
+
+    <string name="please_enter_signature">Veuillez saisir votre signature</string>
+
     <string name="choose_operation">Choisir l\'operation</string>
     <string name="subscriber">Abonne</string>
     <string name="receiveinternational">Reception internationale</string>
@@ -285,6 +288,9 @@
     <string name="view_balance">Afficher le solde</string>
     <string name="transaction_type">Type de transaction</string>
     <string name="status">Statut</string>
+    <string name="transaction_status_colon">Statut de la transtion :</string>
+    <string name="conversion_rate_colon">Taux de conversion :</string>
+
     <string name="transaction_successful">Transaction réussie</string>
     <string name="from">De</string>
     <string name="date">Date</string>

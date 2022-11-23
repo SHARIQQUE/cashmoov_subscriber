@@ -542,7 +542,7 @@ callApiWalletCountryCurrencyJSOn();
             jsonObjectNew.put("mobileNumber",mobileNo);
             jsonObjectNew.put("amount",etAmount.getText().toString());
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
-            jsonObjectNew.put("providerServiceItemCode","100002");
+           // jsonObjectNew.put("providerServiceItemCode","100002");
             jsonObjectNew.put("firstName",etFname.getText().toString());
             jsonObjectNew.put("productCode",OutTransfer.operatorCode);
            // jsonObjectNew.put("lastName",etLname.getText().toString());
