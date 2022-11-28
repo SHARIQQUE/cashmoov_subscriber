@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 24-11-2022</string>
+    <string name="version">Version : 25-11-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -19,6 +19,7 @@
     <string name="pay">Payer</string>
     <string name="Taxvat">T.V.A</string>
     <string name="Taxfinancial">Taxe financière</string>
+    <string name="Tax"> Taxe : 0,00</string>
 
     <string name="balance">Solde</string>
     <string name="our_operations">Nos operations</string>
@@ -288,7 +289,7 @@
     <string name="view_balance">Afficher le solde</string>
     <string name="transaction_type">Type de transaction</string>
     <string name="status">Statut</string>
-    <string name="transaction_status_colon">Statut de la transtion :</string>
+        <string name="transaction_status_colon">Statut de la transtion :</string>
     <string name="conversion_rate_colon">Taux de conversion :</string>
 
     <string name="transaction_successful">Transaction réussie</string>
@@ -318,7 +319,7 @@
     <string name="val_select_curr">Veuillez sélectionner la devise</string>
     <string name="kyc_detail_response_msg">details KYC soumis avec succes</string>
     <string name="trans_amount_colon">Montant de la transaction :</string>
-    <string name="amount_paid_colon">Montant a payer :</string>
+    <string name="amount_paid_colon"> Montant facturé :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
     <string name="enter_old_pin">Entrez votre ancien code PIN</string>
     <string name="enter_new_pin">Entrez votre nouveau code PIN</string>
@@ -336,6 +337,8 @@
     <string name="operator_colon">Opérateur :</string>
     <string name="valid_select_operator">Sélectionnez l\'opérateur*</string>
     <string name="val_select_operator">Veuillez sélectionner l\'opérateur</string>
+    <string name="benificiaryname">Nom du bénéficiaire</string>
+
     <string name="val_recipient_no_len">Le numéro du destinataire doit comporter au moins 9 chiffres</string>
     <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>
     <string name="val_confirmation_code">Veuillez saisir le code de confirmation</string>
@@ -439,9 +442,9 @@
     <string name="pin_generate_success">Votre Pin a été généré avec succès !</string>
     <string name="mobile_no_exist_reg">Le numéro de téléphone portable existe déjà dans le système, veuillez essayer avec un autre numéro !</string>
     <string name="veryfyotp">Vérifier OTP</string>
-    <string name="sending_amount">Sending Amount :</string>
-    <string name="receiving_amount">Receiving Amount</string>
-    <string name="vendor_result_description">Vendor Result Description :</string>
+    <string name="sending_amount">Montant d\'envoi :</string>
+    <string name="receiving_amount">Montant reçu</string>
+    <string name="vendor_result_description">Fournisseur Résultat Description :</string>
     <string name="sending_amount_n">Sending Amount</string>
 
     <string-array name="Spinner_provider">

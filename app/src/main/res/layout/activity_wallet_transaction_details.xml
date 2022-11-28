@@ -103,7 +103,7 @@
                     android:id="@+id/tax_value"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="N/A"
+                    android:text="@string/Tax"
                     android:textColor="@color/textcolor"
                     android:textSize="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_5sdp"

@@ -39,7 +39,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
     public static TextView amountopaidText,tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
-    LinearLayout tax_label_layout,vat_label_layout,pinLinear;
+    LinearLayout amounttobepaidLinear,tax_label_layout,vat_label_layout,pinLinear;
     CardView cardBearFee;
     ImageView icPin;
 
@@ -95,6 +95,8 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
         vat_label=findViewById(R.id.vat_label);
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
+        amounttobepaidLinear=findViewById(R.id.amounttobepaidLinear);
+        amounttobepaidLinear.setVisibility(View.VISIBLE);
 
         tvProvider.setText(International.serviceProvider);
         tvMobile.setText(InternationalRecipientDetails.mobileNo);

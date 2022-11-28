@@ -32,7 +32,7 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
     Button btnClose,btnShareReceipt;
     TextView tvConvRate,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,transtionstatus,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value,transIdnew;
-    LinearLayout tax1_layout,tax2_layout;
+    LinearLayout amountpaidLinear,tax1_layout,tax2_layout;
     View rootView;
 
     @Override
@@ -142,6 +142,8 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
             tax1_value = findViewById(R.id.tax1_value);
             tax2_lable = findViewById(R.id.tax2_lable);
             tax2_value = findViewById(R.id.tax2_value);
+            amountpaidLinear=findViewById(R.id.amountpaidLinear);
+            amountpaidLinear.setVisibility(View.VISIBLE);
 
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             DecimalFormat df = new DecimalFormat("0.00", symbols);
