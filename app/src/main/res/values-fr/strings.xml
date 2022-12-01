@@ -337,7 +337,7 @@
     <string name="operator_colon">Opérateur :</string>
     <string name="valid_select_operator">Sélectionnez l\'opérateur*</string>
     <string name="val_select_operator">Veuillez sélectionner l\'opérateur</string>
-    <string name="benificiaryname">Nom du bénéficiaire</string>
+    <string name="benificiaryname">Nom du bénéficiaire :</string>
 
     <string name="val_recipient_no_len">Le numéro du destinataire doit comporter au moins 9 chiffres</string>
     <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>

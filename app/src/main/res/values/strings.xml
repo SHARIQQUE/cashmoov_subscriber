@@ -338,7 +338,7 @@
   /////Done part
 
     <string name="val_select_operator">Please select operator</string>
-    <string name="benificiaryname">Beneficiary name</string>
+    <string name="benificiaryname">Beneficiary name :</string>
 
     <string name="val_recipient_no_len">Recipient number must be at least 9 digits long</string>
     <string name="val_beneficiairy_name">Please enter beneficiary name</string>
