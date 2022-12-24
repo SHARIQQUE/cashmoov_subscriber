@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.hardware.fingerprint.FingerprintManager;
 import android.location.Location;
 import android.media.MediaMetadataEditor;
 import android.net.ConnectivityManager;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
@@ -759,9 +761,12 @@ public class MyApplication extends Application {
     }
 
 
+    public static int bioMetricCounter=0;
     public static BiometricPrompt biometricPrompt=null;
-
+    public static Activity activityNew;
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
+        activityNew=activity;
+        FingerprintManager fingerprintManager = (FingerprintManager) activity.getSystemService(Context.FINGERPRINT_SERVICE);
 
         BiometricManager biometricManager = androidx.biometric.BiometricManager.from(activity);
         switch (biometricManager.canAuthenticate()) {
@@ -775,49 +780,47 @@ public class MyApplication extends Application {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+                //bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
                 //tvFinger.setVisibility(View.GONE);
                 break;
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
+                // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
               /*  msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);*/
                 break;
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
+                //  bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
 
                 break;
         }
-
-        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setConfirmationRequired(false).setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
-
-
         // creating a variable for our Executor
         Executor executor = ContextCompat.getMainExecutor(activity);
         // this will give us result of AUTHENTICATION
-         biometricPrompt = new BiometricPrompt((FragmentActivity) activity, executor, new BiometricPrompt.AuthenticationCallback() {
+        biometricPrompt = new BiometricPrompt((FragmentActivity) activity, executor, new BiometricPrompt.AuthenticationCallback() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-                System.out.println("Biomatric  TEST =>"+errString);
-                if(attmptCount==maxattmptCount) {
-                    attmptCount=0;
-                    bioMetric_responce_handler.failure("Please enter pin to complete the transaction");
-                    biometricPrompt.cancelAuthentication();
-                }else{
-                    attmptCount=attmptCount+1;
-                    showToast(activity,errString.toString());
-                    biometricPrompt.cancelAuthentication();
 
+
+                if(!fingerprintManager.hasEnrolledFingerprints()) {
+                    bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+
+                    // User hasn't enrolled any fingerprints to authenticate with
+                } else {
+                    // Everything is ready for fingerprint authentication
                 }
 
+                //   checkCounter(bioMetric_responce_handler,errString+"");
 
+
+
+                //   checkCounter(bioMetric_responce_handler,errString+"");
 
             }
 
@@ -838,21 +841,32 @@ public class MyApplication extends Application {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-                System.out.println("Biomatric  TEST => failed");
-                if(attmptCount==maxattmptCount) {
-                    bioMetric_responce_handler.failure("Please enter pin to complete the transaction");
-                    biometricPrompt.cancelAuthentication();
-                }else{
-                    biometricPrompt.cancelAuthentication();
-                    //biometricPrompt.authenticate(promptInfo);
-                }
 
+                checkCounter(bioMetric_responce_handler,activity.getString(R.string.please_enter_pin_bio));
+
+                biometricPrompt.cancelAuthentication();
             }
         });
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
+                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).setConfirmationRequired(false).build();
+
         biometricPrompt.authenticate(promptInfo);
 
+
+    }
+
+    public static void checkCounter(BioMetric_Responce_Handler bioMetric_responce_handler,String message){
+        if(bioMetricCounter==3){
+            bioMetricCounter=0;
+
+            bioMetric_responce_handler.failure(message);
+        }else{
+            bioMetricCounter=bioMetricCounter+1;
+            showToast(activityNew,appInstance.getString(R.string.tryagain));
+
+        }
 
     }
 

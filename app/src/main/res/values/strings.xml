@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 25-11-2022</string>
+    <string name="version">Version : 05-12-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -333,6 +333,8 @@
     <string name="acc_number_colon">Account number :</string>
     <string name="operator_colon">Operator :</string>
     <string name="valid_select_operator">Select Operator*</string>
+    <string name="tryagain">Please try again</string>
+    <string name="please_enter_pin_bio">Please enter pin to complete the transaction</string>
 
 
   /////Done part

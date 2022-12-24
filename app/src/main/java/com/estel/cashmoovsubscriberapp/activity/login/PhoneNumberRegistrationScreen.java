@@ -52,6 +52,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     SpinnerDialog spinnerDialogCountry;
     EditText etPhoneNo,etPass;
     LinearLayout linPass;
+    String otprequeird;
     ImageView icPin;
     private ArrayList<String> countryList = new ArrayList<>();
     private ArrayList<CountryInfoModel.Country> countryModelList=new ArrayList<>();
@@ -94,7 +95,6 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvContinue = findViewById(R.id.tvContinue);
-
        /* etPhoneNo.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.mobileLength)});*/
         etPass.addTextChangedListener(new TextWatcher() {
@@ -363,6 +363,8 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+
+
                             Intent i = new Intent(phnoregistrationccreenC, VerifyFirstLoginOTP.class);
                             startActivity(i);
                             finish();
@@ -406,10 +408,26 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                     MyApplication.hideLoader();
                     System.out.println("PhoneNoRegister response======="+jsonObject.toString());
 
+
+
+
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
 
+
+
+                              otprequeird=jsonObject.optJSONObject("walletOwnerUser").optString("isSelfSignUpPinSet");
+
+                            System.out.println("get val"+otprequeird);
+                            linPass.setVisibility(View.GONE);
+
+                            if(otprequeird.equalsIgnoreCase("false"))
+                            {
+
+                                callPostGetLoginOTP();
+
+                            }
                             if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")&&
                                     !jsonObject.optJSONObject("walletOwnerUser").optBoolean("isPinAlreadySet")) {
                                 // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
@@ -422,10 +440,18 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
                                 MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
-                                Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
-                                startActivity(i);
+                              /*  Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
+                                startActivity(i);*/
 
-                               // callPostGetLoginOTP();
+
+                              if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("loginWithOtpRequired")) {
+                                  Intent in = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
+                                  startActivity(in);
+
+                              }
+
+
+                               //  callPostGetLoginOTP();
                             }else  if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
                                 // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                                 MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
@@ -437,17 +463,27 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
                                 MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
+
                                // MyApplication.showToast(PhoneNumberRegistrationScreen.this,"Reset PIN Called");
                                 Intent i = new Intent(phnoregistrationccreenC, VerifyRESETPINScreen.class);
                                 startActivity(i);
 
+
+
                             }else {
 
+                            if(otprequeird.equalsIgnoreCase("false")){
+                                linPass.setVisibility(View.GONE);
+
+                            }else{
                                 linPass.setVisibility(View.VISIBLE);
                                 etPass.setVisibility(View.VISIBLE);
                                 tvPin.setVisibility(View.GONE);
                                 tvOr.setVisibility(View.GONE);
                                 tvFinger.setVisibility(View.GONE);
+                            }
+
+
                             }
                             MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
                         } else {
@@ -574,7 +610,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
                         callAPIWalletOwnerDetails();
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
-                      // callPostGetLoginOTP();
+                     //  callPostGetLoginOTP();
                         //Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                     }else{
                         MyApplication.saveBool("FirstLogin",true,phnoregistrationccreenC);
@@ -629,15 +665,18 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MyApplication.showloader(phnoregistrationccreenC,"Please Wait...");
+     //   MyApplication.showloader(phnoregistrationccreenC,"Please Wait...");
         API.POST_LOGIN_OTP("ewallet/public/login-otp",jsonObject1,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {
-                        MyApplication.hideLoader();
+                     //   MyApplication.hideLoader();
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                             Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
                             startActivity(i);
+
+                            MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+                            //MyApplication.saveString("username",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
 
                             MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
                             //  MyApplication.showToast(jsonObject.optString("resultDescription"));
