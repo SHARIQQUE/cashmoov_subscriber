@@ -110,8 +110,10 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         tvName.setText(ToSubscriber.ownerName+" "+ToSubscriber.lastName);
       //  tvConfCode.setText(ToSubscriber.mobileNo);
         tvCurrency.setText(ToSubscriber.currency);
-        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
-       // String get_number_value=ToSubscriber.etAmount.getText().toString().replace(",","");
+      //  tvrate.setText(MyApplication.addDecimalfrench("00.000"));
+        tvrate.setText(MyApplication.addDecimalfive(String.valueOf(ToSubscriber.rate)));
+
+        // String get_number_value=ToSubscriber.etAmount.getText().toString().replace(",","");
       // tvTransAmount.setText(Separator.getInstance().doSeparate(get_number_value, Locale.FRENCH));
         tvTransAmount.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.etAmount.getText().toString().replace(",","")));
         tvAmountPaid.setText(ToSubscriber.currencySymbol+" "+MyApplication.addDecimal(ToSubscriber.currencyValue));

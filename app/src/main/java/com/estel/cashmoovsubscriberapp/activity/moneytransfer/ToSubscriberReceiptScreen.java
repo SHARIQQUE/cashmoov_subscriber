@@ -136,7 +136,7 @@ public class ToSubscriberReceiptScreen extends AppCompatActivity implements View
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
-        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
+        tvrate.setText(MyApplication.addDecimalfive(String.valueOf(ToSubscriber.rate)));
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -197,7 +198,8 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
        // etAmount.setText("9,329.11");
       //  etAmountN.setText("670");
 
-
+        etAmountN.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         headText = findViewById(R.id.headText);
         headText.setText(InTransfer.operatorNname);
 

@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.partner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -80,6 +81,9 @@ public class PartnerBillPayDetails extends AppCompatActivity implements View.OnC
         tvOperatorName.setText(Partner.operatorName);
         tvAmtCurr.setText(Partner.currencySymbol);
 
+
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         if(PartnerBillPayPlanList.productTypeCode.equalsIgnoreCase("100001")){
             etAmount.setEnabled(true);
         } else{

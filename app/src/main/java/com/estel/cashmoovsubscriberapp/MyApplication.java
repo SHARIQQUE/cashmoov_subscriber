@@ -138,6 +138,8 @@ public class MyApplication extends Application {
     public static boolean IsMainOpen=false;
     public static boolean IsPromoCalled=false;
     public static int mobileLength=9;
+    public static int amountLength=13;
+    public static int amountLengthcashpickup=10;
 
 
     public static MyApplication getInstance() {
@@ -440,6 +442,33 @@ public class MyApplication extends Application {
         }
         return false;
     }
+
+
+
+    public static String addDecimalfive(String number) {
+        String data="00.000";
+       /* DecimalFormat df = new DecimalFormat("0.00", symbols);
+        System.out.println(("get datatype" + (Object) number).getClass().getName());
+        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);*/
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            symbols.setGroupingSeparator('.');
+            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.00000#", symbols);
+            data = goodNumberFormat1.format(Double.parseDouble(number));
+
+        }else{
+            DecimalFormat df = new DecimalFormat("00.00000", symbols);
+            System.out.println(("get datatype" + (Object) number).getClass().getName());
+            data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
+        }
+        return data;
+
+
+       /* DecimalFormat df = new DecimalFormat("0.000",symbols);
+        return df.format(Double.parseDouble(number));*/
+    }
+
     public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     public static String addDecimal(String number) {
         String data="0.00";

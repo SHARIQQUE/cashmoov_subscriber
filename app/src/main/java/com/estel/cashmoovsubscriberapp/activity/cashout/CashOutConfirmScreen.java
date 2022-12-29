@@ -93,7 +93,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         vat_label=findViewById(R.id.vat_label);
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
-        tvrate.setText(MyApplication.addDecimalfrench("00.000"));
+        tvrate.setText(MyApplication.addDecimalfive(String.valueOf(CashOut.rate)));
 
         tvProvider.setText(CashOut.serviceProvider);
         tvMobile.setText(CashOut.mobileNo);

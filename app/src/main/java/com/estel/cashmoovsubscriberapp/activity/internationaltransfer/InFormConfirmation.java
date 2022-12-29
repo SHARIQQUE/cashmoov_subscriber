@@ -70,7 +70,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
 
     private void getIds() {
         tvrate=findViewById(R.id.tvrate);
-        tvrate.setText(Inform.rate);
+        tvrate.setText(MyApplication.addDecimal(Inform.rate));
         pinLinear=findViewById(R.id.pinLinear);
         bearLay=findViewById(R.id.bearLay);
         bearLay.setVisibility(View.GONE);

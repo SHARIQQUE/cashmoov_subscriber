@@ -122,6 +122,10 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
                 new InputFilter.LengthFilter(MyApplication.mobileLength)});
 */
 
+
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
+
         etRecipientNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

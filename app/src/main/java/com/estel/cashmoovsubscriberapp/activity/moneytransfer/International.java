@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -106,6 +107,12 @@ public class International extends AppCompatActivity implements View.OnClickList
         tvRate = findViewById(R.id.tvRate);
         tvNext = findViewById(R.id.tvNext);
         etAmountNew=findViewById(R.id.etAmountNew);
+
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
+
+        etAmountNew.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         spServiceProvider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -245,7 +245,9 @@
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_bill_pay_receipt.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_billpay.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_billpay_details.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_cashout.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_confirm_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_in_form.xml" value="0.1962962962962963" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_international.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_international_option.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_international_recipient_details.xml" value="0.19947916666666668" />
@@ -254,11 +256,14 @@
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_money_transfer.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_out_form.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_pay.xml" value="0.1962962962962963" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_receive_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_register_stepone.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_self_airtime.xml" value="0.1962962962962963" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_set_pin.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_to_non_subscriber.xml" value="0.1962962962962963" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_to_subscriber.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.20416666666666666" />

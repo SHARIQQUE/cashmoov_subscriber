@@ -158,7 +158,7 @@ public class InFormRecptNew extends AppCompatActivity implements View.OnClickLis
         tvAmountPaid.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") +"  "+MyApplication.addDecimal(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("amountToBePaid")));
         transtionstatus.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionStatus"));
         tvTransType.setText(InFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("transactionType"));
-        tvConvRate.setText(MyApplication.addDecimalthreenew((OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("exchangeRateValue"))));
+        tvConvRate.setText(MyApplication.addDecimal(Inform.rate));
 
 
         //        tvTransAmount.setText(BillPay.currencySymbol+" "+ MyApplication.addDecimal(BillPayConfirmScreen.tvTransAmount.getText().toString()));

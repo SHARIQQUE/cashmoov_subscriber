@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -189,6 +190,10 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         xofAmountLinear=findViewById(R.id.xofAmountLinear);
         spinner_destinaioncountry=findViewById(R.id.spinner_destinaioncountry);
 
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
+        etAmountN.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
          /*etSubscriberNo.setText("775389850");
           etFname.setText("Sandeep");
         etLname.setText("Singh");*/

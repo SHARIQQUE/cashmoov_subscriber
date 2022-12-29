@@ -125,7 +125,8 @@ public class Pay extends AppCompatActivity implements View.OnClickListener {
         Pattern p = Pattern.compile(regex);
         // agent_mob_no.setText("991085918540");//dev
         //agent_mob_no.setText("9015050968");//qa
-
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         etRecipientNo.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.mobileLength)});
         etRecipientNo.addTextChangedListener(new TextWatcher() {

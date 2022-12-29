@@ -128,6 +128,8 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         tvSend = findViewById(R.id.tvSend);
         etAmountNew = findViewById(R.id.etAmountNew);
 
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         if (getIntent().getExtras() != null) {
             String msisdn  = (getIntent().getStringExtra("TOSUBMSISDN"));
             String amount  = (getIntent().getStringExtra("TOSUBAMOUNT"));

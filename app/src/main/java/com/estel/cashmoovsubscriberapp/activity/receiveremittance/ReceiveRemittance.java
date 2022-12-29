@@ -97,6 +97,8 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         otp_layout = findViewById(R.id.otp_layout);
         ll_resendOtp= findViewById(R.id.ll_resendOtp);
 
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLengthcashpickup)});
         ll_resendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

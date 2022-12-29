@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.airtimepurchase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -92,7 +93,8 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
         cardFifteenThousand = findViewById(R.id.cardFifteenThousand);
         cardTwentyThousand = findViewById(R.id.cardTwentyThousand);
         tvSend = findViewById(R.id.tvSend);
-
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override

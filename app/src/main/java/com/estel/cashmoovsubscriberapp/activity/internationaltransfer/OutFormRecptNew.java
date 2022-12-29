@@ -166,7 +166,7 @@ public class OutFormRecptNew extends AppCompatActivity implements View.OnClickLi
 //        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-            tvConvRate.setText(MyApplication.addDecimalthreenew((OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("exchangeRateValue"))));
+            tvConvRate.setText(MyApplication.addDecimal(Outform.rate));
             tvTransAmount.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("transactionAmount")));
             tvAmountCharged.setText(OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optString("intechCurrencyName") + " " + MyApplication.addDecimal("" + OutFormConfirmation.receiptJson.optJSONObject("intechResponse").optDouble("totalAmount")));
 

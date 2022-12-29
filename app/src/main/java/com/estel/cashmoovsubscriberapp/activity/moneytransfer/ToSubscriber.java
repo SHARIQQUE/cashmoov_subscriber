@@ -151,7 +151,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     public boolean isSet=false;
     public static  JSONObject dataToSend=new JSONObject();
     public static String currencyValue,fee,serviceProvider,mobileNo,ownerName,lastName,confCode,currency,currencySymbol;
-    public static int receiverFee,receiverTax;
+    public static int receiverFee,receiverTax,rate;
 
 
     private void getIds() {
@@ -163,8 +163,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
 
-        /*etSubscriberNo.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLength)});*/
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         tvSend = findViewById(R.id.tvSend);
         etFname.setEnabled(false);
         etLname.setEnabled(false);
@@ -694,6 +694,8 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
                                     fee = String.valueOf(jsonObjectAmountDetails.optDouble("fee"));
                                     receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                    rate = (jsonObjectAmountDetails.optInt("value"));
+
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
 //                                        tvSend.setVisibility(View.GONE);
