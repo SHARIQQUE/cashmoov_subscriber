@@ -253,7 +253,7 @@
     <string name="generate_password">Générer un nouveau mot de passe</string>
     <string name="set_pin_message">Veuillez créer un code PIN de 4 chiffres pour securiser votre compte.</string>
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
-    <string name="val_re_pin">Veuillez saisir une nouvelle épingle</string>
+    <string name="val_re_pin">Veuillez saisir une nouvelle code PIN</string>
     <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>
     <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin doivent être identiques]]></string>
     <string name="val_select_gender">Veuillez sélectionner le sexe</string>
@@ -328,8 +328,8 @@
     <string name="val_valid_old_pin">L\'ancien code PIN doit comporter au moins 4 chiffres</string>
     <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
     <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
-    <string name="val_new_pin_re_pin"><![CDATA[La nouvelle épingle et la nouvelle épingle doivent être identiques]]></string>
-    <string name="pin_changed_msg">Votre épingle a été modifiée avec succès !</string>
+    <string name="val_new_pin_re_pin"><![CDATA[La nouvelle code PIN et la nouvelle code PIN doivent être identiques]]></string>
+    <string name="pin_changed_msg">Votre code PIN a été modifiée avec succès !</string>
     <string name="logout_conf_message">Etes vous sur de vouloir vous deconnecter?</string>
     <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
     <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
@@ -430,7 +430,7 @@
     <string name="rate_app_message">Si vous appréciez notre application, veuillez prendre un moment pour l\'évaluer sur Playstore. Merci pour votre aide!</string>
     <string name="cash_pickup">Retrait d\'especes</string>
     <string name="service_not_available">Ce service n\'est pas disponible</string>
-    <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
+    <string name="reset_pin"><u>Réinitialiser l\'code PIN ?</u></string>
 
     <string name="min_amount">"Le montant minimum doit être  "</string>
     <string name="max_amount">"Le montant maximum doit être  "</string>
