@@ -321,6 +321,8 @@
     <string name="trans_amount_colon">Montant de la transaction :</string>
     <string name="amount_paid_colon"> Montant facturé :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
+    <string name="amount_charged_colon_only">Montant facturé :</string>
+
     <string name="enter_old_pin">Entrez votre ancien code PIN</string>
     <string name="enter_new_pin">Entrez votre nouveau code PIN</string>
     <string name="re_enter_new_pin">Entrez à nouveau votre nouveau code PIN</string>

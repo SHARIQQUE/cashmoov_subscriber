@@ -318,6 +318,8 @@
     <string name="trans_amount_colon">Transaction Amount :</string>
     <string name="amount_paid_colon">Amount paid :</string>
     <string name="amount_charged_colon">Amount to be Charged :</string>
+    <string name="amount_charged_colon_only">Amount Charged :</string>
+
     <string name="enter_old_pin">Enter your old pin</string>
     <string name="enter_new_pin">Enter your new pin</string>
     <string name="re_enter_new_pin">Re-Enter your new pin</string>

@@ -138,7 +138,7 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_value = findViewById(R.id.tax2_value);
         tvrate=findViewById(R.id.tvrate);
 
-        tvrate.setText(MyApplication.addDecimalfive(String.valueOf(CashOut.rate)));
+        tvrate.setText(MyApplication.addDecimal(String.valueOf(CashOut.rate)));
 
         linConfCode.setVisibility(View.GONE);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
