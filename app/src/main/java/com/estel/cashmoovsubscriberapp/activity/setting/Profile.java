@@ -59,6 +59,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        number.setText("N/A");
         MyApplication.hideKeyboard(profileC);
         RequestOptions options = new RequestOptions()
                 .centerCrop()

@@ -566,7 +566,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
+                                        tvRate.setText(MyApplication.addDecimalfive(rate));
                                         tvFee.setText(MyApplication.addDecimal(fee));
                                         // etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);

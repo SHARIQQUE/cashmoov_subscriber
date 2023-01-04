@@ -26,6 +26,8 @@
     <string name="money_transfer">Transfert d\'argent</string>
     <string name="airtime_purchase">Achat de credit</string>
     <string name="payment">Paiements</string>
+    <string name="paymentnew">Paiement</string>
+
     <string name="merchant_payment">Payer</string>
     <string name="cash_withdrawal">Retrait d\'argent</string>
     <string name="receive_remittance">Recevoir un transfert</string>
@@ -119,11 +121,11 @@
     <string name="acc_number">Numéro de compte:</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais:</string>
-    <string name="amount_to_paid">Montant facturé</string>
-    <string name="amount_to_be_paid">Montant facturé :</string>
-    <string name="amount_to_paid_international">Montant a facturé</string>
+    <string name="amount_to_paid">Montant payé</string>
+    <string name="amount_to_be_paid">Montant payé :</string>
+    <string name="amount_to_paid_international">Montant à payer</string>
 
-    <string name="amount_to_paid_colon">Montant facturé :</string>
+    <string name="amount_to_paid_colon">Montant payé :</string>
     <string name="send">Envoyer</string>
 
     <string name="please_enter_signature">Veuillez saisir votre signature</string>
@@ -319,7 +321,7 @@
     <string name="val_select_curr">Veuillez sélectionner la devise</string>
     <string name="kyc_detail_response_msg">details KYC soumis avec succes</string>
     <string name="trans_amount_colon">Montant de la transaction :</string>
-    <string name="amount_paid_colon"> Montant facturé :</string>
+    <string name="amount_paid_colon"> Montant payé :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
     <string name="amount_charged_colon_only">Montant facturé :</string>
 

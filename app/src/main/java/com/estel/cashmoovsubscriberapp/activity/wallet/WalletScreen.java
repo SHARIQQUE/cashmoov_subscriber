@@ -207,6 +207,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.tvRefresh:
+                MyApplication.showloader(WalletScreen.this,"Please wait");
                 page = 0;
                 limit = 20;
                 loadingPB.setVisibility(View.VISIBLE);
@@ -296,7 +297,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                           // MyApplication.hideLoader();
+                            MyApplication.hideLoader();
                             if (jsonObject != null) {
 
                                 miniStatementTransList.clear();

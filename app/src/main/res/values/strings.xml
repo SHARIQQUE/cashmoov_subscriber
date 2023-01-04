@@ -28,6 +28,8 @@
     <string name="money_transfer">Money Transfer</string>
     <string name="airtime_purchase">Airtime Purchase</string>
     <string name="payment">Payments</string>
+    <string name="paymentnew">Payment</string>
+
     <string name="merchant_payment">Pay</string>
     <string name="cash_withdrawal">Cash Withdrawal</string>
     <string name="receive_remittance">Receive Remittance</string>
