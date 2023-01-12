@@ -28,7 +28,7 @@ import java.util.Locale;
 public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BeneficiaryAirtimeReceipt benefiairtimereceiptC;
     Button btnClose,btnShareReceipt;
-    TextView tax_label,accNo,transId,tvTransIdnew,transIdnew,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tax_label,accNo,transId,tvTransIdnew,tvTransIdnewV,transIdnew,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -141,17 +141,24 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         tax2_value = findViewById(R.id.tax2_value);
         tax_label=findViewById(R.id.tax_label);
         tvTransIdnew=findViewById(R.id.tvTransIdnew);
+        tvTransIdnewV=findViewById(R.id.tvTransIdnewV);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(BeneficiaryAirtime.mobile);
-        tvTransType.setText(getString(R.string.airtime_purchase));
+      //  tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
         transId.setText(getString(R.string.vendor_trans_id_colon));
         transIdnew.setText(getString(R.string.transaction_id_colon));
+
+        tvTransType.setText(BeneficiaryAirtime.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryName"));
+
         tvTransIdnew.setText(BeneficiaryAirtimeConfirm.receiptJson.optString("transactionId"));
         tvMobile.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
         tvOperatorName.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
         tvTransId.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
+
+        tvTransIdnewV.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("vendorResultDescription"));
+
         tvFee.setText(BeneficiaryAirtime.currencySymbol+" "
                 + MyApplication.addDecimal(""+BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optDouble("fee")));
 

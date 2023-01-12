@@ -16,6 +16,7 @@ import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeConfirm;
+import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayConfirmScreen;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,7 +28,7 @@ import java.util.Locale;
 public class BillPayReceipt extends AppCompatActivity implements View.OnClickListener {
     public static BillPayReceipt billpayreceiptC;
     Button btnClose,btnShareReceipt;
-    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransIdnew,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -136,6 +137,8 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
+        tvTransIdnew=findViewById(R.id.tvTransIdnew);
+
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
@@ -145,6 +148,8 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
         tvMobile.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
         tvOperatorName.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
+        tvTransIdnew.setText(BillPayConfirmScreen.receiptJson.optString("transactionId"));
+
         tvTransId.setText(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(BillPay.currencySymbol+" "
                 + df.format(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("fee")));
@@ -153,8 +158,8 @@ public class BillPayReceipt extends AppCompatActivity implements View.OnClickLis
 //        tvAmountPaid.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(BillPayConfirmScreen.receiptJson.optJSONObject("remittance").optString("amount")));
 
-        tvTransAmount.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("amount")));
-        tvAmountCharged.setText(BillPay.currencySymbol+" "+df.format(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("totalAmount")));
+        tvTransAmount.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("amount"))));
+        tvAmountCharged.setText(BillPay.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(BillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("totalAmount"))));
 
 
         if(BillPayConfirmScreen.taxConfigList!=null){

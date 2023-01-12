@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.wallet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -403,12 +404,24 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    private long mLastClickTime = 0;
+
+
     @Override
     public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName,
                                              String walletOwnerMsisdn, String currencySymbol,
                                              double fromAmount, String transactionId, String creationDate,
                                              String status,double comReceiveAmount,String tax,
+
+
+
                                              double srcpostbalance,double fee) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         String name="";
         if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
             name = walletOwnerMsisdn;

@@ -30,7 +30,7 @@ import java.util.Locale;
 public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnClickListener {
     public static PartnerBillPayReceipt billpayreceiptC;
     Button btnClose,btnShareReceipt;
-    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransIdnew,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -128,6 +128,7 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
         tvMobile = findViewById(R.id.tvMobile);
         tvOperatorName = findViewById(R.id.tvOperatorName);
         tvTransId = findViewById(R.id.tvTransId);
+        tvTransIdnew=findViewById(R.id.tvTransIdnew);
         tvFee = findViewById(R.id.tvFee);
         tvTransAmount = findViewById(R.id.tvTransAmount);
         tvAmountPaid = findViewById(R.id.tvAmountPaid);
@@ -149,6 +150,8 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
         tvMobile.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
         tvOperatorName.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("operator"));
+        tvTransIdnew.setText(BillPayConfirmScreen.receiptJson.optString("transactionId"));
+
         tvTransId.setText(PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(Partner.currencySymbol+" "
                 + MyApplication.addDecimal(""+PartnerBillPayConfirmScreen.receiptJson.optJSONObject("recharge").optDouble("fee")));

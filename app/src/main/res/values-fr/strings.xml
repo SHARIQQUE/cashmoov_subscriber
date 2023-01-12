@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 26-12-2022</string>
+    <string name="version">Version : 10-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -212,7 +212,7 @@
     <string name="details_of_transaction">Détails de votre transaction</string>
     <string name="transaction_type_colon">Type de transaction :</string>
     <string name="transaction_id_colon">Identifiant de transaction :</string>
-    <string name="export_receipt">Exportez le reçu</string>
+    <string name="export_receipt">Exporter</string>
     <string name="change_pin_caps">Changer de PIN</string>
     <string name="change_pin_message">Veuillez saisir l\'ancien code PIN et le nouveau code PIN pour changer votre code PIN.</string>
     <string name="change_lang_conf_msg">Voulez-vous vraiment changer de langue ?</string>

@@ -703,8 +703,8 @@ public class MyApplication extends Application {
 
             //change to fr
         }else{
-            changeLocale(context,"en");
-            MyApplication.saveString("Locale", "en", context);
+            changeLocale(context,"fr");
+            MyApplication.saveString("Locale", "fr", context);
         }
     }
 

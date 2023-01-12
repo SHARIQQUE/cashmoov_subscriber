@@ -269,9 +269,12 @@
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_verify_register_otp.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_wallet_screen.xml" value="0.1962962962962963" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/dialog_money_transfer_international.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/include_home_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/include_wallet_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Subcriber/app/src/main/res/layout/item_wallet.xml" value="0.1962962962962963" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_airtime_purchase.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_beneficiary_airtime.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_subscriberApp_27-10/app/src/main/res/layout/activity_bill_pay_confirm.xml" value="0.19947916666666668" />

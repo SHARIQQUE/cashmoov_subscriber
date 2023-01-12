@@ -106,7 +106,7 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         intent.putExtra(Intent.EXTRA_TEXT, "");
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
-            startActivity(Intent.createChooser(intent, getString(R.string.share_screenshot)));
+            startActivity(Intent.createChooser(intent,getString(R.string.share_screenshot)));
         } catch (ActivityNotFoundException e) {
             Toast.makeText(getApplicationContext(), getString(R.string.no_app_available), Toast.LENGTH_SHORT).show();
         }
@@ -138,7 +138,7 @@ public class CashOutReceiptScreen extends AppCompatActivity implements View.OnCl
         tax2_value = findViewById(R.id.tax2_value);
         tvrate=findViewById(R.id.tvrate);
 
-        tvrate.setText(MyApplication.addDecimal(String.valueOf(CashOut.rate)));
+        tvrate.setText(MyApplication.addDecimalfive(String.valueOf(CashOut.rate)));
 
         linConfCode.setVisibility(View.GONE);
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);

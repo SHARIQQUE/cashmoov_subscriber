@@ -312,6 +312,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                             miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),
                             miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson(),
                             miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
+
                 }
 
 
