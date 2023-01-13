@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 10-01-2023</string>
+    <string name="version">Version : 13-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -160,7 +160,7 @@
     <string name="valid_select_gender">Sélectionnez le sexe*</string>
     <string name="valid_select_occupation">Sélectionner la profession*</string>
     <string name="valid_dob">Date de naissance*</string>
-    <string name="valid_select_id_proof">Sélectionnez le type de piece d\'identité*</string>
+    <string name="valid_select_id_proof">Type de pièce*</string>
     <string name="vaild_id_proof_no">Numero de la piece*</string>
     <string name="valid_amount_send">Montant à envoyer*</string>
 
@@ -223,15 +223,15 @@
     <string name="close">Fermer</string>
     <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
     <string name="save_next"><![CDATA[Enregistrer et suivant]]></string>
-    <string name="clear">Effacer</string>
-    <string name="self_sign">Auto Signature</string>
+    <string name="clear">EFFACER</string>
+    <string name="self_sign">Signature personnelle</string>
     <string name="upload">Télécharger</string>
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
     <string name="id_proof_type">Type de piece</string>
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
-    <string name="select_id_proof">Sélectionnez la preuve d\'identité</string>
+    <string name="select_id_proof">Type de pièce</string>
     <string name="enter_pin">Entrez votre code PIN</string>
     <string name="login_message">Veuillez entrer votre numéro de téléphone et votre mot de passe pour vous connecter au compte</string>
     <string name="login">Connexion</string>

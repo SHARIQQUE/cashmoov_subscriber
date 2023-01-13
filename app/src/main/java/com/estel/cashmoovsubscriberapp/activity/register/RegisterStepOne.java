@@ -153,6 +153,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 DialogFragment dialogfragment = new DatePickerDialogTheme();
 
                 dialogfragment.show(getSupportFragmentManager(), "");
