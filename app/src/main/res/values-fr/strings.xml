@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 16-01-2023</string>
+    <string name="version">Version : 17-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -49,6 +49,8 @@
     <string name="enter_location">Entrez votre emplacement</string>
     <string name="enter_phone_no">Entrez votre numéro de mobile</string>
     <string name="enter_phone_no_val">Le numéro de portable doit comporter au moins 9 chiffres</string>
+    <string name="enter_phone_no_valnew">Le numéro de portable doit comporter au moins 7 chiffres</string>
+
     <string name="see_terms_policy">Veuillez consulter notre Politique relative aux conditions d\'utilisation</string>
     <string name="skip">Sauter</string>
     <string name="complete_your_info">Completez vos informations</string>
@@ -457,6 +459,7 @@
     <string name="backuploafimageserror">veuillez télécharger à nouveau l\'image</string>
     <string name="usercancel">Utilisateur annulé</string>
     <string name="failed">Échoué</string>
+    <string name="fileexceed">La taille du fichier dépasse</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>

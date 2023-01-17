@@ -141,6 +141,7 @@ public class MyApplication extends Application {
     public static int amountLength=13;
     public static int amountLengthcashpickup=10;
 
+    public static int mobileLengthinternational=14;
 
     public static MyApplication getInstance() {
         return appInstance;

@@ -118,7 +118,8 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
         etComment = findViewById(R.id.etComment);
         tvSend = findViewById(R.id.tvSend);
 
-
+        etPhone.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,7 +149,7 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
             @Override
             public void afterTextChanged(Editable s) {
                 Matcher m = p.matcher(s);
-                if(s.length()>=9 && m.matches()){
+                if(s.length()>=7 && m.matches()){
                     if(isSet) {
                         isSet=false;
                     }else{
@@ -236,8 +237,8 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
             MyApplication.showErrorToast(internationalC,getString(R.string.val_phone));
             return;
         }
-        if(etPhone.getText().toString().trim().length()<9) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.enter_phone_no_val));
+        if(etPhone.getText().toString().trim().length()<7) {
+            MyApplication.showErrorToast(internationalC,getString(R.string.enter_phone_no_valnew));
             return;
         }
         if(etFname.getText().toString().trim().isEmpty()) {

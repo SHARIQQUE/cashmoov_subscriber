@@ -168,7 +168,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
                 if (file_size <= 100){
                     isFrontUpload=true;
                 }else {
-                    MyApplication.showErrorToast(registersteptwoC,"File size exceeds");
+                    MyApplication.showErrorToast(registersteptwoC,getString(R.string.fileexceed));
                 }
               //  btnFrontUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
@@ -176,7 +176,14 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
 //                System.out.println(file);
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(registersteptwoC,getString(R.string.usercancel));
+                if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+                    MyApplication.showToast(registersteptwoC,"Utilisateur annulé");
+
+                }else{
+                    MyApplication.showToast(registersteptwoC,getString(R.string.usercancel));
+
+                }
+
             } else if (resultCode == RESULT_CODE_FAILURE) {
                 MyApplication.showToast(registersteptwoC,getString(R.string.failed));
             }
@@ -197,16 +204,21 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
                 if (file_size <= 100){
                     isBackUpload=true;
                 }else {
-                    MyApplication.showErrorToast(registersteptwoC,"File size exceeds");
+                    MyApplication.showErrorToast(registersteptwoC,getString(R.string.fileexceed));
                 }
                 //btnBackUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
                // File file = new File(getRealPathFromURI(tempUri));
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(registersteptwoC,"User Canceled");
-            } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(registersteptwoC,"Failed");
+                if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+                    MyApplication.showToast(registersteptwoC,"Utilisateur annulé");
+
+                }else{
+                    MyApplication.showToast(registersteptwoC,getString(R.string.usercancel));
+
+                }            } else if (resultCode == RESULT_CODE_FAILURE) {
+                MyApplication.showToast(registersteptwoC,getString(R.string.failed));
             }
 
         }
@@ -243,7 +255,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
 
             callupload(file,"100012");
         }else {
-            MyApplication.showErrorToast(registersteptwoC,"File size exceeds");
+            MyApplication.showErrorToast(registersteptwoC,getString(R.string.fileexceed));
         }
         return file;
     }
@@ -255,7 +267,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
            isBackUpload=true;
             callupload(file,"100013");
         }else {
-            MyApplication.showErrorToast(registersteptwoC,"File size exceeds");
+            MyApplication.showErrorToast(registersteptwoC,getString(R.string.fileexceed));
         }
         return file;
     }

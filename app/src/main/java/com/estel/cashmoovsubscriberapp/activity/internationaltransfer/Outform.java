@@ -190,6 +190,9 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         xofAmountLinear=findViewById(R.id.xofAmountLinear);
         spinner_destinaioncountry=findViewById(R.id.spinner_destinaioncountry);
 
+
+        etSubscriberNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
         etAmount.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.amountLength)});
         etAmountN.setFilters(new InputFilter[] {
@@ -505,8 +508,8 @@ callApiWalletCountryCurrencyJSOn();
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_subscriber_no));
             return;
         }
-        if(etSubscriberNo.getText().toString().trim().length()<9) {
-            MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_subscriber_no_val));
+        if(etSubscriberNo.getText().toString().trim().length()<7) {
+            MyApplication.showErrorToast(tosubscriberC,getString(R.string.enter_phone_no_valnew));
             return;
         }
 

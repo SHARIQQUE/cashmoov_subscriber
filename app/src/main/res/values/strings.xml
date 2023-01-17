@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 16-01-2023</string>
+    <string name="version">Version : 17-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -51,6 +51,8 @@
     <string name="enter_location">Enter your location</string>
     <string name="enter_phone_no">Enter your mobile number</string>
     <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
+    <string name="enter_phone_no_valnew">Mobile number must be at least 7 digits long</string>
+
     <string name="see_terms_policy">Please see our Terms of Service Policy</string>
     <string name="skip">Skip</string>
     <string name="complete_your_info">Complete your information</string>
@@ -461,6 +463,7 @@
     <string name="backuploafimageserror">please upload back Image</string>
     <string name="usercancel">User Canceled</string>
     <string name="failed">Failed</string>
+    <string name="fileexceed">File size exceeds</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

@@ -16,7 +16,7 @@ import com.google.android.material.radiobutton.MaterialRadioButton;;
 public class ChangeLanguage extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     public static ChangeLanguage changelanguageC;
     MaterialRadioButton sbFrench, sbEnglish;
-    TextView tvChange;
+    TextView tvChange,languageText;
 
     // ImageView imgBack;
 
@@ -50,6 +50,7 @@ public class ChangeLanguage extends AppCompatActivity implements View.OnClickLis
         sbFrench = findViewById(R.id.sbFrench);
         sbEnglish = findViewById(R.id.sbEnglish);
         tvChange = findViewById(R.id.tvChange);
+        languageText=findViewById(R.id.languageText);
 
         MyApplication.setLang(changelanguageC);
         MyApplication.lang = MyApplication.getSaveString("Locale", changelanguageC);
@@ -58,6 +59,8 @@ public class ChangeLanguage extends AppCompatActivity implements View.OnClickLis
             sbEnglish.setChecked(true);
         } else {
             sbFrench.setChecked(true);
+            languageText.setText("English");
+
             //sbFrench.setChecked(false);
         }
 
