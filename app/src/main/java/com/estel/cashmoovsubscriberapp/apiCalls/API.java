@@ -576,6 +576,8 @@ public class API {
                     .addJSONObjectBody(jsonObject) // posting json
                     .setTag("test")
                     .setOkHttpClient(client)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+
                     // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "SUBSCRIBER")
