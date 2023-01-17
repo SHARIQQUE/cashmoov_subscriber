@@ -135,15 +135,15 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
                 }
 
                 if(!isFrontUpload){
-                    MyApplication.showErrorToast(registersteptwoC,"please upload front Image");
+                    MyApplication.showErrorToast(registersteptwoC,getString(R.string.frontimageerror));
                     return;
                 }
 
                 if(!isBackUpload){
-                    MyApplication.showErrorToast(registersteptwoC,"please upload back Image");
+                    MyApplication.showErrorToast(registersteptwoC,getString(R.string.backuploafimageserror));
                     return;
                 }
-                 callupload(fileBack,"ssasd");
+                 callupload(fileBack,"");
                 break;
         }
     }
@@ -176,9 +176,9 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
 //                System.out.println(file);
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(registersteptwoC,"User Canceled");
+                MyApplication.showToast(registersteptwoC,getString(R.string.usercancel));
             } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(registersteptwoC,"Failed");
+                MyApplication.showToast(registersteptwoC,getString(R.string.failed));
             }
 
         }

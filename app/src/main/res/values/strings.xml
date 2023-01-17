@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 13-01-2023</string>
+    <string name="version">Version : 16-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -457,6 +457,10 @@
     <string name="receiving_amount">Receiving Amount</string>
     <string name="vendor_result_description">Vendor Result Description :</string>
     <string name="sending_amount_n">Sending Amount</string>
+    <string name="frontimageerror">please upload front Image</string>
+    <string name="backuploafimageserror">please upload back Image</string>
+    <string name="usercancel">User Canceled</string>
+    <string name="failed">Failed</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

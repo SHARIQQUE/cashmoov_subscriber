@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'appli cash moov</string>
-    <string name="version">Version : 13-01-2023</string>
+    <string name="version">Version : 16-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -222,7 +222,7 @@
     <string name="non_subscriber_transfer_colon">Transfert non abonné :</string>
     <string name="close">Fermer</string>
     <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
-    <string name="save_next"><![CDATA[Enregistrer et suivant]]></string>
+    <string name="save_next"><![CDATA[ENREGISTER ET SUIVANT]]></string>
     <string name="clear">EFFACER</string>
     <string name="self_sign">Signature personnelle</string>
     <string name="upload">Télécharger</string>
@@ -453,6 +453,10 @@
     <string name="receiving_amount">Montant reçu</string>
     <string name="vendor_result_description">Fournisseur Résultat Description :</string>
     <string name="sending_amount_n">Sending Amount</string>
+    <string name="frontimageerror">veuillez télécharger l\'image avant</string>
+    <string name="backuploafimageserror">veuillez télécharger à nouveau l\'image</string>
+    <string name="usercancel">Utilisateur annulé</string>
+    <string name="failed">Échoué</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
