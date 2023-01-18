@@ -76,7 +76,7 @@ public class PartnerBillPayPlanList extends AppCompatActivity implements PlanLis
 
     private void callApiPlanList() {
         try {
-            MyApplication.showloader(partnerbillplanlistC,"Please Wait...");
+            MyApplication.showloader(partnerbillplanlistC,getString(R.string.please_wait));
             API.GET("ewallet/api/v1/product/allByCriteria?operatorCode="+PartnerProduct.operatorCode+"&serviceCategoryCode=100028&productMasterCode="+
                     PartnerProduct.productCode+"&status=Y",
                     new Api_Responce_Handler() {

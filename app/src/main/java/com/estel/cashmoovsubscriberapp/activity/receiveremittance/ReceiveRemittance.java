@@ -113,7 +113,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
 
         etPhone.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLength)});
+                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
         etConfCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {}
@@ -367,8 +367,8 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_phone));
                     return;
                 }
-                if(etPhone.getText().toString().trim().length()<9){
-                    MyApplication.showErrorToast(receiveremittanceC,getString(R.string.enter_phone_no_val));
+                if(etPhone.getText().toString().trim().length()<7){
+                    MyApplication.showErrorToast(receiveremittanceC,getString(R.string.enter_phone_no_valnew));
                     return;
                 }
                 if(etName.getText().toString().isEmpty()){
@@ -558,7 +558,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(receiveremittanceC,"Please Wait...");
+        MyApplication.showloader(receiveremittanceC,getString(R.string.please_wait));
 
         String requestNo=AESEncryption.getAESEncryption(dataToSend.toString());
         JSONObject jsonObjectA=null;

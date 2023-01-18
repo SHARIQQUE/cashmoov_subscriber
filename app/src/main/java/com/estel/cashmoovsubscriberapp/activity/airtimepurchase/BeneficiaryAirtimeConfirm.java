@@ -315,7 +315,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(benefiairtimeconfirmC,"Please Wait...");
+        MyApplication.showloader(benefiairtimeconfirmC,getString(R.string.please_wait));
 
         System.out.println("Another Number Final Request  "+BeneficiaryAirtime.dataToSend);
         String requestNo=AESEncryption.getAESEncryption(BeneficiaryAirtime.dataToSend.toString());

@@ -273,7 +273,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(billpayconfirmscreenC,"Please Wait...");
+        MyApplication.showloader(billpayconfirmscreenC,getString(R.string.please_wait));
         String requestNo=AESEncryption.getAESEncryption(PartnerBillPayDetails.dataToSend.toString());
         JSONObject jsonObjectA=null;
         try{

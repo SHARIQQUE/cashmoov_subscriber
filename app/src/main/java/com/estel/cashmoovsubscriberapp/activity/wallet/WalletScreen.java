@@ -208,7 +208,7 @@ public class WalletScreen extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.tvRefresh:
-                MyApplication.showloader(WalletScreen.this,"Please wait");
+                MyApplication.showloader(WalletScreen.this,getString(R.string.please_wait));
                 page = 0;
                 limit = 20;
                 loadingPB.setVisibility(View.VISIBLE);

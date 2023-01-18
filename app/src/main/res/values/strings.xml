@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 17-01-2023</string>
+    <string name="version">Version : 18-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -20,7 +20,7 @@
     <string name="Tax"> Tax : 0.00</string>
 
     <string name="convertionRate_reviewPage"> Conversion Rate :</string>
-    <string name="please_wait">Please wait....</string>
+    <string name="please_wait">Please wait...</string>
     <string name="Taxvat">VAT</string>
     <string name="Taxfinancial">Financial Tax</string>
     <string name="balance">Balance</string>
@@ -439,6 +439,7 @@
     <string name="cash_pickup">Cash PickUp</string>
     <string name="service_not_available">This service is not available</string>
     <string name="reset_pin"><u>Reset Pin?</u></string>
+    <string name="pleasewait">Please wait...</string>
 
 
     <string name="min_amount">"Minimum Amount should be  "</string>
@@ -464,6 +465,7 @@
     <string name="usercancel">User Canceled</string>
     <string name="failed">Failed</string>
     <string name="fileexceed">File size exceeds</string>
+    <string name="selectimage">Please select a new image.....</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

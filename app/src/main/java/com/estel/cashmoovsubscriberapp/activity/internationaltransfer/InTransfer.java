@@ -195,7 +195,7 @@ public class InTransfer extends AppCompatActivity implements OperatorListeners {
     }
 
     public  void CallApiOutboundServiceJsonList(){
-        MyApplication.showloader(InTransfer.this,"Please wait");
+        MyApplication.showloader(InTransfer.this,getString(R.string.please_wait));
         API.GETPreProd("ewallet/api/v1/productMaster/allByCriteria?serviceCategoryCode=TRFWLT&status=Y",
                 new Api_Responce_Handler() {
                     @Override

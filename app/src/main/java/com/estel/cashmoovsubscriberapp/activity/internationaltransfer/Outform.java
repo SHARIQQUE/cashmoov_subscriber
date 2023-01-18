@@ -576,7 +576,7 @@ callApiWalletCountryCurrencyJSOn();
 
     private void callsaveDataApi(JSONObject jsonObject) {
 
-        MyApplication.showloader(Outform.this,"Please wait...");
+        MyApplication.showloader(Outform.this,getString(R.string.please_wait));
         API.POST_REQEST_TransferAMount("ewallet/api/v1/intech/transferOut", jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

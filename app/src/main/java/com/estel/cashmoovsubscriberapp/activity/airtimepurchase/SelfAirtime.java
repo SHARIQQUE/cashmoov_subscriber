@@ -223,7 +223,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     public static JSONObject productCategory = new JSONObject();
 
     public void callwalletOwner(){
-        MyApplication.showloader(selfairtimeC,"Please Wait...");
+        MyApplication.showloader(selfairtimeC,getString(R.string.please_wait));
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

@@ -141,7 +141,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Tra
 
     private void getTransactionList() {
 
-        MyApplication.showloader(transactiondetailC,"Please Wait...");
+        MyApplication.showloader(transactiondetailC,getString(R.string.please_wait));
         API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+MyApplication.getSaveString("walletOwnerCode",transactiondetailC)+"&offset=0&limit=5000", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

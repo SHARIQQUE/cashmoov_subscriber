@@ -609,7 +609,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
     public void callRegisterApi(JSONObject jsonObject){
 
-        MyApplication.showloader(registersteponeC,"Please wait...");
+        MyApplication.showloader(registersteponeC,getString(R.string.please_wait));
         API.POST_REQEST_REGISTER("ewallet/public/subscribersignup", jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

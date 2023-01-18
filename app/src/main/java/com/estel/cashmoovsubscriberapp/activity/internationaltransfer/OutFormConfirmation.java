@@ -395,7 +395,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
     }*/
 
     public void callPostAPI(){
-        MyApplication.showloader(OutFormConfirmation.this,"Please Wait...");
+        MyApplication.showloader(OutFormConfirmation.this,getString(R.string.please_wait));
       /*  String requestNo=AESEncryption.getAESEncryption(InternationalRecipientDetails.dataToSend.toString());
         JSONObject jsonObjectA=null;
         try{

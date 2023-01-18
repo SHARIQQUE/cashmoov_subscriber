@@ -314,7 +314,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(selfairtimeconfirmC,"Please Wait...");
+        MyApplication.showloader(selfairtimeconfirmC,getString(R.string.please_wait));
         String requestNo=AESEncryption.getAESEncryption(SelfAirtime.dataToSend.toString());
         JSONObject jsonObjectA=null;
         try{

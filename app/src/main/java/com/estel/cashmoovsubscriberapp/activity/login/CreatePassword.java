@@ -75,7 +75,7 @@ public class CreatePassword extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MyApplication.showloader(CreatePassword.this,"Please Wait...");
+        MyApplication.showloader(CreatePassword.this,getString(R.string.please_wait));
         API.PUT_SET_PASS("ewallet/api/v1/walletOwnerUser/setPassword",logiJson,
                 new Api_Responce_Handler() {
                     @Override

@@ -412,7 +412,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
 
 
     public void callPostAPI(){
-        MyApplication.showloader(InFormConfirmation.this,"Please Wait...");
+        MyApplication.showloader(InFormConfirmation.this,getString(R.string.please_wait));
       /*  String requestNo=AESEncryption.getAESEncryption(InternationalRecipientDetails.dataToSend.toString());
         JSONObject jsonObjectA=null;
         try{

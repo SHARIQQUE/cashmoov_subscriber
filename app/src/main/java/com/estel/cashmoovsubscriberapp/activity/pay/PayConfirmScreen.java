@@ -299,7 +299,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
         public static JSONObject receiptJson=new JSONObject();
         public static JSONArray taxConfigList;
         public void callPostAPI(){
-            MyApplication.showloader(payconfirmscreenC,"Please Wait...");
+            MyApplication.showloader(payconfirmscreenC,getString(R.string.please_wait));
 
             System.out.println("Pay Confirm Request  "+Pay.dataToSend.toString());
             String requestNo=AESEncryption.getAESEncryption(Pay.dataToSend.toString());

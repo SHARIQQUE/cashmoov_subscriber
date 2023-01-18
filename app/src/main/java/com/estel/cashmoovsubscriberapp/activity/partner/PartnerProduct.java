@@ -79,7 +79,7 @@ public class PartnerProduct extends AppCompatActivity implements ProductListener
 
     private void callApiProductProvider() {
         try {
-            MyApplication.showloader(partnerproductC,"Please Wait...");
+            MyApplication.showloader(partnerproductC,getString(R.string.please_wait));
             API.GET("ewallet/api/v1/productMaster/allByCriteria?operatorCode="+ Partner.operatorCode+"&status=Y",
                     new Api_Responce_Handler() {
                         @Override

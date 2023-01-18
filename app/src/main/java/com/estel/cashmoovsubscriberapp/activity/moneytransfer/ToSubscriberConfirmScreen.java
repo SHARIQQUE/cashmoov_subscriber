@@ -337,7 +337,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(tosubscriberconfirmscreenC,"Please Wait...");
+        MyApplication.showloader(tosubscriberconfirmscreenC,getString(R.string.please_wait));
         JSONObject clone=null;
         try {
             if (switch_button.isChecked()) {

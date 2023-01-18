@@ -285,7 +285,7 @@ public class ToNonSubscriberConfirmScreen extends AppCompatActivity implements V
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(tononsubscriberconfirmscreenC,"Please Wait...");
+        MyApplication.showloader(tononsubscriberconfirmscreenC,getString(R.string.please_wait));
 
         System.out.println("data string  "+ToNonSubscriber.dataToSend.toString());
         String requestNo=AESEncryption.getAESEncryption(ToNonSubscriber.dataToSend.toString());

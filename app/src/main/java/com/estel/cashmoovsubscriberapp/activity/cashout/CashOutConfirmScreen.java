@@ -294,7 +294,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
         public static JSONObject receiptJson=new JSONObject();
         public static JSONArray taxConfigList;
         public void callPostAPI(){
-            MyApplication.showloader(cashoutconfirmscreenC,"Please Wait...");
+            MyApplication.showloader(cashoutconfirmscreenC,getString(R.string.please_wait));
             String requestNo=AESEncryption.getAESEncryption(CashOut.dataToSend.toString());
             JSONObject jsonObject=null;
             try{

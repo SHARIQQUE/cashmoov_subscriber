@@ -97,7 +97,7 @@ TextView  opt_text;
 
     public void callwalletOwner(){
 
-        MyApplication.showloader(billpayC,"Please Wait...");
+        MyApplication.showloader(billpayC,getString(R.string.please_wait));
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -202,7 +202,7 @@ TextView  opt_text;
 
 
     public  void CallApiOutboundServiceJsonList(){
-        MyApplication.showloader(OutTransfer.this,"Please wait");
+        MyApplication.showloader(OutTransfer.this,getString(R.string.please_wait));
         API.GETPreProd("ewallet/api/v1/productMaster/allByCriteria?serviceCategoryCode=TRTWLT&status=Y",
                 new Api_Responce_Handler() {
                     @Override

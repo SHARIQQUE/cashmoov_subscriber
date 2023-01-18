@@ -78,7 +78,7 @@ public class OfferPromotionActivity extends AppCompatActivity{
 
     private void gettempalteList() {
 
-         MyApplication.showloader(offerpromotionC,"Please Wait...");
+         MyApplication.showloader(offerpromotionC,getString(R.string.please_wait));
         API.GET_WF("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/" + MyApplication.getSaveString("walletOwnerCode", offerpromotionC), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

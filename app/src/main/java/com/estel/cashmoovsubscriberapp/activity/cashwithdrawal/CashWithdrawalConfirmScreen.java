@@ -242,7 +242,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
         public static JSONObject receiptJson=new JSONObject();
         public static JSONArray taxConfigList;
         public void callPostAPI(){
-            MyApplication.showloader(cashwithdrawalconfirmscreenC,"Please Wait...");
+            MyApplication.showloader(cashwithdrawalconfirmscreenC,getString(R.string.please_wait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/cashWithdrawal", CashWithdrawal.dataToSend,
                     new Api_Responce_Handler() {
                         @Override

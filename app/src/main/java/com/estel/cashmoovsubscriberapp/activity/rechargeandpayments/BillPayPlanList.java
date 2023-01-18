@@ -132,7 +132,7 @@ public class BillPayPlanList extends AppCompatActivity implements PlanListeners 
 
     private void callApiPlanList() {
         try {
-            MyApplication.showloader(billplanlistC,"Please Wait...");
+            MyApplication.showloader(billplanlistC,getString(R.string.please_wait));
             API.GET("ewallet/api/v1/product/allByCriteria?operatorCode="+BillPayProduct.operatorCode+"&serviceCategoryCode=100028&productMasterCode="+
                     BillPayProduct.productCode+"&status=Y",
                     new Api_Responce_Handler() {
