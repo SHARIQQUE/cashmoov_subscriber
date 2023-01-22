@@ -118,8 +118,20 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
         etComment = findViewById(R.id.etComment);
         tvSend = findViewById(R.id.tvSend);
 
+
+        int mobilelength = 0;
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle != null){
+          String  mobilelengthstr = bundle.getString("mobilelength");
+            mobilelength=Integer.parseInt(mobilelengthstr);
+            System.out.println("get length2"+mobilelength);
+
+        }
         etPhone.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
+                new InputFilter.LengthFilter(mobilelength)});
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +139,7 @@ public class InternationalRecipientDetails extends AppCompatActivity implements 
                     spinnerDialogBenefiGender.showSpinerDialog();
             }
         });
+
 
 
         String regex = "[0-9]+";

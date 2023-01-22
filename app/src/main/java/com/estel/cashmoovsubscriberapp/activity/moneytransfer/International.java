@@ -50,6 +50,7 @@ public class International extends AppCompatActivity implements View.OnClickList
     TextView tvNext;
     private boolean isAmt=true;
     private boolean isAmtPaid=true;
+    private String mobilelength;
 
 
     @Override
@@ -288,6 +289,8 @@ public class International extends AppCompatActivity implements View.OnClickList
 
         MyApplication.saveString("AMOUNTINTERNATIONAL",etAmount.getText().toString().trim().replace(",",""),internationalC);
         Intent i=new Intent(internationalC, InternationalRecipientDetails.class);
+        i.putExtra("mobilelength",mobilelength);
+
         startActivity(i);
 
     }
@@ -413,7 +416,10 @@ public class International extends AppCompatActivity implements View.OnClickList
                                             spRecCountry.setText(item);
                                             spRecCountry.setTag(position);
                                             spBenifiCurr.setText(getString(R.string.valid_select_benifi_curr));
+                                            mobilelength=String.valueOf(benefiCountryModelList.get(position).getMobileLength());
+
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            System.out.println("get length"+mobilelength);
                                             callApiCurrency(benefiCountryModelList.get(position).getCode());
                                         }
                                     });
