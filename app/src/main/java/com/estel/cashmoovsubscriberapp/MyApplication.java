@@ -91,6 +91,7 @@ import okhttp3.Route;
 
 public class MyApplication extends Application {
 
+    public static boolean PasswordEncription = true;
 
     private static final int PERMISSION_REQUEST_CODE = 101;
     public static final String directoryName = "CustomLoggerSubs";
@@ -981,6 +982,14 @@ public static int  attmptCount=0;
         return test;
     }
 
+    public static String getEncript(String dataencript) {
+        if (PasswordEncription) {
+            String encryptionDatanew = AESEncryption.getAESEncryption(dataencript);
+            return encryptionDatanew;
+
+        }
+        return dataencript;
+    }
 
 
 

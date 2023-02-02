@@ -84,7 +84,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements OnOtpCompl
             JSONObject loginJson=new JSONObject();
 
             loginJson.put("username",MyApplication.getSaveString("USERMOBILE",verifyfirstloginotpC));
-            loginJson.put("password",otp);
+            loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");

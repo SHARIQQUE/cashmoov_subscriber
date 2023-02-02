@@ -84,7 +84,7 @@ public class VerifyRESETPINScreen extends AppCompatActivity implements OnOtpComp
             JSONObject loginJson=new JSONObject();
 
             loginJson.put("username",MyApplication.UserMobile);
-            loginJson.put("password",otp);
+            loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");

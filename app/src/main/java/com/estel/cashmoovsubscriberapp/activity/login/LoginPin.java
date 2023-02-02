@@ -359,7 +359,7 @@ public class LoginPin extends AppCompatActivity {
 
            
             loginJson.put("username",MyApplication.getSaveString("mobile",loginpinC));
-            loginJson.put("password",etPin.getText().toString().trim());
+            loginJson.put("password",MyApplication.getEncript(etPin.getText().toString().trim()));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
@@ -488,7 +488,7 @@ public class LoginPin extends AppCompatActivity {
 
 
             loginJson.put("username",MyApplication.getSaveString("mobile",loginpinC));
-            loginJson.put("password",pin);
+            loginJson.put("password",MyApplication.getEncript(pin));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
