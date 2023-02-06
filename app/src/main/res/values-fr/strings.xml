@@ -117,6 +117,8 @@
     <string name="fees">Frais:</string>
     <string name="amount_to_paid">Montant à payer</string>
     <string name="amount_to_paid_colon">Montant à payer:</string>
+    <string name="amount_to_paid_intec">Montant à payer :</string>
+
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>
     <string name="subscriber">Abonné</string>
@@ -398,6 +400,7 @@
     <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
     <string name="pleasewait">S\'il vous plaît, attendez...</string>
     <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
+    <string name="intec">Intech</string>
 
 
     <string-array name="Spinner_provider">

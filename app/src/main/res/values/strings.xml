@@ -131,6 +131,7 @@
     <string name="amount_to_paid">Amount paid</string>
     <string name="amount_to_be_paid">Amount  paid</string>
     <string name="amount_to_paid_international">Amount to be Paid</string>
+    <string name="amount_to_paid_intec">Amount to be Paid :</string>
 
     <string name="amount_to_paid_colon">Amount paid:</string>
     <string name="send">Send</string>
@@ -466,6 +467,7 @@
     <string name="failed">Failed</string>
     <string name="fileexceed">File size exceeds</string>
     <string name="selectimage">Please select a new image.....</string>
+    <string name="intec">Intech</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

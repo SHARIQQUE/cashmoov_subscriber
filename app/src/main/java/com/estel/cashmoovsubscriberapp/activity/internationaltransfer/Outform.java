@@ -59,6 +59,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     public  static TextView spinner_destinaioncountry,tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
     AutoCompleteTextView etSubscriberNo;
+    private String mobilelength;
+
     public static EditText etFname,etLname,etAmount,etAmountN;
     TextView etName,etPhone;
     private boolean isQR;
@@ -73,7 +75,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<String> benefiCountryList = new ArrayList<>();
     public static ArrayList<CountryInfoModel.Country> benefiCountryModelList = new ArrayList<>();
     SpinnerDialog spinnerDialogCountry;
-    private String  countrycode;
+    public static String  countrycode;
     private LinearLayout xofAmountLinear;
     TextView tvAmtCurrN;
 
@@ -1031,7 +1033,7 @@ callApiWalletCountryCurrencyJSOn();
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
+                                        tvRate.setText(MyApplication.addDecimalfive(rate));
                                         tvFee.setText(fee);
                                         // etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);
@@ -1103,7 +1105,7 @@ callApiWalletCountryCurrencyJSOn();
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
+                                        tvRate.setText(MyApplication.addDecimalfive(rate));
                                         tvFee.setText(fee);
                                         etAmountN.setText(currencyValue);
                                        // tvAmtPaid.setText(currencyValue);
