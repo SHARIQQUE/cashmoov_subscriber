@@ -43,6 +43,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     TextView currency,number,etAddress,name;
     CircleImageView profile_img;
     private ReviewManager reviewManager;
+    private String mNumber;
 
 
     @Override
@@ -101,9 +102,18 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        number.setText(mNumber);
+
+    }
+
+    @Override
     protected void onRestart() {
         super.onRestart();
         bottomBar.setItemActiveIndex(2);
+        number.setText(mNumber);
+
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
@@ -306,6 +316,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                             jsonObject.optJSONObject("walletOwner").optString("lastName"));
                     etAddress.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryName","N/A"));
                     number.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
+                    mNumber=jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A");
 
                     callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
                 }else{

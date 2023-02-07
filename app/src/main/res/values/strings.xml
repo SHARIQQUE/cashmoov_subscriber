@@ -468,6 +468,7 @@
     <string name="fileexceed">File size exceeds</string>
     <string name="selectimage">Please select a new image.....</string>
     <string name="intec">Intech</string>
+    <string name="Percentage">Percentage</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

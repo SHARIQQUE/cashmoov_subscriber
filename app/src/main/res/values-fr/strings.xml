@@ -401,6 +401,7 @@
     <string name="pleasewait">S\'il vous plaît, attendez...</string>
     <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
     <string name="intec">Intech</string>
+    <string name="Percentage">Pourcentage</string>
 
 
     <string-array name="Spinner_provider">

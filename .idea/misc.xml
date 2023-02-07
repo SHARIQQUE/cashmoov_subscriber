@@ -241,11 +241,15 @@
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_bill_pay_receipt.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_billpay.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_confirm_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_fee.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_fee_details.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_international.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_money_transfer.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_out_form.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_profile.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_receive_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/dialog_money_transfer_international.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_airtime_fee.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/activity_register_steptwo.xml" value="0.20104166666666667" />
       </map>
     </option>

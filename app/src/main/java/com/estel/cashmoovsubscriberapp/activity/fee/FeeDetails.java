@@ -64,6 +64,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                 pos=(getIntent().getIntExtra("FEEINTENTPOS",-1));
             }*/
             tvName.setText(checkIntent);
+            System.out.println("get val"+checkIntent);
         }
 
         if(checkIntent.equalsIgnoreCase("Subscriber")){
@@ -84,6 +85,8 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                                                 String.format("%.2f",childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
+
+
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         String.format("%.2f",childData.optDouble("minValue"))+"  -  "+
@@ -211,7 +214,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
         }
 
 
-        if(checkIntent.equalsIgnoreCase("Bill Payment")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.bill_payment))){
             feeDetailModelArrayList.clear();
             if (BillPayFeeActivity.mainJsonObject != null) {
                 JSONArray FeeListArr = BillPayFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
@@ -222,7 +225,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                        if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                             feeDetailModelArrayList.add(new FeeDetailModel(
                                     String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
                                             String.format("%.2f", childData.optDouble("maxValue")) +
