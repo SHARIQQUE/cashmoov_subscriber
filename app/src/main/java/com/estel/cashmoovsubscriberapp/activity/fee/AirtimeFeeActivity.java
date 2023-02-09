@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +28,8 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
     RecyclerView rvOperator;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,11 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onOperatorAirtimeFeeListItemClick(String code, String name) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         callAirtimeFee(code);
     }
 
@@ -180,16 +188,19 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
                                             for (int i=0;i<feeTemplateList.length();i++){
                                                 JSONObject feeObj=feeTemplateList.optJSONObject(i);
                                                 if(feeObj.has("calculationTypeName")) {
-                                                    Intent in = new Intent(airtimefeeC,FeeDetails.class);
+                                                    /*Intent in = new Intent(airtimefeeC,FeeDetails.class);
                                                     in.putExtra("FEEINTENT","Airtime Purchase");
                                                     //in.putExtra("OPERATORCODE",operatorCode);
-                                                    startActivity(in);
+                                                    startActivity(in);*/
                                                 }else{
                                                     MyApplication.showToast(airtimefeeC,getString(R.string.range_value_not_available));
                                                 }
 
                                             }
-
+                                            Intent in = new Intent(airtimefeeC,FeeDetails.class);
+                                            in.putExtra("FEEINTENT",getString(R.string.airtime_purchase));
+                                            //in.putExtra("OPERATORCODE",operatorCode);
+                                            startActivity(in);
 
                                         }else{
                                             MyApplication.showToast(airtimefeeC,getString(R.string.range_value_not_available));

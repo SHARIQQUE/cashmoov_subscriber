@@ -1109,7 +1109,8 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                                                     }
                                                 }
                                                 if(feeData.optString("serviceCode").equalsIgnoreCase("100003")){
-                                                    if (feeData.optJSONArray("child").optJSONObject(0).optString("serviceCategoryCode").equalsIgnoreCase("100012")) {
+
+                                                    if (feeData.optString("serviceCategoryCode").equalsIgnoreCase("100012")) {
                                                         if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")) {
                                                             tvFeeCashOut.setText(getString(R.string.paid_service));
                                                             //tvFeePay.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
@@ -1118,6 +1119,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                                                             tvFeeCashOut.setText(getString(R.string.paid_service));
                                                             //tvFeePay.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                         }
+
                                                     }
                                                 }
 //                                                if(feeData.optString("ServiceName").equalsIgnoreCase("Cash PickUp")){

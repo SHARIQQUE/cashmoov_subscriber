@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.model.FeeDetailModel;
 import java.math.RoundingMode;
@@ -40,8 +42,21 @@ public class FeeDetailsAdapter extends RecyclerView.Adapter<FeeDetailsAdapter.Vi
         FeeDetailModel feeDetailModel = feeDetailsList.get(position);
 
         holder.tvRange.setText(feeDetailModel.getRange());
-        holder.tvValue.setText(feeDetailModel.getValue());
+        if(feeDetailModel.getValue().contains("%")){
+            String string = feeDetailModel.getValue().substring(0, (feeDetailModel.getValue().length() - 1));
 
+            holder.tvValue.setText(((MyApplication.addDecimal(string)+"%")));
+
+        }else{
+            if(feeDetailModel.getValue().length()==0){
+                //holder.tvValue.setText((feeDetailModel.getValue()));
+
+            }else{
+                holder.tvValue.setText(MyApplication.addDecimal(feeDetailModel.getValue()));
+
+            }
+
+        }
     }
 
 

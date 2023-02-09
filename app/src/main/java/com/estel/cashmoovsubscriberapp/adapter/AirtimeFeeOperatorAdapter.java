@@ -53,13 +53,13 @@ public class AirtimeFeeOperatorAdapter extends RecyclerView.Adapter<AirtimeFeeOp
                  operatorAirtimeFeeListeners.onOperatorAirtimeFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
             }
         });
-        holder.txt1.setOnClickListener(new View.OnClickListener() {
+      /*  holder.txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opearatorModel.getCode()!=null)
                     operatorAirtimeFeeListeners.onOperatorAirtimeFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
             }
-        });
+        });*/
     }
 
 
