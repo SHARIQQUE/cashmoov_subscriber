@@ -64,13 +64,15 @@
     <string name="repeat_pin">Répéter PIN Ex:1234</string>
     <string name="attach_your_id">Attachez votre ID</string>
     <string name="attach_id_message">Avec votre appareil prenez une photo de votre pièce d\'identité.</string>
-    <string name="front">Ex: Recto</string>
-    <string name="ex_verso">Ex: Verso</string>
+    <string name="front">Ex: Recto*</string>
+    <string name="ex_verso">Ex: Verso*</string>
     <string name="id_proof_no">Numéro de la pièce</string>
     <string name="verification">Vérification</string>
     <string name="verification_message">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123.</string>
     <string name="session_expired_send_back">La session expire dans 60 secondes. Vous n\'avez pas reçu de code? Renvoyer le</string>
     <string name="my_account">Mon compte</string>
+    <string name="press_back_exit_toast">Veuillez appuyer à nouveau sur Retour pour quitter</string>
+
     <string name="your_currency">Votre devise:</string>
     <string name="acc_statement">Relevés de compte</string>
     <string name="last_transactions">Vos dernières transactions</string>
@@ -402,6 +404,7 @@
     <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
     <string name="intec">Intech</string>
     <string name="Percentage">Pourcentage</string>
+    <string name="press_back_exit_toast"><![CDATA["    <string name=\"press_back_exit_toast\">Please press Back again to exit</string> "]]></string>
 
 
     <string-array name="Spinner_provider">
