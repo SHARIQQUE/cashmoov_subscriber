@@ -158,13 +158,13 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.linCashOut:
-                if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
+               /* if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
-                }else{
+                }else{*/
                     intent = new Intent(feeC, CashOutFeeActivity.class);
                     startActivity(intent);
                     //showCashOutPopup(getString(R.string.cashout));
-                }
+               // }
                 break;
 //            case R.id.linCashWithdrawal:
 //                if(tvFeeCashWithdrawal.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
@@ -1112,11 +1112,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                                                     if (feeData.optString("serviceCategoryCode").equalsIgnoreCase("100012")) {
                                                         if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")) {
-                                                            tvFeeCashOut.setText(getString(R.string.paid_service));
+                                                           // tvFeeCashOut.setText(getString(R.string.paid_service));
                                                             //tvFeePay.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
                                                         }
                                                         if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")) {
-                                                            tvFeeCashOut.setText(getString(R.string.paid_service));
+                                                          //  tvFeeCashOut.setText(getString(R.string.paid_service));
                                                             //tvFeePay.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                         }
 

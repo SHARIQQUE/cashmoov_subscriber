@@ -77,7 +77,7 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
         switch(v.getId()){
             case R.id.cardPay:
                 intent = new Intent(payfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT","Pay");
+                intent.putExtra("FEEINTENT",getString(R.string.pay));
                 startActivity(intent);
                 break;
             case R.id.btnClose:

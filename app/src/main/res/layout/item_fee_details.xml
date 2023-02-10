@@ -24,7 +24,6 @@
             android:layout_weight="0.2"
             android:text="@string/value"
             android:gravity="end|center_vertical"
-            android:layout_marginLeft="@dimen/_10sdp"
             android:textColor="#000"
             android:fontFamily="@font/aileron_semibold"
             android:textSize="@dimen/_13sdp" />

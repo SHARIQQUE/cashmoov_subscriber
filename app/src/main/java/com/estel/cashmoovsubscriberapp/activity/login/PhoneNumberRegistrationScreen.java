@@ -57,6 +57,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     private ArrayList<String> countryList = new ArrayList<>();
     private ArrayList<CountryInfoModel.Country> countryModelList=new ArrayList<>();
     String FCM_TOKEN;
+    TextView tvregister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,14 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvContinue = findViewById(R.id.tvContinue);
+        tvregister = findViewById(R.id.tvregister);
+        tvregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(PhoneNumberRegistrationScreen.this, RegisterStepOne.class);
+                startActivity(intent);
+            }
+        });
        /* etPhoneNo.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.mobileLength)});*/
         etPass.addTextChangedListener(new TextWatcher() {

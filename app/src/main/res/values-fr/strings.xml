@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 08-02-2023</string>
+    <string name="version">Version : 10-02-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -24,7 +24,7 @@
     <string name="payment">Paiements</string>
     <string name="merchant_payment">Paiments Marchand</string>
     <string name="cash_withdrawal">Retrait</string>
-    <string name="receive_remittance">Receive Remittance</string>
+    <string name="receive_remittance">Reception d\'argent</string>
     <string name="fee">Frais de service</string>
     <string name="service_point">Trouver une agence</string>
     <string name="complete_profile">Completez le profile</string>
@@ -399,12 +399,11 @@
     <string name="rate_app_message">Si vous appréciez notre application, veuillez prendre un moment pour l\'évaluer sur Playstore. Merci pour votre aide!</string>
     <string name="cash_pickup">Collecte d\'espèces</string>
     <string name="service_not_available">Ce service n\'est pas disponible</string>
-    <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
+    <string name="reset_pin"><u>Réinitialiser l\'Code PIN ?</u></string>
     <string name="pleasewait">S\'il vous plaît, attendez...</string>
     <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
     <string name="intec">Intech</string>
     <string name="Percentage">Pourcentage</string>
-    <string name="press_back_exit_toast"><![CDATA["    <string name=\"press_back_exit_toast\">Please press Back again to exit</string> "]]></string>
 
 
     <string-array name="Spinner_provider">

@@ -81,17 +81,17 @@ public class MoneyTransferFeeActivity extends AppCompatActivity implements View.
         switch(v.getId()){
             case R.id.cardSubscriber:
                 intent = new Intent(moneytransferfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT","Subscriber");
+                intent.putExtra("FEEINTENT",getString(R.string.subscriber));
                 startActivity(intent);
                 break;
             case R.id.cardNonSubscriber:
                 intent = new Intent(moneytransferfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT","Non Subscriber");
+                intent.putExtra("FEEINTENT",getString(R.string.non_subscriber));
                 startActivity(intent);
                 break;
             case R.id.cardInternational:
                 intent = new Intent(moneytransferfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT","International");
+                intent.putExtra("FEEINTENT",getString(R.string.international));
                 startActivity(intent);
                 break;
             case R.id.btnClose:

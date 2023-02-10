@@ -77,7 +77,7 @@ public class ReceiveRemittanceFeeActivity extends AppCompatActivity implements V
         switch(v.getId()){
             case R.id.cardReceiveRemit:
                 intent = new Intent(receiveremitfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT","Receive Remittance");
+                intent.putExtra("FEEINTENT",getString(R.string.receive_remittance));
                 startActivity(intent);
                 break;
             case R.id.btnClose:

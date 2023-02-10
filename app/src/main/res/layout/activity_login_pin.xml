@@ -296,22 +296,6 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:textSize="@dimen/_12sdp" />
 
-    <TextView
-
-        android:visibility="visible"
-        android:id="@+id/tvregister"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/aileron_bold"
-        android:lineSpacingExtra="3sp"
-        android:text="@string/u_don_t_have_an_account_signup_u"
-        android:textColor="@color/textColorLBlack"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:textSize="@dimen/_12sdp" />
 
 
 

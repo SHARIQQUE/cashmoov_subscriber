@@ -95,7 +95,6 @@ public class LoginPin extends AppCompatActivity {
         tvContinue = findViewById(R.id.tvContinue);
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
-        tvregister = findViewById(R.id.tvregister);
         tvregister1 = findViewById(R.id.tvregister1);
         nameText=findViewById(R.id.nameText);
         etmobile=findViewById(R.id.etmobile);
@@ -169,13 +168,7 @@ public class LoginPin extends AppCompatActivity {
 
 
 
-        tvregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(loginpinC, RegisterStepOne.class);
-                startActivity(intent);
-            }
-        });
+
 
         tvregister1.setOnClickListener(new View.OnClickListener() {
             @Override
