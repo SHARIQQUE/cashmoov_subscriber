@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 10-02-2023 </string>
+    <string name="version">Version : 11-02-2023  10-55pm </string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -17,6 +17,8 @@
     <string name="hello">Hello,</string>
     <string name="dashboard">Dashboard</string>
     <string name="pay">Pay</string>
+    <string name="paynew">Pay</string>
+
     <string name="Tax"> Tax : 0.00</string>
 
     <string name="convertionRate_reviewPage"> Conversion Rate :</string>
@@ -470,6 +472,7 @@
     <string name="intec">Intech</string>
     <string name="Percentage">Percentage</string>
     <string name="press_back_exit_toast"><![CDATA["    <string name=\"press_back_exit_toast\">Please press Back again to exit</string> "]]></string>
+    <string name="ComingSoon">Coming Soon.....</string>
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
         <item>Cashmoov</item>

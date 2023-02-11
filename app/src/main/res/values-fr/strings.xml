@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 10-02-2023</string>
+    <string name="version">Version : 11-02-2023  10-55pm</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -17,12 +17,15 @@
     <string name="hello">Bonjour,</string>
     <string name="dashboard">Tableau de bord</string>
     <string name="pay">Solde</string>
+    <string name="paynew">Paiements Marchand</string>
+
+
     <string name="balance">Solde</string>
     <string name="our_operations">Nos operations</string>
     <string name="money_transfer">Transfert d\'argent</string>
-    <string name="airtime_purchase">Achat de credit</string>
+    <string name="airtime_purchase">Achat de crédits</string>
     <string name="payment">Paiements</string>
-    <string name="merchant_payment">Paiments Marchand</string>
+    <string name="merchant_payment"> Paiements Marchand</string>
     <string name="cash_withdrawal">Retrait</string>
     <string name="receive_remittance">Reception d\'argent</string>
     <string name="fee">Frais de service</string>
@@ -112,7 +115,7 @@
     <string name="my_number">Mon numero</string>
     <string name="another_number">Un autre numero</string>
     <string name="bank_transfer_to_wallet">Transfert Bank vers votre wallet</string>
-    <string name="transaction_details">Transaction détails</string>
+    <string name="transaction_details">Détails de la transaction</string>
     <string name="select_bank">Select Bank*</string>
     <string name="acc_number">N° Compte:</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
@@ -195,7 +198,7 @@
     <string name="transaction_success">Transaction\nsuccèss!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
     <string name="transaction_type_colon">Type de transaction :</string>
-    <string name="transaction_id_colon">Transaction ID :</string>
+    <string name="transaction_id_colon">Identifiant de la  transaction :</string>
     <string name="export_receipt">Exportez le reçu</string>
     <string name="change_pin_caps">Changer de PIN</string>
     <string name="change_pin_message">Veuillez saisir l\'ancien code PIN et le nouveau code PIN pour changer votre code PIN.</string>
@@ -268,7 +271,7 @@
 
     <string name="verification_register_otp">Veuillez entrer l\'OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l\'identifiant de messagerie enregistré et au numéro de téléphone portable</string>
     <string name="verification_register_otp_ip">Veuillez contacter votre service client pour générer l\'OTP ou entrez l\'OTP pour vérifier votre compte.</string>
-    <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
+    <string name="u_don_t_have_an_account_signup_u">Vous n\'avez pas de compte ? S’inscrire</string>
     <string name="logout">Se déconnecter</string>
     <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application ?</string>
     <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
@@ -298,6 +301,8 @@
     <string name="trans_amount_colon">Montant de la transaction :</string>
     <string name="amount_paid_colon">Montant à payer :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
+    <string name="amount_charged_colon_only">Montant facturé :</string>
+
     <string name="enter_old_pin">Entrez votre ancien code PIN</string>
     <string name="enter_new_pin">Entrez votre nouveau code PIN</string>
     <string name="re_enter_new_pin">Entrez à nouveau votre nouveau code PIN</string>
@@ -350,7 +355,9 @@
     <string name="trans_reversed">Transaction annulée</string>
     <string name="trans_date">Date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>
-    <string name="post_balance">Publier le solde</string>
+    <string name="post_balance">Nouveau solde</string>
+    <string name="post_balance_colon">Nouveau solde :</string>
+
     <string name="search_here">Cherche ici...</string>
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
@@ -379,7 +386,7 @@
     <string name="no_promo_found">Aucune promotion trouvée</string>
     <string name="choose_the_plan">Choisissez le forfait</string>
     <string name="you_make_cashout">Vous effectuez un retrait</string>
-    <string name="cashout">retrait</string>
+    <string name="cashout">Retrait</string>
     <string name="paid_service">Service payant</string>
     <string name="view_transaction">Afficher la transaction</string>
     <string name="hide_transaction">Masquer la transaction</string>
@@ -404,6 +411,7 @@
     <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
     <string name="intec">Intech</string>
     <string name="Percentage">Pourcentage</string>
+    <string name="ComingSoon">À venir.....</string>
 
 
     <string-array name="Spinner_provider">

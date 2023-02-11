@@ -264,7 +264,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.linBeneficiary:
 //                intent = new Intent(profileC, AddBeneficiary.class);
 //                startActivity(intent);
-                Toast.makeText(profileC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                Toast.makeText(profileC,getString(R.string.ComingSoon), Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.linChangeLang:
@@ -284,7 +284,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(sendIntent);
                 break;
             case R.id.linTermCondition:
-                Toast.makeText(profileC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+                Toast.makeText(profileC,getString(R.string.ComingSoon), Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.linAbout:

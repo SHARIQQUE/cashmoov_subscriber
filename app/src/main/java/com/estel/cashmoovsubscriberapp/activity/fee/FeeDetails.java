@@ -361,7 +361,7 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 //            }
 //        }
 
-        if(checkIntent.equalsIgnoreCase(getString(R.string.receive_remittance))){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.cash_pickup))){
             feeDetailModelArrayList.clear();
             if (Fee.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
