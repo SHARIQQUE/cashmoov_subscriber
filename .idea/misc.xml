@@ -238,14 +238,18 @@
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/drawable/shape_border_white_background.xml" value="0.1555" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/activity_register_stepone.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_22-07/app/src/main/res/layout/dialog_logout.xml" value="0.20416666666666666" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_about.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_bill_pay_receipt.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_billpay.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_change_language.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_fee.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_fee_details.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_international.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_international_option.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_login.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_login_pin.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_money_transfer.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_out_form.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.19947916666666668" />
@@ -260,7 +264,9 @@
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/item_fee_details.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_airtime_fee.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_cashout_fee.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_international_transfer_in.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_money_transfer_fee.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_pay_fee.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/popup_receive_remittance_fee.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/activity_register_steptwo.xml" value="0.20104166666666667" />
       </map>

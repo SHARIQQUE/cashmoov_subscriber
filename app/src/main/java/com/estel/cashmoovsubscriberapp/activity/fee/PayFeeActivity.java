@@ -58,7 +58,7 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
     private void getIds() {
         cardPay = findViewById(R.id.cardPay);
         tvServiceName = findViewById(R.id.tvServiceName);
-        tvServiceName.setText(getString(R.string.pay));
+        tvServiceName.setText(getString(R.string.paynew));
         btnClose = findViewById(R.id.btnClose);
 
         setOnCLickListener();

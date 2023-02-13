@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 11-02-2023  10-55pm </string>
+    <string name="version">Version : 13-02-2023   </string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -448,6 +448,12 @@
     <string name="min_amount">"Minimum Amount should be  "</string>
     <string name="max_amount">"Maximum Amount should be  "</string>
 
+    <string name="international_remmitance_setting">"International Remittance"</string>
+    <string name="international_remmitance_settingnew">"International Remittance"</string>
+
+    <string name="international_transfer_in">"International Transfer In"</string>
+
+    <string name="international_transfer_out">"International Transfer Out"</string>
 
     <string name="didnot_get_the_Code"> Didnot get the code?</string>
     <string name="resend_it">Resend it</string>

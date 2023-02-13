@@ -61,11 +61,28 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 
         if (getIntent().getExtras() != null) {
             checkIntent = (getIntent().getStringExtra("FEEINTENT"));
+            if(checkIntent.equalsIgnoreCase(getString(R.string.pay))){
+                tvName.setText(getString(R.string.paynew));
+
+            }else{
+                tvName.setText(checkIntent);
+
+            }
            // checkOperatorCodeIntent = (getIntent().getStringExtra("OPERATORCODE"));
             /*if((getIntent().getIntExtra("FEEINTENTPOS",-1)!=-1)){
                 pos=(getIntent().getIntExtra("FEEINTENTPOS",-1));
             }*/
-            tvName.setText(checkIntent);
+
+            /*if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+                if(checkIntent.equalsIgnoreCase(getString(R.string.international_remmitance_setting))){
+                    checkIntent=getString(R.string.international_remmitance_setting));
+
+                }*/
+          //  }
+
+
+
+
             System.out.println("get val"+checkIntent);
         }
 
@@ -324,6 +341,114 @@ public class FeeDetails extends AppCompatActivity implements View.OnClickListene
 
             }
         }
+
+        if(checkIntent.equalsIgnoreCase(getString(R.string.international_remmitance_setting))){
+            feeDetailModelArrayList.clear();
+            if (Fee.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("INTREM")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+        if(checkIntent.equalsIgnoreCase(getString(R.string.international_transfer_out))){
+            feeDetailModelArrayList.clear();
+            if (Fee.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("TRTWLT")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
+        if(checkIntent.equalsIgnoreCase(getString(R.string.international_transfer_in))){
+            feeDetailModelArrayList.clear();
+            if (Fee.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = Fee.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("TRFWLT")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
 
 //        if(checkIntent.equalsIgnoreCase("Cash Withdrawal")){
 //            feeDetailModelArrayList.clear();

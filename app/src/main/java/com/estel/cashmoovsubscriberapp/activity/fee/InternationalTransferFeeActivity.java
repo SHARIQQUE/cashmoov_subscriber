@@ -6,24 +6,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 
-public class MoneyTransferFeeActivity extends AppCompatActivity implements View.OnClickListener{
-    public static MoneyTransferFeeActivity moneytransferfeeC;
+public class InternationalTransferFeeActivity extends AppCompatActivity implements View.OnClickListener{
+    public static InternationalTransferFeeActivity intertransferfeeC;
     ImageView imgBack,imgHome;
-    CardView cardSubscriber,cardNonSubscriber,cardInternational;
+    CardView cardinternationalremitance,careinternationalremitanceinn,caredinternationalout;
     TextView tvServiceName;
     Button btnClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.popup_money_transfer_fee);
-        moneytransferfeeC=this;
+        setContentView(R.layout.popup_international_transfer_in);
+        intertransferfeeC=this;
         //setBackMenu();
         getIds();
     }
@@ -58,9 +58,9 @@ public class MoneyTransferFeeActivity extends AppCompatActivity implements View.
 //    }
 
     private void getIds() {
-        cardSubscriber = findViewById(R.id.cardSubscriber);
-        cardNonSubscriber = findViewById(R.id.cardNonSubscriber);
-        cardInternational = findViewById(R.id.cardInternational);
+        cardinternationalremitance = findViewById(R.id.cardinternationalremitance);
+        careinternationalremitanceinn = findViewById(R.id.careinternationalremitanceinn);
+        caredinternationalout = findViewById(R.id.caredinternationalout);
         tvServiceName = findViewById(R.id.tvServiceName);
         tvServiceName.setText(getString(R.string.money_transfer));
         btnClose = findViewById(R.id.btnClose);
@@ -71,32 +71,34 @@ public class MoneyTransferFeeActivity extends AppCompatActivity implements View.
     }
 
     private void setOnCLickListener() {
-        cardSubscriber.setOnClickListener(moneytransferfeeC);
-        cardNonSubscriber.setOnClickListener(moneytransferfeeC);
-        cardInternational.setOnClickListener(moneytransferfeeC);
-        btnClose.setOnClickListener(moneytransferfeeC);
+        cardinternationalremitance.setOnClickListener(intertransferfeeC);
+        careinternationalremitanceinn.setOnClickListener(intertransferfeeC);
+        caredinternationalout.setOnClickListener(intertransferfeeC);
+        btnClose.setOnClickListener(intertransferfeeC);
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
         switch(v.getId()){
-            case R.id.cardSubscriber:
-                intent = new Intent(moneytransferfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT",getString(R.string.subscriber));
+            case R.id.cardinternationalremitance:
+                intent = new Intent(intertransferfeeC, FeeDetails.class);
+                intent.putExtra("FEEINTENT",getString(R.string.international_remmitance_setting));
                 startActivity(intent);
                 break;
-            case R.id.cardNonSubscriber:
-                intent = new Intent(moneytransferfeeC, FeeDetails.class);
-                intent.putExtra("FEEINTENT",getString(R.string.non_subscriber));
+            case R.id.careinternationalremitanceinn:
+                intent = new Intent(intertransferfeeC, FeeDetails.class);
+                intent.putExtra("FEEINTENT",getString(R.string.international_transfer_in));
                 startActivity(intent);
                 break;
-            case R.id.cardInternational:
+            case R.id.caredinternationalout:
 
-                    intent = new Intent(moneytransferfeeC, InternationalTransferFeeActivity.class);
-                    startActivity(intent);
+                    intent = new Intent(intertransferfeeC, FeeDetails.class);
+                intent.putExtra("FEEINTENT",getString(R.string.international_transfer_out));
+
+                startActivity(intent);
                     // showFeePopup(getString(R.string.money_transfer));
-
+                
               /*  intent = new Intent(moneytransferfeeC, FeeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.international));
                 startActivity(intent);*/

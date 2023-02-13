@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 11-02-2023  10-55pm</string>
+    <string name="version">Version : 13-02-2023  </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -368,7 +368,7 @@
     <string name="gnf_fixed">GNF fixe</string>
     <string name="recharge_tv">Recharger la télévision</string>
     <string name="recharge_mobile">Recharger le mobile</string>
-    <string name="range">Varier</string>
+    <string name="range">Gamme</string>
     <string name="value">Valeur</string>
     <string name="range_value_not_available"><![CDATA[Aucune plage et valeur disponibles]]></string>
     <string name="partner">Partenaire</string>
@@ -412,7 +412,12 @@
     <string name="intec">Intech</string>
     <string name="Percentage">Pourcentage</string>
     <string name="ComingSoon">À venir.....</string>
+    <string name="international_remmitance_setting">"International Remittance"</string>
+    <string name="international_remmitance_settingnew">"Transfert d'argent"</string>
 
+    <string name="international_transfer_in">"International Transfert entrant"</string>
+
+    <string name="international_transfer_out">"International Transfert sortant"</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>

@@ -423,6 +423,11 @@
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".activity.fee.InternationalTransferFeeActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.fee.AirtimeFeeActivity"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
