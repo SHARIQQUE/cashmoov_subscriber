@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.rechargeandpayments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -31,6 +32,7 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
     ImageView imgBack,imgHome;
     TextView tvOperatorName,tvAmtCurr,tvSend;
     public static EditText etAccountNo,etAmount;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +136,11 @@ public class BillPayDetails extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
                 if(etAccountNo.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(billpaydetailsC,getString(R.string.val_acc_no));
                     return;

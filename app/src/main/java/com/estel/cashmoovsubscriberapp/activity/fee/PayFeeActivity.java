@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
     CardView cardPay;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,12 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent;
         switch(v.getId()){
             case R.id.cardPay:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(payfeeC, FeeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.pay));
                 startActivity(intent);

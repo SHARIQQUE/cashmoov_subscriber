@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
     public static MoneyTransfer moneytransferC;
     ImageView imgBack,imgHome;
     CardView cardToreceiveinternational,cardToSubscriber,cardToNonSubscriber,cardInternational,cardBankToWallet,cardWalletToBank,cardInternationalIn;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,11 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
         Intent intent;
         switch(view.getId()){
             case R.id.cardToSubscriber:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showToSubscriber){
                     // cardToSubscriber.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
@@ -110,6 +117,11 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.cardToreceiveinternational:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showToSubscriber){
                     // cardToSubscriber.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
@@ -119,6 +131,11 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.cardToNonSubscriber:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showToNonSubscriber){
                     //cardToNonSubscriber.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
@@ -130,6 +147,10 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
             case R.id.cardInternationalIn:
 
 
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                if(!MyApplication.showInternationalRemit){
                     //cardInternational.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
@@ -163,6 +184,11 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
         mCardCashmoov.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showToSubscriber){
                     // cardToSubscriber.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));
@@ -178,6 +204,11 @@ public class MoneyTransfer extends AppCompatActivity implements View.OnClickList
         mCardToPartners.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showInternationalRemit){
                     //cardInternational.setVisibility(View.VISIBLE);
                     MyApplication.showToast(moneytransferC,getString(R.string.service_not_available));

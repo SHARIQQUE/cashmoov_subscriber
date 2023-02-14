@@ -157,6 +157,8 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                     return;
                 }
 
+
+
                 callApiChangePin();
 
                 break;
@@ -179,6 +181,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             API.PUT("ewallet/api/v1/walletOwnerUser/changePin", setPinJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
 
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -191,7 +194,11 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                             MyApplication.showToast(changepinC,getString(R.string.technical_failure));
+                            MyApplication.hideLoader();
+
                         } else {
+                            MyApplication.hideLoader();
+
                             MyApplication.showToast(changepinC,jsonObject.optString("resultDescription", "N/A"));
                         }
                     }
@@ -199,11 +206,13 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
                 @Override
                 public void failure(String aFalse) {
+                    MyApplication.hideLoader();
 
                 }
             });
 
         }catch (Exception e){
+            MyApplication.hideLoader();
 
         }
 

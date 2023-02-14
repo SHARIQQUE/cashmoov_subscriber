@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,6 +45,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     CircleImageView profile_img;
     private ReviewManager reviewManager;
     private String mNumber;
+    private long mLastClickTime = 0;
+
 
 
     @Override
@@ -242,6 +245,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Intent intent;
         switch (view.getId()) {
             case R.id.imgNotification:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 intent = new Intent(profileC, NotificationList.class);
                 startActivity(intent);
                 MyApplication.isNotification = false;
@@ -254,10 +263,20 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 showRateApp();
                 break;
             case R.id.linFee:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, Fee.class);
                 startActivity(intent);
                 break;
             case R.id.linServicePoint:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, ServicePoint.class);
                 startActivity(intent);
                 break;
@@ -268,10 +287,20 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.linChangeLang:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, ChangeLanguage.class);
                 startActivity(intent);
                 break;
             case R.id.linConfidentiality:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, Confidentiality.class);
                 startActivity(intent);
                 break;
@@ -288,10 +317,20 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.linAbout:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, About.class);
                 startActivity(intent);
                 break;
             case R.id.linChangePin:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, ChangePin.class);
                 startActivity(intent);
                 break;
@@ -300,6 +339,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.linReset:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, Reset.class);
                 startActivity(intent);
                 break;

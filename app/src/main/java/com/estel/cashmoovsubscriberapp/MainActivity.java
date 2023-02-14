@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int notificationCountCurrent;
     int notificationCountPrevious;
 
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -399,10 +401,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.imgProfile:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(mainC, Profile.class);
                 startActivity(intent);
                 break;
             case R.id.linClickn:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 MyApplication.saveBool("TRANSHISTORYCLICK", true, mainC);
                 intent = new Intent(mainC, WalletScreen.class);
                 startActivity(intent);
@@ -424,6 +436,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                }
                 break;
             case R.id.cardMoneyTransfer:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showMoneyTransfer){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
@@ -432,6 +450,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.cardAirtimePurchase:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showAirtimePurchase){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
@@ -440,6 +463,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.cardRechargePayment:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showBillPayment){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
@@ -449,6 +477,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.cardPay:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showPay){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
@@ -459,6 +492,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.cardCashOut:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCashOut){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
@@ -473,6 +511,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
 //                break;
             case R.id.cardRecRemittance:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCashPickup){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{
@@ -483,6 +526,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.cardInttest:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCashPickup){
                     MyApplication.showToast(mainC,getString(R.string.service_not_available));
                 }else{

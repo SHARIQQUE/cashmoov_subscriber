@@ -241,7 +241,10 @@
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_about.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_bill_pay_receipt.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_billpay.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_billpay_details.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_cashout.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_change_language.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_change_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_fee.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_fee_details.xml" value="0.19947916666666668" />
@@ -255,8 +258,11 @@
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_profile.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_receive_remittance.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_register_stepone.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_register_steptwo.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_set_pin.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_to_subscriber.xml" value="0.19947916666666668" />
+        <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_verify_register_otp.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/dialog_money_transfer_international.xml" value="0.19947916666666668" />
         <entry key="..\:/cashmoov_subscriber/app/src/main/res/layout/include_home_screen.xml" value="0.19947916666666668" />

@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 13-02-2023   </string>
+    <string name="version">Version : 15-02-2023   </string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="acc_created">Account created!</string>
@@ -335,6 +335,8 @@
     <string name="val_new_pin">Please enter new pin</string>
     <string name="val_valid_new_pin">New Pin must be at least 4 digit</string>
     <string name="val_new_pin_re_pin"><![CDATA[New Pin & Re-Pin should be same]]></string>
+    <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin should be same]]></string>
+
     <string name="pin_changed_msg">Your Pin Changed Successfully!</string>
     <string name="logout_conf_message">Are you sure you want to logout?</string>
     <string name="val_acc_no">Please enter account number</string>

@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ public class CashOutFeeActivity extends AppCompatActivity implements View.OnClic
     CardView cardCashOut;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,11 @@ public class CashOutFeeActivity extends AppCompatActivity implements View.OnClic
         Intent intent;
         switch(v.getId()){
             case R.id.cardCashOut:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(cashoutfeeC, FeeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.cashout));
                 startActivity(intent);

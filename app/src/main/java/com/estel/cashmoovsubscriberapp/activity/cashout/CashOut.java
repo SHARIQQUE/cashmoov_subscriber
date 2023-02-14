@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -50,6 +51,7 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_CODE_QR_SCAN = 101;
     private boolean isQR;
     private boolean isSuccess;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -314,6 +316,12 @@ public class CashOut extends AppCompatActivity implements View.OnClickListener {
         Intent intent;
         switch (view.getId()) {
             case R.id.tvSend:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(etRecipientNo.getText().toString().isEmpty()){
                     MyApplication.showErrorToast(cashoutC,getString(R.string.val_inst_agent_branch_no));
                     return;

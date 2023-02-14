@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -54,6 +55,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     private static final int REQUEST_CODE_QR_SCAN = 101;
     public static final int REQUEST_CODE = 1;
     private String current = "";
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -294,6 +296,7 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setOnCLickListener() {
+
         tvSend.setOnClickListener(tosubscriberC);
 
     }
@@ -304,6 +307,12 @@ public class ToSubscriber extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         if(etSubscriberNo.getText().toString().trim().isEmpty()) {
             MyApplication.showErrorToast(tosubscriberC,getString(R.string.val_subscriber_no));
             return;

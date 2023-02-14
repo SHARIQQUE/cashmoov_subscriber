@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -97,6 +99,9 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         msgText = findViewById(R.id.msgText);
         tvContinue = findViewById(R.id.tvContinue);
         tvregister = findViewById(R.id.tvregister);
+        SpannableString content = new SpannableString(getString(R.string.u_don_t_have_an_account_signup_u));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        tvregister.setText(content);
         tvregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -211,7 +211,7 @@
                         android:textSize="@dimen/_13sdp"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/linFee"
+                        android:id="@+id/linFee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"

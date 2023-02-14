@@ -192,6 +192,7 @@ public class MyApplication extends Application {
     }
 
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -392,6 +393,14 @@ public class MyApplication extends Application {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
         editor.commit();
+    }
+
+    public static void deleteString(String key, String value, Context activity) {
+        SharedPreferences preferences =activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        preferences.edit().clear().commit();
+
     }
 
     public static void saveInt(String key, int value, Context activity) {

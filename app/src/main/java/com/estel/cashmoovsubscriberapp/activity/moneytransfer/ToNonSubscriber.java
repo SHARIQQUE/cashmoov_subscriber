@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.moneytransfer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -51,6 +52,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     private SpinnerDialog spinnerDialogBenefiGender;
 
     public static final int REQUEST_CODE = 1;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -334,6 +336,11 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
 
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
 
         if(etAmount.getText().toString().trim().replace(",","").isEmpty()) {
             MyApplication.showErrorToast(tononsubscriberC,getString(R.string.val_amount));

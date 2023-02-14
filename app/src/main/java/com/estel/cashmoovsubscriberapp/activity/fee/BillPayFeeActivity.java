@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +27,8 @@ public class BillPayFeeActivity extends AppCompatActivity implements View.OnClic
     RecyclerView rvOperator;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,12 @@ public class BillPayFeeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onOperatorBillPayFeeListItemClick(String code, String name) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
+
         callBillPayFee(code);
     }
 

@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.receiveremittance;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -40,6 +41,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     TextView tvAmtCurr,spBenefiCurrency,tvSend;
     public static EditText etPhone,etName,etLname,etConfCode,etAmount,etPin,etOtp;
     public LinearLayout pin_layout,otp_layout,ll_resendOtp;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -363,6 +365,12 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvSend:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(etPhone.getText().toString().isEmpty()){
                     MyApplication.showErrorToast(receiveremittanceC,getString(R.string.val_phone));
                     return;

@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 13-02-2023  </string>
+    <string name="version">Version : 15-02-2023  </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -312,6 +312,8 @@
     <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
     <string name="val_new_pin_re_pin"><![CDATA[La nouvelle épingle et la nouvelle épingle doivent être identiques]]></string>
     <string name="pin_changed_msg">Votre épingle a été modifiée avec succès !</string>
+    <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin devraient être les mêmes]]></string>
+
     <string name="logout_conf_message">etes vous sur de vouloir vous deconnecter?</string>
     <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
     <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
@@ -414,6 +416,25 @@
     <string name="ComingSoon">À venir.....</string>
     <string name="international_remmitance_setting">"International Remittance"</string>
     <string name="international_remmitance_settingnew">"Transfert d'argent"</string>
+    <string name="mobile_no_exist_reg">Le numéro de mobile existe déjà dans le système s’il vous plaît essayer avec un autre numéro!</string>
+    <string name="fileexceed">La taille du fichier dépasse</string>
+    <string name="failed">Raté</string>
+    <string name="usercancel">Utilisateur annulé</string>
+    <string name="backuploafimageserror">s’il vous plaît télécharger l’image de retour</string>
+    <string name="frontimageerror">veuillez télécharger l’image frontale</string>
+    <string name="sending_amount_n">Montant de l’envoi</string>
+    <string name="vendor_result_description">Description du résultat du fournisseur :</string>
+    <string name="receiving_amount">Montant reçu</string>
+    <string name="sending_amount">Montant de l’envoi :</string>
+    <string name="not_allowed">"Ce code de confirmation n’est pas autorisé dans votre pays "</string>
+    <string name="didnot_get_the_Code"> N’a pas obtenu le code?</string>
+    <string name="resend_it">Renvoyer</string>
+    <string name="cancel_pop">Annuler</string>
+    <string name="view_more_string">Voir plus</string>
+    <string name="min_amount">"Le montant minimum doit être"</string>
+    <string name="max_amount">"Le montant maximum doit être"</string>
+
+    <string name="veryfyotp">Vérifier le mot de passe à usage unique</string>
 
     <string name="international_transfer_in">"International Transfert entrant"</string>
 

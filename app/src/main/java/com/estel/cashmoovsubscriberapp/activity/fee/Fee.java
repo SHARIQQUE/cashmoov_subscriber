@@ -3,6 +3,7 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
             linCashWithdrawal,linRecRemittance;
     TextView tvMoneyTransfer,tvFeeMoneyTransfer,tvAirtimePurchase,tvFeeAirtimePurchase,tvBillPayment,tvFeeBillPayment,
             tvPay,tvFeePay,tvCashOut,tvFeeCashOut,tvCashWithdrawal,tvFeeCashWithdrawal,tvReceiveRemit,tvFeeReceiveRemit;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,10 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
         Intent intent;
         switch (view.getId()) {
             case R.id.linMoneyTransfer:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeMoneyTransfer.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
@@ -131,6 +137,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.linAirtimePurhase:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeAirtimePurchase.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
@@ -140,6 +151,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.linBillPay:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeBillPayment.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
@@ -149,6 +165,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.linPay:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeePay.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
@@ -161,6 +182,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
                /* if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{*/
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                     intent = new Intent(feeC, CashOutFeeActivity.class);
                     startActivity(intent);
                     //showCashOutPopup(getString(R.string.cashout));
@@ -174,6 +200,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 //                }
 //                break;
             case R.id.linRecRemittance:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeReceiveRemit.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
                 }else{
@@ -1059,7 +1090,10 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                                             }
 */                                            for (int i = 0; i < FeeListArr.length(); i++) {
+
                                                 JSONObject feeData = FeeListArr.optJSONObject(i);
+                                                tvFeeCashOut.setText(getString(R.string.paid_service));
+
                                                 if(feeData.optString("serviceCode").equalsIgnoreCase("100000")){
                                                     if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")){
                                                         tvFeeMoneyTransfer.setText(getString(R.string.paid_service));
@@ -1112,11 +1146,11 @@ public class Fee extends AppCompatActivity implements View.OnClickListener {
 
                                                     if (feeData.optString("serviceCategoryCode").equalsIgnoreCase("100012")) {
                                                         if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")) {
-                                                           // tvFeeCashOut.setText(getString(R.string.paid_service));
+                                                            tvFeeCashOut.setText(getString(R.string.paid_service));
                                                             //tvFeePay.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
                                                         }
                                                         if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")) {
-                                                          //  tvFeeCashOut.setText(getString(R.string.paid_service));
+                                                            tvFeeCashOut.setText(getString(R.string.paid_service));
                                                             //tvFeePay.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                         }
 

@@ -432,6 +432,7 @@ public class LoginPin extends AppCompatActivity {
                             MyApplication.tinyDB.putObject("ServiceList",serviceList);
                         }
                     }catch (Exception e){
+                        MyApplication.hideLoader();
 
                     }
 
@@ -469,6 +470,7 @@ public class LoginPin extends AppCompatActivity {
             });
 
         }catch (Exception e){
+            MyApplication.hideLoader();
 
         }
 
@@ -629,6 +631,9 @@ public class LoginPin extends AppCompatActivity {
 
                 }else{
                     MyApplication.showToast(loginpinC,jsonObject.optString("resultDescription"));
+                    MyApplication.hideLoader();
+                    etmobile.setEnabled(true);
+
 
                 }
 
@@ -636,6 +641,9 @@ public class LoginPin extends AppCompatActivity {
 
             @Override
             public void failure(String aFalse) {
+                MyApplication.hideLoader();
+                etmobile.setEnabled(true);
+
                 MyApplication.showToast(loginpinC,aFalse);
             }
         });
@@ -666,6 +674,7 @@ public class LoginPin extends AppCompatActivity {
                         Intent i = new Intent(loginpinC, MainActivity.class);
                         startActivity(i);
                         finish();
+
                         Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                         //MyApplication.hideLoader();
 

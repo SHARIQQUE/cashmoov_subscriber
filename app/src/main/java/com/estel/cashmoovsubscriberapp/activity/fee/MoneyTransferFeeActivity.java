@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.fee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ public class MoneyTransferFeeActivity extends AppCompatActivity implements View.
     CardView cardSubscriber,cardNonSubscriber,cardInternational;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,16 +84,34 @@ public class MoneyTransferFeeActivity extends AppCompatActivity implements View.
         Intent intent;
         switch(v.getId()){
             case R.id.cardSubscriber:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(moneytransferfeeC, FeeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.subscriber));
                 startActivity(intent);
                 break;
             case R.id.cardNonSubscriber:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(moneytransferfeeC, FeeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.non_subscriber));
                 startActivity(intent);
                 break;
             case R.id.cardInternational:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                     intent = new Intent(moneytransferfeeC, InternationalTransferFeeActivity.class);
                     startActivity(intent);

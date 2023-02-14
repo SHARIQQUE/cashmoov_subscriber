@@ -777,7 +777,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
                                     if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
                                         if(data.optString("status").equalsIgnoreCase("Actif") && data.optString("state").equalsIgnoreCase("Approuvée")){
-                                            MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
+                                           // MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
                                         }else {
 
                                             RegistrationMobileModel registrationMobileModel = new RegistrationMobileModel(
@@ -840,7 +840,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
 
                                     if(data.optString("status").equalsIgnoreCase("Active") && data.optString("state").equalsIgnoreCase("Approved")){
-                                        MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
+                                       // MyApplication.showToast(registersteponeC,getString(R.string.mobile_no_exist_reg));
                                     }else{
 
                                         RegistrationMobileModel registrationMobileModel=new RegistrationMobileModel(
