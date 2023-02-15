@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 15-02-2023  </string>
+    <string name="version">Version : 15-02-2023 07-20pm  </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="acc_created">Compte créé!</string>
@@ -18,6 +18,7 @@
     <string name="dashboard">Tableau de bord</string>
     <string name="pay">Solde</string>
     <string name="paynew">Paiements Marchand</string>
+    <string name="upload_success_toast">Télécharger le succès</string>
 
 
     <string name="balance">Solde</string>
@@ -306,7 +307,7 @@
     <string name="enter_old_pin">Entrez votre ancien code PIN</string>
     <string name="enter_new_pin">Entrez votre nouveau code PIN</string>
     <string name="re_enter_new_pin">Entrez à nouveau votre nouveau code PIN</string>
-    <string name="val_old_pin">Please enter old pin</string>
+    <string name="val_old_pin">Veuillez saisir l\'ancien code PIN</string>
     <string name="val_valid_old_pin">L\'ancien code PIN doit comporter au moins 4 chiffres</string>
     <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
     <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
@@ -427,6 +428,8 @@
     <string name="receiving_amount">Montant reçu</string>
     <string name="sending_amount">Montant de l’envoi :</string>
     <string name="not_allowed">"Ce code de confirmation n’est pas autorisé dans votre pays "</string>
+    <string name="pin_generate_success">Votre code PIN a été généré avec succès!</string>
+
     <string name="didnot_get_the_Code"> N’a pas obtenu le code?</string>
     <string name="resend_it">Renvoyer</string>
     <string name="cancel_pop">Annuler</string>

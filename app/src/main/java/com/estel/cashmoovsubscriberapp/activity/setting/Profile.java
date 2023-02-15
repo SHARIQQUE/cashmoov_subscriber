@@ -313,6 +313,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(sendIntent);
                 break;
             case R.id.linTermCondition:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Toast.makeText(profileC,getString(R.string.ComingSoon), Toast.LENGTH_SHORT).show();
 
                 break;
@@ -335,6 +339,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.linEditProfile:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, EditProfile.class);
                 startActivity(intent);
                 break;

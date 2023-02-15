@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ public class AddBeneficiary extends AppCompatActivity implements View.OnClickLis
     RecyclerView rvContact;
     SearchView searchView;
     public String searchText = "";
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +126,12 @@ public class AddBeneficiary extends AppCompatActivity implements View.OnClickLis
         Intent intent;
         switch (view.getId()) {
             case R.id.tvGo:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(searchText.isEmpty()) {
                     MyApplication.showErrorToast(addbeneficiaryC, getString(R.string.enter_phone_no));
                     return;

@@ -249,7 +249,7 @@ public class SelfSignature extends AppCompatActivity implements View.OnClickList
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
 
-                                MyApplication.showToast(selfsignatureC,"upload success");
+                                MyApplication.showToast(selfsignatureC,getString(R.string.upload_success_toast));
                                 callApiAddSubscriberDataApproval();
 
 

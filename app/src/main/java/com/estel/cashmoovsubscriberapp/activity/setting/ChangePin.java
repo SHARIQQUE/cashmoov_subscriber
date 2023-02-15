@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -27,6 +28,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
     EditText etOldPin,etNewPin,etReNewPin;
     ImageView icOldPin,icNewPin,icReNewPin;
     // ImageView imgBack;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,11 +125,19 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 }
                 break;
             case R.id.btnCancel:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(getApplicationContext(), Profile.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
             case R.id.btnConfirm:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(etOldPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_old_pin));
                     return;

@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.airtimepurchase;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -40,6 +41,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     TextView tvAmtCurr,spOperator,tvSend;
     public static EditText etPhone,etAmount;
     CardView cardOneThousand,cardTwoThousand,cardFiveThousand,cardTenThousand,cardFifteenThousand,cardTwentyThousand;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +149,11 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvSend:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 //        if(spOperator.getText().toString().equals(getString(R.string.valid_select_operator))) {
 //            MyApplication.showErrorToast(selfairtimeC,getString(R.string.val_select_operator));
 //            return;

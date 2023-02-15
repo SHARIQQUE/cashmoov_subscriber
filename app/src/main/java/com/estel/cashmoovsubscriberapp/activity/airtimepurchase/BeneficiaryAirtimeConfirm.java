@@ -101,7 +101,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
         // tvCurrency.setText(BeneficiaryAirtime.currency);
 
         tvTransAmount.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+ MyApplication.addDecimal(BeneficiaryAirtime.currencyValue));
+        tvAmountPaid.setText(BeneficiaryAirtime.currencySymbol+" "+(BeneficiaryAirtime.currencyValue));
         tvFee.setText(BeneficiaryAirtime.currencySymbol+" "+MyApplication.addDecimal(BeneficiaryAirtime.fee));
 
         finalamount=Double.parseDouble(BeneficiaryAirtime.fee)+Double.parseDouble(BeneficiaryAirtime.etAmount.getText().toString().replace(",",""));

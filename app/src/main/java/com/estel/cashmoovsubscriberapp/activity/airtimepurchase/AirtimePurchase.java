@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
     public static AirtimePurchase airtimepurchaseC;
     ImageView imgBack,imgHome;
     LinearLayout tvMyNo,tvOtherNo;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +85,21 @@ public class AirtimePurchase extends AppCompatActivity implements View.OnClickLi
         Intent intent;
         switch(view.getId()){
             case R.id.tvMyNo:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 intent = new Intent(airtimepurchaseC, SelfAirtime.class);
                 startActivity(intent);
                 break;
 
             case R.id.tvOtherNo:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
 
                 //getContactList();
 //                Uri uri = Uri.parse("content://contacts");

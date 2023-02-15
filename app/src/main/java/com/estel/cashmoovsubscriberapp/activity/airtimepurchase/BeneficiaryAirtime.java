@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.airtimepurchase;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -33,6 +34,7 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
     public static EditText etPhone,etAmount;
     CardView cardOneThousand,cardTwoThousand,cardFiveThousand,cardTenThousand,cardFifteenThousand,cardTwentyThousand;
 
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +222,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
         Intent intent;
         switch (view.getId()) {
             case R.id.tvSend:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(etPhone.getText().toString().trim().isEmpty()) {
                         MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                         return;
@@ -270,6 +276,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                 }
                     break;
                     case R.id.cardOneThousand:
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
@@ -281,6 +291,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         callApiAmountDetails("1000");
                         break;
                     case R.id.cardTwoThousand:
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
@@ -292,6 +306,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         callApiAmountDetails("2000");
                         break;
                     case R.id.cardFiveThousand:
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
@@ -303,6 +321,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         callApiAmountDetails("5000");
                         break;
                     case R.id.cardTenThousand:
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;
@@ -325,6 +347,10 @@ public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClic
                         callApiAmountDetails("15000");
                         break;
                     case R.id.cardTwentyThousand:
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         if(etPhone.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(beneficiaryairtimeC,getString(R.string.val_phone));
                             return;

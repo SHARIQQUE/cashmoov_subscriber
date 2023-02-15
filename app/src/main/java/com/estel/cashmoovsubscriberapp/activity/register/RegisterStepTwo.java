@@ -346,7 +346,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
                     if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                         //MyApplication.showToast(getString(R.string.document_upload_msg));
                         documentUploadJsonObj=jsonObject;
-                        MyApplication.showToast(registersteptwoC,"upload success");
+                        MyApplication.showToast(registersteptwoC,getString(R.string.upload_success_toast));
                        // callApiUpdateDataApproval();
                         Intent intent = new Intent(registersteptwoC, SelfSignature.class);
                         startActivity(intent);
