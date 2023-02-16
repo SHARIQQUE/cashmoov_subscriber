@@ -9,6 +9,18 @@
     <string name="version">Version : 15-02-2023 07-20pm  </string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
+    <string name="maximumLimitCount">Global limit count</string>
+    <string name="senderName_without_semic"> Sender name </string>
+    <string name="pay_month_limit_count">Month limit count :</string>
+    <string name="pay_month_limit_amount">Month limit amount :</string>
+    <string name="Commisionwallet">Commision wallet</string>
+    <string name="maxvaluewallet">Max value</string>
+    <string name="minvaluewallet">Min value</string>
+    <string name="alertvalue">Alert value</string>
+    <string name="exchangeRate"> Exchange rate  </string>
+
+    <string name="sender_wallet_owner_code"> Sender wallet owner code </string>
+    <string name="receiver_wallet_owner_code">Receiver wallet owner code </string>
     <string name="acc_created">Account created!</string>
     <string name="acc_created_message">Dear user, your account has been successfully created. Log in to start using the app</string>
     <string name="continu">Continue</string>

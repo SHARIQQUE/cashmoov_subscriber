@@ -1915,6 +1915,98 @@ public class API {
 
 
 
+    public static void GET_TRANSFER_DETAILS(String URL,String languageToUse, final Api_Responce_Handler responce_handler)
+    {
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.get(BASEURL + URL)
+                    .setOkHttpClient(okHttpClient)
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "SUBSCRIBER")
+                    .addHeaders("channel", "APP")
+                    .addHeaders("type", "LOGINOTP")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+
+
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            Log.e("=============", " REQUEST ==============" + BASEURL + URL);
+                            Log.e("=============", " RESPONSE ==============" + response + "=============");
+
+                            responce_handler.success(response);
+
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
+                                responce_handler.failure(error.toString());
+                            } catch (Exception e) {
+                                responce_handler.failure(error.toString());
+                            }
+
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    //  MyApplication.getInstance().callLogin();
+
+                                }
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
+
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+    }
 
 
 

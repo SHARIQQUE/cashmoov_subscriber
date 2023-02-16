@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.rechargeandpayments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,6 +32,7 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
 
     private ArrayList<OperatorModel> operatorList = new ArrayList<>();
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +202,10 @@ public class BillPay extends AppCompatActivity implements OperatorListeners {
     public static String operatorCode,operatorNname;
     @Override
     public void onOperatorListItemClick(String code, String name,String serviceItem) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         operatorCode = code;
         operatorNname = name;
 

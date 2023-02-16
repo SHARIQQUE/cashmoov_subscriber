@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.activity.rechargeandpayments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class BillPayProduct extends AppCompatActivity implements ProductListener
     ImageView imgBack, imgHome;
     RecyclerView rvProduct;
     private ArrayList<ProductMasterModel> productList = new ArrayList<>();
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,10 @@ public class BillPayProduct extends AppCompatActivity implements ProductListener
 
     @Override
     public void onProductListItemClick(String code, String opCode) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         productCode = code;
         operatorCode = opCode;
         Intent intent = new Intent(billpayproductC, BillPayPlanList.class);

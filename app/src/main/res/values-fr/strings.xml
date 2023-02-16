@@ -9,6 +9,18 @@
     <string name="version">Version : 15-02-2023 07-20pm  </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
+    <string name="maximumLimitCount">Nombre de limites globales</string>
+    <string name="senderName_without_semic">Nom de l\'expediteur</string>
+    <string name="pay_month_limit_count">Nombre limite de mois :</string>
+    <string name="pay_month_limit_amount">Montant limite mensuel :</string>
+    <string name="Commisionwallet">"Portefeuille de commissions"</string>
+    <string name="maxvaluewallet">Valeur max</string>
+    <string name="minvaluewallet">Valeur minimale</string>
+    <string name="alertvalue">Valeur d\'alerte</string>
+    <string name="exchangeRate">Taux de change</string>
+
+    <string name="sender_wallet_owner_code">Code du titulaire de compte expéditeur</string>
+    <string name="receiver_wallet_owner_code">Code du titulaire de compte destinataire</string>
     <string name="acc_created">Compte créé!</string>
     <string name="acc_created_message">Cher utilisateur, votre compte a été créé avec succès. Connectez-vous pour commencer à utiliser l\'application</string>
     <string name="continu">Continuer</string>
@@ -124,12 +136,21 @@
     <string name="amount_to_paid">Montant à payer</string>
     <string name="amount_to_paid_colon">Montant à payer:</string>
     <string name="amount_to_paid_intec">Montant à payer :</string>
+    <string name="amount_to_paid_international">Montant à payer</string>
+    <string name="amount_to_be_paid">Montant payé</string>
 
     <string name="send">Envoyer</string>
+    <string name="please_enter_signature">Veuillez saisir la signature</string>
+
     <string name="choose_operation">Choisir l\'operation</string>
     <string name="subscriber">Abonné</string>
     <string name="non_subscriber">Non Abonné</string>
     <string name="international">Internationale</string>
+    <string name="sendinternational"> Envoyer à l’international</string>
+    <string name="receiveinternational">Recevoir International</string>
+    <string name="Cashmoov">Cashmoov</string>
+    <string name="Parteners">Partenaires</string>
+
     <string name="bank_to_wallet">Banque au portefeuille</string>
     <string name="wallet_to_bank">portefeuille à la banque</string>
     <string name="money_transfer_to_subscriber">Transfert d\'argent vers abonné</string>
@@ -148,9 +169,9 @@
     <string name="valid_address">Addresse*</string>
     <string name="valid_select_gender">Sélectionnez le sexe*</string>
     <string name="valid_select_occupation">Select Occupation*</string>
-    <string name="valid_dob">Date of Birth*</string>
+    <string name="valid_dob">Date de naissance*</string>
     <string name="valid_select_id_proof">Sélectionnez la preuve d\'identité*</string>
-    <string name="vaild_id_proof_no">Id Proof Number*</string>
+    <string name="vaild_id_proof_no">Numéro de preuve d’identité*</string>
     <string name="valid_amount_send">Montant à envoyer*</string>
 
     <string name="gender">Genre</string>
@@ -212,7 +233,7 @@
     <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
     <string name="save_next"><![CDATA[Enregistrer et suivant]]></string>
     <string name="clear">Duidelik</string>
-    <string name="self_sign">Self Signature</string>
+    <string name="self_sign">Auto-signature</string>
     <string name="upload">Télécharger</string>
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
@@ -241,7 +262,7 @@
     <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
     <string name="set_pin">Définir la broche</string>
     <string name="generate_password">Générer un nouveau mot de passe</string>
-    <string name="set_pin_message">Please set 4 digit pin for your account.</string>
+    <string name="set_pin_message">Veuillez définir un code PIN à 4 chiffres pour votre compte.</string>
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
     <string name="val_re_pin">Veuillez saisir une nouvelle épingle</string>
     <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>

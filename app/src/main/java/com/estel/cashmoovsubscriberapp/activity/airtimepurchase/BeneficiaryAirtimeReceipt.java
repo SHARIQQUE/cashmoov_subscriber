@@ -145,12 +145,12 @@ public class BeneficiaryAirtimeReceipt extends AppCompatActivity implements View
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvSubscriberMobile.setText(BeneficiaryAirtime.mobile);
-      //  tvTransType.setText(getString(R.string.airtime_purchase));
+        tvTransType.setText(getString(R.string.airtime_purchase));
         accNo.setText(getString(R.string.mobile_number_colom));
         transId.setText(getString(R.string.vendor_trans_id_colon));
         transIdnew.setText(getString(R.string.transaction_id_colon));
 
-        tvTransType.setText(BeneficiaryAirtime.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryName"));
+       // tvTransType.setText(BeneficiaryAirtime.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryName"));
 
         tvTransIdnew.setText(BeneficiaryAirtimeConfirm.receiptJson.optString("transactionId"));
         tvMobile.setText(BeneficiaryAirtimeConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));

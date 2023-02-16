@@ -149,6 +149,8 @@ public class MyApplication extends Application {
     }
 
 
+    private SharedPreferences mSharedPreferences;
+    private String PREF_NAME = "cashmoove_sh";
     public static void initialisedLogger(Application message) {
         /*
          * First initialised SaveLogsInStorage in variable
@@ -340,6 +342,13 @@ public class MyApplication extends Application {
 //        text.setTextColor(ContextCompat.getColor(activity, R.color.white));
         toast.show();
     }
+    public SharedPreferences getmSharedPreferences() {
+        if (mSharedPreferences == null) {
+            mSharedPreferences = getSharedPreferences(PREF_NAME, 0);
+        }
+        return mSharedPreferences;
+    }
+
 
 
     public static void showErrorToast(Activity activity, String message){

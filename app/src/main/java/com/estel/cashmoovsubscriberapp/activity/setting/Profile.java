@@ -1,9 +1,12 @@
 package com.estel.cashmoovsubscriberapp.activity.setting;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,8 +30,16 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -36,10 +47,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public static Profile profileC;
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;
-    TextView tvBadge;
+    TextView tvBadge,spinner_currency,paymonthcountText,paymonthlimitAccountText;
     SmoothBottomBar bottomBar;
-    LinearLayout linRateUs,linFee,linServicePoint,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
+    LinearLayout linGloballimitcount,linRateUs,linFee,linServicePoint,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
+    String currencyName_from_currency="",profiletypecode="",currencycode="",walletownercode="",walletOwnerCode_destination="",walletOwnerCode_source="";
+    String countryCurrencyCode_from_currency="";
 
     TextView currency,number,etAddress,name;
     CircleImageView profile_img;
@@ -47,17 +60,47 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private String mNumber;
     private long mLastClickTime = 0;
 
+    String languageToUse = "";
+    MyApplication applicationComponentClass;
 
+    ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
+    ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
+    ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
+    ArrayList<String> arrayList_desWalletOwnerCode = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        profileC=this;
-        reviewManager = ReviewManagerFactory.create(this);
-        MyApplication.hideKeyboard(profileC);
-      //  setBackMenu();
-        getIds();
+
+        applicationComponentClass = (MyApplication) getApplicationContext();
+
+        try {
+
+            languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
+
+            if (languageToUse.trim().length() == 0) {
+                languageToUse = "en";
+            }
+
+
+            Locale locale = new Locale(languageToUse);
+
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_profile);
+            profileC = this;
+            reviewManager = ReviewManagerFactory.create(this);
+            MyApplication.hideKeyboard(profileC);
+            //  setBackMenu();
+            getIds();
+        } catch (Exception e) {
+            Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
     }
 
     @Override
@@ -108,6 +151,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         number.setText(mNumber);
+        MyApplication.hideLoader();
 
     }
 
@@ -150,7 +194,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         etAddress = findViewById(R.id.etAddress);
         name = findViewById(R.id.name);
         profile_img = findViewById(R.id.profile_img);
-
+        linGloballimitcount = findViewById(R.id.linGloballimitcount);
+        linGloballimitcount.setOnClickListener(this);
 
         if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
             tvBadge.setVisibility(View.VISIBLE);
@@ -159,6 +204,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             tvBadge.setVisibility(View.GONE);
         }
 
+
+        profiletypecode= MyApplication.getSaveString("profiletypecode",profileC);
 
 
         String naam= MyApplication.getSaveString("firstName",profileC)+" "+
@@ -262,6 +309,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.linRateUs:
                 showRateApp();
                 break;
+            case R.id.linGloballimitcount:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                alertdialougeGlobalLimit();
+                break;
             case R.id.linFee:
 
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
@@ -272,6 +326,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.linServicePoint:
+                MyApplication.showloader(Profile.this,getString(R.string.please_wait));
 
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
@@ -279,6 +334,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, ServicePoint.class);
                 startActivity(intent);
+
                 break;
             case R.id.linBeneficiary:
 //                intent = new Intent(profileC, AddBeneficiary.class);
@@ -370,6 +426,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     number.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
                     mNumber=jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A");
 
+                    walletownercode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCategoryCode");
+
+
+                    System.out.println("get walletcode"+walletownercode);
                     callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
                 }else{
                     MyApplication.showToast(profileC,jsonObject.optString("resultDescription"));
@@ -477,5 +537,206 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 .show();
       }
 
+    public void alertdialougeGlobalLimit() {
+
+        try {
+
+
+            Dialog operationDialog = new Dialog(Profile.this);
+            operationDialog.setContentView(R.layout.dialog_global_limit);
+
+            Button closeButton;
+            closeButton = operationDialog.findViewById(R.id.closeButton);
+            spinner_currency= operationDialog.findViewById(R.id.spinner_Currency);
+            paymonthcountText=operationDialog.findViewById(R.id.paymonthcountText);
+            paymonthlimitAccountText=operationDialog.findViewById(R.id.paymonthlimitAccountText);
+
+
+
+
+
+
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    operationDialog.dismiss();
+                }
+            });
+            //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            operationDialog.show();
+
+            apicurrency();
+
+        } catch (Exception e) {
+
+            Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    private void apicurrency() {
+
+        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("userCode", Profile.this);
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+"1000006042",languageToUse,new Api_Responce_Handler() {
+
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+
+                      /*  arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
+                        arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
+                       arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
+                       arrayList_desWalletOwnerCode.add(0,getString(R.string.select_currency_star));
+
+*/
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
+
+                            JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+
+                            currencyName_from_currency = jsonObject3.getString("currencyName");
+                            countryCurrencyCode_from_currency = jsonObject3.getString("currencyCode");
+                            walletOwnerCode_destination = jsonObject3.getString("walletOwnerCode");
+
+                            String currencySymbol = jsonObject3.getString("currencySymbol");
+
+
+
+
+                            if(jsonObject3.has("currencyName")) {
+
+                                String  currencyName_subscriber_temp = jsonObject3.getString("currencyName");
+
+                            }
+
+                            arrayList_currecnyName.add(currencyName_from_currency);
+                            arrayList_currecnyCode.add(countryCurrencyCode_from_currency);
+                            arrayList_currencySymbol.add(currencySymbol);
+                            arrayList_desWalletOwnerCode.add(walletOwnerCode_destination);
+
+
+                        }
+                        callAPIGloballimitCount();
+
+                      /*  CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(TransferFloats.this, arrayList_currecnyName);
+                        spinner_currency.setAdapter(arraadapter2);
+*/
+
+//                        spinner_currency.setText(arrayList_currecnyName.get(0));
+//
+//                        currencycode = arrayList_currecnyCode.get(0);
+
+                       // callAPIGloballimitCount();
+                    }
+
+                    else {
+                        Toast.makeText(Profile.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(Profile.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(Profile.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void callAPIGloballimitCount() {
+        try {
+
+            API.GET("ewallet/api/v1/globallimitconfiguration/getProfileAndWltOwrCat?profileTypeCode="+"100000"+"&wltOwrCatCode="+"100011"+"&currencyCode="+"100062",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            try {
+
+                                if (jsonObject != null) {
+
+                                    System.out.println("get json"+jsonObject);
+
+
+                                    String resultCode =  jsonObject.getString("resultCode");
+
+                                    System.out.println("get code"+resultCode);
+
+                                    if (jsonObject.has("globalLimitConfiguration")) {
+                                        paymonthcountText.setText(jsonObject.optJSONObject("globalLimitConfiguration").optString("perMonthLimitCount"));
+
+                                        paymonthlimitAccountText.setText(MyApplication.addDecimal(jsonObject.optJSONObject("globalLimitConfiguration").optString("perMonthLimitAmount")));
+
+                                    }
+                                    else
+                                    {
+                                        paymonthcountText.setText("0");
+                                        paymonthlimitAccountText.setText("0.00");
+
+                                    }
+
+
+
+
+
+
+
+
+                                    // callApiRecCountry();
+
+                                } else {
+                                    MyApplication.showToast(Profile.this,jsonObject.optString("resultDescription", "  "));
+                                }
+
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
 }

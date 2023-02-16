@@ -153,11 +153,19 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+
+                    DialogFragment dialogfragment = new DatePickerDialogThemeFrench();
+
+                    dialogfragment.show(getSupportFragmentManager(), "");
+                }else{
+                    DialogFragment dialogfragment = new DatePickerDialogTheme();
+
+                    dialogfragment.show(getSupportFragmentManager(), "");
+                }
 
 
-                DialogFragment dialogfragment = new DatePickerDialogTheme();
 
-                dialogfragment.show(getSupportFragmentManager(), "");
 
                // ffffff
 
@@ -729,6 +737,39 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 //
 //
 //        http://202.131.144.130:8081/ewallet/api/v1/address
+
+
+
+    public static class DatePickerDialogThemeFrench extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            Locale.setDefault(Locale.FRENCH);
+
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.add(Calendar.YEAR, -18);
+
+            DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
+                    AlertDialog.THEME_TRADITIONAL, this, year, month, day);
+
+            datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+
+            return datepickerdialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            etDob.setText(year + "-" + (month+1) + "-" + day);
+            mDobText.setVisibility(View.VISIBLE);
+            // etDob.setText(year + "-" + (month+1) + "-" + day);
+
+        }
+    }
+
 
     public static class DatePickerDialogTheme extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
