@@ -215,7 +215,7 @@ public class LoginPin extends AppCompatActivity {
                 msgText.setVisibility(View.GONE);
             }
         }else{
-                setOnClickListener();
+               // setOnClickListener();
 
             }
         }else{
@@ -223,6 +223,16 @@ public class LoginPin extends AppCompatActivity {
             msgText.setVisibility(View.GONE);
         }
 
+        MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", LoginPin.this);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                setOnClickListener();
+            }else {
+
+            }
+        }else{
+
+        }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,7 +264,7 @@ public class LoginPin extends AppCompatActivity {
 
                         }else {
 
-                           MyApplication.showToast(loginpinC,"Please Contact Admin To Reset Pin");
+                           MyApplication.showToast(loginpinC,getString(R.string.contactadmin));
                         }
 
                     }
@@ -464,7 +474,7 @@ public class LoginPin extends AppCompatActivity {
                         startActivity(i);*/
                     }
 
-                    MyApplication.showToast(loginpinC,aFalse);
+                   // MyApplication.showToast(loginpinC,aFalse);
 
                 }
             });
@@ -592,7 +602,7 @@ public class LoginPin extends AppCompatActivity {
                         startActivity(i);*/
                     }
 
-                    MyApplication.showToast(loginpinC,aFalse);
+                   // MyApplication.showToast(loginpinC,aFalse);
 
                 }
             });
@@ -644,7 +654,7 @@ public class LoginPin extends AppCompatActivity {
                 MyApplication.hideLoader();
                 etmobile.setEnabled(true);
 
-                MyApplication.showToast(loginpinC,aFalse);
+                //MyApplication.showToast(loginpinC,aFalse);
             }
         });
     }

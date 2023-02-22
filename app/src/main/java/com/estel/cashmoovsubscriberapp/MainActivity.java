@@ -744,12 +744,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         OfferPromotionModel OfferPromotionModeltemp = null;
 
+
                         for(int i=0;i<offerPromotionModelArrayList.size();i++){
                             if(offerPromotionModelArrayList.get(i).getPromOfferTypeName().equalsIgnoreCase("Both")||
                                     offerPromotionModelArrayList.get(i).getPromOfferTypeName().equalsIgnoreCase("Image")) {
                                 OfferPromotionModeltemp=offerPromotionModelArrayList.get(i);
                             }
                         }
+
+                        MyApplication.saveString("profiletypecode",OfferPromotionModeltemp.getProfileTypeCode(),MainActivity.this);
 
                         if(OfferPromotionModeltemp!=null) {
                             new PromoDialog.Builder(MainActivity.this)

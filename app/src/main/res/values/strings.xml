@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 15-02-2023 07-20pm  </string>
+    <string name="version">Version : 21-02-2023  </string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="maximumLimitCount">Global limit count</string>
@@ -395,6 +395,7 @@
     <string name="destination">Destination</string>
     <string name="destinationcountry">Destination Country</string>
     <string name="sedingcountry">Sending Country</string>
+    <string name="contactadmin">Please Contact Admin To Reset Pin</string>
 
     <string name="source_msisdn">Source MSISDN</string>
     <string name="dest_msisdn">Destination MSISDN</string>

@@ -97,10 +97,10 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
         // tvCurrency.setText(SelfAirtime.currency);
 
         tvTransAmount.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtime.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+ MyApplication.addDecimal(SelfAirtime.currencyValue));
-        tvFee.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtime.fee));
+        tvAmountPaid.setText(SelfAirtime.currencySymbol+" "+ (SelfAirtime.currencyValuenew));
+        tvFee.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(SelfAirtime.feenew));
 
-        finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""));
+        finalamount=Double.parseDouble(SelfAirtime.feenew)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""));
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(SelfAirtime.taxConfigurationList!=null){
@@ -108,7 +108,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
                 tax_label_layout.setVisibility(View.VISIBLE);
                 tax_label.setText(MyApplication.getTaxString(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax_r.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(SelfAirtime.taxConfigurationList.optJSONObject(0).optDouble("value"))));
-                finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
+                finalamount=Double.parseDouble(SelfAirtime.feenew)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(SelfAirtime.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -118,7 +118,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxString(SelfAirtime.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" ");
                 vat_r.setText(SelfAirtime.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(SelfAirtime.taxConfigurationList.optJSONObject(1).optDouble("value"))));
-                finalamount=Double.parseDouble(SelfAirtime.fee)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(1).optString("value"));
+                finalamount=Double.parseDouble(SelfAirtime.feenew)+Double.parseDouble(SelfAirtime.etAmount.getText().toString().replace(",",""))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(SelfAirtime.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 

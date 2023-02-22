@@ -357,7 +357,7 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
     }
 
     public static  JSONObject dataToSend=new JSONObject();
-    public static String currencyValue,fee;
+    public static String currencyValue,fee, currencyValuenew,feenew;
     public static int receiverFee,receiverTax;
     public static JSONArray taxConfigurationList;
 
@@ -386,6 +386,11 @@ public class SelfAirtime extends AppCompatActivity implements View.OnClickListen
 
                                     currencyValue= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("currencyValue")));
                                     fee= MyApplication.addDecimal(String.valueOf(jsonObjectAmountDetails.optDouble("fee")));
+
+                                    currencyValuenew=etAmount.getText().toString().trim().replace(",","");
+                                    feenew=fee.replace(",",".");
+                                    System.out.println("get fee"+feenew);
+                                    System.out.println("get currencyValue"+currencyValue);
                                     //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                     //  receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
 

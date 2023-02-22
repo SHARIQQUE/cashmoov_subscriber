@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 15-02-2023 07-20pm  </string>
+    <string name="version">Version : 21-02-2023   </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -38,6 +38,8 @@
     <string name="money_transfer">Transfert d\'argent</string>
     <string name="airtime_purchase">Achat de crédits</string>
     <string name="payment">Paiements</string>
+    <string name="paymentnew">Paiement</string>
+
     <string name="merchant_payment"> Paiements Marchand</string>
     <string name="cash_withdrawal">Retrait</string>
     <string name="receive_remittance">Reception d\'argent</string>
@@ -133,8 +135,8 @@
     <string name="acc_number">N° Compte:</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais:</string>
-    <string name="amount_to_paid">Montant à payer</string>
-    <string name="amount_to_paid_colon">Montant à payer:</string>
+    <string name="amount_to_paid">Montant payé</string>
+    <string name="amount_to_paid_colon">Montant payé:</string>
     <string name="amount_to_paid_intec">Montant à payer :</string>
     <string name="amount_to_paid_international">Montant à payer</string>
     <string name="amount_to_be_paid">Montant payé</string>
@@ -189,7 +191,7 @@
     <string name="recharge_another_number">Vous un rechargement un autre numero</string>
     <string name="you_make_an_invoice_payment">Vous effectuez un paiement de facture</string>
     <string name="recharge_tv_star_time">Rechargement Tv Star Time</string>
-    <string name="valid_acc_number">N° Compte*</string>
+    <string name="valid_acc_number">Numero de compte*</string>
     <string name="valid_amount">Montant*</string>
     <string name="you_make_significant_payment">Vous effectuez un paiement marchant</string>
     <string name="receiver_details">Details du receveur</string>
@@ -321,7 +323,7 @@
     <string name="val_select_curr">Veuillez sélectionner la devise</string>
     <string name="kyc_detail_response_msg">les details KYC ont été soumis avec succes</string>
     <string name="trans_amount_colon">Montant de la transaction :</string>
-    <string name="amount_paid_colon">Montant à payer :</string>
+    <string name="amount_paid_colon">Montant payé :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
     <string name="amount_charged_colon_only">Montant facturé :</string>
 
@@ -370,6 +372,10 @@
     <string name="trans_id">Identifiant de transaction</string>
     <string name="source">La source</string>
     <string name="destination">Destination</string>
+    <string name="destinationcountry">Pays de destination</string>
+    <string name="sedingcountry">Pays d’envoi</string>
+    <string name="contactadmin">Veuillez contacter l’administrateur pour réinitialiser l’épingle</string>
+
     <string name="source_msisdn">Source MSISDN</string>
     <string name="dest_msisdn">MSISDN de destination</string>
     <string name="recharge_no">Numéro de recharge</string>
@@ -386,7 +392,7 @@
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Exceller</string>
-    <string name="vendor_trans_id_colon">Identifiant de la trasaction :</string>
+    <string name="vendor_trans_id_colon">ID de la transaction  du vendeur :</string>
     <string name="total_amount_colon">Montant total :</string>
     <string name="international_colon">Internationale:</string>
     <string name="gnf_fixed">GNF fixe</string>

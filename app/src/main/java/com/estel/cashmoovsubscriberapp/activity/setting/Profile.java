@@ -71,7 +71,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        applicationComponentClass = (MyApplication) getApplicationContext();
+     /*   applicationComponentClass = (MyApplication) getApplicationContext();
 
         try {
 
@@ -89,18 +89,19 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
+*/
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+        profileC = this;
+        reviewManager = ReviewManagerFactory.create(this);
+        MyApplication.hideKeyboard(profileC);
+        MyApplication.setLang(profileC);
 
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_profile);
-            profileC = this;
-            reviewManager = ReviewManagerFactory.create(this);
-            MyApplication.hideKeyboard(profileC);
-            //  setBackMenu();
-            getIds();
-        } catch (Exception e) {
-            Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_LONG).show();
 
-        }
+
+        //  setBackMenu();
+        getIds();
+
     }
 
     @Override
@@ -193,6 +194,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         number = findViewById(R.id.number);
         etAddress = findViewById(R.id.etAddress);
         name = findViewById(R.id.name);
+
         profile_img = findViewById(R.id.profile_img);
         linGloballimitcount = findViewById(R.id.linGloballimitcount);
         linGloballimitcount.setOnClickListener(this);
@@ -205,7 +207,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
 
 
-        profiletypecode= MyApplication.getSaveString("profiletypecode",profileC);
 
 
         String naam= MyApplication.getSaveString("firstName",profileC)+" "+
@@ -427,9 +428,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     mNumber=jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A");
 
                     walletownercode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCategoryCode");
+                    profiletypecode = jsonObject.optJSONObject("walletOwner").optString("profileTypeCode");
 
 
-                    System.out.println("get walletcode"+walletownercode);
+                    System.out.println("get walletcode"+jsonObject.toString());
                     callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
                 }else{
                     MyApplication.showToast(profileC,jsonObject.optString("resultDescription"));
@@ -676,7 +678,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private void callAPIGloballimitCount() {
         try {
 
-            API.GET("ewallet/api/v1/globallimitconfiguration/getProfileAndWltOwrCat?profileTypeCode="+"100000"+"&wltOwrCatCode="+"100011"+"&currencyCode="+"100062",
+            API.GET("ewallet/api/v1/globallimitconfiguration/getProfileAndWltOwrCat?profileTypeCode="+profiletypecode+"&wltOwrCatCode="+walletownercode+"&currencyCode="+"100062",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

@@ -203,6 +203,15 @@ public class MyApplication extends Application {
 
         ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                 MyApplication.getSaveString("walletOwnerCode", this)+"/";
+        MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", appInstance);
+        System.out.println("get value"+MyApplication.setProtection);
+        if (MyApplication.setProtection.equalsIgnoreCase("Activate")|| MyApplication.setProtection.equalsIgnoreCase("Deactivate")) {
+
+        } else {
+            MyApplication.saveString("ACTIVATEPROTECTION", "Activate", appInstance);
+            MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", appInstance);
+
+        }
 
         AndroidNetworking.initialize(getApplicationContext());
        /* BitmapFactory.Options options = new BitmapFactory.Options();
