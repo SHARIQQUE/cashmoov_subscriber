@@ -360,6 +360,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
     public boolean step1=false;
     public boolean step2=false;
+    public boolean isOtpGenerated=false;
 
     @Override
     public void onClick(View view) {
@@ -401,12 +402,11 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                     return;
                 }
 
-                    otp_layout.setVisibility(View.VISIBLE);
-                        ll_resendOtp.setVisibility(View.VISIBLE);
-                        tvSend.setVisibility(View.VISIBLE);
-                        tvSend.setText(getString(R.string.veryfyotp));
-                        otp_generate_api();
 
+
+if(!isOtpGenerated){
+    otp_generate_api();
+}
 
                 if(step1 && !step2){
                     if (etOtp.getText().toString().trim().isEmpty()) {
@@ -590,13 +590,14 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                             }else{
                                 taxConfigList=null;
                             }
+
+                            Intent intent=new Intent(receiveremittanceC, TransactionSuccessScreen.class);
+                            intent.putExtra("SENDINTENT","RECEIVEREMITTANCE");
+                            startActivity(intent);
                             tvSend.setVisibility(View.GONE);
                             otp_layout.setVisibility(View.GONE);
                             ll_resendOtp.setVisibility(View.GONE);
                             pin_layout.setVisibility(View.GONE);
-                            Intent intent=new Intent(receiveremittanceC, TransactionSuccessScreen.class);
-                            intent.putExtra("SENDINTENT","RECEIVEREMITTANCE");
-                            startActivity(intent);
 
 
                             // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
@@ -796,7 +797,12 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                    if (jsonObject != null) {
                        if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                             MyApplication.showToast(receiveremittanceC,jsonObject.optString("resultDescription", "N/A"));
-                           step1=true;
+                           otp_layout.setVisibility(View.VISIBLE);
+                           ll_resendOtp.setVisibility(View.VISIBLE);
+                           tvSend.setVisibility(View.VISIBLE);
+                           tvSend.setText(getString(R.string.veryfyotp));
+                            step1=true;
+                            isOtpGenerated=true;
 
                        } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                            step1=false;

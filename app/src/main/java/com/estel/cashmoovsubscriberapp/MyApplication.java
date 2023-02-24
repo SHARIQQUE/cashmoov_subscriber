@@ -212,6 +212,7 @@ public class MyApplication extends Application {
             MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", appInstance);
 
         }
+        setLang(getApplicationContext());
 
         AndroidNetworking.initialize(getApplicationContext());
        /* BitmapFactory.Options options = new BitmapFactory.Options();
@@ -823,6 +824,22 @@ public class MyApplication extends Application {
     public static BiometricPrompt biometricPrompt=null;
     public static Activity activityNew;
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
+        if (activity.getSystemService(Context.FINGERPRINT_SERVICE) == null) {
+            bioMetric_responce_handler.failure("");
+            return;
+        }
+        MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", activity);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+
+            }else {
+                bioMetric_responce_handler.failure("");
+                return;
+            }
+        }else{
+
+        }
+
         activityNew=activity;
         FingerprintManager fingerprintManager = (FingerprintManager) activity.getSystemService(Context.FINGERPRINT_SERVICE);
 
@@ -866,8 +883,9 @@ public class MyApplication extends Application {
                 super.onAuthenticationError(errorCode, errString);
 
 
+                checkCounter(bioMetric_responce_handler,activity.getResources().getString(R.string.please_enter_pin_bio));
                 if(!fingerprintManager.hasEnrolledFingerprints()) {
-                    bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+                    bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));
 
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
@@ -900,7 +918,7 @@ public class MyApplication extends Application {
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
 
-                checkCounter(bioMetric_responce_handler,activity.getString(R.string.please_enter_pin_bio));
+                checkCounter(bioMetric_responce_handler,activityNew.getResources().getString(R.string.please_enter_pin_bio));
 
                 biometricPrompt.cancelAuthentication();
             }
@@ -922,7 +940,7 @@ public class MyApplication extends Application {
             bioMetric_responce_handler.failure(message);
         }else{
             bioMetricCounter=bioMetricCounter+1;
-            showToast(activityNew,appInstance.getString(R.string.tryagain));
+            showToast(activityNew,activityNew.getResources().getString(R.string.tryagain));
 
         }
 

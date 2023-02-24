@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 21-02-2023   </string>
+    <string name="version">Version : 25-02-2023   </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -32,6 +32,12 @@
     <string name="paynew">Paiements Marchand</string>
     <string name="upload_success_toast">Télécharger le succès</string>
 
+    <string name="Tax"> Taxe : 0.00</string>
+
+    <string name="convertionRate_reviewPage"> Conversion Rate :</string>
+    <string name="please_wait">Veuillez patienter...</string>
+    <string name="Taxvat">T.V.A.</string>
+    <string name="Taxfinancial">Taxe financière</string>
 
     <string name="balance">Solde</string>
     <string name="our_operations">Nos operations</string>
@@ -61,6 +67,7 @@
     <string name="enter_location">Entrez votre emplacement</string>
     <string name="enter_phone_no">Entrez votre numéro de mobile</string>
     <string name="enter_phone_no_val">Le numéro de portable doit comporter au moins 9 chiffres</string>
+    <string name="enter_phone_no_valnew">Le numéro de téléphone mobile doit comporter au moins 7 chiffres.</string>
     <string name="see_terms_policy">Veuillez consulter notre Politique relative aux conditions d\'utilisation</string>
     <string name="skip">Sauter</string>
     <string name="complete_your_info">Completez vos informations</string>
@@ -209,15 +216,16 @@
     <string name="free_service">Service gratuit</string>
     <string name="on_the_transaction">sur la transaction</string>
     <string name="confirmation_receipt">Reçu de confirmation</string>
-    <string name="service_provider_colon">Service provider :</string>
+    <string name="service_provider_colon">Fournisseur de services :</string>
     <string name="mobile_number_colom">Numero mobile :</string>
     <string name="user_colon">Utilisateur :</string>
-    <string name="confirmation_code_colon">Confirmation code :</string>
+    <string name="confirmation_code_colon">Code de confirmation :</string>
     <string name="currency_colon">Devise :</string>
     <string name="amount_colon">Montant :</string>
     <string name="fee_colon">Frais :</string>
     <string name="i_bear_fees">je supporte les frais</string>
-    <string name="pin_colon">PIN :</string>
+    <string name="pin_colon">Code PIN :</string>
+    <string name="otp_colon">OTP :</string>
     <string name="ex_1234">Ex: 1234</string>
     <string name="transaction_success">Transaction\nsuccèss!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
@@ -302,6 +310,10 @@
     <string name="view_balance">Voir le solde</string>
     <string name="transaction_type">Type de transaction</string>
     <string name="status">Statut</string>
+
+    <string name="transaction_status_colon">Statut de la transaction :</string>
+    <string name="conversion_rate_colon">Taux de conversion :</string>
+
     <string name="transaction_successful">Transaction réussie</string>
     <string name="from">De</string>
     <string name="date">Date</string>
@@ -310,6 +322,9 @@
     <string name="are_you_sure_exit">etes vous sur de vouloir quitter?</string>
     <string name="val_recipient_no">Veuillez saisir le numéro du destinataire</string>
     <string name="val_amount">Veuillez saisir le montant</string>
+    <string name="val_amount_min">Veuillez saisir le montant minimum </string>
+    <string name="val_amount_max">Veuillez saisir le montant maximum</string>
+
     <string name="scan_error">Echec Scanning</string>
     <string name="val_scan_error_content">le QR code ne peut pas etre scanne</string>
     <string name="fee_tax_greater_than_trans_amt"><![CDATA[Le montant des frais et taxes est supérieur au montant de la transaction]]></string>
@@ -344,6 +359,11 @@
     <string name="acc_number_colon">Numéro de compte :</string>
     <string name="operator_colon">Opérateur :</string>
     <string name="valid_select_operator">Sélectionnez l\'opérateur*</string>
+
+    <string name="tryagain">Veuillez réessayer</string>
+    <string name="please_enter_pin_bio">Veuillez entrer le code pin compléter la transaction</string>
+
+
     <string name="val_select_operator">Veuillez sélectionner l\'opérateur</string>
     <string name="val_recipient_no_len">Le numéro du destinataire doit comporter au moins 9 chiffres</string>
     <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>

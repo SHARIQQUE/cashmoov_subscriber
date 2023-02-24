@@ -95,7 +95,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         profileC = this;
         reviewManager = ReviewManagerFactory.create(this);
         MyApplication.hideKeyboard(profileC);
-        MyApplication.setLang(profileC);
+       // MyApplication.setLang(profileC);
 
 
 

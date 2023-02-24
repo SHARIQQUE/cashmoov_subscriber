@@ -52,7 +52,7 @@ public class ChangeLanguage extends AppCompatActivity implements View.OnClickLis
         tvChange = findViewById(R.id.tvChange);
         languageText=findViewById(R.id.languageText);
 
-        MyApplication.setLang(changelanguageC);
+       // MyApplication.setLang(changelanguageC);
         MyApplication.lang = MyApplication.getSaveString("Locale", changelanguageC);
         if (MyApplication.lang.equalsIgnoreCase("en")) {
             //sbFrench.setChecked(false);

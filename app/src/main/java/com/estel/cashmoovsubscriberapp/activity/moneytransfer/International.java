@@ -557,7 +557,7 @@ public class International extends AppCompatActivity implements View.OnClickList
                                                 tvAmtPaid.setText(String.valueOf(currValue));
                                             } else {
                                                 String finalValue = df.format(currValue / value);
-                                                // tvAmtPaid.setText(finalValue);
+                                                //tvAmtPaid.setText(finalValue);
                                                 etAmount.setText(finalValue);
                                             }
 
