@@ -147,7 +147,7 @@ public class SetPinFisrtLogin extends AppCompatActivity {
             API.PUT("ewallet/api/v1/walletOwnerUser/setPin", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
-
+                    MyApplication.hideLoader();
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             MyApplication.showToast(setpinC,getString(R.string.pin_generate_success));
@@ -166,6 +166,7 @@ public class SetPinFisrtLogin extends AppCompatActivity {
 
                 @Override
                 public void failure(String aFalse) {
+                    MyApplication.hideLoader();
 
                 }
             });

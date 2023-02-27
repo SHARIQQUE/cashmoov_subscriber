@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayConfirmScreen;
@@ -39,6 +41,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     public static ReceiveRemittance receiveremittanceC;
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,spBenefiCurrency,tvSend;
+    ImageView icPin;
     public static EditText etPhone,etName,etLname,etConfCode,etAmount,etPin,etOtp;
     public LinearLayout pin_layout,otp_layout,ll_resendOtp;
     private long mLastClickTime = 0;
@@ -83,6 +86,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     }
 
     private void getIds() {
+        icPin = findViewById(R.id.icPin);
         spBenefiCurrency = findViewById(R.id.spBenefiCurrency);
         etPhone = findViewById(R.id.etPhone);
         etName = findViewById(R.id.etName);
@@ -91,6 +95,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         etAmount = findViewById(R.id.etAmount);
         etPin = findViewById(R.id.etPin);
+        etPin.setTransformationMethod(hiddenPassTransformationMethod);
         tvSend = findViewById(R.id.tvSend);
         etOtp = findViewById(R.id.etOtp);
         tvSend.setVisibility(View.GONE);
@@ -354,6 +359,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     }
 
     private void setOnCLickListener() {
+        icPin.setOnClickListener(receiveremittanceC);
         tvSend.setOnClickListener(receiveremittanceC);
     }
 
@@ -361,10 +367,23 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
     public boolean step1=false;
     public boolean step2=false;
     public boolean isOtpGenerated=false;
-
+    HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.icPin:
+            if (etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)) {
+                icPin.setImageResource(R.drawable.ic_show);
+                //Show Password
+                etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                icPin.setImageResource(R.drawable.ic_hide);
+                //Hide Password
+                etPin.setTransformationMethod(hiddenPassTransformationMethod);
+
+            }
+            break;
+
             case R.id.tvSend:
 
 

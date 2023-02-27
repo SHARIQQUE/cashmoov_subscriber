@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -194,6 +195,10 @@ public class InFormReceiptScreen extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnShareReceipt:
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 btnShareReceipt.setVisibility(View.VISIBLE);
                 Bitmap bitmap=getScreenShot(rootView);
                 //int id= Random(System.currentTimeMillis()).nextInt(1000);
@@ -201,6 +206,10 @@ public class InFormReceiptScreen extends AppCompatActivity implements View.OnCli
                 //store(bitmap,id+"test.jpg");
                 break;
             case R.id.btnClose:
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

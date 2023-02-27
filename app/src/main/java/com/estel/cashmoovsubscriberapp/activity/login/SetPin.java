@@ -150,6 +150,7 @@ public class SetPin extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
+                    MyApplication.hideLoader();
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             MyApplication.showToast(setpinC,getString(R.string.pin_generate_success));
@@ -168,12 +169,13 @@ public class SetPin extends AppCompatActivity {
 
                 @Override
                 public void failure(String aFalse) {
+                    MyApplication.hideLoader();
 
                 }
             });
 
         }catch (Exception e){
-
+            MyApplication.hideLoader();
         }
 
 

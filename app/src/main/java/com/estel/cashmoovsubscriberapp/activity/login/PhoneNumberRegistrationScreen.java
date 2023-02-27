@@ -54,7 +54,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     SpinnerDialog spinnerDialogCountry;
     EditText etPhoneNo,etPass;
     LinearLayout linPass;
-    String otprequeird;
+    boolean otprequeird;
     ImageView icPin;
     private ArrayList<String> countryList = new ArrayList<>();
     private ArrayList<CountryInfoModel.Country> countryModelList=new ArrayList<>();
@@ -431,18 +431,31 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
 
 
-                              otprequeird=jsonObject.optJSONObject("walletOwnerUser").optString("isSelfSignUpPinSet");
+                              otprequeird=jsonObject.optJSONObject("walletOwnerUser").optBoolean("isSelfSignUpPinSet");
 
                             System.out.println("get val"+otprequeird);
                             linPass.setVisibility(View.GONE);
 
-                            if(otprequeird.equalsIgnoreCase("false"))
-                            {
+                            if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
+                                // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
+                                MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
+                                MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
+                                // MyApplication.saveBool("FirstLogin", true, phnoregistrationccreenC);
+                                MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
+                                MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
+                                //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
+                                MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
+                                MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
-                                callPostGetLoginOTP();
+
+                                // MyApplication.showToast(PhoneNumberRegistrationScreen.this,"Reset PIN Called");
+                                Intent i = new Intent(phnoregistrationccreenC, VerifyRESETPINScreen.class);
+                                startActivity(i);
+
+
 
                             }
-                            if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")&&
+                            else if(jsonObject.optJSONObject("walletOwnerUser").optString("pinLoginStatus").equalsIgnoreCase("Y")&&
                                     !jsonObject.optJSONObject("walletOwnerUser").optBoolean("isPinAlreadySet")) {
                                 // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
                                 MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
@@ -466,27 +479,15 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
 
                                //  callPostGetLoginOTP();
-                            }else  if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("reSetPinCredRequest")) {
-                                // MyApplication.showloader(LoginActivity.this,"Change Password Screen");
-                                MyApplication.UserMobile=etPhoneNo.getText().toString().trim();
-                                MyApplication.saveString("USERMOBILE",etPhoneNo.getText().toString().trim(),phnoregistrationccreenC);
-                                // MyApplication.saveBool("FirstLogin", true, phnoregistrationccreenC);
-                                MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
-                                MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
-                                //MyApplication.saveString("token","b1b80862-17b3-48f0-83a3-b4d27ddd09e2",phnoregistrationccreenC);
-                                MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
-                                MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
+                            }else if(!otprequeird)
+                            {
+
+                                callPostGetLoginOTP();
+
+                            } else {
 
 
-                               // MyApplication.showToast(PhoneNumberRegistrationScreen.this,"Reset PIN Called");
-                                Intent i = new Intent(phnoregistrationccreenC, VerifyRESETPINScreen.class);
-                                startActivity(i);
-
-
-
-                            }else {
-
-                            if(otprequeird.equalsIgnoreCase("false")){
+                            if(!otprequeird){
                                 linPass.setVisibility(View.GONE);
 
                             }else{
