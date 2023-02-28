@@ -185,7 +185,7 @@
                     android:textSize="@dimen/_16sdp" />
             </LinearLayout>
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/pin_layout"
                 android:gravity="left"
                 android:layout_width="match_parent"
