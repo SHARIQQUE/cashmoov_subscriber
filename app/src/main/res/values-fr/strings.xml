@@ -5,7 +5,7 @@
     <string name="setting">Réglage</string>
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
-    <string name="about_cashmoov_app">A Propos de cash moov app</string>
+    <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
     <string name="version">Version : 28-02-2023 11:18 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
@@ -28,13 +28,13 @@
     <string name="add_contact">Ajouter un contact</string>
     <string name="hello">Bonjour,</string>
     <string name="dashboard">Tableau de bord</string>
-    <string name="pay">Solde</string>
+    <string name="pay">Payer</string>
     <string name="paynew">Paiements Marchand</string>
     <string name="upload_success_toast">Télécharger le succès</string>
 
     <string name="Tax"> Taxe : 0.00</string>
 
-    <string name="convertionRate_reviewPage"> Conversion Rate :</string>
+    <string name="convertionRate_reviewPage"> Taux de change :</string>
     <string name="please_wait">Veuillez patienter...</string>
     <string name="Taxvat">T.V.A.</string>
     <string name="Taxfinancial">Taxe financière</string>
@@ -47,17 +47,17 @@
     <string name="paymentnew">Paiement</string>
 
     <string name="merchant_payment"> Paiements Marchand</string>
-    <string name="cash_withdrawal">Retrait</string>
-    <string name="receive_remittance">Reception d\'argent</string>
-    <string name="fee">Frais de service</string>
-    <string name="service_point">Trouver une agence</string>
+    <string name="cash_withdrawal">Retrait d\'argent</string>
+    <string name="receive_remittance">Réception de fonds</string>
+    <string name="fee">Frais</string>
+    <string name="service_point">Point de service</string>
     <string name="complete_profile">Completez le profile</string>
     <string name="complet_70">complet à 70 %</string>
     <string name="out_8_10_complete">8 sur 10 completet</string>
     <string name="recharge_payment">Paiements</string>
     <string name="next">Suivant</string>
     <string name="ignore">Ignorer</string>
-    <string name="to_start">Commencer</string>
+    <string name="to_start">Demarrer</string>
     <string name="to_end">Terminer</string>
     <string name="watch_video">Suivre la video</string>
     <string name="video_tutorial_message">Si vous êtes nouveau et que vous avez besoin d\'aide, regardez ce court tutoriel pour commencer.</string>
@@ -87,11 +87,11 @@
     <string name="dob">Date de naissance</string>
     <string name="choose_pin">Choisir PIN Ex:1234</string>
     <string name="repeat_pin">Répéter PIN Ex:1234</string>
-    <string name="attach_your_id">Attachez votre ID</string>
+    <string name="attach_your_id">Attachez votre piece d\'identité</string>
     <string name="attach_id_message">Avec votre appareil prenez une photo de votre pièce d\'identité.</string>
     <string name="front">Ex: Recto*</string>
     <string name="ex_verso">Ex: Verso*</string>
-    <string name="id_proof_no">Numéro de la pièce</string>
+    <string name="id_proof_no">Numero de piece</string>
     <string name="verification">Vérification</string>
     <string name="verification_message">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123.</string>
     <string name="session_expired_send_back">La session expire dans 60 secondes. Vous n\'avez pas reçu de code? Renvoyer le</string>
@@ -104,7 +104,7 @@
     <string name="deposit">Dépot</string>
     <string name="withdrawal">Retrait</string>
     <string name="bill_payment">Paiement de facture</string>
-    <string name="recharge">Rechargement</string>
+    <string name="recharge">Recharger</string>
     <string name="your_beneficiaries">Vos bénéficiaires</string>
     <string name="language">Modifier la langue</string>
     <string name="confidentiality">Confidentialité</string>
@@ -115,7 +115,7 @@
     <string name="edit_profile">Modifier la photo de profile</string>
     <string name="reset">Reinitialisation</string>
     <string name="hello_this_is_your">Hello c\'est votre</string>
-    <string name="cash">Cash</string>
+    <string name="cash">Espèces</string>
     <string name="moov_qr">Moov QR</string>
     <string name="scan_me">Scannez moi.</string>
     <string name="change_language">Changer de langue</string>
@@ -138,8 +138,8 @@
     <string name="another_number">Un autre numero</string>
     <string name="bank_transfer_to_wallet">Transfert Bank vers votre wallet</string>
     <string name="transaction_details">Détails de la transaction</string>
-    <string name="select_bank">Select Bank*</string>
-    <string name="acc_number">N° Compte:</string>
+    <string name="select_bank">Selectionner la Banque*</string>
+    <string name="acc_number">N° de Compte :</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais:</string>
     <string name="amount_to_paid">Montant payé</string>
@@ -160,8 +160,8 @@
     <string name="Cashmoov">Cashmoov</string>
     <string name="Parteners">Partenaires</string>
 
-    <string name="bank_to_wallet">Banque au portefeuille</string>
-    <string name="wallet_to_bank">portefeuille à la banque</string>
+    <string name="bank_to_wallet">Banque vers mobile</string>
+    <string name="wallet_to_bank">Mobille vers banque</string>
     <string name="money_transfer_to_subscriber">Transfert d\'argent vers abonné</string>
     <string name="subscriber_details">Details de l\'abonné</string>
     <string name="scanner">Scanner</string>
@@ -242,12 +242,12 @@
     <string name="close">Fermer</string>
     <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
     <string name="save_next"><![CDATA[Enregistrer et suivant]]></string>
-    <string name="clear">Duidelik</string>
-    <string name="self_sign">Auto-signature</string>
+    <string name="clear">Effacer</string>
+    <string name="self_sign">Signature personnelle</string>
     <string name="upload">Télécharger</string>
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
-    <string name="id_proof_type">Type de preuve d\'identité</string>
+    <string name="id_proof_type">Type de piece d\'identité</string>
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
     <string name="select_id_proof">Sélectionnez la preuve d\'identité</string>
@@ -384,12 +384,12 @@
     <string name="val_valid_mer_outlet_no">Veuillez saisir un numéro de marchand/point de vente valide</string>
     <string name="val_valid_inst_agent_branch_no">Veuillez entrer un numéro d\'institut/agent/succursale valide</string>
     <string name="valid_select_region">Choisissez une région*</string>
-    <string name="valid_select_city">Sélectionnez une ville*</string>
+    <string name="valid_select_city">Sélectionnez la ville*</string>
     <string name="val_select_region">Veuillez sélectionner la région</string>
     <string name="val_select_city">Veuillez sélectionner la ville</string>
     <string name="view_more">Voir plus</string>
     <string name="promotion_details">Détails de la promotion</string>
-    <string name="trans_id">Identifiant de transaction</string>
+    <string name="trans_id">Identifiant de la  transaction</string>
     <string name="source">La source</string>
     <string name="destination">Destination</string>
     <string name="destinationcountry">Pays de destination</string>
