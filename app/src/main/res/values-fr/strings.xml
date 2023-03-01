@@ -6,14 +6,14 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 28-02-2023 9:09 AM</string>
+    <string name="version">Version : 28-02-2023 11:18 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
     <string name="senderName_without_semic">Nom de l\'expediteur</string>
     <string name="pay_month_limit_count">Nombre limite de mois :</string>
     <string name="pay_month_limit_amount">Montant limite mensuel :</string>
-    <string name="Commisionwallet">"Portefeuille de commissions"</string>
+    <string name="Commisionwallet">"Compte commission"</string>
     <string name="maxvaluewallet">Valeur max</string>
     <string name="minvaluewallet">Valeur minimale</string>
     <string name="alertvalue">Valeur d\'alerte</string>
@@ -369,7 +369,7 @@
     <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>
     <string name="val_confirmation_code">Veuillez saisir le code de confirmation</string>
     <string name="val_select_benifi_curr">Veuillez sélectionner la devise du bénéficiaire</string>
-    <string name="benefi_msisdn_colom">Bénéficiaire MSISDN :</string>
+    <string name="benefi_msisdn_colom">Numéro du bénéficiaire :</string>
     <string name="valid_mer_outlet_number">Numéro de mobile du commerçant/du point de vente*</string>
     <string name="valid_inst_agent_branch_number">Numéro de mobile de l\'institut/de l\'agent/de la succursale</string>
     <string name="val_mer_outlet_no">Veuillez saisir le numéro du commerçant/du point de vente</string>
