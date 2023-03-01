@@ -311,6 +311,7 @@
     <string name="transaction_type">Type de transaction</string>
     <string name="status">Statut</string>
 
+
     <string name="transaction_status_colon">Statut de la transaction :</string>
     <string name="conversion_rate_colon">Taux de conversion :</string>
 
