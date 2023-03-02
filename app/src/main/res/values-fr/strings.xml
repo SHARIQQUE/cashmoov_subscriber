@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 02-03-2023 09:56 AM</string>
+    <string name="version">Version : 03-03-2023 04:30 AM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -274,8 +274,8 @@
     <string name="generate_password">Générer un nouveau mot de passe</string>
     <string name="set_pin_message">Veuillez définir un code PIN à 4 chiffres pour votre compte.</string>
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
-    <string name="val_re_pin">Veuillez saisir une nouvelle épingle</string>
-    <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>
+    <string name="val_re_pin">Veuillez saisir une nouvelle code pin</string>
+    <string name="val_valid_re_pin">Nouveau votre nouveau code PIN doit être d\'au moins 4 chiffres</string>
     <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin doivent être identiques]]></string>
     <string name="val_select_gender">Veuillez sélectionner le sexe</string>
     <string name="val_select_occupation">Veuillez sélectionner la profession</string>
@@ -326,6 +326,11 @@
     <string name="val_amount_min">Veuillez saisir le montant minimum </string>
     <string name="val_amount_max">Veuillez saisir le montant maximum</string>
 
+    <string name="change_pin_message_new">Please enter old pin and new pin to change your pin.</string>
+    <string name="old_pin_msg">Enter your old pin</string>
+    <string name="new_pin_msg">Enter your new pin</string>
+    <string name="re_pin_msg">Re-Enter your new pin</string>
+
     <string name="scan_error">Echec Scanning</string>
     <string name="val_scan_error_content">le QR code ne peut pas etre scanne</string>
     <string name="fee_tax_greater_than_trans_amt"><![CDATA[Le montant des frais et taxes est supérieur au montant de la transaction]]></string>
@@ -350,10 +355,11 @@
     <string name="val_valid_old_pin">L\'ancien code PIN doit comporter au moins 4 chiffres</string>
     <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
     <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
-    <string name="val_new_pin_re_pin"><![CDATA[La nouvelle épingle et la nouvelle épingle doivent être identiques]]></string>
+    <string name="val_new_pin_re_pin"><![CDATA[Le nouveau code pin et le code pin confirmé doivent être identiques]]></string>
     <string name="pin_changed_msg">Changement de broche !</string>
     <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin devraient être les mêmes]]></string>
 
+    <string name="time_out">Votre requête a expiré, veuillez ressayer plu tard</string>
     <string name="logout_conf_message">etes vous sur de vouloir vous deconnecter?</string>
     <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
     <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
@@ -397,7 +403,7 @@
 
     <string name="destinationcountry">Pays de destination</string>
     <string name="sedingcountry">Pays d’envoi</string>
-    <string name="contactadmin">Veuillez contacter l’administrateur pour réinitialiser l’épingle</string>
+    <string name="contactadmin">Veuillez contacter l’administrateur pour réinitialiser code pin</string>
 
     <string name="source_msisdn">Source MSISDN</string>
     <string name="dest_msisdn">MSISDN de destination</string>

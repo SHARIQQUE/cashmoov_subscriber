@@ -87,42 +87,52 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.icOldPin:
                 if(etOldPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
+
                     icOldPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etOldPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
+
                     icOldPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etOldPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etOldPin.setSelection(etOldPin.getText().length());
                 break;
             case R.id.icNewPin:
                 if(etNewPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
+
                     icNewPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
                 else{
+
                     icNewPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etNewPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etNewPin.setSelection(etNewPin.getText().length());
                 break;
             case R.id.icReNewPin:
                 if(etReNewPin.getTransformationMethod().equals(hiddenPassTransformationMethod)){
+
                     icReNewPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etReNewPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
                 }
                 else{
+
                     icReNewPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etReNewPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etReNewPin.setSelection(etReNewPin.getText().length());
                 break;
             case R.id.btnCancel:
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
@@ -142,7 +152,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_old_pin));
                     return;
                 }
-                if (etOldPin.getText().toString().trim().length()<4) {
+                if (etOldPin.getText().toString().trim().length()<3) {
                     MyApplication.showErrorToast(changepinC, getString(R.string.val_valid_old_pin));
                     return;
                 }
@@ -150,7 +160,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_new_pin));
                     return;
                 }
-                if(etNewPin.getText().toString().trim().isEmpty()) {
+                if(etNewPin.getText().toString().trim().length()<3) {
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_valid_new_pin));
                     return;
                 }
@@ -158,7 +168,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_re_pin));
                     return;
                 }
-                if(etReNewPin.getText().toString().trim().isEmpty()) {
+                if(etReNewPin.getText().toString().trim().length()<3) {
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_valid_re_pin));
                     return;
                 }

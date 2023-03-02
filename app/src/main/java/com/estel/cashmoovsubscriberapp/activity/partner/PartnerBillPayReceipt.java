@@ -168,17 +168,17 @@ public class PartnerBillPayReceipt extends AppCompatActivity implements View.OnC
         if(PartnerBillPayConfirmScreen.taxConfigList!=null){
             if(PartnerBillPayConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_lable.setText(MyApplication.getTaxString(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")));
                 tax1_value.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(PartnerBillPayConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_lable.setText(MyApplication.getTaxString(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")));
                 tax1_value.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value"))));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
+                tax2_lable.setText(MyApplication.getTaxString(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")));
                 tax2_value.setText(Partner.currencySymbol+" "+MyApplication.addDecimal(String.valueOf(PartnerBillPayConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value"))));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }

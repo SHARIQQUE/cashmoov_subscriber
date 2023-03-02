@@ -210,6 +210,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
             case R.id.btnConfirm:
                 if (etPin.getText().toString().trim().isEmpty()) {

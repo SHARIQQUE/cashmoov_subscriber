@@ -156,7 +156,9 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
 
                 }
+                etPass.setSelection(etPass.getText().length());
             }
+
         });
 
 

@@ -243,6 +243,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                 etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
             }
+                etPin.setSelection(etPin.getText().length());
             break;
             case R.id.btnConfirm:
 

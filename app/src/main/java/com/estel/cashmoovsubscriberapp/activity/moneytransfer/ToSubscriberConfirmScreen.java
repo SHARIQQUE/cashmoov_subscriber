@@ -238,15 +238,18 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
         switch (view.getId()) {
             case R.id.icPin:
                 if (etPin.getTransformationMethod().equals(hiddenPassTransformationMethod)) {
+                   ;
                     icPin.setImageResource(R.drawable.ic_show);
                     //Show Password
                     etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
+
                     icPin.setImageResource(R.drawable.ic_hide);
                     //Hide Password
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
             case R.id.btnConfirm: {
 

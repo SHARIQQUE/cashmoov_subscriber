@@ -77,6 +77,7 @@ public class SetPinFisrtLogin extends AppCompatActivity {
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
             }
         });
 
@@ -94,6 +95,7 @@ public class SetPinFisrtLogin extends AppCompatActivity {
                     etRePin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etRePin.setSelection(etRePin.getText().length());
             }
         });
 

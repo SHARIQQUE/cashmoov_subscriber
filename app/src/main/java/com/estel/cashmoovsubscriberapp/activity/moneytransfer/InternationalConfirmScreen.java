@@ -214,6 +214,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
             case R.id.btnConfirm: {
 

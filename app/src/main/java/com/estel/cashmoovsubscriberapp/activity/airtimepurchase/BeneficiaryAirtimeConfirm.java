@@ -209,6 +209,7 @@ public class BeneficiaryAirtimeConfirm extends AppCompatActivity implements View
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
             case R.id.btnConfirm: {
 

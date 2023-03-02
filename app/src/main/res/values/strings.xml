@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 02-03-2023 09:56 AM</string>
+    <string name="version">Version : 03-03-2023 04:30 AM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="maximumLimitCount">Global limit count</string>
@@ -277,8 +277,8 @@
     <string name="generate_password">Generate New Password</string>
     <string name="set_pin_message">Please set 4 digit pin for your account.</string>
     <string name="re_enter_pin">Re-Enter your pin</string>
-    <string name="val_re_pin">Please enter re-pin</string>
-    <string name="val_valid_re_pin">Re-Pin must be at least 4 digit</string>
+    <string name="val_re_pin">Please enter your new PIN code again</string>
+    <string name="val_valid_re_pin">Re-Enter new pin must be at least 4 digit</string>
     <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin should be same]]></string>
     <string name="val_select_gender">Please select gender</string>
     <string name="val_select_occupation">Please select occupation</string>
@@ -323,6 +323,12 @@
     <string name="val_amount">Please enter amount</string>
     <string name="val_amount_min">Please enter minimum amount </string>
     <string name="val_amount_max">Please enter maximum amount </string>
+
+    <string name="change_pin_message_new">Please enter old pin and new pin to change your pin.</string>
+    <string name="old_pin_msg">Enter your old pin</string>
+    <string name="new_pin_msg">Enter your new pin</string>
+    <string name="re_pin_msg">Re-Enter your new pin</string>
+
     <string name="scan_error">Scan Error</string>
     <string name="val_scan_error_content">QR Code could not be scanned</string>
     <string name="fee_tax_greater_than_trans_amt"><![CDATA[Fee & tax amount is greater than transaction amount]]></string>
@@ -347,9 +353,10 @@
     <string name="val_valid_old_pin">Old Pin must be at least 4 digit</string>
     <string name="val_new_pin">Please enter new pin</string>
     <string name="val_valid_new_pin">New Pin must be at least 4 digit</string>
-    <string name="val_new_pin_re_pin"><![CDATA[New Pin & Re-Pin should be same]]></string>
+    <string name="val_new_pin_re_pin"><![CDATA[New pin and Confirm  pin should be same]]></string>
     <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin should be same]]></string>
 
+    <string name="time_out">Connection time out, Please try again later</string>
     <string name="pin_changed_msg">Your Pin Changed Successfully!</string>
     <string name="logout_conf_message">Are you sure you want to logout?</string>
     <string name="val_acc_no">Please enter account number</string>

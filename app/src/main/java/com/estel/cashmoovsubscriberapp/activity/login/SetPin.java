@@ -77,6 +77,7 @@ public class SetPin extends AppCompatActivity {
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
             }
         });
 
@@ -94,6 +95,7 @@ public class SetPin extends AppCompatActivity {
                     etRePin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etRePin.setSelection(etRePin.getText().length());
             }
         });
 

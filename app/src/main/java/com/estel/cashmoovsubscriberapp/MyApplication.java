@@ -999,7 +999,7 @@ public static int  attmptCount=0;
     }
 
     public static String getTaxString(String test){
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+        /*if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
                 ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
                 MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
 
@@ -1011,8 +1011,9 @@ public static int  attmptCount=0;
             if (test.equalsIgnoreCase("Financial Tax")) {
                 return "Taxe financière :";
             }
-        }
 
+        }
+*/
         return test+" :";
     }
 

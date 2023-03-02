@@ -210,6 +210,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
 
             case R.id.btnConfirm: {

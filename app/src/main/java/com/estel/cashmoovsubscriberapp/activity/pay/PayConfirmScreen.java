@@ -214,6 +214,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
             case R.id.btnConfirm:
 

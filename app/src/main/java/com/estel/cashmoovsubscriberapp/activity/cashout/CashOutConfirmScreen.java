@@ -210,6 +210,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
             case R.id.btnConfirm: {
 

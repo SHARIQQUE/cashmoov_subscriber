@@ -206,6 +206,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
                     etPin.setTransformationMethod(hiddenPassTransformationMethod);
 
                 }
+                etPin.setSelection(etPin.getText().length());
                 break;
 
             case R.id.btnConfirm: {
