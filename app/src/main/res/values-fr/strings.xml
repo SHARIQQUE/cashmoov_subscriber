@@ -393,6 +393,7 @@
     <string name="trans_id">Identifiant de la  transaction</string>
     <string name="source">La source</string>
     <string name="destination">Destination</string>
+
     <string name="destinationcountry">Pays de destination</string>
     <string name="sedingcountry">Pays d’envoi</string>
     <string name="contactadmin">Veuillez contacter l’administrateur pour réinitialiser l’épingle</string>
