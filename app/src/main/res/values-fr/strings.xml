@@ -245,7 +245,7 @@
     <string name="clear">Effacer</string>
     <string name="self_sign">Signature personnelle</string>
     <string name="upload">Télécharger</string>
-    <string name="lname">Nom de famille</string>
+    <string name="lname">Veuillez saisir le nom de famille</string>
     <string name="country">Pays</string>
     <string name="id_proof_type">Type de piece d\'identité</string>
     <string name="select_gender">Sélectionnez le sexe</string>
@@ -270,7 +270,7 @@
     <string name="val_phone">Veuillez entrer le numéro de téléphone</string>
     <string name="val_pass">Veuillez entrer le mot de passe</string>
     <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
-    <string name="set_pin">Définir la broche</string>
+    <string name="set_pin">Définir la code pin</string>
     <string name="generate_password">Générer un nouveau mot de passe</string>
     <string name="set_pin_message">Veuillez définir un code PIN à 4 chiffres pour votre compte.</string>
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
@@ -351,7 +351,7 @@
     <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
     <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
     <string name="val_new_pin_re_pin"><![CDATA[La nouvelle épingle et la nouvelle épingle doivent être identiques]]></string>
-    <string name="pin_changed_msg">Votre épingle a été modifiée avec succès !</string>
+    <string name="pin_changed_msg">Changement de broche !</string>
     <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin devraient être les mêmes]]></string>
 
     <string name="logout_conf_message">etes vous sur de vouloir vous deconnecter?</string>
