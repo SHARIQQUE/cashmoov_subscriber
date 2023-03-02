@@ -942,9 +942,8 @@ public class MyApplication extends Application {
     }
 
     public static void checkCounter(BioMetric_Responce_Handler bioMetric_responce_handler,String message){
-        if(bioMetricCounter==3){
+        if(bioMetricCounter==1){
             bioMetricCounter=0;
-
             bioMetric_responce_handler.failure(message);
         }else{
             bioMetricCounter=bioMetricCounter+1;

@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
@@ -47,6 +48,7 @@ public class LoginPin extends AppCompatActivity {
     TextView tvContinue,tvFinger,msgText,tvregister,tvregister1,nameText;
     String mName,mLastName,mMobile;
     boolean  isPasswordVisible;
+    CardView pin_linear_lay;
 
 
     @Override
@@ -205,10 +207,10 @@ public class LoginPin extends AppCompatActivity {
         pin =MyApplication.getSaveString("pin",loginpinC);
         MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", loginpinC);
 
-        if(pin!=null && pin.length()==4) {
+       /* if(pin!=null && pin.length()==4) {
             if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()){
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                setOnClickListener();
+               // setOnClickListener();
 
             }else{
                 tvFinger.setVisibility(View.GONE);
@@ -222,16 +224,19 @@ public class LoginPin extends AppCompatActivity {
             tvFinger.setVisibility(View.GONE);
             msgText.setVisibility(View.GONE);
         }
-
+       */
+        pin_linear_lay=findViewById(R.id.pin_linear_lay);
+        pin_linear_lay.setVisibility(View.GONE);
         MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", LoginPin.this);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
                 setOnClickListener();
+                pin_linear_lay.setVisibility(View.GONE);
             }else {
-
+                pin_linear_lay.setVisibility(View.VISIBLE);
             }
         }else{
-
+            pin_linear_lay.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -319,6 +324,7 @@ public class LoginPin extends AppCompatActivity {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                pin_linear_lay.setVisibility(View.VISIBLE);
             }
 
             // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS
@@ -336,6 +342,7 @@ public class LoginPin extends AppCompatActivity {
 
             @Override
             public void onAuthenticationFailed() {
+                pin_linear_lay.setVisibility(View.VISIBLE);
                 super.onAuthenticationFailed();
             }
         });
@@ -685,7 +692,7 @@ public class LoginPin extends AppCompatActivity {
                         startActivity(i);
                         finish();
 
-                        Toast.makeText(loginpinC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                        Toast.makeText(loginpinC,LoginPin.this.getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                         //MyApplication.hideLoader();
 
                     } else {

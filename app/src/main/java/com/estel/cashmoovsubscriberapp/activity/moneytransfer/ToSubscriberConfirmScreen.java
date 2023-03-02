@@ -404,7 +404,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
             //            dataToSend.put("desWalletOwnerCode",walletOwner.optJSONArray("walletOwnerList").optJSONObject(0).optString("walletOwnerCode"));
             //            dataToSend.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode",tosubscriberC));
             //            dataToSend.put("srcCurrencyCode","100062");
-            //            dataToSend.put("desCurrencyCode","100062");
+            //            dataToSend.put("desCurrencyCode","100062");,
             //            dataToSend.put("value",etAmount.getText().toString());
             //            dataToSend.put("channelTypeCode",MyApplication.channelTypeCode);
             //            dataToSend.put("serviceCode",serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
@@ -430,7 +430,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
                                     if(jsonObject.has("exchangeRate")) {
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
                                         String fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                        tvFee.setText(ToSubscriber.currencySymbol + " " + ToSubscriber.fee + "+ Bear Fee " + fee);
+                                        tvFee.setText(ToSubscriber.currencySymbol + " " + ToSubscriber.fee + " + " + fee);
                                         Double transAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.etAmount.getText().toString().replace(",",""));
                                         Double paidAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(ToSubscriber.currencyValue);
                                         Double chargeAmount = jsonObjectAmountDetails.optDouble("fee") + finalamount;

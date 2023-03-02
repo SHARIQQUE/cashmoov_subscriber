@@ -112,13 +112,13 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
         if(PartnerBillPayDetails.taxConfigurationList!=null){
             if(PartnerBillPayDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax_r.setText(Partner.currencySymbol+" "+MyApplication.addDecimalthreenew(String.valueOf(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value"))));
                 finalamount=Double.parseDouble(PartnerBillPayDetails.fee)+Double.parseDouble(PartnerBillPayDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(PartnerBillPayDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax_r.setText(Partner.currencySymbol+" "+MyApplication.addDecimalthreenew(String.valueOf(PartnerBillPayDetails.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);

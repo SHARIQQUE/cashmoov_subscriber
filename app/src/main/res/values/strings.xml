@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 28-02-2023 11:18 PM</string>
+    <string name="version">Version : 02-03-2023 09:56 AM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="maximumLimitCount">Global limit count</string>
@@ -364,7 +364,7 @@
   /////Done part
 
     <string name="val_select_operator">Please select operator</string>
-    <string name="benificiaryname">Beneficiary name :</string>
+    <string name="benificiaryname">Beneficiary name :</string>Nom du bénéficiaire
 
     <string name="val_recipient_no_len">Recipient number must be at least 9 digits long</string>
     <string name="val_beneficiairy_name">Please enter beneficiary name</string>

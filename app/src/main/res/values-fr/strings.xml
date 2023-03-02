@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 28-02-2023 11:18 PM</string>
+    <string name="version">Version : 02-03-2023 09:56 AM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -366,6 +366,7 @@
 
 
     <string name="val_select_operator">Veuillez sélectionner l\'opérateur</string>
+    <string name="benificiaryname">Nom du bénéficiaire :</string>
     <string name="val_recipient_no_len">Le numéro du destinataire doit comporter au moins 9 chiffres</string>
     <string name="val_beneficiairy_name">Veuillez saisir le nom du bénéficiaire</string>
     <string name="val_confirmation_code">Veuillez saisir le code de confirmation</string>

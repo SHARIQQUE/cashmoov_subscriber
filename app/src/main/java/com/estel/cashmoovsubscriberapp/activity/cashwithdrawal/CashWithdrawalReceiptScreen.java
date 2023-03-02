@@ -162,13 +162,13 @@ public class CashWithdrawalReceiptScreen extends AppCompatActivity implements Vi
         if(CashWithdrawalConfirmScreen.taxConfigList!=null){
             if(CashWithdrawalConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxString(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxString(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax1_value.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(""+CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashWithdrawalConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxString(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxString(CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax1_value.setText(CashWithdrawalConfirmScreen.receiptJson.optJSONObject("intechResponse").optString("fromCurrencySymbol")+" "+MyApplication.addDecimal(""+CashWithdrawalConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);

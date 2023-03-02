@@ -476,7 +476,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
                                     if(jsonObject.has("exchangeRate")) {
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
                                         String fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                        tvFee.setText(Outform.currencySymbol + " " + Outform.fee + "+ Bear Fee " + fee);
+                                        tvFee.setText(Outform.currencySymbol + " " + Outform.fee + "+  " + fee);
                                         Double transAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""));
                                         Double paidAmount = jsonObjectAmountDetails.optDouble("fee") + Double.parseDouble(Outform.currencyValue);
                                         Double chargeAmount = jsonObjectAmountDetails.optDouble("fee") + finalamount;
