@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -178,6 +179,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         spRegion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogRegion!=null){
                     spinnerDialogRegion.showSpinerDialog();
                 }
@@ -187,6 +192,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         spCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogCity!=null){
                     spinnerDialogCity.showSpinerDialog();
                 }
@@ -196,6 +205,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogGender!=null)
                     spinnerDialogGender.showSpinerDialog();
             }
@@ -203,6 +216,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
         spOccupation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogOccupation!=null)
                     spinnerDialogOccupation.showSpinerDialog();
             }

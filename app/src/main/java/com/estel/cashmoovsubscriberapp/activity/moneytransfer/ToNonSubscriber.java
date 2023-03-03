@@ -29,6 +29,7 @@ import com.estel.cashmoovsubscriberapp.model.SubscriberInfoModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -149,6 +150,10 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogBenefiGender!=null)
                     spinnerDialogBenefiGender.showSpinerDialog();
             }
@@ -507,7 +512,7 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
                                         receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
                                         tvFee.setText(MyApplication.addDecimal(fee));
-                                        tvAmtPaid.setText(MyApplication.addDecimal(currencyValue));
+
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -519,6 +524,9 @@ public class ToNonSubscriber extends AppCompatActivity implements View.OnClickLi
 
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                            TextView tax_new=findViewById(R.id.tax_new);
+                                            tax_new.setText(MyApplication.getTaxString(taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
+                                            tvAmtPaid.setText(MyApplication.addDecimal(taxConfigurationList.optJSONObject(0).optString("value")));
                                         } else {
                                             taxConfigurationList = null;
                                         }

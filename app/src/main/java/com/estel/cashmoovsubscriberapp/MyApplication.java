@@ -828,6 +828,9 @@ public class MyApplication extends Application {
     public static int bioMetricCounter=0;
     public static BiometricPrompt biometricPrompt=null;
     public static Activity activityNew;
+    public static boolean isCancelCalled=false;
+
+
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
         if (activity.getSystemService(Context.FINGERPRINT_SERVICE) == null) {
             bioMetric_responce_handler.failure("");
@@ -896,10 +899,14 @@ public class MyApplication extends Application {
                 } else {
                     if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
                         onAuthenticationFailed();
+                        isCancelCalled=true;
                     }
-                    // Everything is ready for fingerprint authentication
                 }
 
+                if (!isCancelCalled) {
+                    onAuthenticationFailed();
+                    isCancelCalled=false;
+                }
                 //   checkCounter(bioMetric_responce_handler,errString+"");
 
 
@@ -1018,11 +1025,11 @@ public static int  attmptCount=0;
     }
 
     public static String getTaxStringnew(String test){
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+        /*if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
                 ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
                 MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
 
-            return test;
+            return test ;
         }else {
             if (test.equalsIgnoreCase("VAT")) {
                 return "T.V.A :";
@@ -1030,9 +1037,9 @@ public static int  attmptCount=0;
             if (test.equalsIgnoreCase("Financial Tax")) {
                 return "Taxe financière :";
             }
-        }
+        }*/
 
-        return test;
+        return test+" :";
     }
 
     public static String getEncript(String dataencript) {

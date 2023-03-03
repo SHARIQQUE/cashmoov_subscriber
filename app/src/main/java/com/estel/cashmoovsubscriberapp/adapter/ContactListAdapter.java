@@ -1,12 +1,15 @@
 package com.estel.cashmoovsubscriberapp.adapter;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.Contact;
 import com.estel.cashmoovsubscriberapp.listners.ContactListLisners;
@@ -51,6 +54,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                     contactListLisners.onContactViewItemClick(contactModel.getName(),
                             contactModel.getPhoneNumber());
             }

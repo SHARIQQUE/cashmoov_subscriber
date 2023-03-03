@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.SpannableString;
@@ -105,6 +106,10 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         tvregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 Intent intent=new Intent(PhoneNumberRegistrationScreen.this, RegisterStepOne.class);
                 startActivity(intent);
             }

@@ -1,6 +1,7 @@
 package com.estel.cashmoovsubscriberapp.adapter;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.listners.OperatorAirtimeFeeListeners;
 import com.estel.cashmoovsubscriberapp.model.OperatorModel;
@@ -49,6 +52,10 @@ public class AirtimeFeeOperatorAdapter extends RecyclerView.Adapter<AirtimeFeeOp
         holder.linOperator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if(opearatorModel.getCode()!=null)
                  operatorAirtimeFeeListeners.onOperatorAirtimeFeeListItemClick(opearatorModel.getCode(),opearatorModel.getName());
             }

@@ -2,6 +2,7 @@ package com.estel.cashmoovsubscriberapp.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,6 +170,10 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if(miniStatementTrans.getCode()!=null)
 
                     //: Cash To Wallet
