@@ -163,7 +163,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(tosubscriberconfirmscreenC,failure);
+                       // MyApplication.showToast(tosubscriberconfirmscreenC,failure);
                     }
                 });
             }
@@ -286,7 +286,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
                         @Override
                         public void failure(String failure) {
-                            MyApplication.showToast(OutFormConfirmation.this,failure);
+                           // MyApplication.showToast(OutFormConfirmation.this,failure);
                             pinLinear.setVisibility(View.VISIBLE);
 
                         }

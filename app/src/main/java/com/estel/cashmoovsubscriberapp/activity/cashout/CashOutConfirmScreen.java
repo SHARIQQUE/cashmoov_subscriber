@@ -176,7 +176,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(cashoutconfirmscreenC,failure);
+                       // MyApplication.showToast(cashoutconfirmscreenC,failure);
                     }
                 });
             }
@@ -254,7 +254,7 @@ public class CashOutConfirmScreen extends AppCompatActivity implements View.OnCl
 
                             @Override
                             public void failure(String failure) {
-                                MyApplication.showToast(cashoutconfirmscreenC,failure);
+                               // MyApplication.showToast(cashoutconfirmscreenC,failure);
                                 pinLinear.setVisibility(View.VISIBLE);
                             }
                         });

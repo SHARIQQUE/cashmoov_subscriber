@@ -170,7 +170,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(tosubscriberconfirmscreenC,failure);
+                        //MyApplication.showToast(tosubscriberconfirmscreenC,failure);
                     }
                 });
             }
@@ -298,7 +298,7 @@ public class ToSubscriberConfirmScreen extends AppCompatActivity implements View
 
                         @Override
                         public void failure(String failure) {
-                            MyApplication.showToast(tosubscriberconfirmscreenC, failure);
+                         //   MyApplication.showToast(tosubscriberconfirmscreenC, failure);
 
                             pinLinear.setVisibility(View.VISIBLE);
 

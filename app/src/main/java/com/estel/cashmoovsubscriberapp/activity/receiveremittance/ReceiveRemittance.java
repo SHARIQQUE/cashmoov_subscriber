@@ -300,7 +300,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(receiveremittanceC, failure);
+                       // MyApplication.showToast(receiveremittanceC, failure);
                     }
                 });
             }

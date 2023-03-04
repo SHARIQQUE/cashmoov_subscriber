@@ -172,7 +172,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(selfairtimeconfirmC,failure);
+                       // MyApplication.showToast(selfairtimeconfirmC,failure);
                     }
                 });
             }
@@ -253,7 +253,7 @@ public class SelfAirtimeConfirm extends AppCompatActivity implements View.OnClic
 
                         @Override
                         public void failure(String failure) {
-                            MyApplication.showToast(SelfAirtimeConfirm.this, failure);
+                           // MyApplication.showToast(SelfAirtimeConfirm.this, failure);
                             pinLinear.setVisibility(View.VISIBLE);
 
                         }

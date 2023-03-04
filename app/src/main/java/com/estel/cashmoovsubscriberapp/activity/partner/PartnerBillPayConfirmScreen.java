@@ -177,7 +177,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(PartnerBillPayConfirmScreen.this,failure);
+                       // MyApplication.showToast(PartnerBillPayConfirmScreen.this,failure);
                     }
                 });
             }
@@ -252,7 +252,7 @@ public class PartnerBillPayConfirmScreen extends AppCompatActivity implements Vi
 
                         @Override
                         public void failure(String failure) {
-                            MyApplication.showToast(PartnerBillPayConfirmScreen.this, failure);
+                           // MyApplication.showToast(PartnerBillPayConfirmScreen.this, failure);
                             pinLinear.setVisibility(View.VISIBLE);
 
                         }

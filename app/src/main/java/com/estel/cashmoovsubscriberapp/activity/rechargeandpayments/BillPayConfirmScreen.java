@@ -175,7 +175,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(BillPayConfirmScreen.this,failure);
+                       // MyApplication.showToast(BillPayConfirmScreen.this,failure);
                     }
                 });
             }
@@ -254,7 +254,7 @@ public class BillPayConfirmScreen extends AppCompatActivity implements View.OnCl
 
                             @Override
                             public void failure(String failure) {
-                                MyApplication.showToast(BillPayConfirmScreen.this, failure);
+                               // MyApplication.showToast(BillPayConfirmScreen.this, failure);
                                 pinLinear.setVisibility(View.VISIBLE);
 
                             }

@@ -181,7 +181,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(payconfirmscreenC,failure);
+                       // MyApplication.showToast(payconfirmscreenC,failure);
                     }
                 });
             }
@@ -259,7 +259,7 @@ public class PayConfirmScreen extends AppCompatActivity implements View.OnClickL
 
                             @Override
                             public void failure(String failure) {
-                                MyApplication.showToast(payconfirmscreenC,failure);
+                               // MyApplication.showToast(payconfirmscreenC,failure);
                                 pinLinear.setVisibility(View.VISIBLE);
                             }
                         });

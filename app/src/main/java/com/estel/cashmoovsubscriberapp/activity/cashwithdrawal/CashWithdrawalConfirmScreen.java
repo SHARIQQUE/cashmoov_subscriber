@@ -176,7 +176,7 @@ public class CashWithdrawalConfirmScreen extends AppCompatActivity implements Vi
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(cashwithdrawalconfirmscreenC,failure);
+                       // MyApplication.showToast(cashwithdrawalconfirmscreenC,failure);
                     }
                 });
             }

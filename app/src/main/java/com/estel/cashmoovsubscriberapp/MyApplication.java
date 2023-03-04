@@ -863,6 +863,7 @@ public class MyApplication extends Application {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                bioMetric_responce_handler.failure("");
                 //bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
                 //tvFinger.setVisibility(View.GONE);
@@ -870,6 +871,7 @@ public class MyApplication extends Application {
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                bioMetric_responce_handler.failure("");
                 // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
               /*  msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);*/
@@ -877,6 +879,7 @@ public class MyApplication extends Application {
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                bioMetric_responce_handler.failure("");
                 //  bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
 
                 break;

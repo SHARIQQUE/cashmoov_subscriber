@@ -179,7 +179,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(internationalconfirmscreenC,failure);
+                       // MyApplication.showToast(internationalconfirmscreenC,failure);
                     }
                 });
             }
@@ -256,7 +256,7 @@ public class InternationalConfirmScreen extends AppCompatActivity implements Vie
 
                         @Override
                         public void failure(String failure) {
-                            MyApplication.showToast(internationalconfirmscreenC, failure);
+                           // MyApplication.showToast(internationalconfirmscreenC, failure);
                             pinLinear.setVisibility(View.VISIBLE);
 
                         }
