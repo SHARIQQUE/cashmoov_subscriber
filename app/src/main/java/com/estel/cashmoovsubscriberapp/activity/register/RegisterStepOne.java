@@ -954,7 +954,9 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
                                 } else {
 
-                                    // MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
+                                    if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("1354")) {
+                                        MyApplication.showToast(registersteponeC, jsonObject.optString("resultDescription", "N/A"));
+                                    }
                                 }
 
                             }

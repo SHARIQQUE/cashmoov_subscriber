@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 04-03-2023 09:30 AM</string>
+    <string name="version">Version : 06-03-2023 08:00 PM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="maximumLimitCount">Global limit count</string>
@@ -92,12 +92,14 @@
     <string name="front">Ex: Front*</string>
     <string name="ex_verso">Ex: Back*</string>
     <string name="id_proof_no">Id Proof Number</string>
-    <string name="verification">Verification</string>
+    <string name="verification">Verification OTP</string>
 
     <string name="verification_message">Enter the 4-digit OTP code we sent to +224 621 123 123.</string>
     <string name="verification_register_otp_ip">Kindly contact your customer care for generate OTP or please enter the OTP to verify your account.</string>
     <string name="verification_register_otp">Please enter the OTP (one time password) to verify your account. Code has been sent to registered email id &amp; mobile number</string>
     <string name="session_expired_send_back">The session expires in 60 seconds. Haven\'t received a code? Send it back</string>
+    <string name="verification_reset_pin_message">Kindly contact your customer care for Reset Pin OTP and please enter the OTP to verify your account.</string>
+
     <string name="my_account">My Account</string>
     <string name="your_currency">Your Currency</string>
     <string name="acc_statement">Account Statements</string>
@@ -142,7 +144,7 @@
     <string name="select_bank">Select Bank*</string>
     <string name="acc_number">Account number:</string>
     <string name="montant_a_envoyer">Amount to send</string>
-    <string name="fees">Fee:</string>
+    <string name="fees">Fee :</string>
     <string name="amount_to_paid">Amount paid</string>
     <string name="amount_to_be_paid">Amount  paid</string>
     <string name="amount_to_paid_international">Amount to be Paid</string>
@@ -263,6 +265,7 @@
     <string name="no_biometric_senser">The biometric sensor is currently unavailable</string>
     <string name="device_not_contain_fingerprint">Your device doesn\'t have fingerprint saved,please check your security settings</string>
     <string name="val_pin">Please enter pin</string>
+    <string name="val_pin_new"> Please enter new-pin</string>
 
     <string name="val_valid_pin">Pin must be at least 4 digit</string>
     <string name="enter_pass">Enter your password</string>
@@ -279,7 +282,7 @@
     <string name="re_enter_pin">Re-Enter your pin</string>
     <string name="val_re_pin">Please enter your new PIN code again</string>
     <string name="val_valid_re_pin">Re-Enter new pin must be at least 4 digit</string>
-    <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin should be same]]></string>
+    <string name="val_pin_re_pin"><![CDATA[New PIN and the confirmation PIN must be identical]]></string>
     <string name="val_select_gender">Please select gender</string>
     <string name="val_select_occupation">Please select occupation</string>
     <string name="val_dob">Please select date of birth</string>
@@ -351,11 +354,10 @@
     <string name="re_enter_new_pin">Re-Enter your new pin</string>
     <string name="val_old_pin">Please enter old pin</string>
     <string name="val_valid_old_pin">Old Pin must be at least 4 digit</string>
-    <string name="val_new_pin">Please enter new pin</string>
+    <string name="val_new_pin">Please enter new-pin</string>
     <string name="val_valid_new_pin">New Pin must be at least 4 digit</string>
-    <string name="val_new_pin_re_pin"><![CDATA[New pin and Confirm  pin should be same]]></string>
+    <string name="val_new_pin_re_pin"><![CDATA[New PIN and the confirmation PIN must be identical]]></string>
     <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin should be same]]></string>
-
     <string name="time_out">Connection time out, Please try again later</string>
     <string name="pin_changed_msg">Your Pin Changed Successfully!</string>
     <string name="logout_conf_message">Are you sure you want to logout?</string>
@@ -410,6 +412,7 @@
     <string name="amounts">Amount</string>
     <string name="tax_type">Tax Type</string>
     <string name="tax">Tax</string>
+    <string name="tax_new">Tax :</string>
     <string name="trans_reversed">Transaction Reversed</string>
     <string name="trans_date">Transaction Date</string>
     <string name="view_deatils">View Details</string>

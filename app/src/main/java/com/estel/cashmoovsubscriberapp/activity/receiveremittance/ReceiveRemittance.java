@@ -23,6 +23,8 @@ import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
+import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
+import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfirmScreen;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayConfirmScreen;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayDetails;
@@ -217,12 +219,12 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
         TextView tvFinger = findViewById(R.id.tvFinger);
         if (MyApplication.setProtection != null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                tvFinger.setVisibility(View.VISIBLE);
+                tvFinger.setVisibility(View.GONE);
             } else {
                 tvFinger.setVisibility(View.GONE);
             }
         } else {
-            tvFinger.setVisibility(View.VISIBLE);
+            tvFinger.setVisibility(View.GONE);
         }
         tvFinger.setVisibility(View.GONE);
 
@@ -452,41 +454,92 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
                 }
 
                 if (step1 && step2) {
-                    if (etPin.getText().toString().trim().isEmpty()) {
-                        MyApplication.showErrorToast(receiveremittanceC, getString(R.string.val_pin));
-                        return;
+                    if(pin_layout.getVisibility()==View.VISIBLE){
+                        if (etPin.getText().toString().trim().isEmpty()) {
+                            MyApplication.showErrorToast(receiveremittanceC, getString(R.string.val_pin));
+                            return;
+                        }
+                        if (etPin.getText().toString().trim().length() < 4) {
+                            MyApplication.showErrorToast(receiveremittanceC, getString(R.string.val_valid_pin));
+                            return;
+                        }
+                        try {
+                            dataToSend.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", getApplicationContext()));
+                            dataToSend.put("toCurrencyCode", fromCurrencyCode);
+                            dataToSend.put("amount", etAmount.getText().toString().trim().replace(",", ""));
+                            dataToSend.put("confirmationCode", etConfCode.getText().toString());
+                            dataToSend.put("firstName", etName.getText().toString());
+                            dataToSend.put("lastName", etLname.getText().toString());
+                            dataToSend.put("phoneNumber", etPhone.getText().toString());
+                            dataToSend.put("serviceCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                            dataToSend.put("serviceCategoryCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                            dataToSend.put("serviceProviderCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                            dataToSend.put("pin", encryptionDatanew);
+                            dataToSend.put("transactionCoordinate", MainActivity.transactionCoordinate);
+                            dataToSend.put("transactionArea", MainActivity.transactionArea);
+                            dataToSend.put("isGpsOn", true);
+                            dataToSend.put("channelTypeCode", MyApplication.channelTypeCode);
+                            System.out.println("Data Send " + dataToSend.toString());
+
+                            etPin.setClickable(false);
+                            tvSend.setVisibility(View.GONE);
+
+                            callPostAPI();
+
+                        } catch (Exception e) {
+
+                        }
                     }
-                    if (etPin.getText().toString().trim().length() < 4) {
-                        MyApplication.showErrorToast(receiveremittanceC, getString(R.string.val_valid_pin));
-                        return;
+                    else{
+                        MyApplication.biometricAuth(receiveremittanceC, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+                                    try {
+                                        dataToSend.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", getApplicationContext()));
+                                        dataToSend.put("toCurrencyCode", fromCurrencyCode);
+                                        dataToSend.put("amount", etAmount.getText().toString().trim().replace(",", ""));
+                                        dataToSend.put("confirmationCode", etConfCode.getText().toString());
+                                        dataToSend.put("firstName", etName.getText().toString());
+                                        dataToSend.put("lastName", etLname.getText().toString());
+                                        dataToSend.put("phoneNumber", etPhone.getText().toString());
+                                        dataToSend.put("serviceCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                                        dataToSend.put("serviceCategoryCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                                        dataToSend.put("serviceProviderCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                                        String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                        dataToSend.put("pin", encryptionDatanew);
+                                        dataToSend.put("transactionCoordinate", MainActivity.transactionCoordinate);
+                                        dataToSend.put("transactionArea", MainActivity.transactionArea);
+                                        dataToSend.put("isGpsOn", true);
+                                        dataToSend.put("channelTypeCode", MyApplication.channelTypeCode);
+                                        System.out.println("Data Send " + dataToSend.toString());
+
+                                        etPin.setClickable(false);
+                                        tvSend.setVisibility(View.GONE);
+
+                                        callPostAPI();
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                //   MyApplication.showToast(tosubscriberconfirmscreenC, failure);
+
+                                pin_layout.setVisibility(View.VISIBLE);
+
+                            }
+                        });
+
                     }
-                    try {
-                        dataToSend.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", getApplicationContext()));
-                        dataToSend.put("toCurrencyCode", fromCurrencyCode);
-                        dataToSend.put("amount", etAmount.getText().toString().trim().replace(",", ""));
-                        dataToSend.put("confirmationCode", etConfCode.getText().toString());
-                        dataToSend.put("firstName", etName.getText().toString());
-                        dataToSend.put("lastName", etLname.getText().toString());
-                        dataToSend.put("phoneNumber", etPhone.getText().toString());
-                        dataToSend.put("serviceCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
-                        dataToSend.put("serviceCategoryCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
-                        dataToSend.put("serviceProviderCode", serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
-                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
-                        dataToSend.put("pin", encryptionDatanew);
-                        dataToSend.put("transactionCoordinate", MainActivity.transactionCoordinate);
-                        dataToSend.put("transactionArea", MainActivity.transactionArea);
-                        dataToSend.put("isGpsOn", true);
-                        dataToSend.put("channelTypeCode", MyApplication.channelTypeCode);
-                        System.out.println("Data Send " + dataToSend.toString());
 
-                        etPin.setClickable(false);
-                        tvSend.setVisibility(View.GONE);
-
-                        callPostAPI();
-
-                    } catch (Exception e) {
-
-                    }
                 }
                 break;
 
@@ -779,7 +832,7 @@ public class ReceiveRemittance extends AppCompatActivity implements View.OnClick
 
                             otp_layout.setVisibility(View.GONE);
                             ll_resendOtp.setVisibility(View.GONE);
-                            pin_layout.setVisibility(View.VISIBLE);
+                            pin_layout.setVisibility(View.GONE);
                             tvSend.setText(getString(R.string.send));
 
                         } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {

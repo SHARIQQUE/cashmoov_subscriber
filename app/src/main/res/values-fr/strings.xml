@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 04-03-2023 09:30 AM</string>
+    <string name="version">Version : 06-03-2023 08:00 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -92,14 +92,16 @@
     <string name="front">Ex: Recto*</string>
     <string name="ex_verso">Ex: Verso*</string>
     <string name="id_proof_no">Numero de piece</string>
-    <string name="verification">Vérification</string>
+    <string name="verification">Vérification OTP</string>
     <string name="verification_message">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123.</string>
     <string name="session_expired_send_back">La session expire dans 60 secondes. Vous n\'avez pas reçu de code? Renvoyer le</string>
     <string name="my_account">Mon compte</string>
     <string name="press_back_exit_toast">Veuillez appuyer à nouveau sur Retour pour quitter</string>
-
+    <string name="verification_reset_pin_message">Veuillez contacter votre service clientèle pour réinitialiser le code PIN OTP et veuillez saisir l\'OTP pour vérifier votre compte.</string>
     <string name="your_currency">Votre devise:</string>
     <string name="acc_statement">Relevés de compte</string>
+
+
     <string name="last_transactions">Vos dernières transactions</string>
     <string name="deposit">Dépot</string>
     <string name="withdrawal">Retrait</string>
@@ -141,7 +143,7 @@
     <string name="select_bank">Selectionner la Banque*</string>
     <string name="acc_number">N° de Compte :</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
-    <string name="fees">Frais:</string>
+    <string name="fees">Frais :</string>
     <string name="amount_to_paid">Montant payé</string>
     <string name="amount_to_paid_colon">Montant payé:</string>
     <string name="amount_to_paid_intec">Montant à payer :</string>
@@ -261,6 +263,7 @@
     <string name="no_biometric_senser">Le capteur biométrique est actuellement indisponible</string>
     <string name="device_not_contain_fingerprint">Votre appareil n\'a pas d\'empreinte digitale enregistrée, veuillez vérifier vos paramètres de sécurité</string>
     <string name="val_pin">veuillez entrer le code pin</string>
+    <string name="val_pin_new"> Veuillez saisir une nouvelle Code PIN </string>
     <string name="val_valid_pin">La broche doit comporter au moins 4 chiffres</string>
     <string name="enter_pass">Tapez votre mot de passe</string>
     <string name="new_pass">Nouveau mot de passe</string>
@@ -270,13 +273,13 @@
     <string name="val_phone">Veuillez entrer le numéro de téléphone</string>
     <string name="val_pass">Veuillez entrer le mot de passe</string>
     <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
-    <string name="set_pin">Définir la code pin</string>
+    <string name="set_pin">Définir le code pin</string>
     <string name="generate_password">Générer un nouveau mot de passe</string>
     <string name="set_pin_message">Veuillez définir un code PIN à 4 chiffres pour votre compte.</string>
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
     <string name="val_re_pin">Veuillez saisir une nouvelle code pin</string>
     <string name="val_valid_re_pin">Nouveau votre nouveau code PIN doit être d\'au moins 4 chiffres</string>
-    <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin doivent être identiques]]></string>
+    <string name="val_pin_re_pin"><![CDATA[Le nouveau code PIN et le code PIN de confirmation doivent étre identiques]]></string>
     <string name="val_select_gender">Veuillez sélectionner le sexe</string>
     <string name="val_select_occupation">Veuillez sélectionner la profession</string>
     <string name="val_dob">Veuillez sélectionner la date de naissance</string>
@@ -353,9 +356,9 @@
     <string name="re_enter_new_pin">Entrez à nouveau votre nouveau code PIN</string>
     <string name="val_old_pin">Veuillez saisir l\'ancien code PIN</string>
     <string name="val_valid_old_pin">L\'ancien code PIN doit comporter au moins 4 chiffres</string>
-    <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
+    <string name="val_new_pin"> Veuillez saisir une nouvelle Code PIN</string>
     <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
-    <string name="val_new_pin_re_pin"><![CDATA[Le nouveau code pin et le code pin confirmé doivent être identiques]]></string>
+    <string name="val_new_pin_re_pin"><![CDATA[Le nouveau code PIN et le code PIN de confirmation doivent être identiques]]></string>
     <string name="pin_changed_msg">Changement de broche !</string>
     <string name="val_old_pin_match"><![CDATA[Old Pin & New-Pin devraient être les mêmes]]></string>
 
@@ -410,7 +413,8 @@
     <string name="recharge_no">Numéro de recharge</string>
     <string name="amounts">Montant</string>
     <string name="tax_type">Type de taxe</string>
-    <string name="tax">Impôt</string>
+    <string name="tax">Taxe</string>
+    <string name="tax_new">Taxe :</string>
     <string name="trans_reversed">Transaction annulée</string>
     <string name="trans_date">Date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>

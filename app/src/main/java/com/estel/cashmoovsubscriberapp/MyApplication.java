@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Html;
@@ -829,9 +830,11 @@ public class MyApplication extends Application {
     public static BiometricPrompt biometricPrompt=null;
     public static Activity activityNew;
     public static boolean isCancelCalled=false;
+    public static boolean isCalled=false;
 
 
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
+        isCancelCalled=false;
         if (activity.getSystemService(Context.FINGERPRINT_SERVICE) == null) {
             bioMetric_responce_handler.failure("");
             return;
@@ -863,6 +866,7 @@ public class MyApplication extends Application {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                //showToast(activityNew,"1");
                 bioMetric_responce_handler.failure("");
                 //bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
@@ -872,6 +876,7 @@ public class MyApplication extends Application {
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
                 bioMetric_responce_handler.failure("");
+                //showToast(activityNew,"2");
                 // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
               /*  msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);*/
@@ -880,6 +885,7 @@ public class MyApplication extends Application {
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
                 bioMetric_responce_handler.failure("");
+              //  showToast(activityNew,"3");
                 //  bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
 
                 break;
@@ -896,17 +902,19 @@ public class MyApplication extends Application {
 
 
                 if(!fingerprintManager.hasEnrolledFingerprints()) {
-                    bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));
+                   // bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));
 
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
                     if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
                         onAuthenticationFailed();
+                      //  showToast(activityNew,"4");
                         isCancelCalled=true;
                     }
                 }
 
                 if (!isCancelCalled) {
+                  //  showToast(activityNew,"5");
                     onAuthenticationFailed();
                     isCancelCalled=false;
                 }
@@ -925,6 +933,7 @@ public class MyApplication extends Application {
                 //  Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                 // tvFinger.setText("Login Successful");
 
+
                 System.out.println("Biomatric   =>"+result.toString());
                 bioMetric_responce_handler.success("Call API");
 
@@ -935,7 +944,11 @@ public class MyApplication extends Application {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 2000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
+                //showToast(activityNew,"6");
                 checkCounter(bioMetric_responce_handler,activityNew.getResources().getString(R.string.please_enter_pin_bio));
 
                 biometricPrompt.cancelAuthentication();

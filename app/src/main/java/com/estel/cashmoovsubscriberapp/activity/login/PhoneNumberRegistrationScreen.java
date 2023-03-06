@@ -167,7 +167,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         });
 
 
-      //  setOnCLickListener();
+         setOnCLickListener();
 
        // callApiCountry();
 
@@ -474,40 +474,30 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                 MyApplication.saveString("userCode",jsonObject.optJSONObject("walletOwnerUser").optString("code"),phnoregistrationccreenC);
                                 MyApplication.saveString("email",jsonObject.optJSONObject("walletOwnerUser").optString("email"),phnoregistrationccreenC);
 
-                              /*  Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
-                                startActivity(i);*/
+                                Intent i = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
+                                startActivity(i);
 
 
-                              if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("loginWithOtpRequired")) {
+                             /* if(jsonObject.optJSONObject("walletOwnerUser").optBoolean("loginWithOtpRequired")) {
                                   Intent in = new Intent(phnoregistrationccreenC, VerifyLoginAccountScreen.class);
                                   startActivity(in);
 
                               }
-
+*/
 
                                //  callPostGetLoginOTP();
-                            }else if(!otprequeird)
+                            }else
                             {
 
-                                callPostGetLoginOTP();
-
-                            } else {
-
-
-                            if(!otprequeird){
-                                linPass.setVisibility(View.GONE);
-
-                            }else{
                                 linPass.setVisibility(View.VISIBLE);
                                 etPass.setVisibility(View.VISIBLE);
                                 tvPin.setVisibility(View.GONE);
                                 tvOr.setVisibility(View.GONE);
                                 tvFinger.setVisibility(View.GONE);
+                                MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
+
                             }
 
-
-                            }
-                            MyApplication.saveString("token",jsonObject.optString("access_token"),phnoregistrationccreenC);
                         } else {
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("1074")){
                                 MyApplication.showToast(phnoregistrationccreenC,getString(R.string.register_first_time_message));

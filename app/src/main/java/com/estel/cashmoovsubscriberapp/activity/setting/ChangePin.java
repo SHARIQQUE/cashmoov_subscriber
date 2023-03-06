@@ -168,10 +168,10 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_re_pin));
                     return;
                 }
-                if(etReNewPin.getText().toString().trim().length()<3) {
+               /*if(etReNewPin.getText().toString().trim().length()<3) {
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_valid_re_pin));
                     return;
-                }
+                }*/
                 if(!(etNewPin.getText().toString().trim()).equalsIgnoreCase(etReNewPin.getText().toString().trim())) {
                     MyApplication.showErrorToast(changepinC,getString(R.string.val_new_pin_re_pin));
                     return;
