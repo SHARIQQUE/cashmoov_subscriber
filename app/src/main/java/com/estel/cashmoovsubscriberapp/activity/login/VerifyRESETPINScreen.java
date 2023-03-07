@@ -33,7 +33,7 @@ public class VerifyRESETPINScreen extends AppCompatActivity implements OnOtpComp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verify_account_screen);
+        setContentView(R.layout.activity_verify_reset_screen);
         verifyloginaccountscreenC = this;
         getIds();
     }

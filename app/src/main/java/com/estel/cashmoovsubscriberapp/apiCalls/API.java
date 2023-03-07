@@ -50,11 +50,11 @@ public class API {
   //  public static String BASEURL="https://180.179.201.110:8081/";//Prod
 
     // public static String BASEURL="http://180.179.201.109:8081/";
-    public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
+   // public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
 
 
     public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
-   //public static String BASEURL="http://202.140.50.116:8081/"; //UAT
+   public static String BASEURL="http://202.140.50.116:8081/"; //UAT
 
 
    // 180.179.201.109:8050//subscriber
