@@ -7,6 +7,29 @@
 
     <include layout="@layout/toolbar_active"/>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="@dimen/_6sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardBackgroundColor="@color/white">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:inputType="textWebEmailAddress"
+            android:focusable="true"
+            app:iconifiedByDefault="false"
+            android:focusableInTouchMode="true"
+            android:theme="@style/SearchViewStyle"
+
+            app:defaultQueryHint="@string/search_outlet" />
+
+    </androidx.cardview.widget.CardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvLocationList"
             android:layout_width="match_parent"

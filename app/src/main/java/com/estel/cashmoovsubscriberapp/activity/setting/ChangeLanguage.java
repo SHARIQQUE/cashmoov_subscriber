@@ -111,12 +111,14 @@ public class ChangeLanguage extends AppCompatActivity implements View.OnClickLis
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         if(sbFrench.isChecked()){
-                            MyApplication.changeLocale(changelanguageC, "fr");
                             MyApplication.saveString("Locale", "fr", changelanguageC);
+                            MyApplication.changeLocale(changelanguageC, "fr");
+
 
                         } else if(sbEnglish.isChecked()){
-                            MyApplication.changeLocale(changelanguageC, "en");
                             MyApplication.saveString("Locale", "en", changelanguageC);
+                            MyApplication.changeLocale(changelanguageC, "en");
+
 
                         }
                         MyApplication.isFirstTime=false;

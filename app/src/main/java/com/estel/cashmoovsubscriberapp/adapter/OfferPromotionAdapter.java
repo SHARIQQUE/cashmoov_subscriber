@@ -40,8 +40,8 @@ public class OfferPromotionAdapter extends RecyclerView.Adapter<OfferPromotionAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OfferPromotionModel offerPromotionModel = offerPromotionList.get(position);
 
-        if(offerPromotionModel.getPromOfferTypeName().equalsIgnoreCase("Both")||
-                offerPromotionModel.getPromOfferTypeName().equalsIgnoreCase("Image")) {
+        if(offerPromotionModel.getPromOfferTypeCode().equalsIgnoreCase("100002")||
+                offerPromotionModel.getPromOfferTypeCode().equalsIgnoreCase("100000")) {
             holder.cardPromotionText.setVisibility(View.GONE);
             holder.cardPromotionImage.setVisibility(View.VISIBLE);
             holder.tvHeading.setText(offerPromotionModel.getHeading());

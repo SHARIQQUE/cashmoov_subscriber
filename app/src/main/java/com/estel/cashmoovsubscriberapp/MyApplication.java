@@ -725,28 +725,20 @@ public class MyApplication extends Application {
     public static void setLang(Context context){
         lang =  getSaveString("Locale", context);
 
-        if(MyApplication.lang.trim().length()>0){
-            changeLocale(context,lang);
-            MyApplication.saveString("Locale", lang, context);
-            //change to fr
-        }else{
-            changeLocale(context,"fr");
+        if(MyApplication.lang.trim().length()==0){
+
             MyApplication.saveString("Locale", "fr", context);
+            changeLocale(context,lang);
+            return;
+            //change to fr
         }
+        changeLocale(context,lang);
         System.out.println("+++++++++++ lang+++++++"+lang);
     }
 
     public static void changeLocale(Context context, String lang) {
-        if (lang.equalsIgnoreCase("")|| lang.trim().length()==0) {
-            MyApplication.saveString("Locale", "fr", context);
-            Locale myLocale = new Locale("fr");//Set Selected Locale
-            Locale.setDefault(myLocale);//set new locale as default
-            Configuration config = new Configuration();//get Configuration
-            config.locale = myLocale;//set config locale as selected locale
-            context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());//Update the config
 
-            return;
-        }
+
         Locale myLocale = new Locale(lang);//Set Selected Locale
         Locale.setDefault(myLocale);//set new locale as default
         Configuration config = new Configuration();//get Configuration

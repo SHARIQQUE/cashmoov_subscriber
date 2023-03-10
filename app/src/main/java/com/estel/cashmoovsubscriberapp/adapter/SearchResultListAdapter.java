@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.Contact;
 import com.estel.cashmoovsubscriberapp.listners.LocationListLisners;
 import com.estel.cashmoovsubscriberapp.model.LatLongModel;
 import java.util.ArrayList;
@@ -26,6 +27,10 @@ public class SearchResultListAdapter extends RecyclerView.Adapter<SearchResultLi
         this.locationArrayList = locationArrayList;
         loactionListLisners = (LocationListLisners) context;
 
+    }
+    public void onDataChange(ArrayList<LatLongModel> contactArrayList) {
+        this.locationArrayList = contactArrayList;
+        notifyDataSetChanged();
     }
 
 

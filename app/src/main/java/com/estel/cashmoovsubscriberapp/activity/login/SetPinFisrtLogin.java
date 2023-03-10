@@ -104,7 +104,7 @@ public class SetPinFisrtLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(etPin.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(setpinC,getString(R.string.val_pin_new));
+                    MyApplication.showErrorToast(setpinC,getString(R.string.val_pin));
                     return;
                 }
                 if (etPin.getText().toString().trim().length()<4) {

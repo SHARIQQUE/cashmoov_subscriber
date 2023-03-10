@@ -85,7 +85,7 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
         txt_term_condition= findViewById(R.id.txt_term_condition);
         OfferPromotionModel data= MyApplication.offerPromotionModelArrayList.get(MyApplication.offerPromtionPos);
         txt_header.setText(data.getHeading());
-        txt_content.setText(data.getSubHeading());
+
         txt_term_condition.setText(data.getDescription());
 //        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
 //        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
@@ -96,20 +96,23 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 //        String formattedDate = outputFormat.format(date);
-        try {
+
+        txt_time.setText(data.getToDate());
+        /*try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(data.getToDate());
             String formattedDate = outputFormat.format(date);
-            txt_time.setText(formattedDate);
+            txt_time.setText(data.getToDate());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
+*/
 
-        if(data.getPromOfferTypeName().equalsIgnoreCase("Both")||
-                data.getPromOfferTypeName().equalsIgnoreCase("Image")){
+            if(data.getPromOfferTypeCode().equalsIgnoreCase("100002")||
+                data.getPromOfferTypeCode().equalsIgnoreCase("100000")){
             img_offer_logo.setVisibility(View.VISIBLE);
             Glide.with(this)
                     .applyDefaultRequestOptions(new RequestOptions()
@@ -121,6 +124,12 @@ public class OfferPromotionDetailActivity extends AppCompatActivity {
             img_offer_logo.setVisibility(View.INVISIBLE);
         }
 
+        if(data.getPromOfferTypeCode().equalsIgnoreCase("100000")) {
+            txt_content.setVisibility(View.GONE);
+        }else{
+            txt_content.setVisibility(View.VISIBLE);
+            txt_content.setText(data.getSubHeading());
+        }
 
 
 //        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);

@@ -291,7 +291,7 @@ public class LoginPin extends AppCompatActivity {
 
 }
 
-
+     BiometricPrompt biometricPrompt=null;
     private void setOnClickListener() {
 
         BiometricManager biometricManager = androidx.biometric.BiometricManager.from(loginpinC);
@@ -308,28 +308,32 @@ public class LoginPin extends AppCompatActivity {
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
               //  msgText.setText(getString(R.string.no_fingerprint_senser));
                 tvFinger.setVisibility(View.GONE);
+                pin_linear_lay.setVisibility(View.VISIBLE);
                 break;
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
                // msgText.setText(getString(R.string.no_biometric_senser));
+                pin_linear_lay.setVisibility(View.VISIBLE);
                 tvFinger.setVisibility(View.GONE);
                 break;
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
               //  msgText.setText(getString(R.string.device_not_contain_fingerprint));
+                pin_linear_lay.setVisibility(View.VISIBLE);
                 tvFinger.setVisibility(View.GONE);
                 break;
         }
         // creating a variable for our Executor
         Executor executor = ContextCompat.getMainExecutor(this);
         // this will give us result of AUTHENTICATION
-        final BiometricPrompt biometricPrompt = new BiometricPrompt(loginpinC, executor, new BiometricPrompt.AuthenticationCallback() {
+        biometricPrompt = new BiometricPrompt(loginpinC, executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
                 pin_linear_lay.setVisibility(View.VISIBLE);
+                biometricPrompt.cancelAuthentication();
             }
 
             // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS
@@ -348,6 +352,7 @@ public class LoginPin extends AppCompatActivity {
             @Override
             public void onAuthenticationFailed() {
                 pin_linear_lay.setVisibility(View.VISIBLE);
+                biometricPrompt.cancelAuthentication();
                 super.onAuthenticationFailed();
             }
         });
@@ -370,6 +375,7 @@ public class LoginPin extends AppCompatActivity {
     private void callApiLoginPass() {
         try{
 
+            pin_linear_lay.setVisibility(View.VISIBLE);
             JSONObject loginJson=new JSONObject();
 
            
@@ -486,7 +492,7 @@ public class LoginPin extends AppCompatActivity {
                         startActivity(i);*/
                     }
 
-                   // MyApplication.showToast(loginpinC,aFalse);
+                    MyApplication.showToast(loginpinC,aFalse);
 
                 }
             });
@@ -500,7 +506,7 @@ public class LoginPin extends AppCompatActivity {
 
     private void callApiLoginPassF() {
         try{
-
+            pin_linear_lay.setVisibility(View.VISIBLE);
             JSONObject loginJson=new JSONObject();
 
 
@@ -614,7 +620,7 @@ public class LoginPin extends AppCompatActivity {
                         startActivity(i);*/
                     }
 
-                   // MyApplication.showToast(loginpinC,aFalse);
+                    MyApplication.showToast(loginpinC,aFalse);
 
                 }
             });

@@ -977,9 +977,20 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     }
 
     public void clearData(){
+
+                spGender.setText( getString(R.string.valid_select_gender)) ;
         etFname.setText("");
         etLname.setText("");
         etEmail.setText("");
+       // etPhone.setText("");
+        etFname.setText("");
+        etLname.setText("");
+        etEmail.setText("");
+        spRegion.setText( getString(R.string.valid_select_region)) ;
+        spCity.setText( getString(R.string.valid_select_city)) ;
+        etAddress.setText("")  ;
+        spOccupation.setText( getString(R.string.valid_select_occupation)) ;
+        etDob.setText("")  ;
         MyApplication.saveString("TempSubscriberCode","",registersteponeC);
     }
 

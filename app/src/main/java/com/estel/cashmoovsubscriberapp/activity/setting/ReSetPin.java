@@ -96,10 +96,10 @@ public class ReSetPin extends AppCompatActivity {
                     MyApplication.showErrorToast(setpinC,getString(R.string.val_re_pin));
                     return;
                 }
-                if(etRePin.getText().toString().trim().isEmpty()) {
+              /*  if(etRePin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(setpinC,getString(R.string.val_valid_re_pin));
                     return;
-                }
+                }*/
                 if(!(etPin.getText().toString().trim()).equalsIgnoreCase(etRePin.getText().toString().trim())) {
                     MyApplication.showErrorToast(setpinC,getString(R.string.val_pin_re_pin));
                     return;

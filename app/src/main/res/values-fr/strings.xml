@@ -6,7 +6,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 06-03-2023 08:00 PM</string>
+    <string name="version">Version : 10-03-2023 02:30 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -83,7 +83,7 @@
         <font fgcolor="#000000">Samuel</font><font fgcolor="#4f62c0"> </font><font fgcolor="#4f62c0">Flatcher</font>
 
     </string>
-    <string name="occupation">Occupation</string>
+    <string name="occupation">la profession</string>
     <string name="dob">Date de naissance</string>
     <string name="choose_pin">Choisir PIN Ex:1234</string>
     <string name="repeat_pin">Répéter PIN Ex:1234</string>
@@ -179,7 +179,7 @@
     <string name="valid_city">Ville*</string>
     <string name="valid_address">Addresse*</string>
     <string name="valid_select_gender">Sélectionnez le sexe*</string>
-    <string name="valid_select_occupation">Select Occupation*</string>
+    <string name="valid_select_occupation">Sélectionnez la profession*</string>
     <string name="valid_dob">Date de naissance*</string>
     <string name="valid_select_id_proof">Sélectionnez la preuve d\'identité*</string>
     <string name="vaild_id_proof_no">Numéro de preuve d’identité*</string>
@@ -422,6 +422,7 @@
     <string name="post_balance_colon">Nouveau solde :</string>
 
     <string name="search_here">Cherche ici...</string>
+    <string name="search_outlet">Trouver un point de vente...</string>
     <string name="pdf">Pdf</string>
     <string name="csv">Csv</string>
     <string name="excel">Exceller</string>

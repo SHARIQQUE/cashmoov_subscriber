@@ -720,7 +720,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     data.optString("templateCode","NA"),
                                     data.optString("templateName","NA"),
                                     data.optString("serviceCode","NA"),
-                                    data.optString("serviceName","NA"),
+                                    data.optString("serviceName",""),
                                     data.optString("serviceCategoryCode","NA"),
                                     data.optString("serviceCategoryName","NA"),
                                     data.optString("serviceProviderCode","NA"),
@@ -731,11 +731,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     data.optString("promOfferTypeName","NA"),
                                     data.optString("profileTypeCode","NA"),
                                     data.optString("profileTypeName","NA"),
-                                    data.optString("description","NA"),
-                                    data.optString("heading","NA"),
-                                    data.optString("subHeading","NA"),
-                                    data.optString("fileName","NA"),
-                                    data.optString("subHeading","NA"),
+                                    data.optString("description",""),
+                                    data.optString("heading",""),
+                                    data.optString("subHeading",""),
+                                    data.optString("fileName",""),
+                                    data.optString("subHeading",""),
                                     data.optString("state","NA"),
                                     data.optString("createdBy","NA"),
                                     data.optString("creationDate","NA"),
@@ -746,15 +746,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                         for(int i=0;i<offerPromotionModelArrayList.size();i++){
-                            if(offerPromotionModelArrayList.get(i).getPromOfferTypeName().equalsIgnoreCase("Both")||
-                                    offerPromotionModelArrayList.get(i).getPromOfferTypeName().equalsIgnoreCase("Image")) {
+                            if(offerPromotionModelArrayList.get(i).getPromOfferTypeCode().equalsIgnoreCase("100002")||
+                                    offerPromotionModelArrayList.get(i).getPromOfferTypeCode().equalsIgnoreCase("100000")) {
+                                OfferPromotionModeltemp=null;
+                                OfferPromotionModeltemp=offerPromotionModelArrayList.get(i);
+                                break;
+                            }else{
                                 OfferPromotionModeltemp=offerPromotionModelArrayList.get(i);
                             }
                         }
 
-                        MyApplication.saveString("profiletypecode",OfferPromotionModeltemp.getProfileTypeCode(),MainActivity.this);
 
-                        if(OfferPromotionModeltemp!=null) {
+
+
+
+                        if(OfferPromotionModeltemp!=null ) {
+                            MyApplication.saveString("profiletypecode",OfferPromotionModeltemp.getProfileTypeCode(),MainActivity.this);
                             new PromoDialog.Builder(MainActivity.this)
                                     .setTitle(OfferPromotionModeltemp.getHeading()) // You can also send title like R.string.from_resources
                                     .setMessage(OfferPromotionModeltemp.getStatus()) // or pass like R.string.description_from_resources
@@ -783,7 +790,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     })
                                     .build();
                         }else{
+                            MyApplication.saveString("profiletypecode",OfferPromotionModeltemp.getProfileTypeCode(),MainActivity.this);
+                            new PromoDialog.Builder(MainActivity.this)
+                                    .setTitle(OfferPromotionModeltemp.getHeading()) // You can also send title like R.string.from_resources
+                                    .setMessage(OfferPromotionModeltemp.getStatus()) // or pass like R.string.description_from_resources
+                                    .setGifResource(OfferPromotionModeltemp.getCode() + "/" + OfferPromotionModeltemp.getFileName())
+                                    .setTitleTextColor(R.color.orange_900)
+                                    .setDescriptionTextColor(R.color.black)
+                                    .setNegativeBtnText(R.string.cancel_pop) // or pass it like android.R.string.cancel
+                                    .setPositiveBtnBackground(R.color.green_500)
+                                    .setPositiveBtnText(R.string.view_more_string) // or pass it like android.R.string.ok
+                                    .setNegativeBtnBackground(R.color.red)
 
+                                    .isCancellable(true)
+                                    .OnPositiveClicked(new PromoDialogListener() {
+                                        @Override
+                                        public void OnClick() {
+                                            Intent i = new Intent(mainC, OfferPromotionActivity.class);
+                                            startActivity(i);
+                                            //Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .OnNegativeClicked(new PromoDialogListener() {
+                                        @Override
+                                        public void OnClick() {
+                                            // Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .build();
                         }
 
 
