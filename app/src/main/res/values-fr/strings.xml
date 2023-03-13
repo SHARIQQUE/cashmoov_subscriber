@@ -387,7 +387,7 @@
     <string name="val_mer_outlet_no_len">Merchant/Outlet number must be at least 9 digits long</string>
     <string name="val_inst_agent_branch_no">Veuillez entrer le numéro d\'institut/agent/succursale</string>
     <string name="val_inst_agemt_branch_no_len">Le numéro de l\'institut/de l\'agent/de la succursale doit comporter au moins 9 chiffres</string>
-    <string name="valid_subscriber_number">Numéro d\'adhérant*</string>
+    <string name="valid_subscriber_number">Numéro du bénéficiaire*</string>
     <string name="val_subscriber_no">Veuillez saisir le numéro d\'abonné</string>
     <string name="enter_subscriber_no_val">Le numéro d\'abonné doit comporter au moins 9 chiffres</string>
     <string name="promotions">Promotions</string>

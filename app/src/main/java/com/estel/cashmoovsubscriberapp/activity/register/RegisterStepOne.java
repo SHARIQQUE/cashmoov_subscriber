@@ -379,12 +379,13 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     //http://202.131.144.130:8081/ewallet/api/v1/region/country/100092
     private void callApiRegions() {
         try {
+            MyApplication.showloader(RegisterStepOne.this,getString(R.string.please_wait));
 //http://202.131.144.130:8081/ewallet/public/region/country/100092
             API.GET_PUBLIC("ewallet/public/region/country/100092",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            //   MyApplication.hideLoader();
+                               MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 regionList.clear();
@@ -427,6 +428,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
 
 
                                 } else {
+                                    MyApplication.hideLoader();
                                     MyApplication.showToast(registersteponeC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -440,7 +442,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
         }
 
     }

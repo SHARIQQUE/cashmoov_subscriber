@@ -274,6 +274,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
 
     private void callApiIdProofType() {
         try {
+            MyApplication.showloader(RegisterStepTwo.this,getString(R.string.please_wait));
             API.GET_PUBLIC("ewallet/public/idProofType/all",
                     new Api_Responce_Handler() {
                         @Override
@@ -312,6 +313,7 @@ public class RegisterStepTwo extends AppCompatActivity implements View.OnClickLi
                                     });
 
                                 } else {
+                                    MyApplication.hideLoader();
                                     MyApplication.showToast(registersteptwoC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }

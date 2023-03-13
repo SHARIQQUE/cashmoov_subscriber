@@ -899,7 +899,8 @@ public class MyApplication extends Application {
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
                     if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
-                        onAuthenticationFailed();
+                        //onAuthenticationFailed();
+                        bioMetric_responce_handler.failure("");
                       //  showToast(activityNew,"4");
                         isCancelCalled=true;
                     }
