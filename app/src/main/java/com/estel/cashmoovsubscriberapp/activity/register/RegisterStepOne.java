@@ -80,6 +80,8 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
     private ArrayList<OccupationTypeModel.OccupationType> occupationTypeModelList=new ArrayList<>();
 
     private static String dob = "";
+    private static String etDobFormat = "";
+
     public static Dialog dialog;
     public static TextView mDobText;
     String calmsg;
@@ -172,10 +174,13 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                 DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(RegisterStepOne.this, new DatePickerPopWin.OnDatePickedListener() {
                     @Override
                     public void onDatePickCompleted(int year, int month, int day, String dateDesc) {
-                        etDob.setText(year + "-" + (month+1) + "-" + day);
+                       // etDob.setText(year + "-" + (month+1) + "-" + day);
+                        etDobFormat=year + "-" + (month+1) + "-" + day;
+                        etDob.setText(day + "-" + (month+1) + "-" + year);
+
 
                         mDobText.setVisibility(View.VISIBLE);
-                        Toast.makeText(RegisterStepOne.this, dateDesc, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(RegisterStepOne.this, dateDesc, Toast.LENGTH_SHORT).show();
                     }
                 }).textConfirm("CONFIRM") //text of confirm button
                         .textCancel("CANCEL") //text of cancel button
@@ -367,7 +372,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     try {
                         jsonObject.put("ownerName", etFname.getText().toString().trim());
                         jsonObject.put("lastName", etLname.getText().toString().trim());
-                        jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
+                        jsonObject.put("dateOfBirth", etDobFormat);
                         jsonObject.put("idExpiryDate", "2021-11-09");
                         jsonObject.put("email", etEmail.getText().toString().trim());
                         jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
