@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationList extends AppCompatActivity {
+public class NotificationList extends LogoutAppCompactActivity {
     public static NotificationList notificationlistC;
     ImageView imgBack,imgPromotion;
     RecyclerView rvNotification;

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.adapter.TransactionListAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -28,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class TransactionDetailsActivity extends AppCompatActivity implements TransactionListLisners {
+public class TransactionDetailsActivity extends LogoutAppCompactActivity implements TransactionListLisners {
     ImageView imgBack,imgHome;
     LinearLayout linPdf,linCsv,linExcel;
     private RecyclerView rvTransaction;

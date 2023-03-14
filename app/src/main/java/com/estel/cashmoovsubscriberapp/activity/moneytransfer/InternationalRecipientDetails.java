@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.CountryCurrencyInfoModel;
@@ -37,7 +38,7 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class InternationalRecipientDetails extends AppCompatActivity implements View.OnClickListener {
+public class InternationalRecipientDetails extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InternationalRecipientDetails internationalC;
     ImageView imgBack,imgHome;
     TextView spGender;

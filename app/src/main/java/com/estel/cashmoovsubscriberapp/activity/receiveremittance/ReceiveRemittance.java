@@ -22,6 +22,7 @@ import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfirmScreen;
@@ -40,7 +41,7 @@ import org.json.JSONObject;
 import java.util.StringTokenizer;
 
 
-public class ReceiveRemittance extends AppCompatActivity implements View.OnClickListener {
+public class ReceiveRemittance extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ReceiveRemittance receiveremittanceC;
     ImageView imgBack, imgHome;
     TextView tvAmtCurr, spBenefiCurrency, tvSend;

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayConfirmScreen;
 
@@ -28,7 +29,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class OutFormRecptNew extends AppCompatActivity implements View.OnClickListener {
+public class OutFormRecptNew extends LogoutAppCompactActivity implements View.OnClickListener {
     public static OutFormRecptNew billpayreceiptC;
     Button btnClose,btnShareReceipt;
     TextView tvConvRate,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,transtionstatus,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,

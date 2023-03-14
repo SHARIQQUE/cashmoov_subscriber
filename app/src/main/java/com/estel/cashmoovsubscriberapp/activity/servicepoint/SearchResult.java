@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.Contact;
 import com.estel.cashmoovsubscriberapp.adapter.SearchResultListAdapter;
 import com.estel.cashmoovsubscriberapp.listners.LocationListLisners;
@@ -18,7 +19,7 @@ import com.estel.cashmoovsubscriberapp.model.LatLongModel;
 
 import java.util.ArrayList;
 
-public class SearchResult extends AppCompatActivity implements LocationListLisners {
+public class SearchResult extends LogoutAppCompactActivity implements LocationListLisners {
     public static SearchResult searchresultC;
     ImageView imgBack,imgHome;
     RecyclerView rvLocationList;

@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class OfferPromotionActivity extends AppCompatActivity{
+public class OfferPromotionActivity extends LogoutAppCompactActivity{
     public static OfferPromotionActivity offerpromotionC;
     ImageView imgBack, imgHome;
     RecyclerView rv_offer_promotion;

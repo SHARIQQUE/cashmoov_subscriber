@@ -29,6 +29,7 @@ import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.AddBeneficiaryToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriberConfirmScreen;
@@ -54,7 +55,7 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class Outform extends AppCompatActivity implements View.OnClickListener {
+public class Outform extends LogoutAppCompactActivity implements View.OnClickListener {
     //tr
     public static Outform tosubscriberC;
     ImageView imgBack,imgHome;

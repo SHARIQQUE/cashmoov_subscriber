@@ -7,9 +7,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.suke.widget.SwitchButton;
 
-public class Confidentiality extends AppCompatActivity implements View.OnClickListener {
+public class Confidentiality extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Confidentiality confidentialityC;
     Button btnCancel;
     SwitchButton btnSwich;

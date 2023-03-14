@@ -10,8 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 
-public class PayFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class PayFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static PayFeeActivity payfeeC;
     ImageView imgBack,imgHome;
     CardView cardPay;

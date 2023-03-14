@@ -11,8 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 
-public class BankToWallet extends AppCompatActivity implements View.OnClickListener {
+public class BankToWallet extends LogoutAppCompactActivity implements View.OnClickListener {
     public static BankToWallet banktowalletC;
     ImageView imgBack,imgHome;
     TextView tvSend;

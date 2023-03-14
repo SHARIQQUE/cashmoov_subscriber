@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.R;
 
-public class OnboardingThree extends AppCompatActivity implements View.OnClickListener {
+public class OnboardingThree extends LogoutAppCompactActivity implements View.OnClickListener {
     public static OnboardingThree onboardingthreeC;
     TextView tvNext;
 

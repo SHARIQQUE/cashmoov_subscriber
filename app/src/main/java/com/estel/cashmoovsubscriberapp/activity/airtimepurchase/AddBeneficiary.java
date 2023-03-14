@@ -17,13 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.OfferPromotionDetailActivity;
 import com.estel.cashmoovsubscriberapp.adapter.ContactListAdapter;
 import com.estel.cashmoovsubscriberapp.listners.ContactListLisners;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class AddBeneficiary extends AppCompatActivity implements View.OnClickListener, ContactListLisners {
+public class AddBeneficiary extends LogoutAppCompactActivity implements View.OnClickListener, ContactListLisners {
 
     public static AddBeneficiary addbeneficiaryC;
     ImageView imgBack,imgHome;

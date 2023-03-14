@@ -12,8 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 
-public class InternationalTransferFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class InternationalTransferFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static InternationalTransferFeeActivity intertransferfeeC;
     ImageView imgBack,imgHome;
     CardView cardinternationalremitance,careinternationalremitanceinn,caredinternationalout;

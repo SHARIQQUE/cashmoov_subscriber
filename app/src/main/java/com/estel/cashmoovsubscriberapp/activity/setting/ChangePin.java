@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -22,7 +23,7 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
 import org.json.JSONObject;
 
-public class ChangePin extends AppCompatActivity implements View.OnClickListener {
+public class ChangePin extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ChangePin changepinC;
     Button btnCancel, btnConfirm;
     EditText etOldPin,etNewPin,etReNewPin;

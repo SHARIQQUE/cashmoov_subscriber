@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
+
 import java.util.concurrent.Executor;
 
 public class Login extends AppCompatActivity {

@@ -7,13 +7,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
 import org.json.JSONObject;
 
-public class ResetPinOTP extends AppCompatActivity implements View.OnClickListener, OnOtpCompletionListener {
+public class ResetPinOTP extends LogoutAppCompactActivity implements View.OnClickListener, OnOtpCompletionListener {
     public static ResetPinOTP resetpinotpC;
     OtpView otp_view;
     TextView tvPhoneNoMsg;

@@ -28,6 +28,7 @@ import androidx.fragment.app.DialogFragment;
 import com.estel.cashmoovsubscriberapp.Logger;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.activity.login.VerifyRegisterOTP;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -155,13 +156,10 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
-
                     DialogFragment dialogfragment = new DatePickerDialogThemeFrench();
-
                     dialogfragment.show(getSupportFragmentManager(), "");
                 }else{
                     DialogFragment dialogfragment = new DatePickerDialogTheme();
-
                     dialogfragment.show(getSupportFragmentManager(), "");
                 }
 

@@ -28,6 +28,7 @@ import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.AmountDetailsInfoModel;
@@ -43,7 +44,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ToSubscriber extends AppCompatActivity implements View.OnClickListener {
+public class ToSubscriber extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ToSubscriber tosubscriberC;
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvSend;

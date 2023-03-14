@@ -18,6 +18,7 @@ import com.estel.cashmoovsubscriberapp.BuildConfig;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.fee.Fee;
@@ -43,7 +44,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener {
+public class Profile extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Profile profileC;
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;

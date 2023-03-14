@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.adapter.PlanListAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BillPayPlanList extends AppCompatActivity implements PlanListeners {
+public class BillPayPlanList extends LogoutAppCompactActivity implements PlanListeners {
     public static BillPayPlanList billplanlistC;
     ImageView imgBack, imgHome;
     RecyclerView rvPlanList;

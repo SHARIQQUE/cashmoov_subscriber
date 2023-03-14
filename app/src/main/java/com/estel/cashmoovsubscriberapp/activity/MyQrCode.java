@@ -18,7 +18,7 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
 import org.json.JSONObject;
 
-public class MyQrCode extends AppCompatActivity {
+public class MyQrCode extends LogoutAppCompactActivity {
     public static MyQrCode myqrcodeC;
     ImageView imgBack,imgHome,imgQR;
     TextView tvName;

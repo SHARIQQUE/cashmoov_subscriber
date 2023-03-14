@@ -28,7 +28,7 @@ import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OfferPromotionDetailActivity extends AppCompatActivity {
+public class OfferPromotionDetailActivity extends LogoutAppCompactActivity {
     ImageView imgBack,imgHome;
     private ImageView ic_close;
     private CircleImageView img_offer_logo;

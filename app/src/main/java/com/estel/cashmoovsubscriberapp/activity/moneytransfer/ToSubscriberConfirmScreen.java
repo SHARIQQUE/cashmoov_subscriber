@@ -27,6 +27,7 @@ import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -43,7 +44,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 
-public class ToSubscriberConfirmScreen extends AppCompatActivity implements View.OnClickListener {
+public class ToSubscriberConfirmScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ToSubscriberConfirmScreen tosubscriberconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;
