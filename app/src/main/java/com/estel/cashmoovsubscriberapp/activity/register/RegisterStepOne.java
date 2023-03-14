@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Editable;
@@ -26,10 +25,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 
-import com.bruce.pickerview.popwindow.DatePickerPopWin;
 import com.estel.cashmoovsubscriberapp.Logger;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.activity.login.VerifyRegisterOTP;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -157,44 +156,11 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
-
-                    DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(RegisterStepOne.this, new DatePickerPopWin.OnDatePickedListener() {
-                        @Override
-                        public void onDatePickCompleted(int year, int month, int day, String dateDesc) {
-                            Toast.makeText(RegisterStepOne.this, dateDesc, Toast.LENGTH_SHORT).show();
-                        }
-                    }).textConfirm("CONFIRM") //text of confirm button
-                            .textCancel("CANCEL") //text of cancel button
-                            .btnTextSize(16) // button text size
-                            .viewTextSize(25) // pick view text size
-                            .colorCancel(Color.parseColor("#999999")) //color of cancel button
-                            .colorConfirm(Color.parseColor("#009900"))//color of confirm button
-                            .minYear(1990) //min year in loop
-                            .maxYear(2550) // max year in loop
-                            .showDayMonthYear(true) // shows like dd mm yyyy (default is false)
-                            .dateChose("2013-11-11") // date chose when init popwindow
-                            .build();
-                    pickerPopWin.showPopWin(RegisterStepOne.this);
-
+                    DialogFragment dialogfragment = new DatePickerDialogThemeFrench();
+                    dialogfragment.show(getSupportFragmentManager(), "");
                 }else{
-                    DatePickerPopWin pickerPopWin = new DatePickerPopWin.Builder(RegisterStepOne.this, new DatePickerPopWin.OnDatePickedListener() {
-                        @Override
-                        public void onDatePickCompleted(int year, int month, int day, String dateDesc) {
-                            Toast.makeText(RegisterStepOne.this, dateDesc, Toast.LENGTH_SHORT).show();
-                        }
-                    }).textConfirm("CONFIRM") //text of confirm button
-                            .textCancel("CANCEL") //text of cancel button
-                            .btnTextSize(16) // button text size
-                            .viewTextSize(25) // pick view text size
-                            .colorCancel(Color.parseColor("#999999")) //color of cancel button
-                            .colorConfirm(Color.parseColor("#009900"))//color of confirm button
-                            .minYear(1990) //min year in loop
-                            .maxYear(2550) // max year in loop
-                            .showDayMonthYear(true) // shows like dd mm yyyy (default is false)
-                            .dateChose("2013-11-11") // date chose when init popwindow
-                            .build();
-                    pickerPopWin.showPopWin(RegisterStepOne.this);
-
+                    DialogFragment dialogfragment = new DatePickerDialogTheme();
+                    dialogfragment.show(getSupportFragmentManager(), "");
                 }
 
 

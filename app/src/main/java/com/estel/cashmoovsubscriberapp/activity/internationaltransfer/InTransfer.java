@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayProduct;
 import com.estel.cashmoovsubscriberapp.adapter.OutAdapter;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InTransfer extends AppCompatActivity implements OperatorListeners {
+public class InTransfer extends LogoutAppCompactActivity implements OperatorListeners {
     public static InTransfer billpayC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;

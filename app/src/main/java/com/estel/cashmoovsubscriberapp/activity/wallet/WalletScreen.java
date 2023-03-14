@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.setting.Profile;
@@ -36,7 +37,7 @@ import java.util.Locale;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class WalletScreen extends AppCompatActivity implements View.OnClickListener, MiniStatemetListners {
+public class WalletScreen extends LogoutAppCompactActivity implements View.OnClickListener, MiniStatemetListners {
 
     public static WalletScreen walletscreenC;
     private RecyclerView rv_mini_statement_trans;

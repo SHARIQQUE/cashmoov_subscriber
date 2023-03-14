@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.cashout.CashOut;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepTwo;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;

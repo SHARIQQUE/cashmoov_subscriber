@@ -9,13 +9,14 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
 import org.json.JSONObject;
 
-public class Reset extends AppCompatActivity implements View.OnClickListener {
+public class Reset extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Reset resetC;
     Button btnCancel, btnConfirm;
     // ImageView imgBack;

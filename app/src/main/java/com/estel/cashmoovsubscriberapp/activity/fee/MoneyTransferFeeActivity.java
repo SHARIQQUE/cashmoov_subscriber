@@ -12,8 +12,9 @@ import androidx.cardview.widget.CardView;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 
-public class MoneyTransferFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class MoneyTransferFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static MoneyTransferFeeActivity moneytransferfeeC;
     ImageView imgBack,imgHome;
     CardView cardSubscriber,cardNonSubscriber,cardInternational;

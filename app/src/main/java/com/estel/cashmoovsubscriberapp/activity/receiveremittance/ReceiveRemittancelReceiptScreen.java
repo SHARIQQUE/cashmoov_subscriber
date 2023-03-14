@@ -16,11 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 
-public class ReceiveRemittancelReceiptScreen extends AppCompatActivity implements View.OnClickListener {
+public class ReceiveRemittancelReceiptScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ReceiveRemittancelReceiptScreen receiveremittancereceiptscreenC;
     Button btnClose,btnShareReceipt;
     TextView tvrate,tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,

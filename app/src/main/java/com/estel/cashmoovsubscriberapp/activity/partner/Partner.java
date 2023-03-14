@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayDetails;
@@ -34,7 +35,7 @@ import java.util.List;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class Partner extends AppCompatActivity implements OperatorListeners {
+public class Partner extends LogoutAppCompactActivity implements OperatorListeners {
     public static Partner partnerC;
     ImageView imgNotification,imgQR;
     TextView tvBadge;

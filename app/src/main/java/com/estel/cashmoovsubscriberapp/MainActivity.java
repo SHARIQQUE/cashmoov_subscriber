@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.estel.cashmoovsubscriberapp.activity.LogOutTimerUtil;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.MyQrCode;
 import com.estel.cashmoovsubscriberapp.activity.NotificationList;
 import com.estel.cashmoovsubscriberapp.activity.OfferPromotionActivity;
@@ -79,7 +81,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static MainActivity mainC;
     SmoothBottomBar bottomBar;
     ImageView imgNotification, imgQR, imgLogo;
@@ -118,9 +120,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
     @Override
     protected void onStart() {
         super.onStart();
+
         MyApplication.hideKeyboard(mainC);
          /*.setTitle("Granny eating chocolate dialog box") // You can also send title like R.string.from_resources
                 .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.") // or pass like R.string.description_from_resources
@@ -867,6 +871,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     int position;
     boolean end;
+
 
     private class AutoScrollTask extends TimerTask {
         @Override

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
@@ -21,7 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Fee extends AppCompatActivity implements View.OnClickListener {
+public class Fee extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Fee feeC;
     ImageView imgBack,imgHome;
     JSONObject feeData;

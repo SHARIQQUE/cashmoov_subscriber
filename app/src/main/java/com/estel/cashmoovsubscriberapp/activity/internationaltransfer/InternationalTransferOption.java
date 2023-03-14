@@ -11,11 +11,12 @@ import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.International;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToNonSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
 
-public class InternationalTransferOption extends AppCompatActivity implements View.OnClickListener {
+public class InternationalTransferOption extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InternationalTransferOption moneytransferC;
     ImageView imgBack,imgHome;
     CardView cardToSubscriber,cardToNonSubscriber,cardInternational,cardBankToWallet,cardWalletToBank;

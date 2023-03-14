@@ -11,9 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.google.android.material.radiobutton.MaterialRadioButton;;
 
-public class ChangeLanguage extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class ChangeLanguage extends LogoutAppCompactActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     public static ChangeLanguage changelanguageC;
     MaterialRadioButton sbFrench, sbEnglish;
     TextView tvChange,languageText;

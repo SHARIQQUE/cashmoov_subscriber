@@ -9,8 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 
-public class About extends AppCompatActivity {
+public class About extends LogoutAppCompactActivity {
     public static About aboutC;
     Button btnVisitSite;
     TextView tvUserId;

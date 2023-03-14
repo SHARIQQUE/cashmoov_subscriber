@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
@@ -23,7 +25,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements View.OnClickListener {
+public class ToNonSubscriberReceiptScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ToNonSubscriberReceiptScreen tononsubscriberreceiptscreenC;
     Button btnClose,btnShareReceipt;
     TextView tvrate,tvSubscriberMobile,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
@@ -47,6 +49,7 @@ public class ToNonSubscriberReceiptScreen extends AppCompatActivity implements V
         screenView.setDrawingCacheEnabled(false);
         return bitmap;
     }
+
 
     public  void createImageFile(Bitmap bm)  {
         try {

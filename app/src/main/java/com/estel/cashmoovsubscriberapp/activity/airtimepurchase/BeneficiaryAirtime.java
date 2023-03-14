@@ -16,6 +16,7 @@ import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
@@ -26,7 +27,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class BeneficiaryAirtime extends AppCompatActivity implements View.OnClickListener {
+public class BeneficiaryAirtime extends LogoutAppCompactActivity implements View.OnClickListener {
     public static BeneficiaryAirtime beneficiaryairtimeC;
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvSend;

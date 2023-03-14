@@ -17,6 +17,7 @@ import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.International;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.ToSubscriber;
@@ -32,7 +33,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class CashWithdrawalConfirmScreen extends AppCompatActivity implements View.OnClickListener {
+public class CashWithdrawalConfirmScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static CashWithdrawalConfirmScreen cashwithdrawalconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;

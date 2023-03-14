@@ -17,6 +17,7 @@ import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.estel.cashmoovsubscriberapp.model.CountryCurrencyInfoModel;
@@ -33,7 +34,7 @@ import java.util.StringTokenizer;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class International extends AppCompatActivity implements View.OnClickListener {
+public class International extends LogoutAppCompactActivity implements View.OnClickListener {
     public static International internationalC;
     ImageView imgBack,imgHome;
     public static TextView spServiceProvider,spRecCountry,spBenifiCurr,tvFee,tvAmtPaid,tvRate,tvAmtCurr,tvAmtPaidCurr;

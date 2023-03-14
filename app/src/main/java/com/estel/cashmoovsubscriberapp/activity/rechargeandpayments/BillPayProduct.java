@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.adapter.ProductAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BillPayProduct extends AppCompatActivity implements ProductListeners {
+public class BillPayProduct extends LogoutAppCompactActivity implements ProductListeners {
     public static BillPayProduct billpayproductC;
     ImageView imgBack, imgHome;
     RecyclerView rvProduct;

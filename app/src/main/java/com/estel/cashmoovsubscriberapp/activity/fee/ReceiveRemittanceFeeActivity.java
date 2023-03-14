@@ -9,8 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 
-public class ReceiveRemittanceFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class ReceiveRemittanceFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static ReceiveRemittanceFeeActivity receiveremitfeeC;
     ImageView imgBack,imgHome;
     CardView cardReceiveRemit;

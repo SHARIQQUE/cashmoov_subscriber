@@ -20,6 +20,7 @@ import androidx.cardview.widget.CardView;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.TransactionSuccessScreen;
 import com.estel.cashmoovsubscriberapp.activity.partner.PartnerBillPayConfirmScreen;
@@ -35,7 +36,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class BillPayConfirmScreen extends AppCompatActivity implements View.OnClickListener {
+public class BillPayConfirmScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static BillPayConfirmScreen billpayconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPay;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayPlanList;
 import com.estel.cashmoovsubscriberapp.adapter.ProductAdapter;
@@ -23,7 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartnerProduct extends AppCompatActivity implements ProductListeners {
+public class PartnerProduct extends LogoutAppCompactActivity implements ProductListeners {
     public static PartnerProduct partnerproductC;
     ImageView imgBack, imgHome;
     RecyclerView rvProduct;

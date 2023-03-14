@@ -15,6 +15,7 @@ import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.rechargeandpayments.BillPayPlanList;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -25,7 +26,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class PartnerBillPayDetails extends AppCompatActivity implements View.OnClickListener {
+public class PartnerBillPayDetails extends LogoutAppCompactActivity implements View.OnClickListener {
     public static PartnerBillPayDetails billpaydetailsC;
     ImageView imgBack,imgHome;
     TextView tvOperatorName,tvAmtCurr,tvSend;

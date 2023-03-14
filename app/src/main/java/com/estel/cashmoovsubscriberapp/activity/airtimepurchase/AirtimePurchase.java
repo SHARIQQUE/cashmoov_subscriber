@@ -15,10 +15,12 @@ import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
+
 import java.util.StringTokenizer;
 
 
-public class AirtimePurchase extends AppCompatActivity implements View.OnClickListener {
+public class AirtimePurchase extends LogoutAppCompactActivity implements View.OnClickListener {
     private static final int REQUEST_CODE = 1;
     public static AirtimePurchase airtimepurchaseC;
     ImageView imgBack,imgHome;

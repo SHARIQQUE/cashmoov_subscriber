@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class Splash extends AppCompatActivity {
+public class Splash extends LogoutAppCompactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

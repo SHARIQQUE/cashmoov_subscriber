@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.HiddenPassTransformationMethod;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
 import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -21,7 +22,7 @@ import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 
 import org.json.JSONObject;
 
-public class ReSetPin extends AppCompatActivity {
+public class ReSetPin extends LogoutAppCompactActivity {
     public static ReSetPin setpinC;
     EditText etPin,etRePin;
     TextView tvContinue;

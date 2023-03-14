@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.model.Taxmodel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +24,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class WalletTransactionDetails extends AppCompatActivity {
+public class WalletTransactionDetails extends LogoutAppCompactActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
     TextView taxText,postbalance_value,txt_trans_type_name,txt_from_owner_name,tax_value,fee_value,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;

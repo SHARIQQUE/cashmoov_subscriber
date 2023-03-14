@@ -47,6 +47,7 @@ import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 
 import com.balsikandar.crashreporter.CrashReporter;
 import com.estel.cashmoovsubscriberapp.activity.login.AESEncryption;
+import com.estel.cashmoovsubscriberapp.activity.login.LoginPin;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.BioMetric_Responce_Handler;
@@ -193,6 +194,14 @@ public class MyApplication extends Application {
         Intent intent = new Intent(getInstance(), PhoneNumberRegistrationScreen.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public   void callLogout() {
+        //saveBool("isLogin",false,getInstance());
+       /* Toast.makeText(getApplicationContext(),"Logout called",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getInstance(), LoginPin.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);*/
     }
 
 

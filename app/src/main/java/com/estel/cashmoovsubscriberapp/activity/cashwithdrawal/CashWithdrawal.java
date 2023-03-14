@@ -23,6 +23,7 @@ import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.moneytransfer.AddBeneficiaryToSubscriber;
 import com.estel.cashmoovsubscriberapp.activity.pay.Pay;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
@@ -40,7 +41,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CashWithdrawal extends AppCompatActivity implements View.OnClickListener {
+public class CashWithdrawal extends LogoutAppCompactActivity implements View.OnClickListener {
     public static CashWithdrawal cashwithdrawalC;
     ImageView imgBack,imgHome;
     TextView tvAmtCurr,tvName,tvPhone,spBenifiCurr,tvSend;

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.adapter.AirtimeFeeOperatorAdapter;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
@@ -22,7 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClickListener, OperatorAirtimeFeeListeners{
+public class AirtimeFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener, OperatorAirtimeFeeListeners{
     public static AirtimeFeeActivity airtimefeeC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;

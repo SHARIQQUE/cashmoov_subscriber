@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.estel.cashmoovsubscriberapp.MainActivity;
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.apiCalls.API;
 import com.estel.cashmoovsubscriberapp.apiCalls.Api_Responce_Handler;
 import com.vansuita.pickimage.bean.PickResult;
@@ -35,7 +36,7 @@ import java.security.SecureRandom;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfile extends AppCompatActivity implements View.OnClickListener, IPickResult {
+public class EditProfile extends LogoutAppCompactActivity implements View.OnClickListener, IPickResult {
     public static EditProfile editprofileC;
     Button btnCancel,btnConfirm;
     ImageButton btnChoose;

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.estel.cashmoovsubscriberapp.MyApplication;
 import com.estel.cashmoovsubscriberapp.R;
+import com.estel.cashmoovsubscriberapp.activity.LogoutAppCompactActivity;
 import com.estel.cashmoovsubscriberapp.activity.OnboardingOne;
 import com.estel.cashmoovsubscriberapp.activity.Splash;
 import com.estel.cashmoovsubscriberapp.activity.airtimepurchase.BeneficiaryAirtimeReceipt;
@@ -36,7 +37,7 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.util.List;
 
-public class TransactionSuccessScreen extends AppCompatActivity implements View.OnClickListener {
+public class TransactionSuccessScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static TransactionSuccessScreen transSuccessscreenC;
     // ImageView imgBack;
     TextView tvContinue;
