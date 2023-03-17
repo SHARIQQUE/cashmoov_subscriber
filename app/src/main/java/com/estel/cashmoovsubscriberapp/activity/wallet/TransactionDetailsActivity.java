@@ -197,7 +197,8 @@ public class TransactionDetailsActivity extends LogoutAppCompactActivity impleme
                                         data.optInt("srcPreBalance"),
                                         data.optInt("destPreBalance"),
                                         data.optInt("srcPostBalance"),
-                                        data.optInt("destPostBalance")));
+                                        data.optInt("destPostBalance"),
+                                        data.optBoolean("isReverse")));
 
                         }
 

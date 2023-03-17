@@ -149,6 +149,9 @@ public class CashOut extends LogoutAppCompactActivity implements View.OnClickLis
                     }else{
                         callApiSubsriberList();
                     }
+                }else{
+                    etAmount.setText("");
+                    etFname.setText("");
                 }
             }
         });
@@ -308,6 +311,7 @@ public class CashOut extends LogoutAppCompactActivity implements View.OnClickLis
 */
             String[] date=result.split(":");
             isQR=true;
+
             callwalletOwnerDetailsQR(date[0]);
         }
     }
@@ -394,7 +398,9 @@ public class CashOut extends LogoutAppCompactActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                    etRecipientNo.setText("");
                     etRecipientNo.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
+
                     //  callwalletOwnerCountryCurrency();
                 }else{
                     MyApplication.showToast(cashoutC,jsonObject.optString("resultDescription"));
@@ -644,6 +650,7 @@ public class CashOut extends LogoutAppCompactActivity implements View.OnClickLis
         etRecipientNo.setThreshold(9);
         etRecipientNo.showDropDown();
 
+
     }
 
     String receiverCode;
@@ -656,6 +663,7 @@ public class CashOut extends LogoutAppCompactActivity implements View.OnClickLis
         receiveCountryCode = data.getRegisterCountryCode();
         payAgentCode = data.getCode();
         etFname.setText(ownerName);
+        etAmount.requestFocus();
 
         if(isQR){
             etRecipientNo.setText(data.getMobileNumber());

@@ -150,6 +150,9 @@ public class Pay extends LogoutAppCompactActivity implements View.OnClickListene
                     }else{
                         callApiSubsriberList();
                     }
+                }else{
+                    etFname.setText("");
+                    etAmount.setText("");
                 }
             }
         });
@@ -264,7 +267,7 @@ public class Pay extends LogoutAppCompactActivity implements View.OnClickListene
             MyApplication.contactValidation(requiredValue,etRecipientNo);
 
           //  etRecipientNo.setText(requiredValue);
-            etAmount.requestFocus();
+           // etAmount.requestFocus();
 
         }
         if (resultCode != Activity.RESULT_OK) {
@@ -308,6 +311,8 @@ public class Pay extends LogoutAppCompactActivity implements View.OnClickListene
                     });
             alertDialog.show();
 */
+            etFname.setText("");
+            etAmount.setText("");
             String[] date=result.split(":");
             isQR=true;
             callwalletOwnerDetailsQR(date[0]);
@@ -652,6 +657,7 @@ public class Pay extends LogoutAppCompactActivity implements View.OnClickListene
         receiveCountryCode = data.getRegisterCountryCode();
         payAgentCode = data.getCode();
         etFname.setText(ownerName);
+        etAmount.requestFocus();
 
         if(isQR){
             etRecipientNo.setText(data.getMobileNumber());

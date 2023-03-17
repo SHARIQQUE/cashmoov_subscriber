@@ -176,14 +176,155 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if(miniStatementTrans.getCode()!=null)
 
+
+                    if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100000")) {
+
+                        if(miniStatementTrans.isReverse()){
+                        if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(), miniStatementTrans.getFee());
+
+                        }
+                        if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(), miniStatementTrans.getFee());
+                        }
+                    }else{
+                            if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                        miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount(),
+                                        miniStatementTrans.getTaxAsJson(),
+                                        miniStatementTrans.getDestPostBalance(), miniStatementTrans.getFee());
+
+                            }
+                            if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                        miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(),
+                                        miniStatementTrans.getStatus(),
+                                        miniStatementTrans.getComReceiveAmount(),
+                                        miniStatementTrans.getTaxAsJson(),
+                                        miniStatementTrans.getDestPostBalance(), miniStatementTrans.getFee());
+                            }
+                    }
+                        return;
+                }
+
+                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100000")) {
+
+                    if(miniStatementTrans.isReverse()){
+                        if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(), miniStatementTrans.getFee());
+
+                        }
+                        if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(), miniStatementTrans.getFee());
+                        }
+                    }else{
+                        if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(), miniStatementTrans.getFee());
+
+                        }
+                        if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", context))) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(), miniStatementTrans.getFee());
+                        }
+                    }
+                    return;
+                }
+
                     //: Cash To Wallet
-                    if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100000")
-                            ||miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101667")
+                    if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101667")
                             ||miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106449")
                             ){
 
 
+                        if(miniStatementTrans.isReverse()){
+                            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                        miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
+                                        miniStatementTrans.getTaxAsJson(),
+                                        miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
 
+                            }
+                            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                        miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(),
+                                        miniStatementTrans.getStatus(),
+                                        miniStatementTrans.getComReceiveAmount(),
+                                        miniStatementTrans.getTaxAsJson(),
+                                        miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
+                            }
+
+                        }else{
+                            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                        miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
+                                        miniStatementTrans.getTaxAsJson(),
+                                        miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+
+                            }
+                            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                        miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(),
+                                        miniStatementTrans.getStatus(),
+                                        miniStatementTrans.getComReceiveAmount(),
+                                        miniStatementTrans.getTaxAsJson(),
+                                        miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+                            }
+
+                        }
+
+                         return;
+                    }
+
+                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("104591")){
+
+                    if(miniStatementTrans.isReverse()){
                         if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                             miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                     miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
@@ -203,62 +344,85 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                                     miniStatementTrans.getTaxAsJson(),
                                     miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
                         }
-                         return;
+                    }else{
+                        if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
+
+                        }
+                        if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+                        }
                     }
 
-                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("104591")){
 
-
-
-                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                                miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                                miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
-                                miniStatementTrans.getTaxAsJson(),
-                                miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
-
-                    }
-                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                                miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
-                                miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(),
-                                miniStatementTrans.getStatus(),
-                                miniStatementTrans.getComReceiveAmount(),
-                                miniStatementTrans.getTaxAsJson(),
-                                miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
-                    }
                     return;
                 }
 
                 if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106443")){
 
+                    if(miniStatementTrans.isReverse()){
+                        if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
 
 
-                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+
+
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
+
+                        }
+                        if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
+                        }
+                    }else{
+                        if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
 
 
 
 
-                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                                miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
-                                miniStatementTrans.getTaxAsJson(),
-                                miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
 
+                        }
+                        if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(),
+                                    miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
+                        }
                     }
-                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                                miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
-                                miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(),
-                                miniStatementTrans.getStatus(),
-                                miniStatementTrans.getComReceiveAmount(),
-                                miniStatementTrans.getTaxAsJson(),
-                                miniStatementTrans.getDestPostBalance(),miniStatementTrans.getFee());
-                    }
+
+
                     return;
                 }
 
@@ -266,8 +430,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
                 //101441 Case Reversal and Wallet To Cash InterNational //101667 salry Apyment
 
-                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101441")
-                ){
+                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101441")){
 
                     Double PostBalance=0.00;
                     if(miniStatementTrans.isReverse()){
@@ -299,24 +462,70 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
 
                 if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                            miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
-                            miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
+                    if(miniStatementTrans.isReverse()) {
+                        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount()
+                                    , miniStatementTrans.getTaxAsJson(), miniStatementTrans.getSrcPostBalance()
+                                    , miniStatementTrans.getFee());
+                        }else{
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(),
+                                    miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount()
+                                    , miniStatementTrans.getTaxAsJson(), miniStatementTrans.getDestPostBalance()
+                                    , miniStatementTrans.getFee());
+                        }
+                    }else{
+                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                miniStatementTrans.getToWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getFromCurrencySymbol(),
+                                miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                miniStatementTrans.getCreationDate(),
+                                miniStatementTrans.getStatus(), miniStatementTrans.getComReceiveAmount()
+                                , miniStatementTrans.getTaxAsJson(), miniStatementTrans.getSrcPostBalance()
+                                , miniStatementTrans.getFee());
+                    }
 
-
-                            miniStatementTrans.getCreationDate(),
-                            miniStatementTrans.getStatus(),miniStatementTrans.getComReceiveAmount()
-                            ,miniStatementTrans.getTaxAsJson(),miniStatementTrans.getSrcPostBalance()
-                            ,miniStatementTrans.getFee());
-
+                    return;
                 }
                 if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                            miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
-                            miniStatementTrans.getPrincipalAmount(),miniStatementTrans.getTransactionId(),
-                            miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),
-                            miniStatementTrans.getComReceiveAmount(),miniStatementTrans.getTaxAsJson(),
-                            miniStatementTrans.getSrcPostBalance(),miniStatementTrans.getFee());
+                    if(miniStatementTrans.isReverse()) {
+                        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(), miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(), miniStatementTrans.getFee());
+                        }else{
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(), miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(), miniStatementTrans.getFee());
+                        }
+                    }else{
+                        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(), miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getDestPostBalance(), miniStatementTrans.getFee());
+                        }else {
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(), holder.tvMsisdn.getText().toString().trim(), miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getPrincipalAmount(), miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),
+                                    miniStatementTrans.getComReceiveAmount(), miniStatementTrans.getTaxAsJson(),
+                                    miniStatementTrans.getSrcPostBalance(), miniStatementTrans.getFee());
+                        }
+                    }
 
                 }
 

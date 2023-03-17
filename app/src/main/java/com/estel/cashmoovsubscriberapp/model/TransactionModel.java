@@ -37,8 +37,16 @@ public class TransactionModel {
     public int destPreBalance;
     public int srcPostBalance;
     public int destPostBalance;
+    public boolean isReverse;
 
-    public TransactionModel(int id, String code, String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode, String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode, String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol, String desCurrencyCode, String desCurrencyName, String desCurrencySymbol, int transactionAmount, String tax, String resultCode, String resultDescription, String creationDate, String createdBy, String status, boolean transactionReversed, int srcMobileNumber, int destMobileNumber, boolean receiverBearer, String rechargeNumber, int fee, String taxTypeName, int value, int srcPreBalance, int destPreBalance, int srcPostBalance, int destPostBalance) {
+    public TransactionModel(int id, String code, String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode,
+                            String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode,
+                            String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol,
+                            String desCurrencyCode, String desCurrencyName, String desCurrencySymbol, int transactionAmount,
+                            String tax, String resultCode, String resultDescription, String creationDate, String createdBy,
+                            String status, boolean transactionReversed, int srcMobileNumber, int destMobileNumber,
+                            boolean receiverBearer, String rechargeNumber, int fee, String taxTypeName, int value, int srcPreBalance,
+                            int destPreBalance, int srcPostBalance, int destPostBalance,boolean isReverse) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -75,6 +83,15 @@ public class TransactionModel {
         this.destPreBalance = destPreBalance;
         this.srcPostBalance = srcPostBalance;
         this.destPostBalance = destPostBalance;
+        this.isReverse = isReverse;
+    }
+
+    public boolean isReverse() {
+        return isReverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        isReverse = reverse;
     }
 
     public int getId() {

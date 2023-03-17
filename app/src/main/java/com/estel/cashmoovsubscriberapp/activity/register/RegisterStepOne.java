@@ -286,12 +286,19 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
+                if(etPhone.getText().toString().trim().startsWith("0")) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_zero_val),etPhone);
+                    MyApplication.hideKeyboard(registersteponeC);
+                    return;
+                }
                 if(etPhone.getText().toString().trim().length()<9) {
                     //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
                     MyApplication.showTipError(this,getString(R.string.enter_phone_no_val),etPhone);
                     MyApplication.hideKeyboard(registersteponeC);
                     return;
                 }
+
                 if(etFname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(registersteponeC,getString(R.string.val_fname));
                     MyApplication.showTipError(this,getString(R.string.val_fname),etFname);
@@ -373,7 +380,7 @@ public class RegisterStepOne extends AppCompatActivity implements View.OnClickLi
                         jsonObject.put("ownerName", etFname.getText().toString().trim());
                         jsonObject.put("lastName", etLname.getText().toString().trim());
                         jsonObject.put("dateOfBirth", etDobFormat);
-                        jsonObject.put("idExpiryDate", "2021-11-09");
+                        jsonObject.put("idExpiryDate", "2050-11-09");
                         jsonObject.put("email", etEmail.getText().toString().trim());
                         jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
                         jsonObject.put("mobileNumber", etPhone.getText().toString().trim());

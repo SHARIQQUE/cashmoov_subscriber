@@ -869,6 +869,7 @@ public class MyApplication extends Application {
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
                 //showToast(activityNew,"1");
                 bioMetric_responce_handler.failure("");
+
                 //bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
                 //tvFinger.setVisibility(View.GONE);
@@ -972,7 +973,7 @@ public class MyApplication extends Application {
             bioMetric_responce_handler.failure(message);
         }else{
             bioMetricCounter=bioMetricCounter+1;
-            showToast(activityNew,activityNew.getResources().getString(R.string.tryagain));
+           // showToast(activityNew,activityNew.getResources().getString(R.string.tryagain));
 
         }
 
@@ -982,6 +983,7 @@ public static int  attmptCount=0;
     public static int  maxattmptCount=2;
 
     public static  void contactValidation(String Phoneno, EditText editText){
+        editText.setText("");
         if(Phoneno.length()>11)
         {
             if(Phoneno.contains("+91") || Phoneno.length()==11){

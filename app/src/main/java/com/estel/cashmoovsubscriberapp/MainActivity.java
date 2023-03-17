@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -73,6 +74,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -101,17 +103,20 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String lang =  MyApplication.getSaveString("Locale", MainActivity.this);
+
         setContentView(R.layout.activity_main);
+
       //  dd
         mainC = this;
-        MyApplication.hideKeyboard(mainC);
-        MyApplication.setLang(mainC);
+
+
 
         getIds();
-        MyApplication.IsMainOpen = true;
 
+        MyApplication.IsMainOpen = true;
 
         resultReceiver = new AddressResultReceiver(new Handler());
 
@@ -124,6 +129,8 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.setLang(MainActivity.this);
+        MyApplication.setLang(MainActivity.this);
 
         MyApplication.hideKeyboard(mainC);
          /*.setTitle("Granny eating chocolate dialog box") // You can also send title like R.string.from_resources
@@ -348,17 +355,20 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 Log.e("PositionMain--", "" + bottomId);
 
                 if (bottomId == 0) {
+                    MyApplication.setLang(mainC);
 //                    Intent i = new Intent(mainC, MainActivity.class);
 //                    startActivity(i);
 //                    finish();
                 }
                 if (bottomId == 1) {
+                    MyApplication.setLang(mainC);
                     //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mainC, Partner.class);
                     startActivity(i);
                      //finish();
                 }
                 if (bottomId == 2) {
+                    MyApplication.setLang(mainC);
                     Intent i = new Intent(mainC, Profile.class);
                     startActivity(i);
                     // finish();
@@ -396,16 +406,18 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
         Intent intent;
         switch (view.getId()) {
             case R.id.imgNotification:
+                MyApplication.setLang(mainC);
                 intent = new Intent(mainC, NotificationList.class);
                 startActivity(intent);
                 MyApplication.isNotification = false;
                 break;
             case R.id.imgQR:
+                MyApplication.setLang(mainC);
                 intent = new Intent(mainC, MyQrCode.class);
                 startActivity(intent);
                 break;
             case R.id.imgProfile:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -414,7 +426,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 startActivity(intent);
                 break;
             case R.id.linClickn:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -441,7 +453,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 break;
             case R.id.cardMoneyTransfer:
 
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -454,7 +466,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 }
                 break;
             case R.id.cardAirtimePurchase:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -467,7 +479,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 }
                 break;
             case R.id.cardRechargePayment:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -481,7 +493,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 }
                 break;
             case R.id.cardPay:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -496,7 +508,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 }
                 break;
             case R.id.cardCashOut:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -515,7 +527,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
 //                //Toast.makeText(mainC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
 //                break;
             case R.id.cardRecRemittance:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }
@@ -530,7 +542,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                 break;
 
             case R.id.cardInttest:
-
+                MyApplication.setLang(mainC);
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                     return;
                 }

@@ -81,6 +81,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
                 }
                 MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if(transaction.getCode()!=null)
+
                     transactionListLisners.onTransactionViewItemClick(transaction.getTransactionId(),transaction.getTransTypeName(),
                             transaction.getCreationDate(),transaction.getSrcWalletOwnerName(),transaction.getDesWalletOwnerName(),
                             transaction.getSrcMobileNumber(),transaction.getDestMobileNumber(),transaction.getSrcCurrencySymbol(),

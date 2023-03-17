@@ -6,7 +6,7 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 10-03-2023 02:30 PM</string>
+    <string name="version">Version : 17-03-2023 12:20 PM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="maximumLimitCount">Global limit count</string>
@@ -66,6 +66,7 @@
     <string name="enter_location">Enter your location</string>
     <string name="enter_phone_no">Enter your mobile number</string>
     <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
+    <string name="enter_phone_zero_val"> Mobile number must not start with 0</string>
     <string name="enter_phone_no_valnew">Mobile number must be at least 7 digits long</string>
 
     <string name="see_terms_policy">Please see our Terms of Service Policy</string>
