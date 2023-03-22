@@ -83,7 +83,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 }
             }
         });
-
+        MyApplication.saveString("qrcode","", PhoneNumberRegistrationScreen.this);
         getIds();
     }
 

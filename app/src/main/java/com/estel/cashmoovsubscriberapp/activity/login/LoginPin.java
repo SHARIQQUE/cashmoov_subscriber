@@ -74,7 +74,7 @@ public class LoginPin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        MyApplication.saveString("qrcode","", LoginPin.this);
         test();
         //callfee();
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {

@@ -44,6 +44,7 @@ public class MiniStatementTrans {
     private String fromWalletOwnerSurname;
     private String fromWalletTypeCode;
     private boolean isReverse;
+    public String parentTransId;
 
 
 
@@ -64,7 +65,7 @@ public class MiniStatementTrans {
                               double commissionAmountForBranch, double commissionAmountForMerchant,
                               double commissionAmountForOutlet, double transactionAmount,
                               double principalAmount, String fromWalletOwnerSurname,
-                              String fromWalletTypeCode, boolean isReverse,double fee) {
+                              String fromWalletTypeCode, boolean isReverse,double fee,String parentTransId) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -107,6 +108,15 @@ public class MiniStatementTrans {
         this.fromWalletTypeCode = fromWalletTypeCode;
         this.isReverse = isReverse;
         this.fee=fee;
+        this.parentTransId=parentTransId;
+    }
+
+    public String getParentTransId() {
+        return parentTransId;
+    }
+
+    public void setParentTransId(String parentTransId) {
+        this.parentTransId = parentTransId;
     }
 
     public double getFee() {

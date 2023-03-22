@@ -130,6 +130,7 @@ public class MyApplication extends Application {
     public static int CashOutMaxAmount;
     public static int CashPickupMinAmount;
     public static int CashPickupMaxAmount;
+    public static String parentTransID="";
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;
@@ -512,6 +513,7 @@ public class MyApplication extends Application {
 
     public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     public static String addDecimal(String number) {
+
         String data="0.00";
        /* DecimalFormat df = new DecimalFormat("0.00", symbols);
         System.out.println(("get datatype" + (Object) number).getClass().getName());

@@ -189,6 +189,7 @@
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable-anydpi/ic_cashout.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable-xxhdpi/arrow_right_menu.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable-xxxhdpi/ic_view.xml" value="0.1" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/badge_background.xml" value="0.1085" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/baseline_swipe_left_alt_black_24dp.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/baseline_swipe_right_alt_black_24dp.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/drawable/ic_baseline_payment_24.xml" value="0.1" />
@@ -230,6 +231,7 @@
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_verify_register_otp.xml" value="0.16927083333333334" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_verify_reset_screen.xml" value="0.17239583333333333" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_wallet_screen.xml" value="0.1765625" />
+        <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.1" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/content_offer_promotion.xml" value="0.1765625" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/include_home_screen.xml" value="0.18" />
         <entry key="..\:/CashmoovNew/GitSubs/app/src/main/res/layout/include_wallet_screen.xml" value="0.1734375" />

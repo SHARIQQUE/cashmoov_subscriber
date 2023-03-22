@@ -160,6 +160,18 @@
                     android:gravity="center_vertical"
                     android:fontFamily="@font/aileron_bold"
                     android:layout_marginTop="@dimen/_5sdp"/>
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/txt_parent_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:textColor="@color/green_700"
+                    android:textSize="@dimen/_11sdp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/aileron_bold"
+                    android:layout_marginTop="@dimen/_5sdp"/>
             </LinearLayout>
             </androidx.cardview.widget.CardView>
 

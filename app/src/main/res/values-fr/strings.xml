@@ -6,12 +6,13 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 17-03-2023 12:20 PM</string>
+    <string name="version">Version : 22-03-2023 2:00 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
     <string name="senderName_without_semic">Nom de l\'expediteur</string>
     <string name="pay_month_limit_count">Nombre limite de mois :</string>
+    <string name="parent_id">Id de transaction parent</string>
     <string name="pay_month_limit_amount">Montant limite mensuel :</string>
     <string name="Commisionwallet">"Compte commission"</string>
     <string name="maxvaluewallet">Valeur max</string>
@@ -32,7 +33,7 @@
     <string name="paynew">Paiements Marchand</string>
     <string name="upload_success_toast">Télécharger le succès</string>
 
-    <string name="Tax"> Taxe : 0.00</string>
+    <string name="Tax"> Taxe : 0,00</string>
 
     <string name="convertionRate_reviewPage"> Taux de change :</string>
     <string name="please_wait">Veuillez patienter...</string>

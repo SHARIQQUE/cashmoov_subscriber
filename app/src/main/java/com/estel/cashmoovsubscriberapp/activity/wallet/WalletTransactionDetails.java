@@ -27,7 +27,7 @@ import java.util.Locale;
 public class WalletTransactionDetails extends LogoutAppCompactActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
-    TextView taxText,postbalance_value,txt_trans_type_name,txt_from_owner_name,tax_value,fee_value,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
+    TextView txt_parent_id,taxText,postbalance_value,txt_trans_type_name,txt_from_owner_name,tax_value,fee_value,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
 
 
     @Override
@@ -81,7 +81,7 @@ public class WalletTransactionDetails extends LogoutAppCompactActivity {
         tax_value=findViewById(R.id.tax_value);
         fee_value=findViewById(R.id.fee_value);
         postbalance_value=findViewById(R.id.postbalance_value);
-
+        txt_parent_id=findViewById(R.id.txt_parent_id);
 
 
         Bundle b = getIntent().getExtras();
@@ -110,6 +110,13 @@ public class WalletTransactionDetails extends LogoutAppCompactActivity {
             txt_success.setText(getString(R.string.transaction_successful));
             fee_value.setText(getString(R.string.fee_colon)+ "  " +MyApplication.addDecimal(fee+""));
             postbalance_value.setText(getString(R.string.post_balance_colon) + " GNF "+MyApplication.addDecimal( ""+postbalanmce));
+            if(MyApplication.parentTransID.equalsIgnoreCase("")){
+                txt_parent_id.setVisibility(View.GONE);
+
+            }else{
+                txt_parent_id.setVisibility(View.VISIBLE);
+                txt_parent_id.setText(getString(R.string.parent_id)  + " : " + MyApplication.parentTransID);
+            }
 
             try {
 
@@ -130,7 +137,7 @@ public class WalletTransactionDetails extends LogoutAppCompactActivity {
                 }
 
             } catch (Exception e) {
-
+                tax_value.setText(MyApplication.getTaxString(getString(R.string.tax)) + " " + " " + MyApplication.addDecimal("0.00"));
             }
 
 

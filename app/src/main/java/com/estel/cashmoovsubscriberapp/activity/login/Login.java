@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginC = this;
+        MyApplication.saveString("qrcode","", Login.this);
         getIds();
     }
 

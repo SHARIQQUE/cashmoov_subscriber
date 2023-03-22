@@ -39,6 +39,7 @@ public class TransactionModel {
     public int destPostBalance;
     public boolean isReverse;
 
+
     public TransactionModel(int id, String code, String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode,
                             String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode,
                             String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol,

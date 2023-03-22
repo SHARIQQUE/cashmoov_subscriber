@@ -329,6 +329,12 @@ public class WalletScreen extends LogoutAppCompactActivity implements View.OnCli
                                             if(data.optString("transactionTypeCode").equalsIgnoreCase("101677")){
 
                                             }else {
+                                                String  parentTransId="";
+                                                if (data.has("parentTransId") ) {
+                                                    parentTransId=data.optString("parentTransId");
+                                                }else{
+                                                    parentTransId="";
+                                                }
                                                 miniStatementTransList.add(new MiniStatementTrans(
                                                         data.optInt("id"),
                                                         data.optString("code"),
@@ -371,7 +377,8 @@ public class WalletScreen extends LogoutAppCompactActivity implements View.OnCli
                                                         data.optString("fromWalletOwnerSurname").trim(),
                                                         data.optString("fromWalletTypeCode").trim(),
                                                         data.optBoolean("isReverse"),
-                                                        data.optDouble("fee", 0.00)));
+                                                        data.optDouble("fee", 0.00),
+                                                        parentTransId));
                                             }
                                         }
 

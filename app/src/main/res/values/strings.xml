@@ -6,12 +6,13 @@
     <string name="profile">Profile</string>
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 17-03-2023 12:20 PM</string>
+    <string name="version">Version : 22-03-2023 2:00 PM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID</string>
     <string name="maximumLimitCount">Global limit count</string>
     <string name="senderName_without_semic"> Sender name </string>
     <string name="pay_month_limit_count">Month limit count :</string>
+    <string name="parent_id">Parent transaction id</string>
     <string name="pay_month_limit_amount">Month limit amount :</string>
     <string name="Commisionwallet">Commision wallet</string>
     <string name="maxvaluewallet">Max value</string>

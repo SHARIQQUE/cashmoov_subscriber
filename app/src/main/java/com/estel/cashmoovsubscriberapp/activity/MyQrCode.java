@@ -85,7 +85,12 @@ public class MyQrCode extends LogoutAppCompactActivity {
 //            txt_mobile.setText(mobile);
 //        }
 
-        callApiGenerateQR();
+        if(MyApplication.getSaveString("qrcode",MyQrCode.this).equalsIgnoreCase("")){
+            callApiGenerateQR();
+        }else{
+            displayQRCode(MyApplication.getSaveString("qrcode",MyQrCode.this));
+        }
+
 
     }
 
@@ -106,6 +111,7 @@ public class MyQrCode extends LogoutAppCompactActivity {
 
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            MyApplication.saveString("qrcode",jsonObject.optString("qrCode"),MyQrCode.this);
                             displayQRCode(jsonObject.optString("qrCode"));
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                             MyApplication.showToast(myqrcodeC,getString(R.string.technical_failure));
