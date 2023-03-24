@@ -304,6 +304,7 @@ public class WalletScreen extends LogoutAppCompactActivity implements View.OnCli
 
                                 miniStatementTransList.clear();
                                 String msisdn,name,taxAsJson;
+                                double fee=0.00;
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
@@ -320,10 +321,20 @@ public class WalletScreen extends LogoutAppCompactActivity implements View.OnCli
 
                                             }
 //receiverBearer
+
                                             if(data.has("receiverBearer")&&data.optBoolean("receiverBearer")){
                                                 taxAsJson="";
+                                                fee=0.00;
                                             }else{
                                                 taxAsJson=data.optString("taxAsJson");
+                                                fee=data.optDouble("fee", 0.00);
+                                            }
+                                            if (data.has("isReverse") && data.optBoolean("isReverse")) {
+                                                taxAsJson = "";
+                                                fee=0.00;
+                                            } else {
+                                                taxAsJson = data.optString("taxAsJson");
+                                                fee=data.optDouble("fee", 0.00);
                                             }
 
                                             if(data.optString("transactionTypeCode").equalsIgnoreCase("101677")){
@@ -377,7 +388,7 @@ public class WalletScreen extends LogoutAppCompactActivity implements View.OnCli
                                                         data.optString("fromWalletOwnerSurname").trim(),
                                                         data.optString("fromWalletTypeCode").trim(),
                                                         data.optBoolean("isReverse"),
-                                                        data.optDouble("fee", 0.00),
+                                                        fee,
                                                         parentTransId));
                                             }
                                         }

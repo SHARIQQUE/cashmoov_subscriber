@@ -903,7 +903,12 @@ public class MyApplication extends Application {
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
 
-
+                if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString()) ||
+                        errString.toString().equalsIgnoreCase("Cancel")) {
+                    // onAuthenticationFailed();
+                    bioMetric_responce_handler.failure("");
+                    isCancelCalled=true;
+                }
 
                 if(!fingerprintManager.hasEnrolledFingerprints()) {
                    // bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));

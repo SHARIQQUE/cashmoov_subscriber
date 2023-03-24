@@ -53,6 +53,7 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
     private boolean isAmt=true;
     private boolean isAmtPaid=true;
     private String mobilelength;
+    private String nextbtn="";
 
 
     @Override
@@ -157,7 +158,7 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                tvNext.setText(getString(R.string.Calculate));
             }
 
             @Override
@@ -183,7 +184,9 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
                     if(isAmt){
                             etAmountNew.setEnabled(false);
                             isAmtPaid=false;
-                            callApiAmountDetails();
+                        tvNext.setText(getString(R.string.Calculate));
+                        nextbtn="calculation";
+                          //  callApiAmountDetails();
                         }else{
                             etAmountNew.setEnabled(true);
                             isAmtPaid=true;
@@ -206,7 +209,7 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
         etAmountNew.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                tvNext.setText(getString(R.string.Calculate));
             }
 
             @Override
@@ -231,7 +234,9 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
                         if(isAmtPaid){
                             etAmount.setEnabled(false);
                             isAmt=false;
-                            callApiAmountDetailsNew();
+                            tvNext.setText(getString(R.string.Calculate));
+                            nextbtn="calculation";
+                           // callApiAmountDetailsNew();
                         }else{
                            etAmount.setEnabled(true);
                             isAmt=true;
@@ -281,30 +286,77 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
             MyApplication.showErrorToast(internationalC,getString(R.string.val_select_curr));
             return;
         }
-        if(etAmount.getText().toString().trim().replace(",","").isEmpty()) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
-            return;
-        }
-        if(etAmount.getText().toString().trim().replace(",","").equals("0")||etAmount.getText().toString().replace(",","").trim().equals(".")||etAmount.getText().toString().trim().replace(",","").equals(".0")||
-                etAmount.getText().toString().trim().replace(",","").equals("0.")||etAmount.getText().toString().trim().replace(",","").equals("0.0")||etAmount.getText().toString().trim().replace(",","").equals("0.00")){
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
-            return;
+        if(isAmt) {
+            if (etAmount.getText().toString().trim().replace(",", "").isEmpty()) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount));
+                return;
+            }
+            if (etAmount.getText().toString().trim().replace(",", "").equals("0") || etAmount.getText().toString().replace(",", "").trim().equals(".") || etAmount.getText().toString().trim().replace(",", "").equals(".0") ||
+                    etAmount.getText().toString().trim().replace(",", "").equals("0.") || etAmount.getText().toString().trim().replace(",", "").equals("0.0") || etAmount.getText().toString().trim().replace(",", "").equals("0.00")) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_valid_amount));
+                return;
+            }
+
+            if (Double.parseDouble(etAmount.getText().toString().trim().replace(",", "")) < MyApplication.InternationalMinAmount) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.InternationalMinAmount);
+                return;
+            }
+
+            if (Double.parseDouble(etAmount.getText().toString().trim().replace(",", "")) > MyApplication.InternationalMaxAmount) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.InternationalMaxAmount);
+                return;
+            }
+
+            MyApplication.showloader(internationalC,getString(R.string.pleasewait));
+            //  callApiExchangeRate();
+
+            if(nextbtn.equalsIgnoreCase("calculation")){
+
+
+                callApiAmountDetails();
+                return;
+            }
+        }else{
+            //MyApplication.showToast(internationalC,"amountpay");
+            if(etAmountNew.getText().toString().trim().replace(",","").isEmpty()) {
+                MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
+                return;
+            }
+            if(etAmountNew.getText().toString().trim().replace(",","").equals("0")||
+                    etAmountNew.getText().toString().trim().replace(",","").equals(".")||
+                    etAmountNew.getText().toString().trim().replace(",","").equals(".0")||
+                    etAmountNew.getText().toString().trim().replace(",","").equals("0.")||
+                    etAmountNew.getText().toString().trim().replace(",","").equals("0.0")||
+                    etAmountNew.getText().toString().trim().replace(",","").equals("0.00")){
+                MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
+                return;
+            }
+           /* if (Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
+
+            if (Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",", "")) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
+
+
+            }*/
+            MyApplication.showloader(internationalC,getString(R.string.pleasewait));
+            //  callApiExchangeRate();
+
+            if(nextbtn.equalsIgnoreCase("calculation")){
+
+                callApiAmountDetailsNew();
+
+                return;
+            }
         }
 
-        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))<MyApplication.InternationalMinAmount) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_min)+" "+MyApplication.InternationalMinAmount);
-            return;
-        }
-
-        if(Double.parseDouble(etAmount.getText().toString().trim().replace(",",""))>MyApplication.InternationalMaxAmount) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_max)+" "+MyApplication.InternationalMaxAmount);
-            return;
-        }
 
         MyApplication.saveString("AMOUNTINTERNATIONAL",etAmount.getText().toString().trim().replace(",",""),internationalC);
         Intent i=new Intent(internationalC, InternationalRecipientDetails.class);
         i.putExtra("mobilelength",mobilelength);
-
         startActivity(i);
 
     }
@@ -479,7 +531,7 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -515,10 +567,16 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
                                         if(jsonObjectAmountDetails.has("receiverTax")) {
                                             taxConfigurationList=null;
                                         }
+                                        tvNext.setText(getString(R.string.next));
+
+                                        nextbtn="next";
+
                                     }
 
 
                                 } else {
+                                    etAmount.setText("");
+                                    etAmountNew.setText("");
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -526,13 +584,17 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
 
                         @Override
                         public void failure(String aFalse) {
+                            etAmount.setText("");
+                            etAmountNew.setText("");
                             MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
+            etAmount.setText("");
+            etAmountNew.setText("");
         }
 
 
@@ -557,7 +619,7 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -607,8 +669,13 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
                                         if(jsonObjectAmountDetails.has("receiverTax")) {
                                             taxConfigurationList=null;
                                         }
+                                        tvNext.setText(getString(R.string.next));
+
+                                        nextbtn="next";
                                     }
                                 } else {
+                                    etAmount.setText("");
+                                    etAmountNew.setText("");
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -616,13 +683,17 @@ public class International extends LogoutAppCompactActivity implements View.OnCl
 
                         @Override
                         public void failure(String aFalse) {
+                            etAmount.setText("");
+                            etAmountNew.setText("");
                             MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
+            etAmount.setText("");
+            etAmountNew.setText("");
         }
 
 
