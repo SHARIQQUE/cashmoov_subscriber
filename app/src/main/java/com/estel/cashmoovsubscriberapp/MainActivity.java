@@ -712,7 +712,13 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
         //Bhawesh, 15:02
         //http://192.168.1.171:8081/ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode=101235&status=Y&state=A
         // MyApplication.showloader(mainC,"Please Wait...");
-        API.GET_WF("ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode=" + code + "&status=Y&state=A", new Api_Responce_Handler() {
+        String profiletypecode= "";
+        if(MyApplication.getSaveString("profileTypeCodeNew",MainActivity.this)!=null) {
+            profiletypecode = MyApplication.getSaveString("profileTypeCodeNew", MainActivity.this);
+        }else{
+            profiletypecode="";
+        }
+        API.GET_WF("ewallet/api/v1/promOfferTemplate/allByCriteria?templateCode=" + code + "&profiletypecode="+profiletypecode+ "&status=Y&state=A", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 MyApplication.hideLoader();

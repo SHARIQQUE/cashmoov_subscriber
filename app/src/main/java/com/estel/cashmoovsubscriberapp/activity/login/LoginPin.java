@@ -644,7 +644,7 @@ public class LoginPin extends AppCompatActivity {
 
                     try {
                         JSONObject jsonObject1 = jsonObject.optJSONObject("walletOwner");
-
+                        MyApplication.saveString("profileTypeCodeNew",jsonObject1.optString("profileTypeCode"),LoginPin.this);
                         if (jsonObject1.has("profileImageName")){
                             MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                                     MyApplication.getSaveString("walletOwnerCode", loginpinC)+"/"+

@@ -199,6 +199,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements OnOtpCompl
 
                     try {
                         JSONObject jsonObject1 = jsonObject.optJSONObject("walletOwner");
+                        MyApplication.saveString("profileTypeCodeNew",jsonObject1.optString("profileTypeCode"),VerifyFirstLoginOTP.this);
                         if (jsonObject1.has("profileImageName")){
                             MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                                     MyApplication.getSaveString("walletOwnerCode", verifyfirstloginotpC)+"/"+
