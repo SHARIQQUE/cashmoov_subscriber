@@ -13,7 +13,7 @@ import com.estel.cashmoovsubscriberapp.R;
 import com.estel.cashmoovsubscriberapp.activity.login.PhoneNumberRegistrationScreen;
 import com.estel.cashmoovsubscriberapp.activity.register.RegisterStepOne;
 
-public class TutorialScreen extends LogoutAppCompactActivity implements View.OnClickListener {
+public class TutorialScreen extends AppCompatActivity implements View.OnClickListener {
     public static TutorialScreen tutorialscreenC;
     TextView tvStart,login;
     VideoView videoView;
