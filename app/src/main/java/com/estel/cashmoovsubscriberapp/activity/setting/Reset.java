@@ -85,6 +85,7 @@ public class Reset extends LogoutAppCompactActivity implements View.OnClickListe
                         if (jsonObject != null) {
                             if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                 // MyApplication.saveString("Locale","",myprofileC);
+                                MyApplication.saveBool("FirstLoginCounter",true,Reset.this);
                                 MyApplication.saveBool("FirstLogin",false,resetC);
                                 //MyApplication.saveString("ImageName", "1", resetC);
                                 Intent i = new Intent(resetC, PhoneNumberRegistrationScreen.class);

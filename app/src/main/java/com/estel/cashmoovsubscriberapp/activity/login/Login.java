@@ -95,6 +95,7 @@ public class Login extends AppCompatActivity {
                 // tvFinger.setText("Login Successful");
                 System.out.println("Fingerprint Result"+result.toString());
                 MyApplication.isFirstTime=true;
+                MyApplication.saveBool("FirstLoginCounter",true,Login.this);
                 MyApplication.isNotification=true;
                 Intent intent = new Intent(loginC, MainActivity.class);
                 startActivity(intent);
@@ -143,6 +144,7 @@ public class Login extends AppCompatActivity {
                 } else {
                     MyApplication.isFirstTime=true;
                     MyApplication.isNotification=true;
+                    MyApplication.saveBool("FirstLoginCounter",true,Login.this);
                     Intent intent = new Intent(loginC, MainActivity.class);
                     startActivity(intent);
                 }

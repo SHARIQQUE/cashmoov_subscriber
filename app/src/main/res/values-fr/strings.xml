@@ -7,7 +7,7 @@
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
     <string name="Calculate">Calculer</string>
-    <string name="version">Version : 27-03-2023 7:00 PM</string>
+    <string name="version">Version : 31-03-2023 01:01 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
@@ -506,6 +506,7 @@
     <string name="international_transfer_in">"International Transfert entrant"</string>
 
     <string name="international_transfer_out">"International Transfert sortant"</string>
+    <string name="timeout_timer">TimeOut Veuillez vous connecter à nouveau !</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>

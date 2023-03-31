@@ -789,6 +789,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.IsPromoCalled = true;
                         MyApplication.isNotification=true;
                         Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                        MyApplication.saveBool("FirstLoginCounter",true,phnoregistrationccreenC);
 
                         Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                         startActivity(i);

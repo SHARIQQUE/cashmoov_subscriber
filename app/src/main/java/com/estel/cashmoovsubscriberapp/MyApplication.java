@@ -199,10 +199,10 @@ public class MyApplication extends Application {
 
     public   void callLogout() {
         //saveBool("isLogin",false,getInstance());
-       /* Toast.makeText(getApplicationContext(),"Logout called",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), R.string.timeout_timer,Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getInstance(), LoginPin.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 
 

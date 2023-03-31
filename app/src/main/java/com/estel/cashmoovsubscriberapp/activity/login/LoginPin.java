@@ -698,7 +698,7 @@ public class LoginPin extends AppCompatActivity {
                         MyApplication.isFirstTime=true;
                         MyApplication.IsPromoCalled = true;
                         MyApplication.isNotification=true;
-
+                        MyApplication.saveBool("FirstLoginCounter",true,LoginPin.this);
 
                         Intent i = new Intent(loginpinC, MainActivity.class);
                         startActivity(i);
