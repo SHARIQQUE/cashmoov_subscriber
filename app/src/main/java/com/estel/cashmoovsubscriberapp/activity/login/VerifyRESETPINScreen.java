@@ -90,6 +90,7 @@ public class VerifyRESETPINScreen extends AppCompatActivity implements OnOtpComp
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
 
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyRESETPINScreen.this,"Verify OTP");
             API.POST_RESETPIN("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {

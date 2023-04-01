@@ -87,7 +87,7 @@ public class VerifyRegisterOTP extends AppCompatActivity implements OnOtpComplet
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyRegisterOTP.this,getString(R.string.getting_user_info));
             API.POST_REQEST_LoginOTP("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {

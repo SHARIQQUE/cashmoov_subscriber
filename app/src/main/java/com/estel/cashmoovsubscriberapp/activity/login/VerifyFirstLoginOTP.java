@@ -89,7 +89,7 @@ public class VerifyFirstLoginOTP extends AppCompatActivity implements OnOtpCompl
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyFirstLoginOTP.this,getString(R.string.getting_user_info));
             API.POST_REQEST_GENERATEOTP("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {

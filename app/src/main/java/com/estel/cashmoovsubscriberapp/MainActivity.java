@@ -133,6 +133,8 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
         MyApplication.setLang(MainActivity.this);
 
         MyApplication.hideKeyboard(mainC);
+        tvBadge.setVisibility(View.GONE);
+        callApiNotificationList();
          /*.setTitle("Granny eating chocolate dialog box") // You can also send title like R.string.from_resources
                 .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.") // or pass like R.string.description_from_resources
                 .setTitleTextColor(R.color.red)
@@ -173,8 +175,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        tvBadge.setVisibility(View.GONE);
-        callApiNotificationList();
+
         //MyApplication.isFirstTime=false;
     }
 
@@ -1055,50 +1056,40 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                                     int apiCount = walletOwnerListArr.length();
                                     notificationCountPrevious = MyApplication.getSaveInt("NOTIFICATIONCOUNTPREV",mainC);
                                     notificationCountCurrent = MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC);
+                                    if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
 
+                                        MyApplication.saveInt("NOTIFICATIONCOUNTPREV",apiCount,MainActivity.this);
+                                        MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
+                                        apiCount=0;
+                                    }
 
                                     if(notificationCountPrevious<=apiCount){
                                         notificationCountCurrent = (apiCount-notificationCountPrevious);
                                         notificationCountPrevious = apiCount;
                                         if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",mainC)!=0){
-                                            if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
-                                                MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),MainActivity.this);
-                                                MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
-                                                tvBadge.setVisibility(View.GONE);
-                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
-                                            }else{
+
                                                 tvBadge.setVisibility(View.VISIBLE);
                                                 tvBadge.setText(String.valueOf(notificationCountCurrent));
-                                            }
+
                                         }else{
                                            // tvBadge.setVisibility(View.GONE);
                                         }
 
                                         if(notificationCountCurrent>notificationCountPrevious){
-                                            if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
-                                                MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),MainActivity.this);
-                                                MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
-                                                tvBadge.setVisibility(View.GONE);
-                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
-                                            }else{
+
                                                 tvBadge.setVisibility(View.VISIBLE);
                                                 tvBadge.setText(String.valueOf(notificationCountCurrent));
-                                            }
+
                                         }else{
                                            // tvBadge.setVisibility(View.GONE);
                                         }
                                         MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,mainC);
 
                                         if(notificationCountCurrent>0){
-                                            if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
-                                                MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),MainActivity.this);
-                                                MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
-                                                tvBadge.setVisibility(View.GONE);
-                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
-                                            }else{
+
                                                 tvBadge.setVisibility(View.VISIBLE);
                                                 tvBadge.setText(String.valueOf(notificationCountCurrent));
-                                            }
+
                                         }else{
                                             tvBadge.setVisibility(View.GONE);
                                         }

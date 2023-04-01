@@ -86,7 +86,7 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements OnOtp
             loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             // loginJson.put("scope","read write");
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyLoginAccountScreen.this,"Verify OTP");
             API.POST_REQEST_LoginOTP("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {
